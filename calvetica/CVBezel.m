@@ -1,0 +1,101 @@
+//
+//  CVBezel.m
+//  calvetica
+//
+//  Created by James Schultz on 6/30/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import "CVBezel.h"
+
+// private extension
+@interface CVBezel ()
+- (void)setBezelPosition;
+@end
+
+
+
+
+
+@implementation CVBezel
+
+
+- (void)awakeFromNib 
+{
+    [super awakeFromNib];
+    
+    self.layer.shadowOffset = CGSizeMake(0, 5);
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowOpacity = 0.5;
+    self.layer.shadowRadius = 5;
+    
+    [self.layer setCornerRadius:6.0f];
+    [self.layer setMasksToBounds:NO];
+}
+
+- (void)presentBezel 
+{
+    
+    [self setBezelPosition];
+    
+    // animate the fade out and remove from view
+    // in the future add cases here for various animation options
+    // add perhaps add some enums
+	
+	dispatch_queue_t animationQueue = dispatch_queue_create("com.mysterioustrousers.animationqueue", NULL);
+	dispatch_async(animationQueue, ^(void) {
+		
+		[NSThread sleepForTimeInterval:0.5];
+		
+		for (NSInteger i = 10; i >= 0; i -= 1) {
+			[NSThread sleepForTimeInterval:0.05];
+			dispatch_async(dispatch_get_main_queue(), ^(void) {
+				self.alpha = ( i / 10.0f );
+			});
+		}
+		
+		dispatch_async(dispatch_get_main_queue(), ^(void) {
+			[self removeFromSuperview];
+		});
+	});
+}
+
+- (void)setBezelPosition 
+{
+    // get and set sizes
+    UIView *view = [self superview];
+    
+    // set the number of lines of text
+    self.titleLabel.numberOfLines = [self.titleLabel linesOfWordWrapTextInLabelWithConstraintWidth:self.titleLabel.bounds.size.width];
+    
+    //NSInteger indent;
+    NSInteger X;
+    NSInteger Y;
+    NSInteger width = self.bounds.size.width;
+    NSInteger height = self.bounds.size.height;
+    
+    // adjust the height of the bezel if there is more than 1 line of text
+    if (self.titleLabel.numberOfLines > 1) {
+        height = [self.titleLabel totalHeightOfWordWrapTextInLabelWithConstraintWidth:self.titleLabel.bounds.size.width] + height;
+    }
+    
+    // center the bezel in the super view
+    Y = (view.bounds.size.height / 2) - (height / 2);
+    X = (view .bounds.size.width / 2) - (width / 2);
+    
+//    // adjust the postion of the bezel on the screen
+//    if (view.bounds.size.width > 640) {
+//        Y = (view.bounds.size.height / 2) - (height / 2);
+//        indent = -324;
+//    }
+//    else {
+//        Y = (view.bounds.size.height / 4) - (height / 2);
+//        indent = 41;
+//    }
+//    
+//    X = ((view.bounds.size.width + indent) / 2) - (self.bounds.size.width / 2);
+    
+    self.frame = CGRectMake(X, Y, width, height);
+}
+
+@end

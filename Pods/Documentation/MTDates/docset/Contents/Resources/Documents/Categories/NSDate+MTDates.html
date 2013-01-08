@@ -1,0 +1,2830 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>NSDate(MTDates) Category Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MTDates 0.6.1 </a></h1>
+				<a id="developerHome" href="../index.html">Adam Kirk</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">NSDate(MTDates) Category Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/dateFromComponents:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromComponents:</option>
+	
+	<option value="//api/name/dateFromISOString:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromISOString:</option>
+	
+	<option value="//api/name/dateFromString:usingFormat:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromString:usingFormat:</option>
+	
+	<option value="//api/name/dateFromYear:month:day:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromYear:month:day:</option>
+	
+	<option value="//api/name/dateFromYear:month:day:hour:minute:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromYear:month:day:hour:minute:</option>
+	
+	<option value="//api/name/dateFromYear:month:day:hour:minute:second:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromYear:month:day:hour:minute:second:</option>
+	
+	<option value="//api/name/dateFromYear:week:weekDay:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromYear:week:weekDay:</option>
+	
+	<option value="//api/name/dateFromYear:week:weekDay:hour:minute:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromYear:week:weekDay:hour:minute:</option>
+	
+	<option value="//api/name/dateFromYear:week:weekDay:hour:minute:second:">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFromYear:week:weekDay:hour:minute:second:</option>
+	
+	<option value="//api/name/datesCollectionFromDate:untilDate:">&nbsp;&nbsp;&nbsp;&nbsp;+ datesCollectionFromDate:untilDate:</option>
+	
+	<option value="//api/name/monthlySymbols">&nbsp;&nbsp;&nbsp;&nbsp;+ monthlySymbols</option>
+	
+	<option value="//api/name/setFirstDayOfWeek:">&nbsp;&nbsp;&nbsp;&nbsp;+ setFirstDayOfWeek:</option>
+	
+	<option value="//api/name/setLocale:">&nbsp;&nbsp;&nbsp;&nbsp;+ setLocale:</option>
+	
+	<option value="//api/name/setTimeZone:">&nbsp;&nbsp;&nbsp;&nbsp;+ setTimeZone:</option>
+	
+	<option value="//api/name/setWeekNumberingSystem:">&nbsp;&nbsp;&nbsp;&nbsp;+ setWeekNumberingSystem:</option>
+	
+	<option value="//api/name/shortMonthlySymbols">&nbsp;&nbsp;&nbsp;&nbsp;+ shortMonthlySymbols</option>
+	
+	<option value="//api/name/shortWeekdaySymbols">&nbsp;&nbsp;&nbsp;&nbsp;+ shortWeekdaySymbols</option>
+	
+	<option value="//api/name/veryShortMonthlySymbols">&nbsp;&nbsp;&nbsp;&nbsp;+ veryShortMonthlySymbols</option>
+	
+	<option value="//api/name/veryShortWeekdaySymbols">&nbsp;&nbsp;&nbsp;&nbsp;+ veryShortWeekdaySymbols</option>
+	
+	<option value="//api/name/weekdaySymbols">&nbsp;&nbsp;&nbsp;&nbsp;+ weekdaySymbols</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/components">&nbsp;&nbsp;&nbsp;&nbsp;- components</option>
+	
+	<option value="//api/name/dateByAddingYears:months:weeks:days:hours:minutes:seconds:">&nbsp;&nbsp;&nbsp;&nbsp;- dateByAddingYears:months:weeks:days:hours:minutes:seconds:</option>
+	
+	<option value="//api/name/dateDaysAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- dateDaysAfter:</option>
+	
+	<option value="//api/name/dateDaysBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- dateDaysBefore:</option>
+	
+	<option value="//api/name/dateHoursAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- dateHoursAfter:</option>
+	
+	<option value="//api/name/dateHoursBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- dateHoursBefore:</option>
+	
+	<option value="//api/name/dateMonthsAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- dateMonthsAfter:</option>
+	
+	<option value="//api/name/dateMonthsBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- dateMonthsBefore:</option>
+	
+	<option value="//api/name/dateWeeksAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- dateWeeksAfter:</option>
+	
+	<option value="//api/name/dateWeeksBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- dateWeeksBefore:</option>
+	
+	<option value="//api/name/dateYearsAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- dateYearsAfter:</option>
+	
+	<option value="//api/name/dateYearsBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- dateYearsBefore:</option>
+	
+	<option value="//api/name/dayOfMonth">&nbsp;&nbsp;&nbsp;&nbsp;- dayOfMonth</option>
+	
+	<option value="//api/name/daysInCurrentMonth">&nbsp;&nbsp;&nbsp;&nbsp;- daysInCurrentMonth</option>
+	
+	<option value="//api/name/daysInNextMonth">&nbsp;&nbsp;&nbsp;&nbsp;- daysInNextMonth</option>
+	
+	<option value="//api/name/daysInPreviousMonth">&nbsp;&nbsp;&nbsp;&nbsp;- daysInPreviousMonth</option>
+	
+	<option value="//api/name/daysSinceDate:">&nbsp;&nbsp;&nbsp;&nbsp;- daysSinceDate:</option>
+	
+	<option value="//api/name/daysUntilDate:">&nbsp;&nbsp;&nbsp;&nbsp;- daysUntilDate:</option>
+	
+	<option value="//api/name/endOfCurrentDay">&nbsp;&nbsp;&nbsp;&nbsp;- endOfCurrentDay</option>
+	
+	<option value="//api/name/endOfCurrentHour">&nbsp;&nbsp;&nbsp;&nbsp;- endOfCurrentHour</option>
+	
+	<option value="//api/name/endOfCurrentMonth">&nbsp;&nbsp;&nbsp;&nbsp;- endOfCurrentMonth</option>
+	
+	<option value="//api/name/endOfCurrentWeek">&nbsp;&nbsp;&nbsp;&nbsp;- endOfCurrentWeek</option>
+	
+	<option value="//api/name/endOfCurrentYear">&nbsp;&nbsp;&nbsp;&nbsp;- endOfCurrentYear</option>
+	
+	<option value="//api/name/endOfNextDay">&nbsp;&nbsp;&nbsp;&nbsp;- endOfNextDay</option>
+	
+	<option value="//api/name/endOfNextHour">&nbsp;&nbsp;&nbsp;&nbsp;- endOfNextHour</option>
+	
+	<option value="//api/name/endOfNextMonth">&nbsp;&nbsp;&nbsp;&nbsp;- endOfNextMonth</option>
+	
+	<option value="//api/name/endOfNextWeek">&nbsp;&nbsp;&nbsp;&nbsp;- endOfNextWeek</option>
+	
+	<option value="//api/name/endOfNextYear">&nbsp;&nbsp;&nbsp;&nbsp;- endOfNextYear</option>
+	
+	<option value="//api/name/endOfPreviousDay">&nbsp;&nbsp;&nbsp;&nbsp;- endOfPreviousDay</option>
+	
+	<option value="//api/name/endOfPreviousHour">&nbsp;&nbsp;&nbsp;&nbsp;- endOfPreviousHour</option>
+	
+	<option value="//api/name/endOfPreviousMonth">&nbsp;&nbsp;&nbsp;&nbsp;- endOfPreviousMonth</option>
+	
+	<option value="//api/name/endOfPreviousWeek">&nbsp;&nbsp;&nbsp;&nbsp;- endOfPreviousWeek</option>
+	
+	<option value="//api/name/endOfPreviousYear">&nbsp;&nbsp;&nbsp;&nbsp;- endOfPreviousYear</option>
+	
+	<option value="//api/name/hourOfDay">&nbsp;&nbsp;&nbsp;&nbsp;- hourOfDay</option>
+	
+	<option value="//api/name/hoursInCurrentDayAsDatesCollection">&nbsp;&nbsp;&nbsp;&nbsp;- hoursInCurrentDayAsDatesCollection</option>
+	
+	<option value="//api/name/hoursSinceDate:">&nbsp;&nbsp;&nbsp;&nbsp;- hoursSinceDate:</option>
+	
+	<option value="//api/name/hoursUntilDate:">&nbsp;&nbsp;&nbsp;&nbsp;- hoursUntilDate:</option>
+	
+	<option value="//api/name/inTimeZone:">&nbsp;&nbsp;&nbsp;&nbsp;- inTimeZone:</option>
+	
+	<option value="//api/name/isAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- isAfter:</option>
+	
+	<option value="//api/name/isBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- isBefore:</option>
+	
+	<option value="//api/name/isBetweenDate:andDate:">&nbsp;&nbsp;&nbsp;&nbsp;- isBetweenDate:andDate:</option>
+	
+	<option value="//api/name/isInAM">&nbsp;&nbsp;&nbsp;&nbsp;- isInAM</option>
+	
+	<option value="//api/name/isOnOrAfter:">&nbsp;&nbsp;&nbsp;&nbsp;- isOnOrAfter:</option>
+	
+	<option value="//api/name/isOnOrBefore:">&nbsp;&nbsp;&nbsp;&nbsp;- isOnOrBefore:</option>
+	
+	<option value="//api/name/isStartOfAnHour">&nbsp;&nbsp;&nbsp;&nbsp;- isStartOfAnHour</option>
+	
+	<option value="//api/name/isWithinSameDay:">&nbsp;&nbsp;&nbsp;&nbsp;- isWithinSameDay:</option>
+	
+	<option value="//api/name/isWithinSameHour:">&nbsp;&nbsp;&nbsp;&nbsp;- isWithinSameHour:</option>
+	
+	<option value="//api/name/isWithinSameMonth:">&nbsp;&nbsp;&nbsp;&nbsp;- isWithinSameMonth:</option>
+	
+	<option value="//api/name/isWithinSameWeek:">&nbsp;&nbsp;&nbsp;&nbsp;- isWithinSameWeek:</option>
+	
+	<option value="//api/name/minuteOfHour">&nbsp;&nbsp;&nbsp;&nbsp;- minuteOfHour</option>
+	
+	<option value="//api/name/monthOfYear">&nbsp;&nbsp;&nbsp;&nbsp;- monthOfYear</option>
+	
+	<option value="//api/name/monthsSinceDate:">&nbsp;&nbsp;&nbsp;&nbsp;- monthsSinceDate:</option>
+	
+	<option value="//api/name/monthsUntilDate:">&nbsp;&nbsp;&nbsp;&nbsp;- monthsUntilDate:</option>
+	
+	<option value="//api/name/oneDayNext">&nbsp;&nbsp;&nbsp;&nbsp;- oneDayNext</option>
+	
+	<option value="//api/name/oneDayPrevious">&nbsp;&nbsp;&nbsp;&nbsp;- oneDayPrevious</option>
+	
+	<option value="//api/name/oneHourNext">&nbsp;&nbsp;&nbsp;&nbsp;- oneHourNext</option>
+	
+	<option value="//api/name/oneHourPrevious">&nbsp;&nbsp;&nbsp;&nbsp;- oneHourPrevious</option>
+	
+	<option value="//api/name/oneMonthNext">&nbsp;&nbsp;&nbsp;&nbsp;- oneMonthNext</option>
+	
+	<option value="//api/name/oneMonthPrevious">&nbsp;&nbsp;&nbsp;&nbsp;- oneMonthPrevious</option>
+	
+	<option value="//api/name/oneWeekNext">&nbsp;&nbsp;&nbsp;&nbsp;- oneWeekNext</option>
+	
+	<option value="//api/name/oneWeekPrevious">&nbsp;&nbsp;&nbsp;&nbsp;- oneWeekPrevious</option>
+	
+	<option value="//api/name/oneYearNext">&nbsp;&nbsp;&nbsp;&nbsp;- oneYearNext</option>
+	
+	<option value="//api/name/oneYearPrevious">&nbsp;&nbsp;&nbsp;&nbsp;- oneYearPrevious</option>
+	
+	<option value="//api/name/secondOfMinute">&nbsp;&nbsp;&nbsp;&nbsp;- secondOfMinute</option>
+	
+	<option value="//api/name/secondsIntoDay">&nbsp;&nbsp;&nbsp;&nbsp;- secondsIntoDay</option>
+	
+	<option value="//api/name/startOfCurrentDay">&nbsp;&nbsp;&nbsp;&nbsp;- startOfCurrentDay</option>
+	
+	<option value="//api/name/startOfCurrentHour">&nbsp;&nbsp;&nbsp;&nbsp;- startOfCurrentHour</option>
+	
+	<option value="//api/name/startOfCurrentMonth">&nbsp;&nbsp;&nbsp;&nbsp;- startOfCurrentMonth</option>
+	
+	<option value="//api/name/startOfCurrentWeek">&nbsp;&nbsp;&nbsp;&nbsp;- startOfCurrentWeek</option>
+	
+	<option value="//api/name/startOfCurrentYear">&nbsp;&nbsp;&nbsp;&nbsp;- startOfCurrentYear</option>
+	
+	<option value="//api/name/startOfNextDay">&nbsp;&nbsp;&nbsp;&nbsp;- startOfNextDay</option>
+	
+	<option value="//api/name/startOfNextHour">&nbsp;&nbsp;&nbsp;&nbsp;- startOfNextHour</option>
+	
+	<option value="//api/name/startOfNextMonth">&nbsp;&nbsp;&nbsp;&nbsp;- startOfNextMonth</option>
+	
+	<option value="//api/name/startOfNextWeek">&nbsp;&nbsp;&nbsp;&nbsp;- startOfNextWeek</option>
+	
+	<option value="//api/name/startOfNextYear">&nbsp;&nbsp;&nbsp;&nbsp;- startOfNextYear</option>
+	
+	<option value="//api/name/startOfPreviousDay">&nbsp;&nbsp;&nbsp;&nbsp;- startOfPreviousDay</option>
+	
+	<option value="//api/name/startOfPreviousHour">&nbsp;&nbsp;&nbsp;&nbsp;- startOfPreviousHour</option>
+	
+	<option value="//api/name/startOfPreviousMonth">&nbsp;&nbsp;&nbsp;&nbsp;- startOfPreviousMonth</option>
+	
+	<option value="//api/name/startOfPreviousWeek">&nbsp;&nbsp;&nbsp;&nbsp;- startOfPreviousWeek</option>
+	
+	<option value="//api/name/startOfPreviousYear">&nbsp;&nbsp;&nbsp;&nbsp;- startOfPreviousYear</option>
+	
+	<option value="//api/name/stringFromDateWithAMPMSymbol">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithAMPMSymbol</option>
+	
+	<option value="//api/name/stringFromDateWithFormat:">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithFormat:</option>
+	
+	<option value="//api/name/stringFromDateWithFullMonth">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithFullMonth</option>
+	
+	<option value="//api/name/stringFromDateWithFullWeekdayTitle">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithFullWeekdayTitle</option>
+	
+	<option value="//api/name/stringFromDateWithGreatestComponentsForSecondsPassed:">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithGreatestComponentsForSecondsPassed:</option>
+	
+	<option value="//api/name/stringFromDateWithHourAndMinuteFormat:">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithHourAndMinuteFormat:</option>
+	
+	<option value="//api/name/stringFromDateWithISODateTime">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithISODateTime</option>
+	
+	<option value="//api/name/stringFromDateWithShortMonth">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithShortMonth</option>
+	
+	<option value="//api/name/stringFromDateWithShortWeekdayTitle">&nbsp;&nbsp;&nbsp;&nbsp;- stringFromDateWithShortWeekdayTitle</option>
+	
+	<option value="//api/name/weekDayOfWeek">&nbsp;&nbsp;&nbsp;&nbsp;- weekDayOfWeek</option>
+	
+	<option value="//api/name/weekOfYear">&nbsp;&nbsp;&nbsp;&nbsp;- weekOfYear</option>
+	
+	<option value="//api/name/weekdayStartOfCurrentMonth">&nbsp;&nbsp;&nbsp;&nbsp;- weekdayStartOfCurrentMonth</option>
+	
+	<option value="//api/name/weeksSinceDate:">&nbsp;&nbsp;&nbsp;&nbsp;- weeksSinceDate:</option>
+	
+	<option value="//api/name/weeksUntilDate:">&nbsp;&nbsp;&nbsp;&nbsp;- weeksUntilDate:</option>
+	
+	<option value="//api/name/year">&nbsp;&nbsp;&nbsp;&nbsp;- year</option>
+	
+	<option value="//api/name/yearsSinceDate:">&nbsp;&nbsp;&nbsp;&nbsp;- yearsSinceDate:</option>
+	
+	<option value="//api/name/yearsUntilDate:">&nbsp;&nbsp;&nbsp;&nbsp;- yearsUntilDate:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromComponents:">dateFromComponents:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromISOString:">dateFromISOString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromString:usingFormat:">dateFromString:usingFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromYear:month:day:">dateFromYear:month:day:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromYear:month:day:hour:minute:">dateFromYear:month:day:hour:minute:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromYear:month:day:hour:minute:second:">dateFromYear:month:day:hour:minute:second:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromYear:week:weekDay:">dateFromYear:week:weekDay:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromYear:week:weekDay:hour:minute:">dateFromYear:week:weekDay:hour:minute:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFromYear:week:weekDay:hour:minute:second:">dateFromYear:week:weekDay:hour:minute:second:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/datesCollectionFromDate:untilDate:">datesCollectionFromDate:untilDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monthlySymbols">monthlySymbols</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setFirstDayOfWeek:">setFirstDayOfWeek:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLocale:">setLocale:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setTimeZone:">setTimeZone:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setWeekNumberingSystem:">setWeekNumberingSystem:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shortMonthlySymbols">shortMonthlySymbols</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shortWeekdaySymbols">shortWeekdaySymbols</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/veryShortMonthlySymbols">veryShortMonthlySymbols</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/veryShortWeekdaySymbols">veryShortWeekdaySymbols</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/weekdaySymbols">weekdaySymbols</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/components">components</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateByAddingYears:months:weeks:days:hours:minutes:seconds:">dateByAddingYears:months:weeks:days:hours:minutes:seconds:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateDaysAfter:">dateDaysAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateDaysBefore:">dateDaysBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateHoursAfter:">dateHoursAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateHoursBefore:">dateHoursBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateMonthsAfter:">dateMonthsAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateMonthsBefore:">dateMonthsBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateWeeksAfter:">dateWeeksAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateWeeksBefore:">dateWeeksBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateYearsAfter:">dateYearsAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateYearsBefore:">dateYearsBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dayOfMonth">dayOfMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/daysInCurrentMonth">daysInCurrentMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/daysInNextMonth">daysInNextMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/daysInPreviousMonth">daysInPreviousMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/daysSinceDate:">daysSinceDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/daysUntilDate:">daysUntilDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfCurrentDay">endOfCurrentDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfCurrentHour">endOfCurrentHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfCurrentMonth">endOfCurrentMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfCurrentWeek">endOfCurrentWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfCurrentYear">endOfCurrentYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfNextDay">endOfNextDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfNextHour">endOfNextHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfNextMonth">endOfNextMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfNextWeek">endOfNextWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfNextYear">endOfNextYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfPreviousDay">endOfPreviousDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfPreviousHour">endOfPreviousHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfPreviousMonth">endOfPreviousMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfPreviousWeek">endOfPreviousWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endOfPreviousYear">endOfPreviousYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hourOfDay">hourOfDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hoursInCurrentDayAsDatesCollection">hoursInCurrentDayAsDatesCollection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hoursSinceDate:">hoursSinceDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hoursUntilDate:">hoursUntilDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/inTimeZone:">inTimeZone:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAfter:">isAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBefore:">isBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBetweenDate:andDate:">isBetweenDate:andDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isInAM">isInAM</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isOnOrAfter:">isOnOrAfter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isOnOrBefore:">isOnOrBefore:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isStartOfAnHour">isStartOfAnHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWithinSameDay:">isWithinSameDay:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWithinSameHour:">isWithinSameHour:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWithinSameMonth:">isWithinSameMonth:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWithinSameWeek:">isWithinSameWeek:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/minuteOfHour">minuteOfHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monthOfYear">monthOfYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monthsSinceDate:">monthsSinceDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monthsUntilDate:">monthsUntilDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneDayNext">oneDayNext</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneDayPrevious">oneDayPrevious</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneHourNext">oneHourNext</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneHourPrevious">oneHourPrevious</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneMonthNext">oneMonthNext</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneMonthPrevious">oneMonthPrevious</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneWeekNext">oneWeekNext</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneWeekPrevious">oneWeekPrevious</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneYearNext">oneYearNext</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/oneYearPrevious">oneYearPrevious</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/secondOfMinute">secondOfMinute</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/secondsIntoDay">secondsIntoDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfCurrentDay">startOfCurrentDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfCurrentHour">startOfCurrentHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfCurrentMonth">startOfCurrentMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfCurrentWeek">startOfCurrentWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfCurrentYear">startOfCurrentYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfNextDay">startOfNextDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfNextHour">startOfNextHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfNextMonth">startOfNextMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfNextWeek">startOfNextWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfNextYear">startOfNextYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfPreviousDay">startOfPreviousDay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfPreviousHour">startOfPreviousHour</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfPreviousMonth">startOfPreviousMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfPreviousWeek">startOfPreviousWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOfPreviousYear">startOfPreviousYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithAMPMSymbol">stringFromDateWithAMPMSymbol</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithFormat:">stringFromDateWithFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithFullMonth">stringFromDateWithFullMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithFullWeekdayTitle">stringFromDateWithFullWeekdayTitle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithGreatestComponentsForSecondsPassed:">stringFromDateWithGreatestComponentsForSecondsPassed:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithHourAndMinuteFormat:">stringFromDateWithHourAndMinuteFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithISODateTime">stringFromDateWithISODateTime</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithShortMonth">stringFromDateWithShortMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringFromDateWithShortWeekdayTitle">stringFromDateWithShortWeekdayTitle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/weekDayOfWeek">weekDayOfWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/weekOfYear">weekOfYear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/weekdayStartOfCurrentMonth">weekdayStartOfCurrentMonth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/weeksSinceDate:">weeksSinceDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/weeksUntilDate:">weeksUntilDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/year">year</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/yearsSinceDate:">yearsSinceDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/yearsUntilDate:">yearsUntilDate:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="NSDate(MTDates) Category Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">NSDate(MTDates) Category Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">NSDate+MTDates.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLocale:">+&nbsp;setLocale:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setTimeZone:">+&nbsp;setTimeZone:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setFirstDayOfWeek:">+&nbsp;setFirstDayOfWeek:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setWeekNumberingSystem:">+&nbsp;setWeekNumberingSystem:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromISOString:">+&nbsp;dateFromISOString:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromString:usingFormat:">+&nbsp;dateFromString:usingFormat:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromYear:month:day:">+&nbsp;dateFromYear:month:day:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromYear:month:day:hour:minute:">+&nbsp;dateFromYear:month:day:hour:minute:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromYear:month:day:hour:minute:second:">+&nbsp;dateFromYear:month:day:hour:minute:second:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromYear:week:weekDay:">+&nbsp;dateFromYear:week:weekDay:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromYear:week:weekDay:hour:minute:">+&nbsp;dateFromYear:week:weekDay:hour:minute:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromYear:week:weekDay:hour:minute:second:">+&nbsp;dateFromYear:week:weekDay:hour:minute:second:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateByAddingYears:months:weeks:days:hours:minutes:seconds:">&ndash;&nbsp;dateByAddingYears:months:weeks:days:hours:minutes:seconds:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFromComponents:">+&nbsp;dateFromComponents:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shortWeekdaySymbols">+&nbsp;shortWeekdaySymbols</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/weekdaySymbols">+&nbsp;weekdaySymbols</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/veryShortWeekdaySymbols">+&nbsp;veryShortWeekdaySymbols</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shortMonthlySymbols">+&nbsp;shortMonthlySymbols</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/monthlySymbols">+&nbsp;monthlySymbols</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/veryShortMonthlySymbols">+&nbsp;veryShortMonthlySymbols</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/year">&ndash;&nbsp;year</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/weekOfYear">&ndash;&nbsp;weekOfYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/weekDayOfWeek">&ndash;&nbsp;weekDayOfWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/monthOfYear">&ndash;&nbsp;monthOfYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dayOfMonth">&ndash;&nbsp;dayOfMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hourOfDay">&ndash;&nbsp;hourOfDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/minuteOfHour">&ndash;&nbsp;minuteOfHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/secondOfMinute">&ndash;&nbsp;secondOfMinute</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/secondsIntoDay">&ndash;&nbsp;secondsIntoDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/components">&ndash;&nbsp;components</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfPreviousYear">&ndash;&nbsp;startOfPreviousYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfCurrentYear">&ndash;&nbsp;startOfCurrentYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfNextYear">&ndash;&nbsp;startOfNextYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfPreviousYear">&ndash;&nbsp;endOfPreviousYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfCurrentYear">&ndash;&nbsp;endOfCurrentYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfNextYear">&ndash;&nbsp;endOfNextYear</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneYearPrevious">&ndash;&nbsp;oneYearPrevious</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneYearNext">&ndash;&nbsp;oneYearNext</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateYearsBefore:">&ndash;&nbsp;dateYearsBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateYearsAfter:">&ndash;&nbsp;dateYearsAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/yearsSinceDate:">&ndash;&nbsp;yearsSinceDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/yearsUntilDate:">&ndash;&nbsp;yearsUntilDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfPreviousMonth">&ndash;&nbsp;startOfPreviousMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfCurrentMonth">&ndash;&nbsp;startOfCurrentMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfNextMonth">&ndash;&nbsp;startOfNextMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfPreviousMonth">&ndash;&nbsp;endOfPreviousMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfCurrentMonth">&ndash;&nbsp;endOfCurrentMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfNextMonth">&ndash;&nbsp;endOfNextMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneMonthPrevious">&ndash;&nbsp;oneMonthPrevious</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneMonthNext">&ndash;&nbsp;oneMonthNext</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateMonthsBefore:">&ndash;&nbsp;dateMonthsBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateMonthsAfter:">&ndash;&nbsp;dateMonthsAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/monthsSinceDate:">&ndash;&nbsp;monthsSinceDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/monthsUntilDate:">&ndash;&nbsp;monthsUntilDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfPreviousWeek">&ndash;&nbsp;startOfPreviousWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfCurrentWeek">&ndash;&nbsp;startOfCurrentWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfNextWeek">&ndash;&nbsp;startOfNextWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfPreviousWeek">&ndash;&nbsp;endOfPreviousWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfCurrentWeek">&ndash;&nbsp;endOfCurrentWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfNextWeek">&ndash;&nbsp;endOfNextWeek</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneWeekPrevious">&ndash;&nbsp;oneWeekPrevious</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneWeekNext">&ndash;&nbsp;oneWeekNext</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateWeeksBefore:">&ndash;&nbsp;dateWeeksBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateWeeksAfter:">&ndash;&nbsp;dateWeeksAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/weeksSinceDate:">&ndash;&nbsp;weeksSinceDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/weeksUntilDate:">&ndash;&nbsp;weeksUntilDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfPreviousDay">&ndash;&nbsp;startOfPreviousDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfCurrentDay">&ndash;&nbsp;startOfCurrentDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfNextDay">&ndash;&nbsp;startOfNextDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfPreviousDay">&ndash;&nbsp;endOfPreviousDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfCurrentDay">&ndash;&nbsp;endOfCurrentDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfNextDay">&ndash;&nbsp;endOfNextDay</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneDayPrevious">&ndash;&nbsp;oneDayPrevious</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneDayNext">&ndash;&nbsp;oneDayNext</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateDaysBefore:">&ndash;&nbsp;dateDaysBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateDaysAfter:">&ndash;&nbsp;dateDaysAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/daysSinceDate:">&ndash;&nbsp;daysSinceDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/daysUntilDate:">&ndash;&nbsp;daysUntilDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfPreviousHour">&ndash;&nbsp;startOfPreviousHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfCurrentHour">&ndash;&nbsp;startOfCurrentHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOfNextHour">&ndash;&nbsp;startOfNextHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfPreviousHour">&ndash;&nbsp;endOfPreviousHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfCurrentHour">&ndash;&nbsp;endOfCurrentHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endOfNextHour">&ndash;&nbsp;endOfNextHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneHourPrevious">&ndash;&nbsp;oneHourPrevious</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/oneHourNext">&ndash;&nbsp;oneHourNext</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateHoursBefore:">&ndash;&nbsp;dateHoursBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateHoursAfter:">&ndash;&nbsp;dateHoursAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hoursSinceDate:">&ndash;&nbsp;hoursSinceDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hoursUntilDate:">&ndash;&nbsp;hoursUntilDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAfter:">&ndash;&nbsp;isAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBefore:">&ndash;&nbsp;isBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isOnOrAfter:">&ndash;&nbsp;isOnOrAfter:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isOnOrBefore:">&ndash;&nbsp;isOnOrBefore:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isWithinSameMonth:">&ndash;&nbsp;isWithinSameMonth:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isWithinSameWeek:">&ndash;&nbsp;isWithinSameWeek:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isWithinSameDay:">&ndash;&nbsp;isWithinSameDay:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isWithinSameHour:">&ndash;&nbsp;isWithinSameHour:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBetweenDate:andDate:">&ndash;&nbsp;isBetweenDate:andDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithHourAndMinuteFormat:">&ndash;&nbsp;stringFromDateWithHourAndMinuteFormat:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithShortMonth">&ndash;&nbsp;stringFromDateWithShortMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithFullMonth">&ndash;&nbsp;stringFromDateWithFullMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithAMPMSymbol">&ndash;&nbsp;stringFromDateWithAMPMSymbol</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithShortWeekdayTitle">&ndash;&nbsp;stringFromDateWithShortWeekdayTitle</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithFullWeekdayTitle">&ndash;&nbsp;stringFromDateWithFullWeekdayTitle</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithFormat:">&ndash;&nbsp;stringFromDateWithFormat:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithISODateTime">&ndash;&nbsp;stringFromDateWithISODateTime</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringFromDateWithGreatestComponentsForSecondsPassed:">&ndash;&nbsp;stringFromDateWithGreatestComponentsForSecondsPassed:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/datesCollectionFromDate:untilDate:">+&nbsp;datesCollectionFromDate:untilDate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hoursInCurrentDayAsDatesCollection">&ndash;&nbsp;hoursInCurrentDayAsDatesCollection</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isInAM">&ndash;&nbsp;isInAM</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isStartOfAnHour">&ndash;&nbsp;isStartOfAnHour</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/weekdayStartOfCurrentMonth">&ndash;&nbsp;weekdayStartOfCurrentMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/daysInCurrentMonth">&ndash;&nbsp;daysInCurrentMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/daysInPreviousMonth">&ndash;&nbsp;daysInPreviousMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/daysInNextMonth">&ndash;&nbsp;daysInNextMonth</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/inTimeZone:">&ndash;&nbsp;inTimeZone:</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromComponents:" title="dateFromComponents:"></a>
+	<h3 class="subsubtitle method-title">dateFromComponents:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromComponents:(NSDateComponents *)<em>components</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromISOString:" title="dateFromISOString:"></a>
+	<h3 class="subsubtitle method-title">dateFromISOString:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromISOString:(NSString *)<em>ISOString</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromString:usingFormat:" title="dateFromString:usingFormat:"></a>
+	<h3 class="subsubtitle method-title">dateFromString:usingFormat:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromString:(NSString *)<em>string</em> usingFormat:(NSString *)<em>format</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromYear:month:day:" title="dateFromYear:month:day:"></a>
+	<h3 class="subsubtitle method-title">dateFromYear:month:day:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromYear:(NSUInteger)<em>year</em> month:(NSUInteger)<em>month</em> day:(NSUInteger)<em>day</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromYear:month:day:hour:minute:" title="dateFromYear:month:day:hour:minute:"></a>
+	<h3 class="subsubtitle method-title">dateFromYear:month:day:hour:minute:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromYear:(NSUInteger)<em>year</em> month:(NSUInteger)<em>month</em> day:(NSUInteger)<em>day</em> hour:(NSUInteger)<em>hour</em> minute:(NSUInteger)<em>minute</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromYear:month:day:hour:minute:second:" title="dateFromYear:month:day:hour:minute:second:"></a>
+	<h3 class="subsubtitle method-title">dateFromYear:month:day:hour:minute:second:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromYear:(NSUInteger)<em>year</em> month:(NSUInteger)<em>month</em> day:(NSUInteger)<em>day</em> hour:(NSUInteger)<em>hour</em> minute:(NSUInteger)<em>minute</em> second:(NSUInteger)<em>second</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromYear:week:weekDay:" title="dateFromYear:week:weekDay:"></a>
+	<h3 class="subsubtitle method-title">dateFromYear:week:weekDay:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromYear:(NSUInteger)<em>year</em> week:(NSUInteger)<em>week</em> weekDay:(NSUInteger)<em>weekDay</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromYear:week:weekDay:hour:minute:" title="dateFromYear:week:weekDay:hour:minute:"></a>
+	<h3 class="subsubtitle method-title">dateFromYear:week:weekDay:hour:minute:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromYear:(NSUInteger)<em>year</em> week:(NSUInteger)<em>week</em> weekDay:(NSUInteger)<em>weekDay</em> hour:(NSUInteger)<em>hour</em> minute:(NSUInteger)<em>minute</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFromYear:week:weekDay:hour:minute:second:" title="dateFromYear:week:weekDay:hour:minute:second:"></a>
+	<h3 class="subsubtitle method-title">dateFromYear:week:weekDay:hour:minute:second:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)dateFromYear:(NSUInteger)<em>year</em> week:(NSUInteger)<em>week</em> weekDay:(NSUInteger)<em>weekDay</em> hour:(NSUInteger)<em>hour</em> minute:(NSUInteger)<em>minute</em> second:(NSUInteger)<em>second</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/datesCollectionFromDate:untilDate:" title="datesCollectionFromDate:untilDate:"></a>
+	<h3 class="subsubtitle method-title">datesCollectionFromDate:untilDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)datesCollectionFromDate:(NSDate *)<em>startDate</em> untilDate:(NSDate *)<em>endDate</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/monthlySymbols" title="monthlySymbols"></a>
+	<h3 class="subsubtitle method-title">monthlySymbols</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)monthlySymbols</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setFirstDayOfWeek:" title="setFirstDayOfWeek:"></a>
+	<h3 class="subsubtitle method-title">setFirstDayOfWeek:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)setFirstDayOfWeek:(NSUInteger)<em>firstDay</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLocale:" title="setLocale:"></a>
+	<h3 class="subsubtitle method-title">setLocale:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)setLocale:(NSLocale *)<em>locale</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setTimeZone:" title="setTimeZone:"></a>
+	<h3 class="subsubtitle method-title">setTimeZone:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)setTimeZone:(NSTimeZone *)<em>timeZone</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setWeekNumberingSystem:" title="setWeekNumberingSystem:"></a>
+	<h3 class="subsubtitle method-title">setWeekNumberingSystem:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)setWeekNumberingSystem:(MTDateWeekNumberingSystem)<em>system</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shortMonthlySymbols" title="shortMonthlySymbols"></a>
+	<h3 class="subsubtitle method-title">shortMonthlySymbols</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)shortMonthlySymbols</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shortWeekdaySymbols" title="shortWeekdaySymbols"></a>
+	<h3 class="subsubtitle method-title">shortWeekdaySymbols</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)shortWeekdaySymbols</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/veryShortMonthlySymbols" title="veryShortMonthlySymbols"></a>
+	<h3 class="subsubtitle method-title">veryShortMonthlySymbols</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)veryShortMonthlySymbols</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/veryShortWeekdaySymbols" title="veryShortWeekdaySymbols"></a>
+	<h3 class="subsubtitle method-title">veryShortWeekdaySymbols</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)veryShortWeekdaySymbols</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/weekdaySymbols" title="weekdaySymbols"></a>
+	<h3 class="subsubtitle method-title">weekdaySymbols</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)weekdaySymbols</code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/components" title="components"></a>
+	<h3 class="subsubtitle method-title">components</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDateComponents *)components</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateByAddingYears:months:weeks:days:hours:minutes:seconds:" title="dateByAddingYears:months:weeks:days:hours:minutes:seconds:"></a>
+	<h3 class="subsubtitle method-title">dateByAddingYears:months:weeks:days:hours:minutes:seconds:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateByAddingYears:(NSInteger)<em>years</em> months:(NSInteger)<em>months</em> weeks:(NSInteger)<em>weeks</em> days:(NSInteger)<em>days</em> hours:(NSInteger)<em>hours</em> minutes:(NSInteger)<em>minutes</em> seconds:(NSInteger)<em>seconds</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateDaysAfter:" title="dateDaysAfter:"></a>
+	<h3 class="subsubtitle method-title">dateDaysAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateDaysAfter:(NSUInteger)<em>days</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateDaysBefore:" title="dateDaysBefore:"></a>
+	<h3 class="subsubtitle method-title">dateDaysBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateDaysBefore:(NSUInteger)<em>days</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateHoursAfter:" title="dateHoursAfter:"></a>
+	<h3 class="subsubtitle method-title">dateHoursAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateHoursAfter:(NSUInteger)<em>hours</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateHoursBefore:" title="dateHoursBefore:"></a>
+	<h3 class="subsubtitle method-title">dateHoursBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateHoursBefore:(NSUInteger)<em>hours</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateMonthsAfter:" title="dateMonthsAfter:"></a>
+	<h3 class="subsubtitle method-title">dateMonthsAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateMonthsAfter:(NSUInteger)<em>months</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateMonthsBefore:" title="dateMonthsBefore:"></a>
+	<h3 class="subsubtitle method-title">dateMonthsBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateMonthsBefore:(NSUInteger)<em>months</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateWeeksAfter:" title="dateWeeksAfter:"></a>
+	<h3 class="subsubtitle method-title">dateWeeksAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateWeeksAfter:(NSUInteger)<em>weeks</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateWeeksBefore:" title="dateWeeksBefore:"></a>
+	<h3 class="subsubtitle method-title">dateWeeksBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateWeeksBefore:(NSUInteger)<em>weeks</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateYearsAfter:" title="dateYearsAfter:"></a>
+	<h3 class="subsubtitle method-title">dateYearsAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateYearsAfter:(NSUInteger)<em>years</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateYearsBefore:" title="dateYearsBefore:"></a>
+	<h3 class="subsubtitle method-title">dateYearsBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)dateYearsBefore:(NSUInteger)<em>years</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dayOfMonth" title="dayOfMonth"></a>
+	<h3 class="subsubtitle method-title">dayOfMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)dayOfMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/daysInCurrentMonth" title="daysInCurrentMonth"></a>
+	<h3 class="subsubtitle method-title">daysInCurrentMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)daysInCurrentMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/daysInNextMonth" title="daysInNextMonth"></a>
+	<h3 class="subsubtitle method-title">daysInNextMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)daysInNextMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/daysInPreviousMonth" title="daysInPreviousMonth"></a>
+	<h3 class="subsubtitle method-title">daysInPreviousMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)daysInPreviousMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/daysSinceDate:" title="daysSinceDate:"></a>
+	<h3 class="subsubtitle method-title">daysSinceDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)daysSinceDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/daysUntilDate:" title="daysUntilDate:"></a>
+	<h3 class="subsubtitle method-title">daysUntilDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)daysUntilDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfCurrentDay" title="endOfCurrentDay"></a>
+	<h3 class="subsubtitle method-title">endOfCurrentDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfCurrentDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfCurrentHour" title="endOfCurrentHour"></a>
+	<h3 class="subsubtitle method-title">endOfCurrentHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfCurrentHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfCurrentMonth" title="endOfCurrentMonth"></a>
+	<h3 class="subsubtitle method-title">endOfCurrentMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfCurrentMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfCurrentWeek" title="endOfCurrentWeek"></a>
+	<h3 class="subsubtitle method-title">endOfCurrentWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfCurrentWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfCurrentYear" title="endOfCurrentYear"></a>
+	<h3 class="subsubtitle method-title">endOfCurrentYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfCurrentYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfNextDay" title="endOfNextDay"></a>
+	<h3 class="subsubtitle method-title">endOfNextDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfNextDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfNextHour" title="endOfNextHour"></a>
+	<h3 class="subsubtitle method-title">endOfNextHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfNextHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfNextMonth" title="endOfNextMonth"></a>
+	<h3 class="subsubtitle method-title">endOfNextMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfNextMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfNextWeek" title="endOfNextWeek"></a>
+	<h3 class="subsubtitle method-title">endOfNextWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfNextWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfNextYear" title="endOfNextYear"></a>
+	<h3 class="subsubtitle method-title">endOfNextYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfNextYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfPreviousDay" title="endOfPreviousDay"></a>
+	<h3 class="subsubtitle method-title">endOfPreviousDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfPreviousDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfPreviousHour" title="endOfPreviousHour"></a>
+	<h3 class="subsubtitle method-title">endOfPreviousHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfPreviousHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfPreviousMonth" title="endOfPreviousMonth"></a>
+	<h3 class="subsubtitle method-title">endOfPreviousMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfPreviousMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfPreviousWeek" title="endOfPreviousWeek"></a>
+	<h3 class="subsubtitle method-title">endOfPreviousWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfPreviousWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endOfPreviousYear" title="endOfPreviousYear"></a>
+	<h3 class="subsubtitle method-title">endOfPreviousYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)endOfPreviousYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hourOfDay" title="hourOfDay"></a>
+	<h3 class="subsubtitle method-title">hourOfDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)hourOfDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hoursInCurrentDayAsDatesCollection" title="hoursInCurrentDayAsDatesCollection"></a>
+	<h3 class="subsubtitle method-title">hoursInCurrentDayAsDatesCollection</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSArray *)hoursInCurrentDayAsDatesCollection</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hoursSinceDate:" title="hoursSinceDate:"></a>
+	<h3 class="subsubtitle method-title">hoursSinceDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)hoursSinceDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hoursUntilDate:" title="hoursUntilDate:"></a>
+	<h3 class="subsubtitle method-title">hoursUntilDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)hoursUntilDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/inTimeZone:" title="inTimeZone:"></a>
+	<h3 class="subsubtitle method-title">inTimeZone:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)inTimeZone:(NSTimeZone *)<em>timezone</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAfter:" title="isAfter:"></a>
+	<h3 class="subsubtitle method-title">isAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isAfter:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBefore:" title="isBefore:"></a>
+	<h3 class="subsubtitle method-title">isBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isBefore:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBetweenDate:andDate:" title="isBetweenDate:andDate:"></a>
+	<h3 class="subsubtitle method-title">isBetweenDate:andDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isBetweenDate:(NSDate *)<em>date1</em> andDate:(NSDate *)<em>date2</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isInAM" title="isInAM"></a>
+	<h3 class="subsubtitle method-title">isInAM</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isInAM</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isOnOrAfter:" title="isOnOrAfter:"></a>
+	<h3 class="subsubtitle method-title">isOnOrAfter:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isOnOrAfter:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isOnOrBefore:" title="isOnOrBefore:"></a>
+	<h3 class="subsubtitle method-title">isOnOrBefore:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isOnOrBefore:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isStartOfAnHour" title="isStartOfAnHour"></a>
+	<h3 class="subsubtitle method-title">isStartOfAnHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isStartOfAnHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isWithinSameDay:" title="isWithinSameDay:"></a>
+	<h3 class="subsubtitle method-title">isWithinSameDay:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isWithinSameDay:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isWithinSameHour:" title="isWithinSameHour:"></a>
+	<h3 class="subsubtitle method-title">isWithinSameHour:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isWithinSameHour:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isWithinSameMonth:" title="isWithinSameMonth:"></a>
+	<h3 class="subsubtitle method-title">isWithinSameMonth:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isWithinSameMonth:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isWithinSameWeek:" title="isWithinSameWeek:"></a>
+	<h3 class="subsubtitle method-title">isWithinSameWeek:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isWithinSameWeek:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/minuteOfHour" title="minuteOfHour"></a>
+	<h3 class="subsubtitle method-title">minuteOfHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)minuteOfHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/monthOfYear" title="monthOfYear"></a>
+	<h3 class="subsubtitle method-title">monthOfYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)monthOfYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/monthsSinceDate:" title="monthsSinceDate:"></a>
+	<h3 class="subsubtitle method-title">monthsSinceDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)monthsSinceDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/monthsUntilDate:" title="monthsUntilDate:"></a>
+	<h3 class="subsubtitle method-title">monthsUntilDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)monthsUntilDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneDayNext" title="oneDayNext"></a>
+	<h3 class="subsubtitle method-title">oneDayNext</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneDayNext</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneDayPrevious" title="oneDayPrevious"></a>
+	<h3 class="subsubtitle method-title">oneDayPrevious</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneDayPrevious</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneHourNext" title="oneHourNext"></a>
+	<h3 class="subsubtitle method-title">oneHourNext</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneHourNext</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneHourPrevious" title="oneHourPrevious"></a>
+	<h3 class="subsubtitle method-title">oneHourPrevious</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneHourPrevious</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneMonthNext" title="oneMonthNext"></a>
+	<h3 class="subsubtitle method-title">oneMonthNext</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneMonthNext</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneMonthPrevious" title="oneMonthPrevious"></a>
+	<h3 class="subsubtitle method-title">oneMonthPrevious</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneMonthPrevious</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneWeekNext" title="oneWeekNext"></a>
+	<h3 class="subsubtitle method-title">oneWeekNext</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneWeekNext</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneWeekPrevious" title="oneWeekPrevious"></a>
+	<h3 class="subsubtitle method-title">oneWeekPrevious</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneWeekPrevious</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneYearNext" title="oneYearNext"></a>
+	<h3 class="subsubtitle method-title">oneYearNext</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneYearNext</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/oneYearPrevious" title="oneYearPrevious"></a>
+	<h3 class="subsubtitle method-title">oneYearPrevious</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)oneYearPrevious</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/secondOfMinute" title="secondOfMinute"></a>
+	<h3 class="subsubtitle method-title">secondOfMinute</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)secondOfMinute</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/secondsIntoDay" title="secondsIntoDay"></a>
+	<h3 class="subsubtitle method-title">secondsIntoDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSTimeInterval)secondsIntoDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfCurrentDay" title="startOfCurrentDay"></a>
+	<h3 class="subsubtitle method-title">startOfCurrentDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfCurrentDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfCurrentHour" title="startOfCurrentHour"></a>
+	<h3 class="subsubtitle method-title">startOfCurrentHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfCurrentHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfCurrentMonth" title="startOfCurrentMonth"></a>
+	<h3 class="subsubtitle method-title">startOfCurrentMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfCurrentMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfCurrentWeek" title="startOfCurrentWeek"></a>
+	<h3 class="subsubtitle method-title">startOfCurrentWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfCurrentWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfCurrentYear" title="startOfCurrentYear"></a>
+	<h3 class="subsubtitle method-title">startOfCurrentYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfCurrentYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfNextDay" title="startOfNextDay"></a>
+	<h3 class="subsubtitle method-title">startOfNextDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfNextDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfNextHour" title="startOfNextHour"></a>
+	<h3 class="subsubtitle method-title">startOfNextHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfNextHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfNextMonth" title="startOfNextMonth"></a>
+	<h3 class="subsubtitle method-title">startOfNextMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfNextMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfNextWeek" title="startOfNextWeek"></a>
+	<h3 class="subsubtitle method-title">startOfNextWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfNextWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfNextYear" title="startOfNextYear"></a>
+	<h3 class="subsubtitle method-title">startOfNextYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfNextYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfPreviousDay" title="startOfPreviousDay"></a>
+	<h3 class="subsubtitle method-title">startOfPreviousDay</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfPreviousDay</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfPreviousHour" title="startOfPreviousHour"></a>
+	<h3 class="subsubtitle method-title">startOfPreviousHour</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfPreviousHour</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfPreviousMonth" title="startOfPreviousMonth"></a>
+	<h3 class="subsubtitle method-title">startOfPreviousMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfPreviousMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfPreviousWeek" title="startOfPreviousWeek"></a>
+	<h3 class="subsubtitle method-title">startOfPreviousWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfPreviousWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOfPreviousYear" title="startOfPreviousYear"></a>
+	<h3 class="subsubtitle method-title">startOfPreviousYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSDate *)startOfPreviousYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithAMPMSymbol" title="stringFromDateWithAMPMSymbol"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithAMPMSymbol</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithAMPMSymbol</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithFormat:" title="stringFromDateWithFormat:"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithFormat:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithFormat:(NSString *)<em>format</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithFullMonth" title="stringFromDateWithFullMonth"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithFullMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithFullMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithFullWeekdayTitle" title="stringFromDateWithFullWeekdayTitle"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithFullWeekdayTitle</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithFullWeekdayTitle</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithGreatestComponentsForSecondsPassed:" title="stringFromDateWithGreatestComponentsForSecondsPassed:"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithGreatestComponentsForSecondsPassed:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithGreatestComponentsForSecondsPassed:(NSTimeInterval)<em>interval</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithHourAndMinuteFormat:" title="stringFromDateWithHourAndMinuteFormat:"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithHourAndMinuteFormat:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithHourAndMinuteFormat:(MTDateHourFormat)<em>format</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithISODateTime" title="stringFromDateWithISODateTime"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithISODateTime</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithISODateTime</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithShortMonth" title="stringFromDateWithShortMonth"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithShortMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithShortMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringFromDateWithShortWeekdayTitle" title="stringFromDateWithShortWeekdayTitle"></a>
+	<h3 class="subsubtitle method-title">stringFromDateWithShortWeekdayTitle</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringFromDateWithShortWeekdayTitle</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/weekDayOfWeek" title="weekDayOfWeek"></a>
+	<h3 class="subsubtitle method-title">weekDayOfWeek</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)weekDayOfWeek</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/weekOfYear" title="weekOfYear"></a>
+	<h3 class="subsubtitle method-title">weekOfYear</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)weekOfYear</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/weekdayStartOfCurrentMonth" title="weekdayStartOfCurrentMonth"></a>
+	<h3 class="subsubtitle method-title">weekdayStartOfCurrentMonth</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)weekdayStartOfCurrentMonth</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/weeksSinceDate:" title="weeksSinceDate:"></a>
+	<h3 class="subsubtitle method-title">weeksSinceDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)weeksSinceDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/weeksUntilDate:" title="weeksUntilDate:"></a>
+	<h3 class="subsubtitle method-title">weeksUntilDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)weeksUntilDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/year" title="year"></a>
+	<h3 class="subsubtitle method-title">year</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)year</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/yearsSinceDate:" title="yearsSinceDate:"></a>
+	<h3 class="subsubtitle method-title">yearsSinceDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)yearsSinceDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/yearsUntilDate:" title="yearsUntilDate:"></a>
+	<h3 class="subsubtitle method-title">yearsUntilDate:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)yearsUntilDate:(NSDate *)<em>date</em></code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Adam Kirk. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

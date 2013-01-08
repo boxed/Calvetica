@@ -1,0 +1,14 @@
+
+PODS:
+- MTDates (0.6.1)
+- TestFlightSDK (1.1)
+
+DEPENDENCIES:
+- MTDates
+- TestFlightSDK
+
+SPEC CHECKSUMS:
+  MTDates: 348df6b3183fd92a9c4c6db8f5ab1a1c5b0bdd9b
+  TestFlightSDK: a62347405c04307e2953eda4b8cc465ee51a6c90
+
+COCOAPODS: 0.14.0

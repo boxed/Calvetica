@@ -1,0 +1,206 @@
+//
+//  CVEventsAgendaTableViewController.m
+//  calvetica
+//
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import "CVEventsAgendaTableViewController.h"
+#import "CVEventCellDataHolder.h"
+
+
+
+
+@implementation CVEventsAgendaTableViewController
+
+- (UINib *)eventCellNib 
+{
+    if (!_eventCellNib) {
+        self.eventCellNib = [CVEventCell nib];
+    }
+    return _eventCellNib;    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+
+#pragma mark - Methods
+
+- (void)loadTableView 
+{  
+    
+    // date can't be null
+    if (!self.selectedDate) return;
+    
+    // copy the date so that its copied into the operation and not tied to the ivar
+    NSDate *dateCopy = [self.selectedDate copy];
+    
+    dispatch_async([CVOperationQueue backgroundQueue], ^{
+        
+        
+        // fetch the events
+        NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:dateCopy 
+                                                                                      toDate:[dateCopy endOfCurrentDay]
+                                                                          forActiveCalendars:YES]];
+        
+        // create cell data holders
+        NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
+        if (events.count == 0) {
+            // create data holder
+            CVEventCellDataHolder *cellDataHolder = [[CVEventCellDataHolder alloc] init];
+            [tempCellDataHolderArray addObject:cellDataHolder];
+        }
+        else {
+            for (EKEvent *event in events) {
+                
+                // create data holder
+                CVEventCellDataHolder *cellDataHolder = [[CVEventCellDataHolder alloc] init];
+                
+                // if the event is all day
+                if (event.allDay) {
+                    cellDataHolder.event = event;
+                    cellDataHolder.date = event.startingDate;
+                    cellDataHolder.isAllDay = YES;
+                    
+                    [tempCellDataHolderArray addObject:cellDataHolder];
+                }
+                
+                // if it spans the whole day, make it an all day event
+                else if ([event spansEntireDayOfDate:dateCopy]) {
+                    cellDataHolder.event = event;
+                    cellDataHolder.date = event.startingDate;
+                    cellDataHolder.isAllDay = YES;
+                    
+                    [tempCellDataHolderArray addObject:cellDataHolder];
+                }
+                
+                // if event started before date (but obviously cant end after it) show it at the beginning
+                // with a start time of "..."
+                else if (![event.startingDate isWithinSameDay:dateCopy]) {
+                    
+                    cellDataHolder.event = event;
+                    cellDataHolder.date = nil;
+                    cellDataHolder.isAllDay = NO;
+                    
+                    [tempCellDataHolderArray addObject:cellDataHolder];
+                }
+                
+                else {
+                    cellDataHolder.event = event;
+                    cellDataHolder.date = event.startingDate;
+                    cellDataHolder.isAllDay = NO;
+                    
+                    [tempCellDataHolderArray addObject:cellDataHolder];
+                }
+            }
+            
+            
+            // sort the data holders so that all day events are first, then events that started
+            // previously, then events that start today
+            [tempCellDataHolderArray sortUsingComparator:(NSComparator)^(id obj1, id obj2){
+                CVEventCellDataHolder *h1 = obj1;
+                CVEventCellDataHolder *h2 = obj2;
+                
+                if ((h1.date == nil) != (h2.date == nil)) {
+                    return h1.date == nil ? NSOrderedAscending : NSOrderedDescending;
+                }
+                
+                else if (h1.isAllDay != h2.isAllDay) {
+                    return h1.isAllDay ? NSOrderedAscending : NSOrderedDescending;
+                }
+                
+                else {
+                    return [h1.event.startingDate isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
+                }
+            }];
+        }
+        
+        
+        // update the table with our new event or cell
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // replace the old data holder array with the one we just generated
+            self.cellDataHolderArray = tempCellDataHolderArray;
+            
+            [self.tableView reloadData]; 
+            
+            if (self.shouldScrollToCurrentHour) {
+                [self scrollToCurrentHour];
+                self.shouldScrollToCurrentHour = NO;
+            }
+        });
+    });
+    
+}
+
+- (void)scrollToCurrentHour 
+{
+    // scroll to current hour
+    NSInteger currentHour = [[NSDate date] hourOfDay];
+    for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
+        CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
+        if ([holder.date hourOfDay] == currentHour) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+            break;
+        }
+    }
+}
+
+- (id)cellDataHolderAtIndexPath:(NSIndexPath *)index 
+{
+    return [_cellDataHolderArray objectAtIndex:index.row];
+}
+
+- (void)removeObjectAtIndexPath:(NSIndexPath *)index 
+{
+    [_cellDataHolderArray removeObjectAtIndex:index.row];
+}
+
+
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return _cellDataHolderArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{  
+    
+    CVEventCell *cell = [CVEventCell cellForTableView:tableView fromNib:self.eventCellNib];
+    CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:indexPath.row];
+    
+    if (holder.event) {
+        cell.isEmpty = NO;
+        cell.event = holder.event;
+        cell.date = holder.date;
+        cell.isAllDay = holder.isAllDay;
+    }
+    else {
+        cell.isEmpty = YES;
+    }
+    
+    cell.durationBarPercent = 0;
+    cell.durationBarColor = [UIColor clearColor];
+	cell.secondaryDurationBarColor = [UIColor clearColor];
+    cell.delegate = self.delegate;
+	[cell resetAccessoryButton];
+    holder.cell = cell;
+    
+    [cell drawDurationBarAnimated:NO];
+    
+    return cell;
+}
+
+
+
+
+@end

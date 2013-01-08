@@ -1,0 +1,41 @@
+//
+//  CVPageModalViewController_iPad.h
+//  calvetica
+//
+//  Created by Adam Kirk on 5/30/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import "CVViewController.h"
+#import "CVPopoverBackdrop.h"
+#import "UIViewController+Utilities.h"
+#import "dimensions.h"
+#import "animations.h"
+#import "CVModalProtocol.h"
+#import "geometry.h"
+
+@interface CVPopoverModalViewController_iPad : CVViewController {
+    CGFloat keyboardAppearedModalSavedYCoord;
+	CVPopoverArrowDirection keyboardAppearedArrowSavedDirection;
+}
+
+#pragma mark - Properties
+@property (nonatomic, strong) CVViewController<CVModalProtocol> *contentViewController;
+@property (nonatomic, strong) UIView *targetView;
+
+#pragma mark - IBOutlets
+@property (nonatomic, strong) IBOutlet UIView *modalViewContainer;
+@property (nonatomic, strong) IBOutlet CVPopoverBackdrop *popoverBackdropView;
+
+#pragma mark - Methods
+- (id)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView;
+
+- (CVPopoverArrowDirection)bestEnumMatch:(CVPopoverArrowDirection)direction inMask:(CVPopoverArrowDirection)directionMask;
+- (void)layout;
+- (void)keyboardWillShow:(NSNotification *)aNotification;
+- (void)keyboardWillHide;
+
+#pragma mark - Actions
+- (IBAction)backdropWasTapped:(id)sender;
+
+@end

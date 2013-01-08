@@ -1,0 +1,1302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSDate+MTDates.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSDate(MTDates)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setLocale:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setLocale:(NSLocale *)locale</Declaration>
+			
+			
+			<Anchor>//api/name/setLocale:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setTimeZone:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setTimeZone:(NSTimeZone *)timeZone</Declaration>
+			
+			
+			<Anchor>//api/name/setTimeZone:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setFirstDayOfWeek:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setFirstDayOfWeek:(NSUInteger)firstDay</Declaration>
+			
+			
+			<Anchor>//api/name/setFirstDayOfWeek:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setWeekNumberingSystem:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setWeekNumberingSystem:(MTDateWeekNumberingSystem)system</Declaration>
+			
+			
+			<Anchor>//api/name/setWeekNumberingSystem:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromISOString:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromISOString:(NSString *)ISOString</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromISOString:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromString:usingFormat:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromString:(NSString *)string usingFormat:(NSString *)format</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromString:usingFormat:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromYear:month:day:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromYear:month:day:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromYear:month:day:hour:minute:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day hour:(NSUInteger)hour minute:(NSUInteger)minute</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromYear:month:day:hour:minute:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromYear:month:day:hour:minute:second:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day hour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromYear:month:day:hour:minute:second:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromYear:week:weekDay:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekDay:(NSUInteger)weekDay</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromYear:week:weekDay:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromYear:week:weekDay:hour:minute:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekDay:(NSUInteger)weekDay hour:(NSUInteger)hour minute:(NSUInteger)minute</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromYear:week:weekDay:hour:minute:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromYear:week:weekDay:hour:minute:second:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekDay:(NSUInteger)weekDay hour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromYear:week:weekDay:hour:minute:second:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateByAddingYears:months:weeks:days:hours:minutes:seconds:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateByAddingYears:(NSInteger)years months:(NSInteger)months weeks:(NSInteger)weeks days:(NSInteger)days hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds</Declaration>
+			
+			
+			<Anchor>//api/name/dateByAddingYears:months:weeks:days:hours:minutes:seconds:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateFromComponents:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDate *)dateFromComponents:(NSDateComponents *)components</Declaration>
+			
+			
+			<Anchor>//api/name/dateFromComponents:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/shortWeekdaySymbols</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)shortWeekdaySymbols</Declaration>
+			
+			
+			<Anchor>//api/name/shortWeekdaySymbols</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/weekdaySymbols</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)weekdaySymbols</Declaration>
+			
+			
+			<Anchor>//api/name/weekdaySymbols</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/veryShortWeekdaySymbols</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)veryShortWeekdaySymbols</Declaration>
+			
+			
+			<Anchor>//api/name/veryShortWeekdaySymbols</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/shortMonthlySymbols</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)shortMonthlySymbols</Declaration>
+			
+			
+			<Anchor>//api/name/shortMonthlySymbols</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/monthlySymbols</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)monthlySymbols</Declaration>
+			
+			
+			<Anchor>//api/name/monthlySymbols</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/veryShortMonthlySymbols</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)veryShortMonthlySymbols</Declaration>
+			
+			
+			<Anchor>//api/name/veryShortMonthlySymbols</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/year</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)year</Declaration>
+			
+			
+			<Anchor>//api/name/year</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/weekOfYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)weekOfYear</Declaration>
+			
+			
+			<Anchor>//api/name/weekOfYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/weekDayOfWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)weekDayOfWeek</Declaration>
+			
+			
+			<Anchor>//api/name/weekDayOfWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/monthOfYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)monthOfYear</Declaration>
+			
+			
+			<Anchor>//api/name/monthOfYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dayOfMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)dayOfMonth</Declaration>
+			
+			
+			<Anchor>//api/name/dayOfMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/hourOfDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)hourOfDay</Declaration>
+			
+			
+			<Anchor>//api/name/hourOfDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/minuteOfHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)minuteOfHour</Declaration>
+			
+			
+			<Anchor>//api/name/minuteOfHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/secondOfMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)secondOfMinute</Declaration>
+			
+			
+			<Anchor>//api/name/secondOfMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/secondsIntoDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSTimeInterval)secondsIntoDay</Declaration>
+			
+			
+			<Anchor>//api/name/secondsIntoDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/components</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDateComponents *)components</Declaration>
+			
+			
+			<Anchor>//api/name/components</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousYear</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentYear</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextYear</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfPreviousYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfPreviousYear</Declaration>
+			
+			
+			<Anchor>//api/name/endOfPreviousYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfCurrentYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfCurrentYear</Declaration>
+			
+			
+			<Anchor>//api/name/endOfCurrentYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfNextYear</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfNextYear</Declaration>
+			
+			
+			<Anchor>//api/name/endOfNextYear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneYearPrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneYearPrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneYearPrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneYearNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneYearNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneYearNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateYearsBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateYearsBefore:(NSUInteger)years</Declaration>
+			
+			
+			<Anchor>//api/name/dateYearsBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateYearsAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateYearsAfter:(NSUInteger)years</Declaration>
+			
+			
+			<Anchor>//api/name/dateYearsAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/yearsSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)yearsSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/yearsSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/yearsUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)yearsUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/yearsUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousMonth</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentMonth</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextMonth</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfPreviousMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfPreviousMonth</Declaration>
+			
+			
+			<Anchor>//api/name/endOfPreviousMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfCurrentMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfCurrentMonth</Declaration>
+			
+			
+			<Anchor>//api/name/endOfCurrentMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfNextMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfNextMonth</Declaration>
+			
+			
+			<Anchor>//api/name/endOfNextMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneMonthPrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneMonthPrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneMonthPrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneMonthNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneMonthNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneMonthNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateMonthsBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateMonthsBefore:(NSUInteger)months</Declaration>
+			
+			
+			<Anchor>//api/name/dateMonthsBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateMonthsAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateMonthsAfter:(NSUInteger)months</Declaration>
+			
+			
+			<Anchor>//api/name/dateMonthsAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/monthsSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)monthsSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/monthsSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/monthsUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)monthsUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/monthsUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousWeek</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentWeek</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextWeek</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfPreviousWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfPreviousWeek</Declaration>
+			
+			
+			<Anchor>//api/name/endOfPreviousWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfCurrentWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfCurrentWeek</Declaration>
+			
+			
+			<Anchor>//api/name/endOfCurrentWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfNextWeek</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfNextWeek</Declaration>
+			
+			
+			<Anchor>//api/name/endOfNextWeek</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneWeekPrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneWeekPrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneWeekPrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneWeekNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneWeekNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneWeekNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateWeeksBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateWeeksBefore:(NSUInteger)weeks</Declaration>
+			
+			
+			<Anchor>//api/name/dateWeeksBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateWeeksAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateWeeksAfter:(NSUInteger)weeks</Declaration>
+			
+			
+			<Anchor>//api/name/dateWeeksAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/weeksSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)weeksSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/weeksSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/weeksUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)weeksUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/weeksUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousDay</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentDay</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextDay</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfPreviousDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfPreviousDay</Declaration>
+			
+			
+			<Anchor>//api/name/endOfPreviousDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfCurrentDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfCurrentDay</Declaration>
+			
+			
+			<Anchor>//api/name/endOfCurrentDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfNextDay</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfNextDay</Declaration>
+			
+			
+			<Anchor>//api/name/endOfNextDay</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneDayPrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneDayPrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneDayPrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneDayNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneDayNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneDayNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateDaysBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateDaysBefore:(NSUInteger)days</Declaration>
+			
+			
+			<Anchor>//api/name/dateDaysBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateDaysAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateDaysAfter:(NSUInteger)days</Declaration>
+			
+			
+			<Anchor>//api/name/dateDaysAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/daysSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)daysSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/daysSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/daysUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)daysUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/daysUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousHour</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentHour</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextHour</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfPreviousHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfPreviousHour</Declaration>
+			
+			
+			<Anchor>//api/name/endOfPreviousHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfCurrentHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfCurrentHour</Declaration>
+			
+			
+			<Anchor>//api/name/endOfCurrentHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfNextHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfNextHour</Declaration>
+			
+			
+			<Anchor>//api/name/endOfNextHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneHourPrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneHourPrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneHourPrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneHourNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneHourNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneHourNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateHoursBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateHoursBefore:(NSUInteger)hours</Declaration>
+			
+			
+			<Anchor>//api/name/dateHoursBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateHoursAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateHoursAfter:(NSUInteger)hours</Declaration>
+			
+			
+			<Anchor>//api/name/dateHoursAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/hoursSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)hoursSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/hoursSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/hoursUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)hoursUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/hoursUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isAfter:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isBefore:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isOnOrAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isOnOrAfter:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isOnOrAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isOnOrBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isOnOrBefore:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isOnOrBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isWithinSameMonth:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isWithinSameMonth:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isWithinSameMonth:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isWithinSameWeek:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isWithinSameWeek:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isWithinSameWeek:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isWithinSameDay:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isWithinSameDay:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isWithinSameDay:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isWithinSameHour:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isWithinSameHour:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/isWithinSameHour:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isBetweenDate:andDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2</Declaration>
+			
+			
+			<Anchor>//api/name/isBetweenDate:andDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithHourAndMinuteFormat:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithHourAndMinuteFormat:(MTDateHourFormat)format</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithHourAndMinuteFormat:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithShortMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithShortMonth</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithShortMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithFullMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithFullMonth</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithFullMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithAMPMSymbol</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithAMPMSymbol</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithAMPMSymbol</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithShortWeekdayTitle</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithShortWeekdayTitle</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithShortWeekdayTitle</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithFullWeekdayTitle</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithFullWeekdayTitle</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithFullWeekdayTitle</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithFormat:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithFormat:(NSString *)format</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithFormat:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithISODateTime</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithISODateTime</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithISODateTime</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithGreatestComponentsForSecondsPassed:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithGreatestComponentsForSecondsPassed:(NSTimeInterval)interval</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithGreatestComponentsForSecondsPassed:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/datesCollectionFromDate:untilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)datesCollectionFromDate:(NSDate *)startDate untilDate:(NSDate *)endDate</Declaration>
+			
+			
+			<Anchor>//api/name/datesCollectionFromDate:untilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/hoursInCurrentDayAsDatesCollection</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSArray *)hoursInCurrentDayAsDatesCollection</Declaration>
+			
+			
+			<Anchor>//api/name/hoursInCurrentDayAsDatesCollection</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isInAM</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isInAM</Declaration>
+			
+			
+			<Anchor>//api/name/isInAM</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isStartOfAnHour</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isStartOfAnHour</Declaration>
+			
+			
+			<Anchor>//api/name/isStartOfAnHour</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/weekdayStartOfCurrentMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)weekdayStartOfCurrentMonth</Declaration>
+			
+			
+			<Anchor>//api/name/weekdayStartOfCurrentMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/daysInCurrentMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)daysInCurrentMonth</Declaration>
+			
+			
+			<Anchor>//api/name/daysInCurrentMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/daysInPreviousMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)daysInPreviousMonth</Declaration>
+			
+			
+			<Anchor>//api/name/daysInPreviousMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/daysInNextMonth</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)daysInNextMonth</Declaration>
+			
+			
+			<Anchor>//api/name/daysInNextMonth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/inTimeZone:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)inTimeZone:(NSTimeZone *)timezone</Declaration>
+			
+			
+			<Anchor>//api/name/inTimeZone:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

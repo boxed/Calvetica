@@ -1,0 +1,29 @@
+//
+// Prefix header for all source files of the 'calvetica' target in the 'calvetica' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
+
+#define PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+#ifndef DEBUG
+#undef NSLog
+#define NSLog(args, ...)
+#endif
+
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+	#import <EventKit/EventKit.h>
+    #import <TestFlight.h>
+	#import <CoreData/CoreData.h>
+	#import <NSDate+MTDates.h>
+	#import "NSDate+Utilities.h"
+	#import "CVOperationQueue.h"
+	#import "CVSettings.h"
+#endif

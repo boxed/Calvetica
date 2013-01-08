@@ -1,0 +1,386 @@
+//
+//  CVEventDetailsRepeatViewController_iPhone.m
+//  calvetica
+//
+//  Created by Quenton Jones on 5/26/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import "CVEventDetailsRepeatViewController_iPhone.h"
+#import "UITableViewCell+Nibs.h"
+
+#define MIN_YEAR_COUNT 50
+
+
+@implementation CVEventDetailsRepeatViewController_iPhone
+
+
+
+
+#pragma mark - Object Lifecycle
+
+- (id)init 
+{
+    return nil;
+}
+
+- (id)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule 
+{
+    self = [super init];
+    if (self) {
+        _endType = 0;
+        self.startDate = date;
+        self.initialRecurrenceRule = rule;
+
+        _selectedDay = [self.startDate dayOfMonth];
+        _selectedMonth = [self.startDate monthOfYear];
+        _selectedYear = [self.startDate year];
+    }
+    return self;
+}
+
+- (NSArray *)daySymbols 
+{
+    if (!_daySymbols) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        self.daySymbols = [formatter weekdaySymbols];
+    }
+    
+    return _daySymbols;
+}
+
+- (NSArray *)monthSymbols 
+{
+    if (!_monthSymbols) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        self.monthSymbols = [formatter monthSymbols];
+    }
+    
+    return _monthSymbols;
+}
+
+- (NSInteger)yearCount 
+{
+    // We'll throw an exception if the recurrence end date is greater than the number of years we're allowing.
+    if (self.initialRecurrenceRule.recurrenceEnd && self.initialRecurrenceRule.recurrenceEnd.endDate) {
+        int recurrenceEndYear = [self.initialRecurrenceRule.recurrenceEnd.endDate year];
+        int currentYearCount = [self.startDate year] + MIN_YEAR_COUNT;
+        if (recurrenceEndYear >= currentYearCount) {
+            // Add 11 to give a small buffer. For example, if the end date is 2065, we'll allow years up to 2075.
+            return (recurrenceEndYear - currentYearCount) + MIN_YEAR_COUNT + 11;
+        }
+    }
+    
+    return MIN_YEAR_COUNT;
+}
+
+
+
+#pragma mark - Methods
+
+
+- (int)dayCount 
+{
+    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
+    
+    // The user isn't allowed to select a day in the past.
+    if (_selectedYear == [self.startDate year] && _selectedMonth == [self.startDate monthOfYear]) {
+        return [date daysInCurrentMonth] - [self.startDate dayOfMonth] + 1;
+    }
+    
+    return [date daysInCurrentMonth];
+}
+
+- (int)dayForIndexPath:(NSIndexPath *)indexPath 
+{
+    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
+    int offset = [date daysInCurrentMonth] - ([self dayCount] - 1);
+    return indexPath.row + offset;
+}
+
++ (NSString *)endTypeButtonTitleForIndex:(int)index {
+    NSString *buttonTitle = nil;
+    if (index == 0) {
+        buttonTitle = NSLocalizedString(@"Never", @"Never");
+    } else if (index == 1) {
+        buttonTitle = NSLocalizedString(@"On Date", @"On Date");
+    } else if (index == 2) {
+        buttonTitle = NSLocalizedString(@"After", @"After");
+    }
+    
+    return buttonTitle;
+}
+
+- (NSIndexPath *)indexPathForDay:(int)day 
+{
+    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
+    int offset = [date daysInCurrentMonth] - ([self dayCount] - 1);
+    int row = day - offset;
+    
+    // A negative value means the selected day is in the past.
+    if (row < 0) {
+        row = 0;
+    }
+    return [NSIndexPath indexPathForRow:row inSection:0];
+}
+
+- (NSIndexPath *)indexPathForMonth:(int)month 
+{
+    int offset = 12 - ([self monthCount] - 1);
+    int row = month - offset;
+    
+    if (row < 0) {
+        row = 0;
+    }
+    return [NSIndexPath indexPathForRow:row inSection:0];
+}
+
+- (NSIndexPath *)indexPathForYear:(int)year 
+{
+    int row = year - [self.startDate year];
+    return [NSIndexPath indexPathForRow:row inSection:0];
+}
+
+- (int)monthCount 
+{
+    // The user isn't allowed to select a month in the past.
+    if (_selectedYear == [self.startDate year]) {
+        // Ex: startDate.monthOfYear = 3. 12 - (3 - 1) = 10. 
+        return 12 - ([self.startDate monthOfYear] - 1);
+    }
+    
+    return 12;
+}
+
+- (int)monthForIndexPath:(NSIndexPath *)indexPath 
+{
+    int offset = 12 - ([self monthCount] - 1);
+    return indexPath.row + offset;
+}
+
+- (EKRecurrenceRule *)recurrenceRule 
+{
+    // Should be implemented by each base class.
+    return nil;
+}
+
+- (void)updateSelectedDayWithAnimation:(BOOL)animate 
+{
+    // If the month or year changes, the max number of days might be less than our currently selected day.
+    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
+    if (_selectedDay > [date daysInCurrentMonth]) {
+        _selectedDay = [date daysInCurrentMonth];
+    }
+    
+    [self.dateDay reloadData];
+    
+    NSIndexPath *newPath = [self indexPathForDay:_selectedDay];
+    // It's possible that the day value was the past.
+    _selectedDay = [self dayForIndexPath:newPath];
+    [self.dateDay selectRowAtIndexPath:newPath animated:animate scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+- (void)updateSelectedMonthWithAnimation:(BOOL)animate 
+{
+    [self.dateMonth reloadData];
+    
+    NSIndexPath *newPath = [self indexPathForMonth:_selectedMonth];
+    // It's possible that the month value was in the past.
+    _selectedMonth = [self monthForIndexPath:newPath];
+    [self.dateMonth selectRowAtIndexPath:newPath animated:animate scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+- (void)updateSelectedYearWithAnimation:(BOOL)animate 
+{
+    [self.dateYear reloadData];
+    [self.dateYear selectRowAtIndexPath:[self indexPathForYear:_selectedYear] animated:animate scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+- (int)yearForIndexPath:(NSIndexPath *)indexPath 
+{
+    return [self.startDate year] + indexPath.row;
+}
+
+
+
+
+#pragma mark CVNumericKeyPadDelegate
+
+- (void)keyPad:(CVNumericKeyPadViewController_iPhone *)keyPad didUpdateNumber:(NSString *)number 
+{
+    if (keyPad.targetView == self.endCountButton) {
+        self.endAfterLabel.text = number;
+    } else if (keyPad.targetView == self.frequencyButton) {
+        self.repeatTimesLabel.text = number;
+    }
+
+    [self.delegate recurrenceDialog:self updatedRecurrence:[self recurrenceRule]];
+}
+
+- (void)keyPadWillClose:(CVNumericKeyPadViewController_iPhone *)keyPad 
+{
+    [self dismissFullScreenModalViewControllerAnimated:YES];
+}
+
+
+
+
+#pragma mark IBActions
+
+- (void)endAfterValueButtonPressed 
+{
+    CVNumericKeyPadViewController_iPhone *keyPad = [[CVNumericKeyPadViewController_iPhone alloc] initWithTargetView:self.endCountButton];
+    keyPad.delegate = self;
+    keyPad.minValue = 1;
+    [keyPad setKeyPadValue:[self.endAfterLabel.text intValue]];
+    [self presentFullScreenModalViewController:keyPad animated:YES];
+    
+}
+
+- (void)endTypeButtonPressed:(CVMultiToggleButton *)button 
+{
+    _endType = [button nextState];
+    if (_endType == 0) {
+        self.dateView.hidden = YES;
+        self.endAfterView.hidden = YES;
+    } else if (_endType == 1) {
+        self.dateView.hidden = NO;
+    } else if (_endType == 2) {
+        self.endAfterView.hidden = NO;
+        self.dateView.hidden = YES;
+    }
+    
+    [self.delegate recurrenceDialog:self updatedRecurrence:[self recurrenceRule]];
+}
+
+- (void)repeatValueButtonPressed 
+{
+    CVNumericKeyPadViewController_iPhone *keyPad = [[CVNumericKeyPadViewController_iPhone alloc] initWithTargetView:self.frequencyButton];
+    keyPad.delegate = self;
+    keyPad.minValue = 1;
+    [keyPad setKeyPadValue:[self.repeatTimesLabel.text intValue]];
+    [self presentFullScreenModalViewController:keyPad animated:YES];
+    
+}
+
+
+
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    if (tableView == self.dateDay) {
+        return [self dayCount];
+    } else if (tableView == self.dateMonth) {
+        return [self monthCount];
+    } else if (tableView == self.dateYear) {
+        return self.yearCount;
+    }
+    
+    return 0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+    cell.textLabel.textColor = patentedDarkGray;
+    
+    if (tableView == self.dateDay) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%i", [self dayForIndexPath:indexPath]];
+    } else if (tableView == self.dateMonth) {
+        NSDate *date = [NSDate dateFromYear:_selectedYear month:[self monthForIndexPath:indexPath] day:1];
+        cell.textLabel.text = [date stringWithTitleOfCurrentMonthAbbreviated:NO];
+    } else if (tableView == self.dateYear) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%i", [self yearForIndexPath:indexPath]];
+    }
+    
+    return cell;
+}
+
+
+
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    if (tableView == self.dateDay) {
+        _selectedDay = [self dayForIndexPath:indexPath];
+    } else if (tableView == self.dateMonth) {
+        _selectedMonth = [self monthForIndexPath:indexPath];
+        [self updateSelectedDayWithAnimation:YES];
+    } else if (tableView == self.dateYear) {
+        _selectedYear = [self yearForIndexPath:indexPath];
+        [self updateSelectedMonthWithAnimation:YES];
+        [self updateSelectedDayWithAnimation:YES];
+    }
+    
+    [self.delegate recurrenceDialog:self updatedRecurrence:[self recurrenceRule]];
+}
+
+
+
+
+#pragma mark UIView
+
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+    
+    self.repeatTimesLabel.text = [NSString stringWithFormat:@"%i", self.initialRecurrenceRule.interval];
+    
+    self.endTypeButton.states = @[END_NEVER, END_ON_DATE, END_AFTER];
+    
+    EKRecurrenceEnd *end = self.initialRecurrenceRule.recurrenceEnd;
+    if (end && end.endDate) {
+        _selectedDay = [end.endDate dayOfMonth];
+        _selectedMonth = [end.endDate monthOfYear];
+        _selectedYear = [end.endDate year];
+        self.dateView.hidden = NO;
+        _endType = 1;
+    } else if (end && end.occurrenceCount != 0) {
+        self.endAfterLabel.text = [NSString stringWithFormat:@"%i", end.occurrenceCount];
+        self.endAfterView.hidden = NO;
+        _endType = 2;
+    }
+    
+    self.endTypeButton.currentState = _endType;
+    
+    [self updateSelectedYearWithAnimation:YES];
+    [self updateSelectedMonthWithAnimation:YES];
+    [self updateSelectedDayWithAnimation:YES];
+}
+
+- (void)viewDidUnload 
+{
+	[self setDateDay:nil];
+	[self setDateMonth:nil];
+	[self setDateYear:nil];
+	[self setDateView:nil];
+	[self setEndAfterLabel:nil];
+	[self setEndAfterView:nil];
+	[self setEndTypeButton:nil];
+	[self setRepeatTimesLabel:nil];
+	[self setFrequencyButton:nil];
+	[self setEndCountButton:nil];
+	[super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+
+@end

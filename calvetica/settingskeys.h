@@ -1,0 +1,51 @@
+static NSString *WELCOME_SCREEN_CURRENT_VERSION = @"4.3";
+
+#define WELCOME_SCREEN_SHOWN                @"WelcomeScreenShown"
+#define WELCOME_SCREEN_SAVED_VERSION        @"WelcomeScreenVersion"
+#define AGENDA_VIEW                         @"AgendaView"
+#define EVENT_ROOT_TABLE_MODE               @"EventRootTableMode"
+#define REMINDER_ROOT_TABLE_MODE            @"ReminderRootTableMode"
+#define REMINDER_LIST_VIEW                  @"ReminderListView"
+#define SELECTED_EVENT_CALENDARS            @"SelectedEventCalendars"
+#define SELECTED_REMINDER_CALENDARS         @"SelectedReminderCalendars"
+#define DEFAULT_EVENT_CALENDAR              @"DefaultEventCalendar"
+#define DEFAULT_REMINDER_CALENDAR			@"DefaultReminderCalendar"
+#define EVENT_DETAILS_ORDERING              @"EventDetailsOrdering"
+#define EVENT_DETAILS_SUBTITLE_ORDERING     @"EventDetailsSubtitleTextOrdering"
+#define REMINDER_DETAILS_ORDERING           @"ReminderDetailsOrdering"
+#define DEFAULT_ALARM                       @"DefaultAlarm"
+#define DEFAULT_EVENT_ALARMS                @"DefaultEventAlarms"
+#define DEFAULT_ALL_DAY_EVENT_ALARMS        @"DefaultAllDayEventAlarms"
+#define DEFAULT_DURATION                    @"DefaultDuration"
+#define TIMEZONE_SUPPORT                    @"TimeZoneSupport"
+#define DEFAULT_TIMEZONE                    @"DefaultTimeZone"
+#define DEFAULT_LANGUAGE                    @"DefaultLanguage"
+#define START_WEEK_ON_WEEKDAY               @"StartWeekOnWeekday"
+#define MIN_DAYS_IN_FIRST_WEEK              @"MinimumDaysInFirstWeek"
+#define TWENTY_FOUR_HOUR_FORMAT             @"TwentyFourHourFormat"
+#define BADGE_OR_ALERTS                     @"BadgeOrAlerts"
+#define DAY_START_HOUR                      @"DayStartHour"
+#define DAY_END_HOUR                        @"DayEndHour"
+#define SHOW_DURATION_ON_READ_ONLY_EVENTS   @"ShowDurationOnReadOnlyEvents"
+#define DOTS_ONLY_MONTH_VIEW                @"DotsOnlyMonthView"
+#define SCROLLABLE_MONTH_VIEW               @"ScrollableMonthView"
+#define NETWORK_QUEUE						@"NetworkQueue"
+#define MULTIPLE_EXCHANGE_ALARMS            @"MultipleExchangeAlarms"
+
+#define NETWORK_REQUEST_URL_KEY				@"RequestURL"
+#define NETWORK_REQUEST_USERNAME_KEY		@"RequestUsername"
+#define NETWORK_REQUEST_PASSWORD_KEY		@"RequestPassword"
+#define NETWORK_REQUEST_METHOD_KEY			@"RequestMethod"
+#define NETWORK_REQUEST_BODY_KEY			@"RequestBody"
+
+#pragma mark - Calendar
+#define ALWAYS_ASK_FOR_CALENDAR             @"AlwaysAskForCalendar"
+
+#pragma mark - Custom Calendar Color Keys
+#define USE_COLOR_MATCHING                      @"UseColorMatching"
+#define CUSTOM_COLOR                            @"CustomColor"
+#define CUSTOMIZED_CALENDARS                    @"CustomizedCalendars"
+#define CUSTOM_COLORS_FOR_CALENDARS_COLLECTION  @"CustomColorsForCalendarsCollection"
+
+#pragma mark - Custom alert sounds
+#define CUSTOM_ALERT_SOUND_FILE             @"CustomAlertSoundFile"

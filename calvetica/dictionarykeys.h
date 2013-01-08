@@ -1,0 +1,5 @@
+
+
+
+#define NOTIFICATION_EVENT_START_DATE_KEY   @"EventStartDate"
+#define NOTIFICATION_EVENT_IDENTIFIER_KEY   @"EventIdentifier"

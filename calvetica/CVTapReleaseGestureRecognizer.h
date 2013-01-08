@@ -1,0 +1,29 @@
+//
+//  CVTapReleaseGestureRecognizer.h
+//  calvetica
+//
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIGestureRecognizerSubclass.h>
+#import "CVTapGestureRecognizer.h"
+
+
+/*!
+    @class      CVTapReleaseGestureRecognizer
+    @abstract   Recognizes when a tap is released.
+    @discussion 
+ */
+@interface CVTapReleaseGestureRecognizer : UIGestureRecognizer {
+    BOOL validGesture;
+}
+
+
+#pragma mark - Properties
+
+
+#pragma mark - Methods
+
+
+@end

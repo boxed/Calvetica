@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>MTDates 0.6.1 Reference</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="index.html">MTDates 0.6.1 </a></h1>
+				<a id="developerHome" href="index.html">Adam Kirk</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MTDates 0.6.1 Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar"></ul>
+		</header>
+		<article>
+			<div id="overview_contents" role="main">
+				<div class="main-navigation navigation-top">
+					<a href="hierarchy.html">Next</a>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MTDates 0.6.1 Reference</h1>
+					</div>		
+				</div>
+				<div id="container">
+					
+					<div class="section section-overview index-overview">
+						
+						
+						<h1>MTDates</h1>
+
+<p>MTDates is an category on NSDate that makes common date calculations super easy.</p>
+
+<h3>Installation</h3>
+
+<p>In your Podfile, add this line:</p>
+
+<pre><code>pod "MTDates"
+</code></pre>
+
+<p>pod? => <a href="https://github.com/CocoaPods/CocoaPods/">https://github.com/CocoaPods/CocoaPods/</a>
+NOTE: You may need to add <code>-all_load</code> to &ldquo;Other Linker Flags&rdquo; in your targets build settings if the pods library only contains categories.</p>
+
+<h3>Example Usage</h3>
+
+<pre><code>NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+formatter.dateFormat = @"MM/dd/yyyy hh:mma";
+NSDate *date = [formatter dateFromString:@"07/11/1986 11:29am"];
+
+[date year];                                                    // =&gt; 1986
+
+[date weekDayOfWeek];                                           // =&gt; 6
+
+[date minuteOfHour];                                            // =&gt; 29
+
+[[date startOfPreviousYear] year];                              // =&gt; 1985
+
+[[date startOfPreviousYear] stringFromDateWithISODateTime];     // =&gt; @"1985-01-01T00:00:00Z"
+
+[[date startOfPreviousMonth] stringFromDatesFullMonth];         // =&gt; @"June"
+</code></pre>
+
+<h3>Creating Dates</h3>
+
+<pre><code>[NSDate dateFromYear:1986 week:28 weekDay:6 hour:11 minute:29 second:0];
+</code></pre>
+
+<h3>Dates From Other Dates</h3>
+
+<pre><code>[date dateByAddingYears:0 months:0 weeks:2 days:0 hours:1 minutes:24 seconds:0];
+
+[date dateYearsAfter:8];
+
+[date oneYearNext];
+
+[date dateMonthsBefore:4];
+</code></pre>
+
+<h3>Comparing Dates</h3>
+
+<pre><code>[date isAfter:date2];
+
+[date2 isBefore:date];
+
+[date3 isOnOrBefore:date];
+
+[date2 isWithinSameWeek:date];
+
+[date4 isWithinSameDay:date];
+</code></pre>
+
+<h3>Other Coolness</h3>
+
+<pre><code>[date weekdayStartOfCurrentMonth];
+
+[date daysInCurrentMonth];
+[date daysInPreviousMonth]
+[date daysInNextMonth]
+</code></pre>
+
+<h3>International</h3>
+
+<pre><code>[NSDate setFirstDayOfWeek:1];
+[NSDate setFirstDayOfWeek:4];
+
+[NSDate setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
+[NSDate setWeekNumberingSystem:MTDateWeekNumberingSystemUS];
+</code></pre>
+
+<h3>All methods</h3>
+
+<pre><code>+ (void)setLocale:(NSLocale *)locale;
++ (void)setTimeZone:(NSTimeZone *)timeZone;
++ (void)setFirstDayOfWeek:(NSUInteger)firstDay; // Sunday: 1, Saturday: 7
++ (void)setWeekNumberingSystem:(MTDateWeekNumberingSystem)system;
+
++ (NSDate *)dateFromISOString:(NSString *)ISOString;
++ (NSDate *)dateFromString:(NSString *)string usingFormat:(NSString *)format;
++ (NSDate *)dateFromYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day;
++ (NSDate *)dateFromYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day hour:(NSUInteger)hour minute:(NSUInteger)minute;
++ (NSDate *)dateFromYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day hour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second;
++ (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekDay:(NSUInteger)weekDay;
++ (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekDay:(NSUInteger)weekDay hour:(NSUInteger)hour minute:(NSUInteger)minute;
++ (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekDay:(NSUInteger)weekDay hour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second;
+- (NSDate *)dateByAddingYears:(NSInteger)years months:(NSInteger)months weeks:(NSInteger)weeks days:(NSInteger)days hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
++ (NSDate *)dateFromComponents:(NSDateComponents *)components;
+
++ (NSArray *)shortWeekdaySymbols;
++ (NSArray *)weekdaySymbols;
++ (NSArray *)veryShortWeekdaySymbols;
++ (NSArray *)shortMonthlySymbols;
++ (NSArray *)monthlySymbols;
++ (NSArray *)veryShortMonthlySymbols;
+
+- (NSUInteger)year;
+- (NSUInteger)weekOfYear;
+- (NSUInteger)weekDayOfWeek;
+- (NSUInteger)monthOfYear;
+- (NSUInteger)dayOfMonth;
+- (NSUInteger)hourOfDay;
+- (NSUInteger)minuteOfHour;
+- (NSUInteger)secondOfMinute;
+- (NSTimeInterval)secondsIntoDay;
+- (NSDateComponents *)components;
+
+- (NSDate *)startOfPreviousYear;
+- (NSDate *)startOfCurrentYear;
+- (NSDate *)startOfNextYear;
+- (NSDate *)endOfPreviousYear;
+- (NSDate *)endOfCurrentYear;
+- (NSDate *)endOfNextYear;
+- (NSDate *)oneYearPrevious;
+- (NSDate *)oneYearNext;
+- (NSDate *)dateYearsBefore:(NSUInteger)years;
+- (NSDate *)dateYearsAfter:(NSUInteger)years;
+- (NSInteger)yearsSinceDate:(NSDate *)date;
+- (NSInteger)yearsUntilDate:(NSDate *)date;
+
+- (NSDate *)startOfPreviousMonth;
+- (NSDate *)startOfCurrentMonth;
+- (NSDate *)startOfNextMonth;
+- (NSDate *)endOfPreviousMonth;
+- (NSDate *)endOfCurrentMonth;
+- (NSDate *)endOfNextMonth;
+- (NSDate *)oneMonthPrevious;
+- (NSDate *)oneMonthNext;
+- (NSDate *)dateMonthsBefore:(NSUInteger)months;
+- (NSDate *)dateMonthsAfter:(NSUInteger)months;
+- (NSInteger)monthsSinceDate:(NSDate *)date;
+- (NSInteger)monthsUntilDate:(NSDate *)date;
+
+- (NSDate *)startOfPreviousWeek;
+- (NSDate *)startOfCurrentWeek;
+- (NSDate *)startOfNextWeek;
+- (NSDate *)endOfPreviousWeek;
+- (NSDate *)endOfCurrentWeek;
+- (NSDate *)endOfNextWeek;
+- (NSDate *)oneWeekPrevious;
+- (NSDate *)oneWeekNext;
+- (NSDate *)dateWeeksBefore:(NSUInteger)weeks;
+- (NSDate *)dateWeeksAfter:(NSUInteger)weeks;
+- (NSInteger)weeksSinceDate:(NSDate *)date;
+- (NSInteger)weeksUntilDate:(NSDate *)date;
+
+- (NSDate *)startOfPreviousDay;
+- (NSDate *)startOfCurrentDay;
+- (NSDate *)startOfNextDay;
+- (NSDate *)endOfPreviousDay;
+- (NSDate *)endOfCurrentDay;
+- (NSDate *)endOfNextDay;
+- (NSDate *)oneDayPrevious;
+- (NSDate *)oneDayNext;
+- (NSDate *)dateDaysBefore:(NSUInteger)days;
+- (NSDate *)dateDaysAfter:(NSUInteger)days;
+- (NSInteger)daysSinceDate:(NSDate *)date;
+- (NSInteger)daysUntilDate:(NSDate *)date;
+
+- (NSDate *)startOfPreviousHour;
+- (NSDate *)startOfCurrentHour;
+- (NSDate *)startOfNextHour;
+- (NSDate *)endOfPreviousHour;
+- (NSDate *)endOfCurrentHour;
+- (NSDate *)endOfNextHour;
+- (NSDate *)oneHourPrevious;
+- (NSDate *)oneHourNext;
+- (NSDate *)dateHoursBefore:(NSUInteger)hours;
+- (NSDate *)dateHoursAfter:(NSUInteger)hours;
+- (NSInteger)hoursSinceDate:(NSDate *)date;
+- (NSInteger)hoursUntilDate:(NSDate *)date;
+
+- (BOOL)isAfter:(NSDate *)date;
+- (BOOL)isBefore:(NSDate *)date;
+- (BOOL)isOnOrAfter:(NSDate *)date;
+- (BOOL)isOnOrBefore:(NSDate *)date;
+- (BOOL)isWithinSameMonth:(NSDate *)date;
+- (BOOL)isWithinSameWeek:(NSDate *)date;
+- (BOOL)isWithinSameDay:(NSDate *)date;
+- (BOOL)isWithinSameHour:(NSDate *)date;
+- (BOOL)isBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2;
+
+- (NSString *)stringFromDateWithHourAndMinuteFormat:(MTDateHourFormat)format;
+- (NSString *)stringFromDateWithShortMonth;
+- (NSString *)stringFromDateWithFullMonth;
+- (NSString *)stringFromDateWithAMPMSymbol;
+- (NSString *)stringFromDateWithShortWeekdayTitle;
+- (NSString *)stringFromDateWithFullWeekdayTitle;
+- (NSString *)stringFromDateWithFormat:(NSString *)format;      // http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns
+- (NSString *)stringFromDateWithISODateTime;
+- (NSString *)stringFromDateWithGreatestComponentsForSecondsPassed:(NSTimeInterval)interval;
+
++ (NSArray *)datesCollectionFromDate:(NSDate *)startDate untilDate:(NSDate *)endDate;
+- (NSArray *)hoursInCurrentDayAsDatesCollection;
+- (BOOL)isInAM;
+- (BOOL)isStartOfAnHour;
+- (NSUInteger)weekdayStartOfCurrentMonth;
+- (NSUInteger)daysInCurrentMonth;
+- (NSUInteger)daysInPreviousMonth;
+- (NSUInteger)daysInNextMonth;
+- (NSDate *)inTimeZone:(NSTimeZone *)timezone;
+</code></pre>
+
+<h3>NSDateComponents Additions</h3>
+
+<pre><code>NSDateComponents *comps = [NSDateComponents componentsFromString:@"10 October 2009"];
+[comps stringValue]     // =&gt; @"10 October 2009"
+
+NSDateComponents *comps = [NSDateComponents componentsFromString:@"October 2009"];
+[comps stringValue]     // =&gt; @"October 2009"
+
+NSDateComponents *comps = [NSDateComponents componentsFromString:@"2009"];
+[comps stringValue]     // =&gt; @"2009"
+
+NSDateComponents *comps = [NSDateComponents componentsFromString:@"10 2009"];
+[comps stringValue]     // =&gt; @"October 2009"
+
+NSDateComponents *comps = [NSDateComponents componentsFromString:@"10 July"];
+[comps stringValue]     // =&gt; @"10 July"
+
+NSDateComponents *comps = [NSDateComponents componentsFromString:@"10"];
+[comps stringValue]     // =&gt; @"October"
+</code></pre>
+
+<h3>Contributors</h3>
+
+<ul>
+<li><a href="https://github.com/atomkirk">Adam Kirk</a> @atomkirk</li>
+<li><a href="https://github.com/pwightman">Parker Wightman</a> @parkerwightman</li>
+<li><a href="https://github.com/boxenjim">James Schultz</a> @boxenjim</li>
+<li><a href="https://github.com/ryanmaxwell">Ryan Maxwell</a> @ryanmaxwell</li>
+</ul>
+
+						
+						
+					</div>
+					
+                        
+                    
+					
+					
+					
+						
+					<div class="index-column">
+						
+						
+						<h2 class="index-title">Category References</h2>
+						<ul>
+							
+							<li><a href="Categories/NSDate+MTDates.html">NSDate(MTDates)</a></li>
+							
+							<li><a href="Categories/NSDateComponents+MTDates.html">NSDateComponents(MTDates)</a></li>
+							
+						</ul>
+						
+					</div>
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<a href="hierarchy.html">Next</a>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Adam Kirk. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+	
+					</div>
+				</div>
+			</div>
+		</article>		
+	</body>
+</html>

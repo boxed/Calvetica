@@ -1,0 +1,280 @@
+//
+//  CVWeekTableViewCell_iPad.m
+//  calvetica
+//
+//  Created by Adam Kirk on 5/28/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import "CVWeekTableViewCell.h"
+#import "CVWeekTableViewCellReminders.h"
+#import "CVWeekTableViewCellEvents.h"
+#import "CVEventSquare.h"
+#import "CVRootViewController.h"
+
+
+@implementation CVWeekTableViewCell
+
+#pragma mark - View Lifecycle
+
+- (void)awakeFromNib 
+{
+    [super awakeFromNib];
+    _weekStartDate = nil;
+    _selectedDate = nil;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(handleTapGesture:)];
+    [self addGestureRecognizer:tapGesture];
+    
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressGesture:)];
+    [self addGestureRecognizer:longPressGesture];
+}
+
+
+
+
+#pragma mark - Methods
+
+- (void)setMode:(NSInteger)newMode 
+{
+    
+    _mode = newMode;
+    
+    if (self.drawingView.window) {
+        [self.drawingView removeFromSuperview];
+    }
+    
+    CGRect f = CGRectZero;
+    f.origin.x = 0;
+    f.origin.y = 1;
+    f.size.width = self.bounds.size.width;
+    f.size.height = self.bounds.size.height * 0.8f;
+    
+    if (self.mode == CVRootViewControllerModeEvents) {
+        self.drawingView = [[CVWeekTableViewCellEvents alloc] initWithFrame:f];
+    }
+    else {
+        self.drawingView = [[CVWeekTableViewCellReminders alloc] initWithFrame:f];
+    }
+    
+    self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.drawingView.opaque = NO;
+    self.drawingView.delegate = self;
+    [self addSubview:self.drawingView];
+}
+
+- (void)setWeekStartDate:(NSDate *)newStartDate
+{
+    _weekStartDate = newStartDate;
+    
+    if (!newStartDate) return;
+    
+    _monthLabel.hidden = YES;
+    
+    // update day numbers
+    NSDate *today = [NSDate date];
+    for (NSInteger i = 0; i < 7; i++) {
+        NSDate *date = [_weekStartDate dateDaysAfter:i];
+        NSInteger dayOfMonth = [date dayOfMonth];
+        
+        NSInteger num = i + 100;
+        UILabel *label = (UILabel *)[self viewWithTag:num];
+        label.text = [NSString stringWithFormat:@"%d", dayOfMonth];
+        
+        // gray out day labels that have passed
+        if ([date isBefore:today]) {
+            label.textColor = patentedDarkGray;
+        }
+        
+        // gray out every other month
+        if ([date monthOfYear] % 2 == 0) {
+            self.backgroundColor = patentedRed;
+        } else {
+            self.backgroundColor = patentedBlack;
+        }
+        
+        if (dayOfMonth == 1) {
+            _monthLabel.hidden = NO;
+            
+            CGFloat width       = self.frame.size.width;
+            CGFloat widthEach   = width / 7.0f;
+            
+            CGRect frame = _monthLabel.frame;
+            frame.origin.x = (widthEach * i) + (PAD ? 5.0f : 2.0f);
+            _monthLabel.frame = frame;
+            
+            if (PAD) {
+                _monthLabel.text = [[date stringWithTitleOfCurrentMonthAndYearAbbreviated:YES] uppercaseString];
+            }
+            else {
+                _monthLabel.text = [[date stringWithTitleOfCurrentMonthAbbreviated:YES] uppercaseString];
+            }
+        }
+    }
+}
+
+- (void)setSelectedDate:(NSDate *)newSelectedDate
+{
+    _selectedDate = newSelectedDate;
+    if (!newSelectedDate) return;
+}
+
+- (void)redraw
+{
+    // Update font sizes
+    if (PAD) {
+        for (NSInteger i = 0; i < 7; i++) {
+            NSInteger num = i + 100;
+            UILabel *label = (UILabel *)[self viewWithTag:num];
+            if ([self.delegate isInPortrait]) {
+                label.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+                _monthLabel.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+            }
+            else {
+                label.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+                _monthLabel.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+            }
+        }
+    }
+    
+    NSDate *today = [NSDate date];
+    _todayImage.hidden = YES;
+    if ([today isOnOrAfter:_weekStartDate] && [today isBefore:[_weekStartDate endOfCurrentWeek]]) {
+        _todayImage.hidden = NO;
+        CGFloat boxWidth = (self.bounds.size.width / (float)DAYS_IN_WEEK);
+        CGRect f = _todayImage.frame;
+        f.origin.x = (boxWidth * ([today weekDayOfWeek] - 1)) - 1.0f;
+        _todayImage.frame = f;
+    }
+    
+    [self.drawingView draw];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(context, NO);
+    CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
+    
+    // FILL BACKGROUND
+    
+    // gray out every other month
+    if (PAD) {
+        CGContextSetFillColorWithColor(context, [patentedVeryLightGray CGColor]);
+    }
+    else {
+        CGContextSetFillColorWithColor(context, [patentedPrettyLightGray CGColor]);
+    }
+    
+    for (NSInteger i = 0; i < 7; i++) {
+        NSDate *date = [_weekStartDate dateDaysAfter:i];
+        if ([date monthOfYear] % 2 == 0) {
+            CGRect grayRect = CGRectZero;
+            grayRect.origin.y = 0;
+            grayRect.origin.x = boxWidth * i;
+            grayRect.size.height = self.bounds.size.height;
+            grayRect.size.width = boxWidth;
+            CGContextFillRect(context, grayRect);
+        }
+    }
+    
+    
+    // DRAW BACKGROUND LINES
+    
+    NSInteger numLines = 7;
+    CGFloat distanceBetweenLines = self.bounds.size.width / numLines;
+    CGContextSetLineWidth(context, 1.0f);
+    
+    // horizontal line
+    CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
+    CGContextMoveToPoint(context, 0, 1);
+    CGContextAddLineToPoint(context, self.bounds.size.width, 1);
+    CGContextStrokePath(context);
+    
+    // highlight line
+    CGContextSetStrokeColorWithColor(context, [patentedWhite CGColor]);
+    CGContextMoveToPoint(context, 0, 2);
+    CGContextAddLineToPoint(context, self.bounds.size.width, 2);
+    CGContextStrokePath(context);
+    
+    // vertical lines
+    CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
+	for (int i = 0; i < numLines; i++) {
+        CGFloat x = roundf(distanceBetweenLines * i);
+        
+		CGContextMoveToPoint(context, x, 0);
+		CGContextAddLineToPoint(context, x, self.bounds.size.height);
+        CGContextStrokePath(context);
+	}
+}
+
+
+
+
+#pragma mark - IBActions
+
+- (IBAction)handleTapGesture:(UITapGestureRecognizer *)gesture
+{
+	if (gesture.state != UIGestureRecognizerStateEnded) return;
+    
+    // figure date
+    CGPoint pointOfTouch = [gesture locationInView:self];
+    NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * DAYS_IN_WEEK);
+    NSDate *date = [self.weekStartDate dateDaysAfter:daysIntoWeek];
+    
+    [self.delegate weekTableViewCell:self wasPressedOnDate:date];
+}
+
+- (IBAction)handleLongPressGesture:(UILongPressGestureRecognizer *)gesture
+{
+	if (gesture.state != UIGestureRecognizerStateBegan) return;
+    
+    // figure date
+    CGPoint pointOfTouch = [gesture locationInView:self];
+    NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * DAYS_IN_WEEK);
+    NSDate *date = [self.weekStartDate dateDaysAfter:daysIntoWeek];
+    
+    CGRect rectOfPlaceHolder = CGRectZero;
+    rectOfPlaceHolder.size.width = (self.bounds.size.width / (DAYS_IN_WEEK * 1.0f));
+    rectOfPlaceHolder.size.height = self.bounds.size.height;
+    rectOfPlaceHolder.origin.x = daysIntoWeek * rectOfPlaceHolder.size.width;
+    rectOfPlaceHolder.origin.y = 0;
+    
+    // create view to point to
+    UIView *placeholder = [[UIView alloc] initWithFrame:rectOfPlaceHolder];
+    placeholder.backgroundColor = patentedBlack;
+    placeholder.alpha = 0.3f;
+    [self addSubview:placeholder];
+    
+    [self.delegate weekTableViewCell:self wasLongPressedOnDate:date withPlaceholder:placeholder];
+}
+
+
+
+
+#pragma mark - CVWeekTableViewCellDrawingDataSource
+
+- (NSDate *)startDateForDrawingView:(CVWeekTableViewCellDrawing *)view
+{
+    return self.weekStartDate;
+}
+
+
+
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer 
+{
+    // We allow taps and long presses to occur at the same time. This lets us select a day when the user is long pressing on a day.
+    if ([gestureRecognizer isKindOfClass:[CVTapGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+        return YES;
+    }
+    return NO;
+}
+
+
+
+
+@end

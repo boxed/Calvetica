@@ -1,0 +1,39 @@
+//
+//  CVAlertViewController.h
+//  calvetica
+//
+//  Created by Adam Kirk on 5/20/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "CVViewController.h"
+#import "CVActionBlockButton.h"
+
+
+@interface CVAlertViewController : CVViewController {
+}
+
+
+#pragma mark - Properties
+@property (nonatomic, copy) void (^closeButtonAction)(void);
+
+
+#pragma mark - IBOutlets
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UITextView *messageTextView;
+@property (nonatomic, strong) IBOutlet UIView *alertView;
+@property (nonatomic, strong) IBOutlet UIView *buttonContainerView;
+@property (nonatomic, strong) NSMutableArray *buttons;
+
+
+#pragma mark - Methods
+- (void)addButton:(CVActionBlockButton *)button;
+- (void)dismiss;
+- (void)setMessageText:(NSString *)message resizeDialog:(BOOL)resize;
+
+
+#pragma mark - Actions
+- (IBAction)closeButtonWasTapped:(id)sender;
+
+@end
