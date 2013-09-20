@@ -20,10 +20,17 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 	#import <EventKit/EventKit.h>
-    #import <TestFlight.h>
 	#import <CoreData/CoreData.h>
 	#import <NSDate+MTDates.h>
 	#import "NSDate+Utilities.h"
 	#import "CVOperationQueue.h"
 	#import "CVSettings.h"
+    #import <PSPDFAlertView.h>
+    #import <MTQueue/MTq.h>
+    #import <UIView+FrameAccessor.h>
+    #import <BlocksKit.h>
+    #import "TestFlight.h"
+    #import <Crashlytics/Crashlytics.h>
+    #import <UIView+MTAnimation.h>
+    #import "color.h"
 #endif

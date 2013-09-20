@@ -32,9 +32,9 @@
         self.startDate = date;
         self.initialRecurrenceRule = rule;
 
-        _selectedDay = [self.startDate dayOfMonth];
-        _selectedMonth = [self.startDate monthOfYear];
-        _selectedYear = [self.startDate year];
+        _selectedDay = [self.startDate mt_dayOfMonth];
+        _selectedMonth = [self.startDate mt_monthOfYear];
+        _selectedYear = [self.startDate mt_year];
     }
     return self;
 }
@@ -63,8 +63,8 @@
 {
     // We'll throw an exception if the recurrence end date is greater than the number of years we're allowing.
     if (self.initialRecurrenceRule.recurrenceEnd && self.initialRecurrenceRule.recurrenceEnd.endDate) {
-        int recurrenceEndYear = [self.initialRecurrenceRule.recurrenceEnd.endDate year];
-        int currentYearCount = [self.startDate year] + MIN_YEAR_COUNT;
+        int recurrenceEndYear = [self.initialRecurrenceRule.recurrenceEnd.endDate mt_year];
+        int currentYearCount = [self.startDate mt_year] + MIN_YEAR_COUNT;
         if (recurrenceEndYear >= currentYearCount) {
             // Add 11 to give a small buffer. For example, if the end date is 2065, we'll allow years up to 2075.
             return (recurrenceEndYear - currentYearCount) + MIN_YEAR_COUNT + 11;
@@ -81,20 +81,20 @@
 
 - (int)dayCount 
 {
-    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
+    NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
     
     // The user isn't allowed to select a day in the past.
-    if (_selectedYear == [self.startDate year] && _selectedMonth == [self.startDate monthOfYear]) {
-        return [date daysInCurrentMonth] - [self.startDate dayOfMonth] + 1;
+    if (_selectedYear == [self.startDate mt_year] && _selectedMonth == [self.startDate mt_monthOfYear]) {
+        return [date mt_daysInCurrentMonth] - [self.startDate mt_dayOfMonth] + 1;
     }
     
-    return [date daysInCurrentMonth];
+    return [date mt_daysInCurrentMonth];
 }
 
 - (int)dayForIndexPath:(NSIndexPath *)indexPath 
 {
-    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
-    int offset = [date daysInCurrentMonth] - ([self dayCount] - 1);
+    NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
+    int offset = [date mt_daysInCurrentMonth] - ([self dayCount] - 1);
     return indexPath.row + offset;
 }
 
@@ -113,8 +113,8 @@
 
 - (NSIndexPath *)indexPathForDay:(int)day 
 {
-    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
-    int offset = [date daysInCurrentMonth] - ([self dayCount] - 1);
+    NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
+    int offset = [date mt_daysInCurrentMonth] - ([self dayCount] - 1);
     int row = day - offset;
     
     // A negative value means the selected day is in the past.
@@ -137,16 +137,16 @@
 
 - (NSIndexPath *)indexPathForYear:(int)year 
 {
-    int row = year - [self.startDate year];
+    int row = year - [self.startDate mt_year];
     return [NSIndexPath indexPathForRow:row inSection:0];
 }
 
 - (int)monthCount 
 {
     // The user isn't allowed to select a month in the past.
-    if (_selectedYear == [self.startDate year]) {
+    if (_selectedYear == [self.startDate mt_year]) {
         // Ex: startDate.monthOfYear = 3. 12 - (3 - 1) = 10. 
-        return 12 - ([self.startDate monthOfYear] - 1);
+        return 12 - ([self.startDate mt_monthOfYear] - 1);
     }
     
     return 12;
@@ -167,9 +167,9 @@
 - (void)updateSelectedDayWithAnimation:(BOOL)animate 
 {
     // If the month or year changes, the max number of days might be less than our currently selected day.
-    NSDate *date = [NSDate dateFromYear:_selectedYear month:_selectedMonth day:1];
-    if (_selectedDay > [date daysInCurrentMonth]) {
-        _selectedDay = [date daysInCurrentMonth];
+    NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
+    if (_selectedDay > [date mt_daysInCurrentMonth]) {
+        _selectedDay = [date mt_daysInCurrentMonth];
     }
     
     [self.dateDay reloadData];
@@ -198,7 +198,7 @@
 
 - (int)yearForIndexPath:(NSIndexPath *)indexPath 
 {
-    return [self.startDate year] + indexPath.row;
+    return [self.startDate mt_year] + indexPath.row;
 }
 
 
@@ -297,7 +297,7 @@
     if (tableView == self.dateDay) {
         cell.textLabel.text = [NSString stringWithFormat:@"%i", [self dayForIndexPath:indexPath]];
     } else if (tableView == self.dateMonth) {
-        NSDate *date = [NSDate dateFromYear:_selectedYear month:[self monthForIndexPath:indexPath] day:1];
+        NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:[self monthForIndexPath:indexPath] day:1];
         cell.textLabel.text = [date stringWithTitleOfCurrentMonthAbbreviated:NO];
     } else if (tableView == self.dateYear) {
         cell.textLabel.text = [NSString stringWithFormat:@"%i", [self yearForIndexPath:indexPath]];
@@ -342,9 +342,9 @@
     
     EKRecurrenceEnd *end = self.initialRecurrenceRule.recurrenceEnd;
     if (end && end.endDate) {
-        _selectedDay = [end.endDate dayOfMonth];
-        _selectedMonth = [end.endDate monthOfYear];
-        _selectedYear = [end.endDate year];
+        _selectedDay = [end.endDate mt_dayOfMonth];
+        _selectedMonth = [end.endDate mt_monthOfYear];
+        _selectedYear = [end.endDate mt_year];
         self.dateView.hidden = NO;
         _endType = 1;
     } else if (end && end.occurrenceCount != 0) {

@@ -44,7 +44,7 @@
 
 		
 		// fetch the reminders
-		NSArray *reminders = [CVEventStore remindersFromDate:[dateCopy startOfCurrentDay] toDate:[dateCopy endOfCurrentDay] activeCalendars:YES];
+		NSArray *reminders = [CVEventStore remindersFromDate:[dateCopy mt_startOfCurrentDay] toDate:[dateCopy mt_endOfCurrentDay] activeCalendars:YES];
 
 		// create the data holders
 		NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
@@ -74,7 +74,7 @@
 					return h1.reminder.priority > h2.reminder.priority ? NSOrderedDescending : NSOrderedAscending;
 				}
 				
-				return [h1.reminder.preferredDate isBefore:h2.reminder.preferredDate] ? NSOrderedAscending : NSOrderedDescending;
+				return [h1.reminder.preferredDate mt_isBefore:h2.reminder.preferredDate] ? NSOrderedAscending : NSOrderedDescending;
 			}];
 		}
 
@@ -82,7 +82,7 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 
 			// replace the old data holder array with the one we just generated
-			self.cellDataHolderArray = tempCellDataHolderArray;
+			self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
 
 			[self.tableView reloadData];
 
@@ -108,10 +108,10 @@
 - (void)scrollToCurrentHour 
 {
     // scroll to current hour
-    NSInteger currentHour = [[NSDate date] hourOfDay];
+    NSInteger currentHour = [[NSDate date] mt_hourOfDay];
     for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
         CVReminderCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
-        if ([holder.date hourOfDay] == currentHour) {
+        if ([holder.date mt_hourOfDay] == currentHour) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
             break;

@@ -40,7 +40,7 @@
     // check that the new value is a different value than the current value
     // if it is check that it is today, if it is scroll to current hour
     else if (![self.selectedDate isEqualToDate:sd]) {
-        if ([sd isWithinSameDay:[NSDate date]]) {
+        if ([sd mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
             self.rootTableViewController.shouldScrollToCurrentHour = YES;
         }
@@ -106,11 +106,7 @@
 
 - (void)showWeekView 
 {
-    CVLandscapeWeekView_iPad *landscapeWeekView = [[CVLandscapeWeekView_iPad alloc] init];
-    landscapeWeekView.delegate = self;
-    landscapeWeekView.startDate = [NSDate date];
-    landscapeWeekView.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:landscapeWeekView animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"WeekViewSegue" sender:self];
 }
 
 
@@ -121,7 +117,7 @@
 - (void)setMonthAndDayLabels 
 {
     _redBarMonthLabel.text = [[self.selectedDate stringWithTitleOfCurrentMonthAbbreviated:NO] lowercaseString];
-    _redBarYearLabel.text = [NSString stringWithFormat:@"%d", [self.selectedDate year]];
+    _redBarYearLabel.text = [NSString stringWithFormat:@"%d", [self.selectedDate mt_year]];
     _grayBarWeekdayLabel.text = [[self.selectedDate stringWithTitleOfCurrentWeekDayAbbreviated:NO] lowercaseString];
     _grayBarDateLabel.text = [[self.selectedDate stringWithMonthAndDayAbbreviated:YES] uppercaseString];
     
@@ -193,15 +189,16 @@
 
 - (void)viewDidLoad 
 {
+    [super viewDidLoad];
+
     UISwipeGestureRecognizer *slideInLandscapeWeekGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleThreeFingerSwipeOnMonthView:)];
     slideInLandscapeWeekGesture.numberOfTouchesRequired = 3;
     slideInLandscapeWeekGesture.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
-    [self.monthTableView addGestureRecognizer:slideInLandscapeWeekGesture];
+    [self.monthTableViewController.tableView addGestureRecognizer:slideInLandscapeWeekGesture];
 
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChange:)	name:UIDeviceOrientationDidChangeNotification object:nil];
 
-    [super viewDidLoad];
 }
 
 - (void)viewDidAppear:(BOOL)animated 
@@ -210,6 +207,16 @@
     [super viewDidAppear:animated];
     
     [self setWeekDayTitles];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"WeekViewSegue"]) {
+        CVLandscapeWeekView_iPad *landscapeWeekView = [segue destinationViewController];
+        landscapeWeekView.delegate                  = self;
+        landscapeWeekView.startDate                 = [NSDate date];
+    }
+    [super prepareForSegue:segue sender:sender];
 }
 
 
@@ -237,8 +244,8 @@
 {
 	if (gesture.state != UIGestureRecognizerStateBegan) return;
     
-	NSDate *chosenDate = [[NSDate date] startOfCurrentDay];
-	self.monthTableViewController.startDate = [[chosenDate dateWeeksBefore:100] startOfCurrentWeek];
+	NSDate *chosenDate = [[NSDate date] mt_startOfCurrentDay];
+	self.monthTableViewController.startDate = [[chosenDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
     
 	[super handleLongPressOnMonthTitleGesture:gesture];
 
@@ -457,7 +464,7 @@
 			holder.event = nil;
 			holder.isAllDay = NO;
 			
-			if (![holder.date isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
+			if (![holder.date mt_isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
 				[self.rootTableViewController removeObjectAtIndexPath:indexPath];
 				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationMiddle];
 			}

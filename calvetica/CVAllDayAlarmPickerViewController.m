@@ -40,7 +40,7 @@
         button.textColorSelected = patentedWhite;
 		
 		NSInteger offset = [[self.buttons objectAtIndex:i] intValue];
-		NSDate *scratchDate = [[[NSDate date] startOfCurrentDay] dateByAddingTimeInterval:offset];
+		NSDate *scratchDate = [[[NSDate date] mt_startOfCurrentDay] dateByAddingTimeInterval:offset];
 		
 		NSMutableString *buttonTitle = [NSMutableString string];
 		[buttonTitle appendString:[scratchDate stringWithHourAndLowercaseAMPM]];

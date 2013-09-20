@@ -30,9 +30,9 @@
     }
     
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
-        self.date = [self.date oneMonthNext];
+        self.date = [self.date mt_oneMonthNext];
     } else if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
-        self.date = [self.date oneMonthPrevious];
+        self.date = [self.date mt_oneMonthPrevious];
     }
 }
 
@@ -40,7 +40,7 @@
 {
     _date = newDate;
     
-	NSInteger row = [self tableIndexFromYear:[self.date year]];
+	NSInteger row = [self tableIndexFromYear:[self.date mt_year]];
 	
 	// check if row is valid
     if ([_yearTableView numberOfRowsInSection:0] < row || row < 0) return;
@@ -52,7 +52,7 @@
     // select month button
     for (int i = 1; i < 13 ; i++) {
         UIView *monthButton = [self.monthButtonsContainer viewWithTag:i];
-        if (i == [self.date monthOfYear]) {
+        if (i == [self.date mt_monthOfYear]) {
             monthButton.backgroundColor = patentedRed;
             UILabel *label = [monthButton.subviews lastObject];
             [label setWhiteWithLightShadow];
@@ -64,15 +64,15 @@
     }
     
     // set month days
-    NSInteger selectedDayIndex = [self.date calendarMonth:[self.date startOfCurrentMonth] squareIndexShiftedToBottom:NO];
+    NSInteger selectedDayIndex = [self.date calendarMonth:[self.date mt_startOfCurrentMonth] squareIndexShiftedToBottom:NO];
     
     for (int i = 0; i < self.dayButtons.count; i++) {
         CVDayButton_iPhone *b = [self.dayButtons objectAtIndex:i];
         NSDate *dateForButton = [self.date dateForCalendarSquare:i shiftedToBottom:NO];
-        NSString *dateString = [NSString stringWithFormat:@"%d", [dateForButton dayOfMonth]];
+        NSString *dateString = [NSString stringWithFormat:@"%d", [dateForButton mt_dayOfMonth]];
         b.label.text = dateString;
         
-        if ([dateForButton isWithinSameMonth:self.date]) {
+        if ([dateForButton mt_isWithinSameMonth:self.date]) {
             b.label.alpha = 1;
         } else {
             b.label.alpha = 0.45f;
@@ -83,7 +83,7 @@
 		b.backgroundColor = patentedClear;
 		[b.label setDarkGrayWithLightShadow];
 		
-		if ([dateForButton isWithinSameDay:[NSDate date]]) {
+		if ([dateForButton mt_isWithinSameDay:[NSDate date]]) {
             b.isToday = YES;
         }
 		
@@ -111,12 +111,12 @@
 
 - (NSInteger)yearFromTableIndex:(NSInteger)index 
 {
-    return ([self.initialDate year] - 50) + index;
+    return ([self.initialDate mt_year] - 50) + index;
 }
 
 - (NSInteger)tableIndexFromYear:(NSInteger)year 
 {
-    return (year + 50) - [self.initialDate year];
+    return (year + 50) - [self.initialDate mt_year];
 }
 
 
@@ -269,7 +269,7 @@
     
     // set year
     NSInteger year = [self yearFromTableIndex:indexPath.row];
-    NSDate *date = [NSDate dateFromYear:year month:[self.date monthOfYear] day:[self.date dayOfMonth]];
+    NSDate *date = [NSDate mt_dateFromYear:year month:[self.date mt_monthOfYear] day:[self.date mt_dayOfMonth]];
     self.date = date;
     
 }
@@ -284,15 +284,15 @@
 
     // set month
     UIView *s = (UIView *)sender;
-    NSDate *newDate = [NSDate dateFromYear:[self.date year] month:s.tag day:1];
+    NSDate *newDate = [NSDate mt_dateFromYear:[self.date mt_year] month:s.tag day:1];
     
     
     // if the selected day of the month is greater than the number of days in the new month, change the selected day to 
     // the last day of the new month
-    if ([newDate daysInCurrentMonth] < [self.date dayOfMonth]) {
-        self.date = [NSDate dateFromYear:[self.date year] month:[newDate monthOfYear] day:[newDate daysInCurrentMonth]];
+    if ([newDate mt_daysInCurrentMonth] < [self.date mt_dayOfMonth]) {
+        self.date = [NSDate mt_dateFromYear:[self.date mt_year] month:[newDate mt_monthOfYear] day:[newDate mt_daysInCurrentMonth]];
     } else {
-        self.date = [NSDate dateFromYear:[self.date year] month:[newDate monthOfYear] day:[self.date dayOfMonth]];
+        self.date = [NSDate mt_dateFromYear:[self.date mt_year] month:[newDate mt_monthOfYear] day:[self.date mt_dayOfMonth]];
     }
 }
 

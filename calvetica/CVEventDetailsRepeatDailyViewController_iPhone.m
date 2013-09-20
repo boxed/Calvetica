@@ -19,7 +19,7 @@
     if (self.endTypeButton.currentState == 2) {
         end = [EKRecurrenceEnd recurrenceEndWithOccurrenceCount:[self.endAfterLabel.text intValue]];
     } else if (!self.dateView.hidden) {
-        NSDate *date = [NSDate dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
+        NSDate *date = [NSDate mt_dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
         end = [EKRecurrenceEnd recurrenceEndWithEndDate:date];
     }
     

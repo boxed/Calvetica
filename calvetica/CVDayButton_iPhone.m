@@ -47,7 +47,7 @@
 - (void)setDate:(NSDate *)newDate 
 {
     _date = newDate;
-    self.label.text = [NSString stringWithFormat:@"%d", [newDate dayOfMonth]];
+    self.label.text = [NSString stringWithFormat:@"%d", [newDate mt_dayOfMonth]];
 }
 
 - (void)drawDotWithOffset:(NSUInteger)offset shape:(CVColoredShape)shape rect:(CGRect)rect color:(UIColor *)color 

@@ -16,14 +16,14 @@
 
 - (NSUInteger)numberOfCalendarRowsInCurrentMonth 
 {
-    NSInteger weekDayStart = [self weekdayStartOfCurrentMonth];
-    return ceil((weekDayStart - 1 + [self daysInCurrentMonth]) / 7.0f);
+    NSInteger weekDayStart = [self mt_weekdayStartOfCurrentMonth];
+    return ceil((weekDayStart - 1 + [self mt_daysInCurrentMonth]) / 7.0f);
 }
 
 + (NSString *)stringWithWeekDayAbbreviated:(BOOL)abbr forWeekdayIndex:(NSInteger)index {
     NSAssert(index >= 1 && index <= 7, @"index must be between 1 and 7 inclusive");
     
-    NSDate *date = [[[NSDate date] startOfCurrentWeek] dateDaysAfter:(index - 1)];
+    NSDate *date = [[[NSDate date] mt_startOfCurrentWeek] mt_dateDaysAfter:(index - 1)];
     
     // use date formatter to generate the name of the weekday at that index
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -33,7 +33,7 @@
 
 - (CGFloat)percentIntoDay 
 {
-    return [self secondsIntoDay] / SECONDS_IN_DAY;
+    return [self mt_secondsIntoDay] / SECONDS_IN_DAY;
 }
 
 
@@ -48,7 +48,7 @@
     NSUInteger numberOfRows = [self numberOfCalendarRowsInCurrentMonth];
     
     NSInteger startOfMonthIndexOffset;
-    NSInteger weekDayStart = [self weekdayStartOfCurrentMonth];
+    NSInteger weekDayStart = [self mt_weekdayStartOfCurrentMonth];
     if (shifted) {
         // add the weekday to the (number of rows left over times 7)
         // this is because we want the calendar to fill the bottom rows first (since the top is what gets slided out of view on short months)
@@ -60,7 +60,7 @@
     // adjust the index to be relative to the start of the month
     NSInteger day = index - startOfMonthIndexOffset + 2;
     
-    return [NSDate dateFromYear:[self year] month:[self monthOfYear] day:day];
+    return [NSDate mt_dateFromYear:[self mt_year] month:[self mt_monthOfYear] day:day];
 }
 
 - (NSUInteger)calendarMonth:(NSDate *)startOfMonth squareIndexShiftedToBottom:(BOOL)shifted 
@@ -69,14 +69,14 @@
     NSUInteger numberOfRows = [startOfMonth numberOfCalendarRowsInCurrentMonth];
     
     NSInteger startOfMonthIndexOffset;
-    NSInteger weekDayStart = [startOfMonth weekdayStartOfCurrentMonth];
+    NSInteger weekDayStart = [startOfMonth mt_weekdayStartOfCurrentMonth];
     if (shifted) {
         startOfMonthIndexOffset = weekDayStart + (7 * (6 - numberOfRows));
     } else {
         startOfMonthIndexOffset = weekDayStart;
     }
     
-    return startOfMonthIndexOffset + [self daysSinceDate:startOfMonth] - 1;
+    return startOfMonthIndexOffset + [self mt_daysSinceDate:startOfMonth] - 1;
 }
 
 - (NSInteger)weekNumberForSquareIndex:(NSUInteger)index 
@@ -84,20 +84,20 @@
 //    NSInteger weekdayIndex = [self weekdayStartOfCurrentMonth];
 //    NSInteger newWeekdayIndex = [NSDate convertWeekdayIndex:weekdayIndex];
 //    index -= (newWeekdayIndex > weekdayIndex) ? 1 : 0;
-    NSDate *weekDate = [[self startOfCurrentMonth] dateWeeksAfter:index];
-    return [weekDate weekOfYear];
+    NSDate *weekDate = [[self mt_startOfCurrentMonth] mt_dateWeeksAfter:index];
+    return [weekDate mt_weekOfYear];
 }
 
 - (NSDate *)dateForFirstVisibleCalendarSquare 
 {
-    NSInteger weekDayStart = [self weekdayStartOfCurrentMonth];
-    return [[[self startOfCurrentMonth] startOfNextDay] dateDaysBefore:weekDayStart];
+    NSInteger weekDayStart = [self mt_weekdayStartOfCurrentMonth];
+    return [[[self mt_startOfCurrentMonth] mt_startOfNextDay] mt_dateDaysBefore:weekDayStart];
 }
 
 - (NSDate *)dateForLastVisibleCalendarSquare 
 {
-    NSInteger nextMonthStartWeekday = [[self startOfNextMonth] weekdayStartOfCurrentMonth];
-    return [[self endOfCurrentMonth] dateDaysAfter:(nextMonthStartWeekday == 1 ? 0 : 8 - nextMonthStartWeekday)];
+    NSInteger nextMonthStartWeekday = [[self mt_startOfNextMonth] mt_weekdayStartOfCurrentMonth];
+    return [[self mt_endOfCurrentMonth] mt_dateDaysAfter:(nextMonthStartWeekday == 1 ? 0 : 8 - nextMonthStartWeekday)];
 }
 
 
@@ -107,19 +107,19 @@
 // assumes self is the start date
 - (NSDate *)dateOfFirstDayOnRow:(NSInteger)row 
 {
-    return [[self dateWeeksAfter:row] startOfCurrentWeek];
+    return [[self mt_dateWeeksAfter:row] mt_startOfCurrentWeek];
 }
 
 - (NSInteger)rowOfDate:(NSDate *)date 
 {
-    return [date weeksSinceDate:self];
+    return [date mt_weeksSinceDate:self];
 }
 
 - (NSInteger)columnOfDate:(NSDate *)date 
 {
     NSInteger row = [self rowOfDate:date];
     NSDate *firstDate = [self dateOfFirstDayOnRow:row];
-    return [date daysSinceDate:firstDate];
+    return [date mt_daysSinceDate:firstDate];
 }
 
 - (CGRect)rectOfDayButtonInTableView:(UITableView *)tableView forDate:(NSDate *)date 

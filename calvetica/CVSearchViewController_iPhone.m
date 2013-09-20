@@ -109,28 +109,28 @@
 		NSDate *startDate;
 		NSDate *endDate;
 		if (_searchScope == CVSearchScopePopoverOption3Months) {
-			startDate = [[NSDate date] dateMonthsBefore:3];
-			endDate = [[NSDate date] dateMonthsAfter:3];
+			startDate = [[NSDate date] mt_dateMonthsBefore:3];
+			endDate = [[NSDate date] mt_dateMonthsAfter:3];
 		}
 		
 		else if (_searchScope == CVSearchScopePopoverOption6Months) {
-			startDate = [[NSDate date] dateMonthsBefore:6];
-			endDate = [[NSDate date] dateMonthsAfter:6];
+			startDate = [[NSDate date] mt_dateMonthsBefore:6];
+			endDate = [[NSDate date] mt_dateMonthsAfter:6];
 		}
 		
 		else if (_searchScope == CVSearchScopePopoverOption1Year) {
-			startDate = [[NSDate date] dateYearsBefore:1];
-			endDate = [[NSDate date] dateYearsAfter:1];
+			startDate = [[NSDate date] mt_dateYearsBefore:1];
+			endDate = [[NSDate date] mt_dateYearsAfter:1];
 		}
 		
 		else if (_searchScope == CVSearchScopePopoverOption5Years) {
-			startDate = [[NSDate date] dateYearsBefore:5];
-			endDate = [[NSDate date] dateYearsAfter:5];
+			startDate = [[NSDate date] mt_dateYearsBefore:5];
+			endDate = [[NSDate date] mt_dateYearsAfter:5];
 		}
 		
 		else {
-			startDate = [[NSDate date] dateYearsBefore:25];
-			endDate = [[NSDate date] dateYearsAfter:25];
+			startDate = [[NSDate date] mt_dateYearsBefore:25];
+			endDate = [[NSDate date] mt_dateYearsAfter:25];
 		}
         
         // fetch the events

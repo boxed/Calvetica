@@ -23,10 +23,10 @@
     _weekStartDate = nil;
     _selectedDate = nil;
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(handleTapGesture:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapGesture];
     
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressGesture:)];
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
     [self addGestureRecognizer:longPressGesture];
 }
 
@@ -37,7 +37,6 @@
 
 - (void)setMode:(NSInteger)newMode 
 {
-    
     _mode = newMode;
     
     if (self.drawingView.window) {
@@ -74,25 +73,18 @@
     // update day numbers
     NSDate *today = [NSDate date];
     for (NSInteger i = 0; i < 7; i++) {
-        NSDate *date = [_weekStartDate dateDaysAfter:i];
-        NSInteger dayOfMonth = [date dayOfMonth];
+        NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
+        NSInteger dayOfMonth = [date mt_dayOfMonth];
         
         NSInteger num = i + 100;
         UILabel *label = (UILabel *)[self viewWithTag:num];
         label.text = [NSString stringWithFormat:@"%d", dayOfMonth];
         
         // gray out day labels that have passed
-        if ([date isBefore:today]) {
+        if ([date mt_isBefore:today]) {
             label.textColor = patentedDarkGray;
         }
-        
-        // gray out every other month
-        if ([date monthOfYear] % 2 == 0) {
-            self.backgroundColor = patentedRed;
-        } else {
-            self.backgroundColor = patentedBlack;
-        }
-        
+
         if (dayOfMonth == 1) {
             _monthLabel.hidden = NO;
             
@@ -136,23 +128,29 @@
             }
         }
     }
-    
+
+    [self.drawingView draw];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
     NSDate *today = [NSDate date];
     _todayImage.hidden = YES;
-    if ([today isOnOrAfter:_weekStartDate] && [today isBefore:[_weekStartDate endOfCurrentWeek]]) {
+    if ([today mt_isOnOrAfter:_weekStartDate] && [today mt_isBefore:[_weekStartDate mt_endOfCurrentWeek]]) {
         _todayImage.hidden = NO;
         CGFloat boxWidth = (self.bounds.size.width / (float)DAYS_IN_WEEK);
         CGRect f = _todayImage.frame;
-        f.origin.x = (boxWidth * ([today weekDayOfWeek] - 1)) - 1.0f;
+        f.origin.x = (boxWidth * ([today mt_weekdayOfWeek] - 1)) - 1.0f;
         _todayImage.frame = f;
     }
-    
-    [self.drawingView draw];
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    
+    [super drawRect:rect];
+
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, NO);
     CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
@@ -168,12 +166,12 @@
     }
     
     for (NSInteger i = 0; i < 7; i++) {
-        NSDate *date = [_weekStartDate dateDaysAfter:i];
-        if ([date monthOfYear] % 2 == 0) {
+        NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
+        if ([date mt_monthOfYear] % 2 == 0) {
             CGRect grayRect = CGRectZero;
             grayRect.origin.y = 0;
             grayRect.origin.x = boxWidth * i;
-            grayRect.size.height = self.bounds.size.height;
+            grayRect.size.height = self.bounds.size.height + 1;
             grayRect.size.width = boxWidth;
             CGContextFillRect(context, grayRect);
         }
@@ -192,12 +190,12 @@
     CGContextAddLineToPoint(context, self.bounds.size.width, 1);
     CGContextStrokePath(context);
     
-    // highlight line
-    CGContextSetStrokeColorWithColor(context, [patentedWhite CGColor]);
-    CGContextMoveToPoint(context, 0, 2);
-    CGContextAddLineToPoint(context, self.bounds.size.width, 2);
-    CGContextStrokePath(context);
-    
+//    // highlight line
+//    CGContextSetStrokeColorWithColor(context, [patentedWhite CGColor]);
+//    CGContextMoveToPoint(context, 0, 2);
+//    CGContextAddLineToPoint(context, self.bounds.size.width, 2);
+//    CGContextStrokePath(context);
+
     // vertical lines
     CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
 	for (int i = 0; i < numLines; i++) {
@@ -221,7 +219,7 @@
     // figure date
     CGPoint pointOfTouch = [gesture locationInView:self];
     NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * DAYS_IN_WEEK);
-    NSDate *date = [self.weekStartDate dateDaysAfter:daysIntoWeek];
+    NSDate *date = [self.weekStartDate mt_dateDaysAfter:daysIntoWeek];
     
     [self.delegate weekTableViewCell:self wasPressedOnDate:date];
 }
@@ -233,7 +231,7 @@
     // figure date
     CGPoint pointOfTouch = [gesture locationInView:self];
     NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * DAYS_IN_WEEK);
-    NSDate *date = [self.weekStartDate dateDaysAfter:daysIntoWeek];
+    NSDate *date = [self.weekStartDate mt_dateDaysAfter:daysIntoWeek];
     
     CGRect rectOfPlaceHolder = CGRectZero;
     rectOfPlaceHolder.size.width = (self.bounds.size.width / (DAYS_IN_WEEK * 1.0f));

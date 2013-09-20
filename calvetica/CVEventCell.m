@@ -48,7 +48,7 @@
     if (_date != nil) {
         _hourAndMinuteLabel.alpha = 1;
         _AMPMLabel.alpha = 1;
-        if (![_date isStartOfAnHour]) {
+        if (![_date mt_isStartOfAnHour]) {
             _hourAndMinuteLabel.alpha = 0.6f;
             _AMPMLabel.alpha = 0.6f;
         }

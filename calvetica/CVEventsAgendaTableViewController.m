@@ -45,7 +45,7 @@
         
         // fetch the events
         NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:dateCopy 
-                                                                                      toDate:[dateCopy endOfCurrentDay]
+                                                                                      toDate:[dateCopy mt_endOfCurrentDay]
                                                                           forActiveCalendars:YES]];
         
         // create cell data holders
@@ -81,7 +81,7 @@
                 
                 // if event started before date (but obviously cant end after it) show it at the beginning
                 // with a start time of "..."
-                else if (![event.startingDate isWithinSameDay:dateCopy]) {
+                else if (![event.startingDate mt_isWithinSameDay:dateCopy]) {
                     
                     cellDataHolder.event = event;
                     cellDataHolder.date = nil;
@@ -115,7 +115,7 @@
                 }
                 
                 else {
-                    return [h1.event.startingDate isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
+                    return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
                 }
             }];
         }
@@ -125,7 +125,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // replace the old data holder array with the one we just generated
-            self.cellDataHolderArray = tempCellDataHolderArray;
+            self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
             
             [self.tableView reloadData]; 
             
@@ -141,10 +141,10 @@
 - (void)scrollToCurrentHour 
 {
     // scroll to current hour
-    NSInteger currentHour = [[NSDate date] hourOfDay];
+    NSInteger currentHour = [[NSDate date] mt_hourOfDay];
     for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
         CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
-        if ([holder.date hourOfDay] == currentHour) {
+        if ([holder.date mt_hourOfDay] == currentHour) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
             break;

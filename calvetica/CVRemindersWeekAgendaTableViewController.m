@@ -76,13 +76,13 @@
 		
         // Add week number.
         CVWeekNumberHolder *weekNumberRow = [[CVWeekNumberHolder alloc] init];
-        weekNumberRow.weekNumber = [self.selectedDate weekOfYear];
+        weekNumberRow.weekNumber = [self.selectedDate mt_weekOfYear];
         [tempCellDataHolderArray addObject:weekNumberRow];
         
         // for each day
-		NSDate *startOfWeek = [dateCopy startOfCurrentWeek];
+		NSDate *startOfWeek = [dateCopy mt_startOfCurrentWeek];
         for (int i = 6; i >= 0; i--) {
-            NSDate *day =  [startOfWeek dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
+            NSDate *day =  [startOfWeek mt_dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
 			
 			// create a cell for the title of the day
             CVReminderCellDataHolder *dayTitleRow = [[CVReminderCellDataHolder alloc] init];
@@ -92,7 +92,7 @@
 			
 			
 			// fetch the reminders for this day
-			NSArray *reminders = [CVEventStore remindersFromDate:[day startOfCurrentDay] toDate:[day endOfCurrentDay] activeCalendars:YES];
+			NSArray *reminders = [CVEventStore remindersFromDate:[day mt_startOfCurrentDay] toDate:[day mt_endOfCurrentDay] activeCalendars:YES];
 
 			for (EKReminder *reminder in reminders) {
 				// create data holder
@@ -124,7 +124,7 @@
 
 				// if the dates are not equal, order them in chrono order
 				if (![h1.date isEqualToDate:h2.date]) {
-					return [h1.date isBefore:h2.date] ? NSOrderedAscending : NSOrderedDescending;
+					return [h1.date mt_isBefore:h2.date] ? NSOrderedAscending : NSOrderedDescending;
 				}
 
 				// if one doesn't have a reminder, its a title and should go before all other cells for that date
@@ -144,7 +144,7 @@
 
 				// finally, sort by due date
 				else {
-					return [h1.reminder.preferredDate isBefore:h1.reminder.preferredDate] ? NSOrderedAscending : NSOrderedDescending;
+					return [h1.reminder.preferredDate mt_isBefore:h1.reminder.preferredDate] ? NSOrderedAscending : NSOrderedDescending;
 				}
 			}
 		}];
@@ -153,7 +153,7 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 
 			// replace the old data holder array with the one we just generated
-			self.cellDataHolderArray = tempCellDataHolderArray;
+			self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
 
 			[self.tableView reloadData];
 
@@ -173,7 +173,10 @@
         if ([holder isKindOfClass:[CVReminderCellDataHolder class]]) {
             CVReminderCellDataHolder *eventHolder = (CVReminderCellDataHolder *)holder;
 
-            if (!eventHolder.reminder && eventHolder.date && [eventHolder.date isWithinSameDay:self.selectedDate]) {
+            if (!eventHolder.reminder   &&
+                eventHolder.date        &&
+                [eventHolder.date mt_isWithinSameDay:self.selectedDate] &&
+                i < [self.tableView numberOfRowsInSection:0]) {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
                 break;

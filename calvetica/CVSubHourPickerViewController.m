@@ -36,7 +36,7 @@
 {
     UIView *button = (UIView *)sender;
     NSInteger minutes = button.tag - SUB_HOUR_PICKER_OFFSET;
-    [self.delegate subHourPicker:self didPickDate:[self.evenHourDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:minutes seconds:0]];
+    [self.delegate subHourPicker:self didPickDate:[self.evenHourDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:minutes seconds:0]];
 }
 
 

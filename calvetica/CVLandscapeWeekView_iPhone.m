@@ -70,7 +70,7 @@
     r.size.width = r.size.height;
     r.size.height = t;
     r.origin.x = 0;
-    r.origin.y = 0;
+    r.origin.y = 20;
     self.weeksTable.frame = r;
     
     self.monthAndYearLabel.text = [[NSDate date] stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
@@ -88,6 +88,7 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
+
 
 
 
@@ -137,7 +138,7 @@
     CVWeekdayTableViewCell_iPhone *cell = [CVWeekdayTableViewCell_iPhone viewFromNib:self.weekdayCellNib];
     
     NSInteger daysAfter = (indexPath.section * 7) + indexPath.row;
-    cell.date = [self.startDate dateDaysAfter:daysAfter];
+    cell.date = [self.startDate mt_dateDaysAfter:daysAfter];
     cell.delegate = self;
     
     // rotate the cell
@@ -145,8 +146,8 @@
     cell.transform = rotateTransform;
     
     // if a cell with a different month enters the screen, change the month
-    if ([cell.date monthOfYear] != currentMonthOfYear && userHasBegunInteracting) {
-        currentMonthOfYear = [cell.date monthOfYear];
+    if ([cell.date mt_monthOfYear] != currentMonthOfYear && userHasBegunInteracting) {
+        currentMonthOfYear = [cell.date mt_monthOfYear];
         self.monthAndYearLabel.text = [cell.date stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
         [UIApplication showBezelWithTitle:self.monthAndYearLabel.text];
     }
@@ -166,7 +167,7 @@
     
     // set date
     NSInteger daysAfter = section * 7;
-    cell.date = [self.startDate dateDaysAfter:daysAfter];
+    cell.date = [self.startDate mt_dateDaysAfter:daysAfter];
     
     return cell;
 }
@@ -190,13 +191,13 @@
     CVActionBlockButton *time2 = nil;
     CVActionBlockButton *time3 = nil;
     
-    if (allDay) datePressed = [datePressed startOfCurrentDay];
+    if (allDay) datePressed = [datePressed mt_startOfCurrentDay];
     
-    NSDate *timeChoice1 = [datePressed startOfPreviousHour];
-    NSDate *timeChoice2 = [datePressed startOfCurrentHour];
-    NSDate *timeChoice3 = [datePressed startOfNextHour];
+    NSDate *timeChoice1 = [datePressed mt_startOfPreviousHour];
+    NSDate *timeChoice2 = [datePressed mt_startOfCurrentHour];
+    NSDate *timeChoice3 = [datePressed mt_startOfNextHour];
     
-    if (![timeChoice1 isWithinSameDay:datePressed]) {
+    if (![timeChoice1 mt_isWithinSameDay:datePressed]) {
         time1 = [CVActionBlockButton buttonWithTitle:@"ALL DAY" andActionBlock:^(void) {
             NSDate *dateToReturn = timeChoice1;
             [self openQuickAddWithDate:dateToReturn allDay:YES];
@@ -246,7 +247,7 @@
     if (result) {
         [self.delegate landscapeWeekViewController:self didFinishWithResult:CVLandscapeWeekViewResultModified];
     }
-    [self dismissPageModalViewControllerAnimated:YES];
+    [self dismissPageModalViewControllerAnimated:NO];
 
 }
 

@@ -99,16 +99,16 @@
     if (!self.event.hasRecurrenceRules) {
         _repeatNoneButton.selected = YES;
     }
-    else if ([[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyDaily) {
+    else if ([(EKRecurrenceRule *)[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyDaily) {
         _repeatDailyButton.selected = YES;
     }
-    else if ([[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyWeekly) {
+    else if ([(EKRecurrenceRule *)[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyWeekly) {
         _repeatWeeklyButton.selected = YES;
     }
-    else if ([[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyMonthly) {
+    else if ([(EKRecurrenceRule *)[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyMonthly) {
         _repeatMonthlyButton.selected = YES;
     }
-    else if ([[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyYearly) {
+    else if ([(EKRecurrenceRule *)[self.event.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyYearly) {
         _repeatYearlyButton.selected = YES;
     }
     

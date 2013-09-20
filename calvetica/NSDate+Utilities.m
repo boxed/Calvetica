@@ -21,8 +21,8 @@
 {
 	NSString *weekday = [self stringWithTitleOfCurrentWeekDayAbbreviated:abbreviated];
 	NSString *month = [self stringWithTitleOfCurrentMonthAbbreviated:abbreviated];
-	NSInteger day = [self dayOfMonth];
-	NSInteger year = [self year];
+	NSInteger day = [self mt_dayOfMonth];
+	NSInteger year = [self mt_year];
 
 	return [NSString stringWithFormat:@"%@, %@ %d, %d", weekday, month, day, year];
 }
@@ -31,16 +31,16 @@
 - (NSString *)stringWithWeekdayMonthDayYearHourMinute
 {
 	if ([CVSettings isTwentyFourHourFormat])
-		return [self stringFromDateWithFormat:@"EE d, yyyy, h:mm a"];
+		return [self mt_stringFromDateWithFormat:@"EE d, yyyy, h:mm a" localized:YES];
 	else
-		return [self stringFromDateWithFormat:@"EE d, yyyy, H:mm"];
+		return [self mt_stringFromDateWithFormat:@"EE d, yyyy, H:mm" localized:YES];
 }
 
 // Since the alarm notification string is set only when the app is not active
 // the notif strings are set according the event date and alarm fireDate.
 - (NSString *)stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:(NSDate *)fireDate 
 {
-    if ([self isWithinSameDay:fireDate]) {
+    if ([self mt_isWithinSameDay:fireDate]) {
         NSString *time = [self stringWithHourMinuteAndAMPM];
         // in rare cases stringWithHourMinuteAndAMPM already contains "Today" so just return it
         if ([time rangeOfString:@"Today"].location != NSNotFound) {
@@ -51,7 +51,7 @@
         }
     }
     // if the alarm goes off the day before the event set the notif to say tomorrow
-    else if ([[self startOfNextDay] isEqualToDate:[fireDate startOfCurrentDay]]) {
+    else if ([[self mt_startOfNextDay] isEqualToDate:[fireDate mt_startOfCurrentDay]]) {
         NSString *time = [self stringWithHourMinuteAndAMPM];
         // in rare cases stringWithHourMinuteAndAMPM already contains "Tomorrow" so just return it
         if ([time rangeOfString:@"Tomorrow"].location != NSNotFound) {
@@ -70,35 +70,35 @@
 // September
 - (NSString *)stringWithTitleOfCurrentMonthAbbreviated:(BOOL)abbreviated 
 {
-	return [self stringFromDateWithFormat:(abbreviated ? @"MMM" : @"MMMM")];
+	return [self mt_stringFromDateWithFormat:(abbreviated ? @"MMM" : @"MMMM") localized:YES];
 }
 
 // Sep 2012
 // September 2012
 - (NSString *)stringWithTitleOfCurrentMonthAndYearAbbreviated:(BOOL)abbreviated 
 {
-	return [self stringFromDateWithFormat:(abbreviated ? @"MMM yyyy" : @"MMMM yyyy")];
+	return [self mt_stringFromDateWithFormat:(abbreviated ? @"MMM yyyy" : @"MMMM yyyy") localized:YES];
 }
 
 // Sun
 // Sunday
 - (NSString *)stringWithTitleOfCurrentWeekDayAbbreviated:(BOOL)abbreviated 
 {
-	return [self stringFromDateWithFormat:(abbreviated ? @"EE" : @"EEEE")];
+	return [self mt_stringFromDateWithFormat:(abbreviated ? @"EE" : @"EEEE") localized:YES];
 }
 
 // Sun 16
 // Sunday 16
 - (NSString *)stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:(BOOL)abbreviated 
 {
-    NSString *weekday = [NSString stringWithFormat:@"%@ %d", [self stringWithTitleOfCurrentWeekDayAbbreviated:abbreviated], [self dayOfMonth]];
+    NSString *weekday = [NSString stringWithFormat:@"%@ %d", [self stringWithTitleOfCurrentWeekDayAbbreviated:abbreviated], [self mt_dayOfMonth]];
     return weekday;
 }
 
 // 1:00
 - (NSString *)stringWithHourAndMinute 
 {
-	return [self stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mm")];
+	return [self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mm") localized:NO];
 }
 
 // AM
@@ -108,19 +108,19 @@
         return @"";
     }
 
-	return [self stringFromDateWithFormat:@"a"];
+	return [self mt_stringFromDateWithFormat:@"a" localized:NO];
 }
 
 // 1:00AM
 - (NSString *)stringWithHourMinuteAndAMPM 
 {
-	return [self stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mma")];
+	return [self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mma") localized:NO];
 }
 
 // 1:00am
 - (NSString *)stringWithHourMinuteAndLowercaseAMPM 
 {
-	return [[self stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mma")] lowercaseString];
+	return [[self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mma") localized:NO] lowercaseStringWithLocale:[NSLocale currentLocale]];
 }
 
 // Sun Sep 16
@@ -128,16 +128,16 @@
 - (NSString *)stringWithWeekdayAbbreviated:(BOOL)weekDayAbbr monthDayAbbreviated:(BOOL)monthDayAbbr 
 {
     if (weekDayAbbr && monthDayAbbr) {
-		return [self stringFromDateWithFormat:@"EE MMM d"];
+		return [self mt_stringFromDateWithFormat:@"EE MMM d" localized:YES];
     }
     else if (!weekDayAbbr && !monthDayAbbr) {
-		return [self stringFromDateWithFormat:@"EEE MMME d"];
+		return [self mt_stringFromDateWithFormat:@"EEE MMME d" localized:YES];
     }
     else if (weekDayAbbr && !monthDayAbbr) {
-		return [self stringFromDateWithFormat:@"EE MMMM d"];
+		return [self mt_stringFromDateWithFormat:@"EE MMMM d" localized:YES];
     }
     else if (!weekDayAbbr && monthDayAbbr) {
-		return [self stringFromDateWithFormat:@"EEE MMM d"];
+		return [self mt_stringFromDateWithFormat:@"EEE MMM d" localized:YES];
     }
 
     return @"";
@@ -147,13 +147,13 @@
 // September 16
 - (NSString *)stringWithMonthAndDayAbbreviated:(BOOL)abbreviated 
 {
-	return [self stringFromDateWithFormat:(abbreviated ? @"MMM d" : @"MMMM d")];
+	return [self mt_stringFromDateWithFormat:(abbreviated ? @"MMM d" : @"MMMM d") localized:YES];
 }
 
 // 1am
 - (NSString *)stringWithHourAndLowercaseAMPM 
 {
-	return [[self stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H" : @"ha")] lowercaseString];
+	return [[self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H" : @"ha") localized:NO] lowercaseStringWithLocale:[NSLocale currentLocale]];
 }
 
 // 8 hours, 20 minutes after
@@ -206,21 +206,21 @@
 // 9/16/12, 1:00 AM
 - (NSString *)stringWithRelativeShortStyle 
 {
-	return [self stringFromDateWithFormat:@"M/d/yy, h:mm a"];
+	return [self mt_stringFromDateWithFormat:@"M/d/yy, h:mm a" localized:YES];
 }
 
 // Sun · 16 
 - (NSString *)stringWithWeekdayDotDay 
 {
-	return [self stringFromDateWithFormat:@"EE · dd"];
+	return [self mt_stringFromDateWithFormat:@"EE · dd" localized:YES];
 }
 
 // Sep 16, 2012 - Sep 23, 2012 · Week 38
 - (NSString *)stringWithWeekDateSpanDotWeekNumber 
 {
-    NSString *firstDay = [[self startOfCurrentWeek] stringFromDateWithFormat:@"MMM dd, yyyy"];
-    NSString *lastDay = [[self endOfCurrentWeek] stringFromDateWithFormat:@"MMM dd, yyyy"];
-    return [NSString stringWithFormat:@"%@ - %@ · Week %d", firstDay, lastDay, [self weekOfYear]];
+    NSString *firstDay = [[self mt_startOfCurrentWeek] mt_stringFromDateWithFormat:@"MMM dd, yyyy" localized:YES];
+    NSString *lastDay = [[self mt_endOfCurrentWeek] mt_stringFromDateWithFormat:@"MMM dd, yyyy" localized:YES];
+    return [NSString stringWithFormat:@"%@ - %@ · Week %d", firstDay, lastDay, [self mt_weekOfYear]];
 }
 
 @end

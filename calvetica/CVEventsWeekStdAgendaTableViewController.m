@@ -45,14 +45,14 @@
     dispatch_async([CVOperationQueue backgroundQueue], ^{
         
         // get the days of the current week
-        self.daysOfWeekArray = [NSDate datesCollectionFromDate:[dateCopy startOfCurrentWeek] untilDate:[[dateCopy endOfCurrentWeek] oneDayNext]];
+        self.daysOfWeekArray = [NSDate mt_datesCollectionFromDate:[dateCopy mt_startOfCurrentWeek] untilDate:[[dateCopy mt_endOfCurrentWeek] mt_oneDayNext]];
         NSMutableArray *tempCellArrays = [NSMutableArray array];
         
         // fetch events for each day of the daysOfWeekArray
         for (NSDate *weekDay in self.daysOfWeekArray) {
             // fetch the events
             NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:weekDay 
-                                                                                          toDate:[weekDay endOfCurrentDay]
+                                                                                          toDate:[weekDay mt_endOfCurrentDay]
                                                                               forActiveCalendars:YES]];
             
             // create cell data holders
@@ -82,7 +82,7 @@
                 
                 // if event started before date (but obviously cant end after it) show it at the beginning
                 // with a start time of "..."
-                else if (![event.startingDate isWithinSameDay:weekDay]) {
+                else if (![event.startingDate mt_isWithinSameDay:weekDay]) {
                     
                     cellDataHolder.event = event;
                     cellDataHolder.date = nil;
@@ -116,7 +116,7 @@
                 }
                 
                 else {
-					return [h1.event.startingDate isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
+					return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
                 }
             }];
             
@@ -130,7 +130,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // replace the old data holder array with the one we just generated
-            self.cellDataHolderArray = tempCellArrays;
+            self.cellDataHolderArray = [tempCellArrays mutableCopy];
             
             [self.tableView reloadData];  
             
@@ -147,9 +147,11 @@
 {
     for (NSInteger i = 0; i < self.daysOfWeekArray.count; i++) {
         NSDate *d = [self.daysOfWeekArray objectAtIndex:i];
-        if ([d isWithinSameDay:date]) {
+        if ([d mt_isWithinSameDay:date]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:NSNotFound inSection:i];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            if ([self.tableView numberOfRowsInSection:0] > indexPath.row) {
+                [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            }
             break;
         }
     }

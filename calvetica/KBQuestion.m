@@ -52,7 +52,7 @@
         newQuestion.views = @([[questionDict objectForKey:@"views"] integerValue]);
     }
     
-	newQuestion.updated = [NSDate dateFromISOString:[questionDict objectForKey:@"updated_at"]];
+	newQuestion.updated = [NSDate mt_dateFromISOString:[questionDict objectForKey:@"updated_at"]];
 	
 	return newQuestion;
 }
@@ -76,7 +76,7 @@
         self.views = @([[questionDict objectForKey:@"views"] integerValue]);
     }
 	
-	self.updated = [NSDate dateFromISOString:[questionDict objectForKey:@"updated_at"]];
+	self.updated = [NSDate mt_dateFromISOString:[questionDict objectForKey:@"updated_at"]];
 }
 
 - (void)save 

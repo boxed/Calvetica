@@ -66,7 +66,7 @@
     if (!self.endAfterView.hidden) {
         end = [EKRecurrenceEnd recurrenceEndWithOccurrenceCount:[self.endAfterLabel.text intValue]];
     } else if (!self.dateView.hidden) {
-        NSDate *date = [NSDate dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
+        NSDate *date = [NSDate mt_dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
         end = [EKRecurrenceEnd recurrenceEndWithEndDate:date];
     }
     
@@ -146,7 +146,7 @@
 {
     _comboBoxIndex = 0;
     // @todo(Quenton): The weekdays should be ordered based on the user's preferences.
-    CVComboBoxViewController *comboBox = [[CVComboBoxViewController alloc] initWithTargetView:self.dayOfWeekButton itemsToSelect:[NSDate weekdaySymbols] selectedItemIndex:_dayOfWeekIndex];
+    CVComboBoxViewController *comboBox = [[CVComboBoxViewController alloc] initWithTargetView:self.dayOfWeekButton itemsToSelect:[NSDate mt_weekdaySymbols] selectedItemIndex:_dayOfWeekIndex];
     comboBox.delegate = self;
     [self presentFullScreenModalViewController:comboBox animated:YES];
 }
@@ -154,7 +154,7 @@
 - (void)monthButtonTapped 
 {
     _comboBoxIndex = 1;
-    CVComboBoxViewController *comboBox = [[CVComboBoxViewController alloc] initWithTargetView:self.monthButton itemsToSelect:[NSDate monthlySymbols] selectedItemIndex:_monthIndex];
+    CVComboBoxViewController *comboBox = [[CVComboBoxViewController alloc] initWithTargetView:self.monthButton itemsToSelect:[NSDate mt_monthlySymbols] selectedItemIndex:_monthIndex];
     comboBox.delegate = self;
     [self presentFullScreenModalViewController:comboBox animated:YES];
 }
@@ -181,7 +181,7 @@
     if (self.initialRecurrenceRule.daysOfTheWeek && [self.initialRecurrenceRule.daysOfTheWeek count] > 0) {
         EKRecurrenceDayOfWeek *d = [self.initialRecurrenceRule.daysOfTheWeek objectAtIndex:0];
         _dayOfWeekIndex = d.dayOfTheWeek - 1;
-        self.dayOfWeekButtonLabel.text = [[NSDate weekdaySymbols] objectAtIndex:_dayOfWeekIndex];
+        self.dayOfWeekButtonLabel.text = [[NSDate mt_weekdaySymbols] objectAtIndex:_dayOfWeekIndex];
         //self.weekNumberButton.currentState = d.weekNumber;
         _weekNumber = d.weekNumber;
     }
@@ -192,7 +192,7 @@
     if (self.initialRecurrenceRule.monthsOfTheYear && [self.initialRecurrenceRule.monthsOfTheYear count] > 0) {
         NSNumber *month = [self.initialRecurrenceRule.monthsOfTheYear objectAtIndex:0];
         _monthIndex = [month intValue] - 1;
-        self.monthButtonLabel.text = [[NSDate monthlySymbols] objectAtIndex:_monthIndex];
+        self.monthButtonLabel.text = [[NSDate mt_monthlySymbols] objectAtIndex:_monthIndex];
     }
     
     if (_weekNumber == 0) {

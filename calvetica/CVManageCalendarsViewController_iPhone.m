@@ -67,7 +67,7 @@
         else if (self.mode == CVManageCalendarsViewModeReminders) {
             for (CVCalendarReminderCalendarCellDataHolder *holder in self.cellDataHolderArray) {
                 if (holder.isSelected) {
-                    [newSelectedArray addObject:holder.calendar.calendarIdentifier];
+                    [newSelectedArray addObject:holder.calendar];
                 }
             }
             [CVSettings setSelectedReminderCalendars:newSelectedArray];
@@ -115,26 +115,23 @@
     }
     else if (_mode == CVManageCalendarsViewModeReminders) {
 
-        dispatch_async([CVOperationQueue backgroundQueue], ^(void) {
+        NSArray *calendars = [CVEventStore reminderCalendars];
+        if (calendars.count < 1) {
+            EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeReminder eventStore:[CVEventStore sharedStore].eventStore];
+            calendars = @[calendar];
+        }
 
-            NSArray *calendars = [CVEventStore reminderCalendars];
-            if (calendars.count < 1) {
-				EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeReminder eventStore:[CVEventStore sharedStore].eventStore];
-                calendars = @[calendar];
+        for (EKCalendar *calendar in calendars) {
+            CVCalendarReminderCalendarCellDataHolder *holder = [[CVCalendarReminderCalendarCellDataHolder alloc] init];
+            holder.calendar = calendar;
+            if ([calendar isASelectedCalendar]) {
+                holder.isSelected = YES;
             }
-
-            for (EKCalendar *calendar in calendars) {
-                CVCalendarReminderCalendarCellDataHolder *holder = [[CVCalendarReminderCalendarCellDataHolder alloc] init];
-                holder.calendar = calendar;
-                if ([calendar isASelectedCalendar]) {
-                    holder.isSelected = YES;
-                }
-                else {
-                    holder.isSelected = NO;
-                }
-                [self.cellDataHolderArray addObject:holder];
+            else {
+                holder.isSelected = NO;
             }
-        });
+            [self.cellDataHolderArray addObject:holder];
+        }
     }
 }
 

@@ -42,13 +42,13 @@
     [self drawDotsForVisibleRows];
 }
 
-- (void)setSelectedDate:(NSDate *)newSelectedDate 
+- (void)setSelectedDate:(NSDate *)newSelectedDate
 {
     _selectedDate = newSelectedDate;
     
     if (!_selectedDate) return;
 
-    [self reframeRedSelectedDaySquare];
+    [self reframeRedSelectedDaySquareAnimated:YES];
 }
 
 - (void)setMode:(NSInteger)newMode 
@@ -114,20 +114,37 @@
     return path.row;
 }
 
-- (void)reframeRedSelectedDaySquare 
+- (void)reframeRedSelectedDaySquareAnimated:(BOOL)animated
 {
     if (!_selectedDate) return;
-    
+
     // only do this if the table view has been added to the screen
     if (self.tableView.window) {
-        // move the red rect to wrap the selected day button
-        CGRect f = [_startDate rectOfDayButtonInTableView:self.tableView forDate:_selectedDate];
-        f = CGRectInset(f, -TODAY_BOX_INNER_OFFSET_IPAD, -TODAY_BOX_INNER_OFFSET_IPAD);
-		f.size.height -= 1;
-		f.origin.y += 1;
-        [_selectedDayView setSuperFrame:f];
-        [_selectedDayView.superview bringSubviewToFront:_selectedDayView];
-        [_selectedDayView setNeedsDisplay];
+
+        void (^animations)(void) = ^{
+            CGRect f = [_startDate rectOfDayButtonInTableView:self.tableView forDate:_selectedDate];
+            f = CGRectInset(f, -TODAY_BOX_INNER_OFFSET_IPAD, -TODAY_BOX_INNER_OFFSET_IPAD);
+            f.size.height -= 1;
+            f.origin.y += 1;
+            [_selectedDayView setSuperFrame:f];
+        };
+
+        void (^complete)(void) = ^{
+            [_selectedDayView.superview bringSubviewToFront:_selectedDayView];
+            [_selectedDayView setNeedsDisplay];
+        };
+
+        if (animated) {
+            [UIView animateWithDuration:0.2 animations:^{
+                animations();
+            } completion:^(BOOL finished) {
+                complete();
+            }];
+        }
+        else {
+            animations();
+            complete();
+        }
     }
 }
 
@@ -143,7 +160,7 @@
     // this turned on produces weird jumpy scrolling
     self.tableView.scrollsToTop = NO;
     
-    self.startDate = [[[NSDate date] dateWeeksBefore:100] startOfCurrentWeek];
+    self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
     
     if (PAD) {
 		if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
@@ -173,7 +190,7 @@
         [self scrollToRowForDate:_selectedDate animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     }
     else {
-        [self scrollToRowForDate:[self.selectedDate startOfCurrentMonth] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        [self scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth] animated:NO scrollPosition:UITableViewScrollPositionTop];
     }
 
 	self.selectedDate = [NSDate date];
@@ -204,7 +221,7 @@
     cell.selectedDate = _selectedDate;
     cell.delegate = (id<CVWeekTableViewCellDelegate>)self.delegate;
     cell.mode = _mode;
-    
+
     return cell;
 }
 
@@ -217,6 +234,7 @@
 {
     CVWeekTableViewCell *c = (CVWeekTableViewCell *)cell;
     [c redraw];
+    c.backgroundColor = [UIColor clearColor];
 }
 
 

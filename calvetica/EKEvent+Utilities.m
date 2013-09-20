@@ -13,25 +13,25 @@
 - (void)setStartingDate:(NSDate *)startingDate
 {
 	self.startDate = startingDate;
-	if ([self.startingDate isAfter:self.endingDate]) self.endingDate = [self.startingDate copy];
+	if ([self.startingDate mt_isAfter:self.endingDate]) self.endingDate = [self.startingDate copy];
 }
 
 - (NSDate *)startingDate
 {
 	NSDate *date = self.startDate;
-	return self.allDay ? [self.startDate startOfCurrentDay] : date;
+	return self.allDay ? [self.startDate mt_startOfCurrentDay] : date;
 }
 
 - (void)setEndingDate:(NSDate *)endingDate
 {
 	self.endDate = endingDate;
-	if ([self.startingDate isAfter:self.endingDate]) self.startingDate = [self.endingDate copy];
+	if ([self.startingDate mt_isAfter:self.endingDate]) self.startingDate = [self.endingDate copy];
 }
 
 - (NSDate *)endingDate
 {
 	NSDate *date = self.endDate;
-	return self.allDay ? [self.endDate endOfCurrentDay] : date;
+	return self.allDay ? [self.endDate mt_endOfCurrentDay] : date;
 }
 
 
@@ -116,8 +116,8 @@
 	
 	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
 	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent	= [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent		= [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
+	NSDate *rightBeforeEvent	= [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
+    NSDate *rightAfterEvent		= [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
     NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
     
 	BOOL found = NO;
@@ -165,8 +165,8 @@
 	
 	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
 	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent = [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent = [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
+	NSDate *rightBeforeEvent    = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
+    NSDate *rightAfterEvent     = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
     NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
     
 	BOOL found = NO;
@@ -198,8 +198,8 @@
 	
 	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
 	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent = [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent = [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
+	NSDate *rightBeforeEvent    = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
+    NSDate *rightAfterEvent     = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
     NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
     
 	BOOL found = NO;
@@ -231,8 +231,8 @@
 	
 	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
 	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent = [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent = [self.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
+	NSDate *rightBeforeEvent    = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
+    NSDate *rightAfterEvent     = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
     NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
     
 	BOOL found = NO;
@@ -505,7 +505,10 @@
 - (BOOL)startsOnSameDayAsDate:(NSDate *)dayDate 
 {
     NSDate *eventStart = self.startingDate;
-    if ([eventStart year] == [dayDate year] && [eventStart monthOfYear] == [dayDate monthOfYear] && [eventStart dayOfMonth] == [dayDate dayOfMonth]) {
+    if ([eventStart mt_year]        == [dayDate mt_year] &&
+        [eventStart mt_monthOfYear] == [dayDate mt_monthOfYear] &&
+        [eventStart mt_dayOfMonth]  == [dayDate mt_dayOfMonth]) {
+
         return YES;
     }
     return NO;
@@ -540,43 +543,43 @@
 
 - (CGFloat)durationBarSecondsForDate:(NSDate *)date 
 {
-	if ([self.startingDate isWithinSameDay:date]) {
+	if ([self.startingDate mt_isWithinSameDay:date]) {
 		return [self eventDuration];
 	}
-	else if ([self.endingDate isWithinSameDay:date]) {
-		return [self.endingDate timeIntervalSinceDate:[self.endingDate startOfCurrentDay]];
+	else if ([self.endingDate mt_isWithinSameDay:date]) {
+		return [self.endingDate timeIntervalSinceDate:[self.endingDate mt_startOfCurrentDay]];
 	}
 	return 0;
 }
 
 - (BOOL)occursAtAllOnDate:(NSDate *)date
 {
-	NSDate *startDate = [date startOfCurrentDay];
-    NSDate *endDate = [date endOfCurrentDay];
+	NSDate *startDate   = [date mt_startOfCurrentDay];
+    NSDate *endDate     = [date mt_endOfCurrentDay];
     return !(   
-             ([self.startingDate isBefore:startDate]	&& [self.endingDate isOnOrBefore:startDate]) ||
-             ([self.startingDate isAfter:endDate]		&& [self.endingDate isAfter:endDate])
+             ([self.startingDate mt_isBefore:startDate]     && [self.endingDate mt_isOnOrBefore:startDate]) ||
+             ([self.startingDate mt_isAfter:endDate]		&& [self.endingDate mt_isAfter:endDate])
             );
 }
 
 - (BOOL)spansEntireDayOfDate:(NSDate *)date 
 {
-    return [self.startingDate isOnOrBefore:[date startOfCurrentDay]] && [self.endingDate isOnOrAfter:[date endOfCurrentDay]];
+    return [self.startingDate mt_isOnOrBefore:[date mt_startOfCurrentDay]] && [self.endingDate mt_isOnOrAfter:[date mt_endOfCurrentDay]];
 }
 
 - (BOOL)spansEntireDayOfOnlyDate:(NSDate *)date 
 {
-    return [self.startingDate isEqualToDate:[date startOfCurrentDay]] && [self.endingDate isEqualToDate:[date endOfCurrentDay]];
+    return [self.startingDate isEqualToDate:[date mt_startOfCurrentDay]] && [self.endingDate isEqualToDate:[date mt_endOfCurrentDay]];
 }
 
 - (BOOL)fitsWithinDayOfDate:(NSDate *)date 
 {
-    return [self.startingDate isWithinSameDay:date] && [self.endingDate isWithinSameDay:date];
+    return [self.startingDate mt_isWithinSameDay:date] && [self.endingDate mt_isWithinSameDay:date];
 }
 
 - (BOOL)fitsWithinWeekOfDate:(NSDate *)date 
 {
-	return [self.startingDate isWithinSameWeek:date] && [self.endingDate isWithinSameWeek:date];
+	return [self.startingDate mt_isWithinSameWeek:date] && [self.endingDate mt_isWithinSameWeek:date];
 }
 
 - (BOOL)willBeABar 
@@ -713,18 +716,18 @@
 - (NSString *)stringWithRelativeEndTime 
 {
 
-	NSString *hourAndMinute = [self.endingDate stringFromDateWithHourAndMinuteFormat:([CVSettings isTwentyFourHourFormat] ? MTDateHourFormat24Hour : MTDateHourFormat12Hour)];
+	NSString *hourAndMinute = [self.endingDate mt_stringFromDateWithHourAndMinuteFormat:([CVSettings isTwentyFourHourFormat] ? MTDateHourFormat24Hour : MTDateHourFormat12Hour)];
 
     NSMutableString *string = [NSMutableString stringWithString:@"ENDS: "];
 
-	if ([self.endingDate isWithinSameDay:self.startingDate]) {
+	if ([self.endingDate mt_isWithinSameDay:self.startingDate]) {
 		[string appendString:hourAndMinute];
     }
     
     else {
-        [string appendString:[self.endingDate stringFromDateWithFullMonth]];
+        [string appendString:[self.endingDate mt_stringFromDateWithFullMonth]];
         [string appendString:@" "];
-        [string appendFormat:@"%d", [self.endingDate dayOfMonth]];
+        [string appendFormat:@"%d", [self.endingDate mt_dayOfMonth]];
         [string appendString:@" "]; 
         [string appendString:hourAndMinute];
     }
@@ -737,16 +740,16 @@
     
     if (!self.hasRecurrenceRules) return nil;
     
-    if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyDaily) {
+    if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyDaily) {
         return @"DAILY";
     }
-    else if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyMonthly) {
+    else if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyMonthly) {
         return @"MONTHLY";
     }
-    else if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyWeekly) {
+    else if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyWeekly) {
         return @"WEEKLY";
     }
-    else if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyYearly) {
+    else if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyYearly) {
         return @"YEARLY";
     }
     return nil;
@@ -793,7 +796,7 @@
         
         NSString *startDate = nil;
         NSString *endDate = nil;
-        if ([self.startingDate isWithinSameDay:self.endingDate]) {
+        if ([self.startingDate mt_isWithinSameDay:self.endingDate]) {
             startDate = [self.startingDate stringWithHourMinuteAndAMPM];
             endDate = [self.endingDate stringWithHourMinuteAndAMPM];
             [description appendFormat:@"%@:\n %@ %@ %@\n %@\n\n",NSLocalizedString(@"Time", @"The time for the event"),startDate, NSLocalizedString(@"to", @"between two times, example: 3 PM 'to' 4 PM"),endDate,[self.startingDate stringWithWeekdayMonthDayYearMonthAbbreviated:NO]];
@@ -894,7 +897,7 @@
         
         NSString *startDate = nil;
         NSString *endDate = nil;
-        if ([self.startingDate isWithinSameDay:self.endingDate]) {
+        if ([self.startingDate mt_isWithinSameDay:self.endingDate]) {
             startDate = [self.startingDate stringWithHourMinuteAndAMPM];
             endDate = [self.endingDate stringWithHourMinuteAndAMPM];
             [description appendFormat:@"%@:\n%@ %@ %@\n %@\n",NSLocalizedString(@"Time", @"The time for the event"),startDate, NSLocalizedString(@"to", @"between two times, example: 3 PM 'to' 4 PM"),endDate,[self.startingDate stringWithWeekdayMonthDayYearMonthAbbreviated:NO]];

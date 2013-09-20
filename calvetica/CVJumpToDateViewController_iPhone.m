@@ -41,7 +41,7 @@
 
 - (IBAction)todayButtonTapped:(id)sender 
 {
-    NSDate *newDate = [[NSDate date] startOfCurrentDay];
+    NSDate *newDate = [[NSDate date] mt_startOfCurrentDay];
     self.chosenDate = newDate;
     [self.delegate jumpToDateViewController:self didFinishWithResult:CVJumpToDateResultDateChosen];
 }

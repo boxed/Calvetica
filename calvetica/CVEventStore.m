@@ -15,31 +15,24 @@
 
 
 
-
 @implementation CVEventStore
 
+static CVEventStore *__sharedStore = nil;
 
 + (CVEventStore *)sharedStore
 {
-	static CVEventStore *__sharedStore = nil;
-	static BOOL eventsAsked = NO;
-	static BOOL remindAsked = NO;
-
     if (__sharedStore == nil) {
         __sharedStore = [[CVEventStore alloc] init];
         __sharedStore.eventStore = [[EKEventStore alloc] init];
-		
-		[__sharedStore.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-			eventsAsked = YES;
-		}];
-		[__sharedStore.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-			remindAsked = YES;
-		}];
     }
-	while (!eventsAsked || !remindAsked) [NSThread sleepForTimeInterval:0.05];
+
     return __sharedStore;
 }
 
++ (void)reset
+{
+    __sharedStore = nil;
+}
 
 
 
@@ -176,8 +169,8 @@
 	// create an array that we will add all our found events to
 	NSMutableArray *foundEvents = [NSMutableArray array];
 	
-	for (NSInteger i = 0; i < [endDate monthsSinceDate:startDate]; i++) {
-		NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:[startDate dateMonthsAfter:i] endDate:[startDate dateMonthsAfter:i+1] calendars:calendars];
+	for (NSInteger i = 0; i < [endDate mt_monthsSinceDate:startDate]; i++) {
+		NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:[startDate mt_dateMonthsAfter:i] endDate:[startDate mt_dateMonthsAfter:i+1] calendars:calendars];
 		NSMutableArray *events = [NSMutableArray arrayWithArray:[[CVEventStore sharedStore].eventStore eventsMatchingPredicate:predicate]];
 		
 		[events filterUsingPredicate:searchPredicate];
@@ -265,15 +258,15 @@
 		NSDate *date = reminder.preferredDate;
 
 		// if its not completed, it should appear on today if the start/due date has passed.
-		if (!reminder.isCompleted && [startDate isOnOrBefore:today] && [endDate isOnOrAfter:today] && [reminder.startDate isOnOrBefore:today] && [reminder.dueDate isOnOrBefore:today])
+		if (!reminder.isCompleted && [startDate mt_isOnOrBefore:today] && [endDate mt_isOnOrAfter:today] && [reminder.startDate mt_isOnOrBefore:today] && [reminder.dueDate mt_isOnOrBefore:today])
 			[filteredReminders addObject:reminder];
 
 		// if its completed, it should show up on the day it was completed
-		else if (reminder.isCompleted && [reminder.completionDate isOnOrAfter:startDate] && [reminder.completionDate isOnOrBefore:endDate])
+		else if (reminder.isCompleted && [reminder.completionDate mt_isOnOrAfter:startDate] && [reminder.completionDate mt_isOnOrBefore:endDate])
 			[filteredReminders addObject:reminder];
 
 		// if we're viewing days in the future, only show reminders that start or are due on this day
-		else if (!reminder.isCompleted && date && [date isOnOrAfter:startDate] && [date isOnOrBefore:endDate])
+		else if (!reminder.isCompleted && date && [date mt_isOnOrAfter:startDate] && [date mt_isOnOrBefore:endDate])
 			[filteredReminders addObject:reminder];
 	}
 

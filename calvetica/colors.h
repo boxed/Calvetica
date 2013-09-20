@@ -23,7 +23,7 @@
 
 #pragma mark - Colors
 
-#define patentedRed [UIColor colorWithRed:0.8 green:0 blue:0 alpha:1]
+#define patentedRed [UIColor colorWithRed:215.0/255.0 green:0 blue:0 alpha:1]
 #define patentedDarkRed [UIColor colorWithRed:0.61 green:0 blue:0 alpha:1]
 #define patentedDarkerRed [UIColor colorWithRed:0.4 green:0 blue:0 alpha:1]
 #define patentedSuperDarkRed [UIColor colorWithRed:0.30 green:0.04 blue: 0.04 alpha:1]
@@ -43,7 +43,7 @@
 #define patentedShadow [UIColor colorWithRed:0 green:0 blue:0 alpha:0.38]
 
 #define patentedCellWorkHours [UIColor colorWithWhite:1.0 alpha:0.5]
-#define patentedCellNonWorkHours [UIColor colorWithRed:0 green:0 blue:0 alpha:0.05]
+#define patentedCellNonWorkHours [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05]
 
 #define OLD_EVENT_ALPHA 0.5f
 #define OLD_REMINDER_ALPHA 0.5f

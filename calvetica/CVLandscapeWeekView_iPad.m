@@ -160,7 +160,7 @@
     CVWeekdayTableViewCell_iPad *cell = [CVWeekdayTableViewCell_iPad viewFromNib:self.weekdayCellNib];
     
     NSInteger daysAfter = (indexPath.section * 7) + indexPath.row;
-    cell.date = [self.startDate dateDaysAfter:daysAfter];
+    cell.date = [self.startDate mt_dateDaysAfter:daysAfter];
     cell.delegate = self;
     
     // rotate the cell
@@ -168,8 +168,8 @@
     cell.transform = rotateTransform;
     
     // if a cell with a different month enters the screen, change the month
-    if ([cell.date monthOfYear] != currentMonthOfYear && userHasBegunInteracting) {
-        currentMonthOfYear = [cell.date monthOfYear];
+    if ([cell.date mt_monthOfYear] != currentMonthOfYear && userHasBegunInteracting) {
+        currentMonthOfYear = [cell.date mt_monthOfYear];
         self.monthAndYearLabel.text = [cell.date stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
         [UIApplication showBezelWithTitle:self.monthAndYearLabel.text];
     }
@@ -191,7 +191,7 @@
     
     // set date
     NSInteger daysAfter = section * 7;
-    cell.date = [self.startDate dateDaysAfter:daysAfter];
+    cell.date = [self.startDate mt_dateDaysAfter:daysAfter];
 
     return cell;
 }
@@ -250,7 +250,7 @@
     if (result == CVEventResultDeleted || CVEventResultSaved) {
         [self.delegate landscapeWeekViewController:self didFinishWithResult:CVLandscapeWeekViewResultModified];
     }
-    [self dismissPopoverModalViewControllerAnimated:YES];
+    [self dismissPopoverModalViewControllerAnimated:NO];
 }
 
 

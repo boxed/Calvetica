@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2lJ-yk-dX9">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller i Pad-->
+        <scene sceneID="lbb-tm-q2T">
+            <objects>
+                <viewController id="2lJ-yk-dX9" customClass="CVRootViewController_iPad" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="syB-UW-nlP">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" id="bpi-4G-xyK" userLabel="rootTableView">
+                                <rect key="frame" x="699" y="60" width="325" height="708"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2lJ-yk-dX9" id="LJv-rt-zYA"/>
+                                    <outlet property="delegate" destination="2lJ-yk-dX9" id="BAQ-fA-sSA"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" id="3SB-AC-6eH" userLabel="redBar">
+                                <rect key="frame" x="0.0" y="0.0" width="699" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="C4f-cW-IKI" userLabel="redBarPlusButton">
+                                        <rect key="frame" x="539" y="22" width="40" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <state key="normal" image="icon_plus.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" image="icon_plus_highlighted.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nRe-5B-VgK" userLabel="showViewOptionsButton">
+                                        <rect key="frame" x="579" y="25" width="41" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <state key="normal" image="icon_bars.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" image="icon_bars_highlighted.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showViewOptionsButtonWasTapped:" destination="2lJ-yk-dX9" eventType="touchUpInside" id="AUf-ou-E7I"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xgR-NC-ASo" userLabel="toggleModeButton">
+                                        <rect key="frame" x="659" y="20" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <state key="normal" image="icon_smallcheck.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" image="icon_smallcheck.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toggleRemindersEventsViewIconTapped:" destination="2lJ-yk-dX9" eventType="touchUpInside" id="vdD-6O-RSO"/>
+                                        </connections>
+                                    </button>
+                                    <view opaque="NO" contentMode="scaleToFill" id="Qv4-iX-IF2" userLabel="monthLabelControl" customClass="CVMonthTextButton_iPad">
+                                        <rect key="frame" x="11" y="20" width="181" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="september" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="7Xb-4S-gU3" userLabel="redBarMonthLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2011" lineBreakMode="tailTruncation" minimumFontSize="10" id="PqX-UQ-0mK" userLabel="redBarYearLabel">
+                                                <rect key="frame" x="131" y="2" width="63" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lp8-iv-HLK" userLabel="Show View Options Button">
+                                        <rect key="frame" x="620" y="26" width="41" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <state key="normal" image="weekicon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" image="weekicon_highlighted.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="weekViewButtonWasTapped:" destination="2lJ-yk-dX9" eventType="touchUpInside" id="bnd-tu-0El"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84313725490196079" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="g4v-nV-kpe" userLabel="weekdayTitleBar">
+                                <rect key="frame" x="0.0" y="60" width="699" height="19"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="400" contentMode="left" text="SUNDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="XBX-GR-KIN">
+                                        <rect key="frame" x="0.0" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="401" contentMode="left" text="MONDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="a4w-TX-NoO">
+                                        <rect key="frame" x="99" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="402" contentMode="left" text="TUESDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="oc8-Wm-60T" userLabel="Label - TUE">
+                                        <rect key="frame" x="199" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="403" contentMode="left" text="WEDNESDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="oly-12-5lo">
+                                        <rect key="frame" x="299" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="404" contentMode="left" text="THURSDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="Jib-LB-Bak">
+                                        <rect key="frame" x="399" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="405" contentMode="left" text="FRIDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="bhi-UE-aRG">
+                                        <rect key="frame" x="499" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="406" contentMode="left" text="SATURDAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="MgC-Sz-Nbl">
+                                        <rect key="frame" x="599" y="0.0" width="99" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="tA9-nP-Kpl" userLabel="Highlight Line - Bottom">
+                                        <rect key="frame" x="0.0" y="18" width="699" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="3bB-W5-XSI" userLabel="Black Bar">
+                                <rect key="frame" x="699" y="0.0" width="325" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="agenda_header_gradient.png" id="N0P-MU-JaF" userLabel="Agenda header gradient">
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <view opaque="NO" contentMode="scaleToFill" id="v1j-0E-SN9" customClass="UIControl">
+                                        <rect key="frame" x="0.0" y="20" width="325" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="thursday" lineBreakMode="tailTruncation" minimumFontSize="10" id="GKt-Vb-ByJ" userLabel="grayBarWeekdayLabel">
+                                                <rect key="frame" x="12" y="0.0" width="312" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SEP 20" lineBreakMode="tailTruncation" minimumFontSize="10" id="tpn-mZ-OKj" userLabel="grayBarDateLabel">
+                                                <rect key="frame" x="118" y="2" width="201" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="dayViewHeaderTapped:" destination="2lJ-yk-dX9" eventType="valueChanged" id="P0b-By-Fwg"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="jPH-jt-amn" userLabel="Highlight Line - Right">
+                                <rect key="frame" x="699" y="60" width="1" height="708"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <containerView contentMode="scaleToFill" id="GK7-do-bNM">
+                                <rect key="frame" x="0.0" y="79" width="699" height="689"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="WJ6-oQ-Ujx" kind="embed" identifier="CVMonthTableViewController" id="0En-B5-LdZ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="grayBarDateLabel" destination="tpn-mZ-OKj" id="JwM-Fw-y3T"/>
+                        <outlet property="grayBarWeekdayLabel" destination="GKt-Vb-ByJ" id="yaL-4c-0tj"/>
+                        <outlet property="monthLabelControl" destination="Qv4-iX-IF2" id="aRl-vZ-aLh"/>
+                        <outlet property="redBar" destination="3SB-AC-6eH" id="Uhc-sK-sxb"/>
+                        <outlet property="redBarMonthLabel" destination="7Xb-4S-gU3" id="fj4-Sn-SCn"/>
+                        <outlet property="redBarPlusButton" destination="C4f-cW-IKI" id="6p6-Yd-oDb"/>
+                        <outlet property="redBarYearLabel" destination="PqX-UQ-0mK" id="Uyd-oq-gIY"/>
+                        <outlet property="rootTableView" destination="bpi-4G-xyK" id="hqH-hu-HlY"/>
+                        <outlet property="showViewOptionsButton" destination="nRe-5B-VgK" id="cae-ud-Yxf"/>
+                        <outlet property="toggleModeButton" destination="xgR-NC-ASo" id="bhn-l8-jsA"/>
+                        <outlet property="weekdayTitleBar" destination="g4v-nV-kpe" id="wqe-fc-uuT"/>
+                        <segue destination="tfN-6f-Go5" kind="modal" identifier="WeekViewSegue" id="3TS-TX-ioX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TGC-u5-6F4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="296"/>
+        </scene>
+        <!--Month Table View Controller-->
+        <scene sceneID="jyd-cL-ruT">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WJ6-oQ-Ujx" customClass="CVMonthTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" id="57J-Lj-ypp" userLabel="monthTableView">
+                        <rect key="frame" x="0.0" y="0.0" width="699" height="689"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <view key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="c5l-qq-cXh" userLabel="selectedDayView" customClass="CVTodayBoxView">
+                            <rect key="frame" x="0.0" y="0.0" width="699" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <connections>
+                            <outlet property="dataSource" destination="WJ6-oQ-Ujx" id="AfA-mE-B1v"/>
+                            <outlet property="delegate" destination="WJ6-oQ-Ujx" id="eCl-7I-bJi"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="selectedDayView" destination="c5l-qq-cXh" id="P4A-w6-pr2"/>
+                        <outlet property="view" destination="57J-Lj-ypp" id="z5O-iV-eFJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="htI-Ea-llf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2091" y="335"/>
+        </scene>
+        <!--Landscape Week View i Pad-->
+        <scene sceneID="q7M-ss-YOu">
+            <objects>
+                <viewController id="tfN-6f-Go5" customClass="CVLandscapeWeekView_iPad" sceneMemberID="viewController">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="GIV-hP-age">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="146" sectionHeaderHeight="40" sectionFooterHeight="22" id="4rT-ry-00r" userLabel="weeksTable">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tfN-6f-Go5" id="y0q-xh-fHk"/>
+                                    <outlet property="delegate" destination="tfN-6f-Go5" id="ItQ-su-Pu0"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aR2-o0-hWf" userLabel="Close Button">
+                                <rect key="frame" x="995" y="20" width="29" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <state key="normal" image="icon_close.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="icon_close_highlighted.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonWasTapped:" destination="tfN-6f-Go5" eventType="touchUpInside" id="CzX-Ae-zyi"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="VzX-SY-fVi" userLabel="Month Label" customClass="UIControl">
+                                <rect key="frame" x="924" y="740" width="100" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Jan 2011" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="vEO-9G-arH" userLabel="monthAndYearLabel">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.22" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="monthLabelWasTapped:" destination="tfN-6f-Go5" eventType="valueChanged" id="3za-RP-akQ"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84313725490196079" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="monthAndYearLabel" destination="vEO-9G-arH" id="d4D-qE-tGh"/>
+                        <outlet property="view" destination="GIV-hP-age" id="fO7-Sk-IyR"/>
+                        <outlet property="weeksTable" destination="4rT-ry-00r" id="zzC-xt-7B9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSy-7L-aQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2091" y="1158"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="agenda_header_gradient.png" width="1" height="27"/>
+        <image name="icon_bars.png" width="19" height="19"/>
+        <image name="icon_bars_highlighted.png" width="19" height="19"/>
+        <image name="icon_close.png" width="20" height="20"/>
+        <image name="icon_close_highlighted.png" width="20" height="20"/>
+        <image name="icon_plus.png" width="19" height="19"/>
+        <image name="icon_plus_highlighted.png" width="19" height="19"/>
+        <image name="icon_smallcheck.png" width="19" height="19"/>
+        <image name="icon_smallcheck.png" width="19" height="19"/>
+        <image name="weekicon.png" width="19" height="19"/>
+        <image name="weekicon_highlighted.png" width="19" height="19"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

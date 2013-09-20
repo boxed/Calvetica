@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/adamkirk/Library/Developer/Shared/Documentation/DocSets/org.cocoapods.PSAlertView-1.1.docset
+Time: 2013-02-13 23:02:29 +0000

@@ -182,27 +182,27 @@
 
 - (NSDate *)startDate
 {
-	if (self.startDateComponents) return [NSDate dateFromComponents:self.startDateComponents];
+	if (self.startDateComponents) return [NSDate mt_dateFromComponents:self.startDateComponents];
 	return nil;
 }
 
 - (void)setStartDate:(NSDate *)startDate
 {
-	self.startDateComponents = [startDate components];
-	if ([self.startDate isAfter:self.dueDate]) self.dueDate = [startDate copy];
+	self.startDateComponents = [startDate mt_components];
+	if ([self.startDate mt_isAfter:self.dueDate]) self.dueDate = [startDate copy];
 }
 
 - (NSDate *)dueDate
 {
-	if (self.dueDateComponents) return [NSDate dateFromComponents:self.dueDateComponents];
+	if (self.dueDateComponents) return [NSDate mt_dateFromComponents:self.dueDateComponents];
 	return nil;
 }
 
 - (void)setDueDate:(NSDate *)dueDate
 {
-	if (!self.startDate) self.startDate = [dueDate dateHoursBefore:1];
-	self.dueDateComponents = [dueDate components];
-	if ([self.startDate isAfter:self.dueDate]) self.startDate = [dueDate copy];
+	if (!self.startDate) self.startDate = [dueDate mt_dateHoursBefore:1];
+	self.dueDateComponents = [dueDate mt_components];
+	if ([self.startDate mt_isAfter:self.dueDate]) self.startDate = [dueDate copy];
 }
 
 - (NSDate *)preferredDate
@@ -220,7 +220,7 @@
 - (BOOL)startsOnSameDayAsDate:(NSDate *)dayDate
 {
     NSDate *reminderStart = self.startDate;
-    if ([reminderStart year] == [dayDate year] && [reminderStart monthOfYear] == [dayDate monthOfYear] && [reminderStart dayOfMonth] == [dayDate dayOfMonth]) {
+    if ([reminderStart mt_year] == [dayDate mt_year] && [reminderStart mt_monthOfYear] == [dayDate mt_monthOfYear] && [reminderStart mt_dayOfMonth] == [dayDate mt_dayOfMonth]) {
         return YES;
     }
     return NO;
@@ -344,15 +344,15 @@
 		else if (self.dueDate)		date = self.dueDate;
 		else						date = [NSDate date];
 
-		NSString *hourAndMinute = [date stringFromDateWithHourAndMinuteFormat:([CVSettings isTwentyFourHourFormat] ? MTDateHourFormat24Hour : MTDateHourFormat12Hour)];
+		NSString *hourAndMinute = [date mt_stringFromDateWithHourAndMinuteFormat:([CVSettings isTwentyFourHourFormat] ? MTDateHourFormat24Hour : MTDateHourFormat12Hour)];
 
-		if ([date isWithinSameDay:[NSDate date]]) {
+		if ([date mt_isWithinSameDay:[NSDate date]]) {
 			[string appendString:hourAndMinute];
 		}
 		else {
 			[string appendString:[date stringWithTitleOfCurrentMonthAbbreviated:YES]];
 			[string appendString:@" "];
-			[string appendFormat:@"%d", [date dayOfMonth]];
+			[string appendFormat:@"%d", [date mt_dayOfMonth]];
 			[string appendString:@" · "];
 			[string appendString:hourAndMinute];
 		}
@@ -366,16 +366,16 @@
 
     if (!self.hasRecurrenceRules) return nil;
 
-    if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyDaily) {
+    if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyDaily) {
         return @"DAILY";
     }
-    else if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyMonthly) {
+    else if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyMonthly) {
         return @"MONTHLY";
     }
-    else if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyWeekly) {
+    else if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyWeekly) {
         return @"WEEKLY";
     }
-    else if ([[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyYearly) {
+    else if ([(EKRecurrenceRule *)[self.recurrenceRules lastObject] frequency] == EKRecurrenceFrequencyYearly) {
         return @"YEARLY";
     }
     return nil;
@@ -420,7 +420,7 @@
 
     //Time
 	NSDate *startDate = self.startDate;
-	if ([startDate isWithinSameDay:[NSDate date]]) {
+	if ([startDate mt_isWithinSameDay:[NSDate date]]) {
 		NSString *startDateString = [startDate stringWithHourMinuteAndAMPM];
 		[description appendFormat:@"%@: %@\n\n", NSLocalizedString(@"Time", @"The time for the reminder"), startDateString];
 	} else {
@@ -498,7 +498,7 @@
 
 	//Time
 	NSDate *startDate = self.startDate;
-	if ([startDate isWithinSameDay:[NSDate date]]) {
+	if ([startDate mt_isWithinSameDay:[NSDate date]]) {
 		NSString *startDateString = [startDate stringWithHourMinuteAndAMPM];
 		[description appendFormat:@"%@: %@\n\n", NSLocalizedString(@"Time", @"The time for the reminder"), startDateString];
 	} else {
@@ -619,16 +619,16 @@
     [iCalString appendString:@"\nBEGIN:VTODO"];
 
 	[iCalString appendFormat:@"\nUID:%@", self.identifier];
-	[iCalString appendFormat:@"\nDTSTAMP:%@", [[NSDate date] stringFromDateWithFormat:dateFormat]];
+	[iCalString appendFormat:@"\nDTSTAMP:%@", [[NSDate date] mt_stringFromDateWithFormat:dateFormat localized:NO]];
 	if (self.isCompleted)				[iCalString appendString:@"\nPERCENT-COMPLETE:100"];
 	if (self.isCompleted)				[iCalString appendString:@"\nSTATUS:COMPLETED"];
 									[iCalString appendString:@"\nSEQUENCE:0"];
-	if (self.isCompleted)				[iCalString appendFormat:@"\nCOMPLETED:%@", [self.completionDate stringFromDateWithFormat:dateFormat]];
+	if (self.isCompleted)				[iCalString appendFormat:@"\nCOMPLETED:%@", [self.completionDate mt_stringFromDateWithFormat:dateFormat localized:NO]];
 	if (self.title)					[iCalString appendFormat:@"\nSUMMARY:%@",self.title];
-	if (self.lastModifiedDate)		[iCalString appendFormat:@"\nLAST-MODIFIED:%@", [self.lastModifiedDate stringFromDateWithFormat:dateFormat]];
-	if (self.startDateComponents)	[iCalString appendFormat:@"\nDTSTART;TZID=%@:%@", [timeZone name], [startDate stringFromDateWithFormat:dateFormat]];
-	if (self.creationDate)			[iCalString appendFormat:@"\nCREATED:%@", [self.creationDate stringFromDateWithFormat:dateFormat]];
-	if (self.dueDateComponents)		[iCalString appendFormat:@"\nDUE;TZID=%@:%@", [timeZone name], [dueDate stringFromDateWithFormat:dateFormat]];
+	if (self.lastModifiedDate)		[iCalString appendFormat:@"\nLAST-MODIFIED:%@", [self.lastModifiedDate mt_stringFromDateWithFormat:dateFormat localized:NO]];
+	if (self.startDateComponents)	[iCalString appendFormat:@"\nDTSTART;TZID=%@:%@", [timeZone name], [startDate mt_stringFromDateWithFormat:dateFormat localized:NO]];
+	if (self.creationDate)			[iCalString appendFormat:@"\nCREATED:%@", [self.creationDate mt_stringFromDateWithFormat:dateFormat localized:NO]];
+	if (self.dueDateComponents)		[iCalString appendFormat:@"\nDUE;TZID=%@:%@", [timeZone name], [dueDate mt_stringFromDateWithFormat:dateFormat localized:NO]];
     if (self.notes)					[iCalString appendFormat:@"\nDESCRIPTION:%@",self.notes];
 
     //recurrenceRule

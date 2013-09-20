@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/PSPDFActionSheet.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/PSPDFActionSheet</TokenIdentifier>
+			<Abstract type="html">Helper to add block features to UIActionSheet.
+After block has been executed, it is set to nil, breaking potential retain cycles.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/initWithTitle:</TokenIdentifier>
+			<Abstract type="html">Default initializer.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithTitle:(NSString *)title</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTitle:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/setCancelButtonWithTitle:block:</TokenIdentifier>
+			<Abstract type="html">Adds a cancel button. Use only once.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)setCancelButtonWithTitle:(NSString *)title block:(void ( ^ ) ( ))block</Declaration>
+			
+			
+			<Anchor>//api/name/setCancelButtonWithTitle:block:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/setCancelButtonWithTitle:extendedBlock:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void ( ^ ) ( PSPDFActionSheet *sheet , NSInteger buttonIndex ))block</Declaration>
+			
+			
+			<Anchor>//api/name/setCancelButtonWithTitle:extendedBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/setDestructiveButtonWithTitle:block:</TokenIdentifier>
+			<Abstract type="html">Adds a destructive button. Use only once.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void ( ^ ) ( ))block</Declaration>
+			
+			
+			<Anchor>//api/name/setDestructiveButtonWithTitle:block:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/setDestructiveButtonWithTitle:extendedBlock:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)setDestructiveButtonWithTitle:(NSString *)title extendedBlock:(void ( ^ ) ( PSPDFActionSheet *sheet , NSInteger buttonIndex ))block</Declaration>
+			
+			
+			<Anchor>//api/name/setDestructiveButtonWithTitle:extendedBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/addButtonWithTitle:block:</TokenIdentifier>
+			<Abstract type="html">Add regular button.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)addButtonWithTitle:(NSString *)title block:(void ( ^ ) ( ))block</Declaration>
+			
+			
+			<Anchor>//api/name/addButtonWithTitle:block:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/addButtonWithTitle:extendedBlock:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)addButtonWithTitle:(NSString *)title extendedBlock:(void ( ^ ) ( PSPDFActionSheet *sheet , NSInteger buttonIndex ))block</Declaration>
+			
+			
+			<Anchor>//api/name/addButtonWithTitle:extendedBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/buttonCount</TokenIdentifier>
+			<Abstract type="html">Count the buttons.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)buttonCount</Declaration>
+			
+			
+			<Anchor>//api/name/buttonCount</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/showWithSender:fallbackView:animated:</TokenIdentifier>
+			<Abstract type="html">Is clever about the sender, uses fallbackView if sender is not usable (nil, or not UIBarButtonItem/UIView)</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)showWithSender:(id)sender fallbackView:(UIView *)view animated:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/showWithSender:fallbackView:animated:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/destroy</TokenIdentifier>
+			<Abstract type="html">Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>- (void)destroy</Declaration>
+			
+			
+			<Anchor>//api/name/destroy</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFActionSheet/setDestroyBlock:</TokenIdentifier>
+			<Abstract type="html">Call block when actionsheet gets dismissed.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) void ( ^ ) ( PSPDFActionSheet *sheet , NSInteger buttonIndex ) destroyBlock</Declaration>
+			
+			
+			<Anchor>//api/name/destroyBlock</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSPDFActionSheet/destroyBlock</TokenIdentifier>
+			<Abstract type="html">Call block when actionsheet gets dismissed.</Abstract>
+			<DeclaredIn>PSPDFActionSheet.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) void ( ^ ) ( PSPDFActionSheet *sheet , NSInteger buttonIndex ) destroyBlock</Declaration>
+			
+			
+			<Anchor>//api/name/destroyBlock</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

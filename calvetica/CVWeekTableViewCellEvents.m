@@ -26,8 +26,8 @@
     NSDate  *startDateOfWeek  = [self.delegate startDateForDrawingView:self];
     
     // get date range
-    NSDate *startOfWeek = [startDateOfWeek startOfCurrentWeek];
-    NSDate *endOfWeek = [startDateOfWeek endOfCurrentWeek];
+    NSDate *startOfWeek = [startDateOfWeek mt_startOfCurrentWeek];
+    NSDate *endOfWeek = [startDateOfWeek mt_endOfCurrentWeek];
     
     
     // grab all the events we need
@@ -57,12 +57,12 @@
         eventSquareDataHolder.startSeconds = [startDate timeIntervalSinceDate:startOfWeek];
         eventSquareDataHolder.endSeconds = [endDate timeIntervalSinceDate:startOfWeek];
         
-        if ([event.endingDate isBefore:[NSDate date]]) {
+        if ([event.endingDate mt_isBefore:[NSDate date]]) {
             eventSquareDataHolder.isPassed = YES;
         }
         
         for (NSInteger day = 0; day < 7; day++) {
-            NSDate *date = [startOfWeek dateDaysAfter:day];
+            NSDate *date = [startOfWeek mt_dateDaysAfter:day];
             if ([event occursAtAllOnDate:date]) {
                 eventSquareDataHolder.days[day] = 1;
             }
@@ -155,8 +155,6 @@
 
 - (void)drawiPhone 
 {
-    
-    
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
     for (CVEventSquare *e in self.dataHolders) {
@@ -486,7 +484,7 @@
 
 		NSString *title = [e.event readTitle];
 		UIFont *font = [UIFont systemFontOfSize:9.0f];
-		if ([title sizeWithFont:font].width > textFrame.size.width) {
+		if ([title sizeWithFont:font].width > textFrame.size.width && title.length > 8) {
 			title = [[title substringToIndex:8] stringByAppendingString:@"..."];
 		}
 
@@ -585,7 +583,7 @@
 
             NSString *title = [e.event readTitle];
 			UIFont *font = [UIFont systemFontOfSize:9.0f];
-			if ([title sizeWithFont:font].width > textFrame.size.width) {
+			if ([title sizeWithFont:font].width > textFrame.size.width && [title length] > 8) {
 				title = [[title substringToIndex:8] stringByAppendingString:@"..."];
 			}
 

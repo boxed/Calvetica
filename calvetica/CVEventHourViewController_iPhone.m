@@ -78,7 +78,11 @@
 	}
 
 	// select end date in table view
-    [_endDateTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[[_endDate startOfCurrentDay] daysSinceDate:[_startDate startOfCurrentDay]] inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    NSInteger row   = [[_endDate mt_startOfCurrentDay] mt_daysSinceDate:[_startDate mt_startOfCurrentDay]];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:row inSection:0];
+    [_endDateTableView selectRowAtIndexPath:ip
+                                   animated:YES
+                             scrollPosition:UITableViewScrollPositionMiddle];
 
 	self.militaryTime	= _militaryTime;
 	self.startDate		= _startDate;
@@ -121,6 +125,7 @@
 
 - (void)setStartDate:(NSDate *)startDate
 {
+    if (!startDate) return;
 	if (_startDateUpdatedBlock && ![_startDate isEqualToDate:startDate]) _startDateUpdatedBlock(startDate);
 	_startDate = startDate;
 
@@ -134,6 +139,7 @@
 
 - (void)setEndDate:(NSDate *)endDate
 {
+    if (!endDate) return;
 	if (_endDateUpdatedBlock && ![_endDate isEqualToDate:endDate]) _endDateUpdatedBlock(endDate);
 	_endDate = endDate;
 
@@ -152,8 +158,8 @@
 
 	self.editable = !allDay;
 	if (_allDay) {
-		self.startDate	= [_startDate startOfCurrentDay];
-		self.endDate	= [_endDate endOfCurrentDay];
+		self.startDate	= [_startDate mt_startOfCurrentDay];
+		self.endDate	= [_endDate mt_endOfCurrentDay];
 	}
 
 	[_allDayButton bounce];
@@ -185,9 +191,9 @@
 	NSString		*title		= button.titleLabel.text;
 	NSDate			*date		= _mode == CVEventHourViewControllerModeStartTime ? _startDate : _endDate;
 
-	NSUInteger	hour	= [date hourOfDay];
-	NSUInteger	min		= [date minuteOfHour];
-	BOOL		isAM	= [date isInAM];
+	NSUInteger	hour	= [date mt_hourOfDay];
+	NSUInteger	min		= [date mt_minuteOfHour];
+	BOOL		isAM	= [date mt_isInAM];
 
 	if ([title isEqualToString:@"AM"])
 		isAM = YES;
@@ -203,11 +209,11 @@
 
 	if (!_militaryTime) hour = isAM ? hour % 12 : (hour % 12) + 12;
 
-	date = [NSDate dateFromYear:[date year]
-						  month:[date monthOfYear]
-							day:[date dayOfMonth]
-						   hour:hour
-						 minute:min];
+	date = [NSDate mt_dateFromYear:[date mt_year]
+                             month:[date mt_monthOfYear]
+                               day:[date mt_dayOfMonth]
+                              hour:hour
+                            minute:min];
 
 	if (_mode == CVEventHourViewControllerModeStartTime)	self.startDate	= date;
 	if (_mode == CVEventHourViewControllerModeEndTime)		self.endDate	= date;
@@ -253,7 +259,7 @@
 {
     CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
-    NSDate *rowDate = [_startDate dateDaysAfter:indexPath.row];
+    NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [rowDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
@@ -266,13 +272,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    NSDate *rowDate = [_startDate dateDaysAfter:indexPath.row];
+    NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
 	self.mode = CVEventHourViewControllerModeEndTime;
-    self.endDate = [NSDate dateFromYear:[rowDate year]
-								  month:[rowDate monthOfYear]
-									day:[rowDate dayOfMonth]
-								   hour:[_endDate hourOfDay]
-								 minute:[_endDate minuteOfHour]];
+    self.endDate = [NSDate mt_dateFromYear:[rowDate mt_year]
+                                     month:[rowDate mt_monthOfYear]
+                                       day:[rowDate mt_dayOfMonth]
+                                      hour:[_endDate mt_hourOfDay]
+                                    minute:[_endDate mt_minuteOfHour]];
 }
 
 
@@ -282,11 +288,11 @@
 
 - (void)selectButtonsForDate:(NSDate *)d
 {
-	NSUInteger hour	= [d hourOfDay];
+	NSUInteger hour	= [d mt_hourOfDay];
 	hour			= _militaryTime ? hour : hour % 12;
 	hour			= hour == 0 && !_militaryTime ? 12 : hour;
-	NSUInteger min	= [d minuteOfHour];
-	NSUInteger isAM	= [d isInAM];
+	NSUInteger min	= [d mt_minuteOfHour];
+	NSUInteger isAM	= [d mt_isInAM];
 	for (CVViewButton *button in _unitButtons) {
 		if (button.hidden) continue;
 		NSString	*text	= button.titleLabel.text;
@@ -304,7 +310,11 @@
 			button.selected = NO;
 	}
 
-    [_endDateTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[[_endDate startOfCurrentDay] daysSinceDate:[_startDate startOfCurrentDay]] inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    NSInteger row = [[_endDate mt_startOfCurrentDay] mt_daysSinceDate:[_startDate mt_startOfCurrentDay]];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:row inSection:0];
+    [_endDateTableView selectRowAtIndexPath:ip
+                                   animated:YES
+                             scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (NSString *)textForTag:(NSUInteger)tag

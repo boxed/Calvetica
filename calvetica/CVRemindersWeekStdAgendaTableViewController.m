@@ -45,13 +45,13 @@
     dispatch_async([CVOperationQueue backgroundQueue], ^{
         
         // get the days of the current week
-        _daysOfWeekArray = [NSDate datesCollectionFromDate:[dateCopy startOfCurrentWeek] untilDate:[[dateCopy endOfCurrentWeek] oneDayNext]];
+        _daysOfWeekArray = [NSDate mt_datesCollectionFromDate:[dateCopy mt_startOfCurrentWeek] untilDate:[[dateCopy mt_endOfCurrentWeek] mt_oneDayNext]];
         NSMutableArray *tempCellArrays = [NSMutableArray array];
         
         // fetch events for each day of the daysOfWeekArray
         for (NSDate *weekDay in _daysOfWeekArray) {
             // fetch the reminders
-			NSArray *reminders = [CVEventStore remindersFromDate:[weekDay startOfCurrentDay] toDate:[weekDay endOfCurrentDay] activeCalendars:YES];
+			NSArray *reminders = [CVEventStore remindersFromDate:[weekDay mt_startOfCurrentDay] toDate:[weekDay mt_endOfCurrentDay] activeCalendars:YES];
 
 			// create the data holders
 			NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
@@ -76,7 +76,7 @@
 					return h1.reminder.priority > h2.reminder.priority ? NSOrderedDescending : NSOrderedAscending;
 				}
 
-				return [h1.reminder.preferredDate isBefore:h1.reminder.preferredDate] ? NSOrderedAscending : NSOrderedDescending;
+				return [h1.reminder.preferredDate mt_isBefore:h1.reminder.preferredDate] ? NSOrderedAscending : NSOrderedDescending;
 			}];
 
 			[tempCellArrays addObject:tempCellDataHolderArray];
@@ -103,7 +103,7 @@
 {
     for (NSInteger i = 0; i < _daysOfWeekArray.count; i++) {
         NSDate *d = [_daysOfWeekArray objectAtIndex:i];
-        if ([d isWithinSameDay:date]) {
+        if ([d mt_isWithinSameDay:date]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:NSNotFound inSection:i];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
             break;

@@ -82,14 +82,14 @@
         NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
 		
         CVWeekNumberHolder *weekNumberRow = [[CVWeekNumberHolder alloc] init];
-        NSInteger weekOfYear = [self.selectedDate weekOfYear];
+        NSInteger weekOfYear = [self.selectedDate mt_weekOfYear];
         weekNumberRow.weekNumber = weekOfYear;
         [tempCellDataHolderArray addObject:weekNumberRow];
         
         // for each day
-		NSDate *startOfWeek = [dateCopy startOfCurrentWeek];
+		NSDate *startOfWeek = [dateCopy mt_startOfCurrentWeek];
         for (int i = 6; i >= 0; i--) {
-            NSDate *day =  [startOfWeek dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
+            NSDate *day =  [startOfWeek mt_dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
 			
 			// create a cell for the title of the day
             CVEventCellDataHolder *dayTitleRow = [[CVEventCellDataHolder alloc] init];
@@ -100,7 +100,7 @@
 			[tempCellDataHolderArray addObject:dayTitleRow];
 			
 			// fetch the events
-			NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:day toDate:[day endOfCurrentDay] forActiveCalendars:YES]];	
+			NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:day toDate:[day mt_endOfCurrentDay] forActiveCalendars:YES]];
             
             // sort the events
             [events sortUsingComparator:(NSComparator)^(id obj1, id obj2){
@@ -124,7 +124,7 @@
                 }
                 
                 // if event started before date
-                else if (![event.startingDate isWithinSameDay:day]) {
+                else if (![event.startingDate mt_isWithinSameDay:day]) {
                     
                     // if it spans the whole day, make it an all day event
                     if ([event spansEntireDayOfDate:day]) {
@@ -179,7 +179,7 @@
                 
                 // if the dates are not equal, order them in chrono order
                 if (![h1.date isEqualToDate:h2.date]) {
-					return [h1.date isBefore:h2.date] ? NSOrderedAscending : NSOrderedDescending;
+					return [h1.date mt_isBefore:h2.date] ? NSOrderedAscending : NSOrderedDescending;
                 }
                 
                 // if one doesn't have an event, its a title and should go before all other cells for that date
@@ -199,7 +199,7 @@
                 
                 // finally, sort regular events by start time
                 else {
-					return [h1.event.startingDate isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
+					return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
                 }
             }
         }];
@@ -209,7 +209,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // replace the old data holder array with the one we just generated
-            self.cellDataHolderArray = tempCellDataHolderArray;
+            self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
 
             [self.tableView reloadData];
             
@@ -229,7 +229,11 @@
         if ([holder isKindOfClass:[CVEventCellDataHolder class]]) {
             CVEventCellDataHolder *eventHolder = (CVEventCellDataHolder *)holder;
             
-            if (!eventHolder.event && eventHolder.date && [eventHolder.date isWithinSameDay:self.selectedDate]) {
+            if (!eventHolder.event  &&
+                eventHolder.date    &&
+                [eventHolder.date mt_isWithinSameDay:self.selectedDate] &&
+                i < [self.tableView numberOfRowsInSection:0]) {
+
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
                 break;

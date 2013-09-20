@@ -14,7 +14,7 @@
 
 - (void)setStartDate:(NSDate *)newStartDate 
 {
-    _startDate = [[newStartDate dateWeeksBefore:100] startOfCurrentWeek];
+    _startDate = [[newStartDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
 }
 
 
@@ -43,6 +43,11 @@
     [super viewDidAppear:animated];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 
 
@@ -51,7 +56,7 @@
 - (void)scrollToDate:(NSDate *)date animated:(BOOL)animated 
 {
     NSDate *newDate = self.startDate;
-    NSInteger daysSinceStart = [date daysSinceDate:newDate];
+    NSInteger daysSinceStart = [date mt_daysSinceDate:newDate];
     
     NSInteger row = daysSinceStart % 7;
     NSInteger section = floor(daysSinceStart / 7);

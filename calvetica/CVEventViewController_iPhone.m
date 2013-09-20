@@ -105,16 +105,18 @@
 																									   useMilitaryTime:[CVSettings isTwentyFourHourFormat]];
 	hourViewController.editable = _event.calendar.allowsContentModifications;
 
+    __block CVEventHourViewController_iPhone *hrv = hourViewController;
+
 	[hourViewController setStartDateUpdatedBlock:^(NSDate *date) {
 		NSDate *endDateBefore = [_event.endingDate copy];
 		[_event shiftEndDateBySettingStartDate:date];
-		if (![endDateBefore isEqualToDate:_event.endingDate]) hourViewController.endDate = _event.endingDate;
+		if (![endDateBefore isEqualToDate:_event.endingDate]) hrv.endDate = _event.endingDate;
 	}];
 
 	[hourViewController setEndDateUpdatedBlock:^(NSDate *date) {
 		NSDate *startDateBefore = [_event.startingDate copy];
 		_event.endingDate = date;
-		if (![startDateBefore isEqualToDate:_event.startingDate]) hourViewController.startDate = _event.startingDate;
+		if (![startDateBefore isEqualToDate:_event.startingDate]) hrv.startDate = _event.startingDate;
 	}];
 
 	[hourViewController setAllDateUpdatedBlock:^(BOOL allDay) {
@@ -126,8 +128,8 @@
 		// it will be saved incorrectly on the calendar...(i.e. start time will be 6:00pm the previous day)
 
 		// @hack: adding one second then subtracting it fixes the problem stated above
-		self.event.startingDate = [self.event.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];;
-		self.event.startingDate = [self.event.startingDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];;
+		self.event.startingDate = [self.event.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];;
+		self.event.startingDate = [self.event.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];;
 	}];
 
 	self.viewControllers = @[hourViewController];
@@ -208,7 +210,11 @@
 
 - (void)eventDayViewController:(CVEventDayViewController_iPhone *)controller didUpdateDate:(NSDate *)date
 {
-    NSDate *newDate = [NSDate dateFromYear:[date year] month:[date monthOfYear] day:[date dayOfMonth] hour:[_event.startingDate hourOfDay] minute:[_event.startingDate minuteOfHour]];
+    NSDate *newDate = [NSDate mt_dateFromYear:[date mt_year]
+                                        month:[date mt_monthOfYear]
+                                          day:[date mt_dayOfMonth]
+                                         hour:[_event.startingDate mt_hourOfDay]
+                                       minute:[_event.startingDate mt_minuteOfHour]];
     [_event shiftEndDateBySettingStartDate:newDate];
 }
 

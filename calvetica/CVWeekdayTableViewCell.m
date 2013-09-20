@@ -28,13 +28,13 @@
     _date = newDate;
     
     _weekdayTitleLabel.text = [[_date stringWithTitleOfCurrentWeekDayAbbreviated:YES] uppercaseString];
-    _monthDayTitleLabel.text = [NSString stringWithFormat:@"%d", [_date dayOfMonth]];
+    _monthDayTitleLabel.text = [NSString stringWithFormat:@"%d", [_date mt_dayOfMonth]];
     _redBarView.alpha = 1;
     
     _squaresView.date = newDate;
     _allDaySquaresView.date = newDate;
     
-    if ([_date isWithinSameDay:[NSDate date]]) {
+    if ([_date mt_isWithinSameDay:[NSDate date]]) {
         _allDaySquaresView.backgroundColor = patentedWhite;
         _squaresView.backgroundColor = patentedWhite;
         _redBarView.alpha = 0.7f;
@@ -89,8 +89,8 @@
         if (!self.window) return;
 
         // get date range
-        NSDate *startOfDay = [dateCopy startOfCurrentDay];
-        NSDate *endOfDay = [dateCopy endOfCurrentDay];
+        NSDate *startOfDay = [dateCopy mt_startOfCurrentDay];
+        NSDate *endOfDay = [dateCopy mt_endOfCurrentDay];
         
         
         
@@ -177,7 +177,7 @@
         NSMutableArray *eventSquares = [NSMutableArray array];
         
         for (CVEventSquare *square in eventSquareDataHolders) {
-            if ([square.event.startingDate isOnOrBefore:startOfDay] && [square.event.endingDate isOnOrAfter:endOfDay]) {
+            if ([square.event.startingDate mt_isOnOrBefore:startOfDay] && [square.event.endingDate mt_isOnOrAfter:endOfDay]) {
                 [allDayEventSquares addObject:square];
             }
             else {

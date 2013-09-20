@@ -29,7 +29,7 @@
 	
 
 	// hide the "at start time" button if the event has already passed
-	if ([self.event.startingDate isAfter:[NSDate date]]) {
+	if ([self.event.startingDate mt_isAfter:[NSDate date]]) {
 		self.eventStartButton.hidden = YES;
 		self.tenMinutesButton.frame = CGRectMake(12, 80, 261, 48);
 	}

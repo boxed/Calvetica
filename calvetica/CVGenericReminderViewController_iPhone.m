@@ -46,7 +46,7 @@
     // set the start and end date
     UIView *button = (UIView *)sender;
     NSInteger minutes = button.tag - GENERIC_REMINDER_BUTTONS;
-    NSDate *startDate = [[NSDate date] dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:minutes seconds:0];
+    NSDate *startDate = [[NSDate date] mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:minutes seconds:0];
     _reminder = [EKReminder genericReminderWithStartDate:startDate];
     
     if ([[_eventTitleTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {

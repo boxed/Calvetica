@@ -9,9 +9,10 @@
 
 @interface CVEventStore : NSObject
 
-@property (nonatomic, strong) EKEventStore *eventStore;
+@property (nonatomic, strong) EKEventStore  *eventStore;
 
 + (CVEventStore *)sharedStore;
++ (void)reset;
 
 
 #pragma mark - Events

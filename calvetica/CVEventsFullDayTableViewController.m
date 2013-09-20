@@ -47,18 +47,18 @@
         
         // create a date for every hour if agenda view is off
         for (int i = 23; i >= 0; i--) {
-            [hours addObject:[NSDate dateFromYear:[dateCopy year] 
-                                            month:[dateCopy monthOfYear] 
-                                              day:[dateCopy dayOfMonth] 
-                                             hour:i
-                                           minute:0]];
+            [hours addObject:[NSDate mt_dateFromYear:[dateCopy mt_year]
+                                               month:[dateCopy mt_monthOfYear]
+                                                 day:[dateCopy mt_dayOfMonth]
+                                                hour:i
+                                              minute:0]];
         }
 
 
 
         // fetch the events
         NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:dateCopy 
-                                                                                      toDate:[dateCopy endOfCurrentDay]
+                                                                                      toDate:[dateCopy mt_endOfCurrentDay]
                                                                           forActiveCalendars:YES]];
         
         // sort the events backwards
@@ -95,7 +95,7 @@
 
 
 			// if event started before date
-            } else if (event && ![event.startingDate isWithinSameDay:dateCopy]) {
+            } else if (event && ![event.startingDate mt_isWithinSameDay:dateCopy]) {
                 
                 // if it spans the whole day, make it an all day event
                 if ([event spansEntireDayOfDate:dateCopy]) {
@@ -190,7 +190,7 @@
             // @iOS5
             // calv4.3 needs to be included
             else if (h1.event != nil && h2.event != nil) {
-				return [h1.event.startingDate isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
+				return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
             }
             
             // @iOS5
@@ -205,7 +205,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // replace the old data holder array with the one we just generated
-            self.cellDataHolderArray = tempCellDataHolderArray;
+            self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
             
             [self calculateDurationBars];    
             
@@ -300,10 +300,10 @@
 - (void)scrollToCurrentHour 
 {
     // scroll to current hour
-    NSInteger currentHour = [[NSDate date] hourOfDay];
+    NSInteger currentHour = [[NSDate date] mt_hourOfDay];
     for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
         CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
-        if ([holder.date hourOfDay] == currentHour) {
+        if ([holder.date mt_hourOfDay] == currentHour && i < [self.tableView numberOfRowsInSection:0]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
             break;
@@ -366,9 +366,11 @@
     CVEventCell *c = (CVEventCell *)cell;
     [c drawDurationBarAnimated:NO];
     
-    if (([c.date hourOfDay] < [CVSettings dayStartHour] || [c.date hourOfDay] >= [CVSettings dayEndHour]) || c.event.allDay) {
-        
+    if (([c.date mt_hourOfDay] < [CVSettings dayStartHour] || [c.date mt_hourOfDay] >= [CVSettings dayEndHour]) || c.event.allDay) {
         c.backgroundColor = patentedCellNonWorkHours;
+    }
+    else {
+        c.backgroundColor = [UIColor whiteColor];
     }
 }
 

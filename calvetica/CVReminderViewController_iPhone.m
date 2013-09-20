@@ -121,16 +121,18 @@
 	hourViewController.editable		= _reminder.calendar.allowsContentModifications;
 	hourViewController.reminderUI	= YES;
 
+    __block CVEventHourViewController_iPhone *hrv = hourViewController;
+
 	[hourViewController setStartDateUpdatedBlock:^(NSDate *date) {
 		NSDate *endDateBefore = [_reminder.dueDate copy];
 		_reminder.startDate = date;
-		if (![endDateBefore isEqualToDate:_reminder.dueDate]) hourViewController.endDate = _reminder.dueDate;
+		if (![endDateBefore isEqualToDate:_reminder.dueDate]) hrv.endDate = _reminder.dueDate;
 	}];
 
 	[hourViewController setEndDateUpdatedBlock:^(NSDate *date) {
 		NSDate *startDateBefore = [_reminder.startDate copy];
 		_reminder.dueDate = date;
-		if (![startDateBefore isEqualToDate:_reminder.startDate]) hourViewController.startDate = _reminder.startDate;
+		if (![startDateBefore isEqualToDate:_reminder.startDate]) hrv.startDate = _reminder.startDate;
 	}];
 
 	self.viewControllers = @[hourViewController];

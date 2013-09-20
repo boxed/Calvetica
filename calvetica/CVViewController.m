@@ -117,7 +117,7 @@
                          animations:^{wrapper.alpha = 0.0;}
                          completion:^(BOOL finished){
                              //[viewControllerToDismiss viewDidDisappear:YES];
-                             [wrapper removeFromSuperview]; 
+                             [wrapper removeFromSuperview];
                          }];
     } else {
         [wrapper removeFromSuperview]; 
@@ -241,12 +241,10 @@
         [UIView animateWithDuration:ANIMATION_SPEED
                          animations:^{wrapper.alpha = 0.0;}
                          completion:^(BOOL finished){
-                             [wrapper removeFromSuperview]; 
-                             //[viewControllerToDismiss viewDidDisappear:YES];
+                             [wrapper removeFromSuperview];
                          }];
     } else {
-        [wrapper removeFromSuperview]; 
-        //[viewControllerToDismiss viewDidDisappear:YES];
+        [wrapper removeFromSuperview];
     }
     
     [self.popoverModalViewControllers removeObject:popoverToDismiss];

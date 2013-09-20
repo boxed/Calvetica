@@ -20,7 +20,7 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVAgendaEventCellDelegate> delegate;
+@property (nonatomic, weak  ) id<CVAgendaEventCellDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
 @property (nonatomic, strong) UINib *eventCellNib;
 @property (nonatomic, strong) UINib *dayTitleCellNib;

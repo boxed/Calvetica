@@ -12,6 +12,17 @@
 		
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/sharedFormatter</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDateFormatter *)sharedFormatter</Declaration>
+			
+			
+			<Anchor>//api/name/sharedFormatter</Anchor>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setLocale:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
@@ -1002,6 +1013,237 @@
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousMinute</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentMinute</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextMinute</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfPreviousMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfPreviousMinute</Declaration>
+			
+			
+			<Anchor>//api/name/endOfPreviousMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfCurrentMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfCurrentMinute</Declaration>
+			
+			
+			<Anchor>//api/name/endOfCurrentMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/endOfNextMinute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)endOfNextMinute</Declaration>
+			
+			
+			<Anchor>//api/name/endOfNextMinute</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneMinutePrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneMinutePrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneMinutePrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneMinuteNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneMinuteNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneMinuteNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateMinutesBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateMinutesBefore:(NSUInteger)minute</Declaration>
+			
+			
+			<Anchor>//api/name/dateMinutesBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateMinutesAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateMinutesAfter:(NSUInteger)minute</Declaration>
+			
+			
+			<Anchor>//api/name/dateMinutesAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/minutesSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)minutesSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/minutesSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/minutesUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)minutesUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/minutesUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfPreviousSecond</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfPreviousSecond</Declaration>
+			
+			
+			<Anchor>//api/name/startOfPreviousSecond</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfCurrentSecond</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfCurrentSecond</Declaration>
+			
+			
+			<Anchor>//api/name/startOfCurrentSecond</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/startOfNextSecond</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)startOfNextSecond</Declaration>
+			
+			
+			<Anchor>//api/name/startOfNextSecond</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneSecondPrevious</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneSecondPrevious</Declaration>
+			
+			
+			<Anchor>//api/name/oneSecondPrevious</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/oneSecondNext</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)oneSecondNext</Declaration>
+			
+			
+			<Anchor>//api/name/oneSecondNext</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateSecondsBefore:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateSecondsBefore:(NSUInteger)seconds</Declaration>
+			
+			
+			<Anchor>//api/name/dateSecondsBefore:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/dateSecondsAfter:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSDate *)dateSecondsAfter:(NSUInteger)seconds</Declaration>
+			
+			
+			<Anchor>//api/name/dateSecondsAfter:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/secondsSinceDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)secondsSinceDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/secondsSinceDate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/secondsUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)secondsUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/secondsUntilDate:</Anchor>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/isAfter:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
@@ -1101,6 +1343,50 @@
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setFormatterDateStyle:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setFormatterDateStyle:(NSDateFormatterStyle)style</Declaration>
+			
+			
+			<Anchor>//api/name/setFormatterDateStyle:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/setFormatterTimeStyle:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setFormatterTimeStyle:(NSDateFormatterStyle)style</Declaration>
+			
+			
+			<Anchor>//api/name/setFormatterTimeStyle:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringValue</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringValue</Declaration>
+			
+			
+			<Anchor>//api/name/stringValue</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringValueWithDateStyle:timeStyle:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringValueWithDateStyle:(NSDateFormatterStyle)dateStyle timeStyle:(NSDateFormatterStyle)timeStyle</Declaration>
+			
+			
+			<Anchor>//api/name/stringValueWithDateStyle:timeStyle:</Anchor>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithHourAndMinuteFormat:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
@@ -1197,6 +1483,17 @@
 			
 			
 			<Anchor>//api/name/stringFromDateWithGreatestComponentsForSecondsPassed:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSDate(MTDates)/stringFromDateWithGreatestComponentsUntilDate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSDate+MTDates.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)stringFromDateWithGreatestComponentsUntilDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/stringFromDateWithGreatestComponentsUntilDate:</Anchor>
 		</Token>
 		
 		<Token>

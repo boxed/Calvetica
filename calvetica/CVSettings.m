@@ -121,7 +121,7 @@
             return;
         }
     }
-    
+    if (!calendar) return;
     [selectedCalendars addObject:calendar];
     [CVSettings setSelectedEventCalendars:selectedCalendars];
 }

@@ -63,7 +63,7 @@
     [self updateRootTableView];
     
     // get the table ready to scroll
-    if ([self.selectedDate isWithinSameDay:[NSDate date]]) {
+    if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
         // scroll to current hour
         self.rootTableViewController.shouldScrollToCurrentHour = YES;
     }
@@ -76,10 +76,10 @@
     self.monthTableViewController.selectedDate = self.selectedDate;
     
     if (self.mode == CVRootViewControllerModeEvents) {
-        self.redBarImageView.image = [UIImage imageNamed:@"redbar"];
+        self.redBar.backgroundColor = RGBHex(0xCC0000);
     }
     else if (self.mode == CVRootViewControllerModeReminders) {
-        self.redBarImageView.image = [UIImage imageNamed:@"blackbar"];
+        self.redBar.backgroundColor = [UIColor blackColor];
     }
 }
 
@@ -210,9 +210,9 @@
 
 - (void)redrawRowsForEvent:(EKEvent *)event 
 {
-	NSInteger daysDuration = [event.endingDate daysSinceDate:event.startingDate];
+	NSInteger daysDuration = [event.endingDate mt_daysSinceDate:event.startingDate];
 	for (NSInteger i = 0; i <= daysDuration; i++) {
-		[self.monthTableViewController reloadRowForDate:[event.startingDate dateDaysAfter:i]];
+		[self.monthTableViewController reloadRowForDate:[event.startingDate mt_dateDaysAfter:i]];
 	}
 }
 
@@ -227,53 +227,54 @@
 
 
 
-
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad 
 {
 	[super viewDidLoad];
 
+    self.view.window.tintColor = patentedRed;
+
     // @hack: from a google search, it looks like a bug in xcode 4 that viewDidLoad gets called
     // twice on the root view controller for some reason.  This is a temporary hack.
     if (self.monthTableViewController.delegate) return;
-    
+
     self.monthTableViewController.delegate = self;
-	
+
     // register to know when the event store changes.  When it does, we need to update calvetica alerts if that preferences is enabled.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventStoreChanged) name:EKEventStoreChangedNotification object:nil];
-    
+
     // set up the pinch gesture on the table view
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self  action:@selector(handleEventTableViewPinchGesture:)];
     [self.rootTableView addGestureRecognizer:pinchGesture];
-    
+
     // set up swipe gesture on the table view
     UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeOnTableView:)];
     swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.rootTableView addGestureRecognizer:swipeLeftGesture];
-    
+
     UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeOnTableView:)];
     [self.rootTableView addGestureRecognizer:swipeRightGesture];
-    
+
     // set up tap gesture on red plus button
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(redBarPlusButtonWasTapped:)];
     [self.redBarPlusButton addGestureRecognizer:tapGesture];
-    
+
     // set up long press button on the quick add
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnPlusButtonGesture:)];
     [self.redBarPlusButton addGestureRecognizer:longPressGesture];
-	
-	
+
+
     // set up tap gesture on red plus button
     UITapGestureRecognizer *monthTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(monthLabelWasTapped:)];
     [self.monthLabelControl addGestureRecognizer:monthTapGesture];
-    
+
     // set up long press button on the quick add
     UILongPressGestureRecognizer *monthLongPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnMonthTitleGesture:)];
     [self.monthLabelControl addGestureRecognizer:monthLongPressGesture];
-    
 
-	// set the mode based on the saved state from previous use
+
+    // set the mode based on the saved state from previous use
     self.mode = [CVSettings isReminderView] ? CVRootViewControllerModeReminders : CVRootViewControllerModeEvents;
     if (self.mode == CVRootViewControllerModeEvents) {
         self.tableMode = [CVSettings eventRootTableMode];
@@ -281,34 +282,52 @@
     else if (self.mode == CVRootViewControllerModeReminders) {
         self.tableMode = [CVSettings reminderRootTableMode];
     }
-    
+
     // set day
-    self.selectedDate = [[NSDate date] startOfCurrentDay];
-    
+    self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
+
     // set todays day, used for reference when coming out of background
     self.todaysDate = [NSDate date];
-    
-    // if this is the first time they've ever opened the app, or if the welcome screen 
+
+    // if this is the first time they've ever opened the app, or if the welcome screen
     // was updated, show them the welcome screen
-	if (![CVSettings welcomeScreenHasBeenShown]) {
-		CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
-		welcomeController.delegate = self;
-		[self presentPageModalViewController:welcomeController animated:YES];
-	}
+    if (![CVSettings welcomeScreenHasBeenShown]) {
+        CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
+        welcomeController.delegate = self;
+        [self presentPageModalViewController:welcomeController animated:YES];
+    }
+
+    [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimeInterval time) {
+        [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (!granted) {
+                [MTq main:^{
+                    [self notifyOfNeededPermission];
+                }];
+            }
+            [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+                [MTq main:^{
+                    [CVEventStore reset];
+                    [self updateRootTableView];
+                    [self redrawDotsOnMonthView];
+                }];
+            }];
+        }];
+    } repeats:NO];
 }
 
-- (void)viewDidUnload 
+- (void)notifyOfNeededPermission
+{
+    PSPDFAlertView *alertView = [[PSPDFAlertView alloc] initWithTitle:@"We need permission"
+                                                              message:@"This app can't function unless you give it permission to access your calendars: Go to Settings.app > Privacy > Calendars and make sure Calvetica is ON"];
+    [alertView addButtonWithTitle:@"OK" block:nil];
+    [alertView show];
+}
+
+- (void)viewDidUnload
 {
     // if this gets dealloced and we don't remove it as an observer, when the event
     // db changes, we'll get a segfault.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-	
-    self.vignetteBackground = nil;
-    self.redBarPlusButton = nil;
-    self.toggleModeButton = nil;
-    self.showViewOptionsButton = nil;
-    self.rootTableView = nil;
-    self.redBarImageView = nil;
     [super viewDidUnload];
 }
 
@@ -337,18 +356,30 @@
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
 
-	self.monthTableViewController.startDate = [[self.selectedDate dateWeeksBefore:100] startOfCurrentWeek];
+	self.monthTableViewController.startDate = [[self.selectedDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
 	self.monthTableViewController.selectedDate = self.selectedDate;
-	[self.monthTableViewController scrollToRowForDate:[self.selectedDate startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-	[self.monthTableViewController reframeRedSelectedDaySquare];
+	[self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+	[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
 
-	[self.monthTableView reloadData];
+	[self.rootTableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated 
 {
     [self resignFirstResponder];
     [super viewWillDisappear:animated];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CVMonthTableViewController"]) {
+        self.monthTableViewController = segue.destinationViewController;
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 
@@ -373,14 +404,14 @@
     
     if (self.tableMode == CVRootTableViewModeFull) {
         [UIApplication showBezelWithTitle:@"Full Day"];
-        if ([self.selectedDate isWithinSameDay:[NSDate date]]) {
+        if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
             self.rootTableViewController.shouldScrollToCurrentHour = YES;
         }
     }
     else if (self.tableMode == CVRootTableViewModeAgenda) {
         [UIApplication showBezelWithTitle:@"Agenda"];
-        if ([self.selectedDate isWithinSameDay:[NSDate date]]) {
+        if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
             self.rootTableViewController.shouldScrollToCurrentHour = YES;
         }
@@ -396,9 +427,9 @@
     if (self.tableMode == CVRootTableViewModeWeek) {
         NSDate *newSelectedDate = nil;
         if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
-            newSelectedDate = [self.selectedDate oneWeekNext];
+            newSelectedDate = [self.selectedDate mt_oneWeekNext];
         } else if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
-            newSelectedDate = [self.selectedDate oneWeekPrevious];
+            newSelectedDate = [self.selectedDate mt_oneWeekPrevious];
         }
         
         if (newSelectedDate) {
@@ -415,7 +446,7 @@
 - (IBAction)handleLongPressOnMonthTitleGesture:(UILongPressGestureRecognizer *)gesture 
 {
 	if (gesture.state != UIGestureRecognizerStateBegan) return;
-	self.selectedDate = [[NSDate date] startOfCurrentDay];
+	self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
 }
 
 - (IBAction)showViewOptionsButtonWasTapped:(id)sender 
@@ -488,10 +519,10 @@
 - (void)cell:(CVEventCell *)cell wasSwipedInDirection:(CVEventCellSwipedDirection)direction 
 {
 	if (direction == CVEventCellSwipedDirectionLeft) {
-		self.selectedDate = [self.selectedDate oneDayNext];
+		self.selectedDate = [self.selectedDate mt_oneDayNext];
 	}
 	else {
-		self.selectedDate = [self.selectedDate oneDayPrevious];
+		self.selectedDate = [self.selectedDate mt_oneDayPrevious];
 	}
 }
 
@@ -518,7 +549,7 @@
 
 - (void)cellEventWasDeleted:(CVEventCell *)cell 
 {
-    [self.monthTableView reloadData];
+    [self.monthTableViewController.tableView reloadData];
 }
 
 - (void)cellReminderWasDeleted:(CVReminderCell *)cell 
@@ -532,7 +563,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.rootTableViewController removeObjectAtIndexPath:indexPath];
                 [self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationMiddle];
-                [self.monthTableView reloadData];
+                [self.monthTableViewController.tableView reloadData];
             });
         });
 		holder.reminder = nil;
@@ -542,13 +573,13 @@
 - (void)cellReminderWasCompleted:(CVReminderCell *)cell 
 {
     [self.rootTableViewController loadTableView];
-    [self.monthTableView reloadData];
+    [self.monthTableViewController.tableView reloadData];
 }
 
 - (void)cellReminderWasUncompleted:(CVReminderCell *)cell 
 {
     [self.rootTableViewController loadTableView];
-    [self.monthTableView reloadData];
+    [self.monthTableViewController.tableView reloadData];
 }
 
 
@@ -591,8 +622,8 @@
     if (result == CVQuickAddResultSaved) {
         [UIApplication showBezelWithTitle:(controller.calendarItem.isEvent ? @"Event Added" : @"Reminder Added")];
         [_rootTableViewController loadTableView];
-        [_monthTableView reloadData];
-		[_monthTableViewController reframeRedSelectedDaySquare];
+        [_monthTableViewController.tableView reloadData];
+		[_monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
     }
     [self becomeFirstResponder];
 }
@@ -606,7 +637,7 @@
 {
 	if (result == CVJumpToDateResultDateChosen) {
         NSDate *chosenDate = controller.chosenDate;
-        self.monthTableViewController.startDate = [[chosenDate dateWeeksBefore:100] startOfCurrentWeek];
+        self.monthTableViewController.startDate = [[chosenDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
 		self.selectedDate = chosenDate;
     }
 }
@@ -620,11 +651,11 @@
 {
     if (result == CVEventResultSaved) {
         [self.rootTableViewController loadTableView];
-        [self.monthTableView reloadData];
+        [self.monthTableViewController.tableView reloadData];
     }
     else if (result == CVEventResultDeleted) {       
         [self.rootTableViewController loadTableView];
-        [self.monthTableView reloadData];
+        [self.monthTableViewController.tableView reloadData];
     }
     [self becomeFirstResponder];
 }
@@ -638,13 +669,13 @@
 {
     if (result == CVReminderViewControllerResultSaved) {
         [self.rootTableViewController loadTableView];
-        [self.monthTableView reloadData];
-		[self.monthTableViewController reframeRedSelectedDaySquare];
+        [self.monthTableViewController.tableView reloadData];
+		[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
     }
     else if (result == CVReminderViewControllerResultDeleted) {
         [self.rootTableViewController loadTableView];
-        [self.monthTableView reloadData];
-		[self.monthTableViewController reframeRedSelectedDaySquare];
+        [self.monthTableViewController.tableView reloadData];
+		[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
     }
     [self becomeFirstResponder];
 }
@@ -666,7 +697,7 @@
 
 - (void)eventSnoozeViewController:(CVEventSnoozeViewController_iPhone *)controller didFinishWithResult:(CVEventSnoozeResult)result
 {
-	self.selectedDate = [controller.event.startingDate startOfCurrentDay];
+	self.selectedDate = [controller.event.startingDate mt_startOfCurrentDay];
 }
 
 
@@ -682,7 +713,7 @@
     if (option == CVViewOptionsPopoverOptionFullDayView) {
         [UIApplication showBezelWithTitle:@"Full Day"];
         self.tableMode = CVRootTableViewModeFull;
-        if ([self.selectedDate isWithinSameDay:[NSDate date]]) {
+        if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
             self.rootTableViewController.shouldScrollToCurrentHour = YES;
         }
@@ -691,7 +722,7 @@
     else if (option == CVViewOptionsPopoverOptionAgendaView) {
         [UIApplication showBezelWithTitle:@"Agenda"];
         self.tableMode = CVRootTableViewModeAgenda;
-        if ([self.selectedDate isWithinSameDay:[NSDate date]]) {
+        if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
             self.rootTableViewController.shouldScrollToCurrentHour = YES;
         }
@@ -775,23 +806,23 @@
 
 - (IBAction)closeSettings:(UIStoryboardSegue *)segue
 {
-	[NSDate setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
-	[NSDate setTimeZone:[CVSettings timezone]];
+	[NSDate mt_setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
+	[NSDate mt_setTimeZone:[CVSettings timezone]];
     [self setWeekDayTitles];
 	[self updateRootTableView];
 
-	self.monthTableViewController.startDate = [[self.selectedDate dateWeeksBefore:100] startOfCurrentWeek];
-	[self.monthTableViewController scrollToRowForDate:[self.selectedDate startOfCurrentWeek] animated:NO scrollPosition:(PAD ? UITableViewScrollPositionMiddle : UITableViewScrollPositionTop)];
-	[self.monthTableViewController reframeRedSelectedDaySquare];
+	self.monthTableViewController.startDate = [[self.selectedDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+	[self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:(PAD ? UITableViewScrollPositionMiddle : UITableViewScrollPositionTop)];
+	[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
 	
-	[self.monthTableView reloadData];
+	[self.monthTableViewController.tableView reloadData];
 
 	if (!PAD) {
 		if (![CVSettings scrollableMonthView]) {
-			self.monthTableView.scrollEnabled = NO;
+			self.monthTableViewController.tableView.scrollEnabled = NO;
 		}
 		else {
-			self.monthTableView.scrollEnabled = YES;
+			self.monthTableViewController.tableView.scrollEnabled = YES;
 		}
 		[self dismissViewControllerAnimated:YES completion:nil];
 	}

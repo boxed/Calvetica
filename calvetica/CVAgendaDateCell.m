@@ -19,9 +19,9 @@
 	
 	// set label text
 	_weekdayLabel.text = [[_date stringWithTitleOfCurrentWeekDayAbbreviated:NO] lowercaseString];
-	self.dateLabel.text = [NSString stringWithFormat:@"%d", [_date dayOfMonth]];
+	self.dateLabel.text = [NSString stringWithFormat:@"%d", [_date mt_dayOfMonth]];
 	
-	if ([_date isWithinSameDay:[NSDate date]]) {
+	if ([_date mt_isWithinSameDay:[NSDate date]]) {
 		self.weekdayLabel.textColor = patentedRed;
 	}
 	else {

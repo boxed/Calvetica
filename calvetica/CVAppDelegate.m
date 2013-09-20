@@ -18,12 +18,11 @@
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
 #import "EKCalendarItem+Calvetica.h"
-
 #import "CVEventStore.h"
 
 
 
-@interface CVAppDelegate ()
+@interface CVAppDelegate () 
 @property (nonatomic) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
 @property (nonatomic) UIBackgroundTaskIdentifier syncWithPocketLintBackgroundTask;
 @end
@@ -35,35 +34,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
-    [self.window makeKeyAndVisible];
 
-//	NSDate *now = [NSDate date];
-//	NSDate *start = [now startOfCurrentDay];
-//	NSDate *end	= [now endOfCurrentDay];
-//	NSArray *events = [CVEventStore eventsFromDate:start toDate:end forActiveCalendars:NO];
-////	for (EKEvent *event in events) {
-////		event.allDay = YES;
-////	}
+#ifdef ADHOC
+    [TestFlight takeOff:@"781a1420-e37c-4042-bfc7-48e2ed98b6fb"];
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice].identifierForVendor UUIDString]];
+#else
+    [Crashlytics startWithAPIKey:@"237b422d5ee51789eac82b82a6b214d838f1fd4e"];
+#endif
 
-	[NSDate setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
-	[NSDate setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
+	[NSDate mt_setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
+	[NSDate mt_setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
 
 	NSTimeZone *tz = [CVSettings timezone];
 	if (tz && [CVSettings timeZoneSupport]) {
-		[NSDate setTimeZone:tz];
+		[NSDate mt_setTimeZone:tz];
 	}
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 	_syncWithPocketLintBackgroundTask = UIBackgroundTaskInvalid;
-    
-    [TestFlight takeOff:@"6efade3967c3a27558172dfaaaa3d1b2_NjA2MzIwMTEtMDgtMTkgMjA6MTM6MDMuMzkyNTM3"];
-	[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] identifierForVendor].UUIDString];
-	[TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToConsole"]];
-	[TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"logToSTDERR"]];
-	#ifdef RELEASE
-	[TestFlight setOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"sendLogOnlyOnCrash"]];
-	#endif
-	
+
+    [self.window makeKeyAndVisible];
+
     // if launched with options (meaning, a user tapped the "Snooze" button on a local notification.
     if (launchOptions) {
         // get the notification that was fired
@@ -75,11 +66,13 @@
             
         }
     }
+
+    
     
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     // check whether the notification was received while active or while in background
     if (application.applicationState == UIApplicationStateActive) {
@@ -108,13 +101,13 @@
 	CVRootViewController *rvc = (CVRootViewController *)_window.rootViewController;
     
     // check whether it's a new day, if so update the month buttons to reflect today
-    if (![rvc.todaysDate isWithinSameDay:[NSDate date]]) {
+    if (![rvc.todaysDate mt_isWithinSameDay:[NSDate date]]) {
 		rvc.todaysDate		= [NSDate date];
         rvc.selectedDate	= [NSDate date];
     }
     
     // check whether the table view needs to scroll
-    if ([rvc.selectedDate isWithinSameDay:[NSDate date]]) {
+    if ([rvc.selectedDate mt_isWithinSameDay:[NSDate date]]) {
         [rvc.rootTableViewController scrollToCurrentHour];
     }
     [rvc.rootTableViewController scrollToDate:rvc.selectedDate];
@@ -143,8 +136,8 @@
     // set up a start and end date that will grab a minimum amount of events, but that will include the event.
     // NOTE: using identifier WILL NOT WORK because it could be a repeating event and pulling the event by the ei will give
     // you the first occurrence.
-    NSDate *rightBeforeEvent	= [eventStartDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent		= [eventStartDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
+    NSDate *rightBeforeEvent	= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
+    NSDate *rightAfterEvent		= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
     NSArray *events				= [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
 
     for (EKEvent *event in events) {
@@ -181,8 +174,8 @@
     // set up a start and end date that will grab a minimum amount of events, but that will include the event.
     // NOTE: using calendarItemIdentifier WILL NOT WORK because it could be a repeating event and pulling the event by the ei will give
     // you the first occurrence.
-    NSDate *rightBeforeEvent	= [eventStartDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent		= [eventStartDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
+    NSDate *rightBeforeEvent	= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
+    NSDate *rightAfterEvent		= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
 
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
 		NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
@@ -213,7 +206,7 @@
     
     // immediately set the icon badge, notifs are set below
     if (badgeOrAlerts == 1 || badgeOrAlerts == 3) {
-        app.applicationIconBadgeNumber = [[[NSDate date] startOfCurrentDay] dayOfMonth];
+        app.applicationIconBadgeNumber = [[[NSDate date] mt_startOfCurrentDay] mt_dayOfMonth];
     }
     if (badgeOrAlerts == 0 || badgeOrAlerts == 2) {
         app.applicationIconBadgeNumber = 0;
@@ -304,18 +297,18 @@
 	UIApplication *app = [UIApplication sharedApplication];
 	NSTimeZone *tz = [CVSettings timezone];
     
-    NSDate *today = [[NSDate date] startOfCurrentDay];
+    NSDate *today = [[NSDate date] mt_startOfCurrentDay];
     
     // schedule the next count badges
     for (int i = 1; i < count; i++) {
         
-        NSDate *fireDate = [today dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
+        NSDate *fireDate = [today mt_dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
         
         // schedule the notif
         UILocalNotification *localNotif = [[UILocalNotification alloc] init];
         localNotif.fireDate = fireDate;
         localNotif.timeZone = tz;
-        localNotif.applicationIconBadgeNumber = [localNotif.fireDate dayOfMonth];
+        localNotif.applicationIconBadgeNumber = [localNotif.fireDate mt_dayOfMonth];
         
 		[app scheduleLocalNotification:localNotif];
     }
@@ -324,8 +317,8 @@
 - (void)setCalveticaAlarms:(NSInteger)count 
 {
     NSDate *rightNow		= [NSDate date];
-	NSDate *startDate		= [rightNow dateDaysBefore:3];
-	NSDate *endDate			= [startDate dateWeeksAfter:5];
+	NSDate *startDate		= [rightNow mt_dateDaysBefore:3];
+	NSDate *endDate			= [startDate mt_dateWeeksAfter:5];
 	UIApplication *app		= [UIApplication sharedApplication];
 	NSTimeZone *tz			= [CVSettings timezone];
 	NSString *soundToPlay	= [CVSettings customAlertSoundFile] ? [CVSettings customAlertSoundFile] : UILocalNotificationDefaultSoundName;
@@ -351,11 +344,11 @@
                 fireDate = [event.startingDate dateByAddingTimeInterval:alarm.relativeOffset];
             
 			// if the alarm fire date has already past, ignore it
-            if ([fireDate isBefore:rightNow]) continue;
+            if ([fireDate mt_isBefore:rightNow]) continue;
             
             // create the notification
             UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-            localNotif.fireDate		= [fireDate dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:10];
+            localNotif.fireDate		= [fireDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:10];
             localNotif.timeZone		= tz;
             
             // compose the alert

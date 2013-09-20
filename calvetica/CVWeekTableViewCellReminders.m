@@ -27,8 +27,8 @@
     NSDate  *startDateOfWeek  = [self.delegate startDateForDrawingView:self];
     
     // get date range
-    NSDate *startOfWeek = [startDateOfWeek startOfCurrentWeek];
-    NSDate *endOfWeek = [startDateOfWeek endOfCurrentWeek];
+    NSDate *startOfWeek = [startDateOfWeek mt_startOfCurrentWeek];
+    NSDate *endOfWeek = [startDateOfWeek mt_endOfCurrentWeek];
         
     // fetch week reminders
 	NSArray *weekReminders = [CVEventStore remindersFromDate:startDateOfWeek toDate:endOfWeek activeCalendars:YES];
@@ -52,22 +52,22 @@
 		}
 
 		// if a reminder (not completed) is due after today, have it show up on the due date.
-		else if (date && [date isAfter:today])
+		else if (date && [date mt_isAfter:today])
 			appearsOnDate = date;
 
 		// otherwise it was due today or before today and is not completed, show it on today.
 		else
-			appearsOnDate = [[NSDate date] startOfCurrentDay];
+			appearsOnDate = [[NSDate date] mt_startOfCurrentDay];
 
 
 		// If the date the reminder is suppose to show up on is outside the range of the visible month, discard it.
-		if ([appearsOnDate isBefore:startOfWeek] || [appearsOnDate isAfter:endOfWeek])
+		if ([appearsOnDate mt_isBefore:startOfWeek] || [appearsOnDate mt_isAfter:endOfWeek])
 			continue;
 
 		reminderSquareDataHolder.appearOnDate = appearsOnDate;
 
 		for (NSInteger day = 0; day < 7; day++)
-			if (([appearsOnDate weekDayOfWeek] - 1) == day)
+			if (([appearsOnDate mt_weekdayOfWeek] - 1) == day)
 				reminderSquareDataHolder.days[day] = 1;
 
 		// get the reminders shape

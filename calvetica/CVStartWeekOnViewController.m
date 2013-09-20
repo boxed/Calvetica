@@ -28,10 +28,10 @@
 	components.month	= 1;
 	components.week		= 1;
 	components.weekday	= 1;
-	NSDate *startOfWeek = [NSDate dateFromComponents:components];
+	NSDate *startOfWeek = [NSDate mt_dateFromComponents:components];
 	for (NSInteger i = 0; i < 7; i++) {
-		NSDate *weekday = [startOfWeek dateDaysAfter:i];
-		[_weekdayTitles addObject:[weekday stringFromDateWithFullWeekdayTitle]];
+		NSDate *weekday = [startOfWeek mt_dateDaysAfter:i];
+		[_weekdayTitles addObject:[weekday mt_stringFromDateWithFullWeekdayTitle]];
 	}
 
 	[self.tableView reloadData];

@@ -68,7 +68,7 @@
     if (!self.endAfterView.hidden) {
         end = [EKRecurrenceEnd recurrenceEndWithOccurrenceCount:[self.endAfterLabel.text intValue]];
     } else if (!self.dateView.hidden) {
-        NSDate *date = [NSDate dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
+        NSDate *date = [NSDate mt_dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
         end = [EKRecurrenceEnd recurrenceEndWithEndDate:date];
     }
     
@@ -111,7 +111,7 @@
 {
     [super viewDidLoad];
     
-    NSArray *shortWeekdaySymbols = [NSDate veryShortWeekdaySymbols];
+    NSArray *shortWeekdaySymbols = [NSDate mt_veryShortWeekdaySymbols];
     
     for (CVViewButton *button in [self.dayOfTheWeekButtons subviews]) {
         // Default colors don't mesh with this view.

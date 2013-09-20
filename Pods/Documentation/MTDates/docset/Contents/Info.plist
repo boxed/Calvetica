@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.cocoapods.MTDates-0.6.1</string>
+	<string>org.cocoapods.MTDates-0.7.4</string>
 	<key>CFBundleName</key>
-	<string>MTDates 0.6.1 Documentation</string>
+	<string>MTDates 0.7.4 Documentation</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -18,7 +18,7 @@
 	<string>A category on NSDate. 100+ date calculation methods.</string>
 	
 	<key>DocSetFeedName</key>
-	<string>MTDates 0.6.1 Documentation</string>
+	<string>MTDates 0.7.4 Documentation</string>
 	
 	<key>DocSetMinimumXcodeVersion</key>
 	<string>3.0</string>

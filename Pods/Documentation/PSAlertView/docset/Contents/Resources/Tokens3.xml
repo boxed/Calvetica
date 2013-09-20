@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIColor+PSPDFKitAdditions.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIColor(PSPDFKitAdditions)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIColor+PSPDFKitAdditions.h</DeclaredIn>
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UIColor(PSPDFKitAdditions)/pspdf_lightenedColorWithDelta:</TokenIdentifier>
+			<Abstract type="html">Derived colors.</Abstract>
+			<DeclaredIn>UIColor+PSPDFKitAdditions.h</DeclaredIn>			
+			
+			<Declaration>- (UIColor *)pspdf_lightenedColorWithDelta:(CGFloat)delta</Declaration>
+			
+			
+			<Anchor>//api/name/pspdf_lightenedColorWithDelta:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UIColor(PSPDFKitAdditions)/pspdf_darkenedColorWithDelta:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIColor+PSPDFKitAdditions.h</DeclaredIn>			
+			
+			<Declaration>- (UIColor *)pspdf_darkenedColorWithDelta:(CGFloat)delta</Declaration>
+			
+			
+			<Anchor>//api/name/pspdf_darkenedColorWithDelta:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UIColor(PSPDFKitAdditions)/pspdf_brightness</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIColor+PSPDFKitAdditions.h</DeclaredIn>			
+			
+			<Declaration>- (CGFloat)pspdf_brightness</Declaration>
+			
+			
+			<Anchor>//api/name/pspdf_brightness</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

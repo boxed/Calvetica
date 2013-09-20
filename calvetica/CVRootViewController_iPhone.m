@@ -16,8 +16,6 @@
 
 
 @interface CVRootViewController_iPhone ()
-@property (nonatomic, strong) IBOutlet UIView *redBar;
-@property (nonatomic, strong) IBOutlet UIView *rootViewWrapper;
 @property (nonatomic, assign) NSInteger monthOnMainThread;
 @property (nonatomic, assign) CVRootMonthViewAnimateDirection monthViewPushedUpDirection;
 @end
@@ -32,7 +30,7 @@
     // cannot set selected date to nil
     if (!sd) return;
     
-    BOOL withinSameMonth = [sd isWithinSameMonth:self.selectedDate];
+    BOOL withinSameMonth = [sd mt_isWithinSameMonth:self.selectedDate];
     
     // set the isInitialLoad so that when the rootTableView is built it can 
     // call the method scrollToCurrentHour
@@ -43,7 +41,7 @@
     // check that the new value is a different value than the current value
     // if it is check that it is today, if it is scroll to current hour
     else if (![self.selectedDate isEqualToDate:sd]) {
-        if ([sd isWithinSameDay:[NSDate date]]) {
+        if ([sd mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
             self.rootTableViewController.shouldScrollToCurrentHour = YES;
         }
@@ -59,7 +57,7 @@
         [self.monthTableViewController scrollToRowForDate:sd animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
     else {
-        [self.monthTableViewController scrollToRowForDate:[sd startOfCurrentMonth] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self.monthTableViewController scrollToRowForDate:[sd mt_startOfCurrentMonth] animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
     
     // reload table view
@@ -105,40 +103,30 @@
 	NSInteger rowsToHide = numberOfRows - 2;
     
     CGFloat h = 40.0f;
-    
-	CGFloat screenHeight = self.view.bounds.size.height;
-	CGFloat pushedUpY = -((h * rowsToHide) + self.weekdayTitleBar.frame.size.height);
-	CGFloat pushedUpHeight = screenHeight + CVABS(pushedUpY);
-	CGFloat pushedDownY = 0;
-	CGFloat pushedDownHeight = screenHeight;
-	
-	[UIView animateWithDuration:ANIMATION_SPEED animations:^(void) {
-		
-		CGRect f = self.rootViewWrapper.frame;
-        CGRect r = self.monthTableView.frame;
-		
-		if (direction == CVRootMonthViewAnimateDirectionDown) {
-			f.origin.y = pushedDownY;
-			f.size.height = pushedDownHeight;
-            
-            r.origin.y = self.weekdayTitleBar.frame.size.height;
-            r.size.height = numberOfRows * h;
-		}
-		else {
-			f.origin.y = pushedUpY;
-			f.size.height = pushedUpHeight;
-            
-            r.origin.y = self.weekdayTitleBar.frame.size.height + (rowsToHide * h);
-            r.size.height = 2 * h;
-		}
-        
-		[self.rootViewWrapper setFrame:f];
-        [self.monthTableView setFrame:r];
-		
-	}
-                     completion:^(BOOL finished) {
-                         [self.monthTableViewController reframeRedSelectedDaySquare];
-                     }];
+
+    UIView *monthTableView      = self.monthTableViewContainer;
+    UITableView *rootTableView  = self.rootTableView;
+    UIView *redBar              = self.redBar;
+
+
+    [UIView mt_animateViews:@[monthTableView, rootTableView, redBar]
+                   duration:ANIMATION_SPEED
+             timingFunction:kMTEaseOutBack
+                    options:UIViewAnimationOptionBeginFromCurrentState
+                 animations:^{
+                     if (direction == CVRootMonthViewAnimateDirectionDown) {
+                         redBar.y                = self.weekdayTitleBar.y + self.weekdayTitleBar.height;
+                         monthTableView.height   = numberOfRows * h;
+                     }
+                     else {
+                         redBar.y                = -(h * rowsToHide);
+                         monthTableView.height   = 2 * h;
+                     }
+                     rootTableView.y         = monthTableView.y + monthTableView.height;
+                     rootTableView.height    = self.view.height - rootTableView.y;
+                 } completion:^{
+                     [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
+                 }];
 }
 
 - (void)updateLayout 
@@ -151,35 +139,22 @@
     
     [UIView animateWithDuration:0.2 animations:^{
         
-        CGRect r;
-        
         // stretch day button container
-        r = self.monthTableView.frame;
-        r.size.height = numberOfRows * h;
-        [self.monthTableView setFrame:r];
+        self.monthTableViewContainer.height = numberOfRows * h;
         
         // self.redBarImageView red bar
-        r = _redBar.frame;
-        r.size.height = (numberOfRows * h) + self.weekdayTitleBar.bounds.size.height;
-        [self.redBar setFrame:r];
-        
-        CGRect redBarImageFrame = CGRectMake(self.redBarImageView.bounds.origin.x, self.redBarImageView.bounds.origin.y, r.size.width, r.size.height);
-        [self.redBarImageView setFrame:redBarImageFrame];
+        self.redBar.height = (numberOfRows * h);
         
         // adjust table view
-        r = self.rootTableView.frame;
-        r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);        
-        r.size.height = _rootViewWrapper.frame.size.height - r.origin.y;
-        [self.rootTableView setFrame:r];
+        self.rootTableView.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
+        self.rootTableView.height = self.view.height - self.rootTableView.y;
         
         // adjust vignette background
-        r = self.vignetteBackground.frame;
-        r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
-        [self.vignetteBackground setFrame:r];
+        self.vignetteBackground.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
         
     }
                      completion:^(BOOL finished) {
-                         [self.monthTableViewController reframeRedSelectedDaySquare];
+                         [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
                          [self animateMonthViewDirection:self.monthViewPushedUpDirection];
                      }];
 	
@@ -208,12 +183,8 @@
         
         // if a modal view controller is already being displayed, return
         if (self.presentedViewController) return;
-        
-        CVLandscapeWeekView_iPhone *landscapeViewController = [[CVLandscapeWeekView_iPhone alloc] init];
-        landscapeViewController.delegate = self;
-        landscapeViewController.startDate = [NSDate date];
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-        [self presentViewController:landscapeViewController animated:YES completion:nil];
+
+        [self performSegueWithIdentifier:@"WeekViewSegue" sender:self];
     }
 }
 
@@ -231,25 +202,25 @@
     
     // if the view is not scrollable, lock it
     if (![CVSettings scrollableMonthView]) {
-        self.monthTableView.scrollEnabled = NO;
+        self.monthTableViewController.tableView.scrollEnabled = NO;
     }
     
     // swipe gesture should shift to the next month
     UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
     swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.monthTableView addGestureRecognizer:swipeRightGesture];
+    [self.monthTableViewContainer addGestureRecognizer:swipeRightGesture];
     
     UISwipeGestureRecognizer *swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
     swipeDownGesture.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.rootViewWrapper addGestureRecognizer:swipeDownGesture];
+    [self.monthTableViewContainer addGestureRecognizer:swipeDownGesture];
     
     UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
     swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.monthTableView addGestureRecognizer:swipeLeftGesture];
+    [self.monthTableViewContainer addGestureRecognizer:swipeLeftGesture];
     
     UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
     swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.rootViewWrapper addGestureRecognizer:swipeUpGesture];
+    [self.monthTableViewContainer addGestureRecognizer:swipeUpGesture];
     
     // register to know when the phone is turned sideways
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -258,22 +229,24 @@
     [super viewDidLoad]; 
 }
 
-- (void)viewDidUnload
-{
-    [self setMonthLabelControl:nil];
-    [self setWeekdayTitleBar:nil];
-    [self setRedBar:nil];
-	[self setRootViewWrapper:nil];
-    [super viewDidUnload];
-}
-
-- (void)viewDidAppear:(BOOL)animated 
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self setWeekDayTitles];
 	self.selectedDate = self.selectedDate;
 	[self updateLayout];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"WeekViewSegue"]) {
+        CVLandscapeWeekView_iPhone *landscapeWeekView   = [segue destinationViewController];
+        landscapeWeekView.delegate                      = self;
+        landscapeWeekView.startDate                     = [NSDate date];
+    }
+    [super prepareForSegue:segue sender:sender];
+}
+
 
 
 
@@ -350,12 +323,12 @@
     if (gesture.state != UIGestureRecognizerStateEnded) return;
     
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
-        NSDate *date = [self.selectedDate oneMonthNext];        
+        NSDate *date = [self.selectedDate mt_oneMonthNext];
         [UIApplication showBezelWithTitle:[date stringWithTitleOfCurrentMonthAbbreviated:NO]];
         self.selectedDate = date;
     } 
     else if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
-        NSDate *date = [self.selectedDate oneMonthPrevious];
+        NSDate *date = [self.selectedDate mt_oneMonthPrevious];
         [UIApplication showBezelWithTitle:[date stringWithTitleOfCurrentMonthAbbreviated:NO]];
         self.selectedDate = date;
     }
@@ -483,7 +456,7 @@
 			holder.event = nil;
 			holder.isAllDay = NO;
 			
-			if (![holder.date isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
+			if (![holder.date mt_isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
 				[self.rootTableViewController removeObjectAtIndexPath:indexPath];
 				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationMiddle];
 			}
@@ -713,7 +686,7 @@
 	if ([day isEqualToDate:self.selectedDate]) return;
 	
 	[super tableViewDidScrollToDay:day];
-	if (![self.selectedDate isWithinSameMonth:day]) {
+	if (![self.selectedDate mt_isWithinSameMonth:day]) {
 		self.selectedDate = day;	
 	}
 	else {

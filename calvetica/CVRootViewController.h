@@ -60,21 +60,21 @@ typedef enum {
 // can be updated to show current day
 @property (nonatomic, strong) NSDate *todaysDate;
 
-@property (nonatomic, strong) IBOutlet UIImageView *vignetteBackground;
-@property (nonatomic, strong) IBOutlet UIControl *redBarPlusButton;
-@property (nonatomic, strong) IBOutlet UIButton *toggleModeButton;
-@property (nonatomic, strong) IBOutlet UIButton *showViewOptionsButton;
-@property (nonatomic, assign) CVRootViewControllerMode mode;
-@property (nonatomic, assign) CVRootTableViewMode tableMode;
-@property (nonatomic, strong) CVRootTableViewController *rootTableViewController;
-@property (nonatomic, strong) IBOutlet UITableView *rootTableView;
-@property (nonatomic, strong) IBOutlet UIButton *monthLabelControl;
-@property (nonatomic) NSInteger reminderAddPlusButtonCount;
-@property (nonatomic, strong) UIPopoverController *nativePopoverController;
+@property (nonatomic, strong) IBOutlet UIImageView                *vignetteBackground;
+@property (nonatomic, strong) IBOutlet UIControl                  *redBarPlusButton;
+@property (nonatomic, strong) IBOutlet UIButton                   *toggleModeButton;
+@property (nonatomic, strong) IBOutlet UIButton                   *showViewOptionsButton;
+@property (nonatomic, assign)          CVRootViewControllerMode   mode;
+@property (nonatomic, assign)          CVRootTableViewMode        tableMode;
+@property (nonatomic, strong)          CVRootTableViewController  *rootTableViewController;
+@property (nonatomic, strong) IBOutlet UITableView                *rootTableView;
+@property (nonatomic, strong) IBOutlet UIButton                   *monthLabelControl;
+@property (nonatomic, weak  ) IBOutlet UIView                     *monthTableViewContainer;
+@property (nonatomic, assign)          NSInteger                  reminderAddPlusButtonCount;
+@property (nonatomic, strong) IBOutlet UIView                     *redBar;
+@property (nonatomic, strong)          UIPopoverController        *nativePopoverController;
 @property (nonatomic, strong) IBOutlet CVMonthTableViewController *monthTableViewController;
-@property (nonatomic, strong) IBOutlet UITableView *monthTableView;
-@property (nonatomic, strong) IBOutlet UIImageView *redBarImageView;
-@property (nonatomic, strong) IBOutlet UIView *weekdayTitleBar;
+@property (nonatomic, strong) IBOutlet UIView                     *weekdayTitleBar;
 
 
 #pragma mark - Methods

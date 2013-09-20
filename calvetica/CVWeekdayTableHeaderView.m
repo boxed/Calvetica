@@ -25,7 +25,7 @@
 - (void)setDate:(NSDate *)newDate 
 {
     _date = newDate;
-    self.weekNumberLabel.text = [NSString stringWithFormat:@"%d",[newDate weekOfYear]];
+    self.weekNumberLabel.text = [NSString stringWithFormat:@"%d",[newDate mt_weekOfYear]];
 }
 
 - (void)didMoveToWindow

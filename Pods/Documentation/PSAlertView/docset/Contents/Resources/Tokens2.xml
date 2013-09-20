@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/PSPDFAlertView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/PSPDFAlertView</TokenIdentifier>
+			<Abstract type="html">Helper to add block features to UIAlertView.
+After block has been executed, it is set to nil, breaking potential retain cycles.</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/initWithTitle:</TokenIdentifier>
+			<Abstract type="html">Default initializer.</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithTitle:(NSString *)title</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTitle:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/initWithTitle:message:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithTitle:(NSString *)title message:(NSString *)message</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTitle:message:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/setCancelButtonWithTitle:block:</TokenIdentifier>
+			<Abstract type="html">Add a cancel button. (use only once!)</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)setCancelButtonWithTitle:(NSString *)title block:(void ( ^ ) ( ))block</Declaration>
+			
+			
+			<Anchor>//api/name/setCancelButtonWithTitle:block:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/setCancelButtonWithTitle:extendedBlock:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void ( ^ ) ( PSPDFAlertView *alert , NSInteger buttonIndex ))block</Declaration>
+			
+			
+			<Anchor>//api/name/setCancelButtonWithTitle:extendedBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/addButtonWithTitle:block:</TokenIdentifier>
+			<Abstract type="html">Add regular button.</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)addButtonWithTitle:(NSString *)title block:(void ( ^ ) ( ))block</Declaration>
+			
+			
+			<Anchor>//api/name/addButtonWithTitle:block:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/addButtonWithTitle:extendedBlock:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (NSInteger)addButtonWithTitle:(NSString *)title extendedBlock:(void ( ^ ) ( PSPDFAlertView *alert , NSInteger buttonIndex ))block</Declaration>
+			
+			
+			<Anchor>//api/name/addButtonWithTitle:extendedBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/setTintColor:</TokenIdentifier>
+			<Abstract type="html">Custom tintColor. Set to nil for the default style.</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) UIColor *tintColor</Declaration>
+			
+			
+			<Anchor>//api/name/tintColor</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSPDFAlertView/tintColor</TokenIdentifier>
+			<Abstract type="html">Custom tintColor. Set to nil for the default style.</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) UIColor *tintColor</Declaration>
+			
+			
+			<Anchor>//api/name/tintColor</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSPDFAlertView/showWithTintColor:</TokenIdentifier>
+			<Abstract type="html">Show with tint color. Use to conveniently create a one-line alertView with the classic init methods.</Abstract>
+			<DeclaredIn>PSPDFAlertView.h</DeclaredIn>			
+			
+			<Declaration>- (void)showWithTintColor:(UIColor *)tintColor</Declaration>
+			
+			
+			<Anchor>//api/name/showWithTintColor:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

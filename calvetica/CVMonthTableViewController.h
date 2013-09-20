@@ -33,7 +33,7 @@
 - (void)scrollToRow:(NSInteger)row animated:(BOOL)animated;
 - (void)scrollToSelectedDay;
 - (NSInteger)rowInMiddleOfVisibleRegion;
-- (void)reframeRedSelectedDaySquare;
+- (void)reframeRedSelectedDaySquareAnimated:(BOOL)animated;
 
 
 @end

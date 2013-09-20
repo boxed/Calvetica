@@ -91,8 +91,8 @@
 - (void)setIsAllDay:(BOOL)allDay 
 {
     _isAllDay = allDay;
-	self.startDate	= [_startDate startOfCurrentDay];
-	self.endDate	= [_endDate endOfCurrentDay];
+	self.startDate	= [_startDate mt_startOfCurrentDay];
+	self.endDate	= [_endDate mt_endOfCurrentDay];
     
     if (allDay) {
         self.allDayTableHolderView.hidden = NO;
@@ -123,15 +123,15 @@
     
     // depending on if its 24 hour format, set the hour of the day and the am/pm button text
     NSInteger hourOfDay;
-	NSInteger minuteOfHour = [self.startDate minuteOfHour];
+	NSInteger minuteOfHour = [self.startDate mt_minuteOfHour];
 	
     if (![CVSettings isTwentyFourHourFormat]) {
-        hourOfDay = [self.startDate hourOfDay] % 12;
-        self.isAM = [self.startDate isInAM];
+        hourOfDay = [self.startDate mt_hourOfDay] % 12;
+        self.isAM = [self.startDate mt_isInAM];
         [self.ampmButton setTitle:(self.isAM ? @"pm" : @"am") forState:UIControlStateNormal];
     }
     else {
-        hourOfDay = [self.startDate hourOfDay];
+        hourOfDay = [self.startDate mt_hourOfDay];
         [self.ampmButton setTitle:@"" forState:UIControlStateNormal];
     }
 	
@@ -178,10 +178,10 @@
 	}
 	
 	// create the start date
-	self.startDate = [[self.startDate startOfCurrentDay] dateByAddingYears:0 months:0 weeks:0 days:0 hours:hour minutes:minute seconds:0];
+	self.startDate = [[self.startDate mt_startOfCurrentDay] mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:hour minutes:minute seconds:0];
     [self calculateEndDate];
     
-    if ([self.startDate isOnOrBefore:[NSDate date]] && [self.endDate isOnOrAfter:[NSDate date]]) {
+    if ([self.startDate mt_isOnOrBefore:[NSDate date]] && [self.endDate mt_isOnOrAfter:[NSDate date]]) {
         self.startDayLabel.text = [[self.endDate stringWithWeekdayMonthDayYearMonthAbbreviated:NO] lowercaseString];
     }
     else {
@@ -229,7 +229,7 @@
 {
     _endTimeLabel.text = [self.endDate stringWithHourMinuteAndLowercaseAMPM];
     //If today was Tuesday this makes it so it says ENDS:Tomorrow instead of ENDS:Wednesday
-    if ([self.startDate isOnOrBefore:[NSDate date]] && [_endDate isOnOrAfter:[NSDate date]]) {
+    if ([self.startDate mt_isOnOrBefore:[NSDate date]] && [_endDate mt_isOnOrAfter:[NSDate date]]) {
         _endDayLabel.text = [[_endDate stringWithWeekdayMonthDayYearMonthAbbreviated:NO] lowercaseString];
     }
     else {
@@ -296,10 +296,10 @@
     _hoursArray = [NSMutableArray array];
     _minutesArray = [NSMutableArray array];
     
-    NSDate *from = [self.startDate startOfCurrentDay];
-    NSDate *to = [[self.startDate startOfCurrentDay] dateByAddingYears:0 months:6 weeks:0 days:0 hours:0 minutes:0 seconds:0];
+    NSDate *from = [self.startDate mt_startOfCurrentDay];
+    NSDate *to = [[self.startDate mt_startOfCurrentDay] mt_dateByAddingYears:0 months:6 weeks:0 days:0 hours:0 minutes:0 seconds:0];
     
-    _allDayDatesArray = [NSMutableArray arrayWithArray:[NSDate datesCollectionFromDate:from untilDate:to]];
+    _allDayDatesArray = [NSMutableArray arrayWithArray:[NSDate mt_datesCollectionFromDate:from untilDate:to]];
     
     // build the hoursArray
     for (int i = 0; i < [hoursTitles count]; i++) {
@@ -467,7 +467,7 @@
     // set the all day table and end date    
     for (NSInteger i = 0; i < self.allDayDatesArray.count; i++) {
         NSDate *date = [self.allDayDatesArray objectAtIndex:i];
-        if ([date isWithinSameDay:self.startDate]) {
+        if ([date mt_isWithinSameDay:self.startDate]) {
             [self.allDayTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 			self.allDayEndDayLabel.text = [[date stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES] lowercaseString];
 			self.allDayStartDayLabel.text = [[self.startDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES] lowercaseString];

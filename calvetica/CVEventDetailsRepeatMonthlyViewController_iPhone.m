@@ -93,7 +93,7 @@
     if (!self.endAfterView.hidden) {
         end = [EKRecurrenceEnd recurrenceEndWithOccurrenceCount:[self.endAfterLabel.text intValue]];
     } else if (!self.dateView.hidden) {
-        NSDate *date = [NSDate dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
+        NSDate *date = [NSDate mt_dateFromYear:self.selectedYear month:self.selectedMonth day:self.selectedDay + 1];
         end = [EKRecurrenceEnd recurrenceEndWithEndDate:date];
     }
     
@@ -141,7 +141,7 @@
 - (void)dayOfWeekButtonTapped:(CVViewButton *)button 
 {
     _comboBoxIndex = 0;
-    CVComboBoxViewController *comboBox = [[CVComboBoxViewController alloc] initWithTargetView:self.dayOfWeekButton itemsToSelect:[NSDate weekdaySymbols] selectedItemIndex:_dayOfWeek];
+    CVComboBoxViewController *comboBox = [[CVComboBoxViewController alloc] initWithTargetView:self.dayOfWeekButton itemsToSelect:[NSDate mt_weekdaySymbols] selectedItemIndex:_dayOfWeek];
     comboBox.delegate = self;
     [self presentFullScreenModalViewController:comboBox animated:YES];
 }
@@ -215,7 +215,7 @@
     if (self.initialRecurrenceRule.daysOfTheWeek && [self.initialRecurrenceRule.daysOfTheWeek count] > 0) {
         EKRecurrenceDayOfWeek *d = [self.initialRecurrenceRule.daysOfTheWeek objectAtIndex:0];
         _dayOfWeek = d.dayOfTheWeek - 1;
-        self.dayOfWeekButtonLabel.text = [[NSDate weekdaySymbols] objectAtIndex:_dayOfWeek];
+        self.dayOfWeekButtonLabel.text = [[NSDate mt_weekdaySymbols] objectAtIndex:_dayOfWeek];
         _weekNumber = d.weekNumber;
     } 
     
