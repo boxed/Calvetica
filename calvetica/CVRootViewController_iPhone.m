@@ -110,8 +110,8 @@
 
 
     [UIView mt_animateViews:@[monthTableView, rootTableView, redBar]
-                   duration:ANIMATION_SPEED
-             timingFunction:kMTEaseOutBack
+                   duration:0.4
+             timingFunction:(direction == CVRootMonthViewAnimateDirectionUp ? kMTEaseOutBack : kMTEaseOutBounce)
                     options:UIViewAnimationOptionBeginFromCurrentState
                  animations:^{
                      if (direction == CVRootMonthViewAnimateDirectionDown) {
@@ -119,7 +119,7 @@
                          monthTableView.height   = numberOfRows * h;
                      }
                      else {
-                         redBar.y                = -(h * rowsToHide);
+                         redBar.y                = -(h * rowsToHide) + self.weekdayTitleBar.height;
                          monthTableView.height   = 2 * h;
                      }
                      rootTableView.y         = monthTableView.y + monthTableView.height;
@@ -244,6 +244,10 @@
         landscapeWeekView.delegate                      = self;
         landscapeWeekView.startDate                     = [NSDate date];
     }
+    else if ([segue.identifier isEqualToString:@"SearchSegue"]) {
+        CVSearchViewController_iPhone *searchViewController = [segue destinationViewController];
+        searchViewController.delegate = self;
+    }
     [super prepareForSegue:segue sender:sender];
 }
 
@@ -279,8 +283,6 @@
 - (IBAction)handleLongPressOnMonthTitleGesture:(UILongPressGestureRecognizer *)gesture 
 {
 	[super handleLongPressOnMonthTitleGesture:gesture];
-	
-	
 }
 
 - (IBAction)showViewOptionsButtonWasTapped:(id)sender 
@@ -315,7 +317,7 @@
     eventDayViewController.initialDate = self.selectedDate;
     CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc] initWithContentViewController:eventDayViewController];
     jumpToDateController.delegate = self;
-    [self presentPageModalViewController:jumpToDateController animated:YES];
+    [self presentPageModalViewController:jumpToDateController animated:YES completion:nil];
 }
 
 - (IBAction)monthTableViewWasSwiped:(UISwipeGestureRecognizer *)gesture 
@@ -374,7 +376,7 @@
     if (cell.event) {
 		CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeHour];
 		eventViewController.delegate = self;
-		[self presentPageModalViewController:eventViewController animated:YES];
+		[self presentPageModalViewController:eventViewController animated:YES completion:nil];
     }
     else {
         [super cellHourTimeWasTapped:cell];
@@ -388,7 +390,7 @@
         if (cell.event) {
             CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
             eventViewController.delegate = self;
-            [self presentPageModalViewController:eventViewController animated:YES];
+            [self presentPageModalViewController:eventViewController animated:YES completion:nil];
         } else {
             [self showQuickAddWithDefault:YES
 							 durationMode:YES
@@ -400,7 +402,7 @@
         CVReminderCell *cell = (CVReminderCell *)tappedCell;
         CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDetails];
         reminderViewController.delegate = self;
-        [self presentPageModalViewController:reminderViewController animated:YES];
+        [self presentPageModalViewController:reminderViewController animated:YES completion:nil];
     }
     
     [super cellWasTapped:tappedCell];
@@ -421,7 +423,7 @@
         CVReminderCell *cell = (CVReminderCell *)tappedCell;
         CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDay];
         reminderViewController.delegate = self;
-        [self presentPageModalViewController:reminderViewController animated:YES];
+        [self presentPageModalViewController:reminderViewController animated:YES completion:nil];
     }
     
     [super cellWasTapped:tappedCell];
@@ -533,7 +535,7 @@
         [self.monthTableViewController drawDotsForVisibleRows];
         [self.rootTableViewController loadTableView];
     }
-    [self dismissPageModalViewControllerAnimated:YES];
+    [self dismissPageModalViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -554,11 +556,11 @@
 		if (controller.calendarItem.isEvent) {
 			CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
 			eventViewController.delegate = self;
-			[self presentPageModalViewController:eventViewController animated:YES];		}
+			[self presentPageModalViewController:eventViewController animated:YES completion:nil];		}
 		else {
 			CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:(EKReminder *)controller.calendarItem andMode:CVEventModeDetails];
 			reminderViewController.delegate = self;
-			[self presentPageModalViewController:reminderViewController animated:YES];
+			[self presentPageModalViewController:reminderViewController animated:YES completion:nil];
 		}
 	}
 }
@@ -571,7 +573,7 @@
 - (void)jumpToDateViewController:(CVJumpToDateViewController_iPhone *)controller didFinishWithResult:(CVJumpToDateResult)result
 {
     [super jumpToDateViewController:controller didFinishWithResult:result];
-    [self dismissPageModalViewControllerAnimated:YES];
+    [self dismissPageModalViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -588,7 +590,7 @@
     else if (result == CVEventResultDeleted) {
         [self.monthTableViewController drawDotsForVisibleRows];
     }
-    [self dismissPageModalViewControllerAnimated:YES];
+    [self dismissPageModalViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -605,7 +607,7 @@
     else if (result == CVReminderViewControllerResultDeleted) {
         [self.monthTableViewController drawDotsForVisibleRows];
     }
-    [self dismissPageModalViewControllerAnimated:YES];
+    [self dismissPageModalViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -632,7 +634,7 @@
     if (result == CVEventSnoozeResultShowDetails) {
         CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:controller.event andMode:CVEventModeDetails];
         eventViewController.delegate = self;
-        [self presentPageModalViewController:eventViewController animated:YES];
+        [self presentPageModalViewController:eventViewController animated:YES completion:nil];
     }
 }
 
@@ -662,7 +664,7 @@
 - (void)searchViewController:(CVSearchViewController_iPhone *)searchViewController didFinishWithResult:(CVSearchViewControllerResult)result
 {
     [super searchViewController:searchViewController didFinishWithResult:result];
-    [self dismissFullScreenModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NO];
 }
 
 
@@ -704,7 +706,7 @@
 {
 	[super welcomeController:controller didFinishWithResult:result];
 	if (result == CVWelcomeViewControllerResultCancel || result == CVWelcomeViewControllerResultDontShowMe) {
-		[self dismissPageModalViewControllerAnimated:YES];
+		[self dismissPageModalViewControllerAnimated:YES completion:nil];
 	}
 }
 

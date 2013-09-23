@@ -54,8 +54,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
-    
+    UITableViewCell *cell       = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
+    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+
     EKCalendar *calendar = [self.availableCalendars objectAtIndex:indexPath.row];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

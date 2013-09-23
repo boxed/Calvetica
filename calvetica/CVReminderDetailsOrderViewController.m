@@ -87,8 +87,10 @@
 {
     UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    cell.selectionStyle         = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+
     if (indexPath.section == 0) {
         NSMutableDictionary *dictionary = [_detailsOrderArray objectAtIndex:indexPath.row];
         cell.textLabel.text = [dictionary objectForKey:@"TitleKey"];

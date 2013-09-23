@@ -113,24 +113,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CalendarDetailCell"];
+    UITableViewCell *cell       = [tableView dequeueReusableCellWithIdentifier:@"CalendarDetailCell"];
+    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
 
     if (indexPath.section == 0) {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = @"Title";
-        cell.detailTextLabel.text = nil;
-        cell.imageView.image = nil;
-        cell.accessoryView = _calendarTitleTextField;
+        cell.selectionStyle         = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text         = @"Title";
+        cell.detailTextLabel.text   = nil;
+        cell.imageView.image        = nil;
+        cell.accessoryView          = _calendarTitleTextField;
         return cell;
     }
 	
     else if (indexPath.section == 1) {
-        CVCustomColorDataHolder *colorHolder = [_availableColors objectAtIndex:indexPath.row];
-        cell.imageView.backgroundColor = colorHolder.color;
-        cell.imageView.image = [UIImage imageNamed:@"custom_color_background"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", colorHolder.title];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.accessoryView = nil;
+        CVCustomColorDataHolder *colorHolder    = [_availableColors objectAtIndex:indexPath.row];
+        cell.imageView.backgroundColor          = colorHolder.color;
+        cell.imageView.image                    = [UIImage imageNamed:@"custom_color_background"];
+        cell.textLabel.text                     = [NSString stringWithFormat:@"%@", colorHolder.title];
+        cell.selectionStyle                     = UITableViewCellSelectionStyleBlue;
+        cell.accessoryView                      = nil;
 
         if (colorHolder.isSelected) {
             if ([[_calendar customColor] isEqual:colorHolder.color]) {

@@ -6,10 +6,10 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVBezel.h"
+#import "CVHUD.h"
 
 // private extension
-@interface CVBezel ()
+@interface CVHUD ()
 - (void)setBezelPosition;
 @end
 
@@ -17,47 +17,58 @@
 
 
 
-@implementation CVBezel
+@implementation CVHUD
 
 
 - (void)awakeFromNib 
 {
     [super awakeFromNib];
     
-    self.layer.shadowOffset = CGSizeMake(0, 5);
-    self.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.layer.shadowOpacity = 0.5;
-    self.layer.shadowRadius = 5;
-    
     [self.layer setCornerRadius:6.0f];
-    [self.layer setMasksToBounds:NO];
 }
 
 - (void)presentBezel 
 {
-    
     [self setBezelPosition];
-    
+    self.x = -self.width;
     // animate the fade out and remove from view
     // in the future add cases here for various animation options
     // add perhaps add some enums
-	
-	dispatch_queue_t animationQueue = dispatch_queue_create("com.mysterioustrousers.animationqueue", NULL);
-	dispatch_async(animationQueue, ^(void) {
-		
-		[NSThread sleepForTimeInterval:0.5];
-		
-		for (NSInteger i = 10; i >= 0; i -= 1) {
-			[NSThread sleepForTimeInterval:0.05];
-			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				self.alpha = ( i / 10.0f );
-			});
-		}
-		
-		dispatch_async(dispatch_get_main_queue(), ^(void) {
-			[self removeFromSuperview];
-		});
-	});
+
+    [UIView mt_animateViews:@[self]
+                   duration:0.5
+             timingFunction:kMTEaseOutBack
+                    options:UIViewAnimationOptionBeginFromCurrentState
+                 animations:^{
+                     [self setBezelPosition];
+                 } completion:^{
+                     [UIView mt_animateViews:@[self]
+                                    duration:0.75
+                              timingFunction:kMTEaseInExpo
+                                     options:UIViewAnimationOptionBeginFromCurrentState
+                                  animations:^{
+                                      self.x = [UIScreen mainScreen].bounds.size.height;
+                                  } completion:^{
+                                      [self removeFromSuperview];
+                                  }];
+                 }];
+
+//	dispatch_queue_t animationQueue = dispatch_queue_create("com.mysterioustrousers.animationqueue", NULL);
+//	dispatch_async(animationQueue, ^(void) {
+//		
+//		[NSThread sleepForTimeInterval:0.5];
+//		
+//		for (NSInteger i = 10; i >= 0; i -= 1) {
+//			[NSThread sleepForTimeInterval:0.05];
+//			dispatch_async(dispatch_get_main_queue(), ^(void) {
+//				self.alpha = ( i / 10.0f );
+//			});
+//		}
+//		
+//		dispatch_async(dispatch_get_main_queue(), ^(void) {
+//			[self removeFromSuperview];
+//		});
+//	});
 }
 
 - (void)setBezelPosition 

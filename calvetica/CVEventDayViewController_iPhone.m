@@ -46,7 +46,9 @@
     if ([_yearTableView numberOfRowsInSection:0] < row || row < 0) return;
 	
     // select year row
-    [_yearTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [_yearTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
+                                animated:YES
+                          scrollPosition:UITableViewScrollPositionMiddle];
     
     
     // select month button
@@ -253,7 +255,8 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [NSString stringWithFormat:@"%d", [self yearFromTableIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+    cell.textLabel.frame = cell.bounds;
     cell.textLabel.textColor = patentedDarkGray;
     
     return cell;
@@ -266,12 +269,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    
     // set year
     NSInteger year = [self yearFromTableIndex:indexPath.row];
     NSDate *date = [NSDate mt_dateFromYear:year month:[self.date mt_monthOfYear] day:[self.date mt_dayOfMonth]];
     self.date = date;
-    
 }
 
 

@@ -44,7 +44,10 @@
     cell.textLabel.text = self.question.answerText;
     
     // set the textLabel properties so that the full text will be displayed
-    cell.textLabel.numberOfLines = [self.question.answerText linesOfWordWrapTextWithFont:[UIFont boldSystemFontOfSize:18] constraintWidth:275];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.textLabel.numberOfLines = [self.question.answerText
+                                    linesOfWordWrapTextWithFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]
+                                    constraintWidth:275];
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     return cell;
@@ -57,7 +60,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    return [self.question.answerText totalHeightOfWordWrapTextWithFont:[UIFont boldSystemFontOfSize:18] constraintWidth:275] + 23;
+    return [self.question.answerText
+            totalHeightOfWordWrapTextWithFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]
+            constraintWidth:275] + 23;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 

@@ -11,7 +11,6 @@
 #import "times.h"
 #import "EKRecurrenceRule+Utilities.h"
 #import "CVEventStore.h"
-#import "CVAlertViewController.h"
 #import "strings.h"
 
 

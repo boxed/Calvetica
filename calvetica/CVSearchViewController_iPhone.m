@@ -14,13 +14,13 @@
 
 
 @interface CVSearchViewController_iPhone ()
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet CVTextField *searchTextField;
-@property (nonatomic, strong) NSMutableArray *results;
-@property (nonatomic, strong) UINib *eventCellNib;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) NSString *currentSearchText;
-@property (nonatomic, assign) CVSearchScopePopoverOption searchScope;
+@property (nonatomic, strong) IBOutlet UITableView                *tableView;
+@property (nonatomic, strong) IBOutlet CVTextField                *searchTextField;
+@property (nonatomic, strong)          NSMutableArray             *results;
+@property (nonatomic, strong)          UINib                      *eventCellNib;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView    *activityIndicator;
+@property (nonatomic, strong)          NSString                   *currentSearchText;
+@property (nonatomic, assign)          CVSearchScopePopoverOption searchScope;
 @end
 
 
@@ -57,6 +57,11 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 - (void)viewDidAppear:(BOOL)animated 
 {
     [super viewDidAppear:animated];
@@ -74,6 +79,11 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 
@@ -228,6 +238,10 @@
     return YES;
 }
 
+
+
+#pragma mark - Actions
+
 - (IBAction)closeButtonWasTapped:(id)sender 
 {
     [self.delegate searchViewController:self didFinishWithResult:CVSearchViewControllerResultFinished];
@@ -240,8 +254,7 @@
     scopePopover.delegate = self;
     scopePopover.currentScope = _searchScope;
     scopePopover.popoverBackdropColor = patentedDarkGray;
-	CVViewController *rvc = (CVViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    [rvc presentPopoverModalViewController:scopePopover forView:sender animated:YES];
+    [self presentPopoverModalViewController:scopePopover forView:sender animated:YES];
 }
 
 
@@ -262,16 +275,14 @@
 
 - (void)searchScopeController:(CVSearchScopePopoverController *)controller didSelectOption:(CVSearchScopePopoverOption)option 
 {
-	CVViewController *rvc = (CVViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-	[rvc dismissPopoverModalViewControllerAnimated:YES];
+	[self dismissPopoverModalViewControllerAnimated:YES];
 	[_searchTextField becomeFirstResponder];
 	self.searchScope = option;
 }
 
 - (void)searchScopeControllerDidRequestToClose:(CVSearchScopePopoverController *)controller 
 {
-	CVViewController *rvc = (CVViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-	[rvc dismissPopoverModalViewControllerAnimated:YES];
+	[self dismissPopoverModalViewControllerAnimated:YES];
 	[_searchTextField becomeFirstResponder];
 }
 

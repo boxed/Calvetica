@@ -6,7 +6,6 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVAlertViewController.h"
 #import "CVTextToggleButton.h"
 #import "CVEventDayViewController_iPhone.h"
 #import "CVEventHourViewController_iPhone.h"

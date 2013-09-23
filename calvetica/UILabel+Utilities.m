@@ -39,64 +39,46 @@
 - (void)setWhiteWithLightShadow 
 {
     self.textColor = patentedWhite;
-    self.shadowOffset = CGSizeMake(0,1);
-    self.shadowColor = patentedBlackLightShadow;
 }
 
 - (void)setWhiteWithDarkShadow 
 {
     self.textColor = patentedWhite;
-    self.shadowOffset = CGSizeMake(0,1);
-    self.shadowColor = patentedBlackDarkShadow;
 }
 
 - (void)setBlackWithLightShadow 
 {
     self.textColor = patentedBlack;
-    self.shadowOffset = CGSizeMake(0,1);
-    self.shadowColor = patentedWhiteLightShadow;
 }
 
 - (void)setBlackWithDarkShadow 
 {
     self.textColor = patentedBlack;
-    self.shadowOffset = CGSizeMake(0,1);
-    self.shadowColor = patentedWhiteDarkShadow;
 }
 
 - (void)setDarkGrayWithLightShadow 
 {
     self.textColor = patentedDarkGray;
-    self.shadowOffset = CGSizeMake(0,1);
-    self.shadowColor = patentedWhiteLightShadow;
 }
 
 - (void)setDarkGrayWithDarkShadow 
 {
     self.textColor = patentedDarkGray;
-    self.shadowOffset = CGSizeMake(0,1);
-    self.shadowColor = patentedWhiteDarkShadow;
 }
 
 - (void)setWhiteNoShadow 
 {
     self.textColor = patentedWhite;
-    self.shadowOffset = CGSizeMake(0,0);
-    self.shadowColor = nil;
 }
 
 - (void)setBlackNoShadow 
 {
     self.textColor = patentedBlack;
-    self.shadowOffset = CGSizeMake(0,0);
-    self.shadowColor = nil;
 }
 
 - (void)setDarkGrayNoShadow 
 {
     self.textColor = patentedDarkGray;
-    self.shadowOffset = CGSizeMake(0,0);
-    self.shadowColor = nil;
 }
 
 @end

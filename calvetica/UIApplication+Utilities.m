@@ -7,8 +7,9 @@
 
 #import "UIApplication+Utilities.h"
 #import "CVAlertViewController.h"
-#import "CVBezel.h"
+#import "CVHUD.h"
 #import "CVViewController.h"
+#import "UIView+Utilities.h"
 
 
 @implementation UIApplication (Utilities)
@@ -24,21 +25,40 @@
     return topmost;
 }
 
-+ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons {
-	
++ (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+                   buttons:(NSArray *)buttons
+                completion:(void (^)(void))completion
+{
 	CVAlertViewController *alertViewController = [[CVAlertViewController alloc] init];
-	CVViewController *topmostViewController = [[UIApplication sharedApplication] topmostSystemPresentedViewController];
-	[topmostViewController presentFullScreenModalViewController:alertViewController animated:YES];
-	alertViewController.titleLabel.text = title;
+    [alertViewController view];
+
+    CVViewController *topmostViewController = [[UIApplication sharedApplication] topmostSystemPresentedViewController];
+    alertViewController.titleLabel.text     = title;
+    alertViewController.completion          = completion;
 	[alertViewController setMessageText:message resizeDialog:YES];
 	
 	for (CVActionBlockButton *button in buttons) {
 		[alertViewController addButton:button];
 	}
+
+	[topmostViewController presentPageModalViewController:alertViewController animated:YES completion:^{
+        alertViewController.view.y -= 40;
+        [UIView mt_animateViews:@[alertViewController.view]
+                       duration:0.5
+                 timingFunction:kMTEaseOutElastic
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+        {
+            alertViewController.view.y += 40;
+        } completion:^{
+            if (completion) completion();
+        }];
+    }];
 }
 
 + (void)showBezelWithTitle:(NSString *)title {
-    CVBezel *bezel = [CVBezel viewFromNib:[CVBezel nib]];
+    CVHUD *bezel = [CVHUD viewFromNib:[CVHUD nib]];
     bezel.titleLabel.text = title;
     
 	CVViewController *topmostViewController = [[UIApplication sharedApplication] topmostSystemPresentedViewController];

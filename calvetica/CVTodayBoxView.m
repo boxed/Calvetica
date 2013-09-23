@@ -29,9 +29,6 @@
     // set red color
     CGContextSetFillColorWithColor(context, [patentedRed CGColor]);
 
-    // set the shadow
-//	CGContextSetShadowWithColor(context, CGSizeMake(1, 1), 3, [patentedShadow CGColor]);
-
     // outer rect
     CGRect outerRect = CGRectInset(rect, TODAY_BOX_OUTER_OFFSET, TODAY_BOX_OUTER_OFFSET);
     

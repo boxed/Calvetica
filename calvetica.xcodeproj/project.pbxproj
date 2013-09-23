@@ -45,8 +45,8 @@
 		9B0C290013BEF63C00EBD25E /* CVReminderCalendarPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C28FF13BEF63B00EBD25E /* CVReminderCalendarPickerViewController.m */; };
 		9B0C59B913B252E200ADC5E6 /* CVDefaultLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C59B813B252E200ADC5E6 /* CVDefaultLanguageViewController.m */; };
 		9B0FF93313BCDE1B00B316A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0FF93213BCDE1B00B316A9 /* QuartzCore.framework */; };
-		9B0FF97F13BD0E6500B316A9 /* CVBezel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FF97E13BD0E6500B316A9 /* CVBezel.m */; };
-		9B0FF98113BD0E9500B316A9 /* CVBezel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0FF98013BD0E9500B316A9 /* CVBezel.xib */; };
+		9B0FF97F13BD0E6500B316A9 /* CVHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FF97E13BD0E6500B316A9 /* CVHUD.m */; };
+		9B0FF98113BD0E9500B316A9 /* CVHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0FF98013BD0E9500B316A9 /* CVHUD.xib */; };
 		9B125C38136786970065B9B2 /* CVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B125C37136786960065B9B2 /* CVButton.m */; };
 		9B12A0E113A7DFDE00BF1D7F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B12A0DF13A7DFDD00BF1D7F /* AddressBook.framework */; };
 		9B12A0E213A7DFDE00BF1D7F /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B12A0E013A7DFDD00BF1D7F /* AddressBookUI.framework */; };
@@ -87,7 +87,6 @@
 		9B858CF11447AB7C00A370FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B858CF01447AB7C00A370FC /* CoreLocation.framework */; };
 		9B8BBFF213D00D7200C8A0A2 /* CVQuickAddViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8BBFF013D00D7200C8A0A2 /* CVQuickAddViewController_iPhone.xib */; };
 		9B95763513D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B95763413D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m */; };
-		9B9C496914B4F10D00D84CF7 /* MTAppsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C496814B4F10D00D84CF7 /* MTAppsViewController.m */; };
 		9BB278C413CE2B8D00CC411C /* CVSlideLockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB278C313CE2B8D00CC411C /* CVSlideLockControl.m */; };
 		9BB278C613CE2BA600CC411C /* CVSlideLockControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB278C513CE2BA600CC411C /* CVSlideLockControl.xib */; };
 		9BB5F0391380AECF00ECF6F1 /* CVCalendarTableViewCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB5F0381380AECF00ECF6F1 /* CVCalendarTableViewCell_iPhone.m */; };
@@ -279,7 +278,6 @@
 		C27AD532160C121C00986E33 /* CVDefaultTimeZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27AD531160C121C00986E33 /* CVDefaultTimeZoneViewController.m */; };
 		C27B896417EA8D4F00F12871 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */; };
 		C27B896617EA8DE900F12871 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27B896517EA8DE900F12871 /* Main_iPad.storyboard */; };
-		C27C408613EC4CC400FC39A7 /* CVQuickAddViewController-Landscape_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27C408413EC4CC400FC39A7 /* CVQuickAddViewController-Landscape_iPhone.xib */; };
 		C27EAA251630BD57008046CF /* CVEventStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C27EAA241630BD57008046CF /* CVEventStore.m */; };
 		C280C9A913E0782500656992 /* CVWeekdayTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C280C9A813E0782500656992 /* CVWeekdayTableHeaderView.m */; };
 		C280C9AE13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C280C9AD13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.m */; };
@@ -306,6 +304,7 @@
 		C28F7BB213A869DF001D6F07 /* MTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F7BB113A869DF001D6F07 /* MTLabel.m */; };
 		C28F7BC413A94886001D6F07 /* CVReminderViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F7BC313A94886001D6F07 /* CVReminderViewController_iPhone.m */; };
 		C28F7BCD13A94EC0001D6F07 /* CVReminderDetailsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F7BCB13A94EC0001D6F07 /* CVReminderDetailsViewController_iPhone.m */; };
+		C290198817EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C290198717EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib */; };
 		C2927A1D1395DF9B00CEF39D /* CVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2927A1C1395DF9B00CEF39D /* CVCell.m */; };
 		C2927A201395EC1A00CEF39D /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = C2927A1E1395EC1A00CEF39D /* shadow.png */; };
 		C2927A211395EC1A00CEF39D /* ipad_vignette.png in Resources */ = {isa = PBXBuildFile; fileRef = C2927A1F1395EC1A00CEF39D /* ipad_vignette.png */; };
@@ -447,6 +446,10 @@
 		C2E59EBC1524F7610052E63F /* CVWeekTableViewCellDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E59EBB1524F7610052E63F /* CVWeekTableViewCellDrawing.m */; };
 		C2E59EBF152639E40052E63F /* weekicon_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E59EBD152639E40052E63F /* weekicon_highlighted@2x.png */; };
 		C2E59EC0152639E40052E63F /* weekicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E59EBE152639E40052E63F /* weekicon@2x.png */; };
+		C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6A5B517EE1DE4006D035A /* CVAddButton.m */; };
+		C2E6A5B917EE4DD0006D035A /* CVHamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6A5B817EE4DD0006D035A /* CVHamburgerButton.m */; };
+		C2E6A5BC17EE4EB7006D035A /* CVEventReminderToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6A5BB17EE4EB7006D035A /* CVEventReminderToggleButton.m */; };
+		C2E6A5BF17EE556C006D035A /* CVCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6A5BE17EE556C006D035A /* CVCloseButton.m */; };
 		C2EF1C8F1386DD2C00AA7384 /* CVAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EF1C8D1386DD2C00AA7384 /* CVAlertViewController.m */; };
 		C2EF1C901386DD2C00AA7384 /* CVAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EF1C8E1386DD2C00AA7384 /* CVAlertViewController.xib */; };
 		C2EF1C951386E99800AA7384 /* CVEventSnoozeViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EF1C931386E99800AA7384 /* CVEventSnoozeViewController_iPhone.m */; };
@@ -538,9 +541,9 @@
 		9B0C59B713B252E200ADC5E6 /* CVDefaultLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDefaultLanguageViewController.h; sourceTree = "<group>"; };
 		9B0C59B813B252E200ADC5E6 /* CVDefaultLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDefaultLanguageViewController.m; sourceTree = "<group>"; };
 		9B0FF93213BCDE1B00B316A9 /* QuartzCore.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9B0FF97D13BD0E6500B316A9 /* CVBezel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVBezel.h; sourceTree = "<group>"; };
-		9B0FF97E13BD0E6500B316A9 /* CVBezel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVBezel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9B0FF98013BD0E9500B316A9 /* CVBezel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVBezel.xib; sourceTree = "<group>"; };
+		9B0FF97D13BD0E6500B316A9 /* CVHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVHUD.h; sourceTree = "<group>"; };
+		9B0FF97E13BD0E6500B316A9 /* CVHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVHUD.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9B0FF98013BD0E9500B316A9 /* CVHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVHUD.xib; sourceTree = "<group>"; };
 		9B125C36136786960065B9B2 /* CVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVButton.h; sourceTree = "<group>"; };
 		9B125C37136786960065B9B2 /* CVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVButton.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B12A0DF13A7DFDD00BF1D7F /* AddressBook.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -599,8 +602,6 @@
 		9B8BBFF113D00D7200C8A0A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVQuickAddViewController_iPhone.xib; sourceTree = "<group>"; };
 		9B95763313D6113300FB1499 /* CVKnowledgeBaseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVKnowledgeBaseDetailViewController.h; sourceTree = "<group>"; };
 		9B95763413D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVKnowledgeBaseDetailViewController.m; sourceTree = "<group>"; };
-		9B9C496714B4F10D00D84CF7 /* MTAppsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAppsViewController.h; sourceTree = "<group>"; };
-		9B9C496814B4F10D00D84CF7 /* MTAppsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAppsViewController.m; sourceTree = "<group>"; };
 		9BB278C213CE2B8D00CC411C /* CVSlideLockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSlideLockControl.h; sourceTree = "<group>"; };
 		9BB278C313CE2B8D00CC411C /* CVSlideLockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSlideLockControl.m; sourceTree = "<group>"; };
 		9BB278C513CE2BA600CC411C /* CVSlideLockControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVSlideLockControl.xib; sourceTree = "<group>"; };
@@ -872,7 +873,6 @@
 		C27AD531160C121C00986E33 /* CVDefaultTimeZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDefaultTimeZoneViewController.m; sourceTree = "<group>"; };
 		C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C27B896517EA8DE900F12871 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
-		C27C408513EC4CC400FC39A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/CVQuickAddViewController-Landscape_iPhone.xib"; sourceTree = "<group>"; };
 		C27EAA241630BD57008046CF /* CVEventStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventStore.m; sourceTree = "<group>"; };
 		C280C9A713E0782500656992 /* CVWeekdayTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekdayTableHeaderView.h; sourceTree = "<group>"; };
 		C280C9A813E0782500656992 /* CVWeekdayTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekdayTableHeaderView.m; sourceTree = "<group>"; };
@@ -912,6 +912,7 @@
 		C28F7BCA13A94EC0001D6F07 /* CVReminderDetailsViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVReminderDetailsViewController_iPhone.h; sourceTree = "<group>"; };
 		C28F7BCB13A94EC0001D6F07 /* CVReminderDetailsViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVReminderDetailsViewController_iPhone.m; sourceTree = "<group>"; };
 		C290198617EBB2C00033476F /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
+		C290198717EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CVQuickAddViewController-Landscape_iPhone.xib"; sourceTree = "<group>"; };
 		C2927A1B1395DF9B00CEF39D /* CVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCell.h; sourceTree = "<group>"; };
 		C2927A1C1395DF9B00CEF39D /* CVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2927A1E1395EC1A00CEF39D /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
@@ -1107,6 +1108,14 @@
 		C2E59EBB1524F7610052E63F /* CVWeekTableViewCellDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekTableViewCellDrawing.m; sourceTree = "<group>"; };
 		C2E59EBD152639E40052E63F /* weekicon_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekicon_highlighted@2x.png"; sourceTree = "<group>"; };
 		C2E59EBE152639E40052E63F /* weekicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekicon@2x.png"; sourceTree = "<group>"; };
+		C2E6A5B417EE1DE4006D035A /* CVAddButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAddButton.h; sourceTree = "<group>"; };
+		C2E6A5B517EE1DE4006D035A /* CVAddButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVAddButton.m; sourceTree = "<group>"; };
+		C2E6A5B717EE4DD0006D035A /* CVHamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVHamburgerButton.h; sourceTree = "<group>"; };
+		C2E6A5B817EE4DD0006D035A /* CVHamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVHamburgerButton.m; sourceTree = "<group>"; };
+		C2E6A5BA17EE4EB7006D035A /* CVEventReminderToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventReminderToggleButton.h; sourceTree = "<group>"; };
+		C2E6A5BB17EE4EB7006D035A /* CVEventReminderToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventReminderToggleButton.m; sourceTree = "<group>"; };
+		C2E6A5BD17EE556C006D035A /* CVCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCloseButton.h; sourceTree = "<group>"; };
+		C2E6A5BE17EE556C006D035A /* CVCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVCloseButton.m; sourceTree = "<group>"; };
 		C2EF1C8C1386DD2C00AA7384 /* CVAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAlertViewController.h; sourceTree = "<group>"; };
 		C2EF1C8D1386DD2C00AA7384 /* CVAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAlertViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2EF1C8E1386DD2C00AA7384 /* CVAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVAlertViewController.xib; sourceTree = "<group>"; };
@@ -1350,9 +1359,9 @@
 		9B0FF97913BD0E1700B316A9 /* Bezel */ = {
 			isa = PBXGroup;
 			children = (
-				9B0FF97D13BD0E6500B316A9 /* CVBezel.h */,
-				9B0FF97E13BD0E6500B316A9 /* CVBezel.m */,
-				9B0FF98013BD0E9500B316A9 /* CVBezel.xib */,
+				9B0FF97D13BD0E6500B316A9 /* CVHUD.h */,
+				9B0FF97E13BD0E6500B316A9 /* CVHUD.m */,
+				9B0FF98013BD0E9500B316A9 /* CVHUD.xib */,
 			);
 			name = Bezel;
 			sourceTree = "<group>";
@@ -1466,15 +1475,6 @@
 				9B29FE7B1401A95C009926FB /* SCEventDetailsAlarmPicker.xib */,
 			);
 			name = "Event Details Alarm Picker";
-			sourceTree = "<group>";
-		};
-		9B4D49501405FBC500078902 /* Our Apps */ = {
-			isa = PBXGroup;
-			children = (
-				9B9C496714B4F10D00D84CF7 /* MTAppsViewController.h */,
-				9B9C496814B4F10D00D84CF7 /* MTAppsViewController.m */,
-			);
-			name = "Our Apps";
 			sourceTree = "<group>";
 		};
 		9B562EE71385C6A8001E5EA5 /* PeopleCell */ = {
@@ -2305,6 +2305,7 @@
 				C2A6853F139839C4008446E8 /* Image Toggle Button */,
 				C269A76613A00CD9004ED181 /* Rounded Button */,
 				C269A76713A01159004ED181 /* View Button */,
+				C2E6A5B317EE1D94006D035A /* iOS7+ */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -2435,7 +2436,7 @@
 			isa = PBXGroup;
 			children = (
 				C2816E4213FD6B26006D62DC /* Delegate */,
-				C2E2977813341A0F00FA7638 /* ViewControllers */,
+				C2E2977813341A0F00FA7638 /* View Controllers */,
 				C2E2976A133419EE00FA7638 /* Models */,
 				C2691546136CC6E5002053C5 /* Views */,
 				C2E29763133419D600FA7638 /* Categories */,
@@ -2679,7 +2680,6 @@
 				9BC42D4E13D4A16000E9EA92 /* Knowledge base */,
 				9B1A7A8B13E144210028A960 /* Contact us */,
 				9B0127A413CBA25B0006C2EA /* Gestures */,
-				9B4D49501405FBC500078902 /* Our Apps */,
 				9B0C59B513B252B100ADC5E6 /* Language picker */,
 			);
 			name = "Settings View Controllers";
@@ -2700,7 +2700,7 @@
 				C2A646AF13625D0A00E57272 /* CVQuickAddViewController_iPhone.h */,
 				C2A646B013625D0A00E57272 /* CVQuickAddViewController_iPhone.m */,
 				9B8BBFF013D00D7200C8A0A2 /* CVQuickAddViewController_iPhone.xib */,
-				C27C408413EC4CC400FC39A7 /* CVQuickAddViewController-Landscape_iPhone.xib */,
+				C290198717EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib */,
 			);
 			name = "Quick Add View Controller";
 			sourceTree = "<group>";
@@ -3079,7 +3079,7 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		C2E2977813341A0F00FA7638 /* ViewControllers */ = {
+		C2E2977813341A0F00FA7638 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C2FB897E135EABBB001CD487 /* Root View Controller */,
@@ -3090,7 +3090,7 @@
 				C2B2174A13889296006878DC /* Misc View Controllers */,
 				6A2816F813E2FA7C00A5981E /* Combo Box */,
 			);
-			name = ViewControllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		C2E3A1B81610EF8400F00FB8 /* Default All-day Event Alarms */ = {
@@ -3147,6 +3147,21 @@
 				C2E59EAE1524D1740052E63F /* Week Table View Cell Reminders */,
 			);
 			name = "Week Table View Cell Drawing";
+			sourceTree = "<group>";
+		};
+		C2E6A5B317EE1D94006D035A /* iOS7+ */ = {
+			isa = PBXGroup;
+			children = (
+				C2E6A5B417EE1DE4006D035A /* CVAddButton.h */,
+				C2E6A5B517EE1DE4006D035A /* CVAddButton.m */,
+				C2E6A5B717EE4DD0006D035A /* CVHamburgerButton.h */,
+				C2E6A5B817EE4DD0006D035A /* CVHamburgerButton.m */,
+				C2E6A5BA17EE4EB7006D035A /* CVEventReminderToggleButton.h */,
+				C2E6A5BB17EE4EB7006D035A /* CVEventReminderToggleButton.m */,
+				C2E6A5BD17EE556C006D035A /* CVCloseButton.h */,
+				C2E6A5BE17EE556C006D035A /* CVCloseButton.m */,
+			);
+			name = "iOS7+";
 			sourceTree = "<group>";
 		};
 		C2EF1C8B1386DD0500AA7384 /* Alert View Controller */ = {
@@ -3473,7 +3488,7 @@
 				9BEFC7F113BC1783001CB080 /* whistle.caf in Resources */,
 				9BEFC80013BC317D001CB080 /* piano_1.caf in Resources */,
 				6A6183A513BCC04C005BFFCC /* CVEventDetailsViewController_iPhone.xib in Resources */,
-				9B0FF98113BD0E9500B316A9 /* CVBezel.xib in Resources */,
+				9B0FF98113BD0E9500B316A9 /* CVHUD.xib in Resources */,
 				9B0C28C913BE205E00EBD25E /* cleartime.png in Resources */,
 				9B0C28CA13BE205E00EBD25E /* cleartime@2x.png in Resources */,
 				C2F7CD7E13D6273900FBB45E /* CVSearchScopePopoverController.xib in Resources */,
@@ -3506,6 +3521,7 @@
 				9BE2F2EA13CC017100F46F37 /* quickreminder_iphone@2x.png in Resources */,
 				9BE2F2EB13CC017100F46F37 /* longpressmonth_iphone.png in Resources */,
 				9BE2F2EC13CC017100F46F37 /* longpressmonth_iphone@2x.png in Resources */,
+				C290198817EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib in Resources */,
 				C2F7CDD713D6281900FBB45E /* CVWelcomeViewController.xib in Resources */,
 				C2BE7DC613CC22E800925D53 /* icon@2x.png in Resources */,
 				C2BE7DC813CC2C1300925D53 /* icon~ipad.png in Resources */,
@@ -3525,7 +3541,6 @@
 				9BCECC4113EB4DD2004123E9 /* pinch_ipad.png in Resources */,
 				9BCECC4213EB4DD2004123E9 /* threefingers_ipad.png in Resources */,
 				9BCECC4613EB52D7004123E9 /* longpressday_ipad.png in Resources */,
-				C27C408613EC4CC400FC39A7 /* CVQuickAddViewController-Landscape_iPhone.xib in Resources */,
 				6AE5E2BC13ECAC2900C46F0B /* clear.png in Resources */,
 				6AE5E2BD13ECAC2900C46F0B /* clear@2x.png in Resources */,
 				9BE359C613EDF8BD003ACCE6 /* quickreminder_ipad.png in Resources */,
@@ -3682,6 +3697,7 @@
 				C2FE8BA51396BB1200641937 /* UIColor+Utilities.m in Sources */,
 				C206985A1396F657005C8192 /* geometry.c in Sources */,
 				6A0CD58E13983974009B6EFE /* CVMultiToggleButton.m in Sources */,
+				C2E6A5BC17EE4EB7006D035A /* CVEventReminderToggleButton.m in Sources */,
 				C2A6853E1397FD73008446E8 /* UIViewController+Utilities.m in Sources */,
 				C2A6854413983A1D008446E8 /* CVImageToggleButton.m in Sources */,
 				C24F7412139D37AE00282E61 /* CVActionBlockButton.m in Sources */,
@@ -3725,7 +3741,7 @@
 				C270A54C13B68D0B00EF902D /* NSMutableArray+Utilities.m in Sources */,
 				C2D3888013B8D075002527A7 /* UIView+Utilities.m in Sources */,
 				9BEFC7D113BB8174001CB080 /* CVCustomAlertSoundsViewController.m in Sources */,
-				9B0FF97F13BD0E6500B316A9 /* CVBezel.m in Sources */,
+				9B0FF97F13BD0E6500B316A9 /* CVHUD.m in Sources */,
 				9B0C28E413BE4E2800EBD25E /* CVReminderCalendarsManagerViewController.m in Sources */,
 				C23041F613BE898800EC3CB0 /* CVSearchScopePopoverController.m in Sources */,
 				C230420413BED4B100EC3CB0 /* NSDictionary+Utilities.m in Sources */,
@@ -3775,10 +3791,12 @@
 				9BBA39F313E606F80021BF62 /* CVRemindersWeekStdAgendaTableViewController.m in Sources */,
 				C251350A13EDBC7100936CC0 /* UIApplication+Utilities.m in Sources */,
 				C251351F13EDEC7900936CC0 /* CVEventEditViewController.m in Sources */,
+				C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */,
 				9BEF493E13F32AD400F837FB /* CVCalendarPickerViewController_iPhone.m in Sources */,
 				9B1D43FF13F8975C001FE7D3 /* CVKBDetailWebViewController.m in Sources */,
 				6AF3CE3B1402EA4000A193E4 /* CVWeekNumberHolder.m in Sources */,
 				6AF3CE3F1403022D00A193E4 /* CVWeekNumberCell.m in Sources */,
+				C2E6A5B917EE4DD0006D035A /* CVHamburgerButton.m in Sources */,
 				6AF3CE44140317EB00A193E4 /* CVDataHolder.m in Sources */,
 				6A10C09E14031EDD00B20B5A /* CVFriendlyCellDataHolder.m in Sources */,
 				9B5CFA21141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m in Sources */,
@@ -3787,7 +3805,6 @@
 				9B1C2135144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m in Sources */,
 				9B1C2138144DF61300447661 /* SCEventDetailsAlarmPicker.m in Sources */,
 				C2D411431498E9D9005A1418 /* NSJSONSerialization+Utilities.m in Sources */,
-				9B9C496914B4F10D00D84CF7 /* MTAppsViewController.m in Sources */,
 				C212260F151CD8C70055F6AE /* CVWeekTableViewCellEvents.m in Sources */,
 				C2D759CD1522082D00B04B4D /* CVMonthTableViewController.m in Sources */,
 				C2D759D11522096B00B04B4D /* CVWeekTableViewCell.m in Sources */,
@@ -3795,6 +3812,7 @@
 				C2D107EC1522184B002802EC /* CVDayButton_iPhone.m in Sources */,
 				C2E59EB21524D1A10052E63F /* CVWeekTableViewCellReminders.m in Sources */,
 				C2E59EB51524D2D50052E63F /* CVReminderSquare.m in Sources */,
+				C2E6A5BF17EE556C006D035A /* CVCloseButton.m in Sources */,
 				C2E59EBC1524F7610052E63F /* CVWeekTableViewCellDrawing.m in Sources */,
 				C2F2A84B15DF4A1700FE9033 /* NSDate+Utilities.m in Sources */,
 				C2AF808E15E936DE005B2A46 /* EKReminder+Calvetica.m in Sources */,
@@ -3850,14 +3868,6 @@
 				9B8BBFF113D00D7200C8A0A2 /* en */,
 			);
 			name = CVQuickAddViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		C27C408413EC4CC400FC39A7 /* CVQuickAddViewController-Landscape_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C27C408513EC4CC400FC39A7 /* en */,
-			);
-			name = "CVQuickAddViewController-Landscape_iPhone.xib";
 			sourceTree = "<group>";
 		};
 		C2C33D7613AD182D00D62D27 /* CVEventCell.xib */ = {
@@ -4096,7 +4106,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Kirk (XMMTRTMN8D)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4113,6 +4123,7 @@
 					"\"$(SRCROOT)/TestFlightSDK1.2.4\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "FD1347B7-3A09-4863-AEEF-B598699503D4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Adhoc;
@@ -4219,6 +4230,7 @@
 					"\"$(SRCROOT)/TestFlightSDK1.2.4\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4247,6 +4259,7 @@
 					"\"$(SRCROOT)/TestFlightSDK1.2.4\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -33,9 +33,6 @@
 		CGContextSetFillColorWithColor(context, [patentedBlack CGColor]);		
 	}
     
-    // set the shadow
-	CGContextSetShadowWithColor(context, CGSizeMake(2, 2), 3, [patentedBlackLightShadow CGColor]);
-    
     CGPoint currentPoint = CGPointMake(innerRect.origin.x, innerRect.origin.y);
     
     // draw inner rect counterclockwise

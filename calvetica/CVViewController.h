@@ -34,8 +34,12 @@
 
 - (void)hideKeyboard;
 
-- (void)presentPageModalViewController:(CVViewController *)modalViewController animated:(BOOL)animated;
-- (void)dismissPageModalViewControllerAnimated:(BOOL)animated;
+- (void)presentPageModalViewController:(CVViewController *)modalViewController
+                              animated:(BOOL)animated
+                            completion:(void (^)(void))completion;
+
+- (void)dismissPageModalViewControllerAnimated:(BOOL)animated
+                                    completion:(void (^)(void))completion;
 
 - (void)presentFullScreenModalViewController:(CVViewController *)modalViewController animated:(BOOL)animated;
 - (void)dismissFullScreenModalViewControllerAnimated:(BOOL)animated;

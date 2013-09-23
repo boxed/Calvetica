@@ -148,9 +148,13 @@
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = question.question;
+    cell.textLabel.font = cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+
     
     // set the textLabel properties so that the full text will be displayed
-    cell.textLabel.numberOfLines = [question.question linesOfWordWrapTextWithFont:[UIFont boldSystemFontOfSize:18] constraintWidth:260];
+    cell.textLabel.numberOfLines = [question.question
+                                    linesOfWordWrapTextWithFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]
+                                    constraintWidth:260];
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     return cell;

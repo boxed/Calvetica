@@ -46,19 +46,12 @@
     }
     
     // toggle icon
-    UIImage *image;
-	UIImage *highlightImage;
     if (_mode == CVRootViewControllerModeEvents) {
-        image = [UIImage imageNamed:@"icon_smallcheck"];
-		highlightImage = [UIImage imageNamed:@"icon_smallcheck_highlighted"];
+        self.toggleModeButton.icon = CVEventReminderToggleButtonIconCheck;
     } else {
-        image = [UIImage imageNamed:@"icon_calendars"];
-		highlightImage = [UIImage imageNamed:@"icon_calendars_highlighted"];
+        self.toggleModeButton.icon = CVEventReminderToggleButtonIconCalendar;
     }
-    
-    [self.toggleModeButton setImage:image forState:UIControlStateNormal];
-    [self.toggleModeButton setImage:highlightImage forState:UIControlStateHighlighted];
-    
+
     [CVSettings setReminderView:(mode == CVRootViewControllerModeReminders ? YES : NO)];
     [self updateRootTableView];
     
@@ -294,7 +287,7 @@
     if (![CVSettings welcomeScreenHasBeenShown]) {
         CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
         welcomeController.delegate = self;
-        [self presentPageModalViewController:welcomeController animated:YES];
+        [self presentPageModalViewController:welcomeController animated:YES completion:nil];
     }
 
     [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimeInterval time) {
@@ -735,11 +728,14 @@
     }
 
     else if (option == CVViewOptionsPopoverOptionSearch) {
-		CVSearchViewController_iPhone *searchViewController = [[CVSearchViewController_iPhone alloc] init];
-        searchViewController.delegate = self;
-
-		if (PAD)	[self presentPopoverModalViewController:searchViewController forView:viewOptionsViewController.popoverTargetView animated:YES];
-		else		[self presentFullScreenModalViewController:searchViewController animated:YES];
+		if (PAD) {
+            CVSearchViewController_iPhone *searchViewController = [[CVSearchViewController_iPhone alloc] init];
+            searchViewController.delegate = self;
+            [self presentPopoverModalViewController:searchViewController forView:viewOptionsViewController.popoverTargetView animated:YES];
+        }
+        else {
+            [self performSegueWithIdentifier:@"SearchSegue" sender:self];
+        }
     }
 
 	else if (option == CVViewOptionsPopoverOptionCalendars) {
@@ -757,7 +753,7 @@
         manageCalendarsController.delegate = self;
 
 		if (PAD)	[self presentPopoverModalViewController:manageCalendarsController forView:viewOptionsViewController.popoverTargetView animated:YES];
-		else		[self presentPageModalViewController:manageCalendarsController animated:YES];
+		else		[self presentPageModalViewController:manageCalendarsController animated:YES completion:nil];
     }
 
 	else if (option == CVViewOptionsPopoverOptionSettings) {

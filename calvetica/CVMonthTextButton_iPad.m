@@ -25,16 +25,12 @@
         for (UILabel *label in self.subviews) {
             if ([label isKindOfClass:[UILabel class]]) {
                 label.textColor = patentedBlack;
-                label.shadowOffset = CGSizeMake(0,1);
-                label.shadowColor = patentedWhiteLightShadow;
             }
         }
     } else {
         for (UILabel *label in self.subviews) {
             if ([label isKindOfClass:[UILabel class]]) {
                 label.textColor = patentedWhite;
-                label.shadowOffset = CGSizeMake(0,1);
-                label.shadowColor = patentedBlackLightShadow;
             }
         }
     }

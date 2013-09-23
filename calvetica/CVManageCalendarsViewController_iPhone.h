@@ -12,7 +12,6 @@
 #import "EKCalendar+Utilities.h"
 #import "UIApplication+Utilities.h"
 #import "CVCalendarReminderCalendarCellDataHolder.h"
-#import "CVAlertViewController.h"
 #import "CVDebug.h"
 #import "CVViewController.h"
 #import "CVModalProtocol.h"

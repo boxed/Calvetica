@@ -13,6 +13,8 @@
 #import "CVEventCell.h"
 #import "times.h"
 #import "geometry.h"
+#import "CVViewController.h"
+
 
 typedef enum {
     CVAlarmPickerResultCancelled,
@@ -25,7 +27,7 @@ typedef enum {
 
 @interface CVAlarmPickerViewController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, unsafe_unretained) id<CVAlarmPickerViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVAlarmPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKCalendarItem *calendarItem;
 
 - (NSArray *)alarms;

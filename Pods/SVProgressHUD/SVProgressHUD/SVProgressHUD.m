@@ -768,7 +768,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-    return [UIFont boldSystemFontOfSize:16];
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
 }
 
 @end

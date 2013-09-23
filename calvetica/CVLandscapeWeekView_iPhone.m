@@ -11,8 +11,7 @@
 #import "geometry.h"
 #import "EKCalendarItem+Calvetica.h"
 #import "CVReminderViewController_iPhone.h"
-
-
+#import "CVActionBlockButton.h"
 
 
 @implementation CVLandscapeWeekView_iPhone
@@ -127,7 +126,7 @@
     eventDayViewController.initialDate = date;
     CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc] initWithContentViewController:eventDayViewController];
     jumpToDateController.delegate = self;
-    [self presentPageModalViewController:jumpToDateController animated:YES];
+    [self presentPageModalViewController:jumpToDateController animated:YES completion:nil];
 }
 
 
@@ -220,7 +219,10 @@
         [self openQuickAddWithDate:dateToReturn allDay:NO];
     }];
     
-    [UIApplication showAlertWithTitle:[NSLocalizedString(@"Just making sure", @"The title of the prompt when a user long presses on week view to add a new event") uppercaseString] message:NSLocalizedString(@"Just wanted to make sure you select the right time:", @"This asks the user to select from a list of times to add an event to.") buttons:@[time1, time2, time3]];
+    [UIApplication showAlertWithTitle:[NSLocalizedString(@"Just making sure", @"The title of the prompt when a user long presses on week view to add a new event") uppercaseString]
+                              message:NSLocalizedString(@"Just wanted to make sure you select the right time:", @"This asks the user to select from a list of times to add an event to.")
+                              buttons:@[time1, time2, time3]
+                                completion:nil];
 
     [self reloadVisibleRows];
 }
@@ -232,7 +234,7 @@
     // put up the edit event modal
     CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:event andMode:CVEventModeDetails];
     eventViewController.delegate = self;
-    [self presentPageModalViewController:eventViewController animated:YES];
+    [self presentPageModalViewController:eventViewController animated:YES completion:nil];
 }
 
 
@@ -247,7 +249,7 @@
     if (result) {
         [self.delegate landscapeWeekViewController:self didFinishWithResult:CVLandscapeWeekViewResultModified];
     }
-    [self dismissPageModalViewControllerAnimated:NO];
+    [self dismissPageModalViewControllerAnimated:NO completion:nil];
 
 }
 
@@ -266,11 +268,12 @@
 		if (controller.calendarItem.isEvent) {
 			CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
 			eventViewController.delegate = self;
-			[self presentPageModalViewController:eventViewController animated:YES];		}
+			[self presentPageModalViewController:eventViewController animated:YES completion:nil];
+        }
 		else {
 			CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:(EKReminder *)controller.calendarItem andMode:CVEventModeDetails];
 			reminderViewController.delegate = self;
-			[self presentPageModalViewController:reminderViewController animated:YES];
+			[self presentPageModalViewController:reminderViewController animated:YES completion:nil];
 		}
     }
     else {
@@ -289,7 +292,7 @@
 {
     [super jumpToDateViewController:controller didFinishWithResult:result];
     
-    [self dismissPageModalViewControllerAnimated:YES];
+    [self dismissPageModalViewControllerAnimated:YES completion:nil];
     
     if (result == CVJumpToDateResultDateChosen) {
         [self scrollToDate:controller.chosenDate animated:YES];

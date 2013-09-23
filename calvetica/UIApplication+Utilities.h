@@ -9,7 +9,11 @@
 
 @interface UIApplication (Utilities)
 
-+ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons;
++ (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+                   buttons:(NSArray *)buttons
+                completion:(void (^)(void))completion;
+
 + (void)showBezelWithTitle:(NSString *)title;
 
 - (CVViewController *)topmostSystemPresentedViewController;

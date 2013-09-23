@@ -70,14 +70,13 @@
         button.backgroundColorSelected = patentedDarkRed;
         button.textColorSelected = patentedWhite;
     }
-    
-    
+
     [super viewDidLoad];
 }
 
 - (NSArray *)alarms 
 {
-    NSMutableArray *alarmsTemp = [NSMutableArray array];
+    NSMutableArray *alarmsTemp = [NSMutableArray new];
     for (NSInteger i = 0; i < _buttons.count; i++) {
         CVToggleButton *button = (CVToggleButton *)[self.view viewWithTag:(i+1)];
         if (button.selected) {
@@ -88,10 +87,9 @@
 			else if ([obj isKindOfClass:[NSDate class]]) {
 				[alarmsTemp addObject:[EKAlarm alarmWithAbsoluteDate:obj]];
 			}
-            
         }
     }
-    return [NSArray arrayWithArray:alarmsTemp];
+    return alarmsTemp;
 }
 
 - (void)setAlarms:(NSArray *)newAlarms 
@@ -188,7 +186,6 @@
 
 - (void)modalBackdropWasTouched 
 {
-	
 	// see any alarms were modified
 	if (_calendarItem.alarms.count == self.alarms.count) {
 		BOOL difference = NO;

@@ -12,14 +12,14 @@
 
 
 @interface CVEventHourViewController_iPhone ()
-@property (nonatomic) CVEventHourViewControllerMode mode;
-@property (strong, nonatomic) NSMutableArray		*unitButtons;
-@property (weak, nonatomic) IBOutlet CVViewButton	*startTimeButton;
-@property (weak, nonatomic) IBOutlet UILabel		*endTimeLabel;
-@property (weak, nonatomic) IBOutlet CVViewButton	*endTimeButton;
-@property (weak, nonatomic) IBOutlet CVViewButton	*allDayButton;
-@property (weak, nonatomic) IBOutlet UIView			*allDayButtonContainer;
-@property (weak, nonatomic) IBOutlet UITableView	*endDateTableView;
+@property (nonatomic, assign)          CVEventHourViewControllerMode mode;
+@property (nonatomic, strong)          NSMutableArray                *unitButtons;
+@property (nonatomic, weak  ) IBOutlet CVViewButton                  *startTimeButton;
+@property (nonatomic, weak  ) IBOutlet UILabel                       *endTimeLabel;
+@property (nonatomic, weak  ) IBOutlet CVViewButton                  *endTimeButton;
+@property (nonatomic, weak  ) IBOutlet CVViewButton                  *allDayButton;
+@property (nonatomic, weak  ) IBOutlet UIView                        *allDayButtonContainer;
+@property (nonatomic, weak  ) IBOutlet UITableView                   *endDateTableView;
 @end
 
 
@@ -243,6 +243,7 @@
 
 
 
+
 #pragma mark - Table View Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -262,7 +263,7 @@
     NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [rowDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.textLabel.textColor = patentedDarkGray;
     
     return cell;

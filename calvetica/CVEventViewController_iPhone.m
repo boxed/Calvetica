@@ -120,7 +120,7 @@
 	}];
 
 	[hourViewController setAllDateUpdatedBlock:^(BOOL allDay) {
-		_event.allDay = allDay;
+        _event.allDay = NO;
 		[_event resetDefaultAlarms];
 		[_event resetDurationToDefault];
 
@@ -130,6 +130,8 @@
 		// @hack: adding one second then subtracting it fixes the problem stated above
 		self.event.startingDate = [self.event.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];;
 		self.event.startingDate = [self.event.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];;
+
+		_event.allDay = allDay;
 	}];
 
 	self.viewControllers = @[hourViewController];

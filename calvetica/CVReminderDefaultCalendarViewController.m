@@ -54,7 +54,10 @@
     UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
 
     EKCalendar *calendar = [self.availableCalendars objectAtIndex:indexPath.row];
-    
+
+    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+
     cell.selectionStyle			= UITableViewCellSelectionStyleNone;
     cell.textLabel.text			= calendar.title;
     cell.detailTextLabel.text	= [NSString stringWithFormat:@"%@", [calendar account]];

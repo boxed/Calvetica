@@ -29,12 +29,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-	// set the frame to match
-	[_contentViewController.view setFrame:self.modalViewContainer.bounds];
-	
+
+    _contentViewController.view.y = (self.view.height / 2) - (_contentViewController.view.height / 2);
+    _contentViewController.view.x = (self.view.width / 2) - (_contentViewController.view.width / 2);
+
     // add content to view controller
-    [self.modalViewContainer addSubview:_contentViewController.view];
+    [self.view addSubview:_contentViewController.view];
 }
 
 @end

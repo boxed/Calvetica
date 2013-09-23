@@ -11,6 +11,7 @@
 #import "UIApplication+Utilities.h"
 #import "NSArray+Utilities.h"
 #import "CVEventStore.h"
+#import "CVActionBlockButton.h"
 
 
 
@@ -127,13 +128,6 @@
 
 - (void)editRecurrenceRule:(EKRecurrenceFrequency)newFrequency 
 {
-    // There isn't a dialog for no recurrence. Simply clear the recurrence.
-    if (newFrequency == -1) {
-        self.event.recurrenceRules = nil;
-        [self configureRepeatButtons];
-        return;
-    }
-    
     CVEventDetailsRepeatViewController_iPhone *recurrenceViewController = nil;
     EKRecurrenceRule *recurrenceRule = nil;
     
@@ -404,7 +398,10 @@
         cancel();
     }];
     
-    [UIApplication showAlertWithTitle:[NSLocalizedString(@"Unknown Recurrence", @"Message title when the user tries to edit a recurrence rule event") uppercaseString] message:NSLocalizedString(@"This recurrence rule cannot be edited in Calvetica. Press edit to override the current rule.", @"Message when the user tries to edit a recurrence rule.") buttons:@[editButton, cancelButton]];
+    [UIApplication showAlertWithTitle:[NSLocalizedString(@"Unknown Recurrence", @"Message title when the user tries to edit a recurrence rule event") uppercaseString]
+                              message:NSLocalizedString(@"This recurrence rule cannot be edited in Calvetica. Press edit to override the current rule.", @"Message when the user tries to edit a recurrence rule.")
+                              buttons:@[editButton, cancelButton]
+                                completion:cancel];
 }
 
 
@@ -673,7 +670,7 @@
         newFreq = EKRecurrenceFrequencyYearly;
     }
 
-    if (self.event.hasRecurrenceRules && ![[self.event.recurrenceRules lastObject] isValidCalveticaRule] && newFreq != -1) {
+    if (self.event.hasRecurrenceRules && ![[self.event.recurrenceRules lastObject] isValidCalveticaRule]) {
         [self showEditRuleConfirmationThenDoAction:^(void) {
             [self editRecurrenceRule:newFreq];
         } cancel:^(void) {
@@ -736,7 +733,7 @@
 
 - (void)doneViewingPerson 
 {
-    [self.closestSystemPresentedViewController dismissPageModalViewControllerAnimated:YES];
+    [self.closestSystemPresentedViewController dismissPageModalViewControllerAnimated:YES completion:nil];
 }
 
 - (void)personWasSwiped:(NSNumber *)personID 
@@ -790,7 +787,8 @@
 			
 			[UIApplication showAlertWithTitle:[@"Person telephone numbers" uppercaseString] 
 									  message:@"This person has more than one telephone number, please select from the list"
-									  buttons:alertButtons];            
+									  buttons:alertButtons
+                                        completion:nil];
             
         }
         else {
@@ -839,7 +837,8 @@
 			
 			[UIApplication showAlertWithTitle:[@"Person telephone numbers" uppercaseString] 
 									  message:@"This person has more than one telephone number, please select which one to call."
-									  buttons:alertButtons];   
+									  buttons:alertButtons
+                                        completion:nil];
         }
         else {
             NSDictionary *numberDict = [telephoneNumbers lastObject];

@@ -45,24 +45,27 @@
     [_buttonContainerView setFrame:f];
     
     // resize alert view
-    f = _alertView.frame;
+    f = self.view.frame;
     CGFloat newHeight = _buttonContainerView.frame.origin.y + _buttonContainerView.frame.size.height + PADDING; // 20 for padding on bottom
     f = CVRectResize(f, CGSizeMake(f.size.width, newHeight));
-    [_alertView setFrame:f];
+    [self.view setFrame:f];
     
     // set frame of new button
     f = button.frame;
     f.origin.y = ((self.buttons.count * (button.frame.size.height + BUTTON_SPACING)) - BUTTON_SPACING) - button.frame.size.height;
     [button setFrame:f];
+
     // add the button to the UI
     [_buttonContainerView addSubview:button];
 	
 }
 
-- (void)dismiss 
+- (void)dismiss
 {
 	CVViewController *rootViewController = [[UIApplication sharedApplication] topmostSystemPresentedViewController];
-	[rootViewController dismissFullScreenModalViewControllerAnimated:YES];
+	[rootViewController dismissPageModalViewControllerAnimated:YES completion:^{
+        if (self.completion) self.completion();
+    }];
 }
 
 - (void)setMessageText:(NSString *)message resizeDialog:(BOOL)resize 
@@ -75,10 +78,10 @@
         self.messageTextView.frame = frame;
         
         // After resizing the message text view, resize the dialog.
-        CGRect alertFrame = self.alertView.frame;
+        CGRect alertFrame = self.view.frame;
         CGFloat newHeight = self.messageTextView.frame.origin.y + self.messageTextView.frame.size.height + _buttonContainerView.frame.size.height + PADDING;
         alertFrame = CVRectResize(alertFrame, CGSizeMake(alertFrame.size.width, newHeight));
-        self.alertView.frame = alertFrame;
+        self.view.frame = alertFrame;
         
         // Reposition the buttons container.
         CGRect buttonFrame = _buttonContainerView.frame;
@@ -86,18 +89,6 @@
         _buttonContainerView.frame = buttonFrame;
     }
 }
-
-#pragma mark - View Lifecycle
-
-- (void)viewDidUnload 
-{
-    [self setTitleLabel:nil];
-    [self setMessageTextView:nil];
-    [self setButtonContainerView:nil];
-    [self setAlertView:nil];
-    [super viewDidUnload];
-}
-
 
 
 

@@ -202,7 +202,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	
     CVDataHolder *holder = [_cellDataHolderArray objectAtIndex:indexPath.row];
     
 	UITableViewCell *returnCell = nil;
@@ -216,7 +215,6 @@
             reminderHolder.cell = cell;
             cell.delegate = self.delegate;
 
-            
             // call the NSString category method to set the number of lines for the textLabel
             CGFloat width;
             if (PAD) {

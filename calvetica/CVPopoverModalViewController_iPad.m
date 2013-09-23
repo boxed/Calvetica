@@ -180,19 +180,12 @@ typedef struct {
 	CGRect viewBounds = self.containingViewController.view.bounds;
 	[self.view setFrame:CGRectMake(0, 0, viewBounds.size.width, viewBounds.size.height)];
 	
-	
-	
 	// convert the views coordinates to the coordinates of the whole screen
 	CGRect targetRect = [_targetView convertRect:_targetView.bounds toView:self.containingViewController.view];
 	
-	
-	
 	CVPopoverModalAttachToSide attachToSide = _contentViewController.attachPopoverArrowToSide;
 	CVPopoverArrowDirection arrowDirection = _contentViewController.popoverArrowDirection;
-	
-	
-	
-	
+
     // determine the point at which the popover should point
     // this is done by figuring out which edge of the rectangle faces the center of the screen most, then finding the midpoint of that edge
     CGPoint screenCenter = CGPointMake(CGRectGetMidX(viewBounds), CGRectGetMidY(viewBounds));
@@ -213,9 +206,7 @@ typedef struct {
 	CGPoint first;
 	CGPoint second;
 	CVRectClosestTwoPoints(targetRect, screenCenter, &first, &second);
-	
-	
-	
+
 	
     // finally, find the midpoint between the two closest points to the center of the screen
     CGPoint point = CVLineMidPoint(first, second);
@@ -250,7 +241,7 @@ typedef struct {
 	
 	
     // how far view should be offset from the point so that the arrows tip points to it
-    CGFloat arrowFloatDistance = POPOVER_SHADOW_PADDING + POPOVER_ARROW_HEIGHT + POPOVER_BLACK_BORDER_WIDTH;
+    CGFloat arrowFloatDistance = POPOVER_SHADOW_PADDING + POPOVER_ARROW_HEIGHT;
     
 	
 	
@@ -423,14 +414,13 @@ typedef struct {
     CGRect bf = f;
     bf.origin.x = 0;
     bf.origin.y = 0;
-    bf = CGRectInset(bf, -25, -25);
+    bf = CGRectInset(bf, -POPOVER_BLACK_BORDER_WIDTH, -POPOVER_BLACK_BORDER_WIDTH);
     [self.popoverBackdropView setFrame:bf];
     
     // redraw the backdrop given the arrow direction
     self.popoverBackdropView.arrowDirection = arrowDirection;
 	self.popoverBackdropView.backdropColor = _contentViewController.popoverBackdropColor;
     [self.popoverBackdropView setNeedsDisplay];
-
 }
 
 
@@ -455,11 +445,17 @@ typedef struct {
 	
     // add content to view controller
     [self.modalViewContainer addSubview:_contentViewController.view];
-    
-    
+
     // if the keyboard appears, we need our popover to scoot up to the top of the screen
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)viewDidUnload 

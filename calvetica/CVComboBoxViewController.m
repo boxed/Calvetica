@@ -63,21 +63,6 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad 
-{
-    [super viewDidLoad];
-    
-    self.itemsView.layer.shadowColor = [patentedShadow CGColor];
-    self.itemsView.layer.shadowOffset = CGSizeMake(0, 1);
-    self.itemsView.layer.shadowOpacity = 1;
-    self.itemsView.layer.shadowRadius = 2.8;
-    
-    self.selectedItemLabel.layer.shadowColor = [patentedShadow CGColor];
-    self.selectedItemLabel.layer.shadowOffset = CGSizeMake(0, 1);
-    self.selectedItemLabel.layer.shadowOpacity = 1;
-    self.selectedItemLabel.layer.shadowRadius = 2.8;
-}
-
 - (void)viewDidUnload 
 {
     self.itemsTableView = nil;
@@ -129,7 +114,7 @@
     if (!cell) {        
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0f];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0f];
         cell.textLabel.textColor = patentedWhite;
     }
     

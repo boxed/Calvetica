@@ -22,22 +22,6 @@
     return self;
 }
 
-- (void)viewDidLoad 
-{
-    _keys.layer.shadowColor = [patentedShadow CGColor];
-    _keys.layer.shadowOffset = CGSizeMake(0, 1);
-    _keys.layer.shadowOpacity = 1;
-    _keys.layer.shadowRadius = 2.8;
-    
-    _selectedDaysLabel.layer.shadowColor = [patentedShadow CGColor];
-    _selectedDaysLabel.layer.shadowOffset = CGSizeMake(0, 1);
-    _selectedDaysLabel.layer.shadowOpacity = 1;
-    _selectedDaysLabel.layer.shadowRadius = 2.8;
-    _selectedDaysLabel.maximumWidth = 267.0f;
-    
-    [super viewDidLoad];
-}
-
 - (void)viewWillAppear:(BOOL)animated 
 {
     CGRect frame = _mainView.frame;

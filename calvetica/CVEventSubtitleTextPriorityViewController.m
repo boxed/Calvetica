@@ -102,14 +102,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
-    
+    UITableViewCell *cell       = [UITableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
+    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+
     if (indexPath.section == 0) {        
         NSMutableDictionary *dictionary = [_subtitleTextPriorityArray objectAtIndex:indexPath.row];
         
         cell.textLabel.text = [dictionary objectForKey:@"TitleKey"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.showsReorderControl = YES;
+
         
         if ([[dictionary objectForKey:@"HiddenKey"] boolValue]) {
             cell.accessoryType = UITableViewCellAccessoryNone;

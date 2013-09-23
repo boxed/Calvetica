@@ -10,8 +10,7 @@
 #import "CVEventSquare.h"
 #import "EKEvent+Utilities.h"
 #import "colors.h"
-
-
+#import "geometry.h"
 
 
 @implementation CVAllDayEventSquaresView

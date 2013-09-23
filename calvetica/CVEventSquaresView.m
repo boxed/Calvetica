@@ -175,7 +175,6 @@
         CGContextSetLineWidth(context, 2.0f);
         
         CGContextSaveGState(context);
-        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 5, [patentedVeryLightGray CGColor]);
         
         if (PAD) {
             CVContextFillRoundedRect(context, boxFrame, 4.0f);

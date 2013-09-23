@@ -4,11 +4,11 @@
 #import "UIApplication+Utilities.h"
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
+#import "CVActionBlockButton.h"
 
 
 
 @implementation EKEvent (Utilities)
-
 
 - (void)setStartingDate:(NSDate *)startingDate
 {
@@ -109,155 +109,6 @@
 
 #pragma mark - Methods
 
-- (void)reset 
-{
-	
-	// you can call this on any event to refetch it from the database, even if its an instance of a recurring event
-	
-	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
-	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent	= [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent		= [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
-    NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
-    
-	BOOL found = NO;
-    for (EKEvent *event in events) {
-        if ([self isEqualToCalendarItem:event]) {
-			
-			found = YES;
-			
-            // reset all the events attributes
-			self.alarms				= event.alarms;
-			self.allDay				= event.allDay;
-			self.availability		= event.availability;
-			self.calendar			= event.calendar;
-			self.endingDate			= event.endingDate;
-			self.location			= event.location;
-			self.notes				= event.notes;
-			self.recurrenceRules	= event.recurrenceRules;
-			self.title				= event.title;
-			
-			break;
-		}
-    }
-	
-	// if they changed the start date, and we couldn't find it, then we've got to just pull it by the eid and hope for the best
-	// if they open it back up right after they close the edit modal, they will see the start date NOT reset, but everything else will be.
-	if (!found) {
-		EKEvent *event = [CVEventStore eventWithIdentifier:self.identifier];
-		
-		// reset all the events attributes
-		self.alarms				= event.alarms;
-		self.allDay				= event.allDay;
-		self.availability		= event.availability;
-		self.calendar			= event.calendar;
-		self.endingDate			= event.endingDate;
-		self.location			= event.location;
-		self.notes				= event.notes;
-		self.recurrenceRules	= event.recurrenceRules;
-		self.title				= event.title;
-	}
-}
-
-- (void)resetNotes 
-{
-    // you can call this on any event to refetch it from the database, even if its an instance of a recurring event
-	
-	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
-	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent    = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent     = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
-    NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
-    
-	BOOL found = NO;
-    for (EKEvent *event in events) {
-        if ([self isEqualToCalendarItem:event]) {
-			
-			found = YES;
-			
-            // reset the events notes attribute
-            self.notes = event.notes;
-			
-			break;
-		}
-    }
-	
-	// if they changed the start date, and we couldn't find it, then we've got to just pull it by the eid and hope for the best
-	// if they open it back up right after they close the edit modal, they will see the start date NOT reset, but everything else will be.
-	if (!found) {
-		EKEvent *event = [CVEventStore eventWithIdentifier:self.identifier];
-		
-		// reset the events notes attribute
-		self.notes = event.notes;		
-	}
-}
-
-- (void)resetLocation 
-{
-    // you can call this on any event to refetch it from the database, even if its an instance of a recurring event
-	
-	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
-	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent    = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent     = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
-    NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
-    
-	BOOL found = NO;
-    for (EKEvent *event in events) {
-        if ([self isEqualToCalendarItem:event]) {
-			
-			found = YES;
-			
-            // reset the events notes attribute
-            self.location = event.location;
-			
-			break;
-		}
-    }
-	
-	// if they changed the start date, and we couldn't find it, then we've got to just pull it by the eid and hope for the best
-	// if they open it back up right after they close the edit modal, they will see the start date NOT reset, but everything else will be.
-	if (!found) {
-		EKEvent *event = [CVEventStore eventWithIdentifier:self.identifier];
-		
-		// reset the events notes attribute
-		self.location = event.location;		
-	}
-}
-
-- (void)resetRecurrenceRule 
-{
-    // you can call this on any event to refetch it from the database, even if its an instance of a recurring event
-	
-	// you have to at least try and get the particular instance (vs just fetching it by eid) because it could be detached
-	// and have different properties than the default recurring event
-	NSDate *rightBeforeEvent    = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
-    NSDate *rightAfterEvent     = [self.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
-    NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
-    
-	BOOL found = NO;
-    for (EKEvent *event in events) {
-        if ([self isEqualToCalendarItem:event]) {
-			
-			found = YES;
-			
-            // reset the events notes attribute
-            self.recurrenceRules = event.recurrenceRules;
-			
-			break;
-		}
-    }
-	
-	// if they changed the start date, and we couldn't find it, then we've got to just pull it by the eid and hope for the best
-	// if they open it back up right after they close the edit modal, they will see the start date NOT reset, but everything else will be.
-	if (!found) {
-		EKEvent *event = [CVEventStore eventWithIdentifier:self.identifier];
-		
-		// reset the events notes attribute
-		self.recurrenceRules = event.recurrenceRules;		
-	}
-}
-
 - (BOOL)hadRecurrenceRuleOnPreviousSave 
 {
 	EKEvent *e = [CVEventStore eventWithIdentifier:self.identifier];
@@ -290,7 +141,8 @@
 				
 				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 										  message:[error localizedDescription]
-										  buttons:@[b1]];
+										  buttons:@[b1]
+                                       completion:nil];
 				
 				[self reset];
 			}
@@ -308,7 +160,8 @@
 				
 				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 										  message:[error localizedDescription]
-										  buttons:@[b1]];
+										  buttons:@[b1]
+                                       completion:nil];
 				
 				[self reset];
 			}
@@ -316,7 +169,7 @@
 			saveActionBlock();
 		}];
 		
-		CVActionBlockButton *b3 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Cancel", @"Button text that lets the user cancel an edit to an event") andActionBlock:^(void) {			
+		CVActionBlockButton *b3 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Cancel", @"Button text that lets the user cancel an edit to an event") andActionBlock:^(void) {
 			cancelBlock();
 		}];
 
@@ -324,7 +177,8 @@
 		
 		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Repeating Event", @"The title for a message displayed to user") uppercaseString] 
 								  message:NSLocalizedString(@"This event repeats.  What would you like to do?", @"Message text. The user is presented with choices")
-								  buttons:buttons];
+								  buttons:buttons
+                               completion:cancelBlock];
 	}
 	else {
 		NSError *error = [CVEventStore saveEvent:self forAllOccurrences:YES];
@@ -337,7 +191,8 @@
 			
 			[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 									  message:[error localizedDescription]
-									  buttons:@[b1]];
+									  buttons:@[b1]
+                                   completion:nil];
 			
 			[self reset];
 		}
@@ -358,7 +213,8 @@
 		
 		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 								  message:[error localizedDescription]
-								  buttons:@[b1]];
+								  buttons:@[b1]
+                                    completion:nil];
 		
 		[self reset];
 	}
@@ -378,7 +234,8 @@
 				
 				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 										  message:[error localizedDescription]
-										  buttons:@[b1]];
+										  buttons:@[b1]
+                                       completion:nil];
 				
 				[self reset];
 			}
@@ -396,7 +253,8 @@
 				
 				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 										  message:[error localizedDescription]
-										  buttons:@[b1]];
+										  buttons:@[b1]
+                                       completion:nil];
 				
 				[self reset];
 			}
@@ -412,7 +270,8 @@
 		
 		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Repeating Event", @"The title for a message displayed to user") uppercaseString] 
 								  message:NSLocalizedString(@"This event repeats.  What would you like to do?", @"Message text. The user is presented with choices")
-								  buttons:buttons];
+								  buttons:buttons
+                               completion:nil];
 	}
 	else {
 		NSError *error = [CVEventStore removeEvent:self forAllOccurrences:YES];
@@ -424,7 +283,8 @@
 			
 			[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 									  message:[error localizedDescription]
-									  buttons:@[b1]];
+									  buttons:@[b1]
+                                   completion:nil];
 			
 			[self reset];
 		}

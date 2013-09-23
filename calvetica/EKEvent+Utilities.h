@@ -4,7 +4,6 @@
 #import "EKEvent+Utilities.h"
 #import "EKRecurrenceRule+Utilities.h"
 #import "CVEventStore.h"
-#import "CVAlertViewController.h"
 #import "strings.h"
 
 
@@ -13,9 +12,8 @@
 @interface EKEvent (Utilities)
 
 
-@property NSDate *startingDate;
-@property NSDate *endingDate;
-
+@property (nonatomic, strong) NSDate *startingDate;
+@property (nonatomic, strong) NSDate *endingDate;
 
 
 #pragma mark - CONSTRUCTORS
@@ -26,10 +24,6 @@
 
 
 #pragma mark - Methods
-- (void)reset;
-- (void)resetNotes;
-- (void)resetLocation;
-- (void)resetRecurrenceRule;
 - (BOOL)hadRecurrenceRuleOnPreviousSave;
 - (void)shiftEndDateBySettingStartDate:(NSDate *)newDate;
 - (void)saveThenDoActionBlock:(void (^)(void))saveActionBlock cancelBlock:(void (^)(void))cancelBlock;

@@ -71,7 +71,7 @@
     _monthLabel.hidden = YES;
     
     // update day numbers
-    NSDate *today = [NSDate date];
+    NSDate *today = [[NSDate date] mt_startOfCurrentDay];
     for (NSInteger i = 0; i < 7; i++) {
         NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
         NSInteger dayOfMonth = [date mt_dayOfMonth];
@@ -119,12 +119,12 @@
             NSInteger num = i + 100;
             UILabel *label = (UILabel *)[self viewWithTag:num];
             if ([self.delegate isInPortrait]) {
-                label.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
-                _monthLabel.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+                label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+                _monthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
             }
             else {
-                label.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
-                _monthLabel.font = [UIFont boldSystemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+                label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+                _monthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
             }
         }
     }
@@ -139,11 +139,11 @@
     NSDate *today = [NSDate date];
     _todayImage.hidden = YES;
     if ([today mt_isOnOrAfter:_weekStartDate] && [today mt_isBefore:[_weekStartDate mt_endOfCurrentWeek]]) {
-        _todayImage.hidden = NO;
-        CGFloat boxWidth = (self.bounds.size.width / (float)DAYS_IN_WEEK);
-        CGRect f = _todayImage.frame;
-        f.origin.x = (boxWidth * ([today mt_weekdayOfWeek] - 1)) - 1.0f;
-        _todayImage.frame = f;
+        _todayImage.hidden  = NO;
+        CGFloat boxWidth    = (self.bounds.size.width / (float)DAYS_IN_WEEK);
+        CGRect f            = _todayImage.frame;
+        f.origin.x          = (boxWidth * ([today mt_weekdayOfWeek] - 1)) - 1.0f;
+        _todayImage.frame   = f;
     }
 }
 
@@ -154,8 +154,6 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, NO);
     CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
-    
-    // FILL BACKGROUND
     
     // gray out every other month
     if (PAD) {
@@ -168,11 +166,11 @@
     for (NSInteger i = 0; i < 7; i++) {
         NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
         if ([date mt_monthOfYear] % 2 == 0) {
-            CGRect grayRect = CGRectZero;
-            grayRect.origin.y = 0;
-            grayRect.origin.x = boxWidth * i;
-            grayRect.size.height = self.bounds.size.height + 1;
-            grayRect.size.width = boxWidth;
+            CGRect grayRect         = CGRectZero;
+            grayRect.origin.y       = 0;
+            grayRect.origin.x       = boxWidth * i;
+            grayRect.size.height    = self.bounds.size.height + 2;
+            grayRect.size.width     = boxWidth;
             CGContextFillRect(context, grayRect);
         }
     }
@@ -182,19 +180,13 @@
     
     NSInteger numLines = 7;
     CGFloat distanceBetweenLines = self.bounds.size.width / numLines;
-    CGContextSetLineWidth(context, 1.0f);
+    CGContextSetLineWidth(context, 0.5f);
     
     // horizontal line
     CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
     CGContextMoveToPoint(context, 0, 1);
     CGContextAddLineToPoint(context, self.bounds.size.width, 1);
     CGContextStrokePath(context);
-    
-//    // highlight line
-//    CGContextSetStrokeColorWithColor(context, [patentedWhite CGColor]);
-//    CGContextMoveToPoint(context, 0, 2);
-//    CGContextAddLineToPoint(context, self.bounds.size.width, 2);
-//    CGContextStrokePath(context);
 
     // vertical lines
     CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
@@ -263,7 +255,8 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     // We allow taps and long presses to occur at the same time. This lets us select a day when the user is long pressing on a day.
     if ([gestureRecognizer isKindOfClass:[CVTapGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {

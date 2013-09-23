@@ -135,11 +135,15 @@
         };
 
         if (animated) {
-            [UIView animateWithDuration:0.2 animations:^{
-                animations();
-            } completion:^(BOOL finished) {
-                complete();
-            }];
+            [UIView mt_animateViews:@[_selectedDayView]
+                           duration:0.3
+                     timingFunction:kMTEaseOutExpo
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             animations();
+                         } completion:^{
+                             complete();
+                         }];
         }
         else {
             animations();

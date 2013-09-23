@@ -10,7 +10,6 @@
 #import "CVPageModalViewController_iPhone.h"
 #import "CVPopoverModalViewController_iPad.h"
 #import "UIViewController+Utilities.h"
-#import "CVAlertViewController.h"
 #import "animations.h"
 
 @implementation CVViewController
@@ -73,58 +72,91 @@
 
 #pragma mark - Page Modal
 
-- (void)presentPageModalViewController:(CVViewController *)modalViewController animated:(BOOL)animated 
+- (void)presentPageModalViewController:(CVViewController *)modalViewController
+                              animated:(BOOL)animated
+                            completion:(void (^)(void))completion
 {
-    
-    CVPageModalViewController_iPhone *wrapper = [[CVPageModalViewController_iPhone alloc] initWithContentViewController:modalViewController];
-    [self.pageModalViewControllers addObject:wrapper];
-    wrapper.containingViewController = self;
+    CVPageModalViewController_iPhone *containerViewController =
+    [[CVPageModalViewController_iPhone alloc] initWithContentViewController:modalViewController];
+
+    [self.pageModalViewControllers addObject:containerViewController];
+    containerViewController.containingViewController = self;
+    [containerViewController view];
     
     if (animated) {
-        
-        wrapper.view.alpha = 0;
-		[wrapper.view setFrame:self.view.bounds];
-        [self.view addSubview:wrapper.view];
-        //[modalViewController viewWillAppear:YES];
-        
-        [UIView animateWithDuration:ANIMATION_SPEED animations:^{ wrapper.view.alpha = 1.0; }
-                         completion:^(BOOL finished) { 
-                             //[modalViewController viewDidAppear:YES]; 
-                         }];
-        
+
+        UIView *containerView   = containerViewController.view;
+        containerView.frame     = self.view.bounds;
+        containerView.alpha     = 0;
+        [self.view addSubview:containerViewController.view];
+
+        UIView *modalView   = modalViewController.view;
+        CGRect orignalRect  = modalView.frame;
+        modalView.x         = -modalView.width;
+        modalView.hidden    = YES;
+
+        [UIView animateWithDuration:0.2
+                         animations:^
+        {
+            containerView.alpha = 1;
+        } completion:^(BOOL finished) {
+            modalView.hidden = NO;
+            [UIView mt_animateViews:@[modalView]
+                           duration:0.6
+                     timingFunction:kMTEaseOutExpo
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^
+            {
+                modalView.frame = orignalRect;
+            } completion:^{
+                if (completion) completion();
+            }];
+        }];
+
     } else {
-        [self.view addSubview:wrapper.view];
-        //[modalViewController viewWillAppear:YES];
-        //[modalViewController viewDidAppear:YES];
+        if (completion) completion();
+        [self.view addSubview:containerViewController.view];
     }
     
 }
 
-- (void)dismissPageModalViewControllerAnimated:(BOOL)animated 
+- (void)dismissPageModalViewControllerAnimated:(BOOL)animated completion:(void (^)(void))completion
 {
-    
     // pop the most recently added view controller (view controllers are dismissed in LIFO order)
-    CVPageModalViewController_iPhone *wrapperToDismiss = [self.pageModalViewControllers lastObject];
-    CVViewController *viewControllerToDismiss = wrapperToDismiss.contentViewController;
-    if (!viewControllerToDismiss) {
+    CVPageModalViewController_iPhone *containerViewController = [self.pageModalViewControllers lastObject];
+    CVViewController *modalViewController = containerViewController.contentViewController;
+    if (!modalViewController) {
         return;
     }
-    
-    UIView *wrapper = wrapperToDismiss.view;
-    
+
+    UIView *containerView   = containerViewController.view;
+    UIView *modalView       = modalViewController.view;
+
     if (animated) {
-        [UIView animateWithDuration:ANIMATION_SPEED
-                         animations:^{wrapper.alpha = 0.0;}
-                         completion:^(BOOL finished){
-                             //[viewControllerToDismiss viewDidDisappear:YES];
-                             [wrapper removeFromSuperview];
-                         }];
+        [UIView mt_animateViews:@[modalView]
+                       duration:0.6
+                 timingFunction:kMTEaseInExpo
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+         {
+             modalView.x = self.view.bounds.size.width;
+         } completion:^{
+             [UIView animateWithDuration:0.2
+                              animations:^
+              {
+                  containerView.alpha = 0;
+              } completion:^(BOOL finished) {
+                  [containerView removeFromSuperview];
+                  if (completion) completion();
+              }];
+         }];
+
     } else {
-        [wrapper removeFromSuperview]; 
-        //[viewControllerToDismiss viewDidDisappear:YES];
+        [containerView removeFromSuperview];
+        if (completion) completion();
     }
     
-    [self.pageModalViewControllers removeObject:wrapperToDismiss];
+    [self.pageModalViewControllers removeObject:containerViewController];
 }
 
 
@@ -132,61 +164,59 @@
 
 #pragma mark - Full Screen Modal
 
-- (void)presentFullScreenModalViewController:(CVViewController *)modalViewController animated:(BOOL)animated 
+- (void)presentFullScreenModalViewController:(CVViewController *)fullScreenViewController animated:(BOOL)animated 
 {
-    [self.fullScreenModalViewControllers addObject:modalViewController];
-    modalViewController.containingViewController = self;
-    
-	CGRect rect = [self.view bounds];
-    [modalViewController.view setFrame:rect];
-    
+    [self.fullScreenModalViewControllers addObject:fullScreenViewController];
+    fullScreenViewController.containingViewController = self;
+
+    UIView *view   = fullScreenViewController.view;
+    view.frame     = self.view.bounds;
+
 	if (animated) {
-        
-        
-        modalViewController.view.alpha = 0;
-        
-        
-        [self.view addSubview:modalViewController.view];
-        //[modalViewController viewWillAppear:YES];
-        
-        [UIView animateWithDuration:ANIMATION_SPEED animations:^{ 
-            
-            modalViewController.view.alpha = 1.0;
-            
-        }
-                         completion:^(BOOL finished) { 
-                             //[modalViewController viewDidAppear:YES]; 
-                         }];
-        
+
+        view.x = -view.width;
+        [self.view addSubview:fullScreenViewController.view];
+
+        [UIView mt_animateViews:@[view]
+                       duration:0.4
+                 timingFunction:kMTEaseOutExpo
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         view.frame = self.view.bounds;
+                     } completion:^{
+                         view.frame = self.view.bounds;
+                     }];
     } else {
-        [self.view addSubview:modalViewController.view];
-        //[modalViewController viewWillAppear:YES];
-        //[modalViewController viewDidAppear:YES];
+        [self.view addSubview:fullScreenViewController.view];
     }
 }
 
 - (void)dismissFullScreenModalViewControllerAnimated:(BOOL)animated 
 {
-    
     // pop the most recently added view controller (view controllers are dismissed in LIFO order)
-    CVViewController *viewControllerToDismiss = [self.fullScreenModalViewControllers lastObject];
-    if (!viewControllerToDismiss) {
+    CVViewController *fullScreenViewController = [self.fullScreenModalViewControllers lastObject];
+
+    if (!fullScreenViewController) {
         return;
     }
+
+    UIView *view = fullScreenViewController.view;
     
     if (animated) {
-        [UIView animateWithDuration:ANIMATION_SPEED
-                         animations:^{viewControllerToDismiss.view.alpha = 0.0;}
-                         completion:^(BOOL finished){
-                             //[viewControllerToDismiss viewDidDisappear:YES];
-                             [viewControllerToDismiss.view removeFromSuperview]; 
-                         }];
+        [UIView mt_animateViews:@[view]
+                       duration:0.4
+                 timingFunction:kMTEaseInExpo
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         view.x = view.width;
+                     } completion:^{
+                         [view removeFromSuperview];
+                         [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
+                     }];
     } else {
-        [viewControllerToDismiss.view removeFromSuperview]; 
-        //[viewControllerToDismiss viewDidDisappear:YES];
+        [fullScreenViewController.view removeFromSuperview]; 
+        [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
     }
-    
-    [self.fullScreenModalViewControllers removeObject:viewControllerToDismiss];
 }
 
 
@@ -196,58 +226,68 @@
 
 - (void)presentPopoverModalViewController:(CVViewController<CVModalProtocol> *)modalViewController forView:(UIView *)view animated:(BOOL)animated 
 {
-    
 	modalViewController.popoverTargetView = view;
-	
-    CVPopoverModalViewController_iPad *popover = [[CVPopoverModalViewController_iPad alloc] initWithContentViewController:modalViewController targetView:view];
+    CVPopoverModalViewController_iPad *popover = [[CVPopoverModalViewController_iPad alloc]
+                                                  initWithContentViewController:modalViewController
+                                                  targetView:view];
     popover.containingViewController = self;
-    
     [self.popoverModalViewControllers addObject:popover];
-    
+    [self.view addSubview:popover.view];
+
     if (animated) {
-        
-        popover.view.alpha = 0;
-        [self.view addSubview:popover.view];
-        //[modalViewController viewWillAppear:YES];
-        
-        [UIView animateWithDuration:ANIMATION_SPEED animations:^{ popover.view.alpha = 1.0; }
-                         completion:^(BOOL finished){ 
-                             //[modalViewController viewDidAppear:YES]; 
-                         }];
-        
-        
-    } else {
-        [self.view addSubview:popover.view];
-        //[modalViewController viewWillAppear:YES];
-        //[modalViewController viewDidAppear:NO];
+
+        UIView *v = modalViewController.view.superview;
+        v.mt_animationPerspective = -1 / 1600.0;
+        v.layer.transform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
+
+        [UIView mt_animateViews:@[v]
+                       duration:0.4
+                 timingFunction:kMTEaseOutBack
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+        {
+            v.layer.transform = CATransform3DIdentity;
+        } completion:^{
+            v.layer.transform = CATransform3DIdentity;
+        }];
     }
-    
 }
 
 - (void)dismissPopoverModalViewControllerAnimated:(BOOL)animated 
 {
-    
     // pop the most recently added view controller (view controllers are dismissed in LIFO order)
     CVPopoverModalViewController_iPad *popoverToDismiss = [self.popoverModalViewControllers lastObject];
-    CVViewController *viewControllerToDismiss = popoverToDismiss.contentViewController;
-    
+    CVViewController *viewControllerToDismiss           = popoverToDismiss.contentViewController;
+
     if (!viewControllerToDismiss) {
         return;
     }
     
     UIView *wrapper = viewControllerToDismiss.view.superview.superview;
-    
+
     if (animated) {
-        [UIView animateWithDuration:ANIMATION_SPEED
-                         animations:^{wrapper.alpha = 0.0;}
-                         completion:^(BOOL finished){
-                             [wrapper removeFromSuperview];
-                         }];
+
+        UIView *v = viewControllerToDismiss.view.superview;
+        v.mt_animationPerspective = -1 / 1600.0;
+        v.layer.transform = CATransform3DIdentity;
+
+        [UIView mt_animateViews:@[v]
+                       duration:0.6
+                 timingFunction:kMTEaseInBack
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+        {
+            v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+        } completion:^{
+            v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+            [wrapper removeFromSuperview];
+             [self.popoverModalViewControllers removeObject:popoverToDismiss];
+        }];
+
     } else {
         [wrapper removeFromSuperview];
+        [self.popoverModalViewControllers removeObject:popoverToDismiss];
     }
-    
-    [self.popoverModalViewControllers removeObject:popoverToDismiss];
 }
 
 

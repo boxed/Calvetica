@@ -278,7 +278,7 @@
             if (daysOfTheWeek && self.monthsOfTheYear.count > 0) {
                 NSNumber *month = [self.monthsOfTheYear objectAtIndex:0];
                 
-                daysOfTheWeek = [NSString stringWithFormat:NSLocalizedString(@"%1$@ in %2$@", @"The day of the week and month for a yearly recurring event. %1$@: the week and day of the week. For example, Last Sunday. %2$@: the month the event repeats on."), daysOfTheWeek, [[NSDate mt_monthlySymbols] objectAtIndex:[month intValue] - 1]];
+                daysOfTheWeek = [NSMutableString stringWithFormat:NSLocalizedString(@"%1$@ in %2$@", @"The day of the week and month for a yearly recurring event. %1$@: the week and day of the week. For example, Last Sunday. %2$@: the month the event repeats on."), daysOfTheWeek, [[NSDate mt_monthlySymbols] objectAtIndex:[month intValue] - 1]];
             }
             
             if (self.interval == 1 && daysOfTheWeek) {

@@ -18,12 +18,8 @@
     super.highlighted = highlighted;
     if (self.highlighted) {
         self.titleLabel.textColor = patentedBlack;
-        self.titleLabel.shadowOffset = CGSizeMake(-1,0);
-        self.titleLabel.shadowColor = patentedWhiteLightShadow;
     } else {
         self.titleLabel.textColor = patentedWhite;
-        self.titleLabel.shadowOffset = CGSizeMake(-1,0);
-        self.titleLabel.shadowColor = patentedBlackLightShadow;
     }
 }
 

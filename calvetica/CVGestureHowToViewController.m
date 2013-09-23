@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
 
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
 	_availableGestures = [NSMutableArray array];
 
 

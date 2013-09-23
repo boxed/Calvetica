@@ -51,7 +51,10 @@
 {
     static NSString *cellIdentifier = @"WeekDayCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+
+    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+
     cell.textLabel.text = _weekdayTitles[indexPath.row];
 	if (indexPath.row == [CVSettings weekStartsOnWeekday] - 1)
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;

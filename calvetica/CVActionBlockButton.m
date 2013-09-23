@@ -38,11 +38,9 @@
 	if (gesture.state != UIGestureRecognizerStateEnded) return;
     
 	// dismiss the alert view
+    _alertViewController.completion = self.actionBlock;
 	[_alertViewController dismiss];
 	
-    // execute its actions block
-    _actionBlock();
-    
 }
 
 @end

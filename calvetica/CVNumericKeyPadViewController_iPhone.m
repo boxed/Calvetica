@@ -123,11 +123,6 @@
 - (void)viewDidLoad 
 {
     self.keypadValue.text = [self numberAsString];
-    
-    self.keypadView.layer.shadowColor = [patentedShadow CGColor];
-    self.keypadView.layer.shadowOffset = CGSizeMake(0, 1);
-    self.keypadView.layer.shadowOpacity = 1;
-    self.keypadView.layer.shadowRadius = 2.8;
     [super viewDidLoad];
 }
 

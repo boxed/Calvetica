@@ -12,8 +12,7 @@
 #import "CVWeekTableViewCellEvents.h"
 #import "CVEventSquare.h"
 #import "EKEvent+Utilities.h"
-
-
+#import "geometry.h"
 
 
 @implementation CVWeekTableViewCellEvents

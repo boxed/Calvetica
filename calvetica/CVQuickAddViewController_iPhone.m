@@ -653,7 +653,7 @@
     CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
     cell.textLabel.textColor = patentedDarkGray;
     cell.isDarkRed = YES;
     
@@ -667,7 +667,7 @@
     }
     if (tableView == self.allDayTableView) {
         NSDate *date = [self.allDayDatesArray objectAtIndex:indexPath.row];
-		cell.textLabel.text = [date stringWithWeekdayMonthDayYearMonthAbbreviated:NO];
+		cell.textLabel.text = [date stringWithWeekdayMonthDayYearMonthAbbreviated:YES];
     }
     
     return cell;

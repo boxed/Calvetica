@@ -31,9 +31,9 @@
 - (NSString *)stringWithWeekdayMonthDayYearHourMinute
 {
 	if ([CVSettings isTwentyFourHourFormat])
-		return [self mt_stringFromDateWithFormat:@"EE d, yyyy, h:mm a" localized:YES];
+		return [self mt_stringFromDateWithFormat:@"EE MMM d, yyyy, h:mm a" localized:YES];
 	else
-		return [self mt_stringFromDateWithFormat:@"EE d, yyyy, H:mm" localized:YES];
+		return [self mt_stringFromDateWithFormat:@"EE MMM d, yyyy, H:mm" localized:YES];
 }
 
 // Since the alarm notification string is set only when the app is not active

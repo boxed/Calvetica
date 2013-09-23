@@ -27,7 +27,6 @@
 #import "CVEventDetailsPeopleTableViewController_iPhone.h"
 #import "CVRoundedToggleButton.h"
 #import "strings.h"
-#import "CVAlertViewController.h"
 #import "CVSlideLockControl.h"
 #import "UIView+nibs.h"
 #import "SCEventDetailsAllDayAlarmPicker.h"
