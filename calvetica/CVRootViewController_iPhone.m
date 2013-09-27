@@ -76,7 +76,7 @@
     }
 }
 
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date mode:(CVQuickAddMode)mode
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode;
 {
     CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
     quickAddViewController.delegate = self;
@@ -221,7 +221,16 @@
     UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
     swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
     [self.monthTableViewContainer addGestureRecognizer:swipeUpGesture];
-    
+
+    UISwipeGestureRecognizer *swipeUpRedBarGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
+    swipeUpRedBarGesture.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.redBar addGestureRecognizer:swipeUpRedBarGesture];
+
+    UISwipeGestureRecognizer *swipeDownRedBarGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
+    swipeDownRedBarGesture.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.redBar addGestureRecognizer:swipeDownRedBarGesture];
+
+
     // register to know when the phone is turned sideways
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -303,6 +312,7 @@
 	[self showQuickAddWithDefault:NO
 					 durationMode:NO
 							 date:self.selectedDate
+                             view:nil
 							 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
 }
 
@@ -395,33 +405,13 @@
             [self showQuickAddWithDefault:YES
 							 durationMode:YES
 									 date:cell.date
+                                     view:nil
 									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
         }
     }
     else if (self.mode == CVRootViewControllerModeReminders) {
         CVReminderCell *cell = (CVReminderCell *)tappedCell;
         CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDetails];
-        reminderViewController.delegate = self;
-        [self presentPageModalViewController:reminderViewController animated:YES completion:nil];
-    }
-    
-    [super cellWasTapped:tappedCell];
-}
-
-- (void)cellWasLongPressed:(id)tappedCell 
-{
-	if (![tappedCell isKindOfClass:[CVEventCell class]]) return;
-	
-    if (self.mode == CVRootViewControllerModeEvents) {
-        CVEventCell *cell = (CVEventCell *)tappedCell;
-		[self showQuickAddWithDefault:YES
-						 durationMode:YES
-								 date:cell.date
-								 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        CVReminderCell *cell = (CVReminderCell *)tappedCell;
-        CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDay];
         reminderViewController.delegate = self;
         [self presentPageModalViewController:reminderViewController animated:YES completion:nil];
     }
@@ -515,6 +505,7 @@
 			[self showQuickAddWithDefault:NO
 							 durationMode:NO
 									 date:date
+                                     view:nil
 									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
 
             [placeholder removeFromSuperview];
@@ -648,6 +639,7 @@
     [self showQuickAddWithDefault:YES
 					 durationMode:YES
 							 date:date
+                             view:nil
 							 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
 }
 

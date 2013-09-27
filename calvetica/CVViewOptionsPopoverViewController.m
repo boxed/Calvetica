@@ -108,16 +108,19 @@
 
 - (IBAction)fullDayButtonWasTapped:(id)sender 
 {
+    [self setCurrentViewMode:CVViewOptionsPopoverOptionFullDayView];
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionFullDayView byPressingButton:sender];
 }
 
 - (IBAction)agendaButtonWasTapped:(id)sender 
 {
+    [self setCurrentViewMode:CVViewOptionsPopoverOptionAgendaView];
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionAgendaView byPressingButton:sender];
 }
 
 - (IBAction)weekButtonWasTapped:(id)sender 
 {
+    [self setCurrentViewMode:CVViewOptionsPopoverOptionWeekView];
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionWeekView byPressingButton:sender];
 }
 

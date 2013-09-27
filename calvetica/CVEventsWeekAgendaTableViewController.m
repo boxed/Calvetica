@@ -68,7 +68,8 @@
 
 - (void)loadTableView 
 {  
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     // date can't be null
     if (!self.selectedDate) return;
     

@@ -19,7 +19,6 @@
 @property (nonatomic, unsafe_unretained) id<CVReminderCellDelegate> delegate;
 @property (nonatomic, strong) EKReminder *reminder;
 @property (nonatomic, strong) IBOutlet UILabel *noReminderLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *dividerLine;
 
 @end
 

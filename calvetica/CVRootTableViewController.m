@@ -17,6 +17,8 @@
     _tableView = newTableView;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.separatorColor = RGB(204, 204, 204);
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 - (void)setDelegate:(id)delegate 

@@ -6,8 +6,8 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import "CVLineButton.h"
 
-@interface CVHamburgerButton : UIButton
+@interface CVHamburgerButton : CVLineButton
 
 @end

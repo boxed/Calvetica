@@ -39,6 +39,68 @@ typedef struct {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+#pragma mark - View Lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	[self layout];
+
+    // add content to view controller
+    [self.modalViewContainer addSubview:_contentViewController.view];
+
+    // if the keyboard appears, we need our popover to scoot up to the top of the screen
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.popoverBackdropView = nil;
+    self.modalViewContainer = nil;
+    [super viewDidUnload];
+}
+
+
+
+
+#pragma mark - Public
+
+- (void)setIgnoreKeyboard:(BOOL)ignoreKeyboard
+{
+    _ignoreKeyboard = ignoreKeyboard;
+
+    if (ignoreKeyboard) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    else {
+        // if the keyboard appears, we need our popover to scoot up to the top of the screen
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    }
+}
+
+
+
+
+#pragma mark - Notifications
+
 - (void)keyboardWillShow:(NSNotification *)aNotification 
 {
 	CGRect f = _modalViewContainer.frame;
@@ -75,7 +137,6 @@ typedef struct {
 
 - (CVPopoverArrowDirection)bestEnumMatch:(CVPopoverArrowDirection)direction inMask:(CVPopoverArrowDirection)directionMask 
 {
-	
 	// if its contained within the mask, its the best match
 	if ((direction & directionMask) == direction) {
 		return direction;
@@ -328,7 +389,7 @@ typedef struct {
     
     // top middle
     else if (arrowDirection == CVPopoverArrowDirectionTopMiddle) {
-        f.origin.x = point.x - (f.size.width / 2.0);
+        f.origin.x = point.x - (f.size.width / 2);
         f.origin.y = point.y + arrowFloatDistance;
     }
     
@@ -346,7 +407,7 @@ typedef struct {
     
     // bottom middle
     else if (arrowDirection == CVPopoverArrowDirectionBottomMiddle) {
-        f.origin.x = point.x - (f.size.width / 2.0);
+        f.origin.x = point.x - (f.size.width / 2);
         f.origin.y = point.y - f.size.height - arrowFloatDistance;
     }
     
@@ -365,7 +426,7 @@ typedef struct {
     // left middle
     else if (arrowDirection == CVPopoverArrowDirectionLeftMiddle) {
         f.origin.x = point.x + arrowFloatDistance;
-        f.origin.y = point.y - (f.size.height / 2.0);
+        f.origin.y = point.y - (f.size.height / 2);
     }
     
     // right top
@@ -383,7 +444,7 @@ typedef struct {
     // right middle
     else if (arrowDirection == CVPopoverArrowDirectionRightMiddle) {
         f.origin.x = point.x - f.size.width - arrowFloatDistance;
-        f.origin.y = point.y - (f.size.height / 2.0);
+        f.origin.y = point.y - (f.size.height / 2);
     }
 
 	
@@ -435,36 +496,6 @@ typedef struct {
 
 
 
-
-#pragma mark - View Lifecycle
-
-- (void)viewDidLoad 
-{
-    [super viewDidLoad];
-	[self layout];
-	
-    // add content to view controller
-    [self.modalViewContainer addSubview:_contentViewController.view];
-
-    // if the keyboard appears, we need our popover to scoot up to the top of the screen
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void)viewDidUnload 
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    self.popoverBackdropView = nil;
-    self.modalViewContainer = nil;
-    [super viewDidUnload];
-}
 
 
 

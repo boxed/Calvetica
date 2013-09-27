@@ -28,7 +28,6 @@ typedef enum {
 
 @interface CVRootViewController_iPhone : CVRootViewController <UIGestureRecognizerDelegate> {}
 
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date mode:(CVQuickAddMode)mode;
 - (void)animateMonthViewDirection:(CVRootMonthViewAnimateDirection)direction;
 - (void)eventStoreChanged;
 

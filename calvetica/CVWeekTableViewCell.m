@@ -22,7 +22,7 @@
     [super awakeFromNib];
     _weekStartDate = nil;
     _selectedDate = nil;
-    
+
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapGesture];
     
@@ -140,9 +140,12 @@
     _todayImage.hidden = YES;
     if ([today mt_isOnOrAfter:_weekStartDate] && [today mt_isBefore:[_weekStartDate mt_endOfCurrentWeek]]) {
         _todayImage.hidden  = NO;
-        CGFloat boxWidth    = (self.bounds.size.width / (float)DAYS_IN_WEEK);
+        CGFloat boxWidth    = self.bounds.size.width / (float)DAYS_IN_WEEK;
         CGRect f            = _todayImage.frame;
-        f.origin.x          = (boxWidth * ([today mt_weekdayOfWeek] - 1)) - 1.0f;
+        f.origin.x          = floorf(boxWidth * ([today mt_weekdayOfWeek] - 1));
+        f.origin.y          = 0;
+        f.size.width        = floorf(boxWidth);
+        f.size.height       = floorf(self.height);
         _todayImage.frame   = f;
     }
 }
@@ -154,7 +157,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, NO);
     CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
-    
+
     // gray out every other month
     if (PAD) {
         CGContextSetFillColorWithColor(context, [patentedVeryLightGray CGColor]);
@@ -168,31 +171,26 @@
         if ([date mt_monthOfYear] % 2 == 0) {
             CGRect grayRect         = CGRectZero;
             grayRect.origin.y       = 0;
-            grayRect.origin.x       = boxWidth * i;
-            grayRect.size.height    = self.bounds.size.height + 2;
-            grayRect.size.width     = boxWidth;
+            grayRect.origin.x       = floorf(boxWidth * i);
+            grayRect.size.height    = floorf(self.bounds.size.height);
+            grayRect.size.width     = ceil(boxWidth);
             CGContextFillRect(context, grayRect);
         }
     }
-    
+
     
     // DRAW BACKGROUND LINES
-    
-    NSInteger numLines = 7;
-    CGFloat distanceBetweenLines = self.bounds.size.width / numLines;
     CGContextSetLineWidth(context, 0.5f);
-    
-    // horizontal line
     CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
-    CGContextMoveToPoint(context, 0, 1);
-    CGContextAddLineToPoint(context, self.bounds.size.width, 1);
+
+    // horizontal line
+    CGContextMoveToPoint(context, 0, 0.5);
+    CGContextAddLineToPoint(context, self.width, 0.5);
     CGContextStrokePath(context);
 
     // vertical lines
-    CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
-	for (int i = 0; i < numLines; i++) {
-        CGFloat x = roundf(distanceBetweenLines * i);
-        
+	for (int i = 0; i < 7; i++) {
+        CGFloat x = floorf(boxWidth * i);
 		CGContextMoveToPoint(context, x, 0);
 		CGContextAddLineToPoint(context, x, self.bounds.size.height);
         CGContextStrokePath(context);

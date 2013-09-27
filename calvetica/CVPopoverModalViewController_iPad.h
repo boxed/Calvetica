@@ -26,6 +26,7 @@
 #pragma mark - IBOutlets
 @property (nonatomic, strong) IBOutlet UIView *modalViewContainer;
 @property (nonatomic, strong) IBOutlet CVPopoverBackdrop *popoverBackdropView;
+@property (nonatomic, assign) BOOL ignoreKeyboard;
 
 #pragma mark - Methods
 - (id)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView;

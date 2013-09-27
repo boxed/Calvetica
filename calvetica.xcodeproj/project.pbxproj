@@ -57,8 +57,6 @@
 		9B1A7A9213E145040028A960 /* CVContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1A7A9113E145040028A960 /* CVContactUsViewController.m */; };
 		9B1C2135144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1C2134144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m */; };
 		9B1C2138144DF61300447661 /* SCEventDetailsAlarmPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1C2137144DF61300447661 /* SCEventDetailsAlarmPicker.m */; };
-		9B1D43FF13F8975C001FE7D3 /* CVKBDetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1D43FD13F8975C001FE7D3 /* CVKBDetailWebViewController.m */; };
-		9B1D440013F8975C001FE7D3 /* CVKBDetailWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B1D43FE13F8975C001FE7D3 /* CVKBDetailWebViewController.xib */; };
 		9B27D79613AD59160084104C /* CVDayStartHourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B27D79513AD59160084104C /* CVDayStartHourViewController.m */; };
 		9B27D79913AD5C280084104C /* CVDayEndHourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B27D79813AD5C280084104C /* CVDayEndHourViewController.m */; };
 		9B29FE7D1401A95C009926FB /* SCEventDetailsAllDayAlarmPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B29FE781401A95C009926FB /* SCEventDetailsAllDayAlarmPicker.xib */; };
@@ -86,7 +84,6 @@
 		9B858CE71447A96E00A370FC /* CVEventDetailsLocationViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B858CE61447A96E00A370FC /* CVEventDetailsLocationViewController_iPhone.m */; };
 		9B858CF11447AB7C00A370FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B858CF01447AB7C00A370FC /* CoreLocation.framework */; };
 		9B8BBFF213D00D7200C8A0A2 /* CVQuickAddViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8BBFF013D00D7200C8A0A2 /* CVQuickAddViewController_iPhone.xib */; };
-		9B95763513D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B95763413D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m */; };
 		9BB278C413CE2B8D00CC411C /* CVSlideLockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB278C313CE2B8D00CC411C /* CVSlideLockControl.m */; };
 		9BB278C613CE2BA600CC411C /* CVSlideLockControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB278C513CE2BA600CC411C /* CVSlideLockControl.xib */; };
 		9BB5F0391380AECF00ECF6F1 /* CVCalendarTableViewCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB5F0381380AECF00ECF6F1 /* CVCalendarTableViewCell_iPhone.m */; };
@@ -100,7 +97,6 @@
 		9BC0758E137F930600449B78 /* CVManageCalendarsViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC0758C137F930600449B78 /* CVManageCalendarsViewController_iPhone.m */; };
 		9BC07596137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC07594137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.m */; };
 		9BC07597137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC07595137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.xib */; };
-		9BC42D5213D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC42D5113D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.m */; };
 		9BCECC4113EB4DD2004123E9 /* pinch_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BCECC3D13EB4DD2004123E9 /* pinch_ipad.png */; };
 		9BCECC4213EB4DD2004123E9 /* threefingers_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BCECC3E13EB4DD2004123E9 /* threefingers_ipad.png */; };
 		9BCECC4613EB52D7004123E9 /* longpressday_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BCECC4513EB52D5004123E9 /* longpressday_ipad.png */; };
@@ -154,14 +150,9 @@
 		C2167C2513AAD6610034A6A7 /* UIActivityIndicatorView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2167C2413AAD6600034A6A7 /* UIActivityIndicatorView+Utilities.m */; };
 		C2167C2713ABB1810034A6A7 /* redbar_left2right.png in Resources */ = {isa = PBXBuildFile; fileRef = C2167C2613ABB1810034A6A7 /* redbar_left2right.png */; };
 		C2167C2913ABB18E0034A6A7 /* agenda_header_gradient_left2right.png in Resources */ = {isa = PBXBuildFile; fileRef = C2167C2813ABB18D0034A6A7 /* agenda_header_gradient_left2right.png */; };
-		C2174CFA1602D01800F3778D /* CVMigrateToRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2174CF81602D01800F3778D /* CVMigrateToRemindersViewController.m */; };
-		C2174D0D1602E2EE00F3778D /* calvetica.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2174D091602E2EE00F3778D /* calvetica.xcdatamodeld */; };
-		C2174D151602E30A00F3778D /* CTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = C2174D111602E30900F3778D /* CTTask.m */; };
-		C2174D161602E30A00F3778D /* CTTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C2174D131602E30A00F3778D /* CTTaskStore.m */; };
 		C2174D911605043D00F3778D /* EKCalendarItem+Calvetica.m in Sources */ = {isa = PBXBuildFile; fileRef = C2174D901605043C00F3778D /* EKCalendarItem+Calvetica.m */; };
 		C21A2C3813A69CA800FAC7C9 /* CVRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21A2C3713A69CA800FAC7C9 /* CVRootTableViewController.m */; };
 		C21E028A138B26F9008CB6EA /* CVTodayBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E0289138B26F9008CB6EA /* CVTodayBoxView.m */; };
-		C220167A13C2ABCD00C511AF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C220167913C2ABCD00C511AF /* Default.png */; };
 		C220476813A9A64C0079FC81 /* icon_smallcheck.png in Resources */ = {isa = PBXBuildFile; fileRef = C220476613A9A6490079FC81 /* icon_smallcheck.png */; };
 		C220476913A9A64C0079FC81 /* icon_smallcheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C220476713A9A64B0079FC81 /* icon_smallcheck@2x.png */; };
 		C220476E13A9A7090079FC81 /* chat_b.png in Resources */ = {isa = PBXBuildFile; fileRef = C220476A13A9A7000079FC81 /* chat_b.png */; };
@@ -187,8 +178,6 @@
 		C22B36E3139DE6C400CC62D4 /* tinybackspace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22B36DF139DE6C400CC62D4 /* tinybackspace@2x.png */; };
 		C22B36E4139DE6C400CC62D4 /* tinycheck.png in Resources */ = {isa = PBXBuildFile; fileRef = C22B36E0139DE6C400CC62D4 /* tinycheck.png */; };
 		C22B36E5139DE6C400CC62D4 /* tinycheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22B36E1139DE6C400CC62D4 /* tinycheck@2x.png */; };
-		C22EA3B713C3F6A800CFFCC2 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EA3B613C3F6A700CFFCC2 /* Default-Landscape~ipad.png */; };
-		C22EA3BA13C3F6B200CFFCC2 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EA3B913C3F6B200CFFCC2 /* Default-Portrait~ipad.png */; };
 		C22EA3C513C519C600CFFCC2 /* CVAgendaEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EA3C413C519C600CFFCC2 /* CVAgendaEventCell.xib */; };
 		C22EA3C813C519E900CFFCC2 /* CVAgendaEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA3C713C519E900CFFCC2 /* CVAgendaEventCell.m */; };
 		C22F152813C68DFA005A6488 /* CVExtraAlarmButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22F152713C68DFA005A6488 /* CVExtraAlarmButton.xib */; };
@@ -200,13 +189,11 @@
 		C230420113BECA7000EC3CB0 /* gear_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C23041FF13BECA7000EC3CB0 /* gear_black@2x.png */; };
 		C230420413BED4B100EC3CB0 /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C230420313BED4B100EC3CB0 /* NSDictionary+Utilities.m */; };
 		C239CD6A137648A80074D731 /* CVEventDetailsNotesViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C239CD68137648A80074D731 /* CVEventDetailsNotesViewController_iPhone.m */; };
+		C23BB28F17F2695E003752FF /* CVLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BB28E17F2695E003752FF /* CVLineButton.m */; };
+		C23BB29217F294FE003752FF /* CVSevenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BB29117F294FE003752FF /* CVSevenButton.m */; };
 		C23BDDAB136F5DA600020FD6 /* CVTextToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BDDAA136F5DA600020FD6 /* CVTextToggleButton.m */; };
 		C23BDDB1136F61A700020FD6 /* CVEventHourViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BDDAF136F61A700020FD6 /* CVEventHourViewController_iPhone.m */; };
 		C24113BA135E4ED000A51A78 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2978713341B9500FA7638 /* EventKit.framework */; };
-		C24224061601354B00A9C972 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24224051601354B00A9C972 /* Default-568h@2x.png */; };
-		C2468C2216F97E5F006F047F /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2468C1E16F97E5F006F047F /* libTestFlight.a */; };
-		C2468C2316F97E5F006F047F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C2468C1F16F97E5F006F047F /* README.md */; };
-		C2468C2416F97E5F006F047F /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C2468C2016F97E5F006F047F /* release_notes.md */; };
 		C2468C2616F97ECD006F047F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2468C2516F97ECD006F047F /* libz.dylib */; };
 		C24BAB9E13948C7500ED298B /* CVPageModalViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C24BAB9C13948C7500ED298B /* CVPageModalViewController_iPhone.m */; };
 		C24BAB9F13948C7500ED298B /* CVPageModalViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24BAB9D13948C7500ED298B /* CVPageModalViewController_iPhone.xib */; };
@@ -251,9 +238,7 @@
 		C269A76213A0045F004ED181 /* UIView+Nibs.m in Sources */ = {isa = PBXBuildFile; fileRef = C269A76113A0045F004ED181 /* UIView+Nibs.m */; };
 		C269A76513A00CD4004ED181 /* CVRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C269A76413A00CD4004ED181 /* CVRoundedButton.m */; };
 		C269A76A13A01181004ED181 /* CVViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C269A76913A01181004ED181 /* CVViewButton.m */; };
-		C26C090D13CEA7D900090991 /* KnowledgeBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C26C090B13CEA7D900090991 /* KnowledgeBase.xcdatamodeld */; };
-		C26C091113CEA88900090991 /* KBQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = C26C091013CEA88900090991 /* KBQuestion.m */; };
-		C26C091413CEA8BA00090991 /* KBStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C26C091313CEA8BA00090991 /* KBStore.m */; };
+		C26D4EF117F3A2910041BB50 /* CVDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C26D4EF017F3A2910041BB50 /* CVDeleteButton.m */; };
 		C2708778137AD51800810BF1 /* CVCalendarPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2708777137AD51800810BF1 /* CVCalendarPickerTableViewController.m */; };
 		C2708782137AF38200810BF1 /* CVColoredDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2708781137AF38200810BF1 /* CVColoredDotView.m */; };
 		C270878B137B3A1100810BF1 /* CVOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C270878A137B3A1100810BF1 /* CVOperationQueue.m */; };
@@ -274,7 +259,6 @@
 		C274C19113A8587000E64AE9 /* icon_plus_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C274C17C13A8587000E64AE9 /* icon_plus_highlighted@2x.png */; };
 		C277E4CD13DF8FD200794F53 /* CVEventSquaresView.m in Sources */ = {isa = PBXBuildFile; fileRef = C277E4CC13DF8FD200794F53 /* CVEventSquaresView.m */; };
 		C277E4D613DF95B900794F53 /* CVAllDayEventSquaresView.m in Sources */ = {isa = PBXBuildFile; fileRef = C277E4D513DF95B900794F53 /* CVAllDayEventSquaresView.m */; };
-		C27A03521527565100AA7023 /* icon~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C27A03511527565100AA7023 /* icon~ipad@2x.png */; };
 		C27AD532160C121C00986E33 /* CVDefaultTimeZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27AD531160C121C00986E33 /* CVDefaultTimeZoneViewController.m */; };
 		C27B896417EA8D4F00F12871 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */; };
 		C27B896617EA8DE900F12871 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27B896517EA8DE900F12871 /* Main_iPad.storyboard */; };
@@ -290,7 +274,6 @@
 		C286BFC2137F2023009F78E3 /* CVRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C286BFC0137F2023009F78E3 /* CVRootViewController_iPad.m */; };
 		C286BFC8137F26E2009F78E3 /* CVEventCellDataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = C286BFC7137F26E2009F78E3 /* CVEventCellDataHolder.m */; };
 		C286BFCB137F2748009F78E3 /* CVEventDot.m in Sources */ = {isa = PBXBuildFile; fileRef = C286BFCA137F2748009F78E3 /* CVEventDot.m */; };
-		C28ED57213C29BBB0024F60F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28ED57113C29BBB0024F60F /* Default@2x.png */; };
 		C28F7B9B13A864C2001D6F07 /* tinyicon_repeat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28F7B9313A864C2001D6F07 /* tinyicon_repeat@2x.png */; };
 		C28F7B9C13A864C2001D6F07 /* tinyicon_repeat.png in Resources */ = {isa = PBXBuildFile; fileRef = C28F7B9413A864C2001D6F07 /* tinyicon_repeat.png */; };
 		C28F7B9D13A864C2001D6F07 /* tinyicon_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28F7B9513A864C2001D6F07 /* tinyicon_person@2x.png */; };
@@ -315,7 +298,6 @@
 		C29613A613C8C2AF0028B6F1 /* icon_smallcheck_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C29613A413C8C29D0028B6F1 /* icon_smallcheck_highlighted.png */; };
 		C29613A713C8C2AF0028B6F1 /* icon_smallcheck_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29613A513C8C2A40028B6F1 /* icon_smallcheck_highlighted@2x.png */; };
 		C2983043139580BB00C9CEB0 /* CVPopoverBackdrop.m in Sources */ = {isa = PBXBuildFile; fileRef = C2983042139580BB00C9CEB0 /* CVPopoverBackdrop.m */; };
-		C29C7573139AD653006579BE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C7572139AD653006579BE /* icon.png */; };
 		C29EF9CE13A1896D0027B7F0 /* agenda_header_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = C29EF9CD13A1896D0027B7F0 /* agenda_header_gradient.png */; };
 		C2A4C97013832E1400442AFF /* CVEventDetailsOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A4C96E13832E1400442AFF /* CVEventDetailsOrderViewController.m */; };
 		C2A4C97613845ABC00442AFF /* CVCellAccessoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A4C97513845ABC00442AFF /* CVCellAccessoryButton.m */; };
@@ -369,8 +351,6 @@
 		C2B6A1EE1395DBFC002B3FC6 /* icon_bigcheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B6A1EA1395DBFC002B3FC6 /* icon_bigcheck@2x.png */; };
 		C2B6A1F41395DC44002B3FC6 /* icon_trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B6A1F01395DC44002B3FC6 /* icon_trash@2x.png */; };
 		C2B6A1F91395DC64002B3FC6 /* icon_trash.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B6A1F81395DC64002B3FC6 /* icon_trash.png */; };
-		C2BE7DC613CC22E800925D53 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BE7DC513CC22E800925D53 /* icon@2x.png */; };
-		C2BE7DC813CC2C1300925D53 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BE7DC713CC2C1300925D53 /* icon~ipad.png */; };
 		C2BE7DD713CC979200925D53 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE7DD613CC979200925D53 /* NSString+Utilities.m */; };
 		C2C1A2D213E0DB4A00CBC82B /* redfade.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C1A2D113E0DB4A00CBC82B /* redfade.png */; };
 		C2C33D7413AD182D00D62D27 /* CVEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C33D7613AD182D00D62D27 /* CVEventCell.xib */; };
@@ -441,6 +421,7 @@
 		C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */; };
 		C2E3A1C1161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1C0161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m */; };
 		C2E3A1C4161223DA00F00FB8 /* CVSettingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1C3161223CE00F00FB8 /* CVSettingNavigationController.m */; };
+		C2E51B0117F3C6740058BB32 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E51B0017F3C6740058BB32 /* StoreKit.framework */; };
 		C2E59EB21524D1A10052E63F /* CVWeekTableViewCellReminders.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E59EB11524D1A10052E63F /* CVWeekTableViewCellReminders.m */; };
 		C2E59EB51524D2D50052E63F /* CVReminderSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E59EB41524D2D50052E63F /* CVReminderSquare.m */; };
 		C2E59EBC1524F7610052E63F /* CVWeekTableViewCellDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E59EBB1524F7610052E63F /* CVWeekTableViewCellDrawing.m */; };
@@ -561,9 +542,6 @@
 		9B1C2134144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCEventDetailsAllDayAlarmPicker.m; sourceTree = "<group>"; };
 		9B1C2136144DF61300447661 /* SCEventDetailsAlarmPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEventDetailsAlarmPicker.h; sourceTree = "<group>"; };
 		9B1C2137144DF61300447661 /* SCEventDetailsAlarmPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCEventDetailsAlarmPicker.m; sourceTree = "<group>"; };
-		9B1D43FC13F8975C001FE7D3 /* CVKBDetailWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVKBDetailWebViewController.h; sourceTree = "<group>"; };
-		9B1D43FD13F8975C001FE7D3 /* CVKBDetailWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVKBDetailWebViewController.m; sourceTree = "<group>"; };
-		9B1D43FE13F8975C001FE7D3 /* CVKBDetailWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVKBDetailWebViewController.xib; sourceTree = "<group>"; };
 		9B27D79413AD59160084104C /* CVDayStartHourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDayStartHourViewController.h; sourceTree = "<group>"; };
 		9B27D79513AD59160084104C /* CVDayStartHourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDayStartHourViewController.m; sourceTree = "<group>"; };
 		9B27D79713AD5C280084104C /* CVDayEndHourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDayEndHourViewController.h; sourceTree = "<group>"; };
@@ -600,8 +578,6 @@
 		9B858CE61447A96E00A370FC /* CVEventDetailsLocationViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsLocationViewController_iPhone.m; sourceTree = "<group>"; };
 		9B858CF01447AB7C00A370FC /* CoreLocation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9B8BBFF113D00D7200C8A0A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVQuickAddViewController_iPhone.xib; sourceTree = "<group>"; };
-		9B95763313D6113300FB1499 /* CVKnowledgeBaseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVKnowledgeBaseDetailViewController.h; sourceTree = "<group>"; };
-		9B95763413D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVKnowledgeBaseDetailViewController.m; sourceTree = "<group>"; };
 		9BB278C213CE2B8D00CC411C /* CVSlideLockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSlideLockControl.h; sourceTree = "<group>"; };
 		9BB278C313CE2B8D00CC411C /* CVSlideLockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSlideLockControl.m; sourceTree = "<group>"; };
 		9BB278C513CE2BA600CC411C /* CVSlideLockControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVSlideLockControl.xib; sourceTree = "<group>"; };
@@ -620,8 +596,6 @@
 		9BC07593137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVManageCalendarTableViewCell_iPhone.h; sourceTree = "<group>"; };
 		9BC07594137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVManageCalendarTableViewCell_iPhone.m; sourceTree = "<group>"; };
 		9BC07595137F950E00449B78 /* CVManageCalendarTableViewCell_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVManageCalendarTableViewCell_iPhone.xib; sourceTree = "<group>"; };
-		9BC42D5013D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVKnowledgeBaseViewController.h; sourceTree = "<group>"; };
-		9BC42D5113D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVKnowledgeBaseViewController.m; sourceTree = "<group>"; };
 		9BCECC3D13EB4DD2004123E9 /* pinch_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinch_ipad.png; sourceTree = "<group>"; };
 		9BCECC3E13EB4DD2004123E9 /* threefingers_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threefingers_ipad.png; sourceTree = "<group>"; };
 		9BCECC4513EB52D5004123E9 /* longpressday_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = longpressday_ipad.png; sourceTree = "<group>"; };
@@ -698,22 +672,12 @@
 		C2167C2413AAD6600034A6A7 /* UIActivityIndicatorView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+Utilities.m"; sourceTree = "<group>"; };
 		C2167C2613ABB1810034A6A7 /* redbar_left2right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbar_left2right.png; sourceTree = "<group>"; };
 		C2167C2813ABB18D0034A6A7 /* agenda_header_gradient_left2right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agenda_header_gradient_left2right.png; sourceTree = "<group>"; };
-		C2174CF71602D01800F3778D /* CVMigrateToRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMigrateToRemindersViewController.h; sourceTree = "<group>"; };
-		C2174CF81602D01800F3778D /* CVMigrateToRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMigrateToRemindersViewController.m; sourceTree = "<group>"; };
-		C2174D0A1602E2EE00F3778D /* calvetica 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "calvetica 2.xcdatamodel"; sourceTree = "<group>"; };
-		C2174D0B1602E2EE00F3778D /* calvetica 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "calvetica 3.xcdatamodel"; sourceTree = "<group>"; };
-		C2174D0C1602E2EE00F3778D /* calvetica.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = calvetica.xcdatamodel; sourceTree = "<group>"; };
-		C2174D101602E30900F3778D /* CTTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTTask.h; sourceTree = "<group>"; };
-		C2174D111602E30900F3778D /* CTTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTTask.m; sourceTree = "<group>"; };
-		C2174D121602E30A00F3778D /* CTTaskStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTTaskStore.h; sourceTree = "<group>"; };
-		C2174D131602E30A00F3778D /* CTTaskStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTTaskStore.m; sourceTree = "<group>"; };
 		C2174D8F1605043C00F3778D /* EKCalendarItem+Calvetica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKCalendarItem+Calvetica.h"; sourceTree = "<group>"; };
 		C2174D901605043C00F3778D /* EKCalendarItem+Calvetica.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKCalendarItem+Calvetica.m"; sourceTree = "<group>"; };
 		C21A2C3613A69CA800FAC7C9 /* CVRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRootTableViewController.h; sourceTree = "<group>"; };
 		C21A2C3713A69CA800FAC7C9 /* CVRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootTableViewController.m; sourceTree = "<group>"; };
 		C21E0288138B26F9008CB6EA /* CVTodayBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTodayBoxView.h; sourceTree = "<group>"; };
 		C21E0289138B26F9008CB6EA /* CVTodayBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTodayBoxView.m; sourceTree = "<group>"; };
-		C220167913C2ABCD00C511AF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		C220476613A9A6490079FC81 /* icon_smallcheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_smallcheck.png; sourceTree = "<group>"; };
 		C220476713A9A64B0079FC81 /* icon_smallcheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_smallcheck@2x.png"; sourceTree = "<group>"; };
 		C220476A13A9A7000079FC81 /* chat_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_b.png; sourceTree = "<group>"; };
@@ -732,15 +696,12 @@
 		C2223547139188AA00489887 /* CVWeekTableViewCell_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekTableViewCell_iPad.m; sourceTree = "<group>"; };
 		C2223549139188C800489887 /* CVWeekTableViewCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVWeekTableViewCell_iPad.xib; sourceTree = "<group>"; };
 		C223646F1619B631004D72BF /* CVEventCalendarsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventCalendarsManagerViewController.h; sourceTree = "<group>"; };
-		C22B0C5313BB8A5800455F47 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		C22B0C5413BB8A5800455F47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C22B0C5513BB8A5800455F47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C22B36DE139DE6C400CC62D4 /* tinybackspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinybackspace.png; sourceTree = "<group>"; };
 		C22B36DF139DE6C400CC62D4 /* tinybackspace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinybackspace@2x.png"; sourceTree = "<group>"; };
 		C22B36E0139DE6C400CC62D4 /* tinycheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinycheck.png; sourceTree = "<group>"; };
 		C22B36E1139DE6C400CC62D4 /* tinycheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinycheck@2x.png"; sourceTree = "<group>"; };
-		C22EA3B613C3F6A700CFFCC2 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		C22EA3B913C3F6B200CFFCC2 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		C22EA3C413C519C600CFFCC2 /* CVAgendaEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVAgendaEventCell.xib; sourceTree = "<group>"; };
 		C22EA3C613C519E900CFFCC2 /* CVAgendaEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAgendaEventCell.h; sourceTree = "<group>"; };
 		C22EA3C713C519E900CFFCC2 /* CVAgendaEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAgendaEventCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -757,17 +718,16 @@
 		C230420313BED4B100EC3CB0 /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
 		C239CD67137648A80074D731 /* CVEventDetailsNotesViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsNotesViewController_iPhone.h; sourceTree = "<group>"; };
 		C239CD68137648A80074D731 /* CVEventDetailsNotesViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsNotesViewController_iPhone.m; sourceTree = "<group>"; };
+		C23BB28D17F2695E003752FF /* CVLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVLineButton.h; sourceTree = "<group>"; };
+		C23BB28E17F2695E003752FF /* CVLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLineButton.m; sourceTree = "<group>"; };
+		C23BB29017F294FE003752FF /* CVSevenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSevenButton.h; sourceTree = "<group>"; };
+		C23BB29117F294FE003752FF /* CVSevenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSevenButton.m; sourceTree = "<group>"; };
 		C23BDDA9136F5DA600020FD6 /* CVTextToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTextToggleButton.h; sourceTree = "<group>"; };
 		C23BDDAA136F5DA600020FD6 /* CVTextToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTextToggleButton.m; sourceTree = "<group>"; };
 		C23BDDAE136F61A700020FD6 /* CVEventHourViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventHourViewController_iPhone.h; sourceTree = "<group>"; };
 		C23BDDAF136F61A700020FD6 /* CVEventHourViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventHourViewController_iPhone.m; sourceTree = "<group>"; };
-		C24224051601354B00A9C972 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		C242B182137D8661005BC735 /* times.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = times.h; sourceTree = "<group>"; };
 		C242B18A137DB63B005BC735 /* dimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dimensions.h; sourceTree = "<group>"; };
-		C2468C1E16F97E5F006F047F /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		C2468C1F16F97E5F006F047F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C2468C2016F97E5F006F047F /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		C2468C2116F97E5F006F047F /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C2468C2516F97ECD006F047F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C24BAB9B13948C7500ED298B /* CVPageModalViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPageModalViewController_iPhone.h; sourceTree = "<group>"; };
 		C24BAB9C13948C7500ED298B /* CVPageModalViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVPageModalViewController_iPhone.m; sourceTree = "<group>"; };
@@ -835,12 +795,8 @@
 		C269A76413A00CD4004ED181 /* CVRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRoundedButton.m; sourceTree = "<group>"; };
 		C269A76813A01181004ED181 /* CVViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVViewButton.h; sourceTree = "<group>"; };
 		C269A76913A01181004ED181 /* CVViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVViewButton.m; sourceTree = "<group>"; };
-		C26C08FE13CE919B00090991 /* knowledgebaseapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = knowledgebaseapi.h; sourceTree = "<group>"; };
-		C26C090C13CEA7D900090991 /* KnowledgeBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KnowledgeBase.xcdatamodel; sourceTree = "<group>"; };
-		C26C090F13CEA88900090991 /* KBQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBQuestion.h; sourceTree = "<group>"; };
-		C26C091013CEA88900090991 /* KBQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBQuestion.m; sourceTree = "<group>"; };
-		C26C091213CEA8BA00090991 /* KBStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBStore.h; sourceTree = "<group>"; };
-		C26C091313CEA8BA00090991 /* KBStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBStore.m; sourceTree = "<group>"; };
+		C26D4EEF17F3A2910041BB50 /* CVDeleteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDeleteButton.h; sourceTree = "<group>"; };
+		C26D4EF017F3A2910041BB50 /* CVDeleteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDeleteButton.m; sourceTree = "<group>"; };
 		C2708776137AD51800810BF1 /* CVCalendarPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCalendarPickerTableViewController.h; sourceTree = "<group>"; };
 		C2708777137AD51800810BF1 /* CVCalendarPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVCalendarPickerTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2708780137AF38200810BF1 /* CVColoredDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVColoredDotView.h; sourceTree = "<group>"; };
@@ -868,7 +824,6 @@
 		C277E4CC13DF8FD200794F53 /* CVEventSquaresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventSquaresView.m; sourceTree = "<group>"; };
 		C277E4D413DF95B900794F53 /* CVAllDayEventSquaresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAllDayEventSquaresView.h; sourceTree = "<group>"; };
 		C277E4D513DF95B900794F53 /* CVAllDayEventSquaresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAllDayEventSquaresView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		C27A03511527565100AA7023 /* icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad@2x.png"; path = "../icon~ipad@2x.png"; sourceTree = "<group>"; };
 		C27AD530160C121C00986E33 /* CVDefaultTimeZoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDefaultTimeZoneViewController.h; sourceTree = "<group>"; };
 		C27AD531160C121C00986E33 /* CVDefaultTimeZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDefaultTimeZoneViewController.m; sourceTree = "<group>"; };
 		C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -893,7 +848,6 @@
 		C286BFC7137F26E2009F78E3 /* CVEventCellDataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventCellDataHolder.m; sourceTree = "<group>"; };
 		C286BFC9137F2748009F78E3 /* CVEventDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDot.h; sourceTree = "<group>"; };
 		C286BFCA137F2748009F78E3 /* CVEventDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDot.m; sourceTree = "<group>"; };
-		C28ED57113C29BBB0024F60F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		C28F7B9313A864C2001D6F07 /* tinyicon_repeat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinyicon_repeat@2x.png"; sourceTree = "<group>"; };
 		C28F7B9413A864C2001D6F07 /* tinyicon_repeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyicon_repeat.png; sourceTree = "<group>"; };
 		C28F7B9513A864C2001D6F07 /* tinyicon_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinyicon_person@2x.png"; sourceTree = "<group>"; };
@@ -927,7 +881,6 @@
 		C29613A513C8C2A40028B6F1 /* icon_smallcheck_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_smallcheck_highlighted@2x.png"; sourceTree = "<group>"; };
 		C2983041139580BB00C9CEB0 /* CVPopoverBackdrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPopoverBackdrop.h; sourceTree = "<group>"; };
 		C2983042139580BB00C9CEB0 /* CVPopoverBackdrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVPopoverBackdrop.m; sourceTree = "<group>"; };
-		C29C7572139AD653006579BE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		C29EF9CD13A1896D0027B7F0 /* agenda_header_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agenda_header_gradient.png; sourceTree = "<group>"; };
 		C2A4C96E13832E1400442AFF /* CVEventDetailsOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsOrderViewController.m; sourceTree = "<group>"; };
 		C2A4C96F13832E1400442AFF /* CVEventDetailsOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsOrderViewController.h; sourceTree = "<group>"; };
@@ -1000,8 +953,6 @@
 		C2B6A1EA1395DBFC002B3FC6 /* icon_bigcheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bigcheck@2x.png"; sourceTree = "<group>"; };
 		C2B6A1F01395DC44002B3FC6 /* icon_trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_trash@2x.png"; sourceTree = "<group>"; };
 		C2B6A1F81395DC64002B3FC6 /* icon_trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_trash.png; sourceTree = "<group>"; };
-		C2BE7DC513CC22E800925D53 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
-		C2BE7DC713CC2C1300925D53 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
 		C2BE7DD513CC979200925D53 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		C2BE7DD613CC979200925D53 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		C2C1A2D113E0DB4A00CBC82B /* redfade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfade.png; sourceTree = "<group>"; };
@@ -1057,7 +1008,6 @@
 		C2D759D9152210F100B04B4D /* CVDayButton_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDayButton_iPhone.h; sourceTree = "<group>"; };
 		C2D759DA152210F100B04B4D /* CVDayButton_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDayButton_iPhone.m; sourceTree = "<group>"; };
 		C2D759DB152210F100B04B4D /* CVDayButton_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVDayButton_iPhone.xib; sourceTree = "<group>"; };
-		C2DAA40113D4E5E70076952F /* KnowledgeBase 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "KnowledgeBase 2.xcdatamodel"; sourceTree = "<group>"; };
 		C2DDCEB513876C88003DF4A0 /* CVReminderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVReminderCell.h; sourceTree = "<group>"; };
 		C2DDCEB613876C88003DF4A0 /* CVReminderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVReminderCell.m; sourceTree = "<group>"; };
 		C2DDCEB813877142003DF4A0 /* CVReminderCellDataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVReminderCellDataHolder.h; sourceTree = "<group>"; };
@@ -1100,6 +1050,7 @@
 		C2E3A1C0161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVBadgeAndAlertsSettingViewController.m; sourceTree = "<group>"; };
 		C2E3A1C2161223C800F00FB8 /* CVSettingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettingNavigationController.h; sourceTree = "<group>"; };
 		C2E3A1C3161223CE00F00FB8 /* CVSettingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSettingNavigationController.m; sourceTree = "<group>"; };
+		C2E51B0017F3C6740058BB32 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C2E59EB01524D1A10052E63F /* CVWeekTableViewCellReminders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekTableViewCellReminders.h; sourceTree = "<group>"; };
 		C2E59EB11524D1A10052E63F /* CVWeekTableViewCellReminders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekTableViewCellReminders.m; sourceTree = "<group>"; };
 		C2E59EB31524D2D50052E63F /* CVReminderSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVReminderSquare.h; sourceTree = "<group>"; };
@@ -1158,6 +1109,7 @@
 				9B0FF93313BCDE1B00B316A9 /* QuartzCore.framework in Frameworks */,
 				9BEFC7CE13BB80B1001CB080 /* AVFoundation.framework in Frameworks */,
 				C2D388B513B8F56E002527A7 /* libxml2.dylib in Frameworks */,
+				C2E51B0117F3C6740058BB32 /* StoreKit.framework in Frameworks */,
 				C2D388B313B8F560002527A7 /* libicucore.dylib in Frameworks */,
 				C2D388B113B8F550002527A7 /* SystemConfiguration.framework in Frameworks */,
 				9B12A0E113A7DFDE00BF1D7F /* AddressBook.framework in Frameworks */,
@@ -1169,7 +1121,6 @@
 				C2E29728133419A900FA7638 /* Foundation.framework in Frameworks */,
 				C2E2972A133419A900FA7638 /* CoreGraphics.framework in Frameworks */,
 				C2691535136CC14D002053C5 /* MessageUI.framework in Frameworks */,
-				C2468C2216F97E5F006F047F /* libTestFlight.a in Frameworks */,
 				C202A4C416FBF494000B4281 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1545,20 +1496,6 @@
 			name = "Manage Calendars View Controller";
 			sourceTree = "<group>";
 		};
-		9BC42D4E13D4A16000E9EA92 /* Knowledge base */ = {
-			isa = PBXGroup;
-			children = (
-				9BC42D5013D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.h */,
-				9BC42D5113D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.m */,
-				9B95763313D6113300FB1499 /* CVKnowledgeBaseDetailViewController.h */,
-				9B95763413D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m */,
-				9B1D43FC13F8975C001FE7D3 /* CVKBDetailWebViewController.h */,
-				9B1D43FD13F8975C001FE7D3 /* CVKBDetailWebViewController.m */,
-				9B1D43FE13F8975C001FE7D3 /* CVKBDetailWebViewController.xib */,
-			);
-			name = "Knowledge base";
-			sourceTree = "<group>";
-		};
 		9BEF493A13F32A9800F837FB /* Calendar Picker Contoller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1750,28 +1687,6 @@
 			name = "Misc View Controllers";
 			sourceTree = "<group>";
 		};
-		C2174CF51602CFE500F3778D /* Migrate To Reminders */ = {
-			isa = PBXGroup;
-			children = (
-				C2174D171602E31400F3778D /* Tasks */,
-				C2174CF71602D01800F3778D /* CVMigrateToRemindersViewController.h */,
-				C2174CF81602D01800F3778D /* CVMigrateToRemindersViewController.m */,
-			);
-			name = "Migrate To Reminders";
-			sourceTree = "<group>";
-		};
-		C2174D171602E31400F3778D /* Tasks */ = {
-			isa = PBXGroup;
-			children = (
-				C2174D091602E2EE00F3778D /* calvetica.xcdatamodeld */,
-				C2174D101602E30900F3778D /* CTTask.h */,
-				C2174D111602E30900F3778D /* CTTask.m */,
-				C2174D121602E30A00F3778D /* CTTaskStore.h */,
-				C2174D131602E30A00F3778D /* CTTaskStore.m */,
-			);
-			name = Tasks;
-			sourceTree = "<group>";
-		};
 		C21A2C3413A69C8C00FAC7C9 /* Root Table View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1848,7 +1763,6 @@
 		C22B0C5213BB8A5800455F47 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C22B0C5313BB8A5800455F47 /* AppKit.framework */,
 				C22B0C5413BB8A5800455F47 /* CoreData.framework */,
 				C22B0C5513BB8A5800455F47 /* Foundation.framework */,
 			);
@@ -1923,26 +1837,6 @@
 				C2C33D9113AD220400D62D27 /* CVEventHourViewController_iPhone.xib */,
 			);
 			name = "Event - Hour View Controller";
-			sourceTree = "<group>";
-		};
-		C2468C1C16F97E26006F047F /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				C2468C1D16F97E5F006F047F /* TestFlightSDK1.2.4 */,
-			);
-			name = Vendor;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		C2468C1D16F97E5F006F047F /* TestFlightSDK1.2.4 */ = {
-			isa = PBXGroup;
-			children = (
-				C2468C1E16F97E5F006F047F /* libTestFlight.a */,
-				C2468C1F16F97E5F006F047F /* README.md */,
-				C2468C2016F97E5F006F047F /* release_notes.md */,
-				C2468C2116F97E5F006F047F /* TestFlight.h */,
-			);
-			path = TestFlightSDK1.2.4;
 			sourceTree = "<group>";
 		};
 		C24BAB9A13948C3D00ED298B /* Page Modal View Controller */ = {
@@ -2217,7 +2111,6 @@
 				C20698581396F656005C8192 /* geometry.c */,
 				C2D3887C13B8CBED002527A7 /* private.h */,
 				9BEFC7D213BB88E4001CB080 /* sounds.h */,
-				C26C08FE13CE919B00090991 /* knowledgebaseapi.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -2360,18 +2253,6 @@
 				C2691553136CD920002053C5 /* CVStatefulToggleButton.m */,
 			);
 			name = "Stateful Toggle Button";
-			sourceTree = "<group>";
-		};
-		C26C090E13CEA86600090991 /* KBFramework (Knowledge Base) */ = {
-			isa = PBXGroup;
-			children = (
-				C26C090B13CEA7D900090991 /* KnowledgeBase.xcdatamodeld */,
-				C26C091213CEA8BA00090991 /* KBStore.h */,
-				C26C091313CEA8BA00090991 /* KBStore.m */,
-				C26C090F13CEA88900090991 /* KBQuestion.h */,
-				C26C091013CEA88900090991 /* KBQuestion.m */,
-			);
-			name = "KBFramework (Knowledge Base)";
 			sourceTree = "<group>";
 		};
 		C270876F137A096D00810BF1 /* Calendar Cell */ = {
@@ -2659,7 +2540,6 @@
 				C2E3A1C3161223CE00F00FB8 /* CVSettingNavigationController.m */,
 				C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */,
 				C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */,
-				C2174CF51602CFE500F3778D /* Migrate To Reminders */,
 				9B5CFA1D141E6E6A00EDB2FA /* Manage Event Calendars */,
 				9B12A0E913A8241000BF1D7F /* Default Event Calendar */,
 				9B12A0E713A823C300BF1D7F /* Default Event Alarms */,
@@ -2677,7 +2557,6 @@
 				9BFFF37313AD1E1900B14DB9 /* Reminder Details */,
 				0432F08613CF3CA300DE91A2 /* Event Subtitle Text */,
 				9B72B37C13C95D7C0068C715 /* FAQ */,
-				9BC42D4E13D4A16000E9EA92 /* Knowledge base */,
 				9B1A7A8B13E144210028A960 /* Contact us */,
 				9B0127A413CBA25B0006C2EA /* Gestures */,
 				9B0C59B513B252B100ADC5E6 /* Language picker */,
@@ -2930,6 +2809,7 @@
 		C2E29724133419A900FA7638 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2E51B0017F3C6740058BB32 /* StoreKit.framework */,
 				C202A4C316FBF494000B4281 /* Crashlytics.framework */,
 				C2468C2516F97ECD006F047F /* libz.dylib */,
 				C2AF809815E93A4E005B2A46 /* libPods.a */,
@@ -2962,7 +2842,6 @@
 				C275449C13354970004203C6 /* Shared */,
 				C2E29737133419A900FA7638 /* iPhone */,
 				C2E2973E133419A900FA7638 /* iPad */,
-				C2468C1C16F97E26006F047F /* Vendor */,
 				C280CFA517EA95A700D322F5 /* Images.xcassets */,
 				C2E2972C133419A900FA7638 /* Supporting Files */,
 			);
@@ -2975,15 +2854,6 @@
 				C2E2972D133419A900FA7638 /* calvetica-Info.plist */,
 				C24E2E3013C3ADED003C5E4B /* help */,
 				9BEFC7C013BB7D34001CB080 /* sounds */,
-				C29C7572139AD653006579BE /* icon.png */,
-				C2BE7DC513CC22E800925D53 /* icon@2x.png */,
-				C24224051601354B00A9C972 /* Default-568h@2x.png */,
-				C2BE7DC713CC2C1300925D53 /* icon~ipad.png */,
-				C27A03511527565100AA7023 /* icon~ipad@2x.png */,
-				C220167913C2ABCD00C511AF /* Default.png */,
-				C28ED57113C29BBB0024F60F /* Default@2x.png */,
-				C22EA3B913C3F6B200CFFCC2 /* Default-Portrait~ipad.png */,
-				C22EA3B613C3F6A700CFFCC2 /* Default-Landscape~ipad.png */,
 				C2027E7B13608BFB002E58BF /* Images */,
 				C2C9945D1374EBCD005A4EB1 /* Entitlements.plist */,
 				C269153C136CC280002053C5 /* InAppSettings.bundle */,
@@ -3046,7 +2916,6 @@
 		C2E2976A133419EE00FA7638 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C26C090E13CEA86600090991 /* KBFramework (Knowledge Base) */,
 				9BF7474413C8CD0A0084C637 /* CVCalendarReminderCalendarCellDataHolder.h */,
 				9BF7474513C8CD0A0084C637 /* CVCalendarReminderCalendarCellDataHolder.m */,
 				9BFEA8A713A6A146002211B7 /* CVCustomColorDataHolder.h */,
@@ -3152,6 +3021,8 @@
 		C2E6A5B317EE1D94006D035A /* iOS7+ */ = {
 			isa = PBXGroup;
 			children = (
+				C23BB28D17F2695E003752FF /* CVLineButton.h */,
+				C23BB28E17F2695E003752FF /* CVLineButton.m */,
 				C2E6A5B417EE1DE4006D035A /* CVAddButton.h */,
 				C2E6A5B517EE1DE4006D035A /* CVAddButton.m */,
 				C2E6A5B717EE4DD0006D035A /* CVHamburgerButton.h */,
@@ -3160,6 +3031,10 @@
 				C2E6A5BB17EE4EB7006D035A /* CVEventReminderToggleButton.m */,
 				C2E6A5BD17EE556C006D035A /* CVCloseButton.h */,
 				C2E6A5BE17EE556C006D035A /* CVCloseButton.m */,
+				C23BB29017F294FE003752FF /* CVSevenButton.h */,
+				C23BB29117F294FE003752FF /* CVSevenButton.m */,
+				C26D4EEF17F3A2910041BB50 /* CVDeleteButton.h */,
+				C26D4EF017F3A2910041BB50 /* CVDeleteButton.m */,
 			);
 			name = "iOS7+";
 			sourceTree = "<group>";
@@ -3260,6 +3135,7 @@
 				C2E2971E133419A900FA7638 /* Frameworks */,
 				C2E2971F133419A900FA7638 /* Resources */,
 				F5993892FE164968B65FCF0D /* Copy Pods Resources */,
+				C2E51AFF17F3C6560058BB32 /* Bump Build Number */,
 				C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */,
 			);
 			buildRules = (
@@ -3300,6 +3176,11 @@
 				TargetAttributes = {
 					C2E29720133419A900FA7638 = {
 						DevelopmentTeam = JXK78JN25R;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -3421,7 +3302,6 @@
 				C2927A241395EE0D00CEF39D /* icon_trash_slider@2x.png in Resources */,
 				C2927A251395EE0D00CEF39D /* icon_trash_slider.png in Resources */,
 				C2A68541139839DB008446E8 /* CVImageToggleButton.xib in Resources */,
-				C29C7573139AD653006579BE /* icon.png in Resources */,
 				C24F740F139D36D800282E61 /* CVActionBlockButton.xib in Resources */,
 				C22B36E2139DE6C400CC62D4 /* tinybackspace.png in Resources */,
 				C22B36E3139DE6C400CC62D4 /* tinybackspace@2x.png in Resources */,
@@ -3496,11 +3376,7 @@
 				C23041FD13BE8A3D00EC3CB0 /* gear@2x.png in Resources */,
 				C230420013BECA7000EC3CB0 /* gear_black.png in Resources */,
 				C230420113BECA7000EC3CB0 /* gear_black@2x.png in Resources */,
-				C28ED57213C29BBB0024F60F /* Default@2x.png in Resources */,
-				C220167A13C2ABCD00C511AF /* Default.png in Resources */,
 				C24E2E3313C3AE05003C5E4B /* help.plist in Resources */,
-				C22EA3B713C3F6A800CFFCC2 /* Default-Landscape~ipad.png in Resources */,
-				C22EA3BA13C3F6B200CFFCC2 /* Default-Portrait~ipad.png in Resources */,
 				C22EA3C513C519C600CFFCC2 /* CVAgendaEventCell.xib in Resources */,
 				C2B3C47C13C52A5B0055018A /* CVAgendaDateCell.xib in Resources */,
 				C2B3C47F13C53E510055018A /* CVFriendlyCell.xib in Resources */,
@@ -3523,8 +3399,6 @@
 				9BE2F2EC13CC017100F46F37 /* longpressmonth_iphone@2x.png in Resources */,
 				C290198817EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib in Resources */,
 				C2F7CDD713D6281900FBB45E /* CVWelcomeViewController.xib in Resources */,
-				C2BE7DC613CC22E800925D53 /* icon@2x.png in Resources */,
-				C2BE7DC813CC2C1300925D53 /* icon~ipad.png in Resources */,
 				9BB278C613CE2BA600CC411C /* CVSlideLockControl.xib in Resources */,
 				9B0AD8A913CF5AC300DF1F2F /* slider.png in Resources */,
 				9B0AD8AA13CF5AC300DF1F2F /* slider@2x.png in Resources */,
@@ -3551,7 +3425,6 @@
 				C2DE755A13F0B0400013A092 /* weekicon.png in Resources */,
 				C2DE755D13F0B14E0013A092 /* weekicon_highlighted.png in Resources */,
 				9BEF493F13F32AD400F837FB /* CVCalendarPickerViewController_iPhone.xib in Resources */,
-				9B1D440013F8975C001FE7D3 /* CVKBDetailWebViewController.xib in Resources */,
 				9B29FE7D1401A95C009926FB /* SCEventDetailsAllDayAlarmPicker.xib in Resources */,
 				9B29FE7F1401A95C009926FB /* SCEventDetailsAlarmPicker.xib in Resources */,
 				6AF3CE411403026700A193E4 /* CVWeekNumberCell.xib in Resources */,
@@ -3559,18 +3432,14 @@
 				C2D107EE15221851002802EC /* CVDayButton_iPhone.xib in Resources */,
 				C2E59EBF152639E40052E63F /* weekicon_highlighted@2x.png in Resources */,
 				C2E59EC0152639E40052E63F /* weekicon@2x.png in Resources */,
-				C27A03521527565100AA7023 /* icon~ipad@2x.png in Resources */,
 				C2AF71DE15F6DD220056F310 /* nav_bar_background.png in Resources */,
 				C2AF71DF15F6DD220056F310 /* nav_bar_background@2x.png in Resources */,
 				C2AF71E015F6DD220056F310 /* nav_bar_button.png in Resources */,
 				C2AF71E115F6DD220056F310 /* nav_bar_button@2x.png in Resources */,
 				C2E2968715F8464B000177BC /* CVAgendaReminderCell.xib in Resources */,
 				C2E2968915F84669000177BC /* CVReminderCell.xib in Resources */,
-				C24224061601354B00A9C972 /* Default-568h@2x.png in Resources */,
 				C2E3A1A5160D488400F00FB8 /* Settings.storyboard in Resources */,
 				C27B896617EA8DE900F12871 /* Main_iPad.storyboard in Resources */,
-				C2468C2316F97E5F006F047F /* README.md in Resources */,
-				C2468C2416F97E5F006F047F /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3614,6 +3483,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		C2E51AFF17F3C6560058BB32 /* Bump Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bump Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$((bN += 1))\nbN=$(printf \"%d\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
+		};
 		F5993892FE164968B65FCF0D /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3643,6 +3526,7 @@
 				C2E2977613341A0100FA7638 /* CVSettings.m in Sources */,
 				C2FB8982135EAD2B001CD487 /* CVRootViewController_iPhone.m in Sources */,
 				C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */,
+				C23BB29217F294FE003752FF /* CVSevenButton.m in Sources */,
 				C2A646971361FAF000E57272 /* CVViewController.m in Sources */,
 				C2A646B213625D0A00E57272 /* CVQuickAddViewController_iPhone.m in Sources */,
 				C256DF5A1363636A00299A69 /* NSDate+ViewHelpers.m in Sources */,
@@ -3728,6 +3612,7 @@
 				C220478713AA58AE0079FC81 /* CVMonthTextButton_iPad.m in Sources */,
 				C220478C13AA5DFC0079FC81 /* CVGenericReminderViewController_iPhone.m in Sources */,
 				9BFFF37A13AD1E6E00B14DB9 /* CVReminderDetailsOrderViewController.m in Sources */,
+				C23BB28F17F2695E003752FF /* CVLineButton.m in Sources */,
 				C2167C2513AAD6610034A6A7 /* UIActivityIndicatorView+Utilities.m in Sources */,
 				9B27D79613AD59160084104C /* CVDayStartHourViewController.m in Sources */,
 				9B27D79913AD5C280084104C /* CVDayEndHourViewController.m in Sources */,
@@ -3762,13 +3647,8 @@
 				C2BE7DD713CC979200925D53 /* NSString+Utilities.m in Sources */,
 				9BB278C413CE2B8D00CC411C /* CVSlideLockControl.m in Sources */,
 				0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */,
-				C26C090D13CEA7D900090991 /* KnowledgeBase.xcdatamodeld in Sources */,
-				C26C091113CEA88900090991 /* KBQuestion.m in Sources */,
-				C26C091413CEA8BA00090991 /* KBStore.m in Sources */,
 				9B0AD8D613CFA90F00DF1F2F /* CVDebug.m in Sources */,
 				6A85E13913D09C3200DF959B /* CVTapGestureRecognizer.m in Sources */,
-				9BC42D5213D4A1CB00E9EA92 /* CVKnowledgeBaseViewController.m in Sources */,
-				9B95763513D6113300FB1499 /* CVKnowledgeBaseDetailViewController.m in Sources */,
 				C2FF4D3713D89DDD00E662FE /* CVLandscapeWeekView_iPad.m in Sources */,
 				C2FF4D3B13D8A6BC00E662FE /* CVLandscapeWeekView.m in Sources */,
 				C266F00413D8FE7E002CD8F1 /* CVWeekdayTableViewCell_iPad.m in Sources */,
@@ -3778,6 +3658,7 @@
 				6AD9B6F913DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.m in Sources */,
 				C277E4CD13DF8FD200794F53 /* CVEventSquaresView.m in Sources */,
 				C277E4D613DF95B900794F53 /* CVAllDayEventSquaresView.m in Sources */,
+				C26D4EF117F3A2910041BB50 /* CVDeleteButton.m in Sources */,
 				6A3D612D13DF161A00D0E51C /* CVAutoResizableLabel.m in Sources */,
 				C280C9A913E0782500656992 /* CVWeekdayTableHeaderView.m in Sources */,
 				C280C9AE13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.m in Sources */,
@@ -3793,7 +3674,6 @@
 				C251351F13EDEC7900936CC0 /* CVEventEditViewController.m in Sources */,
 				C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */,
 				9BEF493E13F32AD400F837FB /* CVCalendarPickerViewController_iPhone.m in Sources */,
-				9B1D43FF13F8975C001FE7D3 /* CVKBDetailWebViewController.m in Sources */,
 				6AF3CE3B1402EA4000A193E4 /* CVWeekNumberHolder.m in Sources */,
 				6AF3CE3F1403022D00A193E4 /* CVWeekNumberCell.m in Sources */,
 				C2E6A5B917EE4DD0006D035A /* CVHamburgerButton.m in Sources */,
@@ -3816,10 +3696,6 @@
 				C2E59EBC1524F7610052E63F /* CVWeekTableViewCellDrawing.m in Sources */,
 				C2F2A84B15DF4A1700FE9033 /* NSDate+Utilities.m in Sources */,
 				C2AF808E15E936DE005B2A46 /* EKReminder+Calvetica.m in Sources */,
-				C2174CFA1602D01800F3778D /* CVMigrateToRemindersViewController.m in Sources */,
-				C2174D0D1602E2EE00F3778D /* calvetica.xcdatamodeld in Sources */,
-				C2174D151602E30A00F3778D /* CTTask.m in Sources */,
-				C2174D161602E30A00F3778D /* CTTaskStore.m in Sources */,
 				C2174D911605043D00F3778D /* EKCalendarItem+Calvetica.m in Sources */,
 				C27AD532160C121C00986E33 /* CVDefaultTimeZoneViewController.m in Sources */,
 				C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */,
@@ -4078,7 +3954,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mysterious Trousers, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4089,7 +3965,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "06F16717-D9A8-4767-94E5-DA144EE8448D";
 				SDKROOT = iphoneos;
@@ -4106,7 +3982,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Kirk (XMMTRTMN8D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4118,12 +3994,8 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK1.2.4\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FD1347B7-3A09-4863-AEEF-B598699503D4";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Adhoc;
@@ -4170,7 +4042,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -4195,7 +4067,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "809D52D3-2FFD-467C-8354-9D8F6B776B77";
 				SDKROOT = iphoneos;
@@ -4225,10 +4097,6 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK1.2.4\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -4254,10 +4122,6 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK1.2.4\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -4350,32 +4214,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C2174D091602E2EE00F3778D /* calvetica.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C2174D0A1602E2EE00F3778D /* calvetica 2.xcdatamodel */,
-				C2174D0B1602E2EE00F3778D /* calvetica 3.xcdatamodel */,
-				C2174D0C1602E2EE00F3778D /* calvetica.xcdatamodel */,
-			);
-			currentVersion = C2174D0B1602E2EE00F3778D /* calvetica 3.xcdatamodel */;
-			path = calvetica.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		C26C090B13CEA7D900090991 /* KnowledgeBase.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C2DAA40113D4E5E70076952F /* KnowledgeBase 2.xcdatamodel */,
-				C26C090C13CEA7D900090991 /* KnowledgeBase.xcdatamodel */,
-			);
-			currentVersion = C2DAA40113D4E5E70076952F /* KnowledgeBase 2.xcdatamodel */;
-			path = KnowledgeBase.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C2E29718133419A900FA7638 /* Project object */;
 }

@@ -11,10 +11,14 @@
 
 @implementation CVTodayBoxView
 
+
 - (void)setFrame:(CGRect)frame
 {
 	// @hack: for some reason, when the table view scrolls, it tries to reframe the red selected day square, so this just ignores it.
 }
+
+
+#pragma mark - Public
 
 - (void)setSuperFrame:(CGRect)frame
 {
@@ -50,33 +54,6 @@
     CGContextAddLineToPoint(context, innerRect.origin.x + innerRect.size.width, innerRect.origin.y);
     CGContextAddLineToPoint(context, innerRect.origin.x, innerRect.origin.y);
     CGContextClosePath(context);
-
-    // @improve: not sure if this is possible but it'd be nice if we could apply this gradient.  The problem
-    // is that is seems you can't hollow out a gradient.  (notice the clockwise-counterclockwise way in which
-    // the squares are drawn above, that is what cases the hollowing out.
-    
-    /*
-    // generate gradient array
-	UIColor* startColor = patentedTodayBoxRedBottomLeft;
-	UIColor* endColor = patentedTodayBoxRedTopRight;
-    CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, 2, NULL);
-	CFArrayAppendValue(colorArray, [startColor CGColor]);
-	CFArrayAppendValue(colorArray, [endColor CGColor]);
-
-	// Create gradient object to draw gradient rect
-    // NOTE: Passing NULL for the color space gives causes the gradient to use an RGB color space
-    // NOTE: Passing NULL for the locations array causes a default location array of { 0.0f, 1.0f } to be used
-	CGPoint startPoint = CGPointMake(0, rect.size.height);
-	CGPoint endPoint = CGPointMake(rect.size.width, 0);
-	CGGradientRef gradient = CGGradientCreateWithColors(NULL, colorArray, NULL);
-
-	// draw gradient
-	CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-
-	// cleanup gradient
-	CGGradientRelease(gradient);
-	CFRelease(colorArray);
-    */
 
     CGContextFillPath(context);
 }

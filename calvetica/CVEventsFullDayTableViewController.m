@@ -367,10 +367,10 @@
     [c drawDurationBarAnimated:NO];
     
     if (([c.date mt_hourOfDay] < [CVSettings dayStartHour] || [c.date mt_hourOfDay] >= [CVSettings dayEndHour]) || c.event.allDay) {
-        c.backgroundColor = patentedCellNonWorkHours;
+        c.backgroundColor = RGBHex(0xF6F6F6);
     }
     else {
-        c.backgroundColor = [UIColor whiteColor];
+        c.backgroundColor = RGBHex(0xFFFFFF);
     }
 }
 

@@ -153,6 +153,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation 
 {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[self layoutMonthTableView];
 }
 
@@ -386,37 +387,6 @@
         [self presentPopoverModalViewController:reminderViewController forView:cell animated:YES];
     }
 
-    [super cellWasTapped:tappedCell];
-}
-
-- (void)cellWasLongPressed:(id)tappedCell 
-{
-
-    if (self.mode == CVRootViewControllerModeEvents) {
-        CVEventCell *cell = (CVEventCell *)tappedCell;
-        if (cell.event) {
-            CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDay];
-            eventViewController.delegate = self;
-			eventViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
-			eventViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
-            [self presentPopoverModalViewController:eventViewController forView:cell animated:YES];
-        } else {
-            [self showQuickAddWithDefault:YES
-							 durationMode:NO
-									 date:cell.date
-									 view:cell
-									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
-        }
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        CVReminderCell *cell = (CVReminderCell *)tappedCell;
-        CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDay];
-        reminderViewController.delegate = self;
-        reminderViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
-        reminderViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
-        [self presentPopoverModalViewController:reminderViewController forView:cell animated:YES];
-    }
-    
     [super cellWasTapped:tappedCell];
 }
 

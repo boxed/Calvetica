@@ -13,10 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="255" height="41"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="divider.png" id="6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Person" lineBreakMode="tailTruncation" minimumFontSize="14" id="8" userLabel="personLabel">
                         <rect key="frame" x="10" y="4" width="180" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,7 +76,6 @@
     </objects>
     <resources>
         <image name="chat_b.png" width="20" height="20"/>
-        <image name="divider.png" width="320" height="42"/>
         <image name="email_b.png" width="20" height="20"/>
     </resources>
 </document>

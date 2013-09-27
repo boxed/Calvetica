@@ -180,9 +180,6 @@
     NSMutableDictionary *dict = [_availableGestures objectAtIndex:page];
     _titleLabel.text = [dict objectForKey:@"title"];
     
-    // set the number of lines of text
-    _titleLabel.numberOfLines = [_titleLabel linesOfWordWrapTextInLabelWithConstraintWidth:_titleLabel.bounds.size.width];
-    
     NSInteger viewX = _titleView.frame.origin.x;
     NSInteger viewY = _titleView.frame.origin.y;
     NSInteger viewWidth = _titleView.bounds.size.width;

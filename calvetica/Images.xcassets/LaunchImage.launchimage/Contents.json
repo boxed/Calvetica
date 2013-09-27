@@ -56,7 +56,7 @@
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "Default@2x.png",
+      "filename" : "Default@2x-1.png",
       "scale" : "2x"
     },
     {
@@ -71,12 +71,14 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "Default-Portrait~ipad.png",
       "scale" : "1x"
     },
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "Default-Landscape~ipad.png",
       "scale" : "1x"
     },
     {

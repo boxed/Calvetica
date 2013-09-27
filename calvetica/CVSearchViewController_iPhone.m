@@ -254,6 +254,7 @@
     scopePopover.delegate = self;
     scopePopover.currentScope = _searchScope;
     scopePopover.popoverBackdropColor = patentedDarkGray;
+    scopePopover.popoverArrowDirection = CVPopoverArrowDirectionTopLeft;
     [self presentPopoverModalViewController:scopePopover forView:sender animated:YES];
 }
 

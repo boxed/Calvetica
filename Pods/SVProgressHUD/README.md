@@ -79,6 +79,16 @@ Or show a confirmation glyph before before getting dismissed 1 second later usin
 + (void)showImage:(UIImage*)image status:(NSString*)string; // use 28x28 white pngs
 ```
 
+### Observing HUD Notifications
+
+`SVProgressHUD` posts four notifications via `NSNotificationCenter` in response to being shown/dismissed:
+* `SVProgressHUDWillAppearNotification` when the show animation starts
+* `SVProgressHUDDidAppearNotification` when the show animation completes
+* `SVProgressHUDWillDisappearNotification` when the dismiss animation starts
+* `SVProgressHUDDidDisappearNotification` when the dismiss animation completes
+
+Each notification passes a `userInfo` dictionary holding the HUD's status string (if any), retrievable via `SVProgressHUDStatusUserInfoKey`
+
 ## Credits
 
 SVProgressHUD is brought to you by [Sam Vermette](http://samvermette.com) and [contributors to the project](https://github.com/samvermette/SVProgressHUD/contributors). The success and error icons are from [Glyphish](http://glyphish.com/). If you have feature suggestions or bug reports, feel free to help out by sending pull requests or by [creating new issues](https://github.com/samvermette/SVProgressHUD/issues/new). If you're using SVProgressHUD in your project, attribution would be nice.

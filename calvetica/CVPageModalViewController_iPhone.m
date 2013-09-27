@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
 
+    _contentViewController.view.height = self.view.height - 60;
     _contentViewController.view.y = (self.view.height / 2) - (_contentViewController.view.height / 2);
     _contentViewController.view.x = (self.view.width / 2) - (_contentViewController.view.width / 2);
 

@@ -6,5 +6,7 @@
 //
 //
 
-@interface CVAddButton : UIButton
+#import "CVLineButton.h"
+
+@interface CVAddButton : CVLineButton
 @end

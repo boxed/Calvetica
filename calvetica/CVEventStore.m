@@ -40,7 +40,6 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)eventsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
 {
-//	startDate = [startDate dateByAddingTimeInterval:-1];
 
     NSMutableArray *calendars = nil;
     if (activeCalsOnly) {

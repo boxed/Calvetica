@@ -89,12 +89,14 @@ typedef enum {
 - (void)redrawDotsOnMonthView;
 - (void)redrawRowsForEvent:(EKEvent *)event;
 - (void)redrawRowsForReminder:(EKReminder *)reminder;
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode;
 
 
 #pragma mark - Notifications
 - (void)eventStoreChanged;
 - (void)reminderStoreChanged;
 - (void)pocketLintSyncDidFinish;
+
 
 
 #pragma mark - Actions

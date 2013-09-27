@@ -131,11 +131,11 @@
     
     CGFloat boxWidth = tableView.frame.size.width / 7.0;
     
-    rect.origin.x = [self columnOfDate:date] * boxWidth;
-    rect.origin.y = row * boxHeight;
-    rect.size.width = boxWidth;
-    rect.size.height = boxHeight;
-    
+    rect.origin.x       = floorf([self columnOfDate:date] * boxWidth);
+    rect.origin.y       = floorf(row * boxHeight);
+    rect.size.width     = floorf(boxWidth);
+    rect.size.height    = floorf(boxHeight);
+
     return rect;
 }
 

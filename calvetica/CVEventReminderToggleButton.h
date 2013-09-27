@@ -6,12 +6,15 @@
 //
 //
 
+#import "CVLineButton.h"
+
+
 typedef NS_ENUM(NSUInteger, CVEventReminderToggleButtonIcon) {
     CVEventReminderToggleButtonIconCheck,
     CVEventReminderToggleButtonIconCalendar
 };
 
 
-@interface CVEventReminderToggleButton : UIButton
+@interface CVEventReminderToggleButton : CVLineButton
 @property (nonatomic, assign) CVEventReminderToggleButtonIcon icon;
 @end

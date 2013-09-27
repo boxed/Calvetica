@@ -171,7 +171,7 @@
     CGContextSetLineWidth(context, 0.5f);
     
     CGFloat padding = 1.0f;
-    CGFloat boxWidth = self.bounds.size.width / (DAYS_IN_WEEK * 1.0f);
+    CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
     NSInteger maxOffset[DAYS_IN_WEEK];
     memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSInteger));
     
@@ -256,7 +256,10 @@
             CGContextSetAlpha(context, OLD_EVENT_ALPHA);
         }
         
-        CGRect boxFrame = CGRectMake(e.x, e.y - 1.0, e.width, e.height);
+        CGRect boxFrame = CGRectMake(roundf(e.x),
+                                     roundf(e.y) - 1.0,
+                                     roundf(e.width),
+                                     roundf(e.height));
         
         CGContextSetFillColorWithColor(context, color);
         CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
@@ -317,7 +320,10 @@
                 CGContextSetAlpha(context, OLD_EVENT_ALPHA);
             }
             
-            CGRect boxFrame = CGRectMake(e.x, e.y - 1.0, e.width, e.height);
+            CGRect boxFrame = CGRectMake(roundf(e.x),
+                                         roundf(e.y) - 1.0,
+                                         roundf(e.width),
+                                         roundf(e.height));
             
             CGContextSetFillColorWithColor(context, color);
             CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
@@ -366,7 +372,7 @@
     
     // DIMENSIONS
     
-    CGFloat boxWidth                = self.frame.size.width / (DAYS_IN_WEEK * 1.0f);
+    CGFloat boxWidth                = floorf(self.frame.size.width / (float)DAYS_IN_WEEK);
     CGFloat topPadding              = 3.0f;
     
     CGFloat barSidePadding          = 2.0f;
@@ -461,8 +467,11 @@
             CGContextSetAlpha(context, OLD_EVENT_ALPHA);
         }
         
-        CGRect boxFrame = CGRectMake(e.x, e.y, e.width, e.height);
-        
+        CGRect boxFrame = CGRectMake(roundf(e.x),
+                                     roundf(e.y),
+                                     roundf(e.width),
+                                     roundf(e.height));
+
         CGContextSetFillColorWithColor(context, color);
         CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
         CGContextSetLineWidth(context, 1.0f);
@@ -565,8 +574,11 @@
                 CGContextSetAlpha(context, OLD_EVENT_ALPHA);
             }
             
-            CGRect boxFrame = CGRectMake(e.x, e.y, e.width, e.height);
-            
+            CGRect boxFrame = CGRectMake(roundf(e.x),
+                                         roundf(e.y),
+                                         roundf(e.width),
+                                         roundf(e.height));
+
             CGContextSetFillColorWithColor(context, color);
             CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
             CGContextSetLineWidth(context, 1.0f);

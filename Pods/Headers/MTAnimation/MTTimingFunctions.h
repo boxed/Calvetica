@@ -1,1 +1,1 @@
-../../MTAnimation/MTAnimation/MTTimingFunctions.h
+../../../libs/MTAnimation/MTAnimation/MTTimingFunctions.h

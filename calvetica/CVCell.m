@@ -31,6 +31,7 @@
     [self addGestureRecognizer:swipeRightGesture];
     
     _titleLabel.text = @"";
+    self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
     
     [super awakeFromNib];
 }
@@ -42,19 +43,25 @@
 
 - (void)toggleAccessoryButton 
 {
-    [UIView animateWithDuration:ACCESSORY_BUTTON_ANIMATE_DURATION animations:^{
-        CGRect r = _cellAccessoryButton.frame;
-        r.origin.x += ACCESSORY_BUTTON_ANIMATE_DISTANCE;
-        [_cellAccessoryButton setFrame:r];
-    }
-                     completion:^(BOOL finished){
-                         [_cellAccessoryButton toggleMode];
-                         [UIView animateWithDuration:ACCESSORY_BUTTON_ANIMATE_DURATION animations:^{
-                             CGRect r = _cellAccessoryButton.frame;
-                             r.origin.x -= ACCESSORY_BUTTON_ANIMATE_DISTANCE;
-                             [_cellAccessoryButton setFrame:r];                             
-                         }];
-                     }];
+    [UIView mt_animateViews:@[_cellAccessoryButton]
+                   duration:0.25
+             timingFunction:kMTEaseInBack
+                    options:UIViewAnimationOptionBeginFromCurrentState
+                 animations:^
+    {
+        _cellAccessoryButton.x += ACCESSORY_BUTTON_ANIMATE_DISTANCE;
+    } completion:^{
+        [_cellAccessoryButton toggleMode];
+        [UIView mt_animateViews:@[_cellAccessoryButton]
+                       duration:0.25
+                 timingFunction:kMTEaseOutBack
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+        {
+            _cellAccessoryButton.x -= ACCESSORY_BUTTON_ANIMATE_DISTANCE;
+        } completion:^{
+        }];
+    }];
 }
 
 

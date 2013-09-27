@@ -1,38 +1,56 @@
 PODS:
-  - BlocksKit (1.8.1):
+  - BlocksKit (1.8.3):
     - libffi
-  - FrameAccessor (1.0.0)
-  - GVUserDefaults (0.9.0)
+  - FrameAccessor (1.2.0)
+  - GVUserDefaults (0.9.1)
   - libffi (3.0.13)
-  - MTAnimation (HEAD based on 0.1.4)
-  - MTDates (0.9.3)
-  - MTQueue (0.0.2)
-  - PSAlertView (1.1)
+  - MTAnimation (0.1.4)
+  - MTDates (0.9.4)
+  - MTGeometry (0.0.3)
+  - MTMigration (0.0.2)
+  - MTPencil (0.1.0):
+    - MTGeometry
+  - MTQueue (0.0.3)
   - SVProgressHUD (HEAD based on 0.9)
+  - TestFlightSDK (2.0)
 
 DEPENDENCIES:
   - BlocksKit (~> 1.8.1)
   - FrameAccessor
   - GVUserDefaults
-  - MTAnimation (HEAD)
-  - MTDates (from `~/mt-opensource/pods/MTDates/`)
+  - MTAnimation (from `libs/MTAnimation`)
+  - MTDates (from `libs/MTDates`)
+  - MTGeometry (from `libs/MTPencil/libs/MTGeometry`)
+  - MTMigration (from `libs/MTMigration`)
+  - MTPencil (from `libs/MTPencil/`)
   - MTQueue
-  - PSAlertView (~> 1.1)
   - SVProgressHUD (HEAD)
+  - TestFlightSDK (~> 2.0)
 
 EXTERNAL SOURCES:
+  MTAnimation:
+    :path: libs/MTAnimation
   MTDates:
-    :path: ~/mt-opensource/pods/MTDates/
+    :path: libs/MTDates
+  MTGeometry:
+    :path: libs/MTPencil/libs/MTGeometry
+  MTMigration:
+    :path: libs/MTMigration
+  MTPencil:
+    :path: libs/MTPencil/
 
 SPEC CHECKSUMS:
-  BlocksKit: 18102744fd7c44b54f1e54ce6ffe9258bcb5df81
-  FrameAccessor: 4017a9ec673f27d1b24e6da1d065676b49772086
-  GVUserDefaults: 7cbb1b5c05d565160b366b2d0a6d6a9f9c3753ce
+  BlocksKit: 27257f9cbbec0ea98c80ba83cc2ea7111ae62eb2
+  FrameAccessor: 9cab222a118092deba0ae186d07fa51d4830d3e4
+  GVUserDefaults: 5c24ace2008cc11953ebf72b6f9061ab898558d0
   libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MTAnimation: 2a6e443981b45b1342d9a3481da4ad9355757fce
-  MTDates: 8b4331c8a573c255611c2afdc4a82c274783b646
-  MTQueue: b2a881449f53a59f89ffe49df5731256e86cf4ef
-  PSAlertView: bdccae3cbd14f6060772654ae641daec7415d9fa
+  MTDates: 371e49d6a1d8064f7fe49161dd9af71682e57980
+  MTGeometry: 2566680a36d3d8a50e7532194ae10e1d8f0fa316
+  MTMigration: d4faacc6627bb538d99171d33307f875fa6e9a31
+  MTPencil: 07e6b265faf1fff2624a26a78060d95718517909
+  MTQueue: a345ceaab62f443bcacae30586537cbc9caf002b
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
+  TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
 
 COCOAPODS: 0.25.0

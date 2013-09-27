@@ -9,7 +9,6 @@
 
 
 
-
 @implementation CVWelcomeViewController
 
 
@@ -18,9 +17,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)migrateButtonWasTapped:(id)sender
+- (IBAction)visitStoreButtonWasTapped:(id)sender
 {
-	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultMigrateReminders];
+	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultStore];
 }
 
 - (IBAction)faqButtonWasTapped:(id)sender 
@@ -38,9 +37,9 @@
 	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultCancel];
 }
 
-- (IBAction)learnToMakeYourOwnButtonWasTapped:(id)sender 
+- (IBAction)learnAboutFirehoseWasTapped:(id)sender 
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.tinkerlearn.com/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.getfirehose.com/"]];
 }
 
 - (IBAction)dontShowMeButtonTapped:(id)sender 

@@ -1,1 +1,1 @@
-../../MTAnimation/MTAnimation/MTMatrixInterpolation.h
+../../../libs/MTAnimation/MTAnimation/MTMatrixInterpolation.h

@@ -13,10 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="divider.png" id="8">
-                        <rect key="frame" x="0.0" y="1" width="320" height="41"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tinyicon_repeat.png" id="3">
                         <rect key="frame" x="11" y="22.5" width="10" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -58,7 +54,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="divider.png" width="320" height="42"/>
         <image name="tinyicon_repeat.png" width="10" height="10"/>
     </resources>
 </document>

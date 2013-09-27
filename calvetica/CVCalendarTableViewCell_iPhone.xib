@@ -13,10 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="255" height="41"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="divider.png" id="6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </imageView>
                     <view contentMode="scaleToFill" id="5" userLabel="Color Dot" customClass="CVColoredDotView">
                         <rect key="frame" x="12" y="8" width="10" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -53,6 +49,5 @@
     </objects>
     <resources>
         <image name="check_red.png" width="40" height="40"/>
-        <image name="divider.png" width="320" height="42"/>
     </resources>
 </document>

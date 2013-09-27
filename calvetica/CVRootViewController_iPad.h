@@ -24,7 +24,6 @@
 
 
 - (void)setMonthAndDayLabels;
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode;
 - (void)showWeekView;
 
 

@@ -11,7 +11,7 @@
 
 
 typedef enum {
-	CVWelcomeViewControllerResultMigrateReminders,
+	CVWelcomeViewControllerResultStore,
     CVWelcomeViewControllerResultFAQ,
     CVWelcomeViewControllerResultGestures,
     CVWelcomeViewControllerResultDontShowMe,

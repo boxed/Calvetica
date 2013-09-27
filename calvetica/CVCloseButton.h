@@ -6,8 +6,8 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import "CVLineButton.h"
 
-@interface CVCloseButton : UIButton
+@interface CVCloseButton : CVLineButton
 
 @end

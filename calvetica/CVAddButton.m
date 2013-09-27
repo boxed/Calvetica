@@ -10,26 +10,19 @@
 
 @implementation CVAddButton
 
-- (void)setHighlighted:(BOOL)highlighted
+- (void)setupPencil
 {
-    [super setHighlighted:highlighted];
-    [self setNeedsDisplay];
-}
-
-- (void)drawRect:(CGRect)rect
-{
+    CGRect rect;
     rect.size.width     = 17;
     rect.size.height    = 17;
     rect.origin.x       = (self.width / 2) - (rect.size.width / 2);
     rect.origin.y       = (self.height / 2) - (rect.size.height / 2);
 
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(      CGRectGetMinX(rect), CGRectGetMidY(rect))];
-    [path addLineToPoint:CGPointMake(   CGRectGetMaxX(rect), CGRectGetMidY(rect))];
-    [path moveToPoint:CGPointMake(      CGRectGetMidX(rect), CGRectGetMinY(rect))];
-    [path addLineToPoint:CGPointMake(   CGRectGetMidX(rect), CGRectGetMaxY(rect))];
-    [[self titleColorForState:self.state] set];
-    [path stroke];
+    [[[_pencil move] delay:0.5] color:[UIColor whiteColor]];
+    [[_pencil move] to:CGPointMake(CGRectGetMinX(rect), CGRectGetMidY(rect))];
+    [[_pencil draw] to:CGPointMake(CGRectGetMaxX(rect), CGRectGetMidY(rect))];
+    [[_pencil move] to:CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect))];
+    [[_pencil draw] to:CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect))];
 }
 
 @end

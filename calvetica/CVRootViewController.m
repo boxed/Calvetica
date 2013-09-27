@@ -27,14 +27,166 @@
 
 @implementation CVRootViewController
 
-#pragma mark - Methods
 
-- (void)dealloc 
+- (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)setMode:(CVRootViewControllerMode)mode 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+
+    self.view.window.tintColor = patentedRed;
+
+    // @hack: from a google search, it looks like a bug in xcode 4 that viewDidLoad gets called
+    // twice on the root view controller for some reason.  This is a temporary hack.
+    if (self.monthTableViewController.delegate) return;
+
+    self.monthTableViewController.delegate = self;
+
+    // register to know when the event store changes.  When it does, we need to update calvetica alerts if that preferences is enabled.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventStoreChanged) name:EKEventStoreChangedNotification object:nil];
+
+    // set up the pinch gesture on the table view
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self  action:@selector(handleEventTableViewPinchGesture:)];
+    [self.rootTableView addGestureRecognizer:pinchGesture];
+
+    // set up swipe gesture on the table view
+    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeOnTableView:)];
+    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.rootTableView addGestureRecognizer:swipeLeftGesture];
+
+    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeOnTableView:)];
+    [self.rootTableView addGestureRecognizer:swipeRightGesture];
+
+    // set up tap gesture on red plus button
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(redBarPlusButtonWasTapped:)];
+    [self.redBarPlusButton addGestureRecognizer:tapGesture];
+
+    // set up long press button on the quick add
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnPlusButtonGesture:)];
+    [self.redBarPlusButton addGestureRecognizer:longPressGesture];
+
+    // set up tap gesture on red plus button
+    UITapGestureRecognizer *monthTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(monthLabelWasTapped:)];
+    [self.monthLabelControl addGestureRecognizer:monthTapGesture];
+
+    // set up long press button on the quick add
+    UILongPressGestureRecognizer *monthLongPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnMonthTitleGesture:)];
+    [self.monthLabelControl addGestureRecognizer:monthLongPressGesture];
+
+
+    // set the mode based on the saved state from previous use
+    self.mode = [CVSettings isReminderView] ? CVRootViewControllerModeReminders : CVRootViewControllerModeEvents;
+    if (self.mode == CVRootViewControllerModeEvents) {
+        self.tableMode = [CVSettings eventRootTableMode];
+    }
+    else if (self.mode == CVRootViewControllerModeReminders) {
+        self.tableMode = [CVSettings reminderRootTableMode];
+    }
+
+    // set day
+    self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
+
+    // set todays day, used for reference when coming out of background
+    self.todaysDate = [NSDate date];
+
+    // NO UPDATE SCREEN THIS TIME
+    // if this is the first time they've ever opened the app, or if the welcome screen
+    // was updated, show them the welcome screen
+//    if (![CVSettings welcomeScreenHasBeenShown]) {
+//        CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
+//        welcomeController.delegate = self;
+//        [self presentPageModalViewController:welcomeController animated:YES completion:nil];
+//    }
+
+    [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer *timer) {
+        [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (!granted) {
+                [MTq main:^{
+                    [self notifyOfNeededPermission];
+                }];
+            }
+            [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+                [MTq main:^{
+                    [CVEventStore reset];
+                    [self updateRootTableView];
+                    [self redrawDotsOnMonthView];
+                }];
+            }];
+        }];
+    } repeats:NO];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+
+	self.monthTableViewController.startDate = [[self.selectedDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+	self.monthTableViewController.selectedDate = self.selectedDate;
+	[self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+	[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
+
+	[self.rootTableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self resignFirstResponder];
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidUnload
+{
+    // if this gets dealloced and we don't remove it as an observer, when the event
+    // db changes, we'll get a segfault.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+	return UIInterfaceOrientationMaskPortrait;
+}
+
+// for shake gesture
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (self.tableMode == CVRootTableViewModeWeek) {
+        if (motion == UIEventSubtypeMotionShake) {
+            [self toggleDetailOutlinePortraitWeekViews];
+        }
+    }
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CVMonthTableViewController"]) {
+        self.monthTableViewController = segue.destinationViewController;
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
+
+
+
+
+#pragma mark - Public
+
+- (void)setMode:(CVRootViewControllerMode)mode
 {
     _mode = mode;
     if (mode == CVRootViewControllerModeEvents) {
@@ -218,161 +370,8 @@
 		[self.monthTableViewController reloadRowForDate:reminder.preferredDate];
 }
 
-
-
-#pragma mark - View Lifecycle
-
-- (void)viewDidLoad 
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode
 {
-	[super viewDidLoad];
-
-    self.view.window.tintColor = patentedRed;
-
-    // @hack: from a google search, it looks like a bug in xcode 4 that viewDidLoad gets called
-    // twice on the root view controller for some reason.  This is a temporary hack.
-    if (self.monthTableViewController.delegate) return;
-
-    self.monthTableViewController.delegate = self;
-
-    // register to know when the event store changes.  When it does, we need to update calvetica alerts if that preferences is enabled.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventStoreChanged) name:EKEventStoreChangedNotification object:nil];
-
-    // set up the pinch gesture on the table view
-    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self  action:@selector(handleEventTableViewPinchGesture:)];
-    [self.rootTableView addGestureRecognizer:pinchGesture];
-
-    // set up swipe gesture on the table view
-    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeOnTableView:)];
-    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.rootTableView addGestureRecognizer:swipeLeftGesture];
-
-    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeOnTableView:)];
-    [self.rootTableView addGestureRecognizer:swipeRightGesture];
-
-    // set up tap gesture on red plus button
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(redBarPlusButtonWasTapped:)];
-    [self.redBarPlusButton addGestureRecognizer:tapGesture];
-
-    // set up long press button on the quick add
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnPlusButtonGesture:)];
-    [self.redBarPlusButton addGestureRecognizer:longPressGesture];
-
-
-    // set up tap gesture on red plus button
-    UITapGestureRecognizer *monthTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(monthLabelWasTapped:)];
-    [self.monthLabelControl addGestureRecognizer:monthTapGesture];
-
-    // set up long press button on the quick add
-    UILongPressGestureRecognizer *monthLongPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnMonthTitleGesture:)];
-    [self.monthLabelControl addGestureRecognizer:monthLongPressGesture];
-
-
-    // set the mode based on the saved state from previous use
-    self.mode = [CVSettings isReminderView] ? CVRootViewControllerModeReminders : CVRootViewControllerModeEvents;
-    if (self.mode == CVRootViewControllerModeEvents) {
-        self.tableMode = [CVSettings eventRootTableMode];
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        self.tableMode = [CVSettings reminderRootTableMode];
-    }
-
-    // set day
-    self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
-
-    // set todays day, used for reference when coming out of background
-    self.todaysDate = [NSDate date];
-
-    // if this is the first time they've ever opened the app, or if the welcome screen
-    // was updated, show them the welcome screen
-    if (![CVSettings welcomeScreenHasBeenShown]) {
-        CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
-        welcomeController.delegate = self;
-        [self presentPageModalViewController:welcomeController animated:YES completion:nil];
-    }
-
-    [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimeInterval time) {
-        [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if (!granted) {
-                [MTq main:^{
-                    [self notifyOfNeededPermission];
-                }];
-            }
-            [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-                [MTq main:^{
-                    [CVEventStore reset];
-                    [self updateRootTableView];
-                    [self redrawDotsOnMonthView];
-                }];
-            }];
-        }];
-    } repeats:NO];
-}
-
-- (void)notifyOfNeededPermission
-{
-    PSPDFAlertView *alertView = [[PSPDFAlertView alloc] initWithTitle:@"We need permission"
-                                                              message:@"This app can't function unless you give it permission to access your calendars: Go to Settings.app > Privacy > Calendars and make sure Calvetica is ON"];
-    [alertView addButtonWithTitle:@"OK" block:nil];
-    [alertView show];
-}
-
-- (void)viewDidUnload
-{
-    // if this gets dealloced and we don't remove it as an observer, when the event
-    // db changes, we'll get a segfault.
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super viewDidUnload];
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-	return UIInterfaceOrientationMaskPortrait;
-}
-
-// for shake gesture
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event 
-{
-    if (self.tableMode == CVRootTableViewModeWeek) {
-        if (motion == UIEventSubtypeMotionShake) {
-            [self toggleDetailOutlinePortraitWeekViews];
-        }
-    }
-}
-
-- (BOOL)canBecomeFirstResponder 
-{
-    return YES;
-}
-
-- (void)viewDidAppear:(BOOL)animated 
-{    
-    [super viewDidAppear:animated];
-    [self becomeFirstResponder];
-
-	self.monthTableViewController.startDate = [[self.selectedDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
-	self.monthTableViewController.selectedDate = self.selectedDate;
-	[self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-	[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
-
-	[self.rootTableView reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated 
-{
-    [self resignFirstResponder];
-    [super viewWillDisappear:animated];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"CVMonthTableViewController"]) {
-        self.monthTableViewController = segue.destinationViewController;
-    }
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 
@@ -503,6 +502,11 @@
 
 - (void)cellWasLongPressed:(CVEventCell *)cell 
 {
+    [self showQuickAddWithDefault:YES
+                     durationMode:NO
+                             date:cell.date
+                             view:cell
+                             mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
 }
 
 - (void)searchController:(CVSearchViewController_iPhone *)controller cellWasTapped:(CVEventCell *)cell
@@ -872,9 +876,9 @@
 	if (result == CVWelcomeViewControllerResultDontShowMe) {
 		[CVSettings setWelcomeScreenHasBeenShown:YES];
 	}
-	if (result == CVWelcomeViewControllerResultMigrateReminders) {
+	if (result == CVWelcomeViewControllerResultStore) {
 		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
-			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"MigrateSegue" sender:nil];
+			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"StoreSegue" sender:nil];
 		}];
 	}
 	else if (result == CVWelcomeViewControllerResultFAQ) {
@@ -921,6 +925,15 @@
 			if (handler) handler(navController);
 		}];
 }
+
+- (void)notifyOfNeededPermission
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"We need permission"
+                                                        message:@"This app can't function unless you give it permission to access your calendars: Go to Settings.app > Privacy > Calendars and make sure Calvetica is ON"];
+    [alertView addButtonWithTitle:@"OK" handler:nil];
+    [alertView show];
+}
+
 
 
 @end

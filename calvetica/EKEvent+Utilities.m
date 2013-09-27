@@ -13,7 +13,9 @@
 - (void)setStartingDate:(NSDate *)startingDate
 {
 	self.startDate = startingDate;
-	if ([self.startingDate mt_isAfter:self.endingDate]) self.endingDate = [self.startingDate copy];
+	if ([self.startingDate mt_isAfter:self.endingDate]) {
+        self.endingDate = [self.startingDate copy];
+    }
 }
 
 - (NSDate *)startingDate
@@ -25,7 +27,9 @@
 - (void)setEndingDate:(NSDate *)endingDate
 {
 	self.endDate = endingDate;
-	if ([self.startingDate mt_isAfter:self.endingDate]) self.startingDate = [self.endingDate copy];
+	if ([self.startingDate mt_isAfter:self.endingDate]) {
+        self.startingDate = [self.endingDate copy];
+    }
 }
 
 - (NSDate *)endingDate
@@ -42,15 +46,24 @@
 
 + (EKEvent *)eventWithDefaultsAtDate:(NSDate *)date allDay:(BOOL)isAllDay
 {
-    return [EKEvent eventWithDefaultsAtStartDate:date endDate:[date dateByAddingTimeInterval:[CVSettings defaultDuration]] allDay:isAllDay calendar:[CVSettings defaultEventCalendar]];
+    return [EKEvent eventWithDefaultsAtStartDate:date
+                                         endDate:[date dateByAddingTimeInterval:[CVSettings defaultDuration]]
+                                          allDay:isAllDay
+                                        calendar:[CVSettings defaultEventCalendar]];
 }
 
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay
 {
-    return [EKEvent eventWithDefaultsAtStartDate:startDate endDate:endDate allDay:isAllDay calendar:[CVSettings defaultEventCalendar]];
+    return [EKEvent eventWithDefaultsAtStartDate:startDate
+                                         endDate:endDate
+                                          allDay:isAllDay
+                                        calendar:[CVSettings defaultEventCalendar]];
 }
 
-+ (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay calendar:(EKCalendar *)cal
++ (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate
+                                  endDate:(NSDate *)endDate
+                                   allDay:(BOOL)isAllDay
+                                 calendar:(EKCalendar *)cal
 {
     EKEvent *event = [CVEventStore event];
     
@@ -444,7 +457,7 @@
 
 - (BOOL)willBeABar 
 {
-	
+    return YES;
 	BOOL isAnAllDayEvent            = [self spansEntireDayOfOnlyDate:self.startingDate] || self.allDay;
 	BOOL isGreaterThanThreshold     = [self eventDuration] >= MIN_EVENT_DURATION;
 	BOOL fitsWithinItsStartDay      = [self fitsWithinDayOfDate:self.startingDate];

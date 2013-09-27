@@ -29,7 +29,6 @@
         self.redSubtitleLabel.hidden = YES;
         self.cellAccessoryButton.hidden = YES;
 		self.checkButton.hidden = YES;
-        self.dividerLine.hidden = YES;
 
         self.noReminderLabel.hidden = NO;
     }
@@ -39,7 +38,6 @@
         self.redSubtitleLabel.hidden = NO;
         self.cellAccessoryButton.hidden = NO;
 		self.checkButton.hidden = NO;
-        self.dividerLine.hidden = NO;
 
         self.noReminderLabel.hidden = YES;
     }

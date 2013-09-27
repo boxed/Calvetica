@@ -365,21 +365,15 @@
 }
 
 + (NSTimeZone *)timezone {
-    
-    // test local time (denver)
-//    return [NSTimeZone timeZoneWithName:@"America/Denver"];
-
-    // test 2 hours off (new york)
-//    return [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
-
-    // test 15 hours off (JST)
-    //return [NSTimeZone timeZoneWithAbbreviation:@"JST"];
-
     NSString *timeZoneName = [[NSUserDefaults standardUserDefaults] objectForKey:DEFAULT_TIMEZONE];
     if (timeZoneName && [CVSettings timeZoneSupport])
 		return [NSTimeZone timeZoneWithName:timeZoneName];
 
-    return [NSTimeZone defaultTimeZone];
+//    for (NSString *name in [NSTimeZone knownTimeZoneNames]) {
+//        NSLog(@"%@", name);
+//    }
+    return [NSTimeZone timeZoneWithName:@"Asia/Manila"];
+    return [NSTimeZone localTimeZone];
 }
 
 + (void)setTimeZone:(NSTimeZone *)timezone {

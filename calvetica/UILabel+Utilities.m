@@ -26,13 +26,13 @@
 - (NSInteger)linesOfWordWrapTextInLabelWithConstraintWidth:(CGFloat)width 
 {
     CGSize size = [self.text sizeWithFont:self.font];
-    return ceilf(size.width / width);
+    return floorf(size.width / width);
 }
 
 - (CGFloat)totalHeightOfWordWrapTextInLabelWithConstraintWidth:(CGFloat)width 
 {
     CGSize size = [self.text sizeWithFont:self.font];
-    NSInteger lines = ceilf(size.width / width);
+    NSInteger lines = floorf(size.width / width);
     return (size.height * lines);
 }
 

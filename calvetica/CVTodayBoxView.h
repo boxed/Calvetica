@@ -11,7 +11,5 @@
 
 
 @interface CVTodayBoxView : UIView
-
 - (void)setSuperFrame:(CGRect)frame;
-
 @end

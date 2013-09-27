@@ -263,7 +263,7 @@
     NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [rowDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
     cell.textLabel.textColor = patentedDarkGray;
     
     return cell;

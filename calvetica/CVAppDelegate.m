@@ -23,8 +23,7 @@
 
 
 @interface CVAppDelegate () 
-@property (nonatomic) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
-@property (nonatomic) UIBackgroundTaskIdentifier syncWithPocketLintBackgroundTask;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
 @end
 
 
@@ -46,12 +45,9 @@
 	[NSDate mt_setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
 
 	NSTimeZone *tz = [CVSettings timezone];
-	if (tz && [CVSettings timeZoneSupport]) {
-		[NSDate mt_setTimeZone:tz];
-	}
+    [NSDate mt_setTimeZone:tz];
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
-	_syncWithPocketLintBackgroundTask = UIBackgroundTaskInvalid;
 
     [self.window makeKeyAndVisible];
 

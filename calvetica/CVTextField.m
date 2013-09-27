@@ -13,32 +13,17 @@
 
 - (CGRect)editingRectForBounds:(CGRect)bounds 
 {
-    CGFloat inset = 7;
-    CGRect f = bounds;
-    f.origin.x = inset;
-    f.origin.y = 0;
-    f.size.width -= inset * 2;
-    return f;
+    return CGRectInset(bounds, 5, 5);
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds 
 {
-    CGFloat inset = 7;
-    CGRect f = bounds;
-    f.origin.x = inset;
-    f.origin.y = 0;
-    f.size.width -= inset * 2;
-    return f;
+    return CGRectInset(bounds, 5, 5);
 }
 
 - (CGRect)placeholderRectForBounds:(CGRect)bounds 
 {
-    CGFloat inset = 12;
-    CGRect f = bounds;
-    f.origin.x = inset;
-    f.origin.y = 0;
-    f.size.width -= inset * 2;
-    return f;
+    return CGRectInset(bounds, 5, 5);
 }
 
 @end

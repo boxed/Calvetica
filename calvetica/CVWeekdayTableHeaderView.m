@@ -62,7 +62,7 @@
     CGFloat distanceBetweenLines = viewHeight / numLines;
 
 	for (int i = 1; i < numLines; i++) {
-        CGFloat y = offset + roundf(distanceBetweenLines * i) + 0.5f;
+        CGFloat y = offset + floorf(distanceBetweenLines * i) + 0.5f;
         CGContextSetStrokeColorWithColor(context, [patentedBlack CGColor]);
 		CGContextMoveToPoint(context, 0, y);
 		CGContextAddLineToPoint(context, viewHeight, y);

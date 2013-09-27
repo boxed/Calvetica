@@ -605,7 +605,6 @@
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result 
 {
     [self.rootController dismissViewControllerAnimated:YES completion:nil];
-    //[UIApplication sharedApplication].statusBarHidden = YES;
 }
 
 
@@ -614,7 +613,7 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error 
 {
-    [self.closestSystemPresentedViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.rootController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -683,7 +682,6 @@
 
 - (IBAction)shareButtonWasTapped:(id)sender 
 {
-    
     if (self.shareButtonEmail == sender && [MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
         mailComposer.mailComposeDelegate = self;
@@ -693,7 +691,8 @@
         NSString *icsString = [self.event iCalString];
         NSData *data = [icsString dataUsingEncoding:NSUTF8StringEncoding];
         [mailComposer addAttachmentData:data mimeType:@"text/calendar" fileName:[NSString stringWithFormat:@"%@.ics", self.event.title]];
-        [self.closestSystemPresentedViewController presentViewController:mailComposer animated:YES completion:nil];
+        self.rootController = self.closestSystemPresentedViewController;
+        [self.rootController presentViewController:mailComposer animated:YES completion:nil];
 
        
     } else if (self.shareButtonSMS == sender && [MFMessageComposeViewController canSendText]) {
@@ -812,7 +811,7 @@
     
         [mailComposer setToRecipients:participantEmails];
         
-        [self.closestSystemPresentedViewController presentViewController:mailComposer animated:YES completion:nil];
+        [self.presentedViewController presentViewController:mailComposer animated:YES completion:nil];
     }
 }
 

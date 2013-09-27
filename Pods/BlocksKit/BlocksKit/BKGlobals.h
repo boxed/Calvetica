@@ -47,7 +47,7 @@ typedef void (^BKSenderBlock)(id sender);
 typedef void (^BKSenderKeyPathBlock)(id obj, NSString *keyPath);
 typedef void (^BKKeyValueBlock)(id key, id obj);
 typedef void (^BKIndexBlock)(NSUInteger index);
-typedef void (^BKTimerBlock)(NSTimeInterval time);
+typedef void (^BKTimerBlock)(NSTimer *timer);
 typedef void (^BKResponseBlock)(NSURLResponse *response);
 
 typedef void (^BKObservationBlock)(id obj, NSDictionary *change);
@@ -61,5 +61,6 @@ typedef id (^BKReturnBlock)(void);
 typedef id (^BKTransformBlock)(id obj);
 typedef id (^BKKeyValueTransformBlock)(id key, id obj);
 typedef id (^BKAccumulationBlock)(id sum, id obj);
+typedef id (^BKIndexMapBlock)(NSUInteger index);
 
 typedef NSUInteger (^BKIndexTransformBlock)(NSUInteger index);

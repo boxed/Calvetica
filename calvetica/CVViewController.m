@@ -266,6 +266,7 @@
     UIView *wrapper = viewControllerToDismiss.view.superview.superview;
 
     if (animated) {
+        popoverToDismiss.ignoreKeyboard = YES;
 
         UIView *v = viewControllerToDismiss.view.superview;
         v.mt_animationPerspective = -1 / 1600.0;
@@ -282,6 +283,7 @@
             v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
             [wrapper removeFromSuperview];
              [self.popoverModalViewControllers removeObject:popoverToDismiss];
+            popoverToDismiss.ignoreKeyboard = NO;
         }];
 
     } else {

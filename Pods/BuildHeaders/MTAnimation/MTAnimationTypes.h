@@ -1,1 +1,1 @@
-../../MTAnimation/MTAnimation/MTAnimationTypes.h
+../../../libs/MTAnimation/MTAnimation/MTAnimationTypes.h

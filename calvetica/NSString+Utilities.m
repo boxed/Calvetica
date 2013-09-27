@@ -23,13 +23,13 @@
 - (NSInteger)linesOfWordWrapTextWithFont:(UIFont *)font constraintWidth:(CGFloat)width 
 {
     CGSize size = [self sizeWithFont:font];
-    return ceilf(size.width / width);
+    return ceil(size.width / width);
 }
 
 - (CGFloat)totalHeightOfWordWrapTextWithFont:(UIFont *)font constraintWidth:(CGFloat)width 
 {
     CGSize size = [self sizeWithFont:font];
-    NSInteger lines = ceilf(size.width / width);
+    NSInteger lines = ceil(size.width / width);
     
     return (size.height * lines);
 }

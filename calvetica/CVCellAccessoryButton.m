@@ -7,6 +7,7 @@
 //
 
 #import "CVCellAccessoryButton.h"
+#import "CVDeleteButton.h"
 
 
 @implementation CVCellAccessoryButton
@@ -20,16 +21,28 @@
 - (void)setMode:(CVCellAccessoryButtonMode)newMode 
 {
     _mode = newMode;
-    
-    UIImageView *buttonImage = (UIImageView *)[[self subviews] lastObject];
+
+    for (UIView *v in self.subviews) {
+        [v removeFromSuperview];
+    }
+
+    UIView *v;
     if (_mode == CVCellAccessoryButtonModeDefault) {
-        buttonImage.image = _defaultImage;
-        [buttonImage setFrame:CVRectResize(buttonImage.frame, _defaultImage.size)];
+        UIImageView *buttonImage = [[UIImageView alloc] initWithImage:_defaultImage];
+        v = buttonImage;
     }
     else if (_mode == CVCellAccessoryButtonModeDelete) {
-        buttonImage.image = _deleteImage;
-        [buttonImage setFrame:CVRectResize(buttonImage.frame, _deleteImage.size)];
+        CVDeleteButton *button = [[CVDeleteButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+        button.backgroundColor = RGBHex(0xCC0000);
+        button.userInteractionEnabled = NO;
+//        [button setTitleColor:RGBHex(0xCC0000) forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+        v = button;
     }
+
+    v.x = 0;
+    v.y = (self.height / 2) - (v.height / 2) - 1;
+    [self addSubview:v];
 }
 
 - (void)setDefaultImage:(UIImage *)newDefaultImage 

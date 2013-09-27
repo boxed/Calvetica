@@ -26,12 +26,10 @@
         self.notesTinyIcon.hidden = YES;
         self.locationTinyIcon.hidden = YES;
         self.attendeesTinyIcon.hidden = YES;
-        self.dividerLine.hidden = YES;
         self.noEventLabel.hidden = NO;
     }
     else {
         self.noEventLabel.hidden = YES;
-        self.dividerLine.hidden = NO;
     }
 }
 

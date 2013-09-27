@@ -31,7 +31,6 @@ typedef enum {
 
 #pragma mark - Outlets
 @property (nonatomic, strong) IBOutlet UILabel *noEventLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *dividerLine;
 @property (nonatomic, strong) IBOutlet UIView *durationBarView;
 @property (nonatomic, strong) IBOutlet UIView *secondaryDurationBarView;
 @property (nonatomic, strong) IBOutlet UILabel *hourAndMinuteLabel;

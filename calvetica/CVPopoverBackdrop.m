@@ -48,7 +48,7 @@
         CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     }
     
-    currentPoint.x = innerRect.origin.x + (innerRect.size.width - POPOVER_ARROW_WIDTH) / 2.0;
+    currentPoint.x = innerRect.origin.x + (innerRect.size.width - POPOVER_ARROW_WIDTH) / 2;
     CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     
     // top middle
@@ -87,7 +87,7 @@
         CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     }
     
-    currentPoint.y = innerRect.origin.y + (innerRect.size.height - POPOVER_ARROW_WIDTH) / 2.0;
+    currentPoint.y = innerRect.origin.y + (innerRect.size.height - POPOVER_ARROW_WIDTH) / 2;
     CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     
     // right middle
@@ -126,7 +126,7 @@
         CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     }
     
-    currentPoint.x = innerRect.origin.x + ((innerRect.size.width - POPOVER_ARROW_WIDTH) / 2.0) + POPOVER_ARROW_WIDTH;
+    currentPoint.x = innerRect.origin.x + ((innerRect.size.width - POPOVER_ARROW_WIDTH) / 2) + POPOVER_ARROW_WIDTH;
     CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     
     // bottom middle
@@ -165,7 +165,7 @@
         CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     }
     
-    currentPoint.y = innerRect.origin.y + ((innerRect.size.height - POPOVER_ARROW_WIDTH) / 2.0) + POPOVER_ARROW_WIDTH;
+    currentPoint.y = innerRect.origin.y + ((innerRect.size.height - POPOVER_ARROW_WIDTH) / 2) + POPOVER_ARROW_WIDTH;
     CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y);
     
     // left middle
