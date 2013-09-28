@@ -359,11 +359,6 @@
 
 #pragma mark - Notifications
 
-- (void)eventStoreChanged 
-{
-    [super eventStoreChanged];
-}
-
 - (void)reminderStoreChanged 
 {
     [super reminderStoreChanged];

@@ -372,8 +372,7 @@
 //    for (NSString *name in [NSTimeZone knownTimeZoneNames]) {
 //        NSLog(@"%@", name);
 //    }
-    return [NSTimeZone timeZoneWithName:@"Asia/Manila"];
-    return [NSTimeZone localTimeZone];
+    return [NSTimeZone systemTimeZone];
 }
 
 + (void)setTimeZone:(NSTimeZone *)timezone {

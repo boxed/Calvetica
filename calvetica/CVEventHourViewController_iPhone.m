@@ -40,7 +40,7 @@
 		_reminderUI				= NO;
 		_startDateUpdatedBlock	= nil;
 		_endDateUpdatedBlock	= nil;
-		_allDateUpdatedBlock	= nil;
+		_allDayUpdatedBlock	= nil;
     }
     return self;
 }
@@ -153,7 +153,7 @@
 
 - (void)setAllDay:(BOOL)allDay
 {
-	if (_allDateUpdatedBlock && _allDay != allDay) _allDateUpdatedBlock(allDay);
+	if (_allDayUpdatedBlock && _allDay != allDay) _allDayUpdatedBlock(allDay);
 	_allDay = allDay;
 
 	self.editable = !allDay;
@@ -170,13 +170,9 @@
 	_militaryTime = militaryTime;
 
 	for (CVViewButton *button in _unitButtons) {
-		NSString *text = [self textForTag:button.tag];
-		if (text) {
-			button.hidden = NO;
-			button.titleLabel.text = text;
-		}
-		else
-			button.hidden = YES;
+        NSString *text          = [self textForTag:button.tag];
+        button.hidden           = NO;
+        [button setTitle:text forState:UIControlStateNormal];
 	}
 }
 
@@ -185,29 +181,24 @@
 
 #pragma mark - Actions
 
-- (IBAction)unitButtonWasTapped:(id)sender
+- (IBAction)unitButtonWasTapped:(CVViewButton *)button
 {
-    CVViewButton	*button		= (CVViewButton *)sender;
-	NSString		*title		= button.titleLabel.text;
-	NSDate			*date		= _mode == CVEventHourViewControllerModeStartTime ? _startDate : _endDate;
+    NSInteger tag   = button.tag -= HOUR_BUTTON_TAG_OFFSET;
+    NSUInteger col  = floor(tag / 12.0);
 
-	NSUInteger	hour	= [date mt_hourOfDay];
-	NSUInteger	min		= [date mt_minuteOfHour];
-	BOOL		isAM	= [date mt_isInAM];
+    NSDate *date    = _mode == CVEventHourViewControllerModeStartTime ? _startDate : _endDate;
+    NSUInteger hour = [date mt_hourOfDay];
+    NSUInteger min  = [date mt_minuteOfHour];
+    BOOL isAM       = [date mt_isInAM];
 
-	if ([title isEqualToString:@"AM"])
+	if (!_militaryTime && col == 0)
 		isAM = YES;
 
-	else if ([title isEqualToString:@"PM"])
-		isAM = NO;
+	else if (col == 1)
+        hour = [self intFromString:button.titleLabel.text];
 
-	else if ([title rangeOfString:@":"].location != NSNotFound)
-		min = [self intFromString:title];
-
-	else
-		hour = [self intFromString:title];
-
-	if (!_militaryTime) hour = isAM ? hour % 12 : (hour % 12) + 12;
+	else if (col == 2)
+		min = [self intFromString:button.titleLabel.text];
 
 	date = [NSDate mt_dateFromYear:[date mt_year]
                              month:[date mt_monthOfYear]
@@ -274,7 +265,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
-	self.mode = CVEventHourViewControllerModeEndTime;
     self.endDate = [NSDate mt_dateFromYear:[rowDate mt_year]
                                      month:[rowDate mt_monthOfYear]
                                        day:[rowDate mt_dayOfMonth]
@@ -295,18 +285,23 @@
 	NSUInteger min	= [d mt_minuteOfHour];
 	NSUInteger isAM	= [d mt_isInAM];
 	for (CVViewButton *button in _unitButtons) {
-		if (button.hidden) continue;
-		NSString	*text	= button.titleLabel.text;
-		NSUInteger	digit	= [self intFromString:text];
-		BOOL		minute	= [text rangeOfString:@":"].location != NSNotFound;
-		if ([text isEqualToString:@"AM"] && isAM)
+        NSInteger tag       = button.tag -= HOUR_BUTTON_TAG_OFFSET;
+        NSUInteger col      = floor(tag / 12.0);
+        NSString *text      = button.titleLabel.text;
+        NSUInteger digit    = [self intFromString:text];
+        if (col == 2 && digit == min)
 			button.selected = YES;
-		else if ([text isEqualToString:@"PM"] && !isAM)
-			button.selected = YES;
-		else if (minute && digit == min)
-			button.selected = YES;
-		else if (!minute && digit == hour)
-			button.selected = YES;
+		else if (digit == hour) {
+            if (_militaryTime) {
+                button.selected = YES;
+            }
+            else if (isAM && col == 0) {
+                button.selected = YES;
+            }
+            else if (!isAM && col == 1) {
+                button.selected = YES;
+            }
+        }
 		else
 			button.selected = NO;
 	}
@@ -340,20 +335,10 @@
 			return [NSString stringWithFormat:@"%d", (row == 0 ? 12 : row)];
 		}
 		else if (col == 1) {
-			return [NSString stringWithFormat:@":%02d", row * 5];
+			return [NSString stringWithFormat:@"%d", (row == 0 ? 12 : row)];
 		}
 		else if (col == 2) {
-			switch (row) {
-				case 0:
-					return @"AM";
-					break;
-				case 1:
-					return @"PM";
-					break;
-				default:
-					return nil;
-					break;
-			}
+			return [NSString stringWithFormat:@":%02d", row * 5];
 		}
 	}
 

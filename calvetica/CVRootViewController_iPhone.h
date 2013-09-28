@@ -29,6 +29,5 @@ typedef enum {
 @interface CVRootViewController_iPhone : CVRootViewController <UIGestureRecognizerDelegate> {}
 
 - (void)animateMonthViewDirection:(CVRootMonthViewAnimateDirection)direction;
-- (void)eventStoreChanged;
 
 @end

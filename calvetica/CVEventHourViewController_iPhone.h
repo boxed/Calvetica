@@ -31,7 +31,7 @@ typedef enum {
 
 @property (strong, nonatomic)	void (^startDateUpdatedBlock)(NSDate *date);
 @property (strong, nonatomic)	void (^endDateUpdatedBlock)(NSDate *date);
-@property (strong, nonatomic)	void (^allDateUpdatedBlock)(BOOL allDay);
+@property (strong, nonatomic)	void (^allDayUpdatedBlock)(BOOL allDay);
 
 - (id)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military;
 

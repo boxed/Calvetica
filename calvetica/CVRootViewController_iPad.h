@@ -26,9 +26,4 @@
 - (void)setMonthAndDayLabels;
 - (void)showWeekView;
 
-
-#pragma mark - Notifications
-- (void)eventStoreChanged;
-
-
 @end

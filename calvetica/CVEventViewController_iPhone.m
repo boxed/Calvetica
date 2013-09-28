@@ -109,17 +109,19 @@
 
 	[hourViewController setStartDateUpdatedBlock:^(NSDate *date) {
 		NSDate *endDateBefore = [_event.endingDate copy];
-		[_event shiftEndDateBySettingStartDate:date];
+        _event.allDay = NO;
+        _event.startingDate = date;
 		if (![endDateBefore isEqualToDate:_event.endingDate]) hrv.endDate = _event.endingDate;
 	}];
 
 	[hourViewController setEndDateUpdatedBlock:^(NSDate *date) {
 		NSDate *startDateBefore = [_event.startingDate copy];
+        _event.allDay = NO;
 		_event.endingDate = date;
 		if (![startDateBefore isEqualToDate:_event.startingDate]) hrv.startDate = _event.startingDate;
 	}];
 
-	[hourViewController setAllDateUpdatedBlock:^(BOOL allDay) {
+	[hourViewController setAllDayUpdatedBlock:^(BOOL allDay) {
         _event.allDay = NO;
 		[_event resetDefaultAlarms];
 		[_event resetDurationToDefault];

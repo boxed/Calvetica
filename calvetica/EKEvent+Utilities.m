@@ -20,8 +20,9 @@
 
 - (NSDate *)startingDate
 {
-	NSDate *date = self.startDate;
-	return self.allDay ? [self.startDate mt_startOfCurrentDay] : date;
+    return self.startDate;
+//	NSDate *date = self.startDate;
+//	return self.allDay ? [self.startDate mt_startOfCurrentDay] : date;
 }
 
 - (void)setEndingDate:(NSDate *)endingDate
@@ -34,8 +35,9 @@
 
 - (NSDate *)endingDate
 {
-	NSDate *date = self.endDate;
-	return self.allDay ? [self.endDate mt_endOfCurrentDay] : date;
+    return self.endDate;
+//	NSDate *date = self.endDate;
+//	return self.allDay ? [self.endDate mt_endOfCurrentDay] : date;
 }
 
 
@@ -320,7 +322,7 @@
 
 - (void)resetDefaultAlarms 
 {
-    NSMutableArray *newAlarms = [NSMutableArray array];
+    NSMutableArray *newAlarms = [NSMutableArray new];
     self.alarms = nil;
     if (self.isAllDay) {
         if (self.calendar.source.sourceType == EKSourceTypeExchange && newAlarms.count > 0) {
