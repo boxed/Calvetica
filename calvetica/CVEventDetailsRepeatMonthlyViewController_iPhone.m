@@ -23,10 +23,10 @@
 @property (nonatomic) NSInteger repeatOnState;
 @property (nonatomic) NSInteger weekNumber;
 
-@property (nonatomic, strong) IBOutlet CVViewButton *dayOfWeekButton;
-@property (nonatomic, strong) IBOutlet CVViewButton *eachDayButton;
-@property (nonatomic, strong) IBOutlet CVMultiToggleButton *repeatOnButton;
-@property (nonatomic, strong) IBOutlet CVMultiToggleButton *weekNumberButton;
+@property (nonatomic, weak) IBOutlet CVViewButton *dayOfWeekButton;
+@property (nonatomic, weak) IBOutlet CVViewButton *eachDayButton;
+@property (nonatomic, weak) IBOutlet CVMultiToggleButton *repeatOnButton;
+@property (nonatomic, weak) IBOutlet CVMultiToggleButton *weekNumberButton;
 @end
 
 

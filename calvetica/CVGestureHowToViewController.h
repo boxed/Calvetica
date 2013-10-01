@@ -15,7 +15,7 @@
 
 @interface CVGestureHowToViewController : CVViewController <UIScrollViewDelegate, CVModalProtocol>
 
-@property (nonatomic, unsafe_unretained) id<CVGestureHowToViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVGestureHowToViewControllerDelegate> delegate;
 
 @end
 

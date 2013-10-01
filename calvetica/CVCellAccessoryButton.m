@@ -32,31 +32,20 @@
         v = buttonImage;
     }
     else if (_mode == CVCellAccessoryButtonModeDelete) {
-        CVDeleteButton *button = [[CVDeleteButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+        CVDeleteButton *button = [[CVDeleteButton alloc] initWithFrame:CGRectMake(0, 0, 45, 35)];
         button.backgroundColor = RGBHex(0xCC0000);
         button.userInteractionEnabled = NO;
-//        [button setTitleColor:RGBHex(0xCC0000) forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         v = button;
     }
 
-    v.x = 0;
+    v.x = (self.width / 2) - (v.height / 2) - 1;
     v.y = (self.height / 2) - (v.height / 2) - 1;
     [self addSubview:v];
 }
 
 - (void)setDefaultImage:(UIImage *)newDefaultImage 
 {
-    
     _defaultImage = newDefaultImage;
-    
-    self.mode = _mode;
-}
-
-- (void)setDeleteImage:(UIImage *)newDeleteImage 
-{
-    _deleteImage = newDeleteImage;
-    
     self.mode = _mode;
 }
 

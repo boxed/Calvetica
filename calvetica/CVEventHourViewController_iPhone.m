@@ -20,6 +20,8 @@
 @property (nonatomic, weak  ) IBOutlet CVViewButton                  *allDayButton;
 @property (nonatomic, weak  ) IBOutlet UIView                        *allDayButtonContainer;
 @property (nonatomic, weak  ) IBOutlet UITableView                   *endDateTableView;
+@property (nonatomic, weak  ) IBOutlet UILabel                       *AMTitleLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel                       *PMTitleLabel;
 @end
 
 
@@ -40,15 +42,15 @@
 		_reminderUI				= NO;
 		_startDateUpdatedBlock	= nil;
 		_endDateUpdatedBlock	= nil;
-		_allDayUpdatedBlock	= nil;
+		_allDayUpdatedBlock     = nil;
     }
     return self;
 }
 
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
 
 	for (CVViewButton *button in @[ _startTimeButton, _endTimeButton, _allDayButton ]) {
 		button.backgroundColorSelected	= patentedRed;
@@ -172,8 +174,18 @@
 	for (CVViewButton *button in _unitButtons) {
         NSString *text          = [self textForTag:button.tag];
         button.hidden           = NO;
-        [button setTitle:text forState:UIControlStateNormal];
+        button.titleLabel.text  = text;
+//        [button setTitle:text forState:UIControlStateNormal];
 	}
+
+    if (_militaryTime) {
+        _AMTitleLabel.hidden = YES;
+        _PMTitleLabel.hidden = YES;
+    }
+    else {
+        _AMTitleLabel.hidden = NO;
+        _PMTitleLabel.hidden = NO;
+    }
 }
 
 
@@ -183,7 +195,7 @@
 
 - (IBAction)unitButtonWasTapped:(CVViewButton *)button
 {
-    NSInteger tag   = button.tag -= HOUR_BUTTON_TAG_OFFSET;
+    NSInteger tag   = button.tag - HOUR_BUTTON_TAG_OFFSET;
     NSUInteger col  = floor(tag / 12.0);
 
     NSDate *date    = _mode == CVEventHourViewControllerModeStartTime ? _startDate : _endDate;
@@ -191,14 +203,18 @@
     NSUInteger min  = [date mt_minuteOfHour];
     BOOL isAM       = [date mt_isInAM];
 
-	if (!_militaryTime && col == 0)
+	if (col == 0) {
 		isAM = YES;
-
-	else if (col == 1)
         hour = [self intFromString:button.titleLabel.text];
-
+    }
+	else if (col == 1) {
+		isAM = NO;
+        hour = [self intFromString:button.titleLabel.text];
+    }
 	else if (col == 2)
 		min = [self intFromString:button.titleLabel.text];
+
+    if (!_militaryTime) hour = isAM ? hour % 12 : (hour % 12) + 12;
 
 	date = [NSDate mt_dateFromYear:[date mt_year]
                              month:[date mt_monthOfYear]
@@ -285,10 +301,11 @@
 	NSUInteger min	= [d mt_minuteOfHour];
 	NSUInteger isAM	= [d mt_isInAM];
 	for (CVViewButton *button in _unitButtons) {
-        NSInteger tag       = button.tag -= HOUR_BUTTON_TAG_OFFSET;
+        NSInteger tag       = button.tag - HOUR_BUTTON_TAG_OFFSET;
         NSUInteger col      = floor(tag / 12.0);
         NSString *text      = button.titleLabel.text;
         NSUInteger digit    = [self intFromString:text];
+        button.selected     = NO;
         if (col == 2 && digit == min)
 			button.selected = YES;
 		else if (digit == hour) {
@@ -302,8 +319,6 @@
                 button.selected = YES;
             }
         }
-		else
-			button.selected = NO;
 	}
 
     NSInteger row = [[_endDate mt_startOfCurrentDay] mt_daysSinceDate:[_startDate mt_startOfCurrentDay]];

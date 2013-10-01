@@ -203,14 +203,14 @@
     
     if (holder.participant) {
         if (holder.email) {
-            [cell.emailButton setImage:[UIImage imageNamed:@"email_r"] forState:UIControlStateNormal];
+            cell.emailButton.selected = YES;
         }
         else {
             cell.emailButton.alpha = 0.3;
         }
         
         if (holder.telephoneNumbers && holder.telephoneNumbers.count > 0 && [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"sms://"]]) {
-            [cell.chatButton setImage:[UIImage imageNamed:@"chat_r"] forState:UIControlStateNormal];
+            cell.chatButton.selected = YES;
         }
         else {
             cell.chatButton.alpha = 0.3;

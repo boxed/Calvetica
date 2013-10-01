@@ -16,7 +16,7 @@
 @interface CVHUD : UIView {
 }
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
 - (void)presentBezel;
 

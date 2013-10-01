@@ -12,7 +12,7 @@
 @interface CVNavigationController : CVViewController
 
 #pragma mark - UINavigationController "like" properties
-@property (nonatomic, strong) IBOutlet UIView *contentViewContainer;
+@property (nonatomic, weak) IBOutlet UIView *contentViewContainer;
 @property (nonatomic, readonly, strong) CVViewController *topViewController;
 @property (nonatomic, copy) NSArray *viewControllers;
 @property (nonatomic, readonly, strong) CVViewController *visibleViewController;

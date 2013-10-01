@@ -49,7 +49,7 @@
                     options:UIViewAnimationOptionBeginFromCurrentState
                  animations:^
     {
-        _cellAccessoryButton.x += ACCESSORY_BUTTON_ANIMATE_DISTANCE;
+        _cellAccessoryButton.x += _cellAccessoryButton.width;
     } completion:^{
         [_cellAccessoryButton toggleMode];
         [UIView mt_animateViews:@[_cellAccessoryButton]
@@ -58,7 +58,7 @@
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^
         {
-            _cellAccessoryButton.x -= ACCESSORY_BUTTON_ANIMATE_DISTANCE;
+            _cellAccessoryButton.x -= _cellAccessoryButton.width;
         } completion:^{
         }];
     }];

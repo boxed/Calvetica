@@ -654,26 +654,6 @@
 	[defaults synchronize];
 }
 
-//james
-+ (BOOL)useOutlinePortraitWeekView {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:@"UseOutlinePortraitWeekView"] != nil ? [defaults boolForKey:@"UseOutlinePortraitWeekView"] : YES;
-}
-
-+ (void)setUseOutlinePortraitWeekView:(BOOL)useOutline {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:useOutline forKey:@"UseOutlinePortraitWeekView"];
-    [defaults synchronize];
-}
-
-
-
-#pragma mark - POCKETLINT
-
-+ (NSString *)deviceID {
-	return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-}
-
 
 
 

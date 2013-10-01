@@ -21,11 +21,11 @@
 @property (nonatomic, strong) CVTodayBoxView *todayBoxView;
 
 #pragma mark - IBOutlets
-@property (nonatomic, strong) IBOutlet UILabel *label;
-@property (nonatomic, strong) IBOutlet UILabel *monthTitleLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
-@property (nonatomic, strong) IBOutlet UIView *barViewContainer;
-@property (nonatomic, strong) IBOutlet UIView *dotViewContainer;
+@property (nonatomic, weak) IBOutlet UILabel *label;
+@property (nonatomic, weak) IBOutlet UILabel *monthTitleLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic, weak) IBOutlet UIView *barViewContainer;
+@property (nonatomic, weak) IBOutlet UIView *dotViewContainer;
 
 #pragma mark - Methods
 - (void)drawDotWithOffset:(NSUInteger)offset shape:(CVColoredShape)shape rect:(CGRect)rect color:(UIColor *)color;

@@ -12,7 +12,7 @@
 @interface CVEventSquaresView : UIView
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVEventSquaresViewDelegate> delegate;
+@property (nonatomic, weak) id<CVEventSquaresViewDelegate> delegate;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSArray *squares;
 

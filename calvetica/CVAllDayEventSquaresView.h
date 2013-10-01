@@ -14,7 +14,7 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVAllDayEventSquaresViewDelegate> delegate;
+@property (nonatomic, weak) id<CVAllDayEventSquaresViewDelegate> delegate;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSArray *squares;
 

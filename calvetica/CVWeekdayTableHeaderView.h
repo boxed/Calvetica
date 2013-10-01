@@ -9,6 +9,6 @@
 @interface CVWeekdayTableHeaderView : UIView
 
 @property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) IBOutlet UILabel *weekNumberLabel;
+@property (nonatomic, weak) IBOutlet UILabel *weekNumberLabel;
 
 @end

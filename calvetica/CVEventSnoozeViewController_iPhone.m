@@ -14,9 +14,9 @@
 
 
 @interface CVEventSnoozeViewController_iPhone ()
-@property (nonatomic, strong) IBOutlet UILabel *eventNameLabel;
-@property (nonatomic, strong) IBOutlet UIButton *tenMinutesButton;
-@property (nonatomic, strong) IBOutlet UIButton *eventStartButton;
+@property (nonatomic, weak) IBOutlet UILabel *eventNameLabel;
+@property (nonatomic, weak) IBOutlet UIButton *tenMinutesButton;
+@property (nonatomic, weak) IBOutlet UIButton *eventStartButton;
 @end
 
 

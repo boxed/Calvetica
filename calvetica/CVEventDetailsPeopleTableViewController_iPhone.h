@@ -19,7 +19,7 @@
 }
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) NSObject <CVEventDetailsPeopleTableViewController_iPhoneDelegate> *delegate;
+@property (nonatomic, weak) NSObject <CVEventDetailsPeopleTableViewController_iPhoneDelegate> *delegate;
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic, strong) UINib *peopleCellNib;
 @property (nonatomic, strong) NSMutableArray *participantDataHolderArray;

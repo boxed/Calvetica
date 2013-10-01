@@ -32,13 +32,13 @@ typedef enum {
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVLandscapeWeekViewDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UITableView *weeksTable;
+@property (nonatomic, weak) id<CVLandscapeWeekViewDelegate> delegate;
+@property (nonatomic, weak) IBOutlet UITableView *weeksTable;
 @property (nonatomic, strong) UINib *weekdayCellNib;
 @property (nonatomic, strong) UINib *weekdayHeaderNib;
 @property (nonatomic, strong) NSArray *headerViews;
 @property (nonatomic, copy) NSDate *startDate;
-@property (nonatomic, strong) IBOutlet UILabel *monthAndYearLabel;
+@property (nonatomic, weak) IBOutlet UILabel *monthAndYearLabel;
 
 
 #pragma mark - Methods

@@ -15,7 +15,7 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVAgendaReminderCellDelegate> delegate;
+@property (nonatomic, weak) id<CVAgendaReminderCellDelegate> delegate;
 @property (nonatomic, strong) EKReminder *reminder;
 
 

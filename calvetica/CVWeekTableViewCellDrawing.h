@@ -14,7 +14,7 @@
 
 @interface CVWeekTableViewCellDrawing : UIView
 
-@property (nonatomic, unsafe_unretained) id<CVWeekTableViewCellDrawingDataSource> delegate;
+@property (nonatomic, weak) id<CVWeekTableViewCellDrawingDataSource> delegate;
 @property (nonatomic, strong) NSArray *dataHolders;
 
 - (NSArray *)prepareDataHolders;

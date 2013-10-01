@@ -104,7 +104,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_bigcheck_red.png" id="62">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_bigcheck_red" id="62">
                                             <rect key="frame" x="224" y="9" width="23" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -130,7 +130,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_bigcheck_red.png" id="86">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_bigcheck_red" id="86">
                                             <rect key="frame" x="224" y="9" width="23" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -156,7 +156,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_bigcheck_red.png" id="93">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_bigcheck_red" id="93">
                                             <rect key="frame" x="224" y="9" width="23" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -229,6 +229,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_bigcheck_red.png" width="23" height="21"/>
+        <image name="icon_bigcheck_red" width="22" height="20"/>
     </resources>
 </document>

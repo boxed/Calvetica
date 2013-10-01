@@ -46,7 +46,7 @@ typedef enum {
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) NSObject<CVEventDetailsRecurrenceDelegate> *delegate;
+@property (nonatomic, weak) NSObject<CVEventDetailsRecurrenceDelegate> *delegate;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) EKRecurrenceRule *initialRecurrenceRule;
 @property (nonatomic, strong) NSArray *daySymbols;
@@ -55,16 +55,16 @@ typedef enum {
 
 
 #pragma mark IBOutlets
-@property (nonatomic, strong) IBOutlet UITableView *dateDay;
-@property (nonatomic, strong) IBOutlet UITableView *dateMonth;
-@property (nonatomic, strong) IBOutlet UITableView *dateYear;
-@property (nonatomic, strong) IBOutlet UIView *dateView;
-@property (nonatomic, strong) IBOutlet UILabel *endAfterLabel;
-@property (nonatomic, strong) IBOutlet UIView *endAfterView;
-@property (nonatomic, strong) IBOutlet CVMultiToggleButton *endTypeButton;
-@property (nonatomic, strong) IBOutlet UILabel *repeatTimesLabel;
-@property (nonatomic, strong) IBOutlet CVViewButton *frequencyButton;
-@property (nonatomic, strong) IBOutlet CVViewButton *endCountButton;
+@property (nonatomic, weak) IBOutlet UITableView *dateDay;
+@property (nonatomic, weak) IBOutlet UITableView *dateMonth;
+@property (nonatomic, weak) IBOutlet UITableView *dateYear;
+@property (nonatomic, weak) IBOutlet UIView *dateView;
+@property (nonatomic, weak) IBOutlet UILabel *endAfterLabel;
+@property (nonatomic, weak) IBOutlet UIView *endAfterView;
+@property (nonatomic, weak) IBOutlet CVMultiToggleButton *endTypeButton;
+@property (nonatomic, weak) IBOutlet UILabel *repeatTimesLabel;
+@property (nonatomic, weak) IBOutlet CVViewButton *frequencyButton;
+@property (nonatomic, weak) IBOutlet CVViewButton *endCountButton;
 
 
 #pragma mark - Methods

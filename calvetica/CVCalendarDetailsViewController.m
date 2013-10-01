@@ -37,7 +37,7 @@
     _calendarTitleTextField.textColor = [UIColor darkTextColor];
     _calendarTitleTextField.textAlignment = NSTextAlignmentLeft;
     _calendarTitleTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-    _calendarTitleTextField.placeholder = @"My new reminder calendar";
+    _calendarTitleTextField.placeholder = @"My new calendar";
 
 	_calendarTitleTextField.text = self.calendar.title;
 	self.navigationItem.title = @"Edit Calendar";
@@ -129,7 +129,7 @@
     else if (indexPath.section == 1) {
         CVCustomColorDataHolder *colorHolder    = [_availableColors objectAtIndex:indexPath.row];
         cell.imageView.backgroundColor          = colorHolder.color;
-        cell.imageView.image                    = [UIImage imageNamed:@"custom_color_background"];
+        cell.imageView.image                    = [UIImage imageNamed:@"bg_clear_cell_image"];
         cell.textLabel.text                     = [NSString stringWithFormat:@"%@", colorHolder.title];
         cell.selectionStyle                     = UITableViewCellSelectionStyleBlue;
         cell.accessoryView                      = nil;

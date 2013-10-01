@@ -24,7 +24,7 @@ typedef enum {
 
 	
 #pragma mark - Public Properties
-@property (nonatomic, unsafe_unretained) id<CVSubHourPickerViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVSubHourPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSDate *evenHourDate;
 
 

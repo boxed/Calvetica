@@ -18,7 +18,12 @@
 @implementation CVEventDayViewController_iPhone
 
 
-
+- (void)dealloc
+{
+    self.yearTableView.delegate = nil;
+    self.yearTableView.dataSource = nil;
+    self.scrollView.delegate = nil;
+}
 
 
 #pragma mark - Methods
@@ -250,7 +255,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    
     CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

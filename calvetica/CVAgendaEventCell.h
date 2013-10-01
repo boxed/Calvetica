@@ -17,9 +17,9 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVAgendaEventCellDelegate> delegate;
+@property (nonatomic, weak) id<CVAgendaEventCellDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
-@property (nonatomic, strong) IBOutlet CVLabel *timeLabel;
+@property (nonatomic, weak) IBOutlet CVLabel *timeLabel;
 
 
 #pragma mark - Methods

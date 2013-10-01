@@ -36,12 +36,12 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="33" userLabel="chatButton">
                         <rect key="frame" x="188" y="1" width="35" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                        <state key="normal" image="chat_b.png">
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                        <state key="normal" image="icon_attendee_chat">
                             <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <state key="highlighted">
+                        <state key="highlighted" image="icon_attendee_chat_selected">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -51,12 +51,12 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="24" userLabel="emailButton">
                         <rect key="frame" x="220" y="1" width="35" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                        <state key="normal" image="email_b.png">
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                        <state key="normal" image="icon_attendee_email">
                             <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <state key="highlighted">
+                        <state key="highlighted" image="icon_attendee_email_selected">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -75,7 +75,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chat_b.png" width="20" height="20"/>
-        <image name="email_b.png" width="20" height="20"/>
+        <image name="icon_attendee_chat" width="20" height="20"/>
+        <image name="icon_attendee_chat_selected" width="20" height="20"/>
+        <image name="icon_attendee_email" width="20" height="20"/>
+        <image name="icon_attendee_email_selected" width="20" height="20"/>
     </resources>
 </document>

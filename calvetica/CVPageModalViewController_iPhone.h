@@ -11,7 +11,7 @@
 
 @interface CVPageModalViewController_iPhone : CVViewController
 
-@property (nonatomic, strong) IBOutlet UIView *modalViewContainer;
+@property (nonatomic, weak) IBOutlet UIView *modalViewContainer;
 @property (nonatomic, strong) CVViewController *contentViewController;
 
 - (id)initWithContentViewController:(CVViewController *)initContentViewController;

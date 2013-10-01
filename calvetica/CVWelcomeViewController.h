@@ -24,9 +24,9 @@ typedef enum {
 
 @interface CVWelcomeViewController : CVViewController
 
-@property (nonatomic, unsafe_unretained) id<CVWelcomeViewControllerDelegate> delegate;
-@property (nonatomic, strong) IBOutlet CVRoundedButton *faqButton;
-@property (nonatomic, strong) IBOutlet CVRoundedButton *gestureButton;
+@property (nonatomic, weak) id<CVWelcomeViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet CVRoundedButton *faqButton;
+@property (nonatomic, weak) IBOutlet CVRoundedButton *gestureButton;
 
 - (IBAction)faqButtonWasTapped:(id)sender;
 - (IBAction)gesturesButtonWasTapped:(id)sender;

@@ -148,9 +148,11 @@
     for (NSInteger i = 0; i < self.daysOfWeekArray.count; i++) {
         NSDate *d = [self.daysOfWeekArray objectAtIndex:i];
         if ([d mt_isWithinSameDay:date]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:NSNotFound inSection:i];
-            if ([self.tableView numberOfRowsInSection:0] > indexPath.row) {
-                [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+            if ([self.tableView numberOfRowsInSection:i] > indexPath.row) {
+                [self.tableView scrollToRowAtIndexPath:indexPath
+                                      atScrollPosition:UITableViewScrollPositionTop
+                                              animated:YES];
             }
             break;
         }

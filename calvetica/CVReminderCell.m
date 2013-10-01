@@ -8,13 +8,12 @@
 
 #import "CVReminderCell.h"
 #import "EKReminder+Calvetica.h"
-
+#import "CVCheckButton.h"
 
 
 @interface CVReminderCell ()
-@property (weak, nonatomic) IBOutlet CVCellAccessoryButton *checkButton;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 @end
-
 
 
 @implementation CVReminderCell
@@ -60,9 +59,8 @@
     }
     
     self.coloredDotView.color = [UIColor colorWithCGColor:_reminder.calendar.CGColor];
-    _checkButton.defaultImage = [UIImage imageNamed:(_reminder.completed ? @"icon_bigcheck_red" : @"icon_bigcheck")];
-	self.cellAccessoryButton.defaultImage = [UIImage imageNamed:(_reminder.alarms.count > 0 ? @"icon_alarm_red" : @"icon_alarm_lg")];
-	self.cellAccessoryButton.deleteImage = [UIImage imageNamed:@"icon_trash_slider"];
+    _checkButton.selected = _reminder.completed ? YES : NO;
+	self.cellAccessoryButton.defaultImage = [UIImage imageNamed:(_reminder.alarms.count > 0 ? @"icon_alarm_selected" : @"icon_alarm")];
     self.titleLabel.striked = _reminder.isCompleted;
 }
 
@@ -97,11 +95,11 @@
 	if (_reminder.isCompleted) {
 		_reminder.completed = NO;
 		self.titleLabel.striked = NO;
-		_checkButton.defaultImage = [UIImage imageNamed:@"icon_bigcheck"];
+		_checkButton.selected = YES;
 	} else {
 		_reminder.completionDate = [NSDate date];
 		self.titleLabel.striked = YES;
-		_checkButton.defaultImage = [UIImage imageNamed:@"icon_bigcheck_red"];
+		_checkButton.selected = NO;
 	}
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
 		[_reminder save];

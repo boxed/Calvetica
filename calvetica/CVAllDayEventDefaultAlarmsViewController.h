@@ -19,7 +19,7 @@
 
 
 #pragma mark - Public Properties
-@property (nonatomic, unsafe_unretained) id<CVAllDayEventDefaultAlarmsViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVAllDayEventDefaultAlarmsViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *selectedAlarms;
 @property (nonatomic, strong) NSMutableArray *alarms;
 

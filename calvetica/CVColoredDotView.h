@@ -24,7 +24,7 @@ typedef enum {
 
 @interface CVColoredDotView : UIView
 
-@property (nonatomic, unsafe_unretained) id<CVColoredDotViewDelegate> delegate;
+@property (nonatomic, weak) id<CVColoredDotViewDelegate> delegate;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic) CVColoredShape shape;
 

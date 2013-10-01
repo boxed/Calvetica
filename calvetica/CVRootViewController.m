@@ -152,16 +152,6 @@
 	return UIInterfaceOrientationMaskPortrait;
 }
 
-// for shake gesture
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    if (self.tableMode == CVRootTableViewModeWeek) {
-        if (motion == UIEventSubtypeMotionShake) {
-            [self toggleDetailOutlinePortraitWeekViews];
-        }
-    }
-}
-
 - (BOOL)canBecomeFirstResponder
 {
     return YES;
@@ -294,13 +284,10 @@
         }
         
         else if (self.tableMode == CVRootTableViewModeWeek) {
-            //james
-            if ([CVSettings useOutlinePortraitWeekView]) {
-                self.rootTableViewController = [[CVEventsWeekAgendaTableViewController alloc] init];
-            }
-            else {
-                self.rootTableViewController = [[CVEventsWeekStdAgendaTableViewController alloc] init];
-            }
+            self.rootTableViewController = [[CVEventsWeekAgendaTableViewController alloc] init];
+        }
+        else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
+            self.rootTableViewController = [[CVEventsWeekStdAgendaTableViewController alloc] init];
         }
     }
     else if (self.mode == CVRootViewControllerModeReminders) {
@@ -311,13 +298,11 @@
         }
         
         else if (self.tableMode == CVRootTableViewModeWeek) {
-            //james
-            if ([CVSettings useOutlinePortraitWeekView]) {
-                self.rootTableViewController = [[CVRemindersWeekAgendaTableViewController alloc] init];
-            }
-            else {
-                self.rootTableViewController = [[CVRemindersWeekStdAgendaTableViewController alloc] init];
-            }
+            self.rootTableViewController = [[CVRemindersWeekAgendaTableViewController alloc] init];
+        }
+
+        else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
+            self.rootTableViewController = [[CVRemindersWeekStdAgendaTableViewController alloc] init];
         }
     }
     
@@ -331,21 +316,6 @@
 {
     self.rootTableViewController.selectedDate = self.selectedDate;
     [self.rootTableViewController loadTableView];
-}
-
-- (void)toggleDetailOutlinePortraitWeekViews 
-{
-    [CVSettings setUseOutlinePortraitWeekView:![CVSettings useOutlinePortraitWeekView]];
-    if ([CVSettings useOutlinePortraitWeekView]) {
-        [UIApplication showBezelWithTitle:@"Outline Week"];
-    }
-    else {
-        [UIApplication showBezelWithTitle:@"Detail Week"];
-    }
-    
-    if (self.tableMode == CVRootTableViewModeWeek) {
-        [self updateRootTableView];
-    }
 }
 
 - (void)redrawDotsOnMonthView 
@@ -470,11 +440,6 @@
 }
 
 - (void)reminderStoreChanged 
-{
-    [self.rootTableViewController loadTableView];
-}
-
-- (void)pocketLintSyncDidFinish 
 {
     [self.rootTableViewController loadTableView];
 }
@@ -708,7 +673,6 @@
 	[self dismissPopoverModalViewControllerAnimated:YES];
 	
     if (option == CVViewOptionsPopoverOptionFullDayView) {
-        [UIApplication showBezelWithTitle:@"Full Day"];
         self.tableMode = CVRootTableViewModeFull;
         if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
@@ -717,7 +681,6 @@
     }
 
     else if (option == CVViewOptionsPopoverOptionAgendaView) {
-        [UIApplication showBezelWithTitle:@"Agenda"];
         self.tableMode = CVRootTableViewModeAgenda;
         if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
             // scroll to current hour
@@ -726,8 +689,12 @@
     }
 
     else if (option == CVViewOptionsPopoverOptionWeekView) {
-        [UIApplication showBezelWithTitle:@"Week"];
         self.tableMode = CVRootTableViewModeWeek;
+        self.rootTableViewController.shouldScrollToDate = YES;
+    }
+
+    else if (option == CVViewOptionsPopoverOptionDetailedWeekView) {
+        self.tableMode = CVRootTableViewModeDetailedWeek;
         self.rootTableViewController.shouldScrollToDate = YES;
     }
 
@@ -763,20 +730,6 @@
 	else if (option == CVViewOptionsPopoverOptionSettings) {
 		[self openSettingsWithCompletionHandler:nil];
 	}
-}
-
-- (void)viewOptionsViewController:(CVViewOptionsPopoverViewController *)viewOptionsViewController weekButtonWasLongPressed:(CVRoundedToggleButton *)button
-{
-    if ([button isEqual:viewOptionsViewController.weekButton]) {
-        
-        [self toggleDetailOutlinePortraitWeekViews];
-        
-        if (self.tableMode != CVRootTableViewModeWeek) {
-            self.tableMode = CVRootTableViewModeWeek;
-        }
-        
-        self.rootTableViewController.shouldScrollToDate = YES;
-    }
 }
 
 - (void)viewOptionsViewControllerDidRequestToClose:(CVViewOptionsPopoverViewController *)viewOptionsViewController 

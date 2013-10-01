@@ -21,7 +21,7 @@ typedef enum {
 
 @interface CVCalendarPickerTableViewController : UITableViewController
 
-@property (nonatomic, unsafe_unretained) id<CVCalendarPickerTableViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVCalendarPickerTableViewControllerDelegate> delegate;
 @property (nonatomic) CVCalendarPickerMode mode;
 @property (nonatomic, strong) NSArray *editableCalendars;
 @property (nonatomic, strong) NSArray *allCalendars;

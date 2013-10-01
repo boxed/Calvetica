@@ -25,7 +25,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="4" userLabel="View">
-            <rect key="frame" x="0.0" y="0.0" width="285" height="360.00000000000006"/>
+            <rect key="frame" x="0.0" y="0.0" width="285" height="359.99999999999994"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Repeat monthly:" lineBreakMode="tailTruncation" minimumFontSize="10" id="12">
@@ -163,11 +163,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="19" userLabel="Repeat Qty Button" customClass="CVViewButton">
-                            <rect key="frame" x="0.0" y="0.0" width="31" height="31.000000000000007"/>
+                            <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="20">
-                                    <rect key="frame" x="0.0" y="0.0" width="31" height="31.000000000000007"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

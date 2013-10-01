@@ -17,10 +17,10 @@
 
 
 @interface CVRootViewController_iPad ()
-@property (nonatomic, strong) IBOutlet UILabel *redBarMonthLabel;
-@property (nonatomic, strong) IBOutlet UILabel *redBarYearLabel;
-@property (nonatomic, strong) IBOutlet UILabel *grayBarWeekdayLabel;
-@property (nonatomic, strong) IBOutlet UILabel *grayBarDateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *redBarMonthLabel;
+@property (nonatomic, weak) IBOutlet UILabel *redBarYearLabel;
+@property (nonatomic, weak) IBOutlet UILabel *grayBarWeekdayLabel;
+@property (nonatomic, weak) IBOutlet UILabel *grayBarDateLabel;
 @end
 
 
@@ -327,13 +327,6 @@
 {
     [super reminderStoreChanged];
     [self.monthTableViewController drawDotsForVisibleRows];
-}
-
-- (void)pocketLintSyncDidFinish 
-{
-	if (self.mode == CVRootViewControllerModeEvents) return;
-	[super pocketLintSyncDidFinish];	
-	[self.monthTableViewController drawDotsForVisibleRows];
 }
 
 

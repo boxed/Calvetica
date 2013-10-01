@@ -23,7 +23,7 @@ typedef enum {
 
 @interface CVSearchViewController_iPhone : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CVSearchEventCellDelegate, CVSearchScopePopoverControllerDelegate>
 
-@property (nonatomic, unsafe_unretained) id<CVSearchViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVSearchViewControllerDelegate> delegate;
 
 - (void)searchForText:(NSString *)text;
 

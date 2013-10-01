@@ -8,15 +8,15 @@
 
 #import "CVColoredDotView.h"
 #import "UITableViewCell+Nibs.h"
+#import "CVCheckButton.h"
 
 @interface CVCalendarTableViewCell_iPhone : UITableViewCell
 
 #pragma mark - IBOutlets
-@property (nonatomic, strong) IBOutlet CVColoredDotView *coloredDotView;
-@property (nonatomic, strong) IBOutlet UILabel *calendarTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *calendarTypeLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *checkmarkImageView;
-@property (nonatomic, strong) IBOutlet UIView *gestureHitAreaView;
+@property (nonatomic, weak) IBOutlet CVColoredDotView *coloredDotView;
+@property (nonatomic, weak) IBOutlet UILabel *calendarTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *calendarTypeLabel;
+@property (nonatomic, weak) IBOutlet CVCheckButton *checkmarkImageButton;
 @property (nonatomic, assign) BOOL disabled;
 
 @end

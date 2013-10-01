@@ -10,7 +10,14 @@
 #import <AddressBookUI/AddressBookUI.h>
 
 
-@implementation CVEventDetailsLocationViewController_iPhone
+@implementation CVEventDetailsLocationViewController_iPhone {
+    MKPinAnnotationView *_mapPin;
+}
+
+- (void)dealloc
+{
+    [_mapPin removeObserver:self forKeyPath:@"selected"];
+}
 
 
 #pragma mark - Methods
@@ -151,15 +158,15 @@
         return nil;
     }
     
-    MKPinAnnotationView *newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotation.title];
-    newAnnotation.pinColor = MKPinAnnotationColorRed;
-    newAnnotation.animatesDrop = YES;
-    newAnnotation.canShowCallout = YES;
-    newAnnotation.enabled = YES;
-    newAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    [newAnnotation addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:@"GMAP_ANNOTATION_SELECTED"];
+    _mapPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotation.title];
+    _mapPin.pinColor = MKPinAnnotationColorRed;
+    _mapPin.animatesDrop = YES;
+    _mapPin.canShowCallout = YES;
+    _mapPin.enabled = YES;
+    _mapPin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    [_mapPin addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:@"GMAP_ANNOTATION_SELECTED"];
 	
-	return newAnnotation;
+	return _mapPin;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation 

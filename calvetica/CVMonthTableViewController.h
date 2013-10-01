@@ -13,7 +13,7 @@
 @interface CVMonthTableViewController : UITableViewController {}
 
 
-@property (nonatomic, unsafe_unretained) id<CVWeekTableViewCellDelegate> delegate;
+@property (nonatomic, weak) id<CVWeekTableViewCellDelegate> delegate;
 @property (nonatomic, strong) UINib *weekCellNib;
 @property (nonatomic, strong) NSDate *startDate;
 
@@ -23,7 +23,7 @@
 
 
 #pragma mark - Outlets
-@property (nonatomic, strong) IBOutlet CVTodayBoxView *selectedDayView;
+@property (nonatomic, weak) IBOutlet CVTodayBoxView *selectedDayView;
 
 
 #pragma mark - Methods
@@ -34,6 +34,5 @@
 - (void)scrollToSelectedDay;
 - (NSInteger)rowInMiddleOfVisibleRegion;
 - (void)reframeRedSelectedDaySquareAnimated:(BOOL)animated;
-
 
 @end

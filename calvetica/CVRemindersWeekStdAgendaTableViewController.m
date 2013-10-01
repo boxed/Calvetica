@@ -104,8 +104,10 @@
     for (NSInteger i = 0; i < _daysOfWeekArray.count; i++) {
         NSDate *d = [_daysOfWeekArray objectAtIndex:i];
         if ([d mt_isWithinSameDay:date]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:NSNotFound inSection:i];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+            [self.tableView scrollToRowAtIndexPath:indexPath
+                                  atScrollPosition:UITableViewScrollPositionTop
+                                          animated:YES];
             break;
         }
     }

@@ -14,7 +14,7 @@
 
 @interface CVRootTableViewController : CVViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, unsafe_unretained) NSObject <CVRootTableViewControllerProtocol> *tableControllerProtocol;
+@property (nonatomic, weak) NSObject <CVRootTableViewControllerProtocol> *tableControllerProtocol;
 @property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic, strong) UITableView *tableView;
 

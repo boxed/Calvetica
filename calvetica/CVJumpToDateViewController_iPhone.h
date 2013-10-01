@@ -22,9 +22,9 @@ typedef enum {
 
 @interface CVJumpToDateViewController_iPhone : CVViewController <CVModalProtocol>
 
-@property (nonatomic, assign) id<CVJumpToDateViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVJumpToDateViewControllerDelegate> delegate;
 @property (nonatomic, strong) CVViewController<CVEventDayViewControllerProtocol> *contentViewController;
-@property (nonatomic, strong) IBOutlet UIView *contentControllerContainer;
+@property (nonatomic, weak) IBOutlet UIView *contentControllerContainer;
 @property (nonatomic, copy) NSDate *chosenDate;
 
 - (id)initWithContentViewController:(CVViewController *)contentViewController;

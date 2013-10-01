@@ -17,11 +17,11 @@
 @interface CVMonthlyRecurrenceSelectionViewController_iPhone : CVViewController
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVMonthlyRecurrenceSelectionDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UIView *keys;
-@property (nonatomic, strong) IBOutlet UIView *mainView;
+@property (nonatomic, weak) id<CVMonthlyRecurrenceSelectionDelegate> delegate;
+@property (nonatomic, weak) IBOutlet UIView *keys;
+@property (nonatomic, weak) IBOutlet UIView *mainView;
 @property (nonatomic, strong) NSMutableArray *selectedDays;
-@property (nonatomic, strong) IBOutlet CVAutoResizableLabel *selectedDaysLabel;
+@property (nonatomic, weak) IBOutlet CVAutoResizableLabel *selectedDaysLabel;
 @property (nonatomic, strong) UIView *targetView;
 
 #pragma mark - Methods

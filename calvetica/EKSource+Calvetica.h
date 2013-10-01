@@ -10,7 +10,6 @@
 
 @interface EKSource (Calvetica)
 
-- (BOOL)allowsCalendarAdditionsForEntityType:(EKEntityType)type;
 - (NSString *)localizedTitle; // TODO: not localized
 
 @end

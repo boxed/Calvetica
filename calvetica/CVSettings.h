@@ -133,14 +133,6 @@
 + (BOOL)showDurationOnReadOnlyEvents;
 + (void)setShowDurationOnReadOnlyEvents:(BOOL)showDuration;
 
-+ (BOOL)useOutlinePortraitWeekView;
-+ (void)setUseOutlinePortraitWeekView:(BOOL)useOutline;
-
-
-#pragma mark - POCKETLINT
-
-+ (NSString *)deviceID;
-
 
 #pragma mark - CUSTOM ALERT SOUNDS
 

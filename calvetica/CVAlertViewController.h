@@ -20,9 +20,9 @@
 
 
 #pragma mark - IBOutlets
-@property (nonatomic, strong) IBOutlet UILabel        *titleLabel;
-@property (nonatomic, strong) IBOutlet UITextView     *messageTextView;
-@property (nonatomic, strong) IBOutlet UIView         *buttonContainerView;
+@property (nonatomic, weak) IBOutlet UILabel        *titleLabel;
+@property (nonatomic, weak) IBOutlet UITextView     *messageTextView;
+@property (nonatomic, weak) IBOutlet UIView         *buttonContainerView;
 @property (nonatomic, strong)          NSMutableArray *buttons;
 @property (nonatomic, strong)          void           (^completion)(void);
 

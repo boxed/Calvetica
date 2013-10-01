@@ -30,6 +30,15 @@
     [self addGestureRecognizer:longPressGesture];
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    _weekStartDate = nil;
+    _selectedDate = nil;
+    self.todayImage.hidden = YES;
+    [self setNeedsDisplay];
+}
+
 
 
 
@@ -82,7 +91,10 @@
         
         // gray out day labels that have passed
         if ([date mt_isBefore:today]) {
-            label.textColor = patentedDarkGray;
+            label.textColor = RGBHex(0xCCCCCC);
+        }
+        else {
+            label.textColor = [UIColor blackColor];
         }
 
         if (dayOfMonth == 1) {
@@ -101,6 +113,9 @@
             else {
                 _monthLabel.text = [[date stringWithTitleOfCurrentMonthAbbreviated:YES] uppercaseString];
             }
+        }
+        else {
+            _monthLabel.hidden = YES;
         }
     }
 }

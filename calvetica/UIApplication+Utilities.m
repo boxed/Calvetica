@@ -43,21 +43,22 @@
 	}
 
 	[topmostViewController presentPageModalViewController:alertViewController animated:YES completion:^{
-        alertViewController.view.y -= 40;
+        alertViewController.view.x -= 20;
         [UIView mt_animateViews:@[alertViewController.view]
                        duration:0.5
                  timingFunction:kMTEaseOutElastic
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^
         {
-            alertViewController.view.y += 40;
+            alertViewController.view.x += 20;
         } completion:^{
             if (completion) completion();
         }];
     }];
 }
 
-+ (void)showBezelWithTitle:(NSString *)title {
++ (void)showBezelWithTitle:(NSString *)title
+{
     CVHUD *bezel = [CVHUD viewFromNib:[CVHUD nib]];
     bezel.titleLabel.text = title;
     

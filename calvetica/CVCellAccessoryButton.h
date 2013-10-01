@@ -17,7 +17,6 @@ typedef enum {
 
 @property (nonatomic) CVCellAccessoryButtonMode mode;
 @property (nonatomic, strong) UIImage *defaultImage;
-@property (nonatomic, strong) UIImage *deleteImage;
 
 - (void)toggleMode;
 

@@ -24,14 +24,14 @@ typedef enum {
 }
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVEventDetailsLocationViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVEventDetailsLocationViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 
 #pragma mark IBOutlets
-@property (nonatomic, strong) IBOutlet UITextView *locationTextView;
-@property (nonatomic, strong) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, weak) IBOutlet UITextView *locationTextView;
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 #pragma mark - Methods

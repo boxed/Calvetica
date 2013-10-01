@@ -49,7 +49,7 @@
     CGFloat newHeight = _buttonContainerView.frame.origin.y + _buttonContainerView.frame.size.height + PADDING; // 20 for padding on bottom
     f = CVRectResize(f, CGSizeMake(f.size.width, newHeight));
     [self.view setFrame:f];
-    
+
     // set frame of new button
     f = button.frame;
     f.origin.y = ((self.buttons.count * (button.frame.size.height + BUTTON_SPACING)) - BUTTON_SPACING) - button.frame.size.height;

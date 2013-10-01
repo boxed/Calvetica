@@ -14,11 +14,11 @@
 
 
 @interface CVSearchViewController_iPhone ()
-@property (nonatomic, strong) IBOutlet UITableView                *tableView;
-@property (nonatomic, strong) IBOutlet CVTextField                *searchTextField;
+@property (nonatomic, weak) IBOutlet UITableView                *tableView;
+@property (nonatomic, weak) IBOutlet CVTextField                *searchTextField;
 @property (nonatomic, strong)          NSMutableArray             *results;
 @property (nonatomic, strong)          UINib                      *eventCellNib;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView    *activityIndicator;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView    *activityIndicator;
 @property (nonatomic, strong)          NSString                   *currentSearchText;
 @property (nonatomic, assign)          CVSearchScopePopoverOption searchScope;
 @end

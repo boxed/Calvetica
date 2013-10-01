@@ -24,14 +24,14 @@ typedef enum {
 
 @interface CVSearchScopePopoverController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, unsafe_unretained) id<CVSearchScopePopoverControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVSearchScopePopoverControllerDelegate> delegate;
 @property (nonatomic, assign) CVSearchScopePopoverOption currentScope;
 @property (nonatomic, strong) UIView *targetView;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *threeMonthsButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *sixMonthsButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *oneYearButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *fiveYearButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *everythingButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *threeMonthsButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *sixMonthsButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *oneYearButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *fiveYearButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *everythingButton;
 
 - (IBAction)threeMonthButtonWasTapped:(id)sender;
 - (IBAction)sixMonthButtonWasTapped:(id)sender;

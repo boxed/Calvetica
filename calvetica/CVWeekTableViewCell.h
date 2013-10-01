@@ -20,15 +20,15 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVWeekTableViewCellDelegate> delegate;
-@property (nonatomic, strong) NSDate *weekStartDate;
-@property (nonatomic, strong) NSDate *absoluteStartDate;
-@property (nonatomic, strong) NSDate *selectedDate;
-@property (nonatomic) NSInteger mode;
-@property (nonatomic) NSInteger fontSize;
-@property (nonatomic, strong) CVWeekTableViewCellDrawing *drawingView;
-@property (nonatomic, weak) IBOutlet UILabel *monthLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *todayImage;
+@property (nonatomic, weak  )          id<CVWeekTableViewCellDelegate> delegate;
+@property (nonatomic, strong)          NSDate                          *weekStartDate;
+@property (nonatomic, strong)          NSDate                          *absoluteStartDate;
+@property (nonatomic, strong)          NSDate                          *selectedDate;
+@property (nonatomic        )          NSInteger                       mode;
+@property (nonatomic        )          NSInteger                       fontSize;
+@property (nonatomic, strong)          CVWeekTableViewCellDrawing      *drawingView;
+@property (nonatomic, weak  ) IBOutlet UILabel                         *monthLabel;
+@property (nonatomic, weak  ) IBOutlet UIImageView                     *todayImage;
 
 
 #pragma mark - Methods

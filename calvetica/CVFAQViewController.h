@@ -14,7 +14,7 @@
 
 @interface CVFAQViewController : CVViewController <UIWebViewDelegate, CVModalProtocol>
 
-@property (nonatomic, unsafe_unretained) id<CVFAQViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVFAQViewControllerDelegate> delegate;
 @property (nonatomic, weak) IBOutlet UIWebView *helpScreen;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
 

@@ -40,20 +40,23 @@
                         <color key="textColor" red="0.80000001190000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view opaque="NO" contentMode="scaleToFill" id="8" userLabel="Check Button" customClass="CVCellAccessoryButton">
-                        <rect key="frame" x="241" y="0.0" width="44.5" height="42"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_bigcheck.png" id="14">
-                                <rect key="frame" x="20" y="11" width="23" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PQI-47-Fdy" userLabel="Check Button" customClass="CVCheckButton">
+                        <rect key="frame" x="241" y="1" width="40" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" red="0.84313725490000002" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
                         <connections>
-                            <action selector="checkButtonWasTapped:" destination="2" eventType="touchUpInside" id="39"/>
+                            <action selector="checkButtonWasTapped:" destination="2" eventType="touchUpInside" id="8cs-42-7Fk"/>
                         </connections>
-                    </view>
+                    </button>
                     <view contentMode="scaleToFill" id="7" userLabel="Gesture Hit Area">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="41"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +66,7 @@
                         <rect key="frame" x="288.5" y="0.0" width="37" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_alarm_red.png" id="35">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_alarm_selected" id="35">
                                 <rect key="frame" x="3" y="11" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -77,7 +80,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="cellAccessoryButton" destination="34" id="42"/>
-                <outlet property="checkButton" destination="8" id="43"/>
+                <outlet property="checkButton" destination="PQI-47-Fdy" id="p7c-ps-W9n"/>
                 <outlet property="coloredDotView" destination="6" id="25"/>
                 <outlet property="gestureHitArea" destination="7" id="29"/>
                 <outlet property="noReminderLabel" destination="31" id="32"/>
@@ -87,7 +90,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_alarm_red.png" width="20" height="20"/>
-        <image name="icon_bigcheck.png" width="23" height="21"/>
+        <image name="icon_alarm_selected" width="20" height="20"/>
     </resources>
 </document>

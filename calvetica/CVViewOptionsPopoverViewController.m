@@ -18,10 +18,11 @@
 {
     _currentViewMode = newCurrentViewMode;
     
-    self.fullDayButton.selected = NO;
-    self.agendaDayButton.selected = NO;
-    self.weekButton.selected = NO;
-    
+    self.fullDayButton.selected         = NO;
+    self.agendaDayButton.selected       = NO;
+    self.weekButton.selected            = NO;
+    self.detailedWeekButton.selected    = NO;
+
     if (_currentViewMode == CVViewOptionsPopoverOptionFullDayView) {
         self.fullDayButton.selected = YES;
     }
@@ -32,6 +33,10 @@
     
     else if (_currentViewMode == CVViewOptionsPopoverOptionWeekView) {
         self.weekButton.selected = YES;
+    }
+
+    else if (_currentViewMode == CVViewOptionsPopoverOptionDetailedWeekView) {
+        self.detailedWeekButton.selected = YES;
     }
 }
 
@@ -56,10 +61,6 @@
         self.fullDayButton.alpha = 1.0;
         self.fullDayButton.userInteractionEnabled = YES;
     }
-    
-    // set up long press button on the quick add
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressOnWeekButtonGesture:)];
-    [self.weekButton addGestureRecognizer:longPressGesture];
 }
 
 - (void)viewDidUnload 
@@ -76,19 +77,23 @@
 {
     [super viewWillAppear:animated];
     
-    self.fullDayButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.fullDayButton.textColorHighlighted = patentedWhite;
-    self.fullDayButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.fullDayButton.textColorSelected = patentedWhite;
+    self.fullDayButton.backgroundColorHighlighted   = patentedVeryDarkGray;
+    self.fullDayButton.textColorHighlighted         = patentedWhite;
+    self.fullDayButton.backgroundColorSelected      = patentedVeryDarkGray;
+    self.fullDayButton.textColorSelected            = patentedWhite;
     self.agendaDayButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.agendaDayButton.textColorHighlighted = patentedWhite;
-    self.agendaDayButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.agendaDayButton.textColorSelected = patentedWhite;
-    self.weekButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.weekButton.textColorHighlighted = patentedWhite;
-    self.weekButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.weekButton.textColorSelected = patentedWhite;
-    
+    self.agendaDayButton.textColorHighlighted       = patentedWhite;
+    self.agendaDayButton.backgroundColorSelected    = patentedVeryDarkGray;
+    self.agendaDayButton.textColorSelected          = patentedWhite;
+    self.weekButton.backgroundColorHighlighted      = patentedVeryDarkGray;
+    self.weekButton.textColorHighlighted            = patentedWhite;
+    self.weekButton.backgroundColorSelected         = patentedVeryDarkGray;
+    self.weekButton.textColorSelected               = patentedWhite;
+    self.detailedWeekButton.backgroundColorHighlighted      = patentedVeryDarkGray;
+    self.detailedWeekButton.textColorHighlighted            = patentedWhite;
+    self.detailedWeekButton.backgroundColorSelected         = patentedVeryDarkGray;
+    self.detailedWeekButton.textColorSelected               = patentedWhite;
+
     self.currentViewMode = _currentViewMode;
 }
 
@@ -124,6 +129,12 @@
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionWeekView byPressingButton:sender];
 }
 
+- (IBAction)detailedWeekButtonWasTapped:(id)sender
+{
+    [self setCurrentViewMode:CVViewOptionsPopoverOptionDetailedWeekView];
+    [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionDetailedWeekView byPressingButton:sender];
+}
+
 - (IBAction)searchButtonWasTapped:(id)sender 
 {
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionSearch byPressingButton:sender];
@@ -139,15 +150,7 @@
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionSettings byPressingButton:sender];
 }
 
-- (IBAction)handleLongPressOnWeekButtonGesture:(UILongPressGestureRecognizer *)sender 
-{
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        [self.delegate viewOptionsViewController:self weekButtonWasLongPressed:self.weekButton];
-    }
-    else if (sender.state == UIGestureRecognizerStateEnded) {
-        [self.delegate viewOptionsViewControllerDidRequestToClose:self];
-    }
-}
+
 
 
 #pragma mark - CVModalProtocal

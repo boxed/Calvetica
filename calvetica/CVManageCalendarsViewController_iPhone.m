@@ -163,10 +163,10 @@
         cell.coloredDotView.color = [holder.calendar customColor];
         
         if (holder.isSelected) {
-            cell.checkmarkImageView.image = [UIImage imageNamed:@"eye_open"];
+            cell.checkmarkImageView.image = [UIImage imageNamed:@"icon_calendar_on"];
         }
         else {
-            cell.checkmarkImageView.image = [UIImage imageNamed:@"eye_closed"];
+            cell.checkmarkImageView.image = [UIImage imageNamed:@"icon_calendar_off"];
         }
     }
     else if (self.mode == CVManageCalendarsViewModeReminders) {

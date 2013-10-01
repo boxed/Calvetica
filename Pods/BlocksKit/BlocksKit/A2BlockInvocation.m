@@ -354,7 +354,7 @@ static ffi_type *a2_typeForSignature(const char *argumentType, void *(^allocate)
 		{
 			if (cif.arg_types[i] == &ffi_type_id)
 			{
-				id argument = *(__unsafe_unretained id *)_argumentFrame[i];
+				id argument = *(__weak id *)_argumentFrame[i];
                 if (argument) self.arguments[@(i)] = argument;
 			}
 			else if (cif.arg_types[i] == &ffi_type_charptr)
@@ -396,16 +396,16 @@ static ffi_type *a2_typeForSignature(const char *argumentType, void *(^allocate)
 		if (_validReturn)
 			*(__autoreleasing id *) _returnValue = nil;
 		else
-			*(__unsafe_unretained id *) _returnValue = nil;
+			*(__weak id *) _returnValue = nil;
 
 		if (retLoc)
 		{
-			*(__strong id *) _returnValue = *(__unsafe_unretained id *)retLoc;
+			*(__strong id *) _returnValue = *(__weak id *)retLoc;
 			_validReturn = YES;
 		}
 		else
 		{
-			*(__unsafe_unretained id *) _returnValue = nil;
+			*(__weak id *) _returnValue = nil;
 			_validReturn = NO;
 		}
 	}
@@ -444,7 +444,7 @@ static ffi_type *a2_typeForSignature(const char *argumentType, void *(^allocate)
 			
 			if (buffer)
 			{
-				id new = *(__unsafe_unretained id *)buffer;
+				id new = *(__weak id *)buffer;
 				if (new) self.arguments[key] = new;
 			}
 		}

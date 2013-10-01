@@ -79,8 +79,7 @@
         // update event elements with even details
         self.titleLabel.text = [_event readTitle];
         self.coloredDotView.color = [_event.calendar customColor];
-        self.cellAccessoryButton.defaultImage = [UIImage imageNamed:(_event.alarms.count > 0 ? @"icon_alarm_red" : @"icon_alarm_lg")];
-        self.cellAccessoryButton.deleteImage = [UIImage imageNamed:@"icon_trash_slider"];
+        self.cellAccessoryButton.defaultImage = [UIImage imageNamed:(_event.alarms.count > 0 ? @"icon_alarm_selected" : @"icon_alarm")];
         
         
         // figure out subtitle text

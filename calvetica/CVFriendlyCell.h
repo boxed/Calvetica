@@ -13,6 +13,6 @@
 @interface CVFriendlyCell : CVCell
 
 - (void)setRandomPhrase;
-@property (nonatomic, strong) IBOutlet CVLabel *friendlyPhraseLabel;
+@property (nonatomic, weak) IBOutlet CVLabel *friendlyPhraseLabel;
 
 @end

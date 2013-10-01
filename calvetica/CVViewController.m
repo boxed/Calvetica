@@ -103,7 +103,7 @@
             modalView.hidden = NO;
             [UIView mt_animateViews:@[modalView]
                            duration:0.6
-                     timingFunction:kMTEaseOutExpo
+                     timingFunction:kMTEaseOutBack
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^
             {

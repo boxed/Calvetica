@@ -46,7 +46,7 @@ typedef enum {
 
 @property (nonatomic, strong) UIViewController *rootController;
 
-@property (nonatomic, unsafe_unretained) id<CVEventDetailsViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVEventDetailsViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic, strong) CVCalendarPickerTableViewController *calendarTableViewController;
 @property (nonatomic, strong) CVEventDetailsPeopleTableViewController_iPhone *peopleTableViewController;

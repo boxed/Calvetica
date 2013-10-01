@@ -18,7 +18,7 @@
 @property (weak, nonatomic, readonly) CVViewController *closestSystemPresentedViewController;
 @property (nonatomic, strong) NSMutableArray *fullScreenModalViewControllers;
 @property (nonatomic, strong) NSMutableArray *popoverModalViewControllers;
-@property (nonatomic, unsafe_unretained) CVNavigationController *modalNavigationController;
+@property (nonatomic, weak) CVNavigationController *modalNavigationController;
 @property (nonatomic, weak) CVViewController *containingViewController;
 @property (nonatomic, strong) UIColor *popoverBackdropColor;
 @property (nonatomic, assign) CVPopoverArrowDirection popoverArrowDirection;
@@ -28,7 +28,7 @@
 
 
 #pragma mark - IBOutles
-@property (nonatomic, strong) IBOutlet UIView *keyboardAccessoryView;
+@property (nonatomic, weak) IBOutlet UIView *keyboardAccessoryView;
 
 #pragma mark - Methods
 

@@ -10,11 +10,11 @@
 
 
 @interface CVGestureHowToViewController ()
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) IBOutlet UIView *titleView;
-@property (nonatomic, strong) IBOutlet UIImageView *shadow;
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIView *titleView;
+@property (nonatomic, weak) IBOutlet UIImageView *shadow;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *availableGestures;
 @end
 

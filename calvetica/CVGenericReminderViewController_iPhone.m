@@ -12,7 +12,7 @@
 
 
 @interface CVGenericReminderViewController_iPhone ()
-@property (nonatomic, strong) IBOutlet UITextField *eventTitleTextField;
+@property (nonatomic, weak) IBOutlet UITextField *eventTitleTextField;
 @end
 
 

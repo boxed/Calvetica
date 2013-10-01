@@ -31,9 +31,9 @@ typedef enum {
 
 @interface CVReminderViewController_iPhone : CVNavigationController <CVEventDayViewControllerDelegate, CVModalProtocol, CVReminderDetailsViewControllerDelegate>
 
-@property (nonatomic, unsafe_unretained) id<CVReminderViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVReminderViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKReminder *reminder;
-@property (nonatomic, unsafe_unretained) CVReminderViewControllerMode mode;
+@property (nonatomic, assign) CVReminderViewControllerMode mode;
 @property (nonatomic) BOOL editable;
 
 - (id)initWithReminder:(EKReminder *)initReminder andMode:(CVReminderViewControllerMode)initMode;

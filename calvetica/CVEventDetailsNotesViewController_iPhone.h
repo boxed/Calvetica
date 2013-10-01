@@ -21,12 +21,12 @@ typedef enum {
 @interface CVEventDetailsNotesViewController_iPhone : CVViewController <UITextViewDelegate>
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVEventDetailsNotesViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVEventDetailsNotesViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic, strong) EKReminder *reminder;
 
 #pragma mark - IBOutlets
-@property (nonatomic, strong) IBOutlet UITextView *notesTextView;
+@property (nonatomic, weak) IBOutlet UITextView *notesTextView;
 
 #pragma mark - Methods
 - (void)animateTextViewUp;

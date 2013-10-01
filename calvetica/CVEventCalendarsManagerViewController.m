@@ -77,7 +77,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     EKSource *source = [_calendarSources objectAtIndex:section];
-	return [source calendarsForEntityType:_type].count + ([source allowsCalendarAdditionsForEntityType:_type] ? 1 : 0);
+	return [source calendarsForEntityType:_type].count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,7 +86,7 @@
     NSArray *calendars = [[source calendarsForEntityType:_type] allObjects];
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CalendarCell"];
-	cell.imageView.image = [UIImage imageNamed:@"custom_color_background"];
+	cell.imageView.image = [UIImage imageNamed:@"bg_clear_cell_image"];
 	cell.textLabel.textColor = [UIColor colorWithWhite:0.32 alpha:1];
 	cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

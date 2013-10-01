@@ -25,13 +25,13 @@
 @property NSInteger weekNumber;
 
 @property (nonatomic, strong) NSArray *weekNumbersArray;
-@property (nonatomic, strong) IBOutlet CVViewButton *dayOfWeekButton;
+@property (nonatomic, weak) IBOutlet CVViewButton *dayOfWeekButton;
 @property (weak, nonatomic, readonly) UILabel *dayOfWeekButtonLabel;
-@property (nonatomic, strong) IBOutlet UIView *endView;
-@property (nonatomic, strong) IBOutlet CVMultiToggleButton *weekNumberButton;
-@property (nonatomic, strong) IBOutlet CVViewButton *monthButton;
+@property (nonatomic, weak) IBOutlet UIView *endView;
+@property (nonatomic, weak) IBOutlet CVMultiToggleButton *weekNumberButton;
+@property (nonatomic, weak) IBOutlet CVViewButton *monthButton;
 @property (weak, nonatomic, readonly) IBOutlet UILabel *monthButtonLabel;
-@property (nonatomic, strong) IBOutlet UIView *monthView;
+@property (nonatomic, weak) IBOutlet UIView *monthView;
 @end
 
 

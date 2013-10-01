@@ -30,7 +30,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" id="106">
-                                    <rect key="frame" x="12" y="12" width="60" height="95.000000000000014"/>
+                                    <rect key="frame" x="12" y="12" width="60" height="95"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
@@ -348,7 +348,7 @@
                                     <rect key="frame" x="-1" y="151" width="285" height="211"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="jump_grid.png" id="188">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_calendar_grid" id="188">
                                             <rect key="frame" x="0.0" y="0.0" width="286" height="211"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -375,6 +375,6 @@
         </view>
     </objects>
     <resources>
-        <image name="jump_grid.png" width="286" height="211"/>
+        <image name="bg_calendar_grid" width="286" height="211"/>
     </resources>
 </document>

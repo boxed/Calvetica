@@ -24,8 +24,8 @@
 @property (nonatomic, strong) UIView *targetView;
 
 #pragma mark - IBOutlets
-@property (nonatomic, strong) IBOutlet UIView *modalViewContainer;
-@property (nonatomic, strong) IBOutlet CVPopoverBackdrop *popoverBackdropView;
+@property (nonatomic, weak) IBOutlet UIView *modalViewContainer;
+@property (nonatomic, weak) IBOutlet CVPopoverBackdrop *popoverBackdropView;
 @property (nonatomic, assign) BOOL ignoreKeyboard;
 
 #pragma mark - Methods

@@ -16,11 +16,11 @@
 @interface CVCell : UITableViewCell
 
 #pragma mark - Outlets
-@property (nonatomic, strong) IBOutlet CVLabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *redSubtitleLabel;
-@property (nonatomic, strong) IBOutlet CVCellAccessoryButton *cellAccessoryButton;
-@property (nonatomic, strong) IBOutlet CVColoredDotView *coloredDotView;
-@property (nonatomic, strong) IBOutlet UIView *gestureHitArea;
+@property (nonatomic, weak) IBOutlet CVLabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *redSubtitleLabel;
+@property (nonatomic, weak) IBOutlet CVCellAccessoryButton *cellAccessoryButton;
+@property (nonatomic, weak) IBOutlet CVColoredDotView *coloredDotView;
+@property (nonatomic, weak) IBOutlet UIView *gestureHitArea;
 @property (nonatomic, assign) BOOL isEmpty;
 
 #pragma mark - Methods

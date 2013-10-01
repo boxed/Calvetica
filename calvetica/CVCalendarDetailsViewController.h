@@ -17,7 +17,7 @@ typedef enum {
 
 @interface CVCalendarDetailsViewController : UITableViewController <UITextFieldDelegate>
 
-@property (nonatomic, unsafe_unretained) id <CVCalendarDetailsViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <CVCalendarDetailsViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKCalendar *calendar;
 
 @end

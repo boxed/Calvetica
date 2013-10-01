@@ -19,7 +19,7 @@
 
 
 #pragma mark - Public Properties
-@property (nonatomic, unsafe_unretained) id<CVReminderCalendarPickerViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVReminderCalendarPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray *availableCalendars;
 
 #pragma mark - Public Methods

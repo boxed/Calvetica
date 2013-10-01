@@ -30,10 +30,10 @@
     [super setSelected:selected animated:animated];
 	
     if (selected) {
-        self.checkmarkImageView.hidden = NO;
+        self.checkmarkImageButton.hidden = NO;
     }
     else {
-        self.checkmarkImageView.hidden = YES;
+        self.checkmarkImageButton.hidden = YES;
     }
 }
 

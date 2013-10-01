@@ -9,6 +9,6 @@
 
 @interface CVTableSectionHeaderView : UIView
 
-@property (nonatomic, strong) IBOutlet UILabel *weekdayLabel;
+@property (nonatomic, weak) IBOutlet UILabel *weekdayLabel;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "CVColoredDotView.h"
-#import "CVCellAccessoryButton.h"
 #import "CVEventStore.h"
 #import "CVCell.h"
 
@@ -16,9 +15,9 @@
 
 @interface CVReminderCell : CVCell
 
-@property (nonatomic, unsafe_unretained) id<CVReminderCellDelegate> delegate;
+@property (nonatomic, weak) id<CVReminderCellDelegate> delegate;
 @property (nonatomic, strong) EKReminder *reminder;
-@property (nonatomic, strong) IBOutlet UILabel *noReminderLabel;
+@property (nonatomic, weak) IBOutlet UILabel *noReminderLabel;
 
 @end
 

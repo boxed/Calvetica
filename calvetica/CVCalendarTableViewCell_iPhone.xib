@@ -33,21 +33,25 @@
                         <color key="textColor" white="0.53000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="check_red.png" id="4">
-                        <rect key="frame" x="225" y="11" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rvu-A4-UaF" customClass="CVCheckButton">
+                        <rect key="frame" x="215" y="1" width="40" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.84313725490196079" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" red="0.84313725490196079" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="calendarTitleLabel" destination="8" id="11"/>
                 <outlet property="calendarTypeLabel" destination="7" id="9"/>
-                <outlet property="checkmarkImageView" destination="4" id="12"/>
+                <outlet property="checkmarkImageButton" destination="rvu-A4-UaF" id="1Q3-ss-Pjv"/>
                 <outlet property="coloredDotView" destination="5" id="10"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="check_red.png" width="40" height="40"/>
-    </resources>
 </document>

@@ -16,13 +16,13 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVWeekdayTableViewCellDelegate> delegate;
+@property (nonatomic, weak) id<CVWeekdayTableViewCellDelegate> delegate;
 @property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) IBOutlet UILabel *weekdayTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *monthDayTitleLabel;
-@property (nonatomic, strong) IBOutlet UIView *redBarView;
-@property (nonatomic, strong) IBOutlet CVEventSquaresView *squaresView;
-@property (nonatomic, strong) IBOutlet CVAllDayEventSquaresView *allDaySquaresView;
+@property (nonatomic, weak) IBOutlet UILabel *weekdayTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *monthDayTitleLabel;
+@property (nonatomic, weak) IBOutlet UIView *redBarView;
+@property (nonatomic, weak) IBOutlet CVEventSquaresView *squaresView;
+@property (nonatomic, weak) IBOutlet CVAllDayEventSquaresView *allDaySquaresView;
 
 
 #pragma mark - Methods

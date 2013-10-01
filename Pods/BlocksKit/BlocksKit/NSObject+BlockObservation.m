@@ -19,7 +19,7 @@ typedef NS_ENUM(int, BKObserverContext) {
 
 @interface BKObserver : NSObject
 
-@property (nonatomic, readonly, unsafe_unretained) id observee;
+@property (nonatomic, readonly, weak) id observee;
 @property (nonatomic, readonly) NSMutableArray *keyPaths;
 @property (nonatomic, readonly) id task;
 @property (nonatomic, readonly) BKObserverContext context;
@@ -243,7 +243,7 @@ static NSMutableSet *swizzledClasses() {
 			Method deallocMethod = class_getInstanceMethod(classToSwizzle, deallocSelector);
 			void (*originalDealloc)(id, SEL) = (__typeof__(originalDealloc))method_getImplementation(deallocMethod);
 			
-			id newDealloc = ^(__unsafe_unretained NSObject *objSelf) {
+			id newDealloc = ^(__weak NSObject *objSelf) {
 				[objSelf removeAllBlockObservers];
 				originalDealloc(objSelf, deallocSelector);
 			};

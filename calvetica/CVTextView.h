@@ -16,10 +16,10 @@
 @end
 
 @interface CVTextView : UITextView {
-    id<CVTextViewDelegate> __unsafe_unretained delegate;
+    id<CVTextViewDelegate> __weak delegate;
 }
 
-@property (nonatomic, unsafe_unretained) id<CVTextViewDelegate> delegate;
+@property (nonatomic, weak) id<CVTextViewDelegate> delegate;
 
 @end
 

@@ -17,7 +17,6 @@
 #import "CVReminderViewController_iPhone.h"
 #import "CVGenericReminderViewController_iPhone.h"
 #import "CVLandscapeWeekView_iPad.h"
-#import "CVWeekTableViewCell_iPad.h"
 
 
 @interface CVRootViewController_iPad : CVRootViewController <CVFAQViewControllerDelegate, CVGestureHowToViewControllerDelegate> {}

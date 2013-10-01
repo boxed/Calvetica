@@ -245,9 +245,7 @@ static CVEventStore *__sharedStore = nil;
 		fetched = YES;
 	}];
 
-	while (!fetched) {
-		[NSThread sleepForTimeInterval:0.01];
-	}
+    while (!fetched) { [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.01]]; }
 
 	NSDate *today = [NSDate date];
 
@@ -291,9 +289,7 @@ static CVEventStore *__sharedStore = nil;
 		fetched = YES;
 	}];
 
-	while (!fetched) {
-		[NSThread sleepForTimeInterval:0.0001];
-	}
+    while (!fetched) { [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.01]]; }
 
 	NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@ || notes CONTAINS[cd] %@ || location CONTAINS[cd] %@", text, text, text];
 	return [reminders filteredArrayUsingPredicate:searchPredicate];

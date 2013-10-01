@@ -20,7 +20,7 @@
 
 
 #pragma mark - IBActions
-@property (nonatomic, strong) IBOutlet CVLabel *weekNumberLabel;
+@property (nonatomic, weak) IBOutlet CVLabel *weekNumberLabel;
 
 
 @end

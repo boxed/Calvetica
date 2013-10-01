@@ -14,7 +14,7 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVReminderCellDelegate> delegate;
+@property (nonatomic, weak) id<CVReminderCellDelegate> delegate;
 @property (nonatomic, strong) UINib *reminderCellNib;
 @property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
 

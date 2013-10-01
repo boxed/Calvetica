@@ -60,7 +60,9 @@
     
     NSInteger row = daysSinceStart % 7;
     NSInteger section = floor(daysSinceStart / 7);
-    [self.weeksTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    [self.weeksTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]
+                           atScrollPosition:UITableViewScrollPositionTop
+                                   animated:animated];
 }
 
 - (CVWeekdayTableHeaderView *)unusedHeaderView 

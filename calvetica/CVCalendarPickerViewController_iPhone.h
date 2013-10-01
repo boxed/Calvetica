@@ -16,7 +16,7 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id <CVCalendarPickerViewController_iPhoneDelegate> delegate;
+@property (nonatomic, weak) id <CVCalendarPickerViewController_iPhoneDelegate> delegate;
 @property (nonatomic) CVCalendarPickerMode mode;
 @property (nonatomic, strong) CVCalendarPickerTableViewController *calendarPickerController;
 @property (nonatomic, weak) IBOutlet UIView *eventCalendarBlock;

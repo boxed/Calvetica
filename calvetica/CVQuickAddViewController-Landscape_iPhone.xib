@@ -45,7 +45,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="8" clearButtonMode="whileEditing" id="4" customClass="CVTextField">
-                            <rect key="frame" x="232" y="1" width="236" height="20"/>
+                            <rect key="frame" x="232" y="1" width="235.99999999999989" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
@@ -203,13 +203,13 @@
                                 <action selector="numberButtonWasHit:" destination="-1" eventType="touchUpInside" id="39"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="14" customClass="CVButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="14" customClass="CVCloseButton">
                             <rect key="frame" x="0.0" y="96" width="75" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.61176472900000001" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="cleartime.png">
+                            <state key="normal">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.40000000600000002" colorSpace="calibratedWhite"/>
                             </state>
@@ -268,7 +268,7 @@
                                     </connections>
                                 </tableView>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="47" userLabel="minutesTableView">
-                                    <rect key="frame" x="102" y="0.0" width="123" height="127.5"/>
+                                    <rect key="frame" x="102" y="0.0" width="122.99999999999997" height="127.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
@@ -296,7 +296,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" id="123" userLabel="Page Control">
-                            <rect key="frame" x="232.49999999999994" y="71" width="238.5" height="36"/>
+                            <rect key="frame" x="232.5" y="71" width="238.49999999999997" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </pageControl>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="19" customClass="CVRoundedButton">
@@ -345,15 +345,15 @@
                             </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="122">
-                            <rect key="frame" x="233" y="27.5" width="235.5" height="65"/>
+                            <rect key="frame" x="233" y="27.5" width="235.5" height="64.999999999999986"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" id="151" userLabel="regular">
-                                    <rect key="frame" x="3" y="0.0" width="234" height="65"/>
+                                    <rect key="frame" x="3" y="0.0" width="234" height="64.999999999999986"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="234" userLabel="StartTimeButton" customClass="UIControl">
-                                            <rect key="frame" x="0.0" y="0.0" width="115.5" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="115.5" height="64.999999999999986"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="starts:" lineBreakMode="tailTruncation" minimumFontSize="8" id="237" userLabel="startsLabel">
@@ -386,18 +386,18 @@
                                             </connections>
                                         </view>
                                         <view contentMode="scaleToFill" id="125" userLabel="EndTimeButton" customClass="UIControl">
-                                            <rect key="frame" x="116.5" y="0.0" width="117.5" height="65"/>
+                                            <rect key="frame" x="116.5" y="0.0" width="117.5" height="64.999999999999986"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ends: " lineBreakMode="tailTruncation" minimumFontSize="8" id="128" userLabel="endLabel">
-                                                    <rect key="frame" x="5.0000000000000044" y="0.0" width="112.5" height="17.5"/>
+                                                    <rect key="frame" x="5" y="0.0" width="112.50000000000001" height="17.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="0.40000000600000002" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="24:00" lineBreakMode="wordWrap" minimumFontSize="8" id="127" userLabel="endTimeLabel - 1:30am">
-                                                    <rect key="frame" x="5" y="15" width="112.5" height="28.5"/>
+                                                    <rect key="frame" x="5.0000000000000222" y="15" width="112.5" height="28.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.4196078479" green="0.0" blue="0.0039215688589999999" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
@@ -405,7 +405,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tue Aug 9, 2011" lineBreakMode="wordWrap" minimumFontSize="8" id="126" userLabel="endDayLabel - next thursday">
-                                                    <rect key="frame" x="5" y="40" width="113.50000000000003" height="20"/>
+                                                    <rect key="frame" x="5.0000000000000036" y="40" width="113.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.4196078479" green="0.0" blue="0.0039215688589999999" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -422,7 +422,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <view contentMode="scaleToFill" id="152" userLabel="allDay">
-                                    <rect key="frame" x="239.5" y="0.0" width="235.5" height="65"/>
+                                    <rect key="frame" x="239.5" y="0.0" width="235.5" height="64.999999999999986"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="All day event" lineBreakMode="tailTruncation" minimumFontSize="10" id="249" userLabel="AllDayLabel">
@@ -486,7 +486,4 @@
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
     </objects>
-    <resources>
-        <image name="cleartime.png" width="19" height="19"/>
-    </resources>
 </document>

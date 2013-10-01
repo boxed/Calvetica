@@ -15,10 +15,10 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVSearchEventCellDelegate> delegate;
+@property (nonatomic, weak) id<CVSearchEventCellDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
-@property (nonatomic, strong) IBOutlet UIImageView *tinyIcon;
-@property (nonatomic, strong) IBOutlet MTLabel *foundTextLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *tinyIcon;
+@property (nonatomic, weak) IBOutlet MTLabel *foundTextLabel;
 
 
 #pragma mark - Methods

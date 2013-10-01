@@ -178,7 +178,9 @@
                 [eventHolder.date mt_isWithinSameDay:self.selectedDate] &&
                 i < [self.tableView numberOfRowsInSection:0]) {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                [self.tableView scrollToRowAtIndexPath:indexPath
+                                      atScrollPosition:UITableViewScrollPositionTop
+                                              animated:YES];
                 break;
             }
         }

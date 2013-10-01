@@ -336,12 +336,10 @@
     
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
         NSDate *date = [self.selectedDate mt_oneMonthNext];
-        [UIApplication showBezelWithTitle:[date stringWithTitleOfCurrentMonthAbbreviated:NO]];
         self.selectedDate = date;
     } 
     else if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
         NSDate *date = [self.selectedDate mt_oneMonthPrevious];
-        [UIApplication showBezelWithTitle:[date stringWithTitleOfCurrentMonthAbbreviated:NO]];
         self.selectedDate = date;
     }
 	
@@ -362,13 +360,6 @@
 - (void)reminderStoreChanged 
 {
     [super reminderStoreChanged];
-}
-
-- (void)pocketLintSyncDidFinish 
-{
-	if (self.mode == CVRootViewControllerModeEvents) return;
-	[super pocketLintSyncDidFinish];
-    [self.monthTableViewController drawDotsForVisibleRows];
 }
 
 

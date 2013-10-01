@@ -23,7 +23,7 @@ typedef enum {
 
 @interface CVEventSnoozeViewController_iPhone : CVViewController
 
-@property (nonatomic, unsafe_unretained) id<CVEventSnoozeViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVEventSnoozeViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
 
 @end

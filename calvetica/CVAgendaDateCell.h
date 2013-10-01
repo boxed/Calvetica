@@ -13,8 +13,8 @@
 
 #pragma mark - Properties
 @property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) IBOutlet CVLabel *weekdayLabel; 
-@property (nonatomic, strong) IBOutlet CVLabel *dateLabel; 
+@property (nonatomic, weak) IBOutlet CVLabel *weekdayLabel; 
+@property (nonatomic, weak) IBOutlet CVLabel *dateLabel; 
 
 #pragma mark - Methods
 

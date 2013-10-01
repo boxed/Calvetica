@@ -32,12 +32,12 @@
 
 #pragma mark - Protected
 @interface SCEventDetailsAllDayAlarmPicker ()
-@property (nonatomic, strong) IBOutlet CVToggleButton *button_0;
-@property (nonatomic, strong) IBOutlet CVToggleButton *button_1;
-@property (nonatomic, strong) IBOutlet CVToggleButton *button_2;
-@property (nonatomic, strong) IBOutlet CVToggleButton *button_3;
-@property (nonatomic, strong) IBOutlet CVToggleButton *button_4;
-@property (nonatomic, strong) IBOutlet CVToggleButton *button_5;
+@property (nonatomic, weak) IBOutlet CVToggleButton *button_0;
+@property (nonatomic, weak) IBOutlet CVToggleButton *button_1;
+@property (nonatomic, weak) IBOutlet CVToggleButton *button_2;
+@property (nonatomic, weak) IBOutlet CVToggleButton *button_3;
+@property (nonatomic, weak) IBOutlet CVToggleButton *button_4;
+@property (nonatomic, weak) IBOutlet CVToggleButton *button_5;
 @property (nonatomic, strong) NSMutableArray *alarmOptions;
 @property (nonatomic, strong) NSMutableArray *alarmButtons;
 

@@ -18,40 +18,40 @@
 
 @interface CVEventDetailsViewController_iPhone ()
 
-@property (nonatomic, strong) IBOutlet UIView *eventTitleBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventCalendarBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventNotesBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventRepeatBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventPeopleBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventAvailabilityBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventLocationBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventShareBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventDeleteBlock;
-@property (nonatomic, strong) IBOutlet UIView *eventAlarmsBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventTitleBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventCalendarBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventNotesBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventRepeatBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventPeopleBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventAvailabilityBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventLocationBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventShareBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventDeleteBlock;
+@property (nonatomic, weak) IBOutlet UIView *eventAlarmsBlock;
 
-@property (nonatomic, strong) IBOutlet CVButton *availabilityBusyButton;
-@property (nonatomic, strong) IBOutlet CVButton *availabilityFreeButton;
-@property (nonatomic, strong) IBOutlet CVButton *availabilityTentativeButton;
-@property (nonatomic, strong) IBOutlet CVButton *availabilityOutOfficeButton;
+@property (nonatomic, weak) IBOutlet CVButton *availabilityBusyButton;
+@property (nonatomic, weak) IBOutlet CVButton *availabilityFreeButton;
+@property (nonatomic, weak) IBOutlet CVButton *availabilityTentativeButton;
+@property (nonatomic, weak) IBOutlet CVButton *availabilityOutOfficeButton;
 
-@property (nonatomic, strong) IBOutlet UIScrollView *contentScrollView;
-@property (nonatomic, strong) IBOutlet UITextView *eventTitleTextView;
-@property (nonatomic, strong) IBOutlet UITableView *eventCalendarTableView;
-@property (nonatomic, strong) IBOutlet CVTextView *eventNotesTextView;
-@property (nonatomic, strong) IBOutlet CVTextView *eventRepeatTextView;
-@property (nonatomic, strong) IBOutlet UITableView *eventPeopleTableView;
-@property (nonatomic, strong) IBOutlet CVTextView *eventLocationTextView;
+@property (nonatomic, weak) IBOutlet UIScrollView *contentScrollView;
+@property (nonatomic, weak) IBOutlet UITextView *eventTitleTextView;
+@property (nonatomic, weak) IBOutlet UITableView *eventCalendarTableView;
+@property (nonatomic, weak) IBOutlet CVTextView *eventNotesTextView;
+@property (nonatomic, weak) IBOutlet CVTextView *eventRepeatTextView;
+@property (nonatomic, weak) IBOutlet UITableView *eventPeopleTableView;
+@property (nonatomic, weak) IBOutlet CVTextView *eventLocationTextView;
 
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *repeatNoneButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *repeatDailyButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *repeatWeeklyButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *repeatMonthlyButton;
-@property (nonatomic, strong) IBOutlet CVRoundedToggleButton *repeatYearlyButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatNoneButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatDailyButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatWeeklyButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatMonthlyButton;
+@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatYearlyButton;
 
-@property (nonatomic, strong) IBOutlet CVRoundedButton *addAttendeesButton;
+@property (nonatomic, weak) IBOutlet CVRoundedButton *addAttendeesButton;
 
-@property (nonatomic, strong) IBOutlet CVRoundedButton *shareButtonEmail;
-@property (nonatomic, strong) IBOutlet CVRoundedButton *shareButtonSMS;
+@property (nonatomic, weak) IBOutlet CVRoundedButton *shareButtonEmail;
+@property (nonatomic, weak) IBOutlet CVRoundedButton *shareButtonSMS;
 
 @end
 
@@ -654,11 +654,12 @@
     }
 }
 
-- (IBAction)repeatButtonWasTapped:(id)sender 
+- (IBAction)repeatButtonWasTapped:(CVRoundedToggleButton *)sender
 {
     EKRecurrenceFrequency newFreq = -1;
     if (sender == _repeatNoneButton) {
-        newFreq = -1;
+        self.event.recurrenceRules = nil;
+        [self configureRepeatButtons];
     } else if (sender == _repeatDailyButton) {
         newFreq = EKRecurrenceFrequencyDaily;
     } else if (sender == _repeatWeeklyButton) {

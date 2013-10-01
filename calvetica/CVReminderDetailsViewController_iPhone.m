@@ -13,25 +13,25 @@
 
 @interface CVReminderDetailsViewController_iPhone ()
 @property (nonatomic, strong) CVReminderCalendarPickerViewController *calendarTableViewController;
-@property (nonatomic, strong) IBOutlet UIScrollView *contentScrollView;
-@property (nonatomic, strong) IBOutlet UITextView *reminderTitleTextView;
-@property (nonatomic, strong) IBOutlet UITableView *reminderCalendarTableView;
-@property (nonatomic, strong) IBOutlet CVTextView *reminderNotesTextView;
-@property (nonatomic, strong) IBOutlet UIView *reminderTitleBlock;
-@property (nonatomic, strong) IBOutlet UIView *reminderCalendarBlock;
-@property (nonatomic, strong) IBOutlet UIView *reminderPriorityBlock;
-@property (nonatomic, strong) IBOutlet UIView *reminderNotesBlock;
-@property (nonatomic, strong) IBOutlet UIView *reminderDoneBlock;
+@property (nonatomic, weak) IBOutlet UIScrollView *contentScrollView;
+@property (nonatomic, weak) IBOutlet UITextView *reminderTitleTextView;
+@property (nonatomic, weak) IBOutlet UITableView *reminderCalendarTableView;
+@property (nonatomic, weak) IBOutlet CVTextView *reminderNotesTextView;
+@property (nonatomic, weak) IBOutlet UIView *reminderTitleBlock;
+@property (nonatomic, weak) IBOutlet UIView *reminderCalendarBlock;
+@property (nonatomic, weak) IBOutlet UIView *reminderPriorityBlock;
+@property (nonatomic, weak) IBOutlet UIView *reminderNotesBlock;
+@property (nonatomic, weak) IBOutlet UIView *reminderDoneBlock;
 @property (nonatomic, strong) CVSlideLockControl *doneSlideLock;
-@property (nonatomic, strong) IBOutlet UIView *reminderDeleteBlock;
+@property (nonatomic, weak) IBOutlet UIView *reminderDeleteBlock;
 @property (nonatomic, strong) CVSlideLockControl *deleteSlideLock;
 @property (nonatomic, strong) UIViewController *rootViewController;
-@property (nonatomic, strong) IBOutlet CVColoredDotView *priorityHighShape;
-@property (nonatomic, strong) IBOutlet CVColoredDotView *priorityMediumShape;
-@property (nonatomic, strong) IBOutlet CVColoredDotView *priorityLowShape;
-@property (nonatomic, strong) IBOutlet UIImageView *priorityHighCheckImageView;
-@property (nonatomic, strong) IBOutlet UIImageView *priorityMediumCheckImageView;
-@property (nonatomic, strong) IBOutlet UIImageView *priorityLowCheckImageView;
+@property (nonatomic, weak) IBOutlet CVColoredDotView *priorityHighShape;
+@property (nonatomic, weak) IBOutlet CVColoredDotView *priorityMediumShape;
+@property (nonatomic, weak) IBOutlet CVColoredDotView *priorityLowShape;
+@property (nonatomic, weak) IBOutlet UIImageView *priorityHighCheckImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *priorityMediumCheckImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *priorityLowCheckImageView;
 @end
 
 

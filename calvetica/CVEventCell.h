@@ -20,7 +20,7 @@ typedef enum {
 @interface CVEventCell : CVCell
 
 #pragma mark - Properties
-@property (nonatomic, unsafe_unretained) id<CVEventCellDelegate> delegate;
+@property (nonatomic, weak) id<CVEventCellDelegate> delegate;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic) BOOL isAllDay;
@@ -30,17 +30,17 @@ typedef enum {
 @property (nonatomic, strong) UIColor *secondaryDurationBarColor;
 
 #pragma mark - Outlets
-@property (nonatomic, strong) IBOutlet UILabel *noEventLabel;
-@property (nonatomic, strong) IBOutlet UIView *durationBarView;
-@property (nonatomic, strong) IBOutlet UIView *secondaryDurationBarView;
-@property (nonatomic, strong) IBOutlet UILabel *hourAndMinuteLabel;
-@property (nonatomic, strong) IBOutlet UILabel *AMPMLabel;
-@property (nonatomic, strong) IBOutlet UILabel *allDayLabel;
-@property (nonatomic, strong) IBOutlet UIControl *timeTextHitArea;
-@property (nonatomic, strong) IBOutlet UIImageView *repeatTinyIcon;
-@property (nonatomic, strong) IBOutlet UIImageView *notesTinyIcon;
-@property (nonatomic, strong) IBOutlet UIImageView *locationTinyIcon;
-@property (nonatomic, strong) IBOutlet UIImageView *attendeesTinyIcon;
+@property (nonatomic, weak) IBOutlet UILabel *noEventLabel;
+@property (nonatomic, weak) IBOutlet UIView *durationBarView;
+@property (nonatomic, weak) IBOutlet UIView *secondaryDurationBarView;
+@property (nonatomic, weak) IBOutlet UILabel *hourAndMinuteLabel;
+@property (nonatomic, weak) IBOutlet UILabel *AMPMLabel;
+@property (nonatomic, weak) IBOutlet UILabel *allDayLabel;
+@property (nonatomic, weak) IBOutlet UIControl *timeTextHitArea;
+@property (nonatomic, weak) IBOutlet UIImageView *repeatTinyIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *notesTinyIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *locationTinyIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *attendeesTinyIcon;
 
 #pragma mark - Methods
 - (void)drawDurationBarAnimated:(BOOL)animated;

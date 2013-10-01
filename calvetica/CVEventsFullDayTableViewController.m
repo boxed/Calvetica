@@ -305,7 +305,9 @@
         CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
         if ([holder.date mt_hourOfDay] == currentHour && i < [self.tableView numberOfRowsInSection:0]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+            [self.tableView scrollToRowAtIndexPath:indexPath
+                                  atScrollPosition:UITableViewScrollPositionTop
+                                          animated:YES];
             break;
         }
     }

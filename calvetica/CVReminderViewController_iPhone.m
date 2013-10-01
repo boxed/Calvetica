@@ -106,7 +106,7 @@
 {
 	CVEventDayViewController_iPhone *dayViewController = [[CVEventDayViewController_iPhone alloc] init];
     dayViewController.delegate = self;
-    dayViewController.initialDate = self.reminder.startDate;
+    dayViewController.initialDate = self.reminder.startDate ?: self.reminder.dueDate;
     self.viewControllers = @[dayViewController];
     
     self.mode = CVReminderViewControllerModeDay;

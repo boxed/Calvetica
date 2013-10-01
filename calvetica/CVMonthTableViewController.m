@@ -7,8 +7,6 @@
 //
 
 #import "CVMonthTableViewController.h"
-#import "CVWeekTableViewCell_iPad.h"
-#import "CVWeekTableViewCell_iPhone.h"
 #import "colors.h"
 #import "NSDate+ViewHelpers.h"
 #import "UIViewController+Utilities.h"
@@ -20,19 +18,6 @@
 
 
 #pragma mark - Properties
-
-- (UINib *)weekCellNib 
-{
-    if (_weekCellNib == nil) {
-        if (PAD) {
-            self.weekCellNib = [CVWeekTableViewCell_iPad nib];
-        }
-        else {
-            self.weekCellNib = [CVWeekTableViewCell_iPhone nib];
-        }
-    }
-    return _weekCellNib;
-}
 
 - (void)setStartDate:(NSDate *)newStartDate
 {
@@ -229,14 +214,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    // the lazy load version
-    CVWeekTableViewCell *cell = [CVWeekTableViewCell cellForTableView:tableView fromNib:self.weekCellNib];
-    
-    cell.absoluteStartDate = self.startDate;
-    cell.weekStartDate = [self.startDate dateOfFirstDayOnRow:indexPath.row];
-    cell.selectedDate = _selectedDate;
-    cell.delegate = (id<CVWeekTableViewCellDelegate>)self.delegate;
-    cell.mode = _mode;
+    static NSString *cellIdentifier = @"CVWeekTableViewCell";
+    CVWeekTableViewCell *cell = (CVWeekTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                                                                       forIndexPath:indexPath];
+    cell.absoluteStartDate  = self.startDate;
+    cell.weekStartDate      = [self.startDate dateOfFirstDayOnRow:indexPath.row];
+    cell.selectedDate       = _selectedDate;
+    cell.delegate           = (id<CVWeekTableViewCellDelegate>)self.delegate;
+    cell.mode               = _mode;
 
     return cell;
 }

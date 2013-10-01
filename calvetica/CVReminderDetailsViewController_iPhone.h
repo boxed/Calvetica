@@ -24,7 +24,7 @@ typedef enum {
 
 @interface CVReminderDetailsViewController_iPhone : CVViewController <UIScrollViewDelegate, UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVReminderCalendarPickerViewControllerDelegate>
 
-@property (nonatomic, unsafe_unretained) id<CVReminderDetailsViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<CVReminderDetailsViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKReminder *reminder;
 
 

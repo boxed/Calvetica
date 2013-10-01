@@ -114,7 +114,7 @@
     if (!cell) {        
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0f];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
         cell.textLabel.textColor = patentedWhite;
     }
     

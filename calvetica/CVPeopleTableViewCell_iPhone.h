@@ -15,12 +15,12 @@
 }
 
 #pragma mark - IBOutlets
-@property (nonatomic, unsafe_unretained) NSObject <CVPeopleTableViewCell_iPhoneDelegate> *delegate;
-@property (nonatomic, strong) IBOutlet UILabel *personTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *personStatusLabel;
-@property (nonatomic, strong) IBOutlet UIView *gestureHitArea;
-@property (nonatomic, strong) IBOutlet UIButton *chatButton;
-@property (nonatomic, strong) IBOutlet UIButton *emailButton;
+@property (nonatomic, weak) NSObject <CVPeopleTableViewCell_iPhoneDelegate> *delegate;
+@property (nonatomic, weak) IBOutlet UILabel *personTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *personStatusLabel;
+@property (nonatomic, weak) IBOutlet UIView *gestureHitArea;
+@property (nonatomic, weak) IBOutlet UIButton *chatButton;
+@property (nonatomic, weak) IBOutlet UIButton *emailButton;
 
 #pragma mark - IBAction
 - (IBAction)cellWasSwiped:(id)sender;
