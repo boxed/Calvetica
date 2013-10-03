@@ -12,10 +12,10 @@
 
 @interface CVRemindersWeekStdAgendaTableViewController : CVRootTableViewController
 
-@property (nonatomic, weak) id<CVReminderCellDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
-@property (nonatomic, strong) NSArray *daysOfWeekArray;
-@property (nonatomic, strong) UINib *reminderCellNib;
-@property (nonatomic, strong) UINib *sectionHeaderNib;
+@property (nonatomic, weak  ) id<CVReminderCellDelegate> delegate;
+@property (nonatomic, strong  ) NSMutableArray             *cellDataHolderArray;
+@property (nonatomic, copy  ) NSArray                    *daysOfWeekArray;
+@property (nonatomic, strong) UINib                      *reminderCellNib;
+@property (nonatomic, strong) UINib                      *sectionHeaderNib;
 
 @end

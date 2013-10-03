@@ -11,7 +11,7 @@
 
 @interface CVEventDetailsOrderViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *detailsOrderArray; 
+@property (nonatomic, strong) NSMutableArray *detailsOrderArray;
 
 
 + (NSMutableArray *)standardDetailsOrderingArray;

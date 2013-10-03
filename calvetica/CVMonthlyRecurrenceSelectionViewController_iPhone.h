@@ -16,21 +16,15 @@
 
 @interface CVMonthlyRecurrenceSelectionViewController_iPhone : CVViewController
 
-#pragma mark - Properties
-@property (nonatomic, weak) id<CVMonthlyRecurrenceSelectionDelegate> delegate;
-@property (nonatomic, weak) IBOutlet UIView *keys;
-@property (nonatomic, weak) IBOutlet UIView *mainView;
-@property (nonatomic, strong) NSMutableArray *selectedDays;
-@property (nonatomic, weak) IBOutlet CVAutoResizableLabel *selectedDaysLabel;
-@property (nonatomic, strong) UIView *targetView;
+@property (nonatomic, weak  )          id<CVMonthlyRecurrenceSelectionDelegate> delegate;
+@property (nonatomic, weak  ) IBOutlet UIView                                   *keys;
+@property (nonatomic, weak  ) IBOutlet UIView                                   *mainView;
+@property (nonatomic, strong  )          NSMutableArray                           *selectedDays;
+@property (nonatomic, weak  ) IBOutlet CVAutoResizableLabel                     *selectedDaysLabel;
+@property (nonatomic, strong)          UIView                                   *targetView;
 
-#pragma mark - Methods
 + (NSString *)daysOfTheMonthString:(NSArray *)daysOfTheMonth;
 - (id)initWithTargetView:(UIView *)view selectedDays:(NSArray *)days;
-
-#pragma mark - IBActions
-- (IBAction)backgroundTapped;
-- (IBAction)buttonTapped:(CVToggleButton *)button;
 
 @end
 

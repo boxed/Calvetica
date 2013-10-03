@@ -12,13 +12,19 @@
 
 @implementation CVRootTableViewController
 
+- (void)dealloc
+{
+    _tableView.delegate = nil;
+    _tableView.dataSource = nil;
+}
+
 - (void)setTableView:(UITableView *)newTableView 
 {
-    _tableView = newTableView;
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.separatorColor = RGB(204, 204, 204);
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _tableView                  = newTableView;
+    _tableView.delegate         = self;
+    _tableView.dataSource       = self;
+    _tableView.separatorColor   = RGB(204, 204, 204);
+    _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
 }
 
 - (void)setDelegate:(id)delegate 
@@ -28,7 +34,8 @@
 
 - (void)loadTableView 
 {
-    
+    _tableView.delegate     = self;
+    _tableView.dataSource   = self;
 }
 
 - (id)cellDataHolderAtIndexPath:(NSIndexPath *)index 
@@ -70,6 +77,5 @@
     return nil;
 }
 
-#pragma mark - Table View Delegate
 
 @end

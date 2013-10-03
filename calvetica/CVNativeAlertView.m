@@ -12,11 +12,11 @@
 @interface CVNativeAlertView ()
 
 #pragma mark - Private Properties
-@property (nonatomic, copy) CVNativeAlertBlock cancelButtonBlock;
-@property (nonatomic, copy) CVNativeAlertBlock otherButtonBlock;
-@property (nonatomic, copy) NSString *cancelButtonTitle;
-@property (nonatomic, copy) NSString *otherButtonTitle;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, copy  ) CVNativeAlertBlock cancelButtonBlock;
+@property (nonatomic, copy  ) CVNativeAlertBlock otherButtonBlock;
+@property (nonatomic, copy  ) NSString           *cancelButtonTitle;
+@property (nonatomic, copy  ) NSString           *otherButtonTitle;
+@property (nonatomic, strong) AVAudioPlayer      *audioPlayer;
 
 #pragma mark - Private Methods
 - (id)initWithTitle:(NSString *)title 

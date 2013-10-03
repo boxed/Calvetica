@@ -13,7 +13,7 @@
 
 @interface CVEventHourViewController_iPhone ()
 @property (nonatomic, assign)          CVEventHourViewControllerMode mode;
-@property (nonatomic, strong)          NSMutableArray                *unitButtons;
+@property (nonatomic, strong  )          NSMutableArray                *unitButtons;
 @property (nonatomic, weak  ) IBOutlet CVViewButton                  *startTimeButton;
 @property (nonatomic, weak  ) IBOutlet UILabel                       *endTimeLabel;
 @property (nonatomic, weak  ) IBOutlet CVViewButton                  *endTimeButton;
@@ -29,6 +29,11 @@
 
 @implementation CVEventHourViewController_iPhone
 
+- (void)dealloc
+{
+    self.endDateTableView.delegate      = nil;
+    self.endDateTableView.dataSource    = nil;
+}
 
 - (id)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military
 {
@@ -48,9 +53,9 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 
 	for (CVViewButton *button in @[ _startTimeButton, _endTimeButton, _allDayButton ]) {
 		button.backgroundColorSelected	= patentedRed;

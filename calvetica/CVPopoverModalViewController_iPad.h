@@ -15,28 +15,18 @@
 #import "geometry.h"
 
 @interface CVPopoverModalViewController_iPad : CVViewController {
-    CGFloat keyboardAppearedModalSavedYCoord;
-	CVPopoverArrowDirection keyboardAppearedArrowSavedDirection;
+    CGFloat                 keyboardAppearedModalSavedYCoord;
+    CVPopoverArrowDirection keyboardAppearedArrowSavedDirection;
 }
 
-#pragma mark - Properties
 @property (nonatomic, strong) CVViewController<CVModalProtocol> *contentViewController;
-@property (nonatomic, strong) UIView *targetView;
+@property (nonatomic, strong) UIView                            *targetView;
+@property (nonatomic, assign) BOOL                              ignoreKeyboard;
 
-#pragma mark - IBOutlets
-@property (nonatomic, weak) IBOutlet UIView *modalViewContainer;
-@property (nonatomic, weak) IBOutlet CVPopoverBackdrop *popoverBackdropView;
-@property (nonatomic, assign) BOOL ignoreKeyboard;
-
-#pragma mark - Methods
 - (id)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView;
-
 - (CVPopoverArrowDirection)bestEnumMatch:(CVPopoverArrowDirection)direction inMask:(CVPopoverArrowDirection)directionMask;
 - (void)layout;
 - (void)keyboardWillShow:(NSNotification *)aNotification;
 - (void)keyboardWillHide;
-
-#pragma mark - Actions
-- (IBAction)backdropWasTapped:(id)sender;
 
 @end

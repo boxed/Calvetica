@@ -7,16 +7,17 @@
 //
 
 #import "CVSettingsViewController.h"
+#import "CVTimeZoneViewController.h"
 #import "settingskeys.h"
 
 
-@interface CVSettingsViewController ()
-@property (weak, nonatomic) IBOutlet UITableViewCell *askForCalendarCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *multipleExchangeAlarmsCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *twentyFourHourFormatCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *dotsOnlyMonthViewCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *scrollingMonthViewCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *durationBarReadOnlyCell;
+@interface CVSettingsViewController () <CVTimeZoneViewControllerDelegate>
+@property (nonatomic, weak) IBOutlet UITableViewCell *askForCalendarCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *multipleExchangeAlarmsCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *twentyFourHourFormatCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *dotsOnlyMonthViewCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *scrollingMonthViewCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *durationBarReadOnlyCell;
 @end
 
 
@@ -34,6 +35,15 @@
 	[self checkCell:_dotsOnlyMonthViewCell withSetting:DOTS_ONLY_MONTH_VIEW];
 	[self checkCell:_scrollingMonthViewCell withSetting:SCROLLABLE_MONTH_VIEW];
 	[self checkCell:_durationBarReadOnlyCell withSetting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"TimeZoneSegue"]) {
+        CVTimeZoneViewController *controller    = [segue destinationViewController];
+        controller.delegate                     = self;
+        controller.selectedTimeZone             = [CVSettings timeZoneSupport] ? [CVSettings timezone] : nil;
+    }
 }
 
 
@@ -82,6 +92,28 @@
 }
 
 
+
+
+#pragma mark - DELEGATE time zone view controller
+
+- (void)timeZoneViewController:(CVTimeZoneViewController *)controller didSelectTimeZone:(NSTimeZone *)timeZone
+{
+    [CVSettings setTimeZone:timeZone];
+    [NSDate mt_setTimeZone:timeZone];
+}
+
+- (void)timeZoneViewController:(CVTimeZoneViewController *)controller didToggleSupportOn:(BOOL)isOn
+{
+    [CVSettings setTimeZoneSupport:isOn];
+    if (isOn) {
+        [CVSettings setTimeZone:[NSTimeZone systemTimeZone]];
+        [NSDate mt_setTimeZone:[NSTimeZone systemTimeZone]];
+    }
+    else {
+        [CVSettings setTimeZone:nil];
+        [NSDate mt_setTimeZone:[NSTimeZone systemTimeZone]];
+    }
+}
 
 
 

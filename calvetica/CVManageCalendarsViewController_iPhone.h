@@ -37,13 +37,13 @@ typedef enum {
 
 @interface CVManageCalendarsViewController_iPhone : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource> {}
 
-@property (nonatomic, weak) id<CVManageCalendarsViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
-@property CVManageCalendarsViewMode mode;
-@property BOOL modified;
+@property (nonatomic, weak  )          id<CVManageCalendarsViewControllerDelegate> delegate;
+@property (nonatomic, strong  )          NSMutableArray                              *cellDataHolderArray;
+@property (nonatomic, assign)          CVManageCalendarsViewMode                   mode;
+@property (nonatomic, assign)          BOOL                                        modified;
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UILabel *controllerTitle;
+@property (nonatomic, weak  ) IBOutlet UITableView                                 *tableView;
+@property (nonatomic, weak  ) IBOutlet UILabel                                     *controllerTitle;
 
 - (id)initWithMode:(CVManageCalendarsViewMode)viewMode;
 - (IBAction)cancelButtonWasTapped:(id)sender;

@@ -61,7 +61,7 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated 
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     if (_mode == CVEventModeDay) {
@@ -143,7 +143,6 @@
 
 - (void)detailsBarButtonWasTapped:(id)sender 
 {
-    
     CVEventDetailsViewController_iPhone *detailViewController = [[CVEventDetailsViewController_iPhone alloc] initWithEvent:self.event];
     detailViewController.delegate = self;
     

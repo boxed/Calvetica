@@ -12,6 +12,12 @@
 
 @implementation CVComboBoxViewController
 
+- (void)dealloc
+{
+    self.itemsTableView.dataSource = nil;
+    self.itemsTableView.delegate = nil;
+}
+
 - (NSInteger)selectedItemIndex 
 {
     return [self.items indexOfObject:self.selectedItem];

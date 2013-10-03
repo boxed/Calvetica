@@ -62,8 +62,9 @@
 #pragma mark - Methods
 
 - (void)loadTableView 
-{  
-    
+{
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     // date can't be null
     if (!self.selectedDate) return;
     
@@ -172,12 +173,13 @@
 
         if ([holder isKindOfClass:[CVReminderCellDataHolder class]]) {
             CVReminderCellDataHolder *eventHolder = (CVReminderCellDataHolder *)holder;
-
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             if (!eventHolder.reminder   &&
                 eventHolder.date        &&
                 [eventHolder.date mt_isWithinSameDay:self.selectedDate] &&
-                i < [self.tableView numberOfRowsInSection:0]) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                [self.tableView numberOfSections] > indexPath.section &&
+                [self.tableView numberOfRowsInSection:indexPath.section] > indexPath.row)
+            {
                 [self.tableView scrollToRowAtIndexPath:indexPath
                                       atScrollPosition:UITableViewScrollPositionTop
                                               animated:YES];

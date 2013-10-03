@@ -215,6 +215,7 @@
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = datePressed;
     quickAddViewController.isAllDay = allDay;
+	quickAddViewController.mode = CVQuickAddModeEvent;
     quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideCenter;
     
     // resize view so that it doesn't have the black space at the bottom

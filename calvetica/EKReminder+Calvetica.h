@@ -18,8 +18,8 @@
 
 @interface EKReminder (Calvetica)
 
-@property NSDate *startDate;
-@property NSDate *dueDate;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *dueDate;
 
 
 #pragma mark - CONSTRUCTORS
@@ -31,7 +31,6 @@
 
 
 #pragma mark - Methods
-- (void)reset;
 - (void)resetNotes;
 - (void)resetLocation;
 - (void)resetRecurrenceRule;

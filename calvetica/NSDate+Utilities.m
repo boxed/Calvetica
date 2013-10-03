@@ -30,7 +30,7 @@
 // Sep 16, 2012, 1:00 AM
 - (NSString *)stringWithWeekdayMonthDayYearHourMinute
 {
-	if ([CVSettings isTwentyFourHourFormat])
+	if (![CVSettings isTwentyFourHourFormat])
 		return [self mt_stringFromDateWithFormat:@"EE MMM d, yyyy, h:mm a" localized:YES];
 	else
 		return [self mt_stringFromDateWithFormat:@"EE MMM d, yyyy, H:mm" localized:YES];

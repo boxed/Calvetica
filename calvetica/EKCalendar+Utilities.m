@@ -66,7 +66,7 @@
 
 - (BOOL)canAddAttendees 
 {
-    return self.allowsContentModifications && (self.type == EKCalendarTypeCalDAV || self.type == EKCalendarTypeExchange);
+    return self.allowsContentModifications;
 }
 
 - (BOOL)save

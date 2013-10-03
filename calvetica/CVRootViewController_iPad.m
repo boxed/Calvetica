@@ -14,16 +14,12 @@
 #import "EKCalendarItem+Calvetica.h"
 
 
-
-
 @interface CVRootViewController_iPad ()
 @property (nonatomic, weak) IBOutlet UILabel *redBarMonthLabel;
 @property (nonatomic, weak) IBOutlet UILabel *redBarYearLabel;
 @property (nonatomic, weak) IBOutlet UILabel *grayBarWeekdayLabel;
 @property (nonatomic, weak) IBOutlet UILabel *grayBarDateLabel;
 @end
-
-
 
 
 @implementation CVRootViewController_iPad
@@ -360,7 +356,7 @@
             [self presentPopoverModalViewController:eventViewController forView:cell animated:YES];
         } else {
             [self showQuickAddWithDefault:YES
-							 durationMode:NO
+							 durationMode:YES
 									 date:cell.date
 									 view:cell
 									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
@@ -424,7 +420,9 @@
 			
 			if (![holder.date mt_isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
 				[self.rootTableViewController removeObjectAtIndexPath:indexPath];
-				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationMiddle];
+                [self.rootTableView beginUpdates];
+				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.rootTableView endUpdates];
 			}
 			else {
 				[self.rootTableView reloadRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];

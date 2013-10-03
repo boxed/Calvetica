@@ -12,7 +12,7 @@
 
 
 @interface CVReminderCell ()
-@property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property (nonatomic, weak) IBOutlet UIButton *checkButton;
 @end
 
 
@@ -66,6 +66,7 @@
 
 - (IBAction)cellWasTapped:(id)sender 
 {
+    [super cellWasTapped:sender];
     [_delegate cellWasTapped:self];
 }
 

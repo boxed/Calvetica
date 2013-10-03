@@ -12,9 +12,9 @@
  A cheap way to wrap events and store an offset value for rendering dots on the month view
  */
 @interface CVEventDot : NSObject
-@property (nonatomic, strong) EKEvent *event;
-@property (nonatomic, assign) NSUInteger offset;
+@property (nonatomic, strong) EKEvent        *event;
+@property (nonatomic, assign) NSUInteger     offset;
 @property (nonatomic, assign) CVColoredShape shape;
-@property (nonatomic, assign) CGRect shapeRect;
-@property (nonatomic, strong) UIColor *dotColor;
+@property (nonatomic, assign) CGRect         shapeRect;
+@property (nonatomic, strong) UIColor        *dotColor;
 @end

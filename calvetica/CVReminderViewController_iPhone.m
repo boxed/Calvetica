@@ -17,14 +17,14 @@
 
 
 @interface CVReminderViewController_iPhone ()
-@property (weak, nonatomic)	IBOutlet UILabel			*subDetailHeaderTitle;
-@property (weak, nonatomic)	IBOutlet CVTextToggleButton *hourBarButton;
-@property (weak, nonatomic)	IBOutlet CVTextToggleButton *dayBarButton;
-@property (weak, nonatomic)	IBOutlet CVTextToggleButton *detailsBarButton;
-@property (weak, nonatomic)	IBOutlet UIControl			*closeButton;
-@property (weak, nonatomic)	IBOutlet UIControl			*cancelButton;
-@property (weak, nonatomic)	IBOutlet UIControl			*saveButton;
-@property (weak, nonatomic)	IBOutlet UIControl			*applyButton;
+@property (nonatomic, weak) IBOutlet UILabel            *subDetailHeaderTitle;
+@property (nonatomic, weak) IBOutlet CVTextToggleButton *hourBarButton;
+@property (nonatomic, weak) IBOutlet CVTextToggleButton *dayBarButton;
+@property (nonatomic, weak) IBOutlet CVTextToggleButton *detailsBarButton;
+@property (nonatomic, weak) IBOutlet UIControl          *closeButton;
+@property (nonatomic, weak) IBOutlet UIControl          *cancelButton;
+@property (nonatomic, weak) IBOutlet UIControl          *saveButton;
+@property (nonatomic, weak) IBOutlet UIControl          *applyButton;
 @end
 
 
@@ -106,7 +106,7 @@
 {
 	CVEventDayViewController_iPhone *dayViewController = [[CVEventDayViewController_iPhone alloc] init];
     dayViewController.delegate = self;
-    dayViewController.initialDate = self.reminder.startDate ?: self.reminder.dueDate;
+    dayViewController.initialDate = (self.reminder.startDate ?: self.reminder.dueDate) ?: [NSDate date];
     self.viewControllers = @[dayViewController];
     
     self.mode = CVReminderViewControllerModeDay;

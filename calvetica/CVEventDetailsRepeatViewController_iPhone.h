@@ -46,25 +46,25 @@ typedef enum {
 
 
 #pragma mark - Properties
-@property (nonatomic, weak) NSObject<CVEventDetailsRecurrenceDelegate> *delegate;
-@property (nonatomic, strong) NSDate *startDate;
-@property (nonatomic, strong) EKRecurrenceRule *initialRecurrenceRule;
-@property (nonatomic, strong) NSArray *daySymbols;
-@property (nonatomic, strong) NSArray *monthSymbols;
-@property (nonatomic, readonly) NSInteger yearCount;
+@property (nonatomic, weak            ) NSObject<CVEventDetailsRecurrenceDelegate> *delegate;
+@property (nonatomic, strong          ) NSDate                                     *startDate;
+@property (nonatomic, copy            ) EKRecurrenceRule                           *initialRecurrenceRule;
+@property (nonatomic, copy            ) NSArray                                    *daySymbols;
+@property (nonatomic, copy            ) NSArray                                    *monthSymbols;
+@property (nonatomic,         readonly) NSInteger                                  yearCount;
 
 
 #pragma mark IBOutlets
-@property (nonatomic, weak) IBOutlet UITableView *dateDay;
-@property (nonatomic, weak) IBOutlet UITableView *dateMonth;
-@property (nonatomic, weak) IBOutlet UITableView *dateYear;
-@property (nonatomic, weak) IBOutlet UIView *dateView;
-@property (nonatomic, weak) IBOutlet UILabel *endAfterLabel;
-@property (nonatomic, weak) IBOutlet UIView *endAfterView;
+@property (nonatomic, weak) IBOutlet UITableView         *dateDayTableView;
+@property (nonatomic, weak) IBOutlet UITableView         *dateMonth;
+@property (nonatomic, weak) IBOutlet UITableView         *dateYear;
+@property (nonatomic, weak) IBOutlet UIView              *dateView;
+@property (nonatomic, weak) IBOutlet UILabel             *endAfterLabel;
+@property (nonatomic, weak) IBOutlet UIView              *endAfterView;
 @property (nonatomic, weak) IBOutlet CVMultiToggleButton *endTypeButton;
-@property (nonatomic, weak) IBOutlet UILabel *repeatTimesLabel;
-@property (nonatomic, weak) IBOutlet CVViewButton *frequencyButton;
-@property (nonatomic, weak) IBOutlet CVViewButton *endCountButton;
+@property (nonatomic, weak) IBOutlet UILabel             *repeatTimesLabel;
+@property (nonatomic, weak) IBOutlet CVViewButton        *frequencyButton;
+@property (nonatomic, weak) IBOutlet CVViewButton        *endCountButton;
 
 
 #pragma mark - Methods

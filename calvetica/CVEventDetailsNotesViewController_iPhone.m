@@ -16,10 +16,14 @@
 @implementation CVEventDetailsNotesViewController_iPhone
 
 
+- (void)dealloc
+{
+    self.notesTextView.delegate = nil;
+}
+
 #pragma mark - Methods
 
-
-- (void)hideKeyboard 
+- (void)hideKeyboard
 {
     [_notesTextView resignFirstResponder];
 }
@@ -62,12 +66,6 @@
     if ([_notesTextView.text length] == 0) {
         [self editNoteButtonWasTapped:nil];
     }
-}
-
-- (void)viewDidUnload 
-{
-    [self setNotesTextView:nil];
-    [super viewDidUnload];
 }
 
 

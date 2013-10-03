@@ -21,11 +21,11 @@
 
 #pragma mark - Properties
 @property (nonatomic, weak  ) id<CVAgendaEventCellDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
-@property (nonatomic, strong) UINib *eventCellNib;
-@property (nonatomic, strong) UINib *dayTitleCellNib;
-@property (nonatomic, strong) UINib *friendlyCellNib;
-@property (nonatomic, strong) UINib *weekNumberCellNib;
+@property (nonatomic, strong  ) NSMutableArray                *cellDataHolderArray;
+@property (nonatomic, strong) UINib                         *eventCellNib;
+@property (nonatomic, strong) UINib                         *dayTitleCellNib;
+@property (nonatomic, strong) UINib                         *friendlyCellNib;
+@property (nonatomic, strong) UINib                         *weekNumberCellNib;
 
 
 #pragma mark - Methods

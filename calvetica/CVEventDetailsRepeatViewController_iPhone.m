@@ -19,7 +19,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)init 
+- (id)init
 {
     return nil;
 }
@@ -37,6 +37,16 @@
         _selectedYear = [self.startDate mt_year];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    self.dateDayTableView.delegate       = nil;
+    self.dateDayTableView.dataSource     = nil;
+    self.dateMonth.delegate     = nil;
+    self.dateMonth.dataSource   = nil;
+    self.dateYear.delegate      = nil;
+    self.dateYear.dataSource    = nil;
 }
 
 - (NSArray *)daySymbols 
@@ -172,12 +182,12 @@
         _selectedDay = [date mt_daysInCurrentMonth];
     }
     
-    [self.dateDay reloadData];
+    [self.dateDayTableView reloadData];
     
     NSIndexPath *newPath = [self indexPathForDay:_selectedDay];
     // It's possible that the day value was the past.
     _selectedDay = [self dayForIndexPath:newPath];
-    [self.dateDay selectRowAtIndexPath:newPath animated:animate scrollPosition:UITableViewScrollPositionMiddle];
+    [self.dateDayTableView selectRowAtIndexPath:newPath animated:animate scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)updateSelectedMonthWithAnimation:(BOOL)animate 
@@ -270,7 +280,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    if (tableView == self.dateDay) {
+    if (tableView == self.dateDayTableView) {
         return [self dayCount];
     } else if (tableView == self.dateMonth) {
         return [self monthCount];
@@ -294,7 +304,7 @@
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.textLabel.textColor = patentedDarkGray;
     
-    if (tableView == self.dateDay) {
+    if (tableView == self.dateDayTableView) {
         cell.textLabel.text = [NSString stringWithFormat:@"%i", [self dayForIndexPath:indexPath]];
     } else if (tableView == self.dateMonth) {
         NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:[self monthForIndexPath:indexPath] day:1];
@@ -313,7 +323,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    if (tableView == self.dateDay) {
+    if (tableView == self.dateDayTableView) {
         _selectedDay = [self dayForIndexPath:indexPath];
     } else if (tableView == self.dateMonth) {
         _selectedMonth = [self monthForIndexPath:indexPath];
@@ -362,7 +372,7 @@
 
 - (void)viewDidUnload 
 {
-	[self setDateDay:nil];
+	[self setDateDayTableView:nil];
 	[self setDateMonth:nil];
 	[self setDateYear:nil];
 	[self setDateView:nil];

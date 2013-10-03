@@ -41,6 +41,6 @@ typedef enum {
 @interface CVPopoverBackdrop : UIView
 
 @property (nonatomic, assign) CVPopoverArrowDirection arrowDirection;
-@property (nonatomic, strong) UIColor *backdropColor;
+@property (nonatomic, strong) UIColor                 *backdropColor;
 
 @end

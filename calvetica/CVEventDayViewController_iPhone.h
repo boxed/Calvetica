@@ -22,20 +22,20 @@
 
 @interface CVEventDayViewController_iPhone : CVViewController
 
-@property (nonatomic, weak) id<CVEventDayViewControllerDelegate> delegate;
-@property (nonatomic, copy) NSDate *initialDate;
-@property (nonatomic, copy) NSDate *date;
-@property (nonatomic, strong) NSMutableArray *dayButtons;
-@property (nonatomic, strong) NSMutableArray *weekButtons;
+@property (nonatomic, weak  ) id<CVEventDayViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSDate                               *initialDate;
+@property (nonatomic, strong) NSDate                               *date;
+@property (nonatomic, strong  ) NSMutableArray                       *dayButtons;
+@property (nonatomic, strong  ) NSMutableArray                       *weekButtons;
 
-@property (nonatomic, strong) UINib *dayButtonNib;
-@property (nonatomic, weak) IBOutlet UITableView *yearTableView;
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet UIView *containerView;
-@property (nonatomic, weak) IBOutlet UIView *dayButtonsContainer;
-@property (nonatomic, weak) IBOutlet UIView *monthButtonsContainer;
-@property (nonatomic, weak) IBOutlet UIView *weekButtonsContainer;
-@property (nonatomic, weak) IBOutlet UIView *weekdayLabelContainer;
+@property (nonatomic, strong)          UINib        *dayButtonNib;
+@property (nonatomic, weak  ) IBOutlet UITableView  *yearTableView;
+@property (nonatomic, weak  ) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak  ) IBOutlet UIView       *containerView;
+@property (nonatomic, weak  ) IBOutlet UIView       *dayButtonsContainer;
+@property (nonatomic, weak  ) IBOutlet UIView       *monthButtonsContainer;
+@property (nonatomic, weak  ) IBOutlet UIView       *weekButtonsContainer;
+@property (nonatomic, weak  ) IBOutlet UIView       *weekdayLabelContainer;
 
 - (void)containerWasSwiped:(UISwipeGestureRecognizer *)gesture;
 - (NSInteger)yearFromTableIndex:(NSInteger)index;

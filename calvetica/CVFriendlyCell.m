@@ -17,5 +17,10 @@
 
 }
 
+- (void)cellWasTapped:(id)sender
+{
+
+}
+
 
 @end

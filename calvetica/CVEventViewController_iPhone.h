@@ -38,18 +38,18 @@ typedef enum {
 
 @interface CVEventViewController_iPhone : CVNavigationController <CVEventDayViewControllerDelegate, CVEventDetailsViewControllerDelegate, CVModalProtocol>
 
-@property (nonatomic, weak) id<CVEventViewControllerDelegate> delegate;
-@property (nonatomic, strong) EKEvent *event;
-@property (nonatomic) CVEventMode mode;
+@property (nonatomic, weak  )          id<CVEventViewControllerDelegate> delegate;
+@property (nonatomic, strong)          EKEvent                           *event;
+@property (nonatomic, assign)          CVEventMode                       mode;
 
-@property (nonatomic, weak) IBOutlet CVTextToggleButton *dayBarButton;
-@property (nonatomic, weak) IBOutlet CVTextToggleButton *hourBarButton;
-@property (nonatomic, weak) IBOutlet CVTextToggleButton *detailsBarButton;
-@property (nonatomic, weak) IBOutlet UIControl *cancelButton;
-@property (nonatomic, weak) IBOutlet UIControl *saveButton;
-@property (nonatomic, weak) IBOutlet UIControl *closeButton;
-@property (nonatomic, weak) IBOutlet UILabel *subDetailHeaderTitle;
-@property (nonatomic, weak) IBOutlet UIControl *applyButton;
+@property (nonatomic, weak  ) IBOutlet CVTextToggleButton                *dayBarButton;
+@property (nonatomic, weak  ) IBOutlet CVTextToggleButton                *hourBarButton;
+@property (nonatomic, weak  ) IBOutlet CVTextToggleButton                *detailsBarButton;
+@property (nonatomic, weak  ) IBOutlet UIControl                         *cancelButton;
+@property (nonatomic, weak  ) IBOutlet UIControl                         *saveButton;
+@property (nonatomic, weak  ) IBOutlet UIControl                         *closeButton;
+@property (nonatomic, weak  ) IBOutlet UILabel                           *subDetailHeaderTitle;
+@property (nonatomic, weak  ) IBOutlet UIControl                         *applyButton;
 
 - (id)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode;
 

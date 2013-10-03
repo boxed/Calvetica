@@ -15,7 +15,7 @@
 
 @interface CVCalendarDetailsViewController ()
 @property (nonatomic, strong) UITextField *calendarTitleTextField;
-@property (nonatomic, strong) NSArray *availableColors;
+@property (nonatomic, copy) NSArray *availableColors;
 @end
 
 
@@ -23,6 +23,11 @@
 
 @implementation CVCalendarDetailsViewController
 
+
+- (void)dealloc
+{
+    _calendarTitleTextField.delegate = nil;
+}
 
 - (void)viewDidLoad
 {

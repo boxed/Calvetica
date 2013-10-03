@@ -29,16 +29,16 @@ typedef enum {
 
 
 @interface CVViewOptionsPopoverViewController : CVViewController <CVModalProtocol>
-@property (nonatomic, weak) id<CVViewOptionsPopoverViewControllerDelegate> delegate;
-@property (nonatomic, assign) CVViewOptionsPopoverOption currentViewMode;
-@property (nonatomic, strong) UIView *targetView;
-@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *fullDayButton;
-@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *agendaDayButton;
-@property (nonatomic, weak) IBOutlet CVRoundedToggleButton *weekButton;
-@property (weak, nonatomic) IBOutlet CVRoundedToggleButton *detailedWeekButton;
-@property (nonatomic, weak) IBOutlet CVRoundedButton *calendarsButton;
-@property (nonatomic, weak) IBOutlet CVRoundedButton *searchButton;
-@property (nonatomic) CVViewOptionsMode mode;
+@property (nonatomic, weak  )          id<CVViewOptionsPopoverViewControllerDelegate> delegate;
+@property (nonatomic, assign)          CVViewOptionsPopoverOption                     currentViewMode;
+@property (nonatomic, strong)          UIView                                         *targetView;
+@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *fullDayButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *agendaDayButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *weekButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *detailedWeekButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *calendarsButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *searchButton;
+@property (nonatomic, assign)          CVViewOptionsMode                              mode;
 @end
 
 

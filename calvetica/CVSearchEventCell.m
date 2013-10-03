@@ -88,8 +88,6 @@
     
     // update red label
     self.redSubtitleLabel.text = [_event.startingDate stringWithWeekdayMonthDayYearHourMinute];
-    
-
 }
 
 
@@ -99,6 +97,7 @@
 
 - (IBAction)cellWasTapped:(id)sender 
 {
+    [super cellWasTapped:sender];
     [_delegate searchCellWasTapped:self];
 }
 

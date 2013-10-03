@@ -9,6 +9,6 @@
 
 @interface CVReminderDefaultCalendarViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *availableCalendars;
+@property (nonatomic, copy) NSArray *availableCalendars;
 
 @end

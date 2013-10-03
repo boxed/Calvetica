@@ -68,7 +68,7 @@
         }
         
         
-        if (([event fitsWithinDayOfDate:event.startingDate] && ![event isAllDay]) || [event eventDuration] < SECONDS_IN_DAY - 1 ) {
+        if ([event eventDuration] < 60 * 60 * 8) { //([event fitsWithinDayOfDate:event.startingDate] && ![event isAllDay]) || [event eventDuration] < SECONDS_IN_DAY - 1 ) {
             eventSquareDataHolder.offset = -1;
             eventSquareDataHolder.overlaps = -1;
             [eventSquareDataHolders addObject:eventSquareDataHolder];

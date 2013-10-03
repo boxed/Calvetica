@@ -11,19 +11,11 @@
 @protocol CVDefaultLanguageViewControllerDelegate;
 
 
-@interface CVDefaultLanguageViewController : UITableViewController {
-@private
-@protected
-}
+@interface CVDefaultLanguageViewController : UITableViewController
 
+@property (nonatomic, copy) NSArray *availableLanguages;
 
-#pragma mark - Public Properties
-@property (nonatomic, strong) NSArray *availableLanguages;
-
-#pragma mark - Public Methods
 - (NSString *)languageStringFromCode:(NSString *)languageCode;
 - (NSArray *)getTranslatedLanguages;
-
-
 
 @end

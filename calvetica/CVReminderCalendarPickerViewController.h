@@ -12,25 +12,11 @@
 @protocol CVReminderCalendarPickerViewControllerDelegate;
 
 
-@interface CVReminderCalendarPickerViewController : UITableViewController {
-@private
-@protected
-}
-
-
-#pragma mark - Public Properties
+@interface CVReminderCalendarPickerViewController : UITableViewController
 @property (nonatomic, weak) id<CVReminderCalendarPickerViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSArray *availableCalendars;
-
-#pragma mark - Public Methods
+@property (nonatomic, copy) NSArray                                            *availableCalendars;
 - (void)setSelectedCalendar:(EKCalendar *)calendar;
-
-#pragma mark - Notifications
-
-
 @end
-
-
 
 
 @protocol CVReminderCalendarPickerViewControllerDelegate <NSObject>

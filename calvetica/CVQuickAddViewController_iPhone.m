@@ -21,39 +21,39 @@
 
 
 @interface CVQuickAddViewController_iPhone ()
-@property (nonatomic, strong) NSMutableArray *hourDigits;
-@property (nonatomic, strong) NSMutableArray *minuteDigits;
-@property (nonatomic, strong) NSMutableArray *hoursArray;
-@property (nonatomic, strong) NSMutableArray *minutesArray;
-@property (nonatomic, strong) NSMutableArray *allDayDatesArray;
-@property (nonatomic, strong) NSNumber *hourInterval;
-@property (nonatomic, strong) NSNumber *minuteInterval;
-@property (nonatomic, weak) IBOutlet CVRoundedButton *addButton;
-@property (nonatomic, weak) IBOutlet CVRoundedButton *moreButton;
-@property (nonatomic, weak) IBOutlet CVRoundedButton *closeButton;
-@property (nonatomic, weak) IBOutlet UIView *containerView;
-@property (nonatomic, weak) IBOutlet UITextField *titleTextField;
-@property (nonatomic, weak) IBOutlet UIButton *ampmButton;
-@property (nonatomic, weak) IBOutlet UIControl *startTimeButton;
-@property (nonatomic, weak) IBOutlet UILabel *startLabel;
-@property (nonatomic, weak) IBOutlet UILabel *startTimeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *startDayLabel;
-@property (nonatomic, weak) IBOutlet UIControl *endTimeButton;
-@property (nonatomic, weak) IBOutlet UILabel *endLabel;
-@property (nonatomic, weak) IBOutlet UILabel *endTimeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *endDayLabel;
-@property (nonatomic, weak) IBOutlet UIView *allDayEndDayView;
-@property (nonatomic, weak) IBOutlet UILabel *allDayEndDayLabel;
-@property (nonatomic, weak) IBOutlet UILabel *allDayStartDayLabel;
-@property (nonatomic, weak) IBOutlet UIView *durationTablesView;
-@property (nonatomic, weak) IBOutlet UITableView *hoursTableView;
-@property (nonatomic, weak) IBOutlet UITableView *minutesTableView;
-@property (nonatomic, weak) IBOutlet UIView *allDayTableHolderView;
-@property (nonatomic, weak) IBOutlet UITableView *allDayTableView;
-@property (nonatomic, weak) IBOutlet UIScrollView *allDayScrollView;
-@property (nonatomic, weak) IBOutlet UIView *allDayScrollViewPageOne;
-@property (nonatomic, weak) IBOutlet UIView *allDayScrollViewPageTwo;
-@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, strong  )          NSMutableArray  *hourDigits;
+@property (nonatomic, strong  )          NSMutableArray  *minuteDigits;
+@property (nonatomic, strong  )          NSMutableArray  *hoursArray;
+@property (nonatomic, strong  )          NSMutableArray  *minutesArray;
+@property (nonatomic, strong  )          NSMutableArray  *allDayDatesArray;
+@property (nonatomic, strong)          NSNumber        *hourInterval;
+@property (nonatomic, strong)          NSNumber        *minuteInterval;
+@property (nonatomic, weak  ) IBOutlet CVRoundedButton *addButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedButton *moreButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedButton *closeButton;
+@property (nonatomic, weak  ) IBOutlet UIView          *containerView;
+@property (nonatomic, weak  ) IBOutlet UITextField     *titleTextField;
+@property (nonatomic, weak  ) IBOutlet UIButton        *ampmButton;
+@property (nonatomic, weak  ) IBOutlet UIControl       *startTimeButton;
+@property (nonatomic, weak  ) IBOutlet UILabel         *startLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel         *startTimeLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel         *startDayLabel;
+@property (nonatomic, weak  ) IBOutlet UIControl       *endTimeButton;
+@property (nonatomic, weak  ) IBOutlet UILabel         *endLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel         *endTimeLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel         *endDayLabel;
+@property (nonatomic, weak  ) IBOutlet UIView          *allDayEndDayView;
+@property (nonatomic, weak  ) IBOutlet UILabel         *allDayEndDayLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel         *allDayStartDayLabel;
+@property (nonatomic, weak  ) IBOutlet UIView          *durationTablesView;
+@property (nonatomic, weak  ) IBOutlet UITableView     *hoursTableView;
+@property (nonatomic, weak  ) IBOutlet UITableView     *minutesTableView;
+@property (nonatomic, weak  ) IBOutlet UIView          *allDayTableHolderView;
+@property (nonatomic, weak  ) IBOutlet UITableView     *allDayTableView;
+@property (nonatomic, weak  ) IBOutlet UIScrollView    *allDayScrollView;
+@property (nonatomic, weak  ) IBOutlet UIView          *allDayScrollViewPageOne;
+@property (nonatomic, weak  ) IBOutlet UIView          *allDayScrollViewPageTwo;
+@property (nonatomic, weak  ) IBOutlet UIPageControl   *pageControl;
 - (void)calculateStartDate;
 - (void)calculateEndDate;
 - (void)renderEventEndTimeString;
@@ -65,6 +65,18 @@
 
 
 @implementation CVQuickAddViewController_iPhone
+
+- (void)dealloc
+{
+    self.titleTextField.delegate        = nil;
+    self.hoursTableView.delegate        = nil;
+    self.hoursTableView.dataSource      = nil;
+    self.minutesTableView.delegate      = nil;
+    self.minutesTableView.dataSource    = nil;
+    self.allDayTableView.delegate       = nil;
+    self.allDayTableView.dataSource     = nil;
+    self.allDayScrollView.delegate      = nil;
+}
 
 + (NSDictionary *)dictionaryFromTitle:(NSString *)title value:(NSNumber *)value {
     return @{@"title": title, @"value": value};
@@ -91,15 +103,18 @@
 - (void)setIsAllDay:(BOOL)allDay 
 {
     _isAllDay = allDay;
-	self.startDate	= [_startDate mt_startOfCurrentDay];
-	self.endDate	= [_endDate mt_endOfCurrentDay];
-    
+
     if (allDay) {
         self.allDayTableHolderView.hidden = NO;
+        self.startDate	= [_startDate mt_startOfCurrentDay];
+        self.endDate	= [_endDate mt_endOfCurrentDay];
     }
     else {
         self.allDayTableHolderView.hidden = YES;
     }
+    self.hourDigits = [NSMutableArray array];
+    self.minuteDigits = [NSMutableArray array];
+    [self displayDefault];
 }
 
 - (void)setStartDate:(NSDate *)date 
@@ -120,7 +135,6 @@
 
 - (void)displayDefault 
 {
-    
     // depending on if its 24 hour format, set the hour of the day and the am/pm button text
     NSInteger hourOfDay;
 	NSInteger minuteOfHour = [self.startDate mt_minuteOfHour];
@@ -168,7 +182,6 @@
 
 - (void)calculateStartDate 
 {
-	
 	NSInteger hour = [[self hourStringFromHourDigits] intValue];
 	NSInteger minute = [[self minuteStringFromMinuteDigits] intValue];
 	
@@ -230,10 +243,11 @@
     _endTimeLabel.text = [self.endDate stringWithHourMinuteAndLowercaseAMPM];
     //If today was Tuesday this makes it so it says ENDS:Tomorrow instead of ENDS:Wednesday
     if ([self.startDate mt_isOnOrBefore:[NSDate date]] && [_endDate mt_isOnOrAfter:[NSDate date]]) {
-        _endDayLabel.text = [[_endDate stringWithWeekdayMonthDayYearMonthAbbreviated:NO] lowercaseString];
+        _endDayLabel.hidden = NO;
+        _endDayLabel.text = [[_endDate stringWithWeekdayMonthDayYearMonthAbbreviated:YES] lowercaseString];
     }
     else {
-        _endDayLabel.text = [[_endDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES] lowercaseString];
+        _endDayLabel.hidden = YES;
     }
 }
 
@@ -396,30 +410,24 @@
     else {
         // save
 		if (_mode == CVQuickAddModeEvent) {
-			dispatch_async([CVOperationQueue backgroundQueue], ^{
-				[(EKEvent *)self.calendarItem saveThenDoActionBlock:^(void) {
-					dispatch_async(dispatch_get_main_queue(), ^{
-						[self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
-					});
-				} cancelBlock:^(void) {}];
-			});
+            [(EKEvent *)self.calendarItem saveThenDoActionBlock:^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
+                });
+            } cancelBlock:^(void) {}];
 		}
 		else {
-			dispatch_async([CVOperationQueue backgroundQueue], ^{
-				[(EKReminder *)self.calendarItem save];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
-				});
-			});
+            [(EKReminder *)self.calendarItem save];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
+            });
 		}
-
     }
 }
 
 - (void)showCalendarPicker
 {
     [self.titleTextField resignFirstResponder];
-    
     CVCalendarPickerViewController_iPhone *picker = [[CVCalendarPickerViewController_iPhone alloc] init];
     picker.delegate = self;
 	picker.mode = _mode == CVQuickAddModeEvent ? CVCalendarPickerModeEvent : CVCalendarPickerModeReminder;
@@ -434,7 +442,14 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
+
+    self.addButton.layer.cornerRadius       = 6;
+    self.addButton.layer.masksToBounds      = YES;
+    self.closeButton.layer.cornerRadius     = 6;
+    self.closeButton.layer.masksToBounds    = YES;
+    self.moreButton.layer.cornerRadius      = 6;
+    self.moreButton.layer.masksToBounds     = YES;
+
     if ([CVSettings isTwentyFourHourFormat]) {
         self.startTimeLabel.text = @"00:00";
     } else {
@@ -476,6 +491,12 @@
     // set up long press button on the quick add
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addButtonWasLongPressed:)];
     [self.addButton addGestureRecognizer:longPressGesture];
+
+    if (PAD) {
+        for (UIView *v in self.view.subviews) {
+            v.y -= 20;
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated 

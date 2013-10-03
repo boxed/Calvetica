@@ -40,7 +40,7 @@
         
         NSString *OSVersion = [[UIDevice currentDevice] systemVersion];
         NSString *deviceVersion = [[UIDevice currentDevice] model];
-        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         
         NSString *messageBody = [NSString stringWithFormat:@"OS Version: %@\nDevice Model: %@\nApp Version: %@", OSVersion, deviceVersion, appVersion];
         

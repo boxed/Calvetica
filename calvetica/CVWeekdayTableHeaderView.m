@@ -14,7 +14,7 @@
 
 
 @interface CVWeekdayTableHeaderView ()
-@property (weak, nonatomic) IBOutlet UIView *redBar;
+@property (nonatomic, weak) IBOutlet UIView *redBar;
 @end
 
 

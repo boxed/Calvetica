@@ -131,11 +131,11 @@
     // alert user that app restart is required
     if (![languageCode isEqualToString:[CVSettings defaultLanguage]]) {
         UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle: @"Application restart required!"
-                                   message: @"Please restart Calvetica for the changes to take effect"
-                                  delegate: self
-                         cancelButtonTitle: @"OK"
-                         otherButtonTitles: nil];
+        [[UIAlertView alloc] initWithTitle:@"Application restart required!"
+                                   message:@"Please restart Calvetica for the changes to take effect"
+                                  delegate:self
+                         cancelButtonTitle:@"OK"
+                         otherButtonTitles:nil];
         [alert show];
     }
     

@@ -9,11 +9,7 @@
 #import "times.h"
 
 
-@interface CVEventDefaultAlarmsViewController : UITableViewController {
-    
-}
-
+@interface CVEventDefaultAlarmsViewController : UITableViewController
 @property (nonatomic, strong) NSMutableArray *selectedAlarms;
 @property (nonatomic, strong) NSMutableArray *alarms;
-
 @end

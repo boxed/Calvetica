@@ -13,7 +13,7 @@
 @interface CVReminderCellDataHolder : CVDataHolder
 
 @property (nonatomic, strong) EKReminder *reminder;
-@property (nonatomic, strong) id cell;
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) id         cell;
+@property (nonatomic, strong) NSDate     *date;
 
 @end

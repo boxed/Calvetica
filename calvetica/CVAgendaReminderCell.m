@@ -43,6 +43,7 @@
 
 - (IBAction)cellWasTapped:(id)sender 
 {
+    [super cellWasTapped:sender];
     [_delegate cellWasTapped:self];
 }
 

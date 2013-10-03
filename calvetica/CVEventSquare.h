@@ -2,18 +2,18 @@
 
 @interface CVEventSquare : NSObject
 
-@property (nonatomic, strong) EKEvent *event;
-@property (nonatomic) BOOL consideredAllDay;
-@property (nonatomic) BOOL isPassed;
-@property (nonatomic) NSInteger startSeconds;
-@property (nonatomic) NSInteger endSeconds;
-@property (nonatomic) NSInteger offset;
-@property (nonatomic) NSInteger overlaps;
-@property (nonatomic) CGFloat x;
-@property (nonatomic) CGFloat y;
-@property (nonatomic) CGFloat width;
-@property (nonatomic) CGFloat height;
-@property (nonatomic) NSInteger *days;
-@property (nonatomic, strong) NSMutableArray *sharedEvents;
+@property (nonatomic, strong) EKEvent        *event;
+@property (nonatomic, assign) BOOL           consideredAllDay;
+@property (nonatomic, assign) BOOL           isPassed;
+@property (nonatomic, assign) NSInteger      startSeconds;
+@property (nonatomic, assign) NSInteger      endSeconds;
+@property (nonatomic, assign) NSInteger      offset;
+@property (nonatomic, assign) NSInteger      overlaps;
+@property (nonatomic, assign) CGFloat        x;
+@property (nonatomic, assign) CGFloat        y;
+@property (nonatomic, assign) CGFloat        width;
+@property (nonatomic, assign) CGFloat        height;
+@property (nonatomic, assign) NSInteger      *days;
+@property (nonatomic, strong  ) NSMutableArray *sharedEvents;
 
 @end

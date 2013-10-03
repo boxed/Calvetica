@@ -9,11 +9,14 @@
 
 @interface CVEventStore : NSObject
 
-@property (nonatomic, strong) EKEventStore  *eventStore;
+@property (nonatomic, strong) EKEventStore *eventStore;
 
 + (CVEventStore *)sharedStore;
-+ (void)reset;
 
+// asking permission
+- (EKEventStore *)permissionStore;
++ (void)setPermissionGranted:(BOOL)granted;
++ (BOOL)isPermissionGranted;
 
 #pragma mark - Events
 

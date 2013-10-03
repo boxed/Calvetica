@@ -49,6 +49,7 @@
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 
+    self.window.tintColor = RGB(215, 0, 0);
     [self.window makeKeyAndVisible];
 
     // if launched with options (meaning, a user tapped the "Snooze" button on a local notification.
@@ -127,7 +128,7 @@
 {
     // gather the info from the notification
     NSDictionary *userInfo		= notif.userInfo;
-    NSDate *eventStartDate		= [userInfo objectForKey:NOTIFICATION_EVENT_START_DATE_KEY];
+    NSDate *eventStartDate		= [userInfo objectForKey:NOTIFICATION_EVENT_START_DATE_KEY] ?: [NSDate date];
     NSString *identifier		= [userInfo objectForKey:NOTIFICATION_EVENT_IDENTIFIER_KEY];
     // set up a start and end date that will grab a minimum amount of events, but that will include the event.
     // NOTE: using identifier WILL NOT WORK because it could be a repeating event and pulling the event by the ei will give

@@ -8,19 +8,13 @@
 #import "CVDataHolder.h"
 #import "colors.h"
 
-@interface CVCustomColorDataHolder : CVDataHolder {
-@private
-@protected
-}
+@interface CVCustomColorDataHolder : CVDataHolder
 
 + (NSArray *)customColorsDataHolderCollection;
 + (CVCustomColorDataHolder *)customColor:(UIColor *)color title:(NSString *)colorTitle;
 
-#pragma mark - Public Properties
-@property (nonatomic, strong) UIColor *color;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic) BOOL isSelected;
-
-#pragma mark - Public Methods
+@property (nonatomic, strong) UIColor  *color;
+@property (nonatomic, copy  ) NSString *title;
+@property (nonatomic        ) BOOL     isSelected;
 
 @end

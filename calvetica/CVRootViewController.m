@@ -31,6 +31,9 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.monthTableViewController.delegate  = nil;
+    self.rootTableView.delegate             = nil;
+    self.rootTableView.dataSource           = nil;
 }
 
 - (void)viewDidLoad
@@ -79,12 +82,6 @@
 
     // set the mode based on the saved state from previous use
     self.mode = [CVSettings isReminderView] ? CVRootViewControllerModeReminders : CVRootViewControllerModeEvents;
-    if (self.mode == CVRootViewControllerModeEvents) {
-        self.tableMode = [CVSettings eventRootTableMode];
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        self.tableMode = [CVSettings reminderRootTableMode];
-    }
 
     // set day
     self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
@@ -100,37 +97,38 @@
 //        welcomeController.delegate = self;
 //        [self presentPageModalViewController:welcomeController animated:YES completion:nil];
 //    }
-
-    [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer *timer) {
-        [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if (!granted) {
-                [MTq main:^{
-                    [self notifyOfNeededPermission];
-                }];
-            }
-            [[CVEventStore sharedStore].eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-                [MTq main:^{
-                    [CVEventStore reset];
-                    [self updateRootTableView];
-                    [self redrawDotsOnMonthView];
-                }];
-            }];
-        }];
-    } repeats:NO];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self becomeFirstResponder];
 
-	self.monthTableViewController.startDate = [[self.selectedDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
-	self.monthTableViewController.selectedDate = self.selectedDate;
-	[self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-	[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
+    if (![CVEventStore isPermissionGranted]) {
+        [[[CVEventStore sharedStore] permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (!granted) {
+                [MTq main:^{
+                    [self notifyOfNeededPermission];
+                }];
+            }
+            [[[CVEventStore sharedStore] permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+                [MTq main:^{
+                    [CVEventStore setPermissionGranted:granted];
+                    [self redrawDotsOnMonthView];
+                    self.selectedDate = self.selectedDate;
+                }];
+            }];
+        }];
+    }
 
-	[self.rootTableView reloadData];
+    self.monthTableViewController.startDate = [[self.selectedDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+    self.monthTableViewController.selectedDate = self.selectedDate;
+    [self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
+
+    [self.rootTableView reloadData];
+//    self.view.backgroundColor = RGBHex(0x333333);
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -179,14 +177,7 @@
 - (void)setMode:(CVRootViewControllerMode)mode
 {
     _mode = mode;
-    if (mode == CVRootViewControllerModeEvents) {
-        self.tableMode = [CVSettings eventRootTableMode];
-    }
-    else if (mode == CVRootViewControllerModeReminders) {
-        self.tableMode = [CVSettings reminderRootTableMode];
-		
-    }
-    
+
     // toggle icon
     if (_mode == CVRootViewControllerModeEvents) {
         self.toggleModeButton.icon = CVEventReminderToggleButtonIconCheck;
@@ -195,7 +186,6 @@
     }
 
     [CVSettings setReminderView:(mode == CVRootViewControllerModeReminders ? YES : NO)];
-    [self updateRootTableView];
     
     // get the table ready to scroll
     if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
@@ -215,6 +205,13 @@
     }
     else if (self.mode == CVRootViewControllerModeReminders) {
         self.redBar.backgroundColor = [UIColor blackColor];
+    }
+
+    if (mode == CVRootViewControllerModeEvents) {
+        self.tableMode = [CVSettings eventRootTableMode];
+    }
+    else if (mode == CVRootViewControllerModeReminders) {
+        self.tableMode = [CVSettings reminderRootTableMode];
     }
 }
 
@@ -354,7 +351,7 @@
 	if (sender.state != UIGestureRecognizerStateEnded) return;
     
     if (sender.scale < 1) {
-        if (self.tableMode < CVRootTableViewModeWeek) {
+        if (self.tableMode < CVRootTableViewModeDetailedWeek) {
             self.tableMode += 1;
         }
     }
@@ -380,6 +377,10 @@
     }
     else if (self.tableMode == CVRootTableViewModeWeek) {
         [UIApplication showBezelWithTitle:@"Week"];
+        self.rootTableViewController.shouldScrollToDate = YES;
+    }
+    else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
+        [UIApplication showBezelWithTitle:@"Detail Week"];
         self.rootTableViewController.shouldScrollToDate = YES;
     }
 }
@@ -468,7 +469,7 @@
 - (void)cellWasLongPressed:(CVEventCell *)cell 
 {
     [self showQuickAddWithDefault:YES
-                     durationMode:NO
+                     durationMode:YES
                              date:cell.date
                              view:cell
                              mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
@@ -524,7 +525,9 @@
             [reminderToRemove remove];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.rootTableViewController removeObjectAtIndexPath:indexPath];
-                [self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationMiddle];
+                [self.rootTableView beginUpdates];
+                [self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.rootTableView endUpdates];
                 [self.monthTableViewController.tableView reloadData];
             });
         });

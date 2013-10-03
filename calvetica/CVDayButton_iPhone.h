@@ -14,18 +14,18 @@
 @interface CVDayButton_iPhone : UIView
 
 #pragma mark - Properties
-@property (nonatomic, copy) NSDate *date;
-@property (nonatomic) BOOL isToday;
-@property (nonatomic) BOOL isRootViewController;
-@property (nonatomic) BOOL isSelected;
+@property (nonatomic, strong) NSDate         *date;
+@property (nonatomic        ) BOOL           isToday;
+@property (nonatomic        ) BOOL           isRootViewController;
+@property (nonatomic        ) BOOL           isSelected;
 @property (nonatomic, strong) CVTodayBoxView *todayBoxView;
 
 #pragma mark - IBOutlets
-@property (nonatomic, weak) IBOutlet UILabel *label;
-@property (nonatomic, weak) IBOutlet UILabel *monthTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel     *label;
+@property (nonatomic, weak) IBOutlet UILabel     *monthTitleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
-@property (nonatomic, weak) IBOutlet UIView *barViewContainer;
-@property (nonatomic, weak) IBOutlet UIView *dotViewContainer;
+@property (nonatomic, weak) IBOutlet UIView      *barViewContainer;
+@property (nonatomic, weak) IBOutlet UIView      *dotViewContainer;
 
 #pragma mark - Methods
 - (void)drawDotWithOffset:(NSUInteger)offset shape:(CVColoredShape)shape rect:(CGRect)rect color:(UIColor *)color;

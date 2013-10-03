@@ -11,9 +11,9 @@
 @interface CVSlideLockControl : UIControl
 
 // Use these for accessing UIElements
-@property (nonatomic, weak) IBOutlet UISlider *slider;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) UIImage *thumbImage;
+@property (nonatomic, weak  ) IBOutlet UISlider *slider;
+@property (nonatomic, weak  ) IBOutlet UILabel  *titleLabel;
+@property (nonatomic, strong)          UIImage  *thumbImage;
 
 - (void)resetSlider;
 - (IBAction)sliderMoved:(id)sender;

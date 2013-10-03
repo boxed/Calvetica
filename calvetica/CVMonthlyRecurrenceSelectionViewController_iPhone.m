@@ -8,8 +8,6 @@
 #import "CVMonthlyRecurrenceSelectionViewController_iPhone.h"
 
 
-
-
 @implementation CVMonthlyRecurrenceSelectionViewController_iPhone
 
 - (id)initWithTargetView:(UIView *)view selectedDays:(NSArray *)days 
@@ -77,12 +75,12 @@
 
 #pragma mark - IBActions
 
-- (void)backgroundTapped 
+- (IBAction)backgroundTapped
 {
     [self.delegate monthlyRecurrenceSelectionWillClose:self];
 }
 
-- (void)buttonTapped:(CVToggleButton *)button 
+- (IBAction)buttonTapped:(CVToggleButton *)button
 {
     if (button.selected) {
         button.selected = NO;

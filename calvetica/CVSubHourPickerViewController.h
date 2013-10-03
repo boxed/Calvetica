@@ -8,6 +8,7 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+
 typedef enum {
     CVSubHourPickerViewControllerResultCancelled
 } CVSubHourPickerViewControllerResult;
@@ -16,29 +17,15 @@ typedef enum {
 @protocol CVSubHourPickerViewControllerDelegate;
 
 
-@interface CVSubHourPickerViewController : CVViewController <CVModalProtocol> {
-}
-
-#pragma mark - Constructor
+@interface CVSubHourPickerViewController : CVViewController <CVModalProtocol>
+@property (nonatomic, weak  ) id<CVSubHourPickerViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSDate                                    *evenHourDate;
 - (id)initWithDate:(NSDate *)date;
-
-	
-#pragma mark - Public Properties
-@property (nonatomic, weak) id<CVSubHourPickerViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSDate *evenHourDate;
-
-
-#pragma mark - IBActions
 - (IBAction)subHourButtonWasTapped:(id)sender;
-
-
 @end
 
 
-
-
 @protocol CVSubHourPickerViewControllerDelegate <NSObject>
-@required
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker didFinishWithResult:(CVSubHourPickerViewControllerResult)result;
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker didPickDate:(NSDate *)date;
 @end

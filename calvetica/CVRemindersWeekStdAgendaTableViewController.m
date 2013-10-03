@@ -80,7 +80,6 @@
 			}];
 
 			[tempCellArrays addObject:tempCellDataHolderArray];
-
 		}
 
 		// update the table with our new event or cell
@@ -101,10 +100,14 @@
 
 - (void)scrollToDate:(NSDate *)date 
 {
+    [self.tableView reloadData];
     for (NSInteger i = 0; i < _daysOfWeekArray.count; i++) {
         NSDate *d = [_daysOfWeekArray objectAtIndex:i];
-        if ([d mt_isWithinSameDay:date]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+        if ([d mt_isWithinSameDay:date] &&
+            [self.tableView numberOfSections] > indexPath.section &&
+            [self.tableView numberOfRowsInSection:indexPath.section] > indexPath.row)
+        {
             [self.tableView scrollToRowAtIndexPath:indexPath
                                   atScrollPosition:UITableViewScrollPositionTop
                                           animated:YES];
@@ -177,7 +180,7 @@
     NSDate *day = [_daysOfWeekArray objectAtIndex:section];
     CVTableSectionHeaderView *sectionView = [CVTableSectionHeaderView viewFromNib:self.sectionHeaderNib];
     
-    NSString *title = [day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO];
+    NSString *title = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
     sectionView.weekdayLabel.text = title;
     
     return sectionView;

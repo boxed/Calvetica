@@ -78,7 +78,7 @@
     if (!newStartDate) return;
     
     _monthLabel.hidden = YES;
-    
+
     // update day numbers
     NSDate *today = [[NSDate date] mt_startOfCurrentDay];
     for (NSInteger i = 0; i < 7; i++) {
@@ -99,7 +99,7 @@
 
         if (dayOfMonth == 1) {
             _monthLabel.hidden = NO;
-            
+
             CGFloat width       = self.frame.size.width;
             CGFloat widthEach   = width / 7.0f;
             
@@ -113,9 +113,6 @@
             else {
                 _monthLabel.text = [[date stringWithTitleOfCurrentMonthAbbreviated:YES] uppercaseString];
             }
-        }
-        else {
-            _monthLabel.hidden = YES;
         }
     }
 }

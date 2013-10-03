@@ -14,19 +14,19 @@
 
 @interface CVEventDetailsRepeatMonthlyViewController_iPhone ()
 
-@property (nonatomic, strong) NSArray *weekNumbersArray;
-@property (nonatomic, strong) NSArray *daysOfTheMonth;
-@property (weak, nonatomic, readonly) CVAutoResizableLabel *eachDayButtonLabel;
+@property (nonatomic, copy            )          NSArray              *weekNumbersArray;
+@property (nonatomic, copy            )          NSArray              *daysOfTheMonth;
+@property (nonatomic, strong, readonly)          CVAutoResizableLabel *eachDayButtonLabel;
 
-@property (nonatomic) NSInteger comboBoxIndex;
-@property (nonatomic) NSInteger dayOfWeek;
-@property (nonatomic) NSInteger repeatOnState;
-@property (nonatomic) NSInteger weekNumber;
+@property (nonatomic, assign          )          NSInteger            comboBoxIndex;
+@property (nonatomic, assign          )          NSInteger            dayOfWeek;
+@property (nonatomic, assign          )          NSInteger            repeatOnState;
+@property (nonatomic, assign          )          NSInteger            weekNumber;
 
-@property (nonatomic, weak) IBOutlet CVViewButton *dayOfWeekButton;
-@property (nonatomic, weak) IBOutlet CVViewButton *eachDayButton;
-@property (nonatomic, weak) IBOutlet CVMultiToggleButton *repeatOnButton;
-@property (nonatomic, weak) IBOutlet CVMultiToggleButton *weekNumberButton;
+@property (nonatomic, weak            ) IBOutlet CVViewButton         *dayOfWeekButton;
+@property (nonatomic, weak            ) IBOutlet CVViewButton         *eachDayButton;
+@property (nonatomic, weak            ) IBOutlet CVMultiToggleButton  *repeatOnButton;
+@property (nonatomic, weak            ) IBOutlet CVMultiToggleButton  *weekNumberButton;
 @end
 
 

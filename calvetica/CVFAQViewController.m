@@ -12,6 +12,11 @@
 @implementation CVFAQViewController
 
 
+- (void)dealloc
+{
+    self.helpScreen.delegate = nil;
+}
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];

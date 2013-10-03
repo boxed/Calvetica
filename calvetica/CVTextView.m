@@ -19,7 +19,6 @@
     [self addGestureRecognizer:tapGesture];
     
     self.editable = NO;
-    self.dataDetectorTypes = UIDataDetectorTypeAll;
     
     [super awakeFromNib];
 }

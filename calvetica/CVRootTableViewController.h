@@ -14,14 +14,14 @@
 
 @interface CVRootTableViewController : CVViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) NSObject <CVRootTableViewControllerProtocol> *tableControllerProtocol;
-@property (nonatomic, strong) NSDate *selectedDate;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, weak  ) NSObject <CVRootTableViewControllerProtocol> *tableControllerProtocol;
+@property (nonatomic, strong) NSDate                                       *selectedDate;
+@property (nonatomic, strong) UITableView                                  *tableView;
 
 // this is necessary because the selected.date is set before the table is loaded
 // and you can't scroll before the table is loaded
-@property (nonatomic) BOOL shouldScrollToCurrentHour;
-@property (nonatomic) BOOL shouldScrollToDate;
+@property (nonatomic, assign) BOOL shouldScrollToCurrentHour;
+@property (nonatomic, assign) BOOL shouldScrollToDate;
 
 - (void)setDelegate:(id)delegate;
 - (void)loadTableView;

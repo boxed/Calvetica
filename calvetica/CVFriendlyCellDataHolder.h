@@ -10,7 +10,7 @@
 
 @interface CVFriendlyCellDataHolder : CVDataHolder
 
-@property (nonatomic, strong) NSString *friendlyText;
+@property (nonatomic, copy) NSString *friendlyText;
 + (NSArray *)phrases;
 + (NSString *)randomPhrase;
 

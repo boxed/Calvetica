@@ -21,6 +21,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    self.calendarsTableView.delegate    = nil;
+    self.calendarsTableView.dataSource  = nil;
+    self.scrollView.delegate            = nil;
+}
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];

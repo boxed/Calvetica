@@ -14,7 +14,7 @@
 
 @implementation CVCalendarPickerTableViewController
 
-- (UINib *)calendarCellNib 
+- (UINib *)calendarCellNib
 {
     if (_calendarCellNib == nil) {
         self.calendarCellNib = [CVCalendarTableViewCell_iPhone nib];

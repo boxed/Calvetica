@@ -12,26 +12,26 @@
 
 
 @interface CVReminderDetailsViewController_iPhone ()
-@property (nonatomic, strong) CVReminderCalendarPickerViewController *calendarTableViewController;
-@property (nonatomic, weak) IBOutlet UIScrollView *contentScrollView;
-@property (nonatomic, weak) IBOutlet UITextView *reminderTitleTextView;
-@property (nonatomic, weak) IBOutlet UITableView *reminderCalendarTableView;
-@property (nonatomic, weak) IBOutlet CVTextView *reminderNotesTextView;
-@property (nonatomic, weak) IBOutlet UIView *reminderTitleBlock;
-@property (nonatomic, weak) IBOutlet UIView *reminderCalendarBlock;
-@property (nonatomic, weak) IBOutlet UIView *reminderPriorityBlock;
-@property (nonatomic, weak) IBOutlet UIView *reminderNotesBlock;
-@property (nonatomic, weak) IBOutlet UIView *reminderDoneBlock;
-@property (nonatomic, strong) CVSlideLockControl *doneSlideLock;
-@property (nonatomic, weak) IBOutlet UIView *reminderDeleteBlock;
-@property (nonatomic, strong) CVSlideLockControl *deleteSlideLock;
-@property (nonatomic, strong) UIViewController *rootViewController;
-@property (nonatomic, weak) IBOutlet CVColoredDotView *priorityHighShape;
-@property (nonatomic, weak) IBOutlet CVColoredDotView *priorityMediumShape;
-@property (nonatomic, weak) IBOutlet CVColoredDotView *priorityLowShape;
-@property (nonatomic, weak) IBOutlet UIImageView *priorityHighCheckImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *priorityMediumCheckImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *priorityLowCheckImageView;
+@property (nonatomic, strong)          CVReminderCalendarPickerViewController *calendarTableViewController;
+@property (nonatomic, weak  ) IBOutlet UIScrollView                           *contentScrollView;
+@property (nonatomic, weak  ) IBOutlet UITextView                             *reminderTitleTextView;
+@property (nonatomic, weak  ) IBOutlet UITableView                            *reminderCalendarTableView;
+@property (nonatomic, weak  ) IBOutlet CVTextView                             *reminderNotesTextView;
+@property (nonatomic, weak  ) IBOutlet UIView                                 *reminderTitleBlock;
+@property (nonatomic, weak  ) IBOutlet UIView                                 *reminderCalendarBlock;
+@property (nonatomic, weak  ) IBOutlet UIView                                 *reminderPriorityBlock;
+@property (nonatomic, weak  ) IBOutlet UIView                                 *reminderNotesBlock;
+@property (nonatomic, weak  ) IBOutlet UIView                                 *reminderDoneBlock;
+@property (nonatomic, strong)          CVSlideLockControl                     *doneSlideLock;
+@property (nonatomic, weak  ) IBOutlet UIView                                 *reminderDeleteBlock;
+@property (nonatomic, strong)          CVSlideLockControl                     *deleteSlideLock;
+@property (nonatomic, strong)          UIViewController                       *rootViewController;
+@property (nonatomic, weak  ) IBOutlet CVColoredDotView                       *priorityHighShape;
+@property (nonatomic, weak  ) IBOutlet CVColoredDotView                       *priorityMediumShape;
+@property (nonatomic, weak  ) IBOutlet CVColoredDotView                       *priorityLowShape;
+@property (nonatomic, weak  ) IBOutlet CVCheckButton                          *priorityHighCheckImageView;
+@property (nonatomic, weak  ) IBOutlet CVCheckButton                          *priorityMediumCheckImageView;
+@property (nonatomic, weak  ) IBOutlet CVCheckButton                          *priorityLowCheckImageView;
 @end
 
 
@@ -47,6 +47,15 @@
         self.reminder = initReminder;
     }
     return self;
+}
+
+- (void)dealloc
+{
+    self.contentScrollView.delegate             = nil;
+    self.reminderTitleTextView.delegate         = nil;
+    self.reminderCalendarTableView.delegate     = nil;
+    self.reminderCalendarTableView.dataSource   = nil;
+    self.reminderNotesTextView.delegate         = nil;
 }
 
 - (void)viewDidLoad 
@@ -68,15 +77,15 @@
     [self setPriority:self.reminder.priority];
     
     // set the shape of the priority buttons
-    _priorityHighShape.shape		= CVColoredShapeTriangle;
-    _priorityMediumShape.shape	= CVColoredShapeCircle;
-    _priorityLowShape.shape		= CVColoredShapeRectangle;
+    _priorityHighShape.shape    = CVColoredShapeTriangle;
+    _priorityMediumShape.shape  = CVColoredShapeCircle;
+    _priorityLowShape.shape     = CVColoredShapeRectangle;
     
     // set the color of the priority button shapes
-    _priorityHighShape.color		= patentedDarkGray;
-    _priorityMediumShape.color	= patentedDarkGray;
-    _priorityLowShape.color		= patentedDarkGray;
-    
+    _priorityHighShape.color    = patentedDarkGray;
+    _priorityMediumShape.color  = patentedDarkGray;
+    _priorityLowShape.color     = patentedDarkGray;
+
     // done lock slider
     self.doneSlideLock = [CVSlideLockControl viewFromNib:[CVSlideLockControl nib]];
     self.doneSlideLock.frame = CGRectMake(15, 35, self.doneSlideLock.bounds.size.width, self.doneSlideLock.bounds.size.height);
@@ -238,11 +247,10 @@
 
 - (void)setPriority:(NSInteger)priority 
 {
-    
-    _priorityHighCheckImageView.hidden = YES;
-    _priorityMediumCheckImageView.hidden = YES;
-    _priorityLowCheckImageView.hidden = YES;
-    
+    _priorityHighCheckImageView.hidden      = YES;
+    _priorityMediumCheckImageView.hidden    = YES;
+    _priorityLowCheckImageView.hidden       = YES;
+
     if (priority == CVColoredShapeTriangle) {
         _priorityHighCheckImageView.hidden = NO;
     }

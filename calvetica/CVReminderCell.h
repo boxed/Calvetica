@@ -15,9 +15,9 @@
 
 @interface CVReminderCell : CVCell
 
-@property (nonatomic, weak) id<CVReminderCellDelegate> delegate;
-@property (nonatomic, strong) EKReminder *reminder;
-@property (nonatomic, weak) IBOutlet UILabel *noReminderLabel;
+@property (nonatomic, weak  )          id<CVReminderCellDelegate> delegate;
+@property (nonatomic, strong)          EKReminder                 *reminder;
+@property (nonatomic, weak  ) IBOutlet UILabel                    *noReminderLabel;
 
 @end
 

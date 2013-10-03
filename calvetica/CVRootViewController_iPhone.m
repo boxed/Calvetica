@@ -149,9 +149,6 @@
         self.rootTableView.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
         self.rootTableView.height = self.view.height - self.rootTableView.y;
         
-        // adjust vignette background
-        self.vignetteBackground.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
-        
     }
                      completion:^(BOOL finished) {
                          [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
@@ -407,7 +404,9 @@
 
 - (void)searchController:(CVSearchViewController_iPhone *)controller cellWasTapped:(CVEventCell *)cell
 {
-	[self cellWasTapped:cell];	
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self cellWasTapped:cell];
+    }];
 }
 
 - (void)cell:(CVEventCell *)cell wasSwipedInDirection:(CVEventCellSwipedDirection)direction 
@@ -436,7 +435,9 @@
 			
 			if (![holder.date mt_isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
 				[self.rootTableViewController removeObjectAtIndexPath:indexPath];
-				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationMiddle];
+                [self.rootTableView beginUpdates];
+				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.rootTableView endUpdates];
 			}
 			else {
 				[self.rootTableView reloadRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];

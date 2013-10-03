@@ -36,6 +36,8 @@
 #pragma mark - Methods
 - (void)loadTableView 
 {
+    [super loadTableView];
+    
     // date can't be null
     if (!self.selectedDate) return;
     
@@ -149,7 +151,9 @@
         NSDate *d = [self.daysOfWeekArray objectAtIndex:i];
         if ([d mt_isWithinSameDay:date]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
-            if ([self.tableView numberOfRowsInSection:i] > indexPath.row) {
+            if ([self.tableView numberOfSections] > indexPath.section &&
+                [self.tableView numberOfRowsInSection:indexPath.section] > indexPath.row)
+            {
                 [self.tableView scrollToRowAtIndexPath:indexPath
                                       atScrollPosition:UITableViewScrollPositionTop
                                               animated:YES];
@@ -196,17 +200,17 @@
     NSArray *events = [self.cellDataHolderArray objectAtIndex:indexPath.section];
     CVEventCellDataHolder *holder = [events objectAtIndex:indexPath.row];
     
-    cell.isEmpty = NO;
-    cell.event = holder.event;
-    cell.date = holder.date;
-    cell.isAllDay = holder.isAllDay;
-    cell.durationBarPercent = 0;
-    cell.durationBarColor = [UIColor clearColor];
-	cell.secondaryDurationBarColor = [UIColor clearColor];
-    cell.delegate = self.delegate;
-	[cell resetAccessoryButton];
-    holder.cell = cell;
-    
+    cell.isEmpty                    = NO;
+    cell.event                      = holder.event;
+    cell.date                       = holder.date;
+    cell.isAllDay                   = holder.isAllDay;
+    cell.durationBarPercent         = 0;
+    cell.durationBarColor           = [UIColor clearColor];
+    cell.secondaryDurationBarColor  = [UIColor clearColor];
+    cell.delegate                   = self.delegate;
+    [cell resetAccessoryButton];
+    holder.cell                     = cell;
+
     [cell drawDurationBarAnimated:NO];
     
     return cell;
@@ -238,7 +242,7 @@
     NSDate *day = [self.daysOfWeekArray objectAtIndex:section];
     CVTableSectionHeaderView *sectionView = [CVTableSectionHeaderView viewFromNib:self.sectionHeaderNib];
     
-    NSString *title = [day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO];
+    NSString *title = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
     sectionView.weekdayLabel.text = title;
     
     return sectionView;

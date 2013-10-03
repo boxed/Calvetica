@@ -30,15 +30,15 @@ typedef enum {
 
 @interface CVQuickAddViewController_iPhone : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UITextFieldDelegate, CVCalendarPickerViewController_iPhoneDelegate>
 
-@property (nonatomic, weak) id<CVQuickAddViewControllerDelegate> delegate;
-@property (nonatomic) CVQuickAddMode mode;
-@property (nonatomic, strong) NSDate *startDate;
-@property (nonatomic, strong) NSDate *endDate;
-@property (nonatomic, strong) EKCalendarItem *calendarItem;
-@property (nonatomic, strong) EKCalendar *calendar;
-@property (nonatomic) BOOL isAllDay;
-@property (nonatomic) BOOL isDurationMode;
-@property (nonatomic, assign) BOOL isAM;
+@property (nonatomic, weak  ) id<CVQuickAddViewControllerDelegate> delegate;
+@property (nonatomic, assign) CVQuickAddMode                       mode;
+@property (nonatomic, strong) NSDate                               *startDate;
+@property (nonatomic, strong) NSDate                               *endDate;
+@property (nonatomic, strong) EKCalendarItem                       *calendarItem;
+@property (nonatomic, strong) EKCalendar                           *calendar;
+@property (nonatomic, assign) BOOL                                 isAllDay;
+@property (nonatomic, assign) BOOL                                 isDurationMode;
+@property (nonatomic, assign) BOOL                                 isAM;
 
 - (void)displayDefault;
 - (void)renderEventStartTimeString;
@@ -51,6 +51,5 @@ typedef enum {
 
 
 @protocol CVQuickAddViewControllerDelegate <NSObject>
-@required
 - (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller didCompleteWithAction:(CVQuickAddResult)action;
 @end

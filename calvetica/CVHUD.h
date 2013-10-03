@@ -13,8 +13,7 @@
 #import "UILabel+Utilities.h"
 #import "CVDebug.h"
 
-@interface CVHUD : UIView {
-}
+@interface CVHUD : UIView
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 

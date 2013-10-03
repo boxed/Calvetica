@@ -16,9 +16,9 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, weak) id<CVEventCellDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
-@property (nonatomic, strong) UINib *eventCellNib;
+@property (nonatomic, weak  ) id<CVEventCellDelegate> delegate;
+@property (nonatomic, strong  ) NSMutableArray          *cellDataHolderArray;
+@property (nonatomic, strong) UINib                   *eventCellNib;
 
 
 #pragma mark - Methods

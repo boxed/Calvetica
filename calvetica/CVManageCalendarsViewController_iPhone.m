@@ -20,6 +20,12 @@
 
 @implementation CVManageCalendarsViewController_iPhone
 
+- (void)dealloc
+{
+    self.tableView.delegate     = nil;
+    self.tableView.dataSource   = nil;
+}
+
 - (id)initWithMode:(CVManageCalendarsViewMode)viewMode
 {
     self = [super init];

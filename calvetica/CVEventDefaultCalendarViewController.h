@@ -9,10 +9,7 @@
 #import "CVEventStore.h"
 #import "CVNativeAlertView.h"
 
-@interface CVEventDefaultCalendarViewController : UITableViewController {
-    
-}
 
-@property (nonatomic, strong) NSArray *availableCalendars;
-
+@interface CVEventDefaultCalendarViewController : UITableViewController
+@property (nonatomic, copy) NSArray *availableCalendars;
 @end

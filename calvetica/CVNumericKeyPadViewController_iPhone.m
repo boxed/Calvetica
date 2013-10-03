@@ -11,8 +11,8 @@
 
 
 @interface CVNumericKeyPadViewController_iPhone()
-@property (nonatomic, strong) NSMutableArray *number;
-@property BOOL append;
+@property (nonatomic, strong  ) NSMutableArray *number;
+@property (nonatomic, assign) BOOL           append;
 @end
 
 

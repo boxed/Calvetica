@@ -12,21 +12,14 @@
 
 @interface CVMonthTableViewController : UITableViewController {}
 
+@property (nonatomic, weak  )          id<CVWeekTableViewCellDelegate> delegate;
+@property (nonatomic, strong)          UINib                           *weekCellNib;
+@property (nonatomic, strong)          NSDate                          *startDate;
+@property (nonatomic, strong)          NSDate                          *selectedDate;
+@property (nonatomic, assign)          NSInteger                       mode;
+@property (nonatomic, strong  )          NSMutableArray                  *loadedCells;
+@property (nonatomic, weak  ) IBOutlet CVTodayBoxView                  *selectedDayView;
 
-@property (nonatomic, weak) id<CVWeekTableViewCellDelegate> delegate;
-@property (nonatomic, strong) UINib *weekCellNib;
-@property (nonatomic, strong) NSDate *startDate;
-
-@property (nonatomic, strong) NSDate *selectedDate;
-@property (nonatomic) NSInteger mode;
-@property (nonatomic, strong) NSMutableArray *loadedCells;
-
-
-#pragma mark - Outlets
-@property (nonatomic, weak) IBOutlet CVTodayBoxView *selectedDayView;
-
-
-#pragma mark - Methods
 - (void)drawDotsForVisibleRows;
 - (void)reloadRowForDate:(NSDate *)date;
 - (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position;

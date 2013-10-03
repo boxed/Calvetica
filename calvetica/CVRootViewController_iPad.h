@@ -20,9 +20,6 @@
 
 
 @interface CVRootViewController_iPad : CVRootViewController <CVFAQViewControllerDelegate, CVGestureHowToViewControllerDelegate> {}
-
-
 - (void)setMonthAndDayLabels;
 - (void)showWeekView;
-
 @end

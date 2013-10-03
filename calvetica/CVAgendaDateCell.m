@@ -46,7 +46,10 @@
     return self;
 }
 
-
+- (void)cellWasTapped:(id)sender
+{
+    
+}
 
 
 #pragma mark - Memory Management

@@ -14,7 +14,7 @@
 
 
 @interface CVEventSnoozeViewController_iPhone ()
-@property (nonatomic, weak) IBOutlet UILabel *eventNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel  *eventNameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *tenMinutesButton;
 @property (nonatomic, weak) IBOutlet UIButton *eventStartButton;
 @end
@@ -26,8 +26,6 @@
 
 - (void)viewDidLoad 
 {
-	
-
 	// hide the "at start time" button if the event has already passed
 	if ([self.event.startingDate mt_isAfter:[NSDate date]]) {
 		self.eventStartButton.hidden = YES;

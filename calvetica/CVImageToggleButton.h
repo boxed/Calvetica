@@ -12,13 +12,13 @@
 
 @interface CVImageToggleButton : CVButton
 
-@property (nonatomic, weak) IBOutlet CVColoredDotView *coloredShape;
-@property (nonatomic) CVColoredShape shape;
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic, weak, readonly) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak            ) IBOutlet CVColoredDotView *coloredShape;
+@property (nonatomic                  )          CVColoredShape   shape;
+@property (nonatomic, weak            ) IBOutlet UIImageView      *imageView;
+@property (nonatomic, strong          )          UIImage          *image;
+@property (nonatomic, weak,   readonly) IBOutlet UILabel          *titleLabel;
 
-@property (nonatomic, strong) UIColor *shapeColorSelected;
-@property (nonatomic, strong) UIColor *shapeColorUnselected;
+@property (nonatomic, strong          )          UIColor          *shapeColorSelected;
+@property (nonatomic, strong          )          UIColor          *shapeColorUnselected;
 
 @end

@@ -44,15 +44,14 @@ typedef enum {
 
 @interface CVEventDetailsViewController_iPhone : CVViewController <UIScrollViewDelegate, UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, CVEventDetailsPeopleTableViewController_iPhoneDelegate, EKEventEditViewDelegate>
 
-@property (nonatomic, strong) UIViewController *rootController;
-
-@property (nonatomic, weak) id<CVEventDetailsViewControllerDelegate> delegate;
-@property (nonatomic, strong) EKEvent *event;
-@property (nonatomic, strong) CVCalendarPickerTableViewController *calendarTableViewController;
+@property (nonatomic, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
+@property (nonatomic, strong) UIViewController                               *rootController;
+@property (nonatomic, strong) EKEvent                                        *event;
+@property (nonatomic, strong) CVCalendarPickerTableViewController            *calendarTableViewController;
 @property (nonatomic, strong) CVEventDetailsPeopleTableViewController_iPhone *peopleTableViewController;
-@property (nonatomic, strong) CVSlideLockControl *deleteSlideLock;
-@property (nonatomic, strong) SCEventDetailsAlarmPicker *alarmPicker;
-@property (nonatomic, strong) SCEventDetailsAllDayAlarmPicker *allDayAlarmPicker;
+@property (nonatomic, strong) CVSlideLockControl                             *deleteSlideLock;
+@property (nonatomic, strong) SCEventDetailsAlarmPicker                      *alarmPicker;
+@property (nonatomic, strong) SCEventDetailsAllDayAlarmPicker                *allDayAlarmPicker;
 
 - (id)initWithEvent:(EKEvent *)initEvent;
 

@@ -14,21 +14,18 @@
 @interface CVViewController : UIViewController
 
 #pragma mark - Properties
-@property (nonatomic, strong) NSMutableArray *pageModalViewControllers;
-@property (weak, nonatomic, readonly) CVViewController *closestSystemPresentedViewController;
-@property (nonatomic, strong) NSMutableArray *fullScreenModalViewControllers;
-@property (nonatomic, strong) NSMutableArray *popoverModalViewControllers;
-@property (nonatomic, weak) CVNavigationController *modalNavigationController;
-@property (nonatomic, weak) CVViewController *containingViewController;
-@property (nonatomic, strong) UIColor *popoverBackdropColor;
-@property (nonatomic, assign) CVPopoverArrowDirection popoverArrowDirection;
-@property (nonatomic, assign) CVPopoverModalAttachToSide attachPopoverArrowToSide;
-@property (nonatomic, strong) UIView *popoverTargetView;
-@property (nonatomic, assign) BOOL contentModified;
-
-
-#pragma mark - IBOutles
-@property (nonatomic, weak) IBOutlet UIView *keyboardAccessoryView;
+@property (nonatomic, strong            )          NSMutableArray             *pageModalViewControllers;
+@property (nonatomic, strong, readonly)          CVViewController           *closestSystemPresentedViewController;
+@property (nonatomic, strong            )          NSMutableArray             *fullScreenModalViewControllers;
+@property (nonatomic, strong            )          NSMutableArray             *popoverModalViewControllers;
+@property (nonatomic, strong          )          CVNavigationController     *modalNavigationController;
+@property (nonatomic, strong          )          CVViewController           *containingViewController;
+@property (nonatomic, strong          )          UIColor                    *popoverBackdropColor;
+@property (nonatomic, assign          )          CVPopoverArrowDirection    popoverArrowDirection;
+@property (nonatomic, assign          )          CVPopoverModalAttachToSide attachPopoverArrowToSide;
+@property (nonatomic, strong          )          UIView                     *popoverTargetView;
+@property (nonatomic, assign          )          BOOL                       contentModified;
+@property (nonatomic, weak            ) IBOutlet UIView                     *keyboardAccessoryView;
 
 #pragma mark - Methods
 

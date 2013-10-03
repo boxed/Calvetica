@@ -12,35 +12,36 @@
 #import "NSArray+Utilities.h"
 #import "CVEventStore.h"
 #import "CVActionBlockButton.h"
+#import "CVTimeZoneViewController.h"
 
 
 
 
-@interface CVEventDetailsViewController_iPhone ()
+@interface CVEventDetailsViewController_iPhone () <CVTimeZoneViewControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIView *eventTitleBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventCalendarBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventNotesBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventRepeatBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventPeopleBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventAvailabilityBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventLocationBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventShareBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventDeleteBlock;
-@property (nonatomic, weak) IBOutlet UIView *eventAlarmsBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventTitleBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventCalendarBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventNotesBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventRepeatBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventPeopleBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventAvailabilityBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventLocationBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventShareBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventDeleteBlock;
+@property (nonatomic, weak) IBOutlet UIView                *eventAlarmsBlock;
 
-@property (nonatomic, weak) IBOutlet CVButton *availabilityBusyButton;
-@property (nonatomic, weak) IBOutlet CVButton *availabilityFreeButton;
-@property (nonatomic, weak) IBOutlet CVButton *availabilityTentativeButton;
-@property (nonatomic, weak) IBOutlet CVButton *availabilityOutOfficeButton;
+@property (nonatomic, weak) IBOutlet CVButton              *availabilityBusyButton;
+@property (nonatomic, weak) IBOutlet CVButton              *availabilityFreeButton;
+@property (nonatomic, weak) IBOutlet CVButton              *availabilityTentativeButton;
+@property (nonatomic, weak) IBOutlet CVButton              *availabilityOutOfficeButton;
 
-@property (nonatomic, weak) IBOutlet UIScrollView *contentScrollView;
-@property (nonatomic, weak) IBOutlet UITextView *eventTitleTextView;
-@property (nonatomic, weak) IBOutlet UITableView *eventCalendarTableView;
-@property (nonatomic, weak) IBOutlet CVTextView *eventNotesTextView;
-@property (nonatomic, weak) IBOutlet CVTextView *eventRepeatTextView;
-@property (nonatomic, weak) IBOutlet UITableView *eventPeopleTableView;
-@property (nonatomic, weak) IBOutlet CVTextView *eventLocationTextView;
+@property (nonatomic, weak) IBOutlet UIScrollView          *contentScrollView;
+@property (nonatomic, weak) IBOutlet UITextView            *eventTitleTextView;
+@property (nonatomic, weak) IBOutlet UITableView           *eventCalendarTableView;
+@property (nonatomic, weak) IBOutlet CVTextView            *eventNotesTextView;
+@property (nonatomic, weak) IBOutlet CVTextView            *eventRepeatTextView;
+@property (nonatomic, weak) IBOutlet UITableView           *eventPeopleTableView;
+@property (nonatomic, weak) IBOutlet CVTextView            *eventLocationTextView;
 
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatNoneButton;
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatDailyButton;
@@ -48,11 +49,12 @@
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatMonthlyButton;
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatYearlyButton;
 
-@property (nonatomic, weak) IBOutlet CVRoundedButton *addAttendeesButton;
+@property (nonatomic, weak) IBOutlet CVRoundedButton       *addAttendeesButton;
 
-@property (nonatomic, weak) IBOutlet CVRoundedButton *shareButtonEmail;
-@property (nonatomic, weak) IBOutlet CVRoundedButton *shareButtonSMS;
+@property (nonatomic, weak) IBOutlet CVRoundedButton       *shareButtonEmail;
+@property (nonatomic, weak) IBOutlet CVRoundedButton       *shareButtonSMS;
 
+@property (nonatomic, weak) IBOutlet CVRoundedButton       *timeZoneButton;
 @end
 
 
@@ -69,6 +71,108 @@
     }
     return self;
 }
+
+- (void)dealloc
+{
+    self.contentScrollView.delegate         = nil;
+    self.eventTitleTextView.delegate        = nil;
+    self.eventCalendarTableView.delegate    = nil;
+    self.eventCalendarTableView.dataSource  = nil;
+    self.eventNotesTextView.delegate        = nil;
+    self.eventRepeatTextView.delegate       = nil;
+    self.eventPeopleTableView.delegate      = nil;
+    self.eventPeopleTableView.dataSource    = nil;
+    self.eventLocationTextView.delegate     = nil;
+}
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    _eventTitleTextView.text = [self.event readTitle];
+    _eventNotesTextView.text = self.event.notes;
+    _eventLocationTextView.text = self.event.location;
+
+    _eventTitleTextView.inputAccessoryView = self.keyboardAccessoryView;
+
+    if (![self.event.calendar canAddAttendees]) {
+        _addAttendeesButton.enabled = NO;
+        [_addAttendeesButton setTitle:@"Does not support attendees" forState:UIControlStateDisabled];
+    }
+
+
+    // set up table view delegate objects
+
+    // alarms block
+    if (self.event.isAllDay) {
+        self.allDayAlarmPicker = [[SCEventDetailsAllDayAlarmPicker alloc] init];
+        self.allDayAlarmPicker.event = self.event;
+        self.allDayAlarmPicker.view.frame = CGRectMake(15, 35, self.allDayAlarmPicker.view.bounds.size.width, self.allDayAlarmPicker.view.bounds.size.height);
+        [self.eventAlarmsBlock addSubview:self.allDayAlarmPicker.view];
+    }
+    else {
+        self.alarmPicker = [[SCEventDetailsAlarmPicker alloc] init];
+        self.alarmPicker.event = self.event;
+        self.alarmPicker.view.frame = CGRectMake(15, 35, self.alarmPicker.view.bounds.size.width, self.alarmPicker.view.bounds.size.height);
+        [self.eventAlarmsBlock addSubview:self.alarmPicker.view];
+    }
+
+    // delete lock slider
+    self.deleteSlideLock = [CVSlideLockControl viewFromNib:[CVSlideLockControl nib]];
+    self.deleteSlideLock.frame = CGRectMake(15, 35, self.deleteSlideLock.bounds.size.width, self.deleteSlideLock.bounds.size.height);
+    self.deleteSlideLock.titleLabel.text = @"Slide to delete";
+    self.deleteSlideLock.thumbImage = [UIImage imageNamed:@"slider"];
+    [self.deleteSlideLock addTarget:self action:@selector(deleteSliderWasToggled:) forControlEvents:UIControlEventTouchUpInside];
+    [self.eventDeleteBlock addSubview:self.deleteSlideLock];
+
+    // if the event doesn't allow editing disable the slider
+    if (![self.event.calendar allowsContentModifications]) {
+        self.deleteSlideLock.alpha = 0.5;
+        self.deleteSlideLock.enabled = NO;
+    }
+
+    // calendar table
+    self.calendarTableViewController = [[CVCalendarPickerTableViewController alloc] init];
+    _calendarTableViewController.delegate = self;
+	_calendarTableViewController.tableView = _eventCalendarTableView;
+    _eventCalendarTableView.delegate = _calendarTableViewController;
+    _eventCalendarTableView.dataSource = _calendarTableViewController;
+	_calendarTableViewController.showUneditableCalendars = !self.event.calendar.allowsContentModifications;
+
+    // people table
+    self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController_iPhone alloc] initWithEvent:self.event];
+    self.peopleTableViewController.delegate = self;
+    self.peopleTableViewController.tableView = self.eventPeopleTableView;
+    self.eventPeopleTableView.delegate = self.peopleTableViewController;
+    self.eventPeopleTableView.dataSource = self.peopleTableViewController;
+
+    // repeat block
+    [self configureRepeatButtons];
+
+    // time zone button
+    if (self.event.timeZone) {
+        [self.timeZoneButton setTitle:self.event.timeZone.name forState:UIControlStateNormal];
+    }
+
+    // Availability Block
+    [self configureAvailabilityButtons];
+    [self setAvailability:self.event.availability];
+
+	self.shareButtonSMS.hidden = ![MFMessageComposeViewController canSendText];
+
+	[self adjustLayoutOfBlocks];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_calendarTableViewController setSelectedCalendar:self.event.calendar];
+}
+
+
+
 
 - (void)configureAvailabilityButtons 
 {
@@ -288,7 +392,7 @@
                 [_eventLocationBlock setFrame:f];
             }
         }
-        
+
         else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Share"]) {
             BOOL hide = [[dict objectForKey:@"HiddenKey"] boolValue];
             if (hide) {
@@ -403,92 +507,6 @@
                               buttons:@[editButton, cancelButton]
                                 completion:cancel];
 }
-
-
-
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad 
-{
-    [super viewDidLoad];
-    
-    _eventTitleTextView.text = [self.event readTitle];
-    _eventNotesTextView.text = self.event.notes;
-    _eventLocationTextView.text = self.event.location;
-
-    _eventTitleTextView.inputAccessoryView = self.keyboardAccessoryView;
-    
-    if (![self.event.calendar canAddAttendees]) {
-        _addAttendeesButton.enabled = NO;
-        [_addAttendeesButton setTitle:@"Does not support attendees" forState:UIControlStateDisabled];
-    }
-    
-    
-    // set up table view delegate objects
-    
-    // alarms block
-    if (self.event.isAllDay) {
-        self.allDayAlarmPicker = [[SCEventDetailsAllDayAlarmPicker alloc] init];
-        self.allDayAlarmPicker.event = self.event;
-        self.allDayAlarmPicker.view.frame = CGRectMake(15, 35, self.allDayAlarmPicker.view.bounds.size.width, self.allDayAlarmPicker.view.bounds.size.height);
-        [self.eventAlarmsBlock addSubview:self.allDayAlarmPicker.view];
-    }
-    else {
-        self.alarmPicker = [[SCEventDetailsAlarmPicker alloc] init];
-        self.alarmPicker.event = self.event;
-        self.alarmPicker.view.frame = CGRectMake(15, 35, self.alarmPicker.view.bounds.size.width, self.alarmPicker.view.bounds.size.height);
-        [self.eventAlarmsBlock addSubview:self.alarmPicker.view];
-    }
-    
-    // delete lock slider
-    self.deleteSlideLock = [CVSlideLockControl viewFromNib:[CVSlideLockControl nib]];
-    self.deleteSlideLock.frame = CGRectMake(15, 35, self.deleteSlideLock.bounds.size.width, self.deleteSlideLock.bounds.size.height);
-    self.deleteSlideLock.titleLabel.text = @"Slide to delete";
-    self.deleteSlideLock.thumbImage = [UIImage imageNamed:@"slider"];
-    [self.deleteSlideLock addTarget:self action:@selector(deleteSliderWasToggled:) forControlEvents:UIControlEventTouchUpInside];
-    [self.eventDeleteBlock addSubview:self.deleteSlideLock];
-    
-    // if the event doesn't allow editing disable the slider
-    if (![self.event.calendar allowsContentModifications]) {
-        self.deleteSlideLock.alpha = 0.5;
-        self.deleteSlideLock.enabled = NO;
-    }
-    
-    // calendar table
-    self.calendarTableViewController = [[CVCalendarPickerTableViewController alloc] init];
-    _calendarTableViewController.delegate = self;
-	_calendarTableViewController.tableView = _eventCalendarTableView;
-    _eventCalendarTableView.delegate = _calendarTableViewController;
-    _eventCalendarTableView.dataSource = _calendarTableViewController;
-	_calendarTableViewController.showUneditableCalendars = !self.event.calendar.allowsContentModifications;
-    
-    // people table
-    self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController_iPhone alloc] initWithEvent:self.event];
-    self.peopleTableViewController.delegate = self;
-    self.peopleTableViewController.tableView = self.eventPeopleTableView;
-    self.eventPeopleTableView.delegate = self.peopleTableViewController;
-    self.eventPeopleTableView.dataSource = self.peopleTableViewController;
-    
-    // repeat block
-    [self configureRepeatButtons];
-    
-    // Availability Block
-    [self configureAvailabilityButtons];
-    [self setAvailability:self.event.availability];
-
-	self.shareButtonSMS.hidden = ![MFMessageComposeViewController canSendText];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated 
-{
-    [super viewDidAppear:animated];
-    [_calendarTableViewController setSelectedCalendar:self.event.calendar];
-
-	[self adjustLayoutOfBlocks];
-}
-
 
 
 
@@ -639,6 +657,25 @@
 
 
 
+#pragma mark - DELEGATE time zone view controller
+
+- (void)timeZoneViewController:(CVTimeZoneViewController *)controller didToggleSupportOn:(BOOL)isOn
+{
+    if (!isOn) {
+        self.event.timeZone = nil;
+    }
+    else {
+        self.event.timeZone = [NSTimeZone systemTimeZone];
+    }
+}
+
+- (void)timeZoneViewController:(CVTimeZoneViewController *)controller didSelectTimeZone:(NSTimeZone *)timeZone
+{
+    self.event.timeZone = timeZone;
+}
+
+
+
 #pragma mark - Actions
 
 - (IBAction)availabilityButtonWasTapped:(id)sender 
@@ -695,7 +732,7 @@
         self.rootController = self.closestSystemPresentedViewController;
         [self.rootController presentViewController:mailComposer animated:YES completion:nil];
 
-       
+
     } else if (self.shareButtonSMS == sender && [MFMessageComposeViewController canSendText]) {
         MFMessageComposeViewController *smsComposer = [[MFMessageComposeViewController alloc] init];
 
@@ -716,7 +753,6 @@
 
 - (IBAction)addAttendeesButtonWasTapped:(id)sender 
 {
-    
     // had to subclass the built in EK VC cause the dumb thing wouldn't rotate upside down.
     CVEventEditViewController *eventEditViewController = [[CVEventEditViewController alloc] init];
     eventEditViewController.event = self.event;
@@ -724,6 +760,21 @@
     eventEditViewController.editViewDelegate = self;
     eventEditViewController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self.closestSystemPresentedViewController presentViewController:eventEditViewController animated:YES completion:nil];
+}
+
+- (IBAction)timeZoneButtonTapped:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    UINavigationController *navigationController        = [storyboard instantiateViewControllerWithIdentifier:@"TimeZoneNavigationController"];
+    CVTimeZoneViewController *timeZoneViewController    = (CVTimeZoneViewController *)[navigationController.viewControllers lastObject];
+    timeZoneViewController.delegate                     = self;
+    timeZoneViewController.selectedTimeZone             = self.event.timeZone;
+    timeZoneViewController.title                        = @"Select Time Zone";
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
+        [self.closestSystemPresentedViewController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    timeZoneViewController.navigationItem.rightBarButtonItem = barButtonItem;
+    [self.closestSystemPresentedViewController presentViewController:navigationController animated:YES completion:nil];
 }
 
 

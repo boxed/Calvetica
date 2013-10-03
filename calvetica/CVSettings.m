@@ -45,7 +45,7 @@
 
 + (NSInteger)eventRootTableMode {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults valueForKey:EVENT_ROOT_TABLE_MODE] != nil ? [[defaults valueForKey:EVENT_ROOT_TABLE_MODE] intValue] : 0;
+    return [defaults valueForKey:EVENT_ROOT_TABLE_MODE] != nil ? [[defaults valueForKey:EVENT_ROOT_TABLE_MODE] intValue] : 1;
 }
 
 + (void)setEventRootTableMode:(NSInteger)mode {

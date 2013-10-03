@@ -60,26 +60,23 @@ typedef enum {
 
 // used when coming out of background to check if it's a new day so the month buttons
 // can be updated to show current day
-@property (nonatomic, strong) NSDate *todaysDate;
-
-@property (nonatomic, weak) IBOutlet UIImageView                 *vignetteBackground;
-@property (nonatomic, weak) IBOutlet UIControl                   *redBarPlusButton;
-@property (nonatomic, weak) IBOutlet CVEventReminderToggleButton *toggleModeButton;
-@property (nonatomic, weak) IBOutlet UIButton                    *showViewOptionsButton;
+@property (nonatomic, strong)          NSDate                      *todaysDate;
+@property (nonatomic, weak  ) IBOutlet UIControl                   *redBarPlusButton;
+@property (nonatomic, weak  ) IBOutlet CVEventReminderToggleButton *toggleModeButton;
+@property (nonatomic, weak  ) IBOutlet UIButton                    *showViewOptionsButton;
 @property (nonatomic, assign)          CVRootViewControllerMode    mode;
 @property (nonatomic, assign)          CVRootTableViewMode         tableMode;
 @property (nonatomic, strong)          CVRootTableViewController   *rootTableViewController;
-@property (nonatomic, weak) IBOutlet UITableView                 *rootTableView;
-@property (nonatomic, weak) IBOutlet UIButton                    *monthLabelControl;
+@property (nonatomic, weak  ) IBOutlet UITableView                 *rootTableView;
+@property (nonatomic, weak  ) IBOutlet UIButton                    *monthLabelControl;
 @property (nonatomic, weak  ) IBOutlet UIView                      *monthTableViewContainer;
 @property (nonatomic, assign)          NSInteger                   reminderAddPlusButtonCount;
-@property (nonatomic, weak) IBOutlet UIView                      *redBar;
+@property (nonatomic, weak  ) IBOutlet UIView                      *redBar;
 @property (nonatomic, strong)          UIPopoverController         *nativePopoverController;
-@property (nonatomic, weak) IBOutlet CVMonthTableViewController  *monthTableViewController;
-@property (nonatomic, weak) IBOutlet UIView                      *weekdayTitleBar;
+@property (nonatomic, weak  ) IBOutlet CVMonthTableViewController  *monthTableViewController;
+@property (nonatomic, weak  ) IBOutlet UIView                      *weekdayTitleBar;
 
 
-#pragma mark - Methods
 - (void)showNewReminderScreenWithDate:(NSDate *)date;
 - (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent;
 - (void)toggleRemindersEventsViewMode;
@@ -107,7 +104,6 @@ typedef enum {
 - (IBAction)redBarPlusButtonWasTapped:(UITapGestureRecognizer *)gesture;
 - (IBAction)toggleRemindersEventsViewIconTapped:(id)sender;
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture;
-
 - (IBAction)closeSettings:(UIStoryboardSegue *)segue;
 
 

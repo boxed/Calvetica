@@ -16,6 +16,11 @@ typedef struct {
 } popover_arrow_direction_point;
 
 
+@interface CVPopoverModalViewController_iPad ()
+@property (nonatomic, weak  ) IBOutlet UIView            *modalViewContainer;
+@property (nonatomic, weak  ) IBOutlet CVPopoverBackdrop *popoverBackdropView;
+@end
+
 
 @implementation CVPopoverModalViewController_iPad
 
@@ -113,25 +118,36 @@ typedef struct {
 	
 	// if the modal will be hidden behind the keyboard push it up with the keyboard
 	if ((f.origin.y + f.size.height) > (rootView.bounds.size.height - kbRect.size.height)) {
-		keyboardAppearedModalSavedYCoord = f.origin.y;
-		keyboardAppearedArrowSavedDirection = self.popoverBackdropView.arrowDirection;
-		self.popoverBackdropView.arrowDirection = CVPopoverArrowDirectionNone;
-		f.origin.y = CVMAX(15, kbRect.origin.y - kbRect.size.height - f.size.height - 20);
-		[UIView animateWithDuration:ANIMATION_SPEED animations:^(void) {
-			[self.modalViewContainer setFrame:f];
-		}];		
+        // save state
+        keyboardAppearedModalSavedYCoord        = f.origin.y;
+        keyboardAppearedArrowSavedDirection     = self.popoverBackdropView.arrowDirection;
+        self.popoverBackdropView.arrowDirection = CVPopoverArrowDirectionNone;
+
+        // move it up
+		[UIView mt_animateViews:@[self.modalViewContainer]
+                       duration:0.4
+                 timingFunction:kMTEaseOutBack
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+        {
+            CGFloat y = MAX(20, self.view.bounds.size.height - kbRect.size.height - self.modalViewContainer.height - 20);
+            self.modalViewContainer.y = y;
+        } completion:nil];
 	}
 }
 
 - (void)keyboardWillHide 
 {
 	if (keyboardAppearedModalSavedYCoord != -1) {
-		[UIView animateWithDuration:ANIMATION_SPEED animations:^(void) {
-			CGRect r = self.modalViewContainer.frame;
-			r.origin.y = keyboardAppearedModalSavedYCoord;
-			[self.modalViewContainer setFrame:r];
+		[UIView mt_animateViews:@[self.modalViewContainer]
+                       duration:0.4
+                 timingFunction:kMTEaseOutBack
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^
+         {
+			self.modalViewContainer.y = keyboardAppearedModalSavedYCoord;
 			self.popoverBackdropView.arrowDirection = keyboardAppearedArrowSavedDirection;
-		}];		
+		} completion:nil];
 	}
 }
 

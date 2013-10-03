@@ -229,13 +229,14 @@
         
         if ([holder isKindOfClass:[CVEventCellDataHolder class]]) {
             CVEventCellDataHolder *eventHolder = (CVEventCellDataHolder *)holder;
-            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             if (!eventHolder.event  &&
                 eventHolder.date    &&
                 [eventHolder.date mt_isWithinSameDay:self.selectedDate] &&
-                i < [self.tableView numberOfRowsInSection:0]) {
+                [self.tableView numberOfSections] > indexPath.section &&
+                [self.tableView numberOfRowsInSection:indexPath.section] > indexPath.row)
+            {
 
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [self.tableView scrollToRowAtIndexPath:indexPath
                                       atScrollPosition:UITableViewScrollPositionTop
                                               animated:YES];

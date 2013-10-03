@@ -20,13 +20,13 @@
 // Inits the keypad with the view it should be located at.
 - (id)initWithTargetView:(UIView *)view;
 
-@property (nonatomic, weak) id<CVNumericKeyPadDelegate> delegate;
-@property (nonatomic, assign) int maxValue;
-@property (nonatomic, assign) int minValue;
-@property (nonatomic, strong) UIView *targetView;
+@property (nonatomic, weak  )          id<CVNumericKeyPadDelegate> delegate;
+@property (nonatomic, assign)          int                         maxValue;
+@property (nonatomic, assign)          int                         minValue;
+@property (nonatomic, strong)          UIView                      *targetView;
 
-@property (nonatomic, weak) IBOutlet UILabel *keypadValue;
-@property (nonatomic, weak) IBOutlet UIView *keypadView;
+@property (nonatomic, weak  ) IBOutlet UILabel                     *keypadValue;
+@property (nonatomic, weak  ) IBOutlet UIView                      *keypadView;
 
 // Returns the inputted number as an integer.
 - (int)numberAsInteger;

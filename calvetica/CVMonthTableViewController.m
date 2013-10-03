@@ -12,10 +12,7 @@
 #import "UIViewController+Utilities.h"
 
 
-
-
 @implementation CVMonthTableViewController
-
 
 #pragma mark - Properties
 

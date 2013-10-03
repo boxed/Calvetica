@@ -111,8 +111,11 @@
     NSInteger currentHour = [[NSDate date] mt_hourOfDay];
     for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
         CVReminderCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
-        if ([holder.date mt_hourOfDay] == currentHour) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        if ([holder.date mt_hourOfDay] == currentHour &&
+            [self.tableView numberOfSections] > indexPath.section &&
+            [self.tableView numberOfRowsInSection:indexPath.section] > indexPath.row)
+        {
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
             break;
         }

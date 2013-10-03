@@ -32,7 +32,8 @@
     
     _titleLabel.text = @"";
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
-    
+//    self.selectionStyle = UITableViewCellSelectionStyleGray;
+
     [super awakeFromNib];
 }
 
@@ -69,6 +70,32 @@
 
 - (IBAction)cellWasTapped:(id)sender 
 {
+//    self.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1);
+//    [UIView mt_animateViews:@[self]
+//                   duration:0.45
+//             timingFunction:kMTEaseOutElastic animations:^
+//     {
+//         self.layer.transform = CATransform3DIdentity;
+//     } completion:^{
+//         self.layer.transform = CATransform3DIdentity;
+//     }];
+
+    [UIView mt_animateViews:@[self]
+                   duration:0.15
+             timingFunction:kMTEaseOutBack animations:^
+    {
+        self.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1);
+    } completion:^{
+        [UIView mt_animateViews:@[self]
+                       duration:0.15
+                 timingFunction:kMTEaseOutBack
+                     animations:^
+        {
+            self.layer.transform = CATransform3DIdentity;
+        } completion:^{
+            self.layer.transform = CATransform3DIdentity;
+        }];
+    }];
 }
 
 - (IBAction)cellWasLongPressed:(id)sender 

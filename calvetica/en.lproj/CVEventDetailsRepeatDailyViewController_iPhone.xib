@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CVEventDetailsRepeatDailyViewController_iPhone">
             <connections>
-                <outlet property="dateDay" destination="78" id="94"/>
+                <outlet property="dateDayTableView" destination="78" id="1XM-yR-UfY"/>
                 <outlet property="dateMonth" destination="79" id="95"/>
                 <outlet property="dateView" destination="77" id="81"/>
                 <outlet property="dateYear" destination="31" id="96"/>

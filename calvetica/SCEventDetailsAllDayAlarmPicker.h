@@ -9,28 +9,13 @@
 #import "CVToggleButton.h"
 
 
-@interface SCEventDetailsAllDayAlarmPicker : UIViewController {
-}
-
-
-#pragma mark - Properties
+@interface SCEventDetailsAllDayAlarmPicker : UIViewController
 @property (nonatomic, strong) EKEvent *event;
-
-#pragma mark - Methods
-
-
-#pragma mark - IBActions
-
-
-#pragma mark - Notifications
-
-
 @end
 
 
 
 
-#pragma mark - Protected
 @interface SCEventDetailsAllDayAlarmPicker ()
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_0;
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_1;
@@ -38,8 +23,8 @@
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_3;
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_4;
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_5;
-@property (nonatomic, strong) NSMutableArray *alarmOptions;
-@property (nonatomic, strong) NSMutableArray *alarmButtons;
+@property (nonatomic, strong)          NSMutableArray *alarmOptions;
+@property (nonatomic, strong)          NSMutableArray *alarmButtons;
 
 - (void)configureAlarmOptions;
 - (void)configureAlarmButtons;

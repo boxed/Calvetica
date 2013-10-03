@@ -23,8 +23,8 @@ typedef enum {
 
 @property (nonatomic, weak) id<CVCalendarPickerTableViewControllerDelegate> delegate;
 @property (nonatomic) CVCalendarPickerMode mode;
-@property (nonatomic, strong) NSArray *editableCalendars;
-@property (nonatomic, strong) NSArray *allCalendars;
+@property (nonatomic, copy) NSArray *editableCalendars;
+@property (nonatomic, copy) NSArray *allCalendars;
 @property (nonatomic, assign) BOOL showUneditableCalendars;
 
 - (NSArray *)calendars;

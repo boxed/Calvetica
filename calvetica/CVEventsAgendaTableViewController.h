@@ -9,20 +9,8 @@
 #import "CVRootTableViewController.h"
 
 
-@interface CVEventsAgendaTableViewController : CVRootTableViewController {
-}
-
-
-#pragma mark - Properties
-@property (nonatomic, weak) id<CVEventCellDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
-@property (nonatomic, strong) UINib *eventCellNib;
-
-
-#pragma mark - Methods
-
-
-#pragma mark - IBActions
-
-
+@interface CVEventsAgendaTableViewController : CVRootTableViewController
+@property (nonatomic, weak  ) id<CVEventCellDelegate> delegate;
+@property (nonatomic, strong  ) NSMutableArray          *cellDataHolderArray;
+@property (nonatomic, strong) UINib                   *eventCellNib;
 @end

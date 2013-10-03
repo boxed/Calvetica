@@ -10,18 +10,22 @@
 
 
 @interface CVGestureHowToViewController ()
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet UIView *titleView;
-@property (nonatomic, weak) IBOutlet UIImageView *shadow;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
-@property (nonatomic, strong) NSMutableArray *availableGestures;
+@property (nonatomic, weak) IBOutlet UIScrollView   *scrollView;
+@property (nonatomic, weak) IBOutlet UIView         *titleView;
+@property (nonatomic, weak) IBOutlet UIImageView    *shadow;
+@property (nonatomic, weak) IBOutlet UILabel        *titleLabel;
+@property (nonatomic, weak) IBOutlet UIPageControl  *pageControl;
+@property (nonatomic, strong)          NSMutableArray *availableGestures;
 @end
 
 
 
 @implementation CVGestureHowToViewController
 
+- (void)dealloc
+{
+    _scrollView.delegate = nil;
+}
 
 - (void)viewDidLoad 
 {

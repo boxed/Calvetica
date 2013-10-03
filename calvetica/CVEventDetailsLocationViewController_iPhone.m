@@ -17,6 +17,7 @@
 - (void)dealloc
 {
     [_mapPin removeObserver:self forKeyPath:@"selected"];
+    _mapView.delegate = nil;
 }
 
 

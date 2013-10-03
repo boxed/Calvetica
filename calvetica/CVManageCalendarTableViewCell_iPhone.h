@@ -13,9 +13,9 @@
 @interface CVManageCalendarTableViewCell_iPhone : UITableViewCell {}
 
 @property (nonatomic, weak) IBOutlet CVColoredDotView *coloredDotView;
-@property (nonatomic, weak) IBOutlet UILabel *calendarTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *calendarTypeLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *checkmarkImageView;
-@property (nonatomic, weak) IBOutlet UIView *gestureHitAreaView;
+@property (nonatomic, weak) IBOutlet UILabel          *calendarTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel          *calendarTypeLabel;
+@property (nonatomic, weak) IBOutlet UIImageView      *checkmarkImageView;
+@property (nonatomic, weak) IBOutlet UIView           *gestureHitAreaView;
 
 @end

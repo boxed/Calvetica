@@ -17,21 +17,38 @@
 
 @implementation CVEventStore
 
+static BOOL __permissionGranted = NO;
 static CVEventStore *__sharedStore = nil;
 
 + (CVEventStore *)sharedStore
 {
-    if (__sharedStore == nil) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         __sharedStore = [[CVEventStore alloc] init];
         __sharedStore.eventStore = [[EKEventStore alloc] init];
-    }
-
+    });
     return __sharedStore;
 }
 
-+ (void)reset
++ (void)setPermissionGranted:(BOOL)granted
 {
-    __sharedStore = nil;
+    __permissionGranted = YES;
+}
+
++ (BOOL)isPermissionGranted
+{
+    return __permissionGranted;
+}
+
+- (EKEventStore *)eventStore
+{
+    if (!__permissionGranted) return nil;
+    return _eventStore;
+}
+
+- (EKEventStore *)permissionStore
+{
+    return _eventStore;
 }
 
 
@@ -40,6 +57,9 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)eventsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
 {
+    if (!__permissionGranted) return nil;
+    if (!__permissionGranted) return nil;
+    if (!startDate || !endDate) return @[];
 
     NSMutableArray *calendars = nil;
     if (activeCalsOnly) {
@@ -65,6 +85,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)chainedEventDataHoldersFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly includeAllDayEvents:(BOOL)includeAllDayEvents
 {
+    if (!__permissionGranted) return nil;
 	startDate = [startDate dateByAddingTimeInterval:-1];
 
     // grab all the events we need
@@ -148,7 +169,9 @@ static CVEventStore *__sharedStore = nil;
 }
 
 + (NSArray *)eventsSearchedWithText:(NSString *)text startDate:(NSDate *)startDate endDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
-{    
+{
+    if (!__permissionGranted) return nil;
+    
 	// get the list of calendars to include
     NSMutableArray *calendars = nil;
     if (activeCalsOnly) {
@@ -182,16 +205,19 @@ static CVEventStore *__sharedStore = nil;
 
 + (EKEvent *)event
 {
+    if (!__permissionGranted) return nil;
     return [EKEvent eventWithEventStore:[CVEventStore sharedStore].eventStore];
 }
 
 + (EKEvent *)eventWithIdentifier:(NSString *)identifier
 {
+    if (!__permissionGranted) return nil;
 	return (EKEvent *)[EKCalendarItem calendarItemWithIdentifier:identifier];
 }
 
 + (NSError *)saveEvent:(EKEvent *)event forAllOccurrences:(BOOL)forAll
 {
+    if (!__permissionGranted) return nil;
     NSError *error = nil;
     EKSpan span = forAll ? EKSpanFutureEvents : EKSpanThisEvent;
     [[CVEventStore sharedStore].eventStore saveEvent:event span:span error:&error];
@@ -200,6 +226,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSError *)removeEvent:(EKEvent *)event forAllOccurrences:(BOOL)forAll
 {
+    if (!__permissionGranted) return nil;
     NSError *error = nil;
     [[CVEventStore sharedStore].eventStore removeEvent:event span:(forAll ? EKSpanFutureEvents : EKSpanThisEvent) error:&error];
     return error;
@@ -207,6 +234,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)eventCalendars
 {
+    if (!__permissionGranted) return nil;
 	NSArray *array = [[CVEventStore sharedStore].eventStore calendarsForEntityType:EKEntityTypeEvent];
 	if (array.count == 0) {
 		EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:[CVEventStore sharedStore].eventStore];
@@ -218,7 +246,8 @@ static CVEventStore *__sharedStore = nil;
 
 + (EKCalendar *)defaultCalendarForNewEvents
 {
-    return [CVEventStore sharedStore].eventStore.defaultCalendarForNewEvents;    
+    if (!__permissionGranted) return nil;
+    return [CVEventStore sharedStore].eventStore.defaultCalendarForNewEvents;
 }
 
 
@@ -228,7 +257,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)remindersFromDate:(NSDate *)startDate toDate:(NSDate *)endDate activeCalendars:(BOOL)activeCalsOnly
 {
-
+    if (!__permissionGranted) return nil;
     NSMutableArray *calendars = nil;
     if (activeCalsOnly) {
         calendars = [CVSettings selectedReminderCalendars];
@@ -272,6 +301,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)remindersSearchedWithText:(NSString *)text forActiveCalendars:(BOOL)activeCalsOnly
 {
+    if (!__permissionGranted) return nil;
 	// get the list of calendars to include
     NSMutableArray *calendars = nil;
     if (activeCalsOnly) {
@@ -297,16 +327,19 @@ static CVEventStore *__sharedStore = nil;
 
 + (EKReminder *)reminder
 {
+    if (!__permissionGranted) return nil;
     return [EKReminder reminderWithEventStore:[CVEventStore sharedStore].eventStore];
 }
 
 + (EKReminder *)reminderWithIdentifier:(NSString *)identifier
 {
+    if (!__permissionGranted) return nil;
 	return (EKReminder *)[EKCalendarItem calendarItemWithIdentifier:identifier];
 }
 
 + (NSError *)saveReminder:(EKReminder *)reminder
 {
+    if (!__permissionGranted) return nil;
     NSError *error = nil;
     [[CVEventStore sharedStore].eventStore saveReminder:reminder commit:YES error:&error];
     return error;
@@ -314,6 +347,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSError *)removeReminder:(EKReminder *)reminder
 {
+    if (!__permissionGranted) return nil;
     NSError *error = nil;
     [[CVEventStore sharedStore].eventStore removeReminder:reminder commit:YES error:&error];
     return error;
@@ -321,6 +355,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)reminderCalendars
 {
+    if (!__permissionGranted) return nil;
     NSArray *array = [[CVEventStore sharedStore].eventStore calendarsForEntityType:EKEntityTypeReminder];
 	if (array.count == 0) {
 		EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeReminder eventStore:[CVEventStore sharedStore].eventStore];
@@ -332,6 +367,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (EKCalendar *)defaultCalendarForNewReminders
 {
+    if (!__permissionGranted) return nil;
     return [CVEventStore sharedStore].eventStore.defaultCalendarForNewReminders;
 }
 
@@ -342,6 +378,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)editableCalendarsForEntityType:(EKEntityType)entityType
 {
+    if (!__permissionGranted) return nil;
     NSMutableArray *editableCals = [NSMutableArray array];
     for (EKCalendar *c in [[CVEventStore sharedStore].eventStore calendarsForEntityType:entityType]) {
         if (c.allowsContentModifications) {
@@ -353,16 +390,19 @@ static CVEventStore *__sharedStore = nil;
 
 + (EKCalendar *)calendarWithIdentifier:(NSString *)identifier
 {
+    if (!__permissionGranted) return nil;
 	return [[CVEventStore sharedStore].eventStore calendarWithIdentifier:identifier];
 }
 
 + (NSArray *)calendarSources
 {
+    if (!__permissionGranted) return nil;
 	return [CVEventStore sharedStore].eventStore.sources;
 }
 
 + (NSError *)saveCalendar:(EKCalendar *)calendar
 {
+    if (!__permissionGranted) return nil;
     NSError *error;
 	if (!calendar.title) calendar.title = @"Untitled";
 	if (!calendar.source) calendar.source = [CVEventStore defaultSource];
@@ -372,6 +412,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSError *)removeCalendar:(EKCalendar *)calendar
 {
+    if (!__permissionGranted) return nil;
     NSError *error;
 	[[self sharedStore].eventStore removeCalendar:calendar commit:YES error:&error];
 	return error;
@@ -384,6 +425,7 @@ static CVEventStore *__sharedStore = nil;
 
 + (EKSource *)defaultSource
 {
+    if (!__permissionGranted) return nil;
 	NSArray *array = [CVEventStore sharedStore].eventStore.sources;
 	for (EKSource *source in array) {
 		if (source.sourceType == EKSourceTypeLocal || source.sourceType == EKSourceTypeMobileMe) {

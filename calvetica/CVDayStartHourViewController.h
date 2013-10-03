@@ -17,7 +17,7 @@
 
 #pragma mark - Public Properties
 @property (nonatomic, weak) id<CVDayStartEndHoursViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *hoursArray;
+@property (nonatomic, strong) NSMutableArray                               *hoursArray;
 
 
 #pragma mark - Public Methods

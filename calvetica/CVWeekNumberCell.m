@@ -23,5 +23,9 @@
     return self;
 }
 
+- (void)cellWasTapped:(id)sender
+{
+
+}
 
 @end

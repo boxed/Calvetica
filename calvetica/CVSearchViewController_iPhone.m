@@ -14,12 +14,12 @@
 
 
 @interface CVSearchViewController_iPhone ()
-@property (nonatomic, weak) IBOutlet UITableView                *tableView;
-@property (nonatomic, weak) IBOutlet CVTextField                *searchTextField;
+@property (nonatomic, weak  ) IBOutlet UITableView                *tableView;
+@property (nonatomic, weak  ) IBOutlet CVTextField                *searchTextField;
 @property (nonatomic, strong)          NSMutableArray             *results;
 @property (nonatomic, strong)          UINib                      *eventCellNib;
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView    *activityIndicator;
-@property (nonatomic, strong)          NSString                   *currentSearchText;
+@property (nonatomic, weak  ) IBOutlet UIActivityIndicatorView    *activityIndicator;
+@property (nonatomic, copy  )          NSString                   *currentSearchText;
 @property (nonatomic, assign)          CVSearchScopePopoverOption searchScope;
 @end
 
@@ -33,6 +33,13 @@
         self.eventCellNib = [CVSearchEventCell nib];
     }
     return _eventCellNib;    
+}
+
+- (void)dealloc
+{
+    self.tableView.delegate         = nil;
+    self.tableView.dataSource       = nil;
+    self.searchTextField.delegate   = nil;
 }
 
 - (void)setSearchScope:(CVSearchScopePopoverOption)newSearchScope
@@ -191,7 +198,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    
     CVSearchEventCell *cell = [CVSearchEventCell cellForTableView:tv fromNib:self.eventCellNib];
     EKEvent *event = [_results objectAtIndex:indexPath.row];
     

@@ -4,18 +4,14 @@
 
 
 @interface CVReminderSquare : NSObject {}
-
-
-@property (nonatomic, strong) EKReminder *reminder;
-@property (nonatomic) BOOL isPassed;
-@property (nonatomic) NSDate *appearOnDate;
-@property (nonatomic) CVColoredShape shape;
-@property (nonatomic) CGFloat x;
-@property (nonatomic) CGFloat y;
-@property (nonatomic) CGFloat width;
-@property (nonatomic) CGFloat height;
-@property (nonatomic) NSInteger *days;
-@property (nonatomic, strong) NSMutableArray *sharedReminders;
-
-
+@property (nonatomic, strong) EKReminder     *reminder;
+@property (nonatomic, assign) BOOL           isPassed;
+@property (nonatomic, strong) NSDate         *appearOnDate;
+@property (nonatomic, assign) CVColoredShape shape;
+@property (nonatomic, assign) CGFloat        x;
+@property (nonatomic, assign) CGFloat        y;
+@property (nonatomic, assign) CGFloat        width;
+@property (nonatomic, assign) CGFloat        height;
+@property (nonatomic, assign) NSInteger      *days;
+@property (nonatomic, strong  ) NSMutableArray *sharedReminders;
 @end

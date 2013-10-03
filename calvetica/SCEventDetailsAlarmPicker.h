@@ -37,8 +37,8 @@
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_13;
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_14;
 @property (nonatomic, weak) IBOutlet CVToggleButton *button_15;
-@property (nonatomic, strong) NSMutableArray *alarmOptions;
-@property (nonatomic, strong) NSMutableArray *alarmButtons;
+@property (nonatomic, strong)          NSMutableArray *alarmOptions;
+@property (nonatomic, strong)          NSMutableArray *alarmButtons;
 
 - (void)configureAlarmOptions;
 - (void)configureAlarmButtons;

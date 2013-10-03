@@ -13,8 +13,8 @@
 
 
 @interface CVEventDetailsRepeatWeeklyViewController_iPhone ()
-@property (nonatomic, weak) IBOutlet UIView *dayOfTheWeekButtons;
-@property (nonatomic, strong) NSMutableArray *daysOfTheWeek;
+@property (nonatomic, weak) IBOutlet UIView         *dayOfTheWeekButtons;
+@property (nonatomic, strong)          NSMutableArray *daysOfTheWeek;
 @end
 
 

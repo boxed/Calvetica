@@ -22,16 +22,16 @@ typedef enum {
 
 @interface CVEventHourViewController_iPhone : CVViewController
 
-@property (nonatomic)			BOOL			allDay;
-@property (nonatomic, copy)		NSDate			*startDate;
-@property (nonatomic, copy)		NSDate			*endDate;
-@property (nonatomic)			BOOL			militaryTime;
-@property (nonatomic)			BOOL			editable;
-@property (nonatomic)			BOOL			reminderUI;
+@property (nonatomic        ) BOOL   allDay;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic        ) BOOL   militaryTime;
+@property (nonatomic        ) BOOL   editable;
+@property (nonatomic        ) BOOL   reminderUI;
 
-@property (strong, nonatomic)	void (^startDateUpdatedBlock)(NSDate *date);
-@property (strong, nonatomic)	void (^endDateUpdatedBlock)(NSDate *date);
-@property (strong, nonatomic)	void (^allDayUpdatedBlock)(BOOL allDay);
+@property (copy, nonatomic)	void (^startDateUpdatedBlock)(NSDate *date);
+@property (copy, nonatomic)	void (^endDateUpdatedBlock)(NSDate *date);
+@property (copy, nonatomic)	void (^allDayUpdatedBlock)(BOOL allDay);
 
 - (id)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military;
 

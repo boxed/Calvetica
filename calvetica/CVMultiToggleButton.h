@@ -14,7 +14,7 @@
 @interface CVMultiToggleButton : CVViewButton
 
 @property (nonatomic, assign) NSInteger currentState;
-@property (nonatomic, strong) NSArray *states;
+@property (nonatomic, copy  ) NSArray   *states;
 
 // Returns the button's currently displayed state.
 - (NSString *)currentStateAsString;

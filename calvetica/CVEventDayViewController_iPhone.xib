@@ -40,7 +40,7 @@
                                 </tableView>
                                 <view contentMode="scaleToFill" id="139" userLabel="Month Buttons Container">
                                     <rect key="frame" x="73" y="12" width="212" height="95"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" id="111" userLabel="JAN" customClass="UIControl">
                                             <rect key="frame" x="5" y="0.0" width="50" height="32"/>
@@ -348,14 +348,9 @@
                                     <rect key="frame" x="-1" y="151" width="285" height="211"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_calendar_grid" id="188">
-                                            <rect key="frame" x="0.0" y="0.0" width="286" height="211"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" id="222" userLabel="Day Buttons Container">
                                             <rect key="frame" x="35" y="1" width="251" height="210"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
                                         <view opaque="NO" contentMode="scaleToFill" id="224" userLabel="Week Buttons Container">
                                             <rect key="frame" x="0.0" y="1" width="35" height="210"/>
@@ -363,7 +358,6 @@
                                             <color key="backgroundColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.93000000000000005" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,7 +368,4 @@
             <color key="backgroundColor" white="0.93000000000000005" alpha="1" colorSpace="calibratedWhite"/>
         </view>
     </objects>
-    <resources>
-        <image name="bg_calendar_grid" width="286" height="211"/>
-    </resources>
 </document>

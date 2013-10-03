@@ -38,8 +38,8 @@
         v = button;
     }
 
-    v.x = (self.width / 2) - (v.height / 2) - 1;
-    v.y = (self.height / 2) - (v.height / 2) - 1;
+    v.x = (self.width / 2) - (v.width / 2);
+    v.y = (self.height / 2) - (v.height / 2);
     [self addSubview:v];
 }
 

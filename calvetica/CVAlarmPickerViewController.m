@@ -103,12 +103,15 @@
         NSInteger offset = alarm.relativeOffset;
 		BOOL found = NO;
         for (int i = 0; i < _buttons.count; i++) {
-            NSInteger buttonOffset = [[_buttons objectAtIndex:i] intValue];
-            if (buttonOffset == offset) {
-                CVToggleButton *button = (CVToggleButton *)[self.view viewWithTag:(i+1)];
-                button.selected = YES;
-				found = YES;
-                break;
+            NSNumber *offsetNumber = _buttons[i];
+            if ([offsetNumber isKindOfClass:[NSNumber class]]) {
+                NSInteger buttonOffset = [offsetNumber intValue];
+                if (buttonOffset == offset) {
+                    CVToggleButton *button = (CVToggleButton *)[self.view viewWithTag:(i+1)];
+                    button.selected = YES;
+                    found = YES;
+                    break;
+                }
             }
         }
 		

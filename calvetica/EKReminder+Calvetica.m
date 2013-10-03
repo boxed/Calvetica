@@ -83,21 +83,6 @@
 
 #pragma mark - Methods
 
-- (void)reset
-{
-	EKReminder *reminder = [CVEventStore reminderWithIdentifier:self.identifier];
-
-	// reset all the reminders attributes
-	self.alarms					= reminder.alarms;
-	self.calendar				= reminder.calendar;
-	self.startDateComponents	= reminder.startDateComponents;
-	self.dueDateComponents		= reminder.dueDateComponents;
-	self.location				= reminder.location;
-	self.notes					= reminder.notes;
-	self.recurrenceRules		= reminder.recurrenceRules;
-	self.title					= reminder.title;
-}
-
 - (void)resetNotes
 {
 	EKReminder *reminder = [CVEventStore reminderWithIdentifier:self.identifier];
@@ -182,7 +167,10 @@
 
 - (NSDate *)startDate
 {
-	if (self.startDateComponents) return [NSDate mt_dateFromComponents:self.startDateComponents];
+	if (self.startDateComponents) {
+        [self completeComponents:self.startDateComponents];
+        return [NSDate mt_dateFromComponents:self.startDateComponents];
+    }
 	return nil;
 }
 
@@ -194,7 +182,10 @@
 
 - (NSDate *)dueDate
 {
-	if (self.dueDateComponents) return [NSDate mt_dateFromComponents:self.dueDateComponents];
+	if (self.dueDateComponents) {
+        [self completeComponents:self.dueDateComponents];
+        return [NSDate mt_dateFromComponents:self.dueDateComponents];
+    }
 	return nil;
 }
 
@@ -712,7 +703,28 @@
     return iCalString;
 }
 
-
+- (void)completeComponents:(NSDateComponents *)components
+{
+    NSDate *today = [NSDate date];
+    if (components.year == NSDateComponentUndefined) {
+        components.year = [today mt_year];
+    }
+    if (components.month == NSDateComponentUndefined) {
+        components.month = [today mt_monthOfYear];
+    }
+    if (components.day == NSDateComponentUndefined) {
+        components.day = [today mt_dayOfMonth];
+    }
+    if (components.hour == NSDateComponentUndefined) {
+        components.hour = 0;
+    }
+    if (components.minute == NSDateComponentUndefined) {
+        components.minute = 0;
+    }
+    if (components.second == NSDateComponentUndefined) {
+        components.second = 0;
+    }
+}
 
 
 @end

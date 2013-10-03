@@ -6,7 +6,5 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CVSettingsViewController : UITableViewController
 @end

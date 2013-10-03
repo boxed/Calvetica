@@ -82,11 +82,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view opaque="NO" contentMode="scaleToFill" id="17" userLabel="Alarm/Delete Button" customClass="CVCellAccessoryButton">
-                        <rect key="frame" x="272" y="1" width="49" height="45"/>
+                        <rect key="frame" x="273" y="0.0" width="49" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_alarm_selected" id="16">
-                                <rect key="frame" x="14" y="12.5" width="20" height="20"/>
+                                <rect key="frame" x="14" y="11" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

@@ -14,7 +14,7 @@
 
 
 @interface CVEventCalendarsManagerViewController ()
-@property (nonatomic, strong) NSArray *calendarSources;
+@property (nonatomic, copy) NSArray *calendarSources;
 @end
 
 
@@ -37,14 +37,16 @@
 
 	self.tableView.allowsSelectionDuringEditing = YES;
 
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                           target:self
+                                                                                           action:@selector(editButtonPressed:)];
 
 	self.title = @"Calendars";
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.contentSizeForViewInPopover = CGSizeMake( 320, 416);
+    self.contentSizeForViewInPopover = CGSizeMake(320, 416);
 }
 
 
@@ -151,7 +153,9 @@
 		NSArray *calendars = [[source calendarsForEntityType:_type] allObjects];
 		EKCalendar *calendar = [calendars objectAtIndex:indexPath.row];
 		if ([calendar remove]) {
+            [tableView beginUpdates];
 			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
 		}
     }
 }

@@ -24,8 +24,8 @@
 @property (nonatomic, strong)          NSDate                          *weekStartDate;
 @property (nonatomic, strong)          NSDate                          *absoluteStartDate;
 @property (nonatomic, strong)          NSDate                          *selectedDate;
-@property (nonatomic        )          NSInteger                       mode;
-@property (nonatomic        )          NSInteger                       fontSize;
+@property (nonatomic, assign)          NSInteger                       mode;
+@property (nonatomic, assign)          NSInteger                       fontSize;
 @property (nonatomic, strong)          CVWeekTableViewCellDrawing      *drawingView;
 @property (nonatomic, weak  ) IBOutlet UILabel                         *monthLabel;
 @property (nonatomic, weak  ) IBOutlet UIImageView                     *todayImage;
