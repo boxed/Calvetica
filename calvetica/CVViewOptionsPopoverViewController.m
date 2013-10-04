@@ -13,8 +13,7 @@
 
 @implementation CVViewOptionsPopoverViewController
 
-
-- (void)setCurrentViewMode:(CVViewOptionsPopoverOption)newCurrentViewMode 
+- (void)setCurrentViewMode:(CVViewOptionsPopoverOption)newCurrentViewMode
 {
     _currentViewMode = newCurrentViewMode;
     
@@ -45,32 +44,11 @@
 {
     [super viewDidLoad];
     
-    if (_mode == CVViewOptionsModeReminders) {
-        [self.calendarsButton setTitle:@"Calendars" forState:UIControlStateNormal];
-        self.searchButton.alpha = 0.3;
-        self.searchButton.userInteractionEnabled = NO;
-        
-        self.fullDayButton.alpha = 0.3;
-        self.fullDayButton.userInteractionEnabled = NO;
-    }
-    else if (_mode == CVViewOptionsModeEvents) {
-        [self.calendarsButton setTitle:@"Calendars" forState:UIControlStateNormal];
-        self.searchButton.alpha = 1.0;
-        self.searchButton.userInteractionEnabled = YES;
-        
-        self.fullDayButton.alpha = 1.0;
-        self.fullDayButton.userInteractionEnabled = YES;
-    }
-}
+    self.searchButton.alpha = 1.0;
+    self.searchButton.userInteractionEnabled = YES;
 
-- (void)viewDidUnload 
-{
-    self.fullDayButton = nil;
-    self.agendaDayButton = nil;
-    self.weekButton = nil;
-    self.calendarsButton = nil;
-    self.searchButton = nil;
-    [super viewDidUnload];
+    self.fullDayButton.alpha = 1.0;
+    self.fullDayButton.userInteractionEnabled = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -138,11 +116,6 @@
 - (IBAction)searchButtonWasTapped:(id)sender 
 {
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionSearch byPressingButton:sender];
-}
-
-- (IBAction)calendarsButtonWasTapped:(id)sender 
-{
-    [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionCalendars byPressingButton:sender];
 }
 
 - (IBAction)settingsButtonWasTapped:(id)sender 

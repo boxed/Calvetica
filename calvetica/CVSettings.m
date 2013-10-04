@@ -55,29 +55,6 @@
 }
 
 
-+ (NSInteger)reminderRootTableMode {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults valueForKey:REMINDER_ROOT_TABLE_MODE] != nil ? [[defaults valueForKey:REMINDER_ROOT_TABLE_MODE] intValue] : 0;
-}
-
-+ (void)setReminderRootTableMode:(NSInteger)mode {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:@(mode) forKey:REMINDER_ROOT_TABLE_MODE];
-    [defaults synchronize];
-}
-
-+ (BOOL)isReminderView {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults objectForKey:REMINDER_LIST_VIEW] != nil ? [defaults boolForKey:REMINDER_LIST_VIEW] : NO;
-}
-
-+ (void)setReminderView:(BOOL)b {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:b forKey:REMINDER_LIST_VIEW];
-	[defaults synchronize];
-}
-
-
 
 #pragma mark - IN APP SETTINGS
 
@@ -151,63 +128,6 @@
 	return NO;
 }
 
-
-+ (NSMutableArray *)selectedReminderCalendars {
-    NSMutableArray *selectedCalendars = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTED_REMINDER_CALENDARS];
-    
-    if (!selectedCalendars || selectedCalendars.count == 0) {
-		return [NSMutableArray arrayWithArray:[CVEventStore reminderCalendars]];
-    }
-    
-    NSMutableArray *calendars = [NSMutableArray array];
-    
-    for (EKCalendar *calendar in [CVEventStore reminderCalendars]) {
-        for (NSString *calendarIdentifier in selectedCalendars) {
-            if ([calendarIdentifier isEqualToString:calendar.calendarIdentifier]) {
-                [calendars addObject:calendar];
-                break;
-            }
-        }
-    }
-    
-    return calendars;
-}
-
-+ (void)setSelectedReminderCalendars:(NSMutableArray *)calendars {
-    NSMutableArray *calendarsToSave = [NSMutableArray array];
-    for (EKCalendar *c in calendars) {
-        [calendarsToSave addObject:c.calendarIdentifier];
-    }
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:calendarsToSave forKey:SELECTED_REMINDER_CALENDARS];
-	[defaults synchronize];
-}
-
-+ (void)addSelectedReminderCalendar:(EKCalendar *)calendar {
-    NSMutableArray *selectedCalendars = [CVSettings selectedReminderCalendars];
-    
-    // check if already exists
-    for (EKCalendar *c in selectedCalendars) {
-        if ([c.calendarIdentifier isEqualToString:calendar.calendarIdentifier]) {
-            return;
-        }
-    }
-    
-    [selectedCalendars addObject:calendar];
-    [CVSettings setSelectedReminderCalendars:selectedCalendars];
-}
-
-+ (void)removeSelectedReminderCalendar:(EKCalendar *)calendar {
-    NSMutableArray *selectedCalendars = [CVSettings selectedReminderCalendars];
-    NSMutableArray *newSelectedCalendars = [NSMutableArray array];
-    for (EKCalendar *c in selectedCalendars) {
-        if (![c.calendarIdentifier isEqualToString:calendar.calendarIdentifier]) {
-            [newSelectedCalendars addObject:c];
-        }
-    }
-    [CVSettings setSelectedReminderCalendars:newSelectedCalendars];
-}
-
 + (EKCalendar *)defaultEventCalendar {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *def = (NSString *)[defaults objectForKey:DEFAULT_EVENT_CALENDAR];
@@ -223,24 +143,6 @@
 + (void)setDefaultEventCalendar:(EKCalendar *)defCal {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:defCal.calendarIdentifier forKey:DEFAULT_EVENT_CALENDAR];
-	[defaults synchronize];
-}
-
-+ (EKCalendar *)defaultReminderCalendar {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSString *def = (NSString *)[defaults objectForKey:DEFAULT_REMINDER_CALENDAR];
-
-    EKCalendar *defCal = [CVEventStore calendarWithIdentifier:def];
-    if (defCal) {
-        return defCal;
-    } else {
-        return [CVEventStore defaultCalendarForNewReminders];
-    }
-}
-
-+ (void)setDefaultReminderCalendar:(EKCalendar *)defCalendar {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:defCalendar.calendarIdentifier forKey:DEFAULT_REMINDER_CALENDAR];
 	[defaults synchronize];
 }
 
@@ -551,67 +453,6 @@
 + (void)setDetailsOrderingArray:(NSArray *)array {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:array forKey:EVENT_DETAILS_ORDERING];
-    [defaults synchronize];
-}
-
-// reminder detail blocks
-+ (BOOL)isAReminderDetailBlock:(NSDictionary *)detail {
-    NSArray *standardArray = [CVReminderDetailsOrderViewController standardDetailsOrderingArray];
-    for (NSDictionary *dict in standardArray) {
-        if ([[detail objectForKey:@"TitleKey"] isEqualToString:[dict objectForKey:@"TitleKey"]]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-+ (BOOL)reminderDetailBlockIsSaved:(NSDictionary *)detail {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *savedArray = [defaults objectForKey:REMINDER_DETAILS_ORDERING];
-    for (NSDictionary *dict in savedArray) {
-        if ([[detail objectForKey:@"TitleKey"] isEqualToString:[dict objectForKey:@"TitleKey"]]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-+ (NSArray *)reminderDetailsOrderingArray {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *savedArray = [defaults objectForKey:REMINDER_DETAILS_ORDERING];
-    NSArray *standardArray = [CVReminderDetailsOrderViewController standardDetailsOrderingArray];
-    
-    // check for a valid details ordering array
-    if (savedArray) {
-        // check that each item in the standard array is in the saved array
-        // if not add it to the saved array
-        for (NSDictionary *dict in standardArray) {
-            if (![CVSettings reminderDetailBlockIsSaved:dict]) {
-                [savedArray addObject:dict];
-            }
-        }
-        
-        // check that each item in the saved array is in the standard array
-        // if not remove it from the saved array
-        for (NSDictionary *dict in savedArray) {
-            if (![CVSettings isAReminderDetailBlock:dict]) {
-                [savedArray removeObject:dict];
-            }
-        }
-        
-        [CVSettings setReminderDetailsOrderingArray:[NSArray arrayWithArray:savedArray]];
-    }
-    // if no valid details ordering array, save the standard ordering array
-    else {
-        [CVSettings setReminderDetailsOrderingArray:standardArray];
-    }
-    
-    return [defaults objectForKey:REMINDER_DETAILS_ORDERING];
-}
-
-+ (void)setReminderDetailsOrderingArray:(NSArray *)array {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:array forKey:REMINDER_DETAILS_ORDERING];
     [defaults synchronize];
 }
 

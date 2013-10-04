@@ -7,7 +7,7 @@
 
 #import "CVGenericReminderViewController_iPhone.h"
 #import "viewtagoffsets.h"
-#import "EKReminder+Calvetica.h"
+#import "EKEvent+Utilities.h"
 
 
 
@@ -23,7 +23,7 @@
 {
     self = [super init];
     if (self) {
-		_reminder = nil;
+		_event = nil;
     }
     return self;
 }
@@ -47,17 +47,17 @@
     UIView *button = (UIView *)sender;
     NSInteger minutes = button.tag - GENERIC_REMINDER_BUTTONS;
     NSDate *startDate = [[NSDate date] mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:minutes seconds:0];
-    _reminder = [EKReminder genericReminderWithStartDate:startDate];
-    
+    _event = [EKEvent eventWithDefaultsAtDate:startDate allDay:NO];
+
     if ([[_eventTitleTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
-        _reminder.title = NSLocalizedString(@"Generic Reminder", @"Generic Reminder");
+        _event.title = NSLocalizedString(@"Generic Reminder", @"Generic Reminder");
     }
     else {
-        _reminder.title = _eventTitleTextField.text;
+        _event.title = _eventTitleTextField.text;
     }
 
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
-		[_reminder save];
+		[_event saveForThisOccurrence];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self.delegate genericReminderViewController:self didFinishWithResult:CVGenericReminderViewControllerResultAdded];
 		});

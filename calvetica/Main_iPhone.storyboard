@@ -85,7 +85,7 @@
                                 <rect key="frame" x="0.0" y="33" width="41" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oil-Sl-mJj" userLabel="toggleModeButton" customClass="CVEventReminderToggleButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oil-Sl-mJj" userLabel="openCalendarsButton" customClass="CVCalendarButton">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -97,7 +97,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="toggleRemindersEventsViewIconTapped:" destination="4V7-i9-uxU" eventType="touchUpInside" id="dmT-H1-SYD"/>
+                                            <action selector="showCalendarsButtonWasTapped:" destination="4V7-i9-uxU" eventType="touchUpInside" id="Vul-9a-PZS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vd7-qT-XVO" userLabel="Show View Options Button" customClass="CVHamburgerButton">
@@ -165,11 +165,11 @@
                     <connections>
                         <outlet property="monthLabelControl" destination="Oda-YZ-aIE" id="WNd-xN-Aes"/>
                         <outlet property="monthTableViewContainer" destination="SmK-mx-dKu" id="0Z3-WW-iGz"/>
+                        <outlet property="openCalendarsButton" destination="Oil-Sl-mJj" id="8rk-0C-QHn"/>
                         <outlet property="redBar" destination="Qfn-9E-xuy" id="LCv-6u-WBZ"/>
                         <outlet property="redBarPlusButton" destination="yaa-iK-n7q" id="INi-FK-oIV"/>
                         <outlet property="rootTableView" destination="kaC-eD-2KQ" id="wl8-3G-FPa"/>
                         <outlet property="showViewOptionsButton" destination="Vd7-qT-XVO" id="Ryb-kK-x65"/>
-                        <outlet property="toggleModeButton" destination="Oil-Sl-mJj" id="1Ze-wX-KNY"/>
                         <outlet property="view" destination="o5a-eZ-Yfy" id="f0P-Hj-Sqt"/>
                         <outlet property="weekdayTitleBar" destination="cCv-Q8-tp8" id="pxk-PG-BEI"/>
                         <segue destination="dgz-nv-iMG" kind="modal" identifier="WeekViewSegue" id="H9j-d9-PfI"/>

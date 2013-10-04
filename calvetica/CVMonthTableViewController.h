@@ -16,8 +16,7 @@
 @property (nonatomic, strong)          UINib                           *weekCellNib;
 @property (nonatomic, strong)          NSDate                          *startDate;
 @property (nonatomic, strong)          NSDate                          *selectedDate;
-@property (nonatomic, assign)          NSInteger                       mode;
-@property (nonatomic, strong  )          NSMutableArray                  *loadedCells;
+@property (nonatomic, strong)          NSMutableArray                  *loadedCells;
 @property (nonatomic, weak  ) IBOutlet CVTodayBoxView                  *selectedDayView;
 
 - (void)drawDotsForVisibleRows;

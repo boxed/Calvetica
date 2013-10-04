@@ -12,15 +12,6 @@
 
 @implementation CVCalendarPickerViewController_iPhone
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _mode = CVCalendarPickerModeEvent;
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     self.calendarsTableView.delegate    = nil;
@@ -34,7 +25,6 @@
     
     self.calendarPickerController = [[CVCalendarPickerTableViewController alloc] init];
     self.calendarPickerController.delegate = self;
-	self.calendarPickerController.mode = _mode;
     self.calendarPickerController.tableView = self.calendarsTableView;
     self.calendarsTableView.dataSource = self.calendarPickerController;
     self.calendarsTableView.delegate = self.calendarPickerController;

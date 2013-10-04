@@ -4,7 +4,6 @@
 #import "CVEventStore.h"
 #import "CVEventDetailsOrderViewController.h"
 #import "CVEventSubtitleTextPriorityViewController.h"
-#import "CVReminderDetailsOrderViewController.h"
 #import "CVEventStore.h"
 #import "CVDevice.h"
 #import "settingskeys.h"
@@ -27,12 +26,6 @@
 + (NSInteger)eventRootTableMode;
 + (void)setEventRootTableMode:(NSInteger)mode;
 
-+ (NSInteger)reminderRootTableMode;
-+ (void)setReminderRootTableMode:(NSInteger)mode;
-
-+ (BOOL)isReminderView;
-+ (void)setReminderView:(BOOL)b;
-
 #pragma mark - IN APP SETTINGS
 
 + (NSMutableArray *)selectedEventCalendars;
@@ -43,17 +36,8 @@
 
 + (BOOL)isSelectedCalendar:(EKCalendar *)calendar;
 
-+ (NSMutableArray *)selectedReminderCalendars;
-+ (void)setSelectedReminderCalendars:(NSMutableArray *)calendars;
-
-+ (void)addSelectedReminderCalendar:(EKCalendar *)calendar;
-+ (void)removeSelectedReminderCalendar:(EKCalendar *)calendar;
-
 + (EKCalendar *)defaultEventCalendar;
 + (void)setDefaultEventCalendar:(EKCalendar *)defCal;
-
-+ (EKCalendar *)defaultReminderCalendar;
-+ (void)setDefaultReminderCalendar:(EKCalendar *)defGrp;
 
 + (UIColor *)customColorForCalendar:(EKCalendar *)calendar;
 + (void)setCustomColor:(UIColor *)color forCalendar:(EKCalendar *)calendar;
@@ -116,11 +100,6 @@
 + (BOOL)eventDetailBlockIsSaved:(NSDictionary *)detail;
 + (NSArray *)eventDetailsOrderingArray;
 + (void)setDetailsOrderingArray:(NSArray *)array;
-
-+ (BOOL)isAReminderDetailBlock:(NSDictionary *)detail; 
-+ (BOOL)reminderDetailBlockIsSaved:(NSDictionary *)detail;
-+ (NSArray *)reminderDetailsOrderingArray;
-+ (void)setReminderDetailsOrderingArray:(NSArray *)array;
 
 + (NSArray *)eventDetailsSubtitleTextOrderingArray;
 + (void)setEventDetailsSubtitleTextOrderingArray:(NSArray *)array;

@@ -234,7 +234,7 @@
 		}
 	}];
 	
-	// if for some reason the task reminder can't run, forget it
+	// if for some reason the task can't run, forget it
 	if (_setLocalNotifsBackgroundTask == UIBackgroundTaskInvalid) return;
 	
 
@@ -282,7 +282,7 @@
         CVLog(@"STOPPED LOCAL NOTIFS - TIME: %f", executionTime);
         /**********************/
 		
-		// signify the end of the reminder to the OS
+		// signify the end of the to the OS
 		[app endBackgroundTask:_setLocalNotifsBackgroundTask];
 		_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 

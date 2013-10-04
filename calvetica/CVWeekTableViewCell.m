@@ -7,7 +7,6 @@
 //
 
 #import "CVWeekTableViewCell.h"
-#import "CVWeekTableViewCellReminders.h"
 #import "CVWeekTableViewCellEvents.h"
 #import "CVEventSquare.h"
 #import "CVRootViewController.h"
@@ -28,6 +27,19 @@
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
     [self addGestureRecognizer:longPressGesture];
+
+    CGRect f = CGRectZero;
+    f.origin.x = 0;
+    f.origin.y = 1;
+    f.size.width = self.bounds.size.width;
+    f.size.height = self.bounds.size.height * 0.8f;
+
+    self.drawingView = [[CVWeekTableViewCellEvents alloc] initWithFrame:f];
+
+    self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.drawingView.opaque = NO;
+    self.drawingView.delegate = self;
+    [self addSubview:self.drawingView];
 }
 
 - (void)prepareForReuse
@@ -43,33 +55,6 @@
 
 
 #pragma mark - Methods
-
-- (void)setMode:(NSInteger)newMode 
-{
-    _mode = newMode;
-    
-    if (self.drawingView.window) {
-        [self.drawingView removeFromSuperview];
-    }
-    
-    CGRect f = CGRectZero;
-    f.origin.x = 0;
-    f.origin.y = 1;
-    f.size.width = self.bounds.size.width;
-    f.size.height = self.bounds.size.height * 0.8f;
-    
-    if (self.mode == CVRootViewControllerModeEvents) {
-        self.drawingView = [[CVWeekTableViewCellEvents alloc] initWithFrame:f];
-    }
-    else {
-        self.drawingView = [[CVWeekTableViewCellReminders alloc] initWithFrame:f];
-    }
-    
-    self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.drawingView.opaque = NO;
-    self.drawingView.delegate = self;
-    [self addSubview:self.drawingView];
-}
 
 - (void)setWeekStartDate:(NSDate *)newStartDate
 {

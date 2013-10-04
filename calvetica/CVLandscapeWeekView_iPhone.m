@@ -10,7 +10,6 @@
 #import "UIApplication+Utilities.h"
 #import "geometry.h"
 #import "EKCalendarItem+Calvetica.h"
-#import "CVReminderViewController_iPhone.h"
 #import "CVActionBlockButton.h"
 
 
@@ -265,16 +264,9 @@
 	[self dismissFullScreenModalViewControllerAnimated:YES];
 	
     if (result == CVQuickAddResultMore) {
-		if (controller.calendarItem.isEvent) {
-			CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
-			eventViewController.delegate = self;
-			[self presentPageModalViewController:eventViewController animated:YES completion:nil];
-        }
-		else {
-			CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:(EKReminder *)controller.calendarItem andMode:CVEventModeDetails];
-			reminderViewController.delegate = self;
-			[self presentPageModalViewController:reminderViewController animated:YES completion:nil];
-		}
+        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
+        eventViewController.delegate = self;
+        [self presentPageModalViewController:eventViewController animated:YES completion:nil];
     }
     else {
         [self reloadVisibleRows];

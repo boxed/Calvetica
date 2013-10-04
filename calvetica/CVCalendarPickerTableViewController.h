@@ -10,11 +10,6 @@
 #import "CVEventStore.h"
 #import "CVCalendarTableViewCell_iPhone.h"
 
-typedef enum {
-    CVCalendarPickerModeEvent,
-    CVCalendarPickerModeReminder
-} CVCalendarPickerMode;
-
 
 @protocol CVCalendarPickerTableViewControllerDelegate;
 
@@ -22,7 +17,6 @@ typedef enum {
 @interface CVCalendarPickerTableViewController : UITableViewController
 
 @property (nonatomic, weak) id<CVCalendarPickerTableViewControllerDelegate> delegate;
-@property (nonatomic) CVCalendarPickerMode mode;
 @property (nonatomic, copy) NSArray *editableCalendars;
 @property (nonatomic, copy) NSArray *allCalendars;
 @property (nonatomic, assign) BOOL showUneditableCalendars;

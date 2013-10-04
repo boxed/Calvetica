@@ -9,10 +9,7 @@
 #import "CVDataHolder.h"
 
 
-@interface CVCalendarReminderCalendarCellDataHolder : CVDataHolder
-
-#pragma mark - Public Properties
+@interface CVCalendarCellDataHolder : CVDataHolder
 @property (nonatomic, strong) EKCalendar *calendar;
-@property (nonatomic) BOOL isSelected;
-
+@property (nonatomic        ) BOOL       isSelected;
 @end

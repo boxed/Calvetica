@@ -76,7 +76,6 @@
 		_calendar.title = _calendarTitleTextField.text;
 
 	if ([_calendar save]) {
-		[CVSettings addSelectedReminderCalendar:_calendar];
 		[_delegate calendarDetailsController:self didFinishWithResult:CVCalendarDetailsControllerResultSaved];
 	}
 	else
@@ -86,7 +85,7 @@
 - (NSArray *)loadColors
 {
     NSArray *colors = [CVCustomColorDataHolder customColorsDataHolderCollection];
-    for (EKCalendar *grp in [CVEventStore reminderCalendars]) {
+    for (EKCalendar *grp in [CVEventStore eventCalendars]) {
         for (CVCustomColorDataHolder *holder in colors) {
             if ([[grp customColor] isEqual:holder.color]) {
                 holder.isSelected = YES;
@@ -144,7 +143,7 @@
                 cell.detailTextLabel.text = NSLocalizedString(@"current selection", @"The user is able to choose a custom color");
             }
             else {
-                cell.detailTextLabel.text = NSLocalizedString(@"in use by another reminder calendar", @"the custom color selected by the user is in use by another reminder calendar");
+                cell.detailTextLabel.text = NSLocalizedString(@"in use by another calendar", @"the custom color selected by the user is in use by another calendar");
             }
         }
         else {

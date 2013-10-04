@@ -14,11 +14,6 @@
 #import "CVModalProtocol.h"
 
 typedef enum {
-    CVQuickAddModeEvent,
-    CVQuickAddModeReminder
-} CVQuickAddMode;
-
-typedef enum {
     CVQuickAddResultCancelled,
     CVQuickAddResultSaved,
     CVQuickAddResultMore
@@ -31,7 +26,6 @@ typedef enum {
 @interface CVQuickAddViewController_iPhone : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UITextFieldDelegate, CVCalendarPickerViewController_iPhoneDelegate>
 
 @property (nonatomic, weak  ) id<CVQuickAddViewControllerDelegate> delegate;
-@property (nonatomic, assign) CVQuickAddMode                       mode;
 @property (nonatomic, strong) NSDate                               *startDate;
 @property (nonatomic, strong) NSDate                               *endDate;
 @property (nonatomic, strong) EKCalendarItem                       *calendarItem;

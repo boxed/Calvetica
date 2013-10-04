@@ -157,15 +157,6 @@
 
 
 
-#pragma mark - Reminder Delegate
-
-- (void)reminderViewController:(CVReminderViewController_iPhone *)controller didFinishWithResult:(CVReminderViewControllerResult)result
-{
-	[self reloadVisibleRows];
-}
-
-
-
 
 #pragma mark - Quick add view controller delegate
 

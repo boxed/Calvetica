@@ -27,7 +27,6 @@ typedef enum {
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic        ) BOOL   militaryTime;
 @property (nonatomic        ) BOOL   editable;
-@property (nonatomic        ) BOOL   reminderUI;
 
 @property (copy, nonatomic)	void (^startDateUpdatedBlock)(NSDate *date);
 @property (copy, nonatomic)	void (^endDateUpdatedBlock)(NSDate *date);

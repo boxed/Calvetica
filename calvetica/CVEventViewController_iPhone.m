@@ -61,9 +61,9 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     if (_mode == CVEventModeDay) {
         [self dayBarButtonWasTapped:nil];
     }

@@ -15,17 +15,16 @@
 #import "UITableViewCell+Nibs.h"
 #import "NSDictionary+Utilities.h"
 #import "NSMutableArray+Utilities.h"
-#import "EKReminder+Calvetica.h"
 
 
 
 
 @interface CVQuickAddViewController_iPhone ()
-@property (nonatomic, strong  )          NSMutableArray  *hourDigits;
-@property (nonatomic, strong  )          NSMutableArray  *minuteDigits;
-@property (nonatomic, strong  )          NSMutableArray  *hoursArray;
-@property (nonatomic, strong  )          NSMutableArray  *minutesArray;
-@property (nonatomic, strong  )          NSMutableArray  *allDayDatesArray;
+@property (nonatomic, strong)          NSMutableArray  *hourDigits;
+@property (nonatomic, strong)          NSMutableArray  *minuteDigits;
+@property (nonatomic, strong)          NSMutableArray  *hoursArray;
+@property (nonatomic, strong)          NSMutableArray  *minutesArray;
+@property (nonatomic, strong)          NSMutableArray  *allDayDatesArray;
 @property (nonatomic, strong)          NSNumber        *hourInterval;
 @property (nonatomic, strong)          NSNumber        *minuteInterval;
 @property (nonatomic, weak  ) IBOutlet CVRoundedButton *addButton;
@@ -54,11 +53,6 @@
 @property (nonatomic, weak  ) IBOutlet UIView          *allDayScrollViewPageOne;
 @property (nonatomic, weak  ) IBOutlet UIView          *allDayScrollViewPageTwo;
 @property (nonatomic, weak  ) IBOutlet UIPageControl   *pageControl;
-- (void)calculateStartDate;
-- (void)calculateEndDate;
-- (void)renderEventEndTimeString;
-- (NSString *)hourStringFromHourDigits;
-- (NSString *)minuteStringFromMinuteDigits;
 @end
 
 
@@ -86,7 +80,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		_mode = CVQuickAddModeEvent;
         self.isAllDay = NO;
 		self.isAM = NO;
 		
@@ -390,11 +383,8 @@
 
 - (void)createNewEventAndRequestMore:(BOOL)more 
 {
-	if (_mode == CVQuickAddModeEvent)
-		self.calendarItem = [EKEvent eventWithDefaultsAtStartDate:self.startDate endDate:self.endDate allDay:self.isAllDay calendar:self.calendar];
-	else
-		self.calendarItem = [EKReminder reminderWithDefaultsAtStartDate:self.startDate dueDate:self.endDate calendar:self.calendar];
-    
+    self.calendarItem = [EKEvent eventWithDefaultsAtStartDate:self.startDate endDate:self.endDate allDay:self.isAllDay calendar:self.calendar];
+
     if (![self.titleTextField.text isEqualToString:@""]) {
         self.calendarItem.title = _titleTextField.text;
     }
@@ -409,19 +399,11 @@
     }
     else {
         // save
-		if (_mode == CVQuickAddModeEvent) {
-            [(EKEvent *)self.calendarItem saveThenDoActionBlock:^(void) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
-                });
-            } cancelBlock:^(void) {}];
-		}
-		else {
-            [(EKReminder *)self.calendarItem save];
+        [(EKEvent *)self.calendarItem saveThenDoActionBlock:^(void) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
             });
-		}
+        } cancelBlock:^(void) {}];
     }
 }
 
@@ -430,7 +412,6 @@
     [self.titleTextField resignFirstResponder];
     CVCalendarPickerViewController_iPhone *picker = [[CVCalendarPickerViewController_iPhone alloc] init];
     picker.delegate = self;
-	picker.mode = _mode == CVQuickAddModeEvent ? CVCalendarPickerModeEvent : CVCalendarPickerModeReminder;
     [self presentFullScreenModalViewController:picker animated:YES];
 }
 

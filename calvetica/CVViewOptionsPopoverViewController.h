@@ -16,14 +16,9 @@ typedef enum {
     CVViewOptionsPopoverOptionWeekView,
     CVViewOptionsPopoverOptionDetailedWeekView,
     CVViewOptionsPopoverOptionSearch,
-    CVViewOptionsPopoverOptionCalendars,
     CVViewOptionsPopoverOptionSettings,
 } CVViewOptionsPopoverOption;
 
-typedef enum {
-    CVViewOptionsModeEvents,
-    CVViewOptionsModeReminders
-} CVViewOptionsMode;
 
 @protocol CVViewOptionsPopoverViewControllerDelegate;
 
@@ -36,9 +31,7 @@ typedef enum {
 @property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *agendaDayButton;
 @property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *weekButton;
 @property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *detailedWeekButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *calendarsButton;
 @property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *searchButton;
-@property (nonatomic, assign)          CVViewOptionsMode                              mode;
 @end
 
 

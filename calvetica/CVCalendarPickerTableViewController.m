@@ -26,7 +26,6 @@
 {
     self = [super init];
     if (self) {
-		_mode = CVCalendarPickerModeEvent;
 		_showUneditableCalendars = YES;
     }
     return self;
@@ -48,8 +47,8 @@
                                                       selector:@selector(localizedCaseInsensitiveCompare:)];  
         NSArray *sortDescriptors = @[sortDescriptor];
         
-		_editableCalendars = [[CVEventStore editableCalendarsForEntityType:(_mode == CVCalendarPickerModeEvent ? EKEntityTypeEvent : EKEntityTypeReminder)] sortedArrayUsingDescriptors:sortDescriptors];
-		_allCalendars = _mode == CVCalendarPickerModeEvent ? [CVEventStore eventCalendars] : [CVEventStore reminderCalendars];
+		_editableCalendars = [[CVEventStore editableCalendarsForEntityType:EKEntityTypeEvent] sortedArrayUsingDescriptors:sortDescriptors];
+		_allCalendars = [CVEventStore eventCalendars];
 		_allCalendars = [_allCalendars  sortedArrayUsingDescriptors:sortDescriptors];
 	}
 	return _showUneditableCalendars ? _allCalendars : _editableCalendars;

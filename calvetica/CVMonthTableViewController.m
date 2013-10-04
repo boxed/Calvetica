@@ -33,23 +33,6 @@
     [self reframeRedSelectedDaySquareAnimated:YES];
 }
 
-- (void)setMode:(NSInteger)newMode 
-{
-    _mode = newMode;
-    if (self.tableView.window) {
-        
-        // update the mode on each visible cell
-        NSArray *visibleCells = [self.tableView visibleCells];
-        for (CVWeekTableViewCell *cell in visibleCells) {
-            cell.mode = self.mode;
-        }
-        
-        [self.tableView reloadData];
-        [self drawDotsForVisibleRows];
-    }
-}
-
-
 
 
 #pragma mark - Methods
@@ -218,7 +201,6 @@
     cell.weekStartDate      = [self.startDate dateOfFirstDayOnRow:indexPath.row];
     cell.selectedDate       = _selectedDate;
     cell.delegate           = (id<CVWeekTableViewCellDelegate>)self.delegate;
-    cell.mode               = _mode;
 
     return cell;
 }

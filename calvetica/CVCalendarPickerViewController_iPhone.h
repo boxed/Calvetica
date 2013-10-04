@@ -15,7 +15,6 @@
 @interface CVCalendarPickerViewController_iPhone : CVViewController <CVCalendarPickerTableViewControllerDelegate, CVModalProtocol>
 
 @property (nonatomic, weak  )          id <CVCalendarPickerViewController_iPhoneDelegate> delegate;
-@property (nonatomic        )          CVCalendarPickerMode                               mode;
 @property (nonatomic, strong)          CVCalendarPickerTableViewController                *calendarPickerController;
 @property (nonatomic, weak  ) IBOutlet UIView                                             *eventCalendarBlock;
 @property (nonatomic, weak  ) IBOutlet UITableView                                        *calendarsTableView;

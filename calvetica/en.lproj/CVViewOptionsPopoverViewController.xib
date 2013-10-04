@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CVViewOptionsPopoverViewController">
             <connections>
                 <outlet property="agendaDayButton" destination="81" id="94"/>
-                <outlet property="calendarsButton" destination="85" id="96"/>
                 <outlet property="detailedWeekButton" destination="oSr-Tb-HZS" id="ucc-i6-ucO"/>
                 <outlet property="fullDayButton" destination="82" id="93"/>
                 <outlet property="searchButton" destination="83" id="97"/>
@@ -17,7 +16,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="4" userLabel="Control" customClass="UIControl">
-            <rect key="frame" x="0.0" y="0.0" width="130" height="257"/>
+            <rect key="frame" x="0.0" y="0.0" width="130" height="221"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="82" customClass="CVRoundedToggleButton">
@@ -103,7 +102,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="84" customClass="CVRoundedButton">
-                    <rect key="frame" x="0.0" y="226" width="130" height="31"/>
+                    <rect key="frame" x="0.0" y="190" width="130" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
@@ -116,22 +115,6 @@
                     </state>
                     <connections>
                         <action selector="settingsButtonWasTapped:" destination="-1" eventType="touchUpInside" id="89"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="85" customClass="CVRoundedButton">
-                    <rect key="frame" x="0.0" y="190" width="130" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="Calendars">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="calendarsButtonWasTapped:" destination="-1" eventType="touchUpInside" id="87"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="92">

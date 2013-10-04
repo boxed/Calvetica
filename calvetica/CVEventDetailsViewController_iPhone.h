@@ -42,7 +42,7 @@ typedef enum {
 @protocol CVEventDetailsViewControllerDelegate;
 
 
-@interface CVEventDetailsViewController_iPhone : CVViewController <UIScrollViewDelegate, UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, CVEventDetailsPeopleTableViewController_iPhoneDelegate, EKEventEditViewDelegate>
+@interface CVEventDetailsViewController_iPhone : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, CVEventDetailsPeopleTableViewController_iPhoneDelegate, EKEventEditViewDelegate>
 
 @property (nonatomic, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
 @property (nonatomic, strong) UIViewController                               *rootController;

@@ -9,8 +9,6 @@
 #import "CVEventCalendarsManagerViewController.h"
 #import "CVEventStore.h"
 #import "EKSource+Calvetica.h"
-#import "private.h"
-
 
 
 @interface CVEventCalendarsManagerViewController ()
@@ -18,16 +16,7 @@
 @end
 
 
-
-
 @implementation CVEventCalendarsManagerViewController
-
-
-- (void)awakeFromNib
-{
-	_type = EKEntityTypeEvent;
-	[super awakeFromNib];
-}
 
 - (void)viewDidLoad
 {
@@ -79,13 +68,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     EKSource *source = [_calendarSources objectAtIndex:section];
-	return [source calendarsForEntityType:_type].count + 1;
+	return [source calendarsForEntityType:EKEntityTypeEvent].count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EKSource *source = [_calendarSources objectAtIndex:indexPath.section];
-    NSArray *calendars = [[source calendarsForEntityType:_type] allObjects];
+    NSArray *calendars = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CalendarCell"];
 	cell.imageView.image = [UIImage imageNamed:@"bg_clear_cell_image"];
@@ -137,7 +126,7 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	EKSource *source = [_calendarSources objectAtIndex:indexPath.section];
-	NSArray *calendars = [[source calendarsForEntityType:_type] allObjects];
+	NSArray *calendars = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
 
     if (indexPath.row == calendars.count) {
         return UITableViewCellEditingStyleInsert;
@@ -150,7 +139,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		EKSource *source = [_calendarSources objectAtIndex:indexPath.section];
-		NSArray *calendars = [[source calendarsForEntityType:_type] allObjects];
+		NSArray *calendars = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
 		EKCalendar *calendar = [calendars objectAtIndex:indexPath.row];
 		if ([calendar remove]) {
             [tableView beginUpdates];
@@ -175,12 +164,12 @@
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 		EKSource *source = [_calendarSources objectAtIndex:indexPath.section];
-		NSArray *calendars = [[source calendarsForEntityType:_type] allObjects];
+		NSArray *calendars = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
 
 		if (indexPath.row != calendars.count)
 			detailsView.calendar = [calendars objectAtIndex:indexPath.row];
 		else {
-			EKCalendar *calendar = [EKCalendar calendarForEntityType:_type eventStore:[CVEventStore sharedStore].eventStore];
+			EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:[CVEventStore sharedStore].eventStore];
 			calendar.source = source;
 			detailsView.calendar = calendar;
 		}

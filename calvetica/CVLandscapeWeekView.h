@@ -10,7 +10,6 @@
 #import "CVWeekdayTableViewCell.h"
 #import "CVViewController.h"
 #import "CVEventViewController_iPhone.h"
-#import "CVReminderViewController_iPhone.h"
 #import "CVQuickAddViewController_iPhone.h"
 #import "CVJumpToDateViewController_iPhone.h"
 #import "NSArray+Utilities.h"
@@ -24,7 +23,7 @@ typedef enum {
 @protocol CVLandscapeWeekViewDelegate;
 
 
-@interface CVLandscapeWeekView : CVViewController <UITableViewDelegate, UITableViewDataSource, CVWeekdayTableViewCellDelegate, CVEventViewControllerDelegate, CVReminderViewControllerDelegate, CVQuickAddViewControllerDelegate, CVJumpToDateViewControllerDelegate> {
+@interface CVLandscapeWeekView : CVViewController <UITableViewDelegate, UITableViewDataSource, CVWeekdayTableViewCellDelegate, CVEventViewControllerDelegate, CVQuickAddViewControllerDelegate, CVJumpToDateViewControllerDelegate> {
 @protected
     NSInteger currentMonthOfYear;
     BOOL userHasBegunInteracting;

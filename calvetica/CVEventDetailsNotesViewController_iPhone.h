@@ -23,7 +23,6 @@ typedef enum {
 #pragma mark - Properties
 @property (nonatomic, weak) id<CVEventDetailsNotesViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
-@property (nonatomic, strong) EKReminder *reminder;
 
 #pragma mark - IBOutlets
 @property (nonatomic, weak) IBOutlet UITextView *notesTextView;

@@ -14,19 +14,12 @@
 #import "CVEventsAgendaTableViewController.h"
 #import "CVEventsWeekAgendaTableViewController.h"
 #import "CVEventsWeekStdAgendaTableViewController.h"
-#import "CVRemindersWeekStdAgendaTableViewController.h"
-#import "CVRemindersTableViewController.h"
-#import "CVRemindersWeekAgendaTableViewController.h"
 #import "CVEventSnoozeViewController_iPhone.h"
-#import "EKReminder+Calvetica.h"
 #import "geometry.h"
 #import "EKCalendarItem+Calvetica.h"
 
 
-
-
 @implementation CVRootViewController
-
 
 - (void)dealloc
 {
@@ -79,24 +72,25 @@
     UILongPressGestureRecognizer *monthLongPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressOnMonthTitleGesture:)];
     [self.monthLabelControl addGestureRecognizer:monthLongPressGesture];
 
+    self.tableMode = [CVSettings eventRootTableMode];
 
-    // set the mode based on the saved state from previous use
-    self.mode = [CVSettings isReminderView] ? CVRootViewControllerModeReminders : CVRootViewControllerModeEvents;
+    // get the table ready to scroll
+    if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
+        // scroll to current hour
+        self.rootTableViewController.shouldScrollToCurrentHour = YES;
+    }
+    self.rootTableViewController.shouldScrollToDate = YES;
+
+    // every time the table is reloaded, the red square needs to be reframed.
+    self.monthTableViewController.selectedDate = self.selectedDate;
+
+    [self updateRootTableView];
 
     // set day
     self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
 
     // set todays day, used for reference when coming out of background
     self.todaysDate = [NSDate date];
-
-    // NO UPDATE SCREEN THIS TIME
-    // if this is the first time they've ever opened the app, or if the welcome screen
-    // was updated, show them the welcome screen
-//    if (![CVSettings welcomeScreenHasBeenShown]) {
-//        CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
-//        welcomeController.delegate = self;
-//        [self presentPageModalViewController:welcomeController animated:YES completion:nil];
-//    }
 }
 
 
@@ -106,17 +100,15 @@
 
     if (![CVEventStore isPermissionGranted]) {
         [[[CVEventStore sharedStore] permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if (!granted) {
-                [MTq main:^{
-                    [self notifyOfNeededPermission];
-                }];
-            }
-            [[[CVEventStore sharedStore] permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-                [MTq main:^{
+            [MTq main:^{
+                if (granted) {
                     [CVEventStore setPermissionGranted:granted];
                     [self redrawDotsOnMonthView];
                     self.selectedDate = self.selectedDate;
-                }];
+                }
+                else {
+                    [self notifyOfNeededPermission];
+                }
             }];
         }];
     }
@@ -125,34 +117,11 @@
     self.monthTableViewController.selectedDate = self.selectedDate;
     [self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
-
-    [self.rootTableView reloadData];
-//    self.view.backgroundColor = RGBHex(0x333333);
-
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self resignFirstResponder];
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidUnload
-{
-    // if this gets dealloced and we don't remove it as an observer, when the event
-    // db changes, we'll get a segfault.
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super viewDidUnload];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
-}
-
-- (BOOL)canBecomeFirstResponder
-{
-    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -174,56 +143,10 @@
 
 #pragma mark - Public
 
-- (void)setMode:(CVRootViewControllerMode)mode
-{
-    _mode = mode;
-
-    // toggle icon
-    if (_mode == CVRootViewControllerModeEvents) {
-        self.toggleModeButton.icon = CVEventReminderToggleButtonIconCheck;
-    } else {
-        self.toggleModeButton.icon = CVEventReminderToggleButtonIconCalendar;
-    }
-
-    [CVSettings setReminderView:(mode == CVRootViewControllerModeReminders ? YES : NO)];
-    
-    // get the table ready to scroll
-    if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
-        // scroll to current hour
-        self.rootTableViewController.shouldScrollToCurrentHour = YES;
-    }
-    self.rootTableViewController.shouldScrollToDate = YES;
-    
-    // this causes the table to be redrawn
-    self.monthTableViewController.mode = mode;
-    
-    // every time the table is reloaded, the red square needs to be reframed.
-    self.monthTableViewController.selectedDate = self.selectedDate;
-    
-    if (self.mode == CVRootViewControllerModeEvents) {
-        self.redBar.backgroundColor = RGBHex(0xCC0000);
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        self.redBar.backgroundColor = [UIColor blackColor];
-    }
-
-    if (mode == CVRootViewControllerModeEvents) {
-        self.tableMode = [CVSettings eventRootTableMode];
-    }
-    else if (mode == CVRootViewControllerModeReminders) {
-        self.tableMode = [CVSettings reminderRootTableMode];
-    }
-}
-
-- (void)setTableMode:(CVRootTableViewMode)newTableMode 
+- (void)setTableMode:(CVRootTableViewMode)newTableMode
 {
     _tableMode = newTableMode;
-    if (self.mode == CVRootViewControllerModeEvents) {
-        [CVSettings setEventRootTableMode:self.tableMode];
-    }
-    if (self.mode == CVRootViewControllerModeReminders) {
-        [CVSettings setReminderRootTableMode:self.tableMode];
-    }
+    [CVSettings setEventRootTableMode:self.tableMode];
     [self updateRootTableView];
 }
 
@@ -238,11 +161,7 @@
     }
 }
 
-- (void)showNewReminderScreenWithDate:(NSDate *)date 
-{
-}
-
-- (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent 
+- (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent
 {
 	CVEventSnoozeViewController_iPhone *eventSnoozeController = [[CVEventSnoozeViewController_iPhone alloc] init];
 	eventSnoozeController.event = snoozeEvent;
@@ -254,55 +173,23 @@
 	[self presentFullScreenModalViewController:eventSnoozeController animated:YES];
 }
 
-- (void)toggleRemindersEventsViewMode 
+- (void)updateRootTableView
 {
-    // toggle the mode
-    if (self.mode == CVRootViewControllerModeReminders) {
-        [CVSettings setReminderView:NO];
-        self.mode = CVRootViewControllerModeEvents;
-        [UIApplication showBezelWithTitle:@"Events"];
-    }
-    else if (self.mode == CVRootViewControllerModeEvents) {
-        [CVSettings setReminderView:YES];
-        self.mode = CVRootViewControllerModeReminders;
-        [UIApplication showBezelWithTitle:@"Reminders"];
-    }
-}
-
-- (void)updateRootTableView 
-{
-    if (self.mode == CVRootViewControllerModeEvents) {
-        if (self.tableMode == CVRootTableViewModeFull) {
-            self.rootTableViewController = [[CVEventsFullDayTableViewController alloc] init];
-        }
-        
-        else if (self.tableMode == CVRootTableViewModeAgenda) {
-            self.rootTableViewController = [[CVEventsAgendaTableViewController alloc] init];
-        }
-        
-        else if (self.tableMode == CVRootTableViewModeWeek) {
-            self.rootTableViewController = [[CVEventsWeekAgendaTableViewController alloc] init];
-        }
-        else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
-            self.rootTableViewController = [[CVEventsWeekStdAgendaTableViewController alloc] init];
-        }
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        if (self.tableMode == CVRootTableViewModeFull) _tableMode = CVRootTableViewModeAgenda;
-        
-        if (self.tableMode == CVRootTableViewModeFull || _tableMode == CVRootTableViewModeAgenda) {
-            self.rootTableViewController = [[CVRemindersTableViewController alloc] init];
-        }
-        
-        else if (self.tableMode == CVRootTableViewModeWeek) {
-            self.rootTableViewController = [[CVRemindersWeekAgendaTableViewController alloc] init];
-        }
-
-        else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
-            self.rootTableViewController = [[CVRemindersWeekStdAgendaTableViewController alloc] init];
-        }
+    if (self.tableMode == CVRootTableViewModeFull) {
+        self.rootTableViewController = [[CVEventsFullDayTableViewController alloc] init];
     }
     
+    else if (self.tableMode == CVRootTableViewModeAgenda) {
+        self.rootTableViewController = [[CVEventsAgendaTableViewController alloc] init];
+    }
+    
+    else if (self.tableMode == CVRootTableViewModeWeek) {
+        self.rootTableViewController = [[CVEventsWeekAgendaTableViewController alloc] init];
+    }
+    else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
+        self.rootTableViewController = [[CVEventsWeekStdAgendaTableViewController alloc] init];
+    }
+
     [self.rootTableViewController setDelegate:self];
     self.rootTableViewController.tableControllerProtocol = self;
     self.rootTableViewController.tableView = self.rootTableView;    
@@ -328,16 +215,7 @@
 	}
 }
 
-- (void)redrawRowsForReminder:(EKReminder *)reminder 
-{
-	if (reminder.isCompleted) {
-		[self.monthTableViewController reloadRowForDate:reminder.completionDate];
-	}
-	else
-		[self.monthTableViewController reloadRowForDate:reminder.preferredDate];
-}
-
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view
 {
 }
 
@@ -412,6 +290,15 @@
 	self.selectedDate = [[NSDate date] mt_startOfCurrentDay];
 }
 
+- (IBAction)showCalendarsButtonWasTapped:(id)sender
+{
+    CVManageCalendarsViewController_iPhone *manageCalendarsController = [CVManageCalendarsViewController_iPhone new];
+    manageCalendarsController.delegate = self;
+
+    if (PAD)	[self presentPopoverModalViewController:manageCalendarsController forView:self.openCalendarsButton animated:YES];
+    else		[self presentPageModalViewController:manageCalendarsController animated:YES completion:nil];
+}
+
 - (IBAction)showViewOptionsButtonWasTapped:(id)sender 
 {
 }
@@ -420,12 +307,7 @@
 {
 }
 
-- (IBAction)toggleRemindersEventsViewIconTapped:(id)sender 
-{
-    [self toggleRemindersEventsViewMode];
-}
-
-- (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture 
+- (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture
 {
 }
 
@@ -438,11 +320,6 @@
 {
     [self.rootTableViewController loadTableView];
     [self.monthTableViewController drawDotsForVisibleRows];
-}
-
-- (void)reminderStoreChanged 
-{
-    [self.rootTableViewController loadTableView];
 }
 
 
@@ -471,8 +348,7 @@
     [self showQuickAddWithDefault:YES
                      durationMode:YES
                              date:cell.date
-                             view:cell
-                             mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
+                             view:cell];
 }
 
 - (void)searchController:(CVSearchViewController_iPhone *)controller cellWasTapped:(CVEventCell *)cell
@@ -515,38 +391,6 @@
     [self.monthTableViewController.tableView reloadData];
 }
 
-- (void)cellReminderWasDeleted:(CVReminderCell *)cell 
-{
-    NSIndexPath *indexPath = [self.rootTableView indexPathForRowContainingView:cell];
-    CVReminderCellDataHolder *holder = [self.rootTableViewController cellDataHolderAtIndexPath:indexPath];
-    if (holder && holder.reminder) {
-		EKReminder *reminderToRemove = holder.reminder;
-        dispatch_async([CVOperationQueue backgroundQueue], ^{
-            [reminderToRemove remove];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.rootTableViewController removeObjectAtIndexPath:indexPath];
-                [self.rootTableView beginUpdates];
-                [self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
-                [self.rootTableView endUpdates];
-                [self.monthTableViewController.tableView reloadData];
-            });
-        });
-		holder.reminder = nil;
-    }
-}
-
-- (void)cellReminderWasCompleted:(CVReminderCell *)cell 
-{
-    [self.rootTableViewController loadTableView];
-    [self.monthTableViewController.tableView reloadData];
-}
-
-- (void)cellReminderWasUncompleted:(CVReminderCell *)cell 
-{
-    [self.rootTableViewController loadTableView];
-    [self.monthTableViewController.tableView reloadData];
-}
-
 
 
 
@@ -585,7 +429,7 @@
 - (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller didCompleteWithAction:(CVQuickAddResult)result
 {
     if (result == CVQuickAddResultSaved) {
-        [UIApplication showBezelWithTitle:(controller.calendarItem.isEvent ? @"Event Added" : @"Reminder Added")];
+        [UIApplication showBezelWithTitle:@"Event Added"];
         [_rootTableViewController loadTableView];
         [_monthTableViewController.tableView reloadData];
 		[_monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
@@ -621,26 +465,6 @@
     else if (result == CVEventResultDeleted) {       
         [self.rootTableViewController loadTableView];
         [self.monthTableViewController.tableView reloadData];
-    }
-    [self becomeFirstResponder];
-}
-
-
-
-
-#pragma mark - Reminder view controller delegate
-
-- (void)reminderViewController:(CVReminderViewController_iPhone *)controller didFinishWithResult:(CVReminderViewControllerResult)result
-{
-    if (result == CVReminderViewControllerResultSaved) {
-        [self.rootTableViewController loadTableView];
-        [self.monthTableViewController.tableView reloadData];
-		[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
-    }
-    else if (result == CVReminderViewControllerResultDeleted) {
-        [self.rootTableViewController loadTableView];
-        [self.monthTableViewController.tableView reloadData];
-		[self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
     }
     [self becomeFirstResponder];
 }
@@ -710,24 +534,6 @@
         else {
             [self performSegueWithIdentifier:@"SearchSegue" sender:self];
         }
-    }
-
-	else if (option == CVViewOptionsPopoverOptionCalendars) {
-        CVManageCalendarsViewMode viewMode = CVManageCalendarsViewModeEvents;
-		
-        // check current mode
-        if (self.mode == CVRootViewControllerModeEvents) {
-            viewMode = CVManageCalendarsViewModeEvents;
-        }
-        else if (self.mode == CVRootViewControllerModeReminders) {
-            viewMode = CVManageCalendarsViewModeReminders;
-        }
-
-        CVManageCalendarsViewController_iPhone *manageCalendarsController = [[CVManageCalendarsViewController_iPhone alloc] initWithMode:viewMode];
-        manageCalendarsController.delegate = self;
-
-		if (PAD)	[self presentPopoverModalViewController:manageCalendarsController forView:viewOptionsViewController.popoverTargetView animated:YES];
-		else		[self presentPageModalViewController:manageCalendarsController animated:YES completion:nil];
     }
 
 	else if (option == CVViewOptionsPopoverOptionSettings) {

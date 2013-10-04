@@ -11,22 +11,12 @@
 
 - (BOOL)isASelectedCalendar 
 {
-	if ((self.allowedEntityTypes & EKEntityMaskEvent) == EKEntityMaskEvent) {
-		NSMutableArray *selectedCalendars = [CVSettings selectedEventCalendars];
-		for (EKCalendar *c in selectedCalendars) {
-			if ([c.calendarIdentifier isEqualToString:self.calendarIdentifier]) {
-				return YES;
-			}
-		}
-	}
-	else {
-		NSMutableArray *selectedCalendars = [CVSettings selectedReminderCalendars];
-		for (EKCalendar *c in selectedCalendars) {
-			if ([c.calendarIdentifier isEqualToString:self.calendarIdentifier]) {
-				return YES;
-			}
-		}
-	}
+    NSMutableArray *selectedCalendars = [CVSettings selectedEventCalendars];
+    for (EKCalendar *c in selectedCalendars) {
+        if ([c.calendarIdentifier isEqualToString:self.calendarIdentifier]) {
+            return YES;
+        }
+    }
 	return NO;
 }
 

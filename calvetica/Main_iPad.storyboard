@@ -52,7 +52,7 @@
                                             <action selector="showViewOptionsButtonWasTapped:" destination="2lJ-yk-dX9" eventType="touchUpInside" id="AUf-ou-E7I"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xgR-NC-ASo" userLabel="toggleModeButton" customClass="CVEventReminderToggleButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xgR-NC-ASo" userLabel="openCalendarsButton" customClass="CVCalendarButton">
                                         <rect key="frame" x="402" y="20" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -64,7 +64,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="toggleRemindersEventsViewIconTapped:" destination="2lJ-yk-dX9" eventType="touchUpInside" id="vdD-6O-RSO"/>
+                                            <action selector="showCalendarsButtonWasTapped:" destination="2lJ-yk-dX9" eventType="touchUpInside" id="qrx-Ds-ZmH"/>
                                         </connections>
                                     </button>
                                     <view opaque="NO" contentMode="scaleToFill" id="Qv4-iX-IF2" userLabel="monthLabelControl" customClass="CVMonthTextButton_iPad">
@@ -226,13 +226,13 @@
                         <outlet property="grayBarDateLabel" destination="tpn-mZ-OKj" id="JwM-Fw-y3T"/>
                         <outlet property="grayBarWeekdayLabel" destination="GKt-Vb-ByJ" id="yaL-4c-0tj"/>
                         <outlet property="monthLabelControl" destination="Qv4-iX-IF2" id="aRl-vZ-aLh"/>
+                        <outlet property="openCalendarsButton" destination="xgR-NC-ASo" id="lVx-du-h77"/>
                         <outlet property="redBar" destination="3SB-AC-6eH" id="Uhc-sK-sxb"/>
                         <outlet property="redBarMonthLabel" destination="7Xb-4S-gU3" id="fj4-Sn-SCn"/>
                         <outlet property="redBarPlusButton" destination="C4f-cW-IKI" id="6p6-Yd-oDb"/>
                         <outlet property="redBarYearLabel" destination="PqX-UQ-0mK" id="Uyd-oq-gIY"/>
                         <outlet property="rootTableView" destination="bpi-4G-xyK" id="hqH-hu-HlY"/>
                         <outlet property="showViewOptionsButton" destination="nRe-5B-VgK" id="cae-ud-Yxf"/>
-                        <outlet property="toggleModeButton" destination="xgR-NC-ASo" id="bhn-l8-jsA"/>
                         <outlet property="weekdayTitleBar" destination="g4v-nV-kpe" id="wqe-fc-uuT"/>
                         <segue destination="tfN-6f-Go5" kind="modal" identifier="WeekViewSegue" id="3TS-TX-ioX"/>
                     </connections>

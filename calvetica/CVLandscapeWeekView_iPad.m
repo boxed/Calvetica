@@ -215,7 +215,6 @@
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = datePressed;
     quickAddViewController.isAllDay = allDay;
-	quickAddViewController.mode = CVQuickAddModeEvent;
     quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideCenter;
     
     // resize view so that it doesn't have the black space at the bottom
@@ -264,18 +263,10 @@
     [super quickAddViewController:controller didCompleteWithAction:result];
         
     if (result == CVQuickAddResultMore) {
-		if (controller.calendarItem.isEvent) {
-			CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
-			eventViewController.delegate = self;
-			[self dismissPopoverModalViewControllerAnimated:YES];
-			[self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];
-		}
-		else {
-			CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:(EKReminder *)controller.calendarItem andMode:CVEventModeDetails];
-			reminderViewController.delegate = self;
-			[self dismissPopoverModalViewControllerAnimated:YES];
-			[self presentPopoverModalViewController:reminderViewController forView:controller.popoverTargetView animated:YES];
-		}
+        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
+        eventViewController.delegate = self;
+        [self dismissPopoverModalViewControllerAnimated:YES];
+        [self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];
 	}
 	else {
 		[self dismissPopoverModalViewControllerAnimated:YES];

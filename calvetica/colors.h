@@ -46,7 +46,6 @@
 #define patentedCellNonWorkHours [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05]
 
 #define OLD_EVENT_ALPHA 0.5f
-#define OLD_REMINDER_ALPHA 0.5f
 
 #pragma mark - Custom Calendar Colors
 #define CV_PALETTE_1 [UIColor colorWithRed:0.937 green:0.631 blue:0.502 alpha:1.000]

@@ -76,12 +76,11 @@
     }
 }
 
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode;
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view
 {
     CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = date;
-	quickAddViewController.mode = mode;
     quickAddViewController.isDurationMode = dur;
     [self presentFullScreenModalViewController:quickAddViewController animated:YES];
     if (def) {
@@ -291,13 +290,12 @@
 	[super handleLongPressOnMonthTitleGesture:gesture];
 }
 
-- (IBAction)showViewOptionsButtonWasTapped:(id)sender 
+- (IBAction)showViewOptionsButtonWasTapped:(id)sender
 {
 	[super showViewOptionsButtonWasTapped:sender];
 	CVViewOptionsPopoverViewController *viewOptionsPopover = [[CVViewOptionsPopoverViewController alloc] init];
     viewOptionsPopover.delegate = self;
     viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.tableMode;
-    viewOptionsPopover.mode = (CVViewOptionsMode)self.mode;
     viewOptionsPopover.popoverBackdropColor = patentedDarkGray;
     viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideRight;
     [self presentPopoverModalViewController:viewOptionsPopover forView:sender animated:YES];
@@ -309,13 +307,7 @@
 	[self showQuickAddWithDefault:NO
 					 durationMode:NO
 							 date:self.selectedDate
-                             view:nil
-							 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
-}
-
-- (IBAction)toggleRemindersEventsViewIconTapped:(id)sender 
-{
-    [super toggleRemindersEventsViewIconTapped:sender];
+                             view:nil];
 }
 
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture 
@@ -352,16 +344,6 @@
 
 
 
-#pragma mark - Notifications
-
-- (void)reminderStoreChanged 
-{
-    [super reminderStoreChanged];
-}
-
-
-
-
 #pragma mark - Table view cell delegate
 
 - (void)cellHourTimeWasTapped:(CVEventCell *)cell 
@@ -378,27 +360,17 @@
 
 - (void)cellWasTapped:(id)tappedCell 
 {
-    if (self.mode == CVRootViewControllerModeEvents) {
-        CVEventCell *cell = (CVEventCell *)tappedCell;
-        if (cell.event) {
-            CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
-            eventViewController.delegate = self;
-            [self presentPageModalViewController:eventViewController animated:YES completion:nil];
-        } else {
-            [self showQuickAddWithDefault:YES
-							 durationMode:YES
-									 date:cell.date
-                                     view:nil
-									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
-        }
+    CVEventCell *cell = (CVEventCell *)tappedCell;
+    if (cell.event) {
+        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
+        eventViewController.delegate = self;
+        [self presentPageModalViewController:eventViewController animated:YES completion:nil];
+    } else {
+        [self showQuickAddWithDefault:YES
+                         durationMode:YES
+                                 date:cell.date
+                                 view:nil];
     }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        CVReminderCell *cell = (CVReminderCell *)tappedCell;
-        CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDetails];
-        reminderViewController.delegate = self;
-        [self presentPageModalViewController:reminderViewController animated:YES completion:nil];
-    }
-    
     [super cellWasTapped:tappedCell];
 }
 
@@ -448,29 +420,6 @@
 	
 }
 
-- (void)cellReminderWasDeleted:(CVReminderCell *)cell 
-{
-    [super cellReminderWasDeleted:cell];
-    [self.monthTableViewController drawDotsForVisibleRows];
-}
-
-- (void)cellReminderWasCompleted:(CVReminderCell *)cell 
-{
-    [super cellReminderWasCompleted:cell];
-    [self.monthTableViewController drawDotsForVisibleRows];
-}
-
-- (void)cellReminderWasUncompleted:(CVReminderCell *)cell 
-{
-    [super cellReminderWasUncompleted:cell];
-    [self.monthTableViewController drawDotsForVisibleRows];
-}
-
-
-
-
-
-
 
 
 
@@ -492,8 +441,7 @@
 			[self showQuickAddWithDefault:NO
 							 durationMode:NO
 									 date:date
-                                     view:nil
-									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
+                                     view:nil];
 
             [placeholder removeFromSuperview];
             
@@ -531,15 +479,9 @@
         [self.monthTableViewController drawDotsForVisibleRows];
     }
 	else if (result == CVQuickAddResultMore) {
-		if (controller.calendarItem.isEvent) {
-			CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
-			eventViewController.delegate = self;
-			[self presentPageModalViewController:eventViewController animated:YES completion:nil];		}
-		else {
-			CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:(EKReminder *)controller.calendarItem andMode:CVEventModeDetails];
-			reminderViewController.delegate = self;
-			[self presentPageModalViewController:reminderViewController animated:YES completion:nil];
-		}
+        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
+        eventViewController.delegate = self;
+        [self presentPageModalViewController:eventViewController animated:YES completion:nil];
 	}
 }
 
@@ -566,23 +508,6 @@
         [self.monthTableViewController drawDotsForVisibleRows];
     }
     else if (result == CVEventResultDeleted) {
-        [self.monthTableViewController drawDotsForVisibleRows];
-    }
-    [self dismissPageModalViewControllerAnimated:YES completion:nil];
-}
-
-
-
-
-#pragma mark - Reminder view controller delegate
-
-- (void)reminderViewController:(CVReminderViewController_iPhone *)controller didFinishWithResult:(CVReminderViewControllerResult)result
-{
-    [super reminderViewController:controller didFinishWithResult:result];
-    if (result == CVReminderViewControllerResultSaved) {
-        [self.monthTableViewController drawDotsForVisibleRows];
-    }
-    else if (result == CVReminderViewControllerResultDeleted) {
         [self.monthTableViewController drawDotsForVisibleRows];
     }
     [self dismissPageModalViewControllerAnimated:YES completion:nil];
@@ -626,8 +551,7 @@
     [self showQuickAddWithDefault:YES
 					 durationMode:YES
 							 date:date
-                             view:nil
-							 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
+                             view:nil];
 }
 
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker didFinishWithResult:(CVSubHourPickerViewControllerResult)result 

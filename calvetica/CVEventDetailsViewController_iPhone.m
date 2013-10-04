@@ -60,7 +60,9 @@
 
 
 
-@implementation CVEventDetailsViewController_iPhone
+@implementation CVEventDetailsViewController_iPhone {
+    CGFloat _savedScrollOffset;
+}
 
 
 - (id)initWithEvent:(EKEvent *)initEvent
@@ -171,6 +173,10 @@
     [_calendarTableViewController setSelectedCalendar:self.event.calendar];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
 
 
 
@@ -256,11 +262,6 @@
     recurrenceViewController.delegate = self;
     [self.modalNavigationController pushViewController:recurrenceViewController animated:YES];
     [self.delegate eventDetailsViewController:self didPushViewController:recurrenceViewController animated:YES];
-}
-
-- (void)hideKeyboard 
-{
-    [_eventTitleTextView resignFirstResponder];
 }
 
 - (void)adjustLayoutOfBlocks 
@@ -506,15 +507,6 @@
                               message:NSLocalizedString(@"This recurrence rule cannot be edited in Calvetica. Press edit to override the current rule.", @"Message when the user tries to edit a recurrence rule.")
                               buttons:@[editButton, cancelButton]
                                 completion:cancel];
-}
-
-
-
-#pragma mark - Scroll View Delegates
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView 
-{
-    [self hideKeyboard];
 }
 
 
@@ -869,7 +861,6 @@
 
 - (void)callButtonWasPressedWithTelephoneNumbers:(NSArray *)telephoneNumbers 
 {
-    
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]]) {
         if (telephoneNumbers.count > 1) {
 			

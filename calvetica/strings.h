@@ -6,7 +6,7 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#define PRIVACY_POLICY @"EMAIL ADDRESS\nWe will never spam you. Ever. We only ask you to use your email as a username so we can send you a password reset email if you need it. That's it. By the way, when a company sends you a message saying \"Hey, you successfully signed up and welcome and thanks and be our best friend\" well, that's spam too and we hate that.\n\nPERSONAL DATA\nWe store your email, password and reminders safely in a database on our server. We don't look at them. We don't allow anyone else to look at them. We don't use them for anything. They are kept private. This is simply a service to make it so you can backup your reminders to the cloud. People who look at other users' personal data or use it to make money without the permission of the users are called jerks.\n\nWe promise we won't be jerks."
+#define PRIVACY_POLICY @"EMAIL ADDRESS\nWe will never spam you. Ever. We only ask you to use your email as a username so we can send you a password reset email if you need it. That's it. By the way, when a company sends you a message saying \"Hey, you successfully signed up and welcome and thanks and be our best friend\" well, that's spam too and we hate that."
 
 #define ALERT_TITLE_ERROR NSLocalizedString(@"Error!", @"Title for alert box.")
 

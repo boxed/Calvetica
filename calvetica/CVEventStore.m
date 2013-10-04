@@ -8,7 +8,6 @@
 
 #import "CVEventStore.h"
 #import "EKEvent+Utilities.h"
-#import "EKReminder+Calvetica.h"
 #import "EKCalendarItem+Calvetica.h"
 #import "CVEventSquare.h"
 #import "CVDebug.h"
@@ -57,7 +56,6 @@ static CVEventStore *__sharedStore = nil;
 
 + (NSArray *)eventsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
 {
-    if (!__permissionGranted) return nil;
     if (!__permissionGranted) return nil;
     if (!startDate || !endDate) return @[];
 
@@ -248,127 +246,6 @@ static CVEventStore *__sharedStore = nil;
 {
     if (!__permissionGranted) return nil;
     return [CVEventStore sharedStore].eventStore.defaultCalendarForNewEvents;
-}
-
-
-
-
-#pragma mark - Reminders
-
-+ (NSArray *)remindersFromDate:(NSDate *)startDate toDate:(NSDate *)endDate activeCalendars:(BOOL)activeCalsOnly
-{
-    if (!__permissionGranted) return nil;
-    NSMutableArray *calendars = nil;
-    if (activeCalsOnly) {
-        calendars = [CVSettings selectedReminderCalendars];
-        if (calendars.count == 0) return [NSArray array];
-    }
-
-    NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForRemindersInCalendars:calendars];
-
-	__block NSArray *reminders = nil;
-	__block BOOL fetched = NO;
-
-    [[CVEventStore sharedStore].eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *rems) {
-		reminders = rems;
-		fetched = YES;
-	}];
-
-    while (!fetched) { [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.01]]; }
-
-	NSDate *today = [NSDate date];
-
-	NSMutableArray *filteredReminders = [NSMutableArray array];
-	for (EKReminder *reminder in reminders) {
-		
-		NSDate *date = reminder.preferredDate;
-
-		// if its not completed, it should appear on today if the start/due date has passed.
-		if (!reminder.isCompleted && [startDate mt_isOnOrBefore:today] && [endDate mt_isOnOrAfter:today] && [reminder.startDate mt_isOnOrBefore:today] && [reminder.dueDate mt_isOnOrBefore:today])
-			[filteredReminders addObject:reminder];
-
-		// if its completed, it should show up on the day it was completed
-		else if (reminder.isCompleted && [reminder.completionDate mt_isOnOrAfter:startDate] && [reminder.completionDate mt_isOnOrBefore:endDate])
-			[filteredReminders addObject:reminder];
-
-		// if we're viewing days in the future, only show reminders that start or are due on this day
-		else if (!reminder.isCompleted && date && [date mt_isOnOrAfter:startDate] && [date mt_isOnOrBefore:endDate])
-			[filteredReminders addObject:reminder];
-	}
-
-	return filteredReminders;
-}
-
-+ (NSArray *)remindersSearchedWithText:(NSString *)text forActiveCalendars:(BOOL)activeCalsOnly
-{
-    if (!__permissionGranted) return nil;
-	// get the list of calendars to include
-    NSMutableArray *calendars = nil;
-    if (activeCalsOnly) {
-        calendars = [CVSettings selectedReminderCalendars];
-        if (calendars.count == 0) return [NSArray array];
-    }
-
-	NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForRemindersInCalendars:calendars];
-
-	__block NSArray *reminders = nil;
-	__block BOOL fetched = NO;
-
-	[[CVEventStore sharedStore].eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *rems) {
-		reminders = rems;
-		fetched = YES;
-	}];
-
-    while (!fetched) { [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.01]]; }
-
-	NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@ || notes CONTAINS[cd] %@ || location CONTAINS[cd] %@", text, text, text];
-	return [reminders filteredArrayUsingPredicate:searchPredicate];
-}
-
-+ (EKReminder *)reminder
-{
-    if (!__permissionGranted) return nil;
-    return [EKReminder reminderWithEventStore:[CVEventStore sharedStore].eventStore];
-}
-
-+ (EKReminder *)reminderWithIdentifier:(NSString *)identifier
-{
-    if (!__permissionGranted) return nil;
-	return (EKReminder *)[EKCalendarItem calendarItemWithIdentifier:identifier];
-}
-
-+ (NSError *)saveReminder:(EKReminder *)reminder
-{
-    if (!__permissionGranted) return nil;
-    NSError *error = nil;
-    [[CVEventStore sharedStore].eventStore saveReminder:reminder commit:YES error:&error];
-    return error;
-}
-
-+ (NSError *)removeReminder:(EKReminder *)reminder
-{
-    if (!__permissionGranted) return nil;
-    NSError *error = nil;
-    [[CVEventStore sharedStore].eventStore removeReminder:reminder commit:YES error:&error];
-    return error;
-}
-
-+ (NSArray *)reminderCalendars
-{
-    if (!__permissionGranted) return nil;
-    NSArray *array = [[CVEventStore sharedStore].eventStore calendarsForEntityType:EKEntityTypeReminder];
-	if (array.count == 0) {
-		EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeReminder eventStore:[CVEventStore sharedStore].eventStore];
-		[calendar save];
-		array = @[calendar];
-	}
-	return array;
-}
-
-+ (EKCalendar *)defaultCalendarForNewReminders
-{
-    if (!__permissionGranted) return nil;
-    return [CVEventStore sharedStore].eventStore.defaultCalendarForNewReminders;
 }
 
 

@@ -8,7 +8,6 @@
 
 #import "CVAlarmPickerViewController.h"
 #import "CVExtraAlarmButton.h"
-#import "EKReminder+Calvetica.h"
 
 
 
@@ -222,14 +221,6 @@
 			[(EKEvent *)_calendarItem reset];
 			[_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultCancelled];
 		}];
-	}
-	else if ([_calendarItem isKindOfClass:[EKReminder class]]) {
-		dispatch_async([CVOperationQueue backgroundQueue], ^{
-			[(EKReminder *)_calendarItem save];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultChanged];
-			});
-		});
 	}
 }
 

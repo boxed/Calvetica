@@ -8,11 +8,8 @@
 
 #import "CVAppDelegate.h"
 #import "CVEventCellDataHolder.h"
-#import "CVReminderCellDataHolder.h"
 #import "CVMonthTableViewController.h"
-#import "CVReminderViewController_iPhone.h"
 #import "CVViewOptionsPopoverViewController.h"
-#import "CVGenericReminderViewController_iPhone.h"
 #import "CVSubHourPickerViewController.h"
 #import "CVEventDot.h"
 #import "CVViewController.h"
@@ -36,13 +33,7 @@
 #import "CVGestureHowToViewController.h"
 #import "CVLandscapeWeekView.h"
 #import "CVAgendaEventCell.h"
-#import "CVEventReminderToggleButton.h"
-
-
-typedef enum {
-    CVRootViewControllerModeEvents,
-    CVRootViewControllerModeReminders
-} CVRootViewControllerMode;
+#import "CVGenericReminderViewController_iPhone.h"
 
 
 typedef enum {
@@ -53,45 +44,39 @@ typedef enum {
 } CVRootTableViewMode;
 
 
-@interface CVRootViewController : CVViewController <CVWeekTableViewCellDelegate, CVQuickAddViewControllerDelegate, CVJumpToDateViewControllerDelegate, CVEventCellDelegate, CVAgendaEventCellDelegate, CVReminderCellDelegate, CVEventViewControllerDelegate, CVAlarmPickerViewControllerDelegate, CVManageCalendarsViewControllerDelegate, CVEventSnoozeViewControllerDelegate, CVViewOptionsPopoverViewControllerDelegate, CVSubHourPickerViewControllerDelegate, CVSearchViewControllerDelegate, CVReminderViewControllerDelegate, CVGenericReminderViewControllerDelegate, CVRootTableViewControllerProtocol, CVWelcomeViewControllerDelegate, CVLandscapeWeekViewDelegate>
+@interface CVRootViewController : CVViewController <CVWeekTableViewCellDelegate, CVQuickAddViewControllerDelegate, CVJumpToDateViewControllerDelegate, CVEventCellDelegate, CVAgendaEventCellDelegate, CVEventViewControllerDelegate, CVAlarmPickerViewControllerDelegate, CVManageCalendarsViewControllerDelegate, CVEventSnoozeViewControllerDelegate, CVViewOptionsPopoverViewControllerDelegate, CVSubHourPickerViewControllerDelegate, CVSearchViewControllerDelegate, CVGenericReminderViewControllerDelegate, CVRootTableViewControllerProtocol, CVWelcomeViewControllerDelegate, CVLandscapeWeekViewDelegate>
 
 
 @property (nonatomic, copy) NSDate *selectedDate;
 
 // used when coming out of background to check if it's a new day so the month buttons
 // can be updated to show current day
-@property (nonatomic, strong)          NSDate                      *todaysDate;
-@property (nonatomic, weak  ) IBOutlet UIControl                   *redBarPlusButton;
-@property (nonatomic, weak  ) IBOutlet CVEventReminderToggleButton *toggleModeButton;
-@property (nonatomic, weak  ) IBOutlet UIButton                    *showViewOptionsButton;
-@property (nonatomic, assign)          CVRootViewControllerMode    mode;
-@property (nonatomic, assign)          CVRootTableViewMode         tableMode;
-@property (nonatomic, strong)          CVRootTableViewController   *rootTableViewController;
-@property (nonatomic, weak  ) IBOutlet UITableView                 *rootTableView;
-@property (nonatomic, weak  ) IBOutlet UIButton                    *monthLabelControl;
-@property (nonatomic, weak  ) IBOutlet UIView                      *monthTableViewContainer;
-@property (nonatomic, assign)          NSInteger                   reminderAddPlusButtonCount;
-@property (nonatomic, weak  ) IBOutlet UIView                      *redBar;
-@property (nonatomic, strong)          UIPopoverController         *nativePopoverController;
-@property (nonatomic, weak  ) IBOutlet CVMonthTableViewController  *monthTableViewController;
-@property (nonatomic, weak  ) IBOutlet UIView                      *weekdayTitleBar;
+@property (nonatomic, strong)          NSDate                     *todaysDate;
+@property (nonatomic, weak  ) IBOutlet UIControl                  *redBarPlusButton;
+@property (nonatomic, weak  ) IBOutlet UIButton                   *showViewOptionsButton;
+@property (nonatomic, assign)          CVRootTableViewMode        tableMode;
+@property (nonatomic, strong)          CVRootTableViewController  *rootTableViewController;
+@property (nonatomic, weak  ) IBOutlet UITableView                *rootTableView;
+@property (nonatomic, weak  ) IBOutlet UIButton                   *monthLabelControl;
+@property (nonatomic, weak  ) IBOutlet UIView                     *monthTableViewContainer;
+@property (nonatomic, weak  ) IBOutlet UIView                     *redBar;
+@property (nonatomic, strong)          UIPopoverController        *nativePopoverController;
+@property (nonatomic, weak  ) IBOutlet CVMonthTableViewController *monthTableViewController;
+@property (nonatomic, weak  ) IBOutlet UIView                     *weekdayTitleBar;
+@property (nonatomic, weak  ) IBOutlet UIButton                   *openCalendarsButton;
 
 
-- (void)showNewReminderScreenWithDate:(NSDate *)date;
 - (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent;
-- (void)toggleRemindersEventsViewMode;
 - (void)setWeekDayTitles;
 - (void)updateRootTableView;
 - (void)loadTableView;
 - (void)redrawDotsOnMonthView;
 - (void)redrawRowsForEvent:(EKEvent *)event;
-- (void)redrawRowsForReminder:(EKReminder *)reminder;
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode;
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view;
 
 
 #pragma mark - Notifications
 - (void)eventStoreChanged;
-- (void)reminderStoreChanged;
 
 
 
@@ -100,9 +85,9 @@ typedef enum {
 - (IBAction)handleLongPressOnPlusButtonGesture:(UILongPressGestureRecognizer *)gesture;
 - (IBAction)handleLongPressOnMonthTitleGesture:(UILongPressGestureRecognizer *)gesture;
 - (IBAction)handleSwipeOnTableView:(UISwipeGestureRecognizer *)gesture;
+- (IBAction)showCalendarsButtonWasTapped:(id)sender;
 - (IBAction)showViewOptionsButtonWasTapped:(id)sender;
 - (IBAction)redBarPlusButtonWasTapped:(UITapGestureRecognizer *)gesture;
-- (IBAction)toggleRemindersEventsViewIconTapped:(id)sender;
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture;
 - (IBAction)closeSettings:(UIStoryboardSegue *)segue;
 

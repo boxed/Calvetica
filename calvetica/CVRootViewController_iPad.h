@@ -14,7 +14,6 @@
 #import "CVEventViewController_iPhone.h"
 #import "CVManageCalendarsViewController_iPhone.h"
 #import "CVSearchViewController_iPhone.h"
-#import "CVReminderViewController_iPhone.h"
 #import "CVGenericReminderViewController_iPhone.h"
 #import "CVLandscapeWeekView_iPad.h"
 

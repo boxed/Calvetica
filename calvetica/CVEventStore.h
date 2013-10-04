@@ -30,19 +30,6 @@
 + (NSArray *)eventCalendars;
 + (EKCalendar *)defaultCalendarForNewEvents;
 
-
-#pragma mark - Reminders
-
-+ (NSArray *)remindersFromDate:(NSDate *)startDate toDate:(NSDate *)endDate activeCalendars:(BOOL)activeCalsOnly;
-+ (NSArray *)remindersSearchedWithText:(NSString *)text forActiveCalendars:(BOOL)activeCalsOnly;
-+ (EKReminder *)reminder;
-+ (EKReminder *)reminderWithIdentifier:(NSString *)rid;
-+ (NSError *)saveReminder:(EKReminder *)reminder;
-+ (NSError *)removeReminder:(EKReminder *)reminder;
-+ (NSArray *)reminderCalendars;
-+ (EKCalendar *)defaultCalendarForNewReminders;
-
-
 #pragma mark - Calendars
 
 + (NSArray *)editableCalendarsForEntityType:(EKEntityType)entityType;

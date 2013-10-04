@@ -14,23 +14,11 @@
 #import "NSArray+Utilities.h"
 #import "NSString+Utilities.h"
 
-// @todo: Duplicate code is everywhere inside the reminder and event view controllers. It needs to be combined.
-@interface CVEventsWeekAgendaTableViewController : CVRootTableViewController {
-}
-
-
-#pragma mark - Properties
+@interface CVEventsWeekAgendaTableViewController : CVRootTableViewController
 @property (nonatomic, weak  ) id<CVAgendaEventCellDelegate> delegate;
-@property (nonatomic, strong  ) NSMutableArray                *cellDataHolderArray;
+@property (nonatomic, strong) NSMutableArray                *cellDataHolderArray;
 @property (nonatomic, strong) UINib                         *eventCellNib;
 @property (nonatomic, strong) UINib                         *dayTitleCellNib;
 @property (nonatomic, strong) UINib                         *friendlyCellNib;
 @property (nonatomic, strong) UINib                         *weekNumberCellNib;
-
-
-#pragma mark - Methods
-
-#pragma mark - IBActions
-
-
 @end

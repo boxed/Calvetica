@@ -44,7 +44,6 @@
 		_allDay					= allDay;
 		_militaryTime			= military;
 		_unitButtons			= [NSMutableArray array];
-		_reminderUI				= NO;
 		_startDateUpdatedBlock	= nil;
 		_endDateUpdatedBlock	= nil;
 		_allDayUpdatedBlock     = nil;
@@ -71,10 +70,6 @@
 	for (CVViewButton *button in _unitButtons)
 		[button addTarget:self action:@selector(unitButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
 
-	if (_reminderUI) {
-		_allDayButtonContainer.hidden = YES;
-		_endTimeLabel.text = @"Due";
-	}
 
 	if (!_editable) {
 		_startTimeButton.userInteractionEnabled = NO;

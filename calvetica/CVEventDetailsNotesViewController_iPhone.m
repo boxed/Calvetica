@@ -59,8 +59,6 @@
     
     if (self.event) {
         _notesTextView.text = _event.notes;
-    } else if (self.reminder) {
-        _notesTextView.text = self.reminder.notes;
     }
     
     if ([_notesTextView.text length] == 0) {

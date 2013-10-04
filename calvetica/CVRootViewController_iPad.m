@@ -56,13 +56,12 @@
     [self setMonthAndDayLabels];
 }
 
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view mode:(CVQuickAddMode)mode
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view
 {
     CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = date;
     quickAddViewController.isDurationMode = dur;
-	quickAddViewController.mode = mode;
 
 	
 	// if showing up by the plus button
@@ -260,7 +259,6 @@
 	CVViewOptionsPopoverViewController *viewOptionsPopover = [[CVViewOptionsPopoverViewController alloc] init];
     viewOptionsPopover.delegate = self;
     viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.tableMode;
-    viewOptionsPopover.mode = (CVViewOptionsMode)self.mode;
     viewOptionsPopover.popoverBackdropColor = patentedDarkGray;
     viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
     [self presentPopoverModalViewController:viewOptionsPopover forView:sender animated:YES];
@@ -272,13 +270,7 @@
 	[self showQuickAddWithDefault:NO
 					 durationMode:NO
 							 date:self.selectedDate
-							 view:gesture.view
-							 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
-}
-
-- (IBAction)toggleRemindersEventsViewIconTapped:(id)sender 
-{
-    [super toggleRemindersEventsViewIconTapped:sender];
+							 view:gesture.view];
 }
 
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture 
@@ -317,16 +309,6 @@
 
 
 
-#pragma mark - Notifications
-
-- (void)reminderStoreChanged 
-{
-    [super reminderStoreChanged];
-    [self.monthTableViewController drawDotsForVisibleRows];
-}
-
-
-
 
 #pragma mark - Table view cell delegate
 
@@ -346,49 +328,29 @@
 
 - (void)cellWasTapped:(id)tappedCell 
 {
-    if (self.mode == CVRootViewControllerModeEvents) {
-        CVEventCell *cell = (CVEventCell *)tappedCell;
-        if (cell.event) {
-            CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
-            eventViewController.delegate = self;
-			eventViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
-			eventViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
-            [self presentPopoverModalViewController:eventViewController forView:cell animated:YES];
-        } else {
-            [self showQuickAddWithDefault:YES
-							 durationMode:YES
-									 date:cell.date
-									 view:cell
-									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
-        }
+    CVEventCell *cell = (CVEventCell *)tappedCell;
+    if (cell.event) {
+        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
+        eventViewController.delegate = self;
+        eventViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
+        eventViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
+        [self presentPopoverModalViewController:eventViewController forView:cell animated:YES];
+    } else {
+        [self showQuickAddWithDefault:YES
+                         durationMode:YES
+                                 date:cell.date
+                                 view:cell];
     }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        CVReminderCell *cell = (CVReminderCell *)tappedCell;
-        CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDetails];
-        reminderViewController.delegate = self;
-        reminderViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
-        reminderViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
-        [self presentPopoverModalViewController:reminderViewController forView:cell animated:YES];
-    }
-
     [super cellWasTapped:tappedCell];
 }
 
 - (void)searchController:(CVSearchViewController_iPhone *)controller cellWasTapped:(CVEventCell *)tappedCell
 {
-	if (self.mode == CVRootViewControllerModeEvents) {
-        CVEventCell *cell = (CVEventCell *)tappedCell;
-		CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
-		eventViewController.delegate = self;
-		[self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];
-    }
-    else if (self.mode == CVRootViewControllerModeReminders) {
-        CVReminderCell *cell = (CVReminderCell *)tappedCell;
-        CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:cell.reminder andMode:CVReminderViewControllerModeDetails];
-        reminderViewController.delegate = self;
-        [self presentPopoverModalViewController:reminderViewController forView:controller.popoverTargetView animated:YES];
-    }
-	
+    CVEventCell *cell = (CVEventCell *)tappedCell;
+    CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:cell.event andMode:CVEventModeDetails];
+    eventViewController.delegate = self;
+    [self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];
+
     [super cellWasTapped:tappedCell];
 }
 
@@ -465,8 +427,7 @@
 			[self showQuickAddWithDefault:NO
 							 durationMode:NO
 									 date:date
-									 view:placeholder
-									 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
+									 view:placeholder];
 
             [placeholder removeFromSuperview];
         });
@@ -499,25 +460,14 @@
 	
 
     if (result == CVQuickAddResultSaved) {
-		if (controller.calendarItem.isEvent)
-			[self redrawRowsForEvent:(EKEvent *)controller.calendarItem];
-		else
-			[self redrawRowsForReminder:(EKReminder *)controller.calendarItem];
+        [self redrawRowsForEvent:(EKEvent *)controller.calendarItem];
 		[self dismissPopoverModalViewControllerAnimated:YES];
     }
 	else if (result == CVQuickAddResultMore) {
-		if (controller.calendarItem.isEvent) {
-			CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
-			eventViewController.delegate = self;
-			[self dismissPopoverModalViewControllerAnimated:YES];
-			[self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];
-		}
-		else {
-			CVReminderViewController_iPhone *reminderViewController = [[CVReminderViewController_iPhone alloc] initWithReminder:(EKReminder *)controller.calendarItem andMode:CVEventModeDetails];
-			reminderViewController.delegate = self;
-			[self dismissPopoverModalViewControllerAnimated:YES];
-			[self presentPopoverModalViewController:reminderViewController forView:controller.popoverTargetView animated:YES];
-		}
+        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
+        eventViewController.delegate = self;
+        [self dismissPopoverModalViewControllerAnimated:YES];
+        [self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];
 	}
 	else if (result == CVQuickAddResultCancelled) {
 		[self dismissPopoverModalViewControllerAnimated:YES];
@@ -553,22 +503,6 @@
     [self dismissPopoverModalViewControllerAnimated:YES];
 }
 
-
-
-
-#pragma mark - Reminder view controller delegate
-
-- (void)reminderViewController:(CVReminderViewController_iPhone *)controller didFinishWithResult:(CVReminderViewControllerResult)result
-{
-    [super reminderViewController:controller didFinishWithResult:result];
-    if (result == CVReminderViewControllerResultSaved) {
-        [self redrawRowsForReminder:controller.reminder];
-    }
-    else if (result == CVReminderViewControllerResultDeleted) {
-        [self.monthTableViewController drawDotsForVisibleRows];
-    }
-    [self dismissPopoverModalViewControllerAnimated:YES];
-}
 
 
 
@@ -610,8 +544,7 @@
     [self showQuickAddWithDefault:YES
 					 durationMode:YES
 							 date:date
-							 view:self.redBarPlusButton
-							 mode:(self.mode == CVRootViewControllerModeEvents ? CVQuickAddModeEvent : CVQuickAddModeReminder)];
+							 view:self.redBarPlusButton];
 }
 
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker didFinishWithResult:(CVSubHourPickerViewControllerResult)result 
