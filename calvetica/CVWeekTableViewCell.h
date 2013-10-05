@@ -18,8 +18,6 @@
 
 @interface CVWeekTableViewCell : UITableViewCell <UIGestureRecognizerDelegate, CVWeekTableViewCellDrawingDataSource> {}
 
-
-#pragma mark - Properties
 @property (nonatomic, weak  )          id<CVWeekTableViewCellDelegate> delegate;
 @property (nonatomic, strong)          NSDate                          *weekStartDate;
 @property (nonatomic, strong)          NSDate                          *absoluteStartDate;

@@ -655,15 +655,18 @@
 {
     if (!isOn) {
         self.event.timeZone = nil;
+        [self.timeZoneButton setTitle:@"Time Zone" forState:UIControlStateNormal];
     }
     else {
         self.event.timeZone = [NSTimeZone systemTimeZone];
+        [self.timeZoneButton setTitle:self.event.timeZone.name forState:UIControlStateNormal];
     }
 }
 
 - (void)timeZoneViewController:(CVTimeZoneViewController *)controller didSelectTimeZone:(NSTimeZone *)timeZone
 {
     self.event.timeZone = timeZone;
+    [self.timeZoneButton setTitle:timeZone.name forState:UIControlStateNormal];
 }
 
 

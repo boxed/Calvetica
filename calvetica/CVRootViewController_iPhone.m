@@ -95,7 +95,6 @@
 
 - (void)animateMonthViewDirection:(CVRootMonthViewAnimateDirection)direction 
 {
-	
 	self.monthViewPushedUpDirection = direction;
 	
 	NSInteger numberOfRows = [self.selectedDate numberOfCalendarRowsInCurrentMonth];
@@ -147,7 +146,6 @@
         // adjust table view
         self.rootTableView.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
         self.rootTableView.height = self.view.height - self.rootTableView.y;
-        
     }
                      completion:^(BOOL finished) {
                          [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
@@ -225,7 +223,6 @@
     UISwipeGestureRecognizer *swipeDownRedBarGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(monthTableViewWasSwiped:)];
     swipeDownRedBarGesture.direction = UISwipeGestureRecognizerDirectionDown;
     [self.redBar addGestureRecognizer:swipeDownRedBarGesture];
-
 
     // register to know when the phone is turned sideways
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];

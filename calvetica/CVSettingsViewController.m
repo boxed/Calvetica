@@ -106,11 +106,9 @@
 {
     [CVSettings setTimeZoneSupport:isOn];
     if (isOn) {
-        [CVSettings setTimeZone:[NSTimeZone systemTimeZone]];
-        [NSDate mt_setTimeZone:[NSTimeZone systemTimeZone]];
+        [NSDate mt_setTimeZone:[CVSettings timezone]];
     }
     else {
-        [CVSettings setTimeZone:nil];
         [NSDate mt_setTimeZone:[NSTimeZone systemTimeZone]];
     }
 }

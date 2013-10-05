@@ -1,4 +1,4 @@
-#define WELCOME_SCREEN_CURRENT_VERSION      @"4.5.2"
+#define WELCOME_SCREEN_CURRENT_VERSION      @"5.0"
 
 #define WELCOME_SCREEN_SHOWN                @"WelcomeScreenShown"
 #define WELCOME_SCREEN_SAVED_VERSION        @"WelcomeScreenVersion"

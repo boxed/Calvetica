@@ -7,7 +7,7 @@
 //
 
 #import "CVWeekTableViewCell.h"
-#import "CVWeekTableViewCellEvents.h"
+#import "CVWeekTableViewCellDrawing.h"
 #import "CVEventSquare.h"
 #import "CVRootViewController.h"
 
@@ -34,7 +34,7 @@
     f.size.width = self.bounds.size.width;
     f.size.height = self.bounds.size.height * 0.8f;
 
-    self.drawingView = [[CVWeekTableViewCellEvents alloc] initWithFrame:f];
+    self.drawingView = [[CVWeekTableViewCellDrawing alloc] initWithFrame:f];
 
     self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.drawingView.opaque = NO;
@@ -48,6 +48,7 @@
     _weekStartDate = nil;
     _selectedDate = nil;
     self.todayImage.hidden = YES;
+    self.drawingView.hidden = YES;
     [self setNeedsDisplay];
 }
 

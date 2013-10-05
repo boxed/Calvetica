@@ -66,12 +66,18 @@
 - (IBAction)toggleSwitchWasTapped:(id)sender
 {
     if (_toggleSwitch.isOn) {
-        _filteredTimeZones = [_availableTimeZones copy];
         if (self.selectedTimeZone) {
+            _filteredTimeZones = @[self.selectedTimeZone.name];
+            _searchBar.text = self.selectedTimeZone.name;
             [self.delegate timeZoneViewController:self didSelectTimeZone:self.selectedTimeZone];
+        }
+        else {
+            _filteredTimeZones = [_availableTimeZones copy];
         }
     }
     else {
+        _searchBar.text = @"";
+        [_searchBar resignFirstResponder];
         _filteredTimeZones = [NSMutableArray new];
     }
     [_tableView reloadData];
@@ -97,8 +103,9 @@
     NSString *timeZoneName      = [_filteredTimeZones objectAtIndex:indexPath.row];
     NSTimeZone *timeZone        = [NSTimeZone timeZoneWithName:timeZoneName];
 
-    cell.textLabel.text         = timeZone.name;
-    cell.detailTextLabel.text   = timeZone.abbreviation;
+//    cell.textLabel.text         = timeZone.name;
+    cell.textLabel.text         = [timeZone localizedName:NSTimeZoneNameStyleStandard locale:[NSLocale currentLocale]];
+    cell.detailTextLabel.text   = timeZone.description;
 
     if ([self.selectedTimeZone isEqualToTimeZone:timeZone]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -114,8 +121,11 @@
 {
     NSString *timeZoneName = [_filteredTimeZones objectAtIndex:indexPath.row];
     self.selectedTimeZone = [NSTimeZone timeZoneWithName:timeZoneName];
-    [_tableView reloadData];
     [self.delegate timeZoneViewController:self didSelectTimeZone:[self.selectedTimeZone copy]];
+    _filteredTimeZones = @[timeZoneName];
+    _searchBar.text = timeZoneName;
+    [_searchBar resignFirstResponder];
+    [_tableView reloadData];
 }
 
 
@@ -137,6 +147,7 @@
         _filteredTimeZones = [_availableTimeZones filteredArrayUsingPredicate:
                               [NSPredicate predicateWithBlock:^BOOL(NSString *timeZoneName, NSDictionary *bindings)
                                {
+                                   timeZoneName = [timeZoneName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
                                    return [[timeZoneName lowercaseString] rangeOfString:[searchText lowercaseString]].location != NSNotFound;
                                }]];
     }

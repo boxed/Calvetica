@@ -51,6 +51,8 @@
 }
 
 
+
+
 #pragma mark - Actions
 
 - (IBAction)saveButtonWasTapped:(id)sender
@@ -146,20 +148,11 @@
     
     if (holder.isSelected) {
         holder.isSelected = NO;
-        cell.checkmarkImageView.image = [UIImage imageNamed:@"eye_closed"];
-        //            if ([holder.calendar isEqual:[CVSettings defaultEventCalendar]]) {
-        //                // throw up an alert
-        //                CVActionBlockButton *button = [CVActionBlockButton buttonWithTitle:@"OK" andActionBlock:^(void){}];
-        //                [UIApplication showAlertWithTitle:@"I'm sorry" message:@"Unable to hide default calendar" buttons:[NSArray arrayWithObject:button]];
-        //            }
-        //            else {
-        //                holder.isSelected = NO;
-        //                cell.checkmarkImageView.image = [UIImage imageNamed:@"eye_closed"];
-        //            }
+        cell.checkmarkImageView.image = [UIImage imageNamed:@"icon_calendar_off"];
     }
     else {
         holder.isSelected = YES;
-        cell.checkmarkImageView.image = [UIImage imageNamed:@"eye_open"];
+        cell.checkmarkImageView.image = [UIImage imageNamed:@"icon_calendar_on"];
     }
     self.modified = YES;
 }

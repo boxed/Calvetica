@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Qav-UJ-BKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Qav-UJ-BKK">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -148,52 +148,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Reminders" id="Pn4-QK-KLR">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="CyB-l3-Dxf" style="IBUITableViewCellStyleDefault" id="C83-Rb-bVd">
-                                        <rect key="frame" x="0.0" y="505" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C83-Rb-bVd" id="KzL-Nn-54g">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Manage Reminder Calendars" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CyB-l3-Dxf">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="OGY-wV-9oh" kind="push" id="Ie3-2D-S47"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="9cK-6p-pHZ" style="IBUITableViewCellStyleDefault" id="hiZ-EP-rWM">
-                                        <rect key="frame" x="0.0" y="549" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hiZ-EP-rWM" id="rDs-em-Ii5">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Default Reminder Calendar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9cK-6p-pHZ">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="l12-xS-Pn0" kind="push" id="R5v-YR-j50"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Notifications" footerTitle="See FAQ for more information." id="3Vc-Ky-XPC">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="F5I-Ra-Nyv" style="IBUITableViewCellStyleDefault" id="P7P-01-oSg">
-                                        <rect key="frame" x="0.0" y="641" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="505" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P7P-01-oSg" id="75n-8g-wJc">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -212,7 +170,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="8Fm-bt-CZZ" style="IBUITableViewCellStyleDefault" id="X2M-zQ-PHI">
-                                        <rect key="frame" x="0.0" y="685" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="549" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X2M-zQ-PHI" id="kLA-Hd-S4B">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -235,7 +193,7 @@
                             <tableViewSection headerTitle="International" id="YQQ-y6-1mh">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="tRH-ua-7Rk" style="IBUITableViewCellStyleDefault" id="Wco-Gw-oU9">
-                                        <rect key="frame" x="0.0" y="804" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="668" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wco-Gw-oU9" id="Kif-O8-koj">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -254,7 +212,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="GOx-uv-IcE" style="IBUITableViewCellStyleDefault" id="Sbz-ou-jQa">
-                                        <rect key="frame" x="0.0" y="848" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="712" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sbz-ou-jQa" id="StG-vs-cFD">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -273,7 +231,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="YsE-2U-HyC" style="IBUITableViewCellStyleDefault" id="0r0-5I-aEt">
-                                        <rect key="frame" x="0.0" y="892" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="756" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0r0-5I-aEt" id="qro-AT-Qdu">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -294,7 +252,7 @@
                                 <string key="footerTitle">The "Duration Bar Read-only" setting refers to the duration bars that appear in the day view table. This will hide them for events that are read-only.</string>
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ldd-k0-izC" style="IBUITableViewCellStyleDefault" id="4gZ-ja-s5J">
-                                        <rect key="frame" x="0.0" y="984" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="848" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4gZ-ja-s5J" id="wId-e0-tRc">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -313,7 +271,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="SSe-wQ-Hh1" style="IBUITableViewCellStyleDefault" id="ajV-Zf-swN">
-                                        <rect key="frame" x="0.0" y="1028" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="892" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ajV-Zf-swN" id="dsf-ZY-20d">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -333,7 +291,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Nql-GC-CO0" style="IBUITableViewCellStyleDefault" id="QZT-0g-ji5">
-                                        <rect key="frame" x="0.0" y="1072" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="936" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZT-0g-ji5" id="dV2-j6-wns">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -351,27 +309,8 @@
                                             <segue destination="fpy-jn-Bqb" kind="push" id="25y-Sh-Z3d"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="aGB-G3-3cn" style="IBUITableViewCellStyleDefault" id="2b3-1Q-hzd">
-                                        <rect key="frame" x="0.0" y="1116" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2b3-1Q-hzd" id="dkr-KA-Tt7">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Reminder Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aGB-G3-3cn">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="dwy-ln-Pyn" kind="push" id="xim-44-1qC"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LIe-ed-ClO" style="IBUITableViewCellStyleDefault" id="Scz-2D-baq">
-                                        <rect key="frame" x="0.0" y="1160" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="980" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Scz-2D-baq" id="UT8-rA-PaY">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -390,7 +329,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="u19-b6-xgw" style="IBUITableViewCellStyleDefault" id="mkA-GA-BB3">
-                                        <rect key="frame" x="0.0" y="1204" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1024" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mkA-GA-BB3" id="fDt-qS-3cx">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -406,7 +345,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="XeF-Z8-2ep" style="IBUITableViewCellStyleDefault" id="8yZ-Ij-i1h">
-                                        <rect key="frame" x="0.0" y="1248" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1068" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8yZ-Ij-i1h" id="j5i-Od-lKp">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -422,7 +361,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="2WU-l9-DNc" style="IBUITableViewCellStyleDefault" id="cKJ-Mc-IpM">
-                                        <rect key="frame" x="0.0" y="1292" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1112" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cKJ-Mc-IpM" id="XpB-nJ-uXe">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
@@ -442,7 +381,7 @@
                             <tableViewSection headerTitle="Help" footerTitle="Illustrations provided by Gestureworks (www.gestureworks.com)" id="I1n-Re-5JM">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="UZM-gc-Nbc" style="IBUITableViewCellStyleDefault" id="gED-DZ-Lin">
-                                        <rect key="frame" x="0.0" y="1461" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1281" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gED-DZ-Lin" id="eQ6-wO-wzb">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -461,7 +400,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Lxs-nI-HIA" style="IBUITableViewCellStyleDefault" id="EqC-dY-vkK">
-                                        <rect key="frame" x="0.0" y="1505" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1325" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EqC-dY-vkK" id="Ppa-bB-StJ">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -480,7 +419,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="gk5-NZ-0q3" style="IBUITableViewCellStyleDefault" id="iVO-IL-wLb">
-                                        <rect key="frame" x="0.0" y="1549" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1369" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iVO-IL-wLb" id="oTx-C5-YYb">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -503,7 +442,7 @@
                             <tableViewSection headerTitle="About Mysterious Trousers" id="pum-h9-LwS">
                                 <cells>
                                     <tableViewCell tag="101" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Un4-ea-caw" style="IBUITableViewCellStyleDefault" id="Y8b-G7-fYo">
-                                        <rect key="frame" x="0.0" y="1685" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1505" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y8b-G7-fYo" id="il7-U7-UZh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -519,7 +458,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell tag="102" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="RcL-wY-TPL" style="IBUITableViewCellStyleDefault" id="pWx-T1-fUr">
-                                        <rect key="frame" x="0.0" y="1729" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1549" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pWx-T1-fUr" id="Vch-Nw-xO4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -598,7 +537,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2TV-hE-Qek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3328" y="219"/>
+            <point key="canvasLocation" x="3364" y="316"/>
         </scene>
         <!--Event Default Duration View Controller-->
         <scene sceneID="egT-WL-JV3">
@@ -920,7 +859,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIp-g0-kGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1913" y="236"/>
+            <point key="canvasLocation" x="1914" y="327"/>
         </scene>
         <!--Event Subtitle Text Priority View Controller-->
         <scene sceneID="Fb6-eN-UGN">
@@ -941,25 +880,6 @@
             </objects>
             <point key="canvasLocation" x="1924" y="1084"/>
         </scene>
-        <!--Reminder Details Order View Controller-->
-        <scene sceneID="JV1-v2-96G">
-            <objects>
-                <tableViewController id="dwy-ln-Pyn" customClass="CVReminderDetailsOrderViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="apG-eS-ESV">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="dwy-ln-Pyn" id="YI5-k9-nsl"/>
-                            <outlet property="delegate" destination="dwy-ln-Pyn" id="sdI-kO-7ys"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="0Oc-Jd-QuD"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DnO-rW-kKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1421" y="1094"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="C0T-Rp-Y5g">
             <objects>
@@ -969,7 +889,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="qq0-XD-2a7">
-                                <rect key="frame" x="0.0" y="-32" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="k6c-Tj-KGf">
@@ -979,6 +899,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="dhu-dL-cDK"/>
                     <connections>
                         <outlet property="helpScreen" destination="qq0-XD-2a7" id="s7x-et-2tq"/>
@@ -1052,6 +973,7 @@
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                         <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="hO0-Tj-fAN"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1080,7 +1002,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">What is Time Zone Support?
+                                <string key="text">What is Time Zone Support?
 
 The start and end time of an event based on time zone can depend on a few things:
 
@@ -1088,11 +1010,11 @@ The start and end time of an event based on time zone can depend on a few things
 
 2) If a time zone is not set, this means the event is not location sensative and should occur at that time no matter where you are. An example is breakfast at 9am. This should occur at 9am no matter where you are.
 
-3) Calvetica let's you both define a time zone for your events AND your calendar. If you set the time zone for your calendar in Calvetica's Settings > Time Zone Support, it will not matter where you are in reality, Calvetica will display your events as if you are in the time zone set in settings. So for example, if you are in London at 2pm, when the meeting in New York starts at 9am, but your Time Zone Support setting is set to New York, the meeting will still appear to start at 9am.
+3) Calvetica let's you both define a time zone for your events AND your calendar. If you set the time zone for your calendar in Calvetica's Settings &gt; Time Zone Support, it will not matter where you are in reality, Calvetica will display your events as if you are in the time zone set in settings. So for example, if you are in London at 2pm, when the meeting in New York starts at 9am, but your Time Zone Support setting is set to New York, the meeting will still appear to start at 9am.
 
-4) Lastly, your device can be set to a specific time zone. In Settings.app > General > Date &amp; Time > Time Zone, you could set your device to a time zone and then, if time zone support is off in Calvetica's settings, Calvetica will display your events as if you are in the system's time zone. Same example: if you set your device time zone to New York and Calvetica's Time Zone support is off, your events will display as if you are in New York no matter where you really are.
+4) Lastly, your device can be set to a specific time zone. In Settings.app &gt; General &gt; Date &amp; Time &gt; Time Zone, you could set your device to a time zone and then, if time zone support is off in Calvetica's settings, Calvetica will display your events as if you are in the system's time zone. Same example: if you set your device time zone to New York and Calvetica's Time Zone support is off, your events will display as if you are in New York no matter where you really are.
 
-So, to put it all together into a really complex example: If you are in Melbourne, Australia but have your device time zone set to New York and Calvetica's Time Zone support set to London, an event that starts at 9am, with a time zone set to New York, will appear to start at 2pm. This is because, in this example, where you are and where your device thinks you are do not matter. All that matters is that Calvetica thinks you are in London and the event starts at 9am in New York, thus it will display the event starting at 2pm local time in London.</mutableString>
+So, to put it all together into a really complex example: If you are in Melbourne, Australia but have your device time zone set to New York and Calvetica's Time Zone support set to London, an event that starts at 9am, with a time zone set to New York, will appear to start at 2pm. This is because, in this example, where you are and where your device thinks you are do not matter. All that matters is that Calvetica thinks you are in London and the event starts at 9am in New York, thus it will display the event starting at 2pm local time in London.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1122,7 +1044,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAR-uk-YDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5272" y="219"/>
+            <point key="canvasLocation" x="5277" y="171"/>
         </scene>
         <!--Day End Hour View Controller-->
         <scene sceneID="HHs-nR-0Kv">
@@ -1141,7 +1063,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S03-og-ZI9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="213"/>
+            <point key="canvasLocation" x="2902" y="185"/>
         </scene>
         <!--Day Start Hour View Controller-->
         <scene sceneID="HYk-1G-VQE">
@@ -1160,7 +1082,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FHD-UF-sjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4813" y="213"/>
+            <point key="canvasLocation" x="4814" y="268"/>
         </scene>
         <!--Time Zone View Controller-->
         <scene sceneID="YhB-cr-19F">
@@ -1198,16 +1120,16 @@ So, to put it all together into a really complex example: If you are in Melbourn
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E5L-q9-n5N">
-                                                    <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                                    <rect key="frame" x="15" y="6" width="31" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S2d-nu-qTs">
-                                                    <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                                    <rect key="frame" x="15" y="26" width="36" height="12"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1256,7 +1178,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWS-Xm-6ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4317" y="213"/>
+            <point key="canvasLocation" x="4317" y="219"/>
         </scene>
         <!--Custom Alert Sounds View Controller-->
         <scene sceneID="VS7-cV-hVr">
@@ -1275,26 +1197,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pE1-Ak-L8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2389" y="236"/>
-        </scene>
-        <!--Reminder Default Calendar View Controller-->
-        <scene sceneID="nB6-Ea-CRk">
-            <objects>
-                <tableViewController id="l12-xS-Pn0" customClass="CVReminderDefaultCalendarViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ii3-yc-c0A">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="l12-xS-Pn0" id="CcB-SM-yYc"/>
-                            <outlet property="delegate" destination="l12-xS-Pn0" id="6QP-nS-H14"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="5Hn-wT-DV1"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SYR-6C-xSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1437" y="236"/>
+            <point key="canvasLocation" x="2399" y="144"/>
         </scene>
         <!--Calendar Details View Controller-->
         <scene sceneID="UYX-i8-hyB">
@@ -1331,47 +1234,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p83-AO-LY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4843" y="-1234"/>
-        </scene>
-        <!--Reminder Calendars Manager View Controller-->
-        <scene sceneID="cUI-au-07z">
-            <objects>
-                <tableViewController id="OGY-wV-9oh" customClass="CVReminderCalendarsManagerViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="UDB-32-7iD">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalendarCell" textLabel="m2G-fX-w8H" style="IBUITableViewCellStyleDefault" id="Dac-Dq-Wry">
-                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dac-Dq-Wry" id="zcx-Dv-4pl">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m2G-fX-w8H">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="NbG-wm-1s9" kind="push" identifier="CalendarDetailSegue" id="xzG-gF-5Cm"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="OGY-wV-9oh" id="38B-9C-zj7"/>
-                            <outlet property="delegate" destination="OGY-wV-9oh" id="z27-bW-Gl6"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="xi4-1a-Jso"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5US-gJ-Cj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4317" y="-552"/>
+            <point key="canvasLocation" x="2450" y="-1273"/>
         </scene>
         <!--All Day Event Default Alarms View Controller-->
         <scene sceneID="q0G-Vn-b91">
@@ -1470,21 +1333,6 @@ So, to put it all together into a really complex example: If you are in Melbourn
             </objects>
             <point key="canvasLocation" x="1893" y="-537"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="cvq-sm-PPI">
-            <objects>
-                <viewController id="qtG-Fz-NLJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="J5r-PP-ezK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="0.93000000000000005" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="NUB-DC-Nwk"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b9C-nL-EAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1437" y="-1308"/>
-        </scene>
         <!--Setting Navigation Controller-->
         <scene sceneID="0WW-Wx-12i">
             <objects>
@@ -1523,7 +1371,7 @@ So, to put it all together into a really complex example: If you are in Melbourn
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOq-og-wqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3836" y="213"/>
+            <point key="canvasLocation" x="3836" y="144"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1532,7 +1380,6 @@ So, to put it all together into a really complex example: If you are in Melbourn
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="v7f-xo-dVN"/>
         <segue reference="DVg-dA-SFo"/>
     </inferredMetricsTieBreakers>
 </document>

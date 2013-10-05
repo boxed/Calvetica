@@ -22,7 +22,7 @@
     UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(frame) + 1.5, CGRectGetMinY(frame) + 1.5, 9, 9)];
 
 
-    [[[[[_pencil move] delay:0.1] color:[UIColor whiteColor]] width:1] duration:0.5];
+    [[[[_pencil move] color:[UIColor whiteColor]] width:1] duration:0.3];
     [[_pencil move] to:CGPointMake(0, 6)];
     [[_pencil draw] path:oval2Path.CGPath];
     [[_pencil draw] path:ovalPath.CGPath];

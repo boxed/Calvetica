@@ -30,6 +30,10 @@
 + (NSArray *)eventCalendars;
 + (EKCalendar *)defaultCalendarForNewEvents;
 
+#pragma mark - Reminders
+
++ (void)remindersForDate:(NSDate *)date completion:(void (^)(NSArray *reminders))completion;
+
 #pragma mark - Calendars
 
 + (NSArray *)editableCalendarsForEntityType:(EKEntityType)entityType;

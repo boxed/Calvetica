@@ -44,7 +44,7 @@
 	[NSDate mt_setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
 	[NSDate mt_setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
 
-	NSTimeZone *tz = [CVSettings timezone];
+    NSTimeZone *tz = [CVSettings timezone];
     [NSDate mt_setTimeZone:tz];
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
@@ -102,7 +102,9 @@
 		rvc.todaysDate		= [NSDate date];
         rvc.selectedDate	= [NSDate date];
     }
-    
+    [rvc.monthTableViewController.tableView reloadData];
+    [rvc.rootTableViewController.tableView reloadData];
+
     // check whether the table view needs to scroll
     if ([rvc.selectedDate mt_isWithinSameDay:[NSDate date]]) {
         [rvc.rootTableViewController scrollToCurrentHour];

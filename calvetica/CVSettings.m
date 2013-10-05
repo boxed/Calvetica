@@ -271,9 +271,6 @@
     if (timeZoneName && [CVSettings timeZoneSupport])
 		return [NSTimeZone timeZoneWithName:timeZoneName];
 
-//    for (NSString *name in [NSTimeZone knownTimeZoneNames]) {
-//        NSLog(@"%@", name);
-//    }
     return [NSTimeZone systemTimeZone];
 }
 

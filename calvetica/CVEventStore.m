@@ -59,6 +59,12 @@ static CVEventStore *__sharedStore = nil;
     if (!__permissionGranted) return nil;
     if (!startDate || !endDate) return @[];
 
+    // we fetch a 24 hour buffer around the range because if "Time Zone Support" is turned on in the native calendar app
+    // it affects the fetching of events and may not return all that actually do fall within the date range we ask. They
+    // can't possibly shift more than 24 hours, so that's all the cushion we need.
+    NSDate *bufferedStartDate = [startDate mt_dateDaysBefore:1];
+    NSDate *bufferedEndDate = [endDate mt_dateDaysAfter:1];
+
     NSMutableArray *calendars = nil;
     if (activeCalsOnly) {
         calendars = [CVSettings selectedEventCalendars];
@@ -68,15 +74,22 @@ static CVEventStore *__sharedStore = nil;
             return [NSMutableArray array];
         }
     }
-    
-    NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+
+    NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:bufferedStartDate endDate:bufferedEndDate calendars:calendars];
     NSMutableArray *events = [NSMutableArray arrayWithArray:[[CVEventStore sharedStore].eventStore eventsMatchingPredicate:predicate]];
 
-//	[events filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-//		EKEvent *event = evaluatedObject;
-//		if ([event.endingDate isEqualToDate:startDate]) return NO;
-//		return YES;
-//	}]];
+    // strip out any events we grabbed because of the buffer that are outside our originally requested range
+	[events filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent *event, NSDictionary *bindings) {
+        NSComparisonResult startsBeforeEndResult    = [event.startDate compare:endDate];
+        BOOL startsBeforeEnd                        = (startsBeforeEndResult == NSOrderedAscending ||
+                                                       startsBeforeEndResult == NSOrderedSame);
+
+        NSComparisonResult endsAfterStartResult     = [event.endDate compare:startDate];
+        BOOL endsAfterStart                         = (endsAfterStartResult == NSOrderedDescending ||
+                                                       endsAfterStartResult == NSOrderedSame);
+
+        return (endsAfterStart && startsBeforeEnd);
+	}]];
 
 	return events;
 }
@@ -248,6 +261,18 @@ static CVEventStore *__sharedStore = nil;
     return [CVEventStore sharedStore].eventStore.defaultCalendarForNewEvents;
 }
 
+
+
+
+#pragma mark - Reminders
+
++ (void)remindersForDate:(NSDate *)date completion:(void (^)(NSArray *reminders))completion
+{
+    NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForRemindersInCalendars:nil];
+    [[CVEventStore sharedStore].eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
+        if (completion) completion(reminders);
+    }];
+}
 
 
 

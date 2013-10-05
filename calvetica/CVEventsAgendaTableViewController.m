@@ -32,7 +32,9 @@
 #pragma mark - Methods
 
 - (void)loadTableView 
-{  
+{
+    [super loadTableView];
+    
     // date can't be null
     if (!self.selectedDate) return;
     

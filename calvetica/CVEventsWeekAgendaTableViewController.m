@@ -67,7 +67,9 @@
 #pragma mark - Methods
 
 - (void)loadTableView 
-{  
+{
+    [super loadTableView];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     // date can't be null

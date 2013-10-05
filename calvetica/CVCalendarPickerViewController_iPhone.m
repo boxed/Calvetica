@@ -23,12 +23,12 @@
 {
     [super viewDidLoad];
     
-    self.calendarPickerController = [[CVCalendarPickerTableViewController alloc] init];
-    self.calendarPickerController.delegate = self;
-    self.calendarPickerController.tableView = self.calendarsTableView;
-    self.calendarsTableView.dataSource = self.calendarPickerController;
-    self.calendarsTableView.delegate = self.calendarPickerController;
-    self.calendarPickerController.showUneditableCalendars = NO;
+    self.calendarPickerController                           = [[CVCalendarPickerTableViewController alloc] init];
+    self.calendarPickerController.delegate                  = self;
+    self.calendarPickerController.tableView                 = self.calendarsTableView;
+    self.calendarsTableView.dataSource                      = self.calendarPickerController;
+    self.calendarsTableView.delegate                        = self.calendarPickerController;
+    self.calendarPickerController.showUneditableCalendars   = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated 
