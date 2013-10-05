@@ -7,13 +7,12 @@
 
 
 #import "CVViewController.h"
-#import "CVRoundedButton.h"
 
 
 typedef enum {
-	CVWelcomeViewControllerResultStore,
     CVWelcomeViewControllerResultFAQ,
     CVWelcomeViewControllerResultGestures,
+    CVWelcomeViewControllerResultContactUs,
     CVWelcomeViewControllerResultDontShowMe,
 	CVWelcomeViewControllerResultCancel
 } CVWelcomeViewControllerResult;
@@ -23,22 +22,10 @@ typedef enum {
 
 
 @interface CVWelcomeViewController : CVViewController
-
-@property (nonatomic, weak)          id<CVWelcomeViewControllerDelegate> delegate;
-@property (nonatomic, weak) IBOutlet CVRoundedButton                     *faqButton;
-@property (nonatomic, weak) IBOutlet CVRoundedButton                     *gestureButton;
-
-- (IBAction)faqButtonWasTapped:(id)sender;
-- (IBAction)gesturesButtonWasTapped:(id)sender;
-- (IBAction)closeButtonWasTapped:(id)sender;
-- (IBAction)dontShowMeButtonTapped:(id)sender;
-
+@property (nonatomic, weak) id<CVWelcomeViewControllerDelegate> delegate;
 @end
 
 
-
-
 @protocol CVWelcomeViewControllerDelegate <NSObject>
-@required
 - (void)welcomeController:(CVWelcomeViewController *)controller didFinishWithResult:(CVWelcomeViewControllerResult)result;
 @end

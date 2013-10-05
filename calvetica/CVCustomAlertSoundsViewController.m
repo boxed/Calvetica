@@ -148,8 +148,9 @@
 {
     UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
 
-    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+    cell.textLabel.font             = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+    cell.detailTextLabel.textColor  = [UIColor lightGrayColor];
 
     if (indexPath.section == 0) {
         NSDictionary *dict = [self.audioFileNamesArray objectAtIndex:indexPath.row];

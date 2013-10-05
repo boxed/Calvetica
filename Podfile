@@ -12,5 +12,4 @@ pod 'MTQueue'
 pod 'BlocksKit', 		'~> 1.8.1'
 pod 'SVProgressHUD', 	:head
 pod 'FrameAccessor'
-pod 'GVUserDefaults'
 pod 'TestFlightSDK', 	'~> 2.0'

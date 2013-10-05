@@ -597,7 +597,7 @@
 {
 	[super welcomeController:controller didFinishWithResult:result];
 
-	if (result == CVWelcomeViewControllerResultFAQ || result == CVWelcomeViewControllerResultDontShowMe || result == CVWelcomeViewControllerResultCancel) {
+	if (result == CVWelcomeViewControllerResultDontShowMe || result == CVWelcomeViewControllerResultCancel) {
 		[self dismissPageModalViewControllerAnimated:YES completion:nil];
 	}
 }

@@ -2,7 +2,6 @@ PODS:
   - BlocksKit (1.8.3):
     - libffi
   - FrameAccessor (1.2.0)
-  - GVUserDefaults (0.9.1)
   - libffi (3.0.13)
   - MTAnimation (0.1.4)
   - MTDates (0.9.4)
@@ -17,7 +16,6 @@ PODS:
 DEPENDENCIES:
   - BlocksKit (~> 1.8.1)
   - FrameAccessor
-  - GVUserDefaults
   - MTAnimation (from `libs/MTAnimation`)
   - MTDates (from `libs/MTDates`)
   - MTGeometry (from `libs/MTPencil/libs/MTGeometry`)
@@ -42,7 +40,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   BlocksKit: 27257f9cbbec0ea98c80ba83cc2ea7111ae62eb2
   FrameAccessor: 9cab222a118092deba0ae186d07fa51d4830d3e4
-  GVUserDefaults: 5c24ace2008cc11953ebf72b6f9061ab898558d0
   libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MTAnimation: 2a6e443981b45b1342d9a3481da4ad9355757fce
   MTDates: 371e49d6a1d8064f7fe49161dd9af71682e57980

@@ -91,6 +91,14 @@
 
     // set todays day, used for reference when coming out of background
     self.todaysDate = [NSDate date];
+
+    // if this is the first time they've ever opened the app, or if the welcome screen
+    // was updated, show them the welcome screen
+	if (![CVSettings welcomeScreenHasBeenShown]) {
+		CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
+		welcomeController.delegate = self;
+		[self presentPageModalViewController:welcomeController animated:YES completion:nil];
+	}
 }
 
 
@@ -638,12 +646,7 @@
 	if (result == CVWelcomeViewControllerResultDontShowMe) {
 		[CVSettings setWelcomeScreenHasBeenShown:YES];
 	}
-	if (result == CVWelcomeViewControllerResultStore) {
-		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
-			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"StoreSegue" sender:nil];
-		}];
-	}
-	else if (result == CVWelcomeViewControllerResultFAQ) {
+	if (result == CVWelcomeViewControllerResultFAQ) {
 		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
 			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"FAQSegue" sender:nil];
 		}];
@@ -651,6 +654,11 @@
 	else if (result == CVWelcomeViewControllerResultGestures) {
 		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
 			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"GesturesSegue" sender:nil];
+		}];
+	}
+	else if (result == CVWelcomeViewControllerResultContactUs) {
+		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
+			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"ContactUsSegue" sender:nil];
 		}];
 	}
 }

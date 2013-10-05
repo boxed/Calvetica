@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
 
-	_duration = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_DURATION];
+	_duration = [CVSettings defaultDuration];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

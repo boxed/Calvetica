@@ -54,9 +54,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    UITableViewCell *cell       = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
-    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+    UITableViewCell *cell           = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
+    cell.textLabel.font             = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.detailTextLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+    cell.detailTextLabel.textColor  = [UIColor lightGrayColor];
 
     EKCalendar *calendar = [self.availableCalendars objectAtIndex:indexPath.row];
     
@@ -74,7 +75,11 @@
     return cell;
 }
 
+
+
+
 #pragma mark - Table view delegate
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
     return NSLocalizedString(@"Available Event Calendars", @"The title of the header of a table with default calendars");

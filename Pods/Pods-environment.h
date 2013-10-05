@@ -18,12 +18,6 @@
 #define COCOAPODS_VERSION_MINOR_FrameAccessor 2
 #define COCOAPODS_VERSION_PATCH_FrameAccessor 0
 
-// GVUserDefaults
-#define COCOAPODS_POD_AVAILABLE_GVUserDefaults
-#define COCOAPODS_VERSION_MAJOR_GVUserDefaults 0
-#define COCOAPODS_VERSION_MINOR_GVUserDefaults 9
-#define COCOAPODS_VERSION_PATCH_GVUserDefaults 1
-
 // MTAnimation
 #define COCOAPODS_POD_AVAILABLE_MTAnimation
 #define COCOAPODS_VERSION_MAJOR_MTAnimation 0

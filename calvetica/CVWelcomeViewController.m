@@ -8,21 +8,48 @@
 #import "CVWelcomeViewController.h"
 
 
+@interface CVWelcomeViewController () <UIScrollViewDelegate>
 
-@implementation CVWelcomeViewController
+@end
 
+
+@implementation CVWelcomeViewController {
+    __weak IBOutlet UIScrollView        *_scrollView;
+    __weak IBOutlet UISegmentedControl  *_segmentedControl;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    _scrollView.contentSize = CGSizeMake(_scrollView.width * 3, _scrollView.height);
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)visitStoreButtonWasTapped:(id)sender
+
+
+
+#pragma mark - Actions
+
+- (IBAction)segmentControlChanged:(UISegmentedControl *)segmentedControl
 {
-	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultStore];
+    [_scrollView scrollRectToVisible:CGRectMake(segmentedControl.selectedSegmentIndex * _scrollView.width,
+                                                0,
+                                                _scrollView.width,
+                                                _scrollView.height)
+                            animated:YES];
 }
 
-- (IBAction)faqButtonWasTapped:(id)sender 
+
+- (IBAction)closeButtonWasTapped:(id)sender 
+{
+	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultCancel];
+}
+
+- (IBAction)faqButtonWasTapped:(id)sender
 {
 	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultFAQ];
 }
@@ -32,19 +59,28 @@
 	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultGestures];
 }
 
-- (IBAction)closeButtonWasTapped:(id)sender 
-{
-	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultCancel];
-}
-
-- (IBAction)learnAboutFirehoseWasTapped:(id)sender 
+- (IBAction)learnAboutFirehoseWasTapped:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.getfirehose.com/"]];
+}
+
+- (IBAction)contactUsButtonWasTapped:(id)sender
+{
+	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultContactUs];
 }
 
 - (IBAction)dontShowMeButtonTapped:(id)sender 
 {
 	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultDontShowMe];
+}
+
+
+
+#pragma mark - DELEGATE scroll view
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    _segmentedControl.selectedSegmentIndex = (NSInteger)(_scrollView.contentOffset.x / _scrollView.width);
 }
 
 

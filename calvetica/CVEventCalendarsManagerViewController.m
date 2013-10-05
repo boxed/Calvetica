@@ -29,7 +29,6 @@
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                                                                                            target:self
                                                                                            action:@selector(editButtonPressed:)];
-
 	self.title = @"Calendars";
 }
 
@@ -68,7 +67,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     EKSource *source = [_calendarSources objectAtIndex:section];
-	return [source calendarsForEntityType:EKEntityTypeEvent].count + 1;
+    if (source.sourceType == EKSourceTypeBirthdays || source.sourceType == EKSourceTypeSubscribed) {
+        return [source calendarsForEntityType:EKEntityTypeEvent].count;
+    }
+    else {
+        return [source calendarsForEntityType:EKEntityTypeEvent].count + 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,6 +120,20 @@
 {
     EKSource *source = [_calendarSources objectAtIndex:section];
     return source.localizedTitle;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    EKSource *source = [_calendarSources objectAtIndex:section];
+    if (source.sourceType == EKSourceTypeLocal) {
+        return @"Adding a Local calendar is hit-and-miss. It may work, it may not. It's out of our control.";
+    }
+    else if (source.sourceType == EKSourceTypeBirthdays) {
+        return (@"The birthday calendar cannot be edited. It is generated from your contacts, and their birthdays. "
+                @"So, if you want to add a birthday to the birthday calendar add a birthday to one of your contacts "
+                @"in the Contacts.app.");
+    }
+    return nil;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
