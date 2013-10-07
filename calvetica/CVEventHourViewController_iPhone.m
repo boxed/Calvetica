@@ -286,6 +286,10 @@
                                        day:[rowDate mt_dayOfMonth]
                                       hour:[_endDate mt_hourOfDay]
                                     minute:[_endDate mt_minuteOfHour]];
+
+    if (self.mode == CVEventHourViewControllerModeStartTime) {
+        self.mode = CVEventHourViewControllerModeEndTime;
+    }
 }
 
 

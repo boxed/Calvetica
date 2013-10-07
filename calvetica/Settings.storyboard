@@ -998,23 +998,24 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XUx-6K-Dqr">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="XUx-6K-Dqr">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">What is Time Zone Support?
+                                <mutableString key="text">What is Time Zone Support?
 
 The start and end time of an event based on time zone can depend on a few things:
 
-1) If a time zone is set for a specific event, that means the event is location sensative. When you physically move to another time zone, the event's start and end time will shift to display the event's time range in local time. An example is a meeting in New York at 9am. If you are in London at the time of the meeting, it will appear to start at 2pm because that is what time it will be where you are when the meeting starts in New York.
+1) If a time zone is set for a specific event, that means the event is location sensitive. When you physically move to another time zone, the event's start and end time will shift to display the event's time range in local time. An example is a meeting in New York at 9am. If you are in London at the time of the meeting, it will appear to start at 2pm because that is what time it will be where you are when the meeting starts in New York.
 
-2) If a time zone is not set, this means the event is not location sensative and should occur at that time no matter where you are. An example is breakfast at 9am. This should occur at 9am no matter where you are.
+2) If a time zone is not set, this means the event is not location sensitive and should occur at that time no matter where you are. An example is breakfast at 9am. This should occur at 9am no matter where you are.
 
-3) Calvetica let's you both define a time zone for your events AND your calendar. If you set the time zone for your calendar in Calvetica's Settings &gt; Time Zone Support, it will not matter where you are in reality, Calvetica will display your events as if you are in the time zone set in settings. So for example, if you are in London at 2pm, when the meeting in New York starts at 9am, but your Time Zone Support setting is set to New York, the meeting will still appear to start at 9am.
+3) Calvetica let's you both define a time zone for your events AND the app. If you set the time zone in Calvetica's Settings &gt; Time Zone Support, it will not matter where you are in reality, Calvetica will display your events as if you are in the time zone set in settings. So for example, if you are in London at 2pm, when the meeting in New York starts at 9am, but your Time Zone Support setting is set to New York, the meeting will still appear to start at 9am.
 
 4) Lastly, your device can be set to a specific time zone. In Settings.app &gt; General &gt; Date &amp; Time &gt; Time Zone, you could set your device to a time zone and then, if time zone support is off in Calvetica's settings, Calvetica will display your events as if you are in the system's time zone. Same example: if you set your device time zone to New York and Calvetica's Time Zone support is off, your events will display as if you are in New York no matter where you really are.
 
-So, to put it all together into a really complex example: If you are in Melbourne, Australia but have your device time zone set to New York and Calvetica's Time Zone support set to London, an event that starts at 9am, with a time zone set to New York, will appear to start at 2pm. This is because, in this example, where you are and where your device thinks you are do not matter. All that matters is that Calvetica thinks you are in London and the event starts at 9am in New York, thus it will display the event starting at 2pm local time in London.</string>
+So, to put it all together into a complex example: If you are in Melbourne, Australia but have your device time zone set to New York and Calvetica's Time Zone support set to London, an event that starts at 9am in New York, will appear to start at 2pm. This is because, in this example, where you are and where your device thinks you are do not matter. All that matters is that Calvetica thinks you are in London and the event starts at 9am in New York, thus it will display the event starting at 2pm local time in London.
+</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

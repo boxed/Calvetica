@@ -264,6 +264,11 @@
     [self.delegate eventDetailsViewController:self didPushViewController:recurrenceViewController animated:YES];
 }
 
+- (void)hideKeyboard
+{
+    [_eventTitleTextView resignFirstResponder];
+}
+
 - (void)adjustLayoutOfBlocks 
 {    
     
