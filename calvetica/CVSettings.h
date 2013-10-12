@@ -11,14 +11,9 @@
 #import "CVCustomColorDataHolder.h"
 #import "CVDebug.h"
 
-@interface CVSettings : NSObject {
-}
-
+@interface CVSettings : NSObject
 
 #pragma mark - IN APP SAVED STATE
-
-+ (BOOL)welcomeScreenHasBeenShown;
-+ (void)setWelcomeScreenHasBeenShown:(BOOL)b;
 
 + (BOOL)isAgendaView;
 + (void)setAgendaView:(BOOL)b;

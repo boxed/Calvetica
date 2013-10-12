@@ -35,14 +35,15 @@
 
     _availableColors = [self loadColors];
 
-    _calendarTitleTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
-    _calendarTitleTextField.delegate = self;
-    _calendarTitleTextField.returnKeyType = UIReturnKeyDone;
-    _calendarTitleTextField.font = [UIFont systemFontOfSize:16];
-    _calendarTitleTextField.textColor = [UIColor darkTextColor];
-    _calendarTitleTextField.textAlignment = NSTextAlignmentLeft;
-    _calendarTitleTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-    _calendarTitleTextField.placeholder = @"My new calendar";
+    _calendarTitleTextField                         = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    _calendarTitleTextField.delegate                = self;
+    _calendarTitleTextField.returnKeyType           = UIReturnKeyDone;
+    _calendarTitleTextField.font                    = [UIFont systemFontOfSize:16];
+    _calendarTitleTextField.textColor               = [UIColor darkTextColor];
+    _calendarTitleTextField.textAlignment           = NSTextAlignmentLeft;
+    _calendarTitleTextField.autocapitalizationType  = UITextAutocapitalizationTypeSentences;
+    _calendarTitleTextField.placeholder             = @"My new calendar";
+    _calendarTitleTextField.autoresizingMask        = UIViewAutoresizingFlexibleWidth;
 
 	_calendarTitleTextField.text = self.calendar.title;
 	self.navigationItem.title = @"Edit Calendar";

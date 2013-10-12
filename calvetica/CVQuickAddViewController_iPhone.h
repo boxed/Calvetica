@@ -26,6 +26,7 @@ typedef enum {
 @interface CVQuickAddViewController_iPhone : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UITextFieldDelegate, CVCalendarPickerViewController_iPhoneDelegate>
 
 @property (nonatomic, weak  ) id<CVQuickAddViewControllerDelegate> delegate;
+@property (nonatomic, copy  ) NSString                             *defaultTitle;
 @property (nonatomic, strong) NSDate                               *startDate;
 @property (nonatomic, strong) NSDate                               *endDate;
 @property (nonatomic, strong) EKCalendarItem                       *calendarItem;

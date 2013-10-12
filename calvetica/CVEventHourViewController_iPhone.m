@@ -155,7 +155,7 @@
 
 - (void)setAllDay:(BOOL)allDay
 {
-	if (_allDayUpdatedBlock && _allDay != allDay) _allDayUpdatedBlock(allDay);
+	if (_allDayUpdatedBlock) _allDayUpdatedBlock(allDay);
 	_allDay = allDay;
 
 	self.editable = !allDay;
@@ -175,7 +175,6 @@
         NSString *text          = [self textForTag:button.tag];
         button.hidden           = NO;
         button.titleLabel.text  = text;
-//        [button setTitle:text forState:UIControlStateNormal];
 	}
 
     if (_militaryTime) {
@@ -222,7 +221,11 @@
                               hour:hour
                             minute:min];
 
-	if (_mode == CVEventHourViewControllerModeStartTime)	self.startDate	= date;
+	if (_mode == CVEventHourViewControllerModeStartTime) {
+        NSTimeInterval diff = [self.endDate timeIntervalSinceDate:self.startDate];
+        self.endDate = [date dateByAddingTimeInterval:diff];
+        self.startDate = date;
+    }
 	if (_mode == CVEventHourViewControllerModeEndTime)		self.endDate	= date;
 }
 
@@ -271,7 +274,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [rowDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
-    cell.textLabel.textColor = patentedDarkGray;
+    cell.textLabel.textColor = patentedQuiteDarkGray;
     
     return cell;
 }
@@ -310,10 +313,11 @@
         NSString *text      = button.titleLabel.text;
         NSUInteger digit    = [self intFromString:text];
         button.selected     = NO;
-        if (col == 2 && digit == min)
+        if (col == 2 && digit == min) {
 			button.selected = YES;
+        }
 		else if (digit == hour) {
-            if (_militaryTime) {
+            if (_militaryTime && (col == 0 || col == 1)) {
                 button.selected = YES;
             }
             else if (isAM && col == 0) {

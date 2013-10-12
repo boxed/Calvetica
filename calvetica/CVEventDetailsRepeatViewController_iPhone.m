@@ -302,7 +302,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.textLabel.textColor = patentedDarkGray;
+    cell.textLabel.textColor = patentedQuiteDarkGray;
     
     if (tableView == self.dateDayTableView) {
         cell.textLabel.text = [NSString stringWithFormat:@"%i", [self dayForIndexPath:indexPath]];

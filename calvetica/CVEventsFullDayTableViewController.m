@@ -62,7 +62,7 @@
                                                                           forActiveCalendars:YES]];
         
         // sort the events backwards
-        [events sortUsingComparator:(NSComparator)^(id obj1, id obj2){
+        [events sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             EKEvent *e1 = obj1;
             EKEvent *e2 = obj2;
             return [e1 compareStartDateWithEvent:e2] == NSOrderedAscending ? NSOrderedDescending : NSOrderedAscending;
@@ -175,7 +175,7 @@
         
         // sort the data holders so that all day events are first, then events that started
         // previously, then events that start today
-        [tempCellDataHolderArray sortUsingComparator:(NSComparator)^(id obj1, id obj2){
+        [tempCellDataHolderArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             CVEventCellDataHolder *h1 = obj1;
             CVEventCellDataHolder *h2 = obj2;
                         
@@ -186,13 +186,18 @@
             else if (h1.isAllDay != h2.isAllDay) {
                 return h1.isAllDay ? NSOrderedAscending : NSOrderedDescending;
             }
+
+            else if (h1.isAllDay && h2.isAllDay) {
+                return [h1.event.title localizedCaseInsensitiveCompare:h2.event.title];
+            }
             
             // @iOS5
             // calv4.3 needs to be included
             else if (h1.event != nil && h2.event != nil) {
 				return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
             }
-            
+
+
             // @iOS5
             // calv4.3 needs to be included
             else {

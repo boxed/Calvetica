@@ -23,7 +23,7 @@
     _tableView                  = newTableView;
     _tableView.delegate         = self;
     _tableView.dataSource       = self;
-    _tableView.separatorColor   = RGB(204, 204, 204);
+    _tableView.separatorColor   = RGB(214, 214, 214);
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
 }
 

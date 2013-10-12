@@ -150,7 +150,7 @@
 
     cell.textLabel.font             = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.detailTextLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
-    cell.detailTextLabel.textColor  = [UIColor lightGrayColor];
+    cell.detailTextLabel.textColor  = [UIColor darkGrayColor];
 
     if (indexPath.section == 0) {
         NSDictionary *dict = [self.audioFileNamesArray objectAtIndex:indexPath.row];

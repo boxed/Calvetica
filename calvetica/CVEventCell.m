@@ -80,7 +80,14 @@
         self.titleLabel.text = [_event readTitle];
         self.coloredDotView.color = [_event.calendar customColor];
         self.cellAccessoryButton.defaultImage = [UIImage imageNamed:(_event.alarms.count > 0 ? @"icon_alarm_selected" : @"icon_alarm")];
-        
+
+        if (!newEvent.calendar.allowsContentModifications) {
+            self.cellAccessoryButton.alpha = 0.3;
+        }
+        else {
+            self.cellAccessoryButton.alpha = 1;
+        }
+
         
         // figure out subtitle text
         NSString *subtitleText = @"";

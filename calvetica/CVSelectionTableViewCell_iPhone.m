@@ -25,7 +25,7 @@
         self.textLabel.textColor = patentedWhite;
     } else {
         self.backgroundColor = patentedClear;
-        self.textLabel.textColor = patentedDarkGray;
+        self.textLabel.textColor = patentedQuiteDarkGray;
     }
 }
 

@@ -126,7 +126,7 @@
 {
     EKSource *source = [_calendarSources objectAtIndex:section];
     if (source.sourceType == EKSourceTypeLocal) {
-        return @"Adding a Local calendar is hit-and-miss. It may work, it may not. It's out of our control.";
+        return @"Adding local calendars will not work if iCloud is enabled and syncing your calendars. You will need to create an iCloud calendar.";
     }
     else if (source.sourceType == EKSourceTypeBirthdays) {
         return (@"The birthday calendar cannot be edited. It is generated from your contacts, and their birthdays. "

@@ -30,7 +30,6 @@
 
 @implementation CVAppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
 
@@ -64,8 +63,6 @@
         }
     }
 
-    
-    
     return YES;
 }
 
@@ -78,6 +75,50 @@
     else {
         [self handleSnoozeActionBecauseOfNotification:notification];
     }
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    NSString *action = [url host];
+
+    NSString *queryString           = [url query];
+    NSMutableDictionary *options    = [NSMutableDictionary new];
+    if ([queryString length] > 0) {
+        NSArray *pairs = [queryString componentsSeparatedByString:@"&"];
+        for (NSString *pair in pairs) {
+            NSArray *components = [pair componentsSeparatedByString:@"="];
+            if ([components count] == 2) {
+                NSString *key   = components[0];
+                NSString *value = [components[1] stringByRemovingPercentEncoding];
+                [options setObject:value forKey:key];
+            }
+        }
+        NSLog(@"%@", options);
+    }
+
+    if ([action isEqualToString:@"add"]) {
+        // get title
+        NSString *title         = options[@"title"];
+
+        // get date
+        NSString *dateString    = options[@"date"];
+        NSDate *date            = [NSDate date];
+        if ([dateString length] > 0) {
+            date = [NSDate mt_dateFromISOString:dateString];
+        }
+
+        CVRootViewController *rootViewController = (CVRootViewController *)_window.rootViewController;
+        [rootViewController showQuickAddWithDefault:YES
+                                       durationMode:NO
+                                               date:date
+                                              title:title
+                                               view:rootViewController.redBarPlusButton];
+    }
+
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application 

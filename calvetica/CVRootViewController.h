@@ -72,7 +72,7 @@ typedef enum {
 - (void)loadTableView;
 - (void)redrawDotsOnMonthView;
 - (void)redrawRowsForEvent:(EKEvent *)event;
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view;
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date title:(NSString *)title view:(UIView *)view;
 
 
 #pragma mark - Notifications
@@ -87,7 +87,6 @@ typedef enum {
 - (IBAction)handleSwipeOnTableView:(UISwipeGestureRecognizer *)gesture;
 - (IBAction)showCalendarsButtonWasTapped:(id)sender;
 - (IBAction)showViewOptionsButtonWasTapped:(id)sender;
-- (IBAction)redBarPlusButtonWasTapped:(UITapGestureRecognizer *)gesture;
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture;
 - (IBAction)closeSettings:(UIStoryboardSegue *)segue;
 

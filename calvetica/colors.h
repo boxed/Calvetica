@@ -12,7 +12,6 @@
 
 #pragma mark - Greys
 
-#define patentedNearlyWhite [UIColor colorWithWhite:0.98 alpha:1]
 #define patentedVeryLightGray [UIColor colorWithWhite:0.933 alpha:1]
 #define patentedPrettyLightGray [UIColor colorWithWhite:0.90 alpha:1]
 #define patentedLightGray [UIColor colorWithWhite:0.80 alpha:1]

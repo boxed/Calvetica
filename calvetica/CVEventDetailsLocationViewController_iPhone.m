@@ -200,11 +200,26 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control 
 {
     NSString *title = [view.annotation.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    float latitude = view.annotation.coordinate.latitude;
-    float longitude = view.annotation.coordinate.longitude;
-    NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@@%1.6f,%1.6f", title, latitude, longitude];
-    NSURL *url = [NSURL URLWithString:stringURL];
-    [[UIApplication sharedApplication] openURL:url];
+//    float latitude = view.annotation.coordinate.latitude;
+//    float longitude = view.annotation.coordinate.longitude;
+
+    UIActionSheet *actionSheet = [UIActionSheet actionSheetWithTitle:@"Open in…"];
+    [actionSheet addButtonWithTitle:@"Apple Maps" handler:^{
+        NSString *stringURL = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", title];
+        NSURL *url = [NSURL URLWithString:stringURL];
+        [[UIApplication sharedApplication] openURL:url];
+    }];
+    [actionSheet addButtonWithTitle:@"Google Maps" handler:^{
+        NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", title];
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+            stringURL = [NSString stringWithFormat:@"comgooglemaps://?q=%@", title];
+        }
+        NSURL *url = [NSURL URLWithString:stringURL];
+        [[UIApplication sharedApplication] openURL:url];
+    }];
+    [actionSheet setCancelButtonWithTitle:@"Cancel" handler:nil];
+    [actionSheet showFromRect:view.frame inView:view.superview animated:YES];
+
 }
 
 #pragma mark UIView

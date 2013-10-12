@@ -134,25 +134,6 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Vm-9N-nHV">
-                                            <rect key="frame" x="305" y="0.0" width="245" height="124"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <string key="text">+ iOS 7 Face Lift.
-+ Edit the time zone of events.
-+ URL Scheme to be used by Launch Center and other apps: "calvetica://".
-+ Lots of bug fixes related to crashes, changing event start and end times, time zones, etc.</string>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="948-aH-IMg">
-                                            <rect key="frame" x="20" y="0.0" width="247" height="240"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <mutableString key="text">We removed reminders. Let's face it, our management of reminders stunk. Rather than spend a lot of time fixing all the bugs without improving the user experience, we removed reminders until we could integrate them into Calvetica in a seamless and useful way.
-
-In the meantime, the Reminders.app that comes with your device does a much better job of managing reminders than Calvetica did. There are also many apps on the App Store that are great for managing reminders. Please support quality apps by giving them your business.</mutableString>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2hn-iU-2kt" userLabel="Button - Learn About Firehose" customClass="CVRoundedButton">
                                             <rect key="frame" x="590" y="209" width="245" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -169,6 +150,148 @@ In the meantime, the Reminders.app that comes with your device does a much bette
                                                 <action selector="contactUsButtonWasTapped:" destination="-1" eventType="touchUpInside" id="RhN-V7-hGg"/>
                                             </connections>
                                         </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" id="aez-5D-FaH">
+                                            <rect key="frame" x="20" y="0.0" width="245" height="263"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="5.0.1">
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">Nothing removed.
+NOTE: You'd be surprised the difference good reviews on the App Store make. If you're happy with an update we release and have a spare minute, reviews after each update help us really a lot.</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <font key="NSOriginalFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36">
+                                                            <tabStops/>
+                                                        </paragraphStyle>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36">
+                                                            <tabStops/>
+                                                        </paragraphStyle>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
+5.0</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
+We removed reminders. Let's face it, our management of reminders stunk. Rather than spend a lot of time fixing all the bugs without improving the user experience, we removed reminders until we could integrate them into Calvetica in a seamless and useful way.
+
+In the meantime, the Reminders.app that comes with your device does a much better job of managing reminders than Calvetica did. There are also many apps on the App Store that are great for managing reminders. Please support quality apps by giving them your business.</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" id="ccX-0V-uDl">
+                                            <rect key="frame" x="306" y="0.0" width="245" height="263"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="5.0.1">
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
++ "add" URL action. "title" and "date" are optional parameters. They should be percent escaped. 
+Example: 
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">calvetica://add?title=party&amp;date=2013-10-11%2023:24:29%20+0000
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Italic"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">- Bug where alarms on recurring events wouldn't save. 
+- Faster animations. 
+- Darkened text to make it easier to read. 
+- Bug where wrong button was selected when selecting end time. 
+- Bug where creating event in landscape week view had wrong start time. 
+- Bug where moving event start time didn't shift end time to preserve event duration. 
+- Bug where tapping top of week view went to wrong date. 
+- Bug where you couldn't scroll to see long event titles in "DETAILS" tab. 
+- Bug where maps would open in Safari. It now gives you a choice between Apple maps and Google maps.\ 
+- Bug where tapping "All Day" in the "HOUR" tab did the opposite of what it should. 
+- Bug where welcome screen on iPad displayed incorrectly in landscape. 
+- Bug where text on iPad was not taking up all available width of day. 
+- Crash where long pressing on text in week view. 
+- All day events are sorted in alphabetical order.
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36">
+                                                            <tabStops/>
+                                                        </paragraphStyle>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="5.0">
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
++ iOS 7 Face Lift.
++ Edit the time zone of events.
++ URL Scheme to be used by Launch Center and other apps: "calvetica://".
++ Lots of bug fixes related to crashes, changing event start and end times, time zones, etc.</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="HelveticaNeue-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                 </view>
                             </subviews>

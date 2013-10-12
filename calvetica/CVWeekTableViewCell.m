@@ -77,7 +77,7 @@
         
         // gray out day labels that have passed
         if ([date mt_isBefore:today]) {
-            label.textColor = RGBHex(0xCCCCCC);
+            label.textColor = RGBHex(0x999999);
         }
         else {
             label.textColor = [UIColor blackColor];

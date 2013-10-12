@@ -102,8 +102,8 @@
         } completion:^(BOOL finished) {
             modalView.hidden = NO;
             [UIView mt_animateViews:@[modalView]
-                           duration:0.6
-                     timingFunction:kMTEaseOutBack
+                           duration:0.2
+                     timingFunction:kMTEaseOutExpo
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^
             {
@@ -134,7 +134,7 @@
 
     if (animated) {
         [UIView mt_animateViews:@[modalView]
-                       duration:0.6
+                       duration:0.2
                  timingFunction:kMTEaseInExpo
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^
@@ -178,7 +178,7 @@
         [self.view addSubview:fullScreenViewController.view];
 
         [UIView mt_animateViews:@[view]
-                       duration:0.4
+                       duration:0.2
                  timingFunction:kMTEaseOutExpo
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
@@ -204,7 +204,7 @@
     
     if (animated) {
         [UIView mt_animateViews:@[view]
-                       duration:0.4
+                       duration:0.2
                  timingFunction:kMTEaseInExpo
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
@@ -241,7 +241,7 @@
         v.layer.transform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
 
         [UIView mt_animateViews:@[v]
-                       duration:0.4
+                       duration:0.2
                  timingFunction:kMTEaseOutBack
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^
@@ -273,7 +273,7 @@
         v.layer.transform = CATransform3DIdentity;
 
         [UIView mt_animateViews:@[v]
-                       duration:0.6
+                       duration:0.4
                  timingFunction:kMTEaseInBack
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^

@@ -33,7 +33,7 @@
     }
     else if (_mode == CVCellAccessoryButtonModeDelete) {
         CVDeleteButton *button = [[CVDeleteButton alloc] initWithFrame:CGRectMake(0, 0, 45, 35)];
-        button.backgroundColor = RGBHex(0xCC0000);
+        button.backgroundColor = RGB(215, 0, 0);
         button.userInteractionEnabled = NO;
         v = button;
     }

@@ -91,14 +91,6 @@
 
     // set todays day, used for reference when coming out of background
     self.todaysDate = [NSDate date];
-
-    // if this is the first time they've ever opened the app, or if the welcome screen
-    // was updated, show them the welcome screen
-	if (![CVSettings welcomeScreenHasBeenShown]) {
-		CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
-		welcomeController.delegate = self;
-		[self presentPageModalViewController:welcomeController animated:YES completion:nil];
-	}
 }
 
 
@@ -125,6 +117,20 @@
     self.monthTableViewController.selectedDate = self.selectedDate;
     [self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentWeek] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     [self.monthTableViewController reframeRedSelectedDaySquareAnimated:NO];
+
+
+
+    // if this is the first time they've ever opened the app, or if the welcome screen
+    // was updated, show them the welcome screen
+    static BOOL launched = NO;
+    if (!launched) {
+        [MTMigration migrateToVersion:@"5.0.1" block:^{
+            CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
+            welcomeController.delegate = self;
+            [self presentPageModalViewController:welcomeController animated:YES completion:nil];
+        }];
+        launched = YES;
+    }
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -223,8 +229,55 @@
 	}
 }
 
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view
+- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date title:(NSString *)title view:(UIView *)view
 {
+    if (PAD) {
+        CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
+        quickAddViewController.defaultTitle     = title;
+        quickAddViewController.delegate         = self;
+        quickAddViewController.startDate        = date;
+        quickAddViewController.isDurationMode   = dur;
+
+        // if showing up by the plus button
+        if (view == self.redBarPlusButton) {
+            quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
+            quickAddViewController.popoverArrowDirection = CVPopoverArrowDirectionTopMiddle;
+        }
+
+        // if pointing to a row in the root table
+        else if (def) {
+            quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
+            quickAddViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
+        }
+
+        // if pointing at the middle of a day button (because the user long pressed on a day button)
+        else {
+            quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideCenter;
+            quickAddViewController.popoverArrowDirection = CVPopoverArrowDirectionLeftMiddle | CVPopoverArrowDirectionTopMiddle;
+        }
+
+        // resize view so that it doesn't have the black space at the bottom
+        CGRect f = quickAddViewController.view.frame;
+        f.size.height -= IPHONE_KEYBOARD_PORTRAIT_HEIGHT;
+        [quickAddViewController.view setFrame:f];
+        
+        [self presentPopoverModalViewController:quickAddViewController forView:view animated:YES];
+        
+        if (def) {
+            [quickAddViewController displayDefault];
+        }
+    }
+    else {
+        CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
+        quickAddViewController.defaultTitle     = title;
+        quickAddViewController.delegate         = self;
+        quickAddViewController.startDate        = date;
+        quickAddViewController.isDurationMode   = dur;
+        [self presentFullScreenModalViewController:quickAddViewController animated:YES];
+        if (def) {
+            [quickAddViewController displayDefault];
+        }
+    }
 }
 
 
@@ -313,6 +366,20 @@
 
 - (IBAction)redBarPlusButtonWasTapped:(UITapGestureRecognizer *)gesture 
 {
+    if (PAD) {
+        [self showQuickAddWithDefault:NO
+                         durationMode:NO
+                                 date:self.selectedDate
+                                title:nil
+                                 view:gesture.view];
+    }
+    else {
+       	[self showQuickAddWithDefault:NO
+                         durationMode:NO
+                                 date:self.selectedDate
+                                title:nil
+                                 view:nil];
+    }
 }
 
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture
@@ -356,6 +423,7 @@
     [self showQuickAddWithDefault:YES
                      durationMode:YES
                              date:cell.date
+                            title:nil
                              view:cell];
 }
 
@@ -643,8 +711,8 @@
 
 - (void)welcomeController:(CVWelcomeViewController *)controller didFinishWithResult:(CVWelcomeViewControllerResult)result 
 {
-	if (result == CVWelcomeViewControllerResultDontShowMe) {
-		[CVSettings setWelcomeScreenHasBeenShown:YES];
+	if (result != CVWelcomeViewControllerResultDontShowMe) {
+        [MTMigration reset];
 	}
 	if (result == CVWelcomeViewControllerResultFAQ) {
 		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {

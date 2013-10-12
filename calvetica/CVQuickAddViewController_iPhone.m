@@ -128,6 +128,11 @@
 
 - (void)displayDefault 
 {
+    self.titleTextField.text = self.defaultTitle;
+
+    self.hourDigits = [NSMutableArray new];
+    self.minuteDigits = [NSMutableArray new];
+    
     // depending on if its 24 hour format, set the hour of the day and the am/pm button text
     NSInteger hourOfDay;
 	NSInteger minuteOfHour = [self.startDate mt_minuteOfHour];
@@ -431,6 +436,7 @@
     self.moreButton.layer.cornerRadius      = 6;
     self.moreButton.layer.masksToBounds     = YES;
 
+
     if ([CVSettings isTwentyFourHourFormat]) {
         self.startTimeLabel.text = @"00:00";
     } else {
@@ -655,7 +661,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
-    cell.textLabel.textColor = patentedDarkGray;
+    cell.textLabel.textColor = patentedQuiteDarkGray;
     cell.isDarkRed = YES;
     
     if (tableView == self.hoursTableView) {

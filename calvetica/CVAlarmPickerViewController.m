@@ -219,6 +219,7 @@
 			[_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultChanged];
 		} cancelBlock:^(void) {
 			[(EKEvent *)_calendarItem reset];
+            [self setAlarms:_calendarItem.alarms];
 			[_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultCancelled];
 		}];
 	}

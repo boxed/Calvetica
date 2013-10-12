@@ -30,9 +30,10 @@
     slideInLandscapeWeekGesture.numberOfTouchesRequired = 3;
     slideInLandscapeWeekGesture.direction = UISwipeGestureRecognizerDirectionDown;
     [_weeksTable addGestureRecognizer:slideInLandscapeWeekGesture];
-    
+
+    self.weeksTable.scrollsToTop = NO;
     currentMonthOfYear = 0;
-    
+
     [super viewDidLoad];
 }
 

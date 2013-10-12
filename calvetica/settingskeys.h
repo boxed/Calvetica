@@ -1,7 +1,4 @@
-#define WELCOME_SCREEN_CURRENT_VERSION      @"5.0"
 
-#define WELCOME_SCREEN_SHOWN                @"WelcomeScreenShown"
-#define WELCOME_SCREEN_SAVED_VERSION        @"WelcomeScreenVersion"
 #define AGENDA_VIEW                         @"AgendaView"
 #define EVENT_ROOT_TABLE_MODE               @"EventRootTableMode"
 #define SELECTED_EVENT_CALENDARS            @"SelectedEventCalendars"

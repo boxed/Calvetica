@@ -56,44 +56,6 @@
     [self setMonthAndDayLabels];
 }
 
-- (void)showQuickAddWithDefault:(BOOL)def durationMode:(BOOL)dur date:(NSDate *)date view:(UIView *)view
-{
-    CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
-    quickAddViewController.delegate = self;
-    quickAddViewController.startDate = date;
-    quickAddViewController.isDurationMode = dur;
-
-	
-	// if showing up by the plus button
-	if (view == self.redBarPlusButton) {
-		quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
-		quickAddViewController.popoverArrowDirection = CVPopoverArrowDirectionTopMiddle;
-	}
-	
-	// if pointing to a row in the root table
-	else if (def) {
-		quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideLeft;
-		quickAddViewController.popoverArrowDirection = CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom;
-	}
-	
-	// if pointing at the middle of a day button (because the user long pressed on a day button)
-	else {
-		quickAddViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideCenter;
-		quickAddViewController.popoverArrowDirection = CVPopoverArrowDirectionLeftMiddle | CVPopoverArrowDirectionTopMiddle;		
-	}
-
-    // resize view so that it doesn't have the black space at the bottom
-    CGRect f = quickAddViewController.view.frame;
-    f.size.height -= IPHONE_KEYBOARD_PORTRAIT_HEIGHT;
-    [quickAddViewController.view setFrame:f];
-    
-    [self presentPopoverModalViewController:quickAddViewController forView:view animated:YES];
-    
-    if (def) {
-        [quickAddViewController displayDefault];
-    }
-}
-
 - (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent 
 {
 	[super showSnoozeDialogForEvent:snoozeEvent];
@@ -264,15 +226,6 @@
     [self presentPopoverModalViewController:viewOptionsPopover forView:sender animated:YES];
 }
 
-- (IBAction)redBarPlusButtonWasTapped:(UITapGestureRecognizer *)gesture 
-{
-    [super redBarPlusButtonWasTapped:gesture];
-	[self showQuickAddWithDefault:NO
-					 durationMode:NO
-							 date:self.selectedDate
-							 view:gesture.view];
-}
-
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture 
 {
     CVEventDayViewController_iPhone *eventDayViewController = [[CVEventDayViewController_iPhone alloc] init];
@@ -339,6 +292,7 @@
         [self showQuickAddWithDefault:YES
                          durationMode:YES
                                  date:cell.date
+                                title:nil
                                  view:cell];
     }
     [super cellWasTapped:tappedCell];
@@ -427,6 +381,7 @@
 			[self showQuickAddWithDefault:NO
 							 durationMode:NO
 									 date:date
+                                    title:nil
 									 view:placeholder];
 
             [placeholder removeFromSuperview];
@@ -544,6 +499,7 @@
     [self showQuickAddWithDefault:YES
 					 durationMode:YES
 							 date:date
+                            title:nil
 							 view:self.redBarPlusButton];
 }
 

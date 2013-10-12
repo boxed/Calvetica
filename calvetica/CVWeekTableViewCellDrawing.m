@@ -38,7 +38,9 @@
     [weekEvents sortUsingComparator:(NSComparator)^(id obj1, id obj2){
         EKEvent *e1 = obj1;
         EKEvent *e2 = obj2;
-        
+        if (e1.isAllDay && e2.isAllDay) {
+            return [e1.title localizedCaseInsensitiveCompare:e2.title];
+        }
         return [e1 compareStartDateWithEvent:e2];
     }];
     
@@ -339,7 +341,6 @@
 
 - (void)drawiPad 
 {
-    
     NSInteger totalEventsPerDay[DAYS_IN_WEEK];
     memset(totalEventsPerDay, 0, DAYS_IN_WEEK * sizeof(NSInteger));
     
@@ -492,12 +493,7 @@
         textFrame.size.width -= 10.0f;
 
 		NSString *title = [e.event readTitle];
-		UIFont *font = [UIFont systemFontOfSize:9.0f];
-		if ([title sizeWithFont:font].width > textFrame.size.width && title.length > 8) {
-			title = [[title substringToIndex:8] stringByAppendingString:@"..."];
-		}
-
-        [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];
+        [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
         
         for (NSInteger day = 0; day < 7; day++) {
             if (e.days[day] == 1) {
@@ -594,12 +590,8 @@
             textFrame.size.width = boxWidth - boxFrame.size.width - (barSpacing * 2.0f);
 
             NSString *title = [e.event readTitle];
-			UIFont *font = [UIFont systemFontOfSize:9.0f];
-			if ([title sizeWithFont:font].width > textFrame.size.width && [title length] > 8) {
-				title = [[title substringToIndex:8] stringByAppendingString:@"..."];
-			}
+            [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
 
-            [title drawInRect:textFrame withFont:font];
             eventsDrawnPerDay[day]++;
         }
         

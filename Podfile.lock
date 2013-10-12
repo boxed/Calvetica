@@ -4,7 +4,7 @@ PODS:
   - FrameAccessor (1.2.0)
   - libffi (3.0.13)
   - MTAnimation (0.1.4)
-  - MTDates (0.9.4)
+  - MTDates (0.10.0)
   - MTGeometry (0.0.3)
   - MTMigration (0.0.2)
   - MTPencil (0.1.0):
@@ -42,7 +42,7 @@ SPEC CHECKSUMS:
   FrameAccessor: 9cab222a118092deba0ae186d07fa51d4830d3e4
   libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MTAnimation: 2a6e443981b45b1342d9a3481da4ad9355757fce
-  MTDates: 371e49d6a1d8064f7fe49161dd9af71682e57980
+  MTDates: 3db082fc5184e93799e085bcdfc56dc64351c280
   MTGeometry: 2566680a36d3d8a50e7532194ae10e1d8f0fa316
   MTMigration: d4faacc6627bb538d99171d33307f875fa6e9a31
   MTPencil: 07e6b265faf1fff2624a26a78060d95718517909
@@ -50,4 +50,4 @@ SPEC CHECKSUMS:
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
 
-COCOAPODS: 0.25.0
+COCOAPODS: 0.26.1

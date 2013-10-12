@@ -8,29 +8,6 @@
 
 #pragma mark - IN APP SAVED STATE
 
-+ (BOOL)welcomeScreenHasBeenShown {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *version = [defaults objectForKey:WELCOME_SCREEN_SAVED_VERSION];
-    
-    // if the welcome screen is new, set the hasBeenShown to NO, then save the
-    // current version
-    if (![version isEqualToString:WELCOME_SCREEN_CURRENT_VERSION]) {
-        [CVSettings setWelcomeScreenHasBeenShown:NO];
-        [defaults setObject:WELCOME_SCREEN_CURRENT_VERSION forKey:WELCOME_SCREEN_SAVED_VERSION];
-        [defaults synchronize];
-    }
-    
-    // return the saved state
-    return [defaults objectForKey:WELCOME_SCREEN_SHOWN] != nil ? [defaults boolForKey:WELCOME_SCREEN_SHOWN] : NO;
-
-}
-
-+ (void)setWelcomeScreenHasBeenShown:(BOOL)b {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:b forKey:WELCOME_SCREEN_SHOWN];
-	[defaults synchronize];
-}
-
 + (BOOL)isAgendaView {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	return [defaults objectForKey:AGENDA_VIEW] != nil ? [defaults boolForKey:AGENDA_VIEW] : NO;

@@ -14,7 +14,7 @@
 
 - (void)setup 
 {
-    self.textColorNormal = patentedDarkGray;
+    self.textColorNormal = patentedQuiteDarkGray;
     self.textColorHighlighted = patentedWhite;
     self.textColorSelected = patentedWhite;
     self.backgroundColorSelected = patentedRed;

@@ -166,7 +166,7 @@
         
         // sort the data holders so that all day events are first, then events that started
         // previously, then events that start today
-        [tempCellDataHolderArray sortUsingComparator:(NSComparator)^(id obj1, id obj2){
+        [tempCellDataHolderArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             CVDataHolder *dataHolder1 = obj1;
             CVDataHolder *dataHolder2 = obj2;
             
@@ -199,7 +199,11 @@
                 else if (h1.isAllDay != h2.isAllDay) {
                     return h1.isAllDay ? NSOrderedAscending : NSOrderedDescending;
                 }
-                
+
+                else if (h1.isAllDay && h2.isAllDay) {
+                    return [h1.event.title localizedCaseInsensitiveCompare:h2.event.title];
+                }
+
                 // finally, sort regular events by start time
                 else {
 					return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;

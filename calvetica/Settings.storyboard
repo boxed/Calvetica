@@ -1002,7 +1002,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">What is Time Zone Support?
+                                <string key="text">What is Time Zone Support?
 
 The start and end time of an event based on time zone can depend on a few things:
 
@@ -1015,7 +1015,7 @@ The start and end time of an event based on time zone can depend on a few things
 4) Lastly, your device can be set to a specific time zone. In Settings.app &gt; General &gt; Date &amp; Time &gt; Time Zone, you could set your device to a time zone and then, if time zone support is off in Calvetica's settings, Calvetica will display your events as if you are in the system's time zone. Same example: if you set your device time zone to New York and Calvetica's Time Zone support is off, your events will display as if you are in New York no matter where you really are.
 
 So, to put it all together into a complex example: If you are in Melbourne, Australia but have your device time zone set to New York and Calvetica's Time Zone support set to London, an event that starts at 9am in New York, will appear to start at 2pm. This is because, in this example, where you are and where your device thinks you are do not matter. All that matters is that Calvetica thinks you are in London and the event starts at 9am in New York, thus it will display the event starting at 2pm local time in London.
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

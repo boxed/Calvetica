@@ -193,7 +193,7 @@
 		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Repeating Event", @"The title for a message displayed to user") uppercaseString] 
 								  message:NSLocalizedString(@"This event repeats.  What would you like to do?", @"Message text. The user is presented with choices")
 								  buttons:buttons
-                               completion:cancelBlock];
+                               completion:nil];
 	}
 	else {
 		NSError *error = [CVEventStore saveEvent:self forAllOccurrences:YES];
@@ -229,7 +229,7 @@
 		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
 								  message:[error localizedDescription]
 								  buttons:@[b1]
-                                    completion:nil];
+                               completion:nil];
 		
 		[self reset];
 	}

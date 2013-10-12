@@ -24,9 +24,17 @@
     _scrollView.contentSize = CGSizeMake(_scrollView.width * 3, _scrollView.height);
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+- (BOOL)shouldAutorotate
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if (PAD) {
+        return UIInterfaceOrientationMaskAll;
+    }
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 

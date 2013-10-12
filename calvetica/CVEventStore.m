@@ -202,8 +202,8 @@ static CVEventStore *__sharedStore = nil;
 	// create an array that we will add all our found events to
 	NSMutableArray *foundEvents = [NSMutableArray array];
 	
-	for (NSInteger i = 0; i < [endDate mt_monthsSinceDate:startDate]; i++) {
-		NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:[startDate mt_dateMonthsAfter:i] endDate:[startDate mt_dateMonthsAfter:i+1] calendars:calendars];
+	for (NSInteger i = 0; i < [endDate mt_monthsSinceDate:startDate]; i+=6) {
+		NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:[startDate mt_dateMonthsAfter:i] endDate:[startDate mt_dateMonthsAfter:i+6] calendars:calendars];
 		NSMutableArray *events = [NSMutableArray arrayWithArray:[[CVEventStore sharedStore].eventStore eventsMatchingPredicate:predicate]];
 		
 		[events filterUsingPredicate:searchPredicate];

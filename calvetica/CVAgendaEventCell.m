@@ -58,7 +58,7 @@
 	// update event elements with even details
 	self.titleLabel.text = [_event readTitle];
 	self.coloredDotView.color = [_event.calendar customColor];
-	_timeLabel.textColor = patentedGray;
+	_timeLabel.textColor = patentedQuiteDarkGray;
 	
 	
 	// set cell time labels
@@ -86,7 +86,6 @@
 - (IBAction)cellWasLongPressed:(UILongPressGestureRecognizer *)gesture 
 {
     if (gesture.state != UIGestureRecognizerStateBegan) return;
-    [_delegate cellWasLongPressed:self];
 }
 
 - (IBAction)accessoryButtonWasTapped:(id)sender 

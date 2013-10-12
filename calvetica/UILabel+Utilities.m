@@ -58,12 +58,12 @@
 
 - (void)setDarkGrayWithLightShadow 
 {
-    self.textColor = patentedDarkGray;
+    self.textColor = patentedQuiteDarkGray;
 }
 
 - (void)setDarkGrayWithDarkShadow 
 {
-    self.textColor = patentedDarkGray;
+    self.textColor = patentedQuiteDarkGray;
 }
 
 - (void)setWhiteNoShadow 
@@ -78,7 +78,7 @@
 
 - (void)setDarkGrayNoShadow 
 {
-    self.textColor = patentedDarkGray;
+    self.textColor = patentedQuiteDarkGray;
 }
 
 @end

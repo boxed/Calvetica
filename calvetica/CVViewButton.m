@@ -23,4 +23,12 @@
     return nil;
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    if (!enabled) {
+        self.alpha = 0.6;
+    }
+}
+
 @end
