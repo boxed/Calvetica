@@ -11,14 +11,6 @@
 
 @implementation CVEventDetailsPeopleTableViewController_iPhone
 
-- (UINib *)peopleCellNib 
-{
-    if (_peopleCellNib == nil) {
-        _peopleCellNib = [CVPeopleTableViewCell_iPhone nib];
-    }
-    return _peopleCellNib;    
-}
-
 - (NSString *)descriptionForParticipantStatus:(EKParticipantStatus)status 
 {
     switch (status) {
@@ -198,7 +190,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVPeopleTableViewCell_iPhone *cell = [CVPeopleTableViewCell_iPhone cellForTableView:tableView fromNib:self.peopleCellNib];
+    CVPeopleTableViewCell_iPhone *cell = [CVPeopleTableViewCell_iPhone cellForTableView:tableView];
     CVParticipantCellDataHolder *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.participant) {

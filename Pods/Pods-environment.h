@@ -34,7 +34,7 @@
 #define COCOAPODS_POD_AVAILABLE_MTGeometry
 #define COCOAPODS_VERSION_MAJOR_MTGeometry 0
 #define COCOAPODS_VERSION_MINOR_MTGeometry 0
-#define COCOAPODS_VERSION_PATCH_MTGeometry 3
+#define COCOAPODS_VERSION_PATCH_MTGeometry 4
 
 // MTMigration
 #define COCOAPODS_POD_AVAILABLE_MTMigration
@@ -62,9 +62,10 @@
 
 // TestFlightSDK
 #define COCOAPODS_POD_AVAILABLE_TestFlightSDK
-#define COCOAPODS_VERSION_MAJOR_TestFlightSDK 2
-#define COCOAPODS_VERSION_MINOR_TestFlightSDK 0
-#define COCOAPODS_VERSION_PATCH_TestFlightSDK 0
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 2.1.1b.
 
 // libffi
 #define COCOAPODS_POD_AVAILABLE_libffi

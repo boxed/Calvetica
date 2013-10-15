@@ -10,65 +10,23 @@
 #import "CVAgendaDateCell.h"
 #import "CVFriendlyCell.h"
 #import "dimensions.h"
+#import "CVAgendaEventCell.h"
+#import "CVFriendlyCellDataHolder.h"
+#import "CVWeekNumberCell.h"
+#import "NSString+Utilities.h"
 
 
+@interface CVEventsWeekAgendaTableViewController ()
+@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
+@end
 
 
 @implementation CVEventsWeekAgendaTableViewController
 
-@synthesize eventCellNib = _eventCellNib;
 
-- (UINib *)eventCellNib 
+- (void)reloadTableView 
 {
-    if (!_eventCellNib) {
-        self.eventCellNib = [CVAgendaEventCell nib];
-    }
-    return _eventCellNib;    
-}
-
-@synthesize dayTitleCellNib = _dayTitleCellNib;
-
-- (UINib *)dayTitleCellNib 
-{
-    if (!_dayTitleCellNib) {
-        self.dayTitleCellNib = [CVAgendaDateCell nib];
-    }
-    return _dayTitleCellNib;
-}
-
-@synthesize friendlyCellNib = _friendlyCellNib;
-
-- (UINib *)friendlyCellNib 
-{
-    if (!_friendlyCellNib) {
-        self.friendlyCellNib = [CVFriendlyCell nib];
-    }
-    return _friendlyCellNib;
-}
-
-@synthesize weekNumberCellNib = _weekNumberCellNib;
-
-- (UINib *)weekNumberCellNib 
-{
-    if (!_weekNumberCellNib) {
-        self.weekNumberCellNib = [CVWeekNumberCell nib];
-    }
-    return _weekNumberCellNib;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
-
-#pragma mark - Methods
-
-- (void)loadTableView 
-{
-    [super loadTableView];
+    [super reloadTableView];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
@@ -77,11 +35,9 @@
     
     // copy the date so that its copied into the operation and not tied to the ivar
     NSDate *dateCopy = [self.selectedDate copy];
-    
-    //dispatch_async([CVOperationQueue backgroundQueue], ^{
-    dispatch_async(dispatch_get_main_queue(), ^{
-            
-        
+
+    [MTq def:^{
+
         NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
 		
         CVWeekNumberHolder *weekNumberRow = [[CVWeekNumberHolder alloc] init];
@@ -225,7 +181,7 @@
                 self.shouldScrollToDate = NO;
             }
         });
-    });
+    }];
 }
 
 - (void)scrollToDate:(NSDate *)date 
@@ -253,10 +209,6 @@
 }
 
 
-#pragma mark - IBActions
-
-
-
 
 #pragma mark - UITableViewDataSource
 
@@ -277,10 +229,10 @@
         CVEventCellDataHolder *eventHolder = (CVEventCellDataHolder *)holder;
         
         if (eventHolder.event) {
-            CVAgendaEventCell *cell = [CVAgendaEventCell cellForTableView:tableView fromNib:self.eventCellNib];
+            CVAgendaEventCell *cell = [CVAgendaEventCell cellForTableView:tableView];
             [cell setEvent:eventHolder.event continued:eventHolder.continuedFromPreviousDay allDay:eventHolder.isAllDay];
             eventHolder.cell = cell;
-            cell.delegate = self.delegate;
+            cell.delegate = self;
             
             
             // call the NSString category method to set the number of lines for the textLabel
@@ -295,17 +247,17 @@
             
             returnCell = cell;
         } else if (eventHolder.date) {
-            CVAgendaDateCell *cell = [CVAgendaDateCell cellForTableView:tableView fromNib:self.dayTitleCellNib];
+            CVAgendaDateCell *cell = [CVAgendaDateCell cellForTableView:tableView];
             cell.date = eventHolder.date;
             eventHolder.cell = cell;	
             returnCell = cell;	
         }
 	} else if ([holder isKindOfClass:[CVWeekNumberHolder class]]) {
-        returnCell = [CVWeekNumberCell cellForTableView:tableView fromNib:self.weekNumberCellNib];
+        returnCell = [CVWeekNumberCell cellForTableView:tableView];
         NSInteger weekOfYearNumber = ((CVWeekNumberHolder *)holder).weekNumber;
         ((CVWeekNumberCell *)returnCell).weekNumberLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i", @"The week number of a selected date. %1$i: the week number."), weekOfYearNumber];
     } else if ([holder isKindOfClass:[CVFriendlyCellDataHolder class]]) {
-        returnCell = [CVFriendlyCell cellForTableView:tableView fromNib:self.friendlyCellNib];
+        returnCell = [CVFriendlyCell cellForTableView:tableView];
         ((CVFriendlyCell *)returnCell).friendlyPhraseLabel.text = ((CVFriendlyCellDataHolder *)holder).friendlyText;
     }
 	
@@ -347,13 +299,12 @@
 {
 	id cell = [tableView cellForRowAtIndexPath:indexPath];
 	if ([cell isKindOfClass:[CVAgendaEventCell class]]) {
-		CVAgendaEventCell *theCell = (CVAgendaEventCell *)cell;
-		[self.delegate cellWasTapped:theCell];
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];		
+        [self.delegate rootTableViewController:self tappedCell:(CVEventCell *)cell];
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	else if ([cell isKindOfClass:[CVAgendaDateCell class]]) {
 		CVAgendaDateCell *theCell = (CVAgendaDateCell *)cell;
-		[self.tableControllerProtocol tableViewDidScrollToDay:theCell.date];
+        [self.delegate rootTableViewController:self didScrollToDay:theCell.date];
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 }

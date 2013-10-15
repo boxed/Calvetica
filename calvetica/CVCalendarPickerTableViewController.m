@@ -8,19 +8,8 @@
 
 #import "CVCalendarPickerTableViewController.h"
 
-@interface CVCalendarPickerTableViewController ()
-@property (nonatomic, strong) UINib *calendarCellNib;
-@end
 
 @implementation CVCalendarPickerTableViewController
-
-- (UINib *)calendarCellNib
-{
-    if (_calendarCellNib == nil) {
-        self.calendarCellNib = [CVCalendarTableViewCell_iPhone nib];
-    }
-    return _calendarCellNib;    
-}
 
 - (id)init 
 {
@@ -36,8 +25,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (NSArray *)calendars 
+- (NSArray *)calendars
 {
 	if (!_editableCalendars || !_allCalendars) {
         //sort the calendars
@@ -90,15 +78,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVCalendarTableViewCell_iPhone *cell =
-    [CVCalendarTableViewCell_iPhone cellForTableView:tv fromNib:self.calendarCellNib];
+    CVCalendarTableViewCell_iPhone *cell = [CVCalendarTableViewCell_iPhone cellForTableView:tv];
 	
-    EKCalendar *calendar = [[self calendars] objectAtIndex:indexPath.row];
-    cell.calendarTitleLabel.text = calendar.title;
-	cell.disabled = !calendar.allowsContentModifications;
-    cell.calendarTypeLabel.text = [NSString stringWithFormat:@"%@ %@", [calendar sourceString], [calendar account]];
-    cell.coloredDotView.color = [calendar customColor];
-    
+    EKCalendar *calendar            = [[self calendars] objectAtIndex:indexPath.row];
+    cell.calendarTitleLabel.text    = calendar.title;
+    cell.disabled                   = !calendar.allowsContentModifications;
+    cell.calendarTypeLabel.text     = [NSString stringWithFormat:@"%@ %@", [calendar sourceString], [calendar account]];
+    cell.coloredDotView.color       = [calendar customColor];
+
     return cell;
 }
 

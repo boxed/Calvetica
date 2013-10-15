@@ -8,12 +8,19 @@
 
 #import "CVLineButton.h"
 
+
+@interface CVLineButton ()
+@property (nonatomic, assign) BOOL isDoneDrawing;
+@end
+
+
 @implementation CVLineButton
 
 - (void)commonInit
 {
     _pencil = [MTPencil pencilWithView:self];
     _pencil.drawsAsynchronously = YES;
+    _isDoneDrawing = NO;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -46,17 +53,17 @@
 
 - (void)redrawWithCompletion:(void (^)(void))completion
 {
-    [_pencil erase];
-    [_pencil beginWithCompletion:^(MTPencil *pencil) {
+    [_pencil drawWithCompletion:^(MTPencil *pencil) {
         if (completion) completion();
         [_pencil erase];
+        self.isDoneDrawing = YES;
         [self setNeedsDisplay];
     }];
 }
 
 - (void)setupPencil
 {
-
+    [[[[_pencil config] strokeColor:[UIColor whiteColor]] width:1] easingFunction:kMTPencilEaseOutSine];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -67,12 +74,12 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    if (_pencil.isDrawing || _pencil.isErasing) {
+    if (!self.isDoneDrawing) {
         return;
     }
 
     [[self titleColorForState:self.state] set];
-    UIBezierPath *path = [UIBezierPath bezierPathWithCGPath:[_pencil fullPath]];
+    UIBezierPath *path = [UIBezierPath bezierPathWithCGPath:[_pencil CGPath]];
     MTPencilStep *step = [_pencil.steps lastObject];
     path.lineWidth = step.lineWidth;
     [path stroke];

@@ -7,16 +7,6 @@
 //
 
 
-@interface UIView (UIView_Nibs)
-
-#pragma mark - Convenience Constructors
-+ (id)viewFromNib:(UINib *)nib;
-+ (id)viewFromNib:(UINib *)nib withPosition:(CGPoint)position;
-
-#pragma mark - Methods
-+ (UINib *)nib;
-+ (NSString *)nibName;
-+ (NSString *)viewIdentifier;
-+ (NSString *)className;
-
+@interface UIView (Nibs)
++ (instancetype)fromNibOfSameName;
 @end

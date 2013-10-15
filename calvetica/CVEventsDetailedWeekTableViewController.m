@@ -5,47 +5,33 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVEventsWeekStdAgendaTableViewController.h"
+#import "CVEventsDetailedWeekTableViewController.h"
 #import "CVEventCellDataHolder.h"
+#import "UIView+Nibs.h"
+#import "CVTableSectionHeaderView.h"
 
 
+@interface CVEventsDetailedWeekTableViewController ()
+@property (nonatomic, copy  ) NSArray        *daysOfWeekArray;
+@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
+@end
 
-@implementation CVEventsWeekStdAgendaTableViewController
+
+@implementation CVEventsDetailedWeekTableViewController
 
 
-
-- (UINib *)eventCellNib 
+- (void)reloadTableView
 {
-    if (!_eventCellNib) {
-        self.eventCellNib = [CVEventCell nib];
-    }
-    return _eventCellNib;    
-}
-
-- (UINib *)sectionHeaderNib 
-{
-    if (_sectionHeaderNib == nil) {
-        self.sectionHeaderNib = [CVTableSectionHeaderView nib];
-    }
-    return _sectionHeaderNib;    
-}
-
-
-
-
-#pragma mark - Methods
-- (void)loadTableView 
-{
-    [super loadTableView];
+    [super reloadTableView];
     
     // date can't be null
     if (!self.selectedDate) return;
     
     // copy the date so that its copied into the operation and not tied to the ivar
     NSDate *dateCopy = [self.selectedDate copy];
-    
-    dispatch_async([CVOperationQueue backgroundQueue], ^{
-        
+
+    [MTq def:^{
+
         // get the days of the current week
         self.daysOfWeekArray = [NSDate mt_datesCollectionFromDate:[dateCopy mt_startOfCurrentWeek] untilDate:[[dateCopy mt_endOfCurrentWeek] mt_oneDayNext]];
         NSMutableArray *tempCellArrays = [NSMutableArray array];
@@ -145,7 +131,7 @@
                 self.shouldScrollToDate = NO;
             }
         });
-    });
+    }];
     
 }
 
@@ -199,7 +185,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVEventCell *cell = [CVEventCell cellForTableView:tableView fromNib:self.eventCellNib];
+    CVEventCell *cell = [CVEventCell cellForTableView:tableView];
 
     NSArray *events = [self.cellDataHolderArray objectAtIndex:indexPath.section];
     CVEventCellDataHolder *holder = [events objectAtIndex:indexPath.row];
@@ -211,18 +197,13 @@
     cell.durationBarPercent         = 0;
     cell.durationBarColor           = [UIColor clearColor];
     cell.secondaryDurationBarColor  = [UIColor clearColor];
-    cell.delegate                   = self.delegate;
+    cell.delegate                   = self;
     [cell resetAccessoryButton];
     holder.cell                     = cell;
 
     [cell drawDurationBarAnimated:NO];
     
     return cell;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
@@ -233,7 +214,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     id cell = [tableView cellForRowAtIndexPath:indexPath];
-    [_delegate cellWasTapped:cell];
+    [self.delegate rootTableViewController:self tappedCell:cell];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 
@@ -243,12 +224,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
 {
-    NSDate *day = [self.daysOfWeekArray objectAtIndex:section];
-    CVTableSectionHeaderView *sectionView = [CVTableSectionHeaderView viewFromNib:self.sectionHeaderNib];
-    
-    NSString *title = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
-    sectionView.weekdayLabel.text = title;
-    
+    NSDate *day                             = [self.daysOfWeekArray objectAtIndex:section];
+    CVTableSectionHeaderView *sectionView   = [CVTableSectionHeaderView fromNibOfSameName];
+    NSString *title                         = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
+    sectionView.weekdayLabel.text           = title;
+
     return sectionView;
 }
 

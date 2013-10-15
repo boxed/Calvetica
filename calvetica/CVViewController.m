@@ -12,6 +12,12 @@
 #import "UIViewController+Utilities.h"
 #import "animations.h"
 
+
+@interface CVViewController ()
+@property (nonatomic, assign) BOOL hasAppearedBefore;
+@end
+
+
 @implementation CVViewController
 
 
@@ -24,6 +30,39 @@
     }
     return self;
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    if (!self.hasAppearedBefore) {
+        [self viewDidAppearAfterLoad:animated];
+        self.hasAppearedBefore = YES;
+    }
+}
+
+- (void)viewDidUnload
+{
+    [self setKeyboardAccessoryView:nil];
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+
+#pragma mark - Public
+
+- (void)viewDidAppearAfterLoad:(BOOL)animated
+{
+
+}
+
+#pragma mark (properties)
 
 - (NSMutableArray *)pageModalViewControllers 
 {
@@ -49,6 +88,9 @@
     return _popoverModalViewControllers;
 }
 
+
+
+
 - (void)hideKeyboard 
 {
 }
@@ -70,7 +112,7 @@
 
 
 
-#pragma mark - Page Modal
+#pragma mark (Page Modal)
 
 - (void)presentPageModalViewController:(CVViewController *)modalViewController
                               animated:(BOOL)animated
@@ -162,7 +204,7 @@
 
 
 
-#pragma mark - Full Screen Modal
+#pragma mark (Full Screen Modal)
 
 - (void)presentFullScreenModalViewController:(CVViewController *)fullScreenViewController animated:(BOOL)animated 
 {
@@ -220,9 +262,7 @@
 }
 
 
-
-
-#pragma mark - Popover Modal
+#pragma mark (Popover Modal)
 
 - (void)presentPopoverModalViewController:(CVViewController<CVModalProtocol> *)modalViewController forView:(UIView *)view animated:(BOOL)animated 
 {
@@ -295,20 +335,6 @@
 
 
 
-#pragma mark - View lifecycle
-
-- (void)viewDidUnload 
-{
-    [self setKeyboardAccessoryView:nil];
-    [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 
 
 #pragma mark - Keyboard Accessory Actions
@@ -326,8 +352,6 @@
 {
     [self hideKeyboard];
 }
-
-
 
 
 @end

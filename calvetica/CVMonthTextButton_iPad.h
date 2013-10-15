@@ -8,17 +8,5 @@
 #import "CVTextButton.h"
 
 
-@interface CVMonthTextButton_iPad : CVTextButton {
-}
-
-
-#pragma mark - Properties
-
-
-#pragma mark - Methods
-
-
-#pragma mark - IBActions
-
-
+@interface CVMonthTextButton_iPad : CVTextButton
 @end

@@ -9,41 +9,27 @@
 #import "CVEventCellDataHolder.h"
 
 
+@interface CVEventsAgendaTableViewController ()
+@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
+@end
 
 
 @implementation CVEventsAgendaTableViewController
 
-- (UINib *)eventCellNib 
+
+
+- (void)reloadTableView 
 {
-    if (!_eventCellNib) {
-        self.eventCellNib = [CVEventCell nib];
-    }
-    return _eventCellNib;    
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
-
-#pragma mark - Methods
-
-- (void)loadTableView 
-{
-    [super loadTableView];
+    [super reloadTableView];
     
     // date can't be null
     if (!self.selectedDate) return;
     
     // copy the date so that its copied into the operation and not tied to the ivar
     NSDate *dateCopy = [self.selectedDate copy];
-    
-    dispatch_async([CVOperationQueue backgroundQueue], ^{
-        
-        
+
+    [MTq def:^{
+
         // fetch the events
         NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:dateCopy 
                                                                                       toDate:[dateCopy mt_endOfCurrentDay]
@@ -134,12 +120,12 @@
             
             [self.tableView reloadData]; 
             
-            if (self.shouldScrollToCurrentHour) {
+            if (self.shouldScrollToCurrentHour && [self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
                 [self scrollToCurrentHour];
                 self.shouldScrollToCurrentHour = NO;
             }
         });
-    });
+    }];
     
 }
 
@@ -186,7 +172,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {  
     
-    CVEventCell *cell = [CVEventCell cellForTableView:tableView fromNib:self.eventCellNib];
+    CVEventCell *cell = [CVEventCell cellForTableView:tableView];
     CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.event) {
@@ -202,7 +188,7 @@
     cell.durationBarPercent = 0;
     cell.durationBarColor = [UIColor clearColor];
 	cell.secondaryDurationBarColor = [UIColor clearColor];
-    cell.delegate = self.delegate;
+    cell.delegate = self;
 	[cell resetAccessoryButton];
     holder.cell = cell;
     

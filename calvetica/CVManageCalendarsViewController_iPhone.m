@@ -10,15 +10,6 @@
 #import "CVCalendarCellDataHolder.h"
 
 
-
-
-@interface CVManageCalendarsViewController_iPhone ()
-@property (nonatomic, strong) UINib *calendarCellNib;
-@end
-
-
-
-
 @implementation CVManageCalendarsViewController_iPhone
 
 - (void)dealloc
@@ -37,15 +28,7 @@
     return self;
 }
 
-- (UINib *)calendarCellNib 
-{
-    if (_calendarCellNib == nil) {
-        self.calendarCellNib = [CVManageCalendarTableViewCell_iPhone nib];
-    }
-    return _calendarCellNib;    
-}
-
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     self.controllerTitle.text = @"SHOW EVENT CALENDARS";
 }
@@ -123,8 +106,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    
-    CVManageCalendarTableViewCell_iPhone *cell = [CVManageCalendarTableViewCell_iPhone cellForTableView:tv fromNib:self.calendarCellNib];
+    CVManageCalendarTableViewCell_iPhone *cell = [CVManageCalendarTableViewCell_iPhone cellForTableView:tv];
     CVCalendarCellDataHolder *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
 
     cell.calendarTitleLabel.text = holder.calendar.title;

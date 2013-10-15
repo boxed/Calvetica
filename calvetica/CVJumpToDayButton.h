@@ -11,7 +11,7 @@
 #import "CVTodayBoxView.h"
 #import "CVColoredDotView.h"
 
-@interface CVDayButton_iPhone : UIView
+@interface CVJumpToDayButton : UIView
 
 #pragma mark - Properties
 @property (nonatomic, strong) NSDate         *date;

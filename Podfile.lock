@@ -5,13 +5,13 @@ PODS:
   - libffi (3.0.13)
   - MTAnimation (0.1.4)
   - MTDates (0.10.0)
-  - MTGeometry (0.0.3)
+  - MTGeometry (0.0.4)
   - MTMigration (0.0.2)
   - MTPencil (0.1.0):
     - MTGeometry
   - MTQueue (0.0.3)
   - SVProgressHUD (HEAD based on 0.9)
-  - TestFlightSDK (2.0)
+  - TestFlightSDK (2.1.1b)
 
 DEPENDENCIES:
   - BlocksKit (~> 1.8.1)
@@ -43,11 +43,11 @@ SPEC CHECKSUMS:
   libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MTAnimation: 2a6e443981b45b1342d9a3481da4ad9355757fce
   MTDates: 3db082fc5184e93799e085bcdfc56dc64351c280
-  MTGeometry: 2566680a36d3d8a50e7532194ae10e1d8f0fa316
+  MTGeometry: abe03e5490a44c95ecf7419b96b4b7cf8af4c7dc
   MTMigration: d4faacc6627bb538d99171d33307f875fa6e9a31
-  MTPencil: 07e6b265faf1fff2624a26a78060d95718517909
+  MTPencil: 4577d2b30edf6c2f1889367c84e864fb575e5f64
   MTQueue: a345ceaab62f443bcacae30586537cbc9caf002b
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
-  TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
+  TestFlightSDK: 2dc092bf16239551bdf6d31ea6bba265b6785287
 
-COCOAPODS: 0.26.1
+COCOAPODS: 0.26.2

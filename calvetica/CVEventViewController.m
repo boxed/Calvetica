@@ -6,11 +6,11 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVEventViewController_iPhone.h"
+#import "CVEventViewController.h"
 #import "UIApplication+Utilities.h"
 
 
-@implementation CVEventViewController_iPhone
+@implementation CVEventViewController
 
 
 - (id)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode

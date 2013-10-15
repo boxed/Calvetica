@@ -10,39 +10,78 @@
 #import "colors.h"
 #import "NSDate+ViewHelpers.h"
 #import "UIViewController+Utilities.h"
+#import "CVWeekTableViewCell.h"
+
+
+@interface CVMonthTableViewController () <CVWeekTableViewCellDelegate>
+@end
 
 
 @implementation CVMonthTableViewController
 
-#pragma mark - Properties
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    // this turned on produces weird jumpy scrolling
+    self.tableView.scrollsToTop = NO;
+
+    self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+
+    if (PAD) {
+		if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+			self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
+		}
+		else {
+			self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+		}
+    }
+    else {
+        self.tableView.rowHeight = IPHONE_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+    }
+}
+
+- (void)viewDidUnload
+{
+    [self setSelectedDayView:nil];
+    [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    // center the current day
+    if (PAD) {
+        [self scrollToRowForDate:_selectedDate animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    }
+    else {
+        [self scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    }
+
+	self.selectedDate = [NSDate date];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return YES;
+}
+
+
+
+
+#pragma mark - Public
 
 - (void)setStartDate:(NSDate *)newStartDate
 {
     _startDate = newStartDate;
-    
     [self.tableView reloadData];
-    [self drawDotsForVisibleRows];
+    [self reloadTableView];
 }
 
-- (void)setSelectedDate:(NSDate *)newSelectedDate
+- (void)reloadTableView 
 {
-    _selectedDate = newSelectedDate;
-    
-    if (!_selectedDate) return;
-
-    [self reframeRedSelectedDaySquareAnimated:YES];
-}
-
-
-
-#pragma mark - Methods
-
-- (void)drawDotsForVisibleRows 
-{
-    NSArray *visibleCells = [self.tableView visibleCells];
-    for (CVWeekTableViewCell *cell in visibleCells) {
-        [cell redraw];
-    }
+    [self.tableView reloadData];
 }
 
 - (void)reloadRowForDate:(NSDate *)date 
@@ -132,60 +171,8 @@
 
 
 
-#pragma mark - View lifecycle
 
-- (void)viewDidLoad 
-{
-    [super viewDidLoad];
-    
-    // this turned on produces weird jumpy scrolling
-    self.tableView.scrollsToTop = NO;
-    
-    self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
-    
-    if (PAD) {
-		if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-			self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
-		}
-		else {
-			self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-		}
-    }
-    else {
-        self.tableView.rowHeight = IPHONE_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-    }
-}
-
-- (void)viewDidUnload 
-{
-    [self setSelectedDayView:nil];
-    [super viewDidUnload];
-}
-
-- (void)viewDidAppear:(BOOL)animated 
-{
-    [super viewDidAppear:animated];
-
-    // center the current day
-    if (PAD) {
-        [self scrollToRowForDate:_selectedDate animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-    }
-    else {
-        [self scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth] animated:NO scrollPosition:UITableViewScrollPositionTop];
-    }
-
-	self.selectedDate = [NSDate date];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
-{
-	return YES;
-}
-
-
-
-
-#pragma mark - Table view data source
+#pragma mark - DATASOURCE table view
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
@@ -200,7 +187,7 @@
     cell.absoluteStartDate  = self.startDate;
     cell.weekStartDate      = [self.startDate dateOfFirstDayOnRow:indexPath.row];
     cell.selectedDate       = _selectedDate;
-    cell.delegate           = (id<CVWeekTableViewCellDelegate>)self.delegate;
+    cell.delegate           = self;
 
     return cell;
 }
@@ -208,7 +195,7 @@
 
 
 
-#pragma mark - Table View Delegate
+#pragma mark - DELEGATE table view
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath 
 {
@@ -217,5 +204,19 @@
     c.backgroundColor = [UIColor clearColor];
 }
 
+
+
+
+#pragma mark - DELEGATE week cell
+
+- (void)weekTableViewCell:(CVWeekTableViewCell *)cell wasPressedOnDate:(NSDate *)date
+{
+    [self.delegate monthTableViewController:self tappedCell:cell onDate:date];
+}
+
+- (void)weekTableViewCell:(CVWeekTableViewCell *)cell wasLongPressedOnDate:(NSDate *)date withPlaceholder:(UIView *)placeholder
+{
+    [self.delegate monthTableViewController:self longPressedOnCell:cell onDate:date placeholderView:placeholder];
+}
 
 @end

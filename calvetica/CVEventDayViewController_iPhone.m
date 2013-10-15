@@ -12,7 +12,8 @@
 #import "colors.h"
 #import "viewtagoffsets.h"
 #import "NSDate+ViewHelpers.h"
-#import "CVDayButton_iPhone.h"
+#import "CVJumpToDayButton.h"
+#import "UIView+Nibs.h"
 
 
 @implementation CVEventDayViewController_iPhone
@@ -74,7 +75,7 @@
     NSInteger selectedDayIndex = [self.date calendarMonth:[self.date mt_startOfCurrentMonth] squareIndexShiftedToBottom:NO];
     
     for (int i = 0; i < self.dayButtons.count; i++) {
-        CVDayButton_iPhone *b = [self.dayButtons objectAtIndex:i];
+        CVJumpToDayButton *b = [self.dayButtons objectAtIndex:i];
         NSDate *dateForButton = [self.date dateForCalendarSquare:i shiftedToBottom:NO];
         NSString *dateString = [NSString stringWithFormat:@"%d", [dateForButton mt_dayOfMonth]];
         b.label.text = dateString;
@@ -109,7 +110,7 @@
     
     // set month week numbers
     for (int i = 0; i < self.weekButtons.count; i++) {
-        CVDayButton_iPhone *b = [self.weekButtons objectAtIndex:i];
+        CVJumpToDayButton *b = [self.weekButtons objectAtIndex:i];
         b.label.text = [NSString stringWithFormat:@"%d", [self.date weekNumberForSquareIndex:i]];
     }
     
@@ -146,8 +147,7 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	self.dayButtonNib = [UINib nibWithNibName:@"CVDayButton_iPhone" bundle:nil];
-    
+
     // We want to swipe on the calendar to change the month.
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(containerWasSwiped:)];
     [self.dayButtonsContainer addGestureRecognizer:rightSwipe];
@@ -182,7 +182,7 @@
             
            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                CVDayButton_iPhone *b = [CVDayButton_iPhone viewFromNib:self.dayButtonNib];
+                CVJumpToDayButton *b = [CVJumpToDayButton fromNibOfSameName];
                 
                 // hide the gray today background
                 b.backgroundImageView.hidden = YES;
@@ -215,7 +215,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                CVDayButton_iPhone *b = [CVDayButton_iPhone viewFromNib:self.dayButtonNib];
+                CVJumpToDayButton *b = [CVJumpToDayButton fromNibOfSameName];
                 
                 // hide the gray today background
                 b.backgroundImageView.hidden = YES;

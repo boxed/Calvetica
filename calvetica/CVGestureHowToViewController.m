@@ -6,18 +6,17 @@
 //
 
 #import "CVGestureHowToViewController.h"
+#import "UILabel+Utilities.h"
 
 
-
-@interface CVGestureHowToViewController ()
-@property (nonatomic, weak) IBOutlet UIScrollView   *scrollView;
-@property (nonatomic, weak) IBOutlet UIView         *titleView;
-@property (nonatomic, weak) IBOutlet UIImageView    *shadow;
-@property (nonatomic, weak) IBOutlet UILabel        *titleLabel;
-@property (nonatomic, weak) IBOutlet UIPageControl  *pageControl;
+@interface CVGestureHowToViewController () <UIScrollViewDelegate>
+@property (nonatomic, weak  ) IBOutlet UIScrollView   *scrollView;
+@property (nonatomic, weak  ) IBOutlet UIView         *titleView;
+@property (nonatomic, weak  ) IBOutlet UIImageView    *shadow;
+@property (nonatomic, weak  ) IBOutlet UILabel        *titleLabel;
+@property (nonatomic, weak  ) IBOutlet UIPageControl  *pageControl;
 @property (nonatomic, strong)          NSMutableArray *availableGestures;
 @end
-
 
 
 @implementation CVGestureHowToViewController
@@ -211,15 +210,6 @@
     NSInteger page = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     _pageControl.currentPage = page;
     [self updateTitle];
-}
-
-
-
-#pragma mark - CVModalProtocal
-
-- (void)modalBackdropWasTouched 
-{
-	[_delegate gestureControllerDidFinish:self];
 }
 
 

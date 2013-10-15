@@ -13,13 +13,15 @@
 
 - (void)setupPencil
 {
+    [super setupPencil];
+
     CGRect rect;
     rect.size.width     = 17;
     rect.size.height    = 17;
     rect.origin.x       = (self.width / 2) - (rect.size.width / 2);
     rect.origin.y       = (self.height / 2) - (rect.size.height / 2);
 
-    [[[[_pencil move] delay:0.5] color:[UIColor whiteColor]] duration:0.2];
+    [[[_pencil config] delay:0.5] duration:0.2];
     CGFloat y           = CGRectGetHeight(rect) * (1/3.0);
     UIBezierPath *path  = [UIBezierPath bezierPathWithRect:rect];
     [[_pencil draw] path:path.CGPath];

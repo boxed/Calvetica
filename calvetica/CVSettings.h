@@ -5,7 +5,6 @@
 #import "CVEventDetailsOrderViewController.h"
 #import "CVEventSubtitleTextPriorityViewController.h"
 #import "CVEventStore.h"
-#import "CVDevice.h"
 #import "settingskeys.h"
 #import "UIColor+Utilities.h"
 #import "CVCustomColorDataHolder.h"

@@ -13,7 +13,6 @@
 #import "CVRootViewController.h"
 #import "EKEvent+Utilities.h"
 #import "CVEventStore.h"
-#import "CVDevice.h"
 #import "dictionarykeys.h"
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
@@ -21,11 +20,9 @@
 #import "CVEventStore.h"
 
 
-
 @interface CVAppDelegate () 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
 @end
-
 
 
 @implementation CVAppDelegate
@@ -48,8 +45,9 @@
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 
+//    [MTMigration reset];
+
     self.window.tintColor = RGB(215, 0, 0);
-    [self.window makeKeyAndVisible];
 
     // if launched with options (meaning, a user tapped the "Snooze" button on a local notification.
     if (launchOptions) {
@@ -111,11 +109,7 @@
         }
 
         CVRootViewController *rootViewController = (CVRootViewController *)_window.rootViewController;
-        [rootViewController showQuickAddWithDefault:YES
-                                       durationMode:NO
-                                               date:date
-                                              title:title
-                                               view:rootViewController.redBarPlusButton];
+        [rootViewController showQuickAddWithTitle:title date:date];
     }
 
     return YES;
@@ -143,14 +137,8 @@
 		rvc.todaysDate		= [NSDate date];
         rvc.selectedDate	= [NSDate date];
     }
-    [rvc.monthTableViewController.tableView reloadData];
-    [rvc.rootTableViewController.tableView reloadData];
+    [rvc refreshUI];
 
-    // check whether the table view needs to scroll
-    if ([rvc.selectedDate mt_isWithinSameDay:[NSDate date]]) {
-        [rvc.rootTableViewController scrollToCurrentHour];
-    }
-    [rvc.rootTableViewController scrollToDate:rvc.selectedDate];
 
 	// trigger a pull request for remote sources
 	dispatch_async([CVOperationQueue backgroundQueue], ^{

@@ -12,6 +12,8 @@
 
 - (void)setupPencil
 {
+    [super setupPencil];
+    
     CGRect frame = CGRectMake(0, 0, 46, 12);
     frame.origin.x = (self.width / 2) - (frame.size.width / 2);
     frame.origin.y = (self.height / 2) - (frame.size.height / 2);
@@ -22,7 +24,7 @@
     UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(frame) + 1.5, CGRectGetMinY(frame) + 1.5, 9, 9)];
 
 
-    [[[[_pencil move] color:[UIColor whiteColor]] width:1] duration:0.2];
+    [[_pencil config] duration:0.2];
     [[_pencil move] to:CGPointMake(0, 6)];
     [[_pencil draw] path:oval2Path.CGPath];
     [[_pencil draw] path:ovalPath.CGPath];

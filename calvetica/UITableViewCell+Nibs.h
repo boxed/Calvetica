@@ -6,11 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIView+nibs.h"
 
-@interface UITableViewCell (UITableViewCell_Nibs)
-
+@interface UITableViewCell (Nibs)
 + (id)cellWithStyle:(UITableViewCellStyle)style forTableView:(UITableView *)tableView;
-+ (id)cellForTableView:(UITableView *)tableView fromNib:(UINib *)nib;
-
++ (id)cellForTableView:(UITableView *)tableView;
 @end

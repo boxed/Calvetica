@@ -9,7 +9,7 @@
 #import "CVWeekdayTableHeaderView.h"
 #import "CVWeekdayTableViewCell.h"
 #import "CVViewController.h"
-#import "CVEventViewController_iPhone.h"
+#import "CVEventViewController.h"
 #import "CVQuickAddViewController_iPhone.h"
 #import "CVJumpToDateViewController_iPhone.h"
 #import "NSArray+Utilities.h"
@@ -33,8 +33,6 @@ typedef enum {
 #pragma mark - Properties
 @property (nonatomic, weak  )          id<CVLandscapeWeekViewDelegate> delegate;
 @property (nonatomic, weak  ) IBOutlet UITableView                     *weeksTable;
-@property (nonatomic, strong)          UINib                           *weekdayCellNib;
-@property (nonatomic, strong)          UINib                           *weekdayHeaderNib;
 @property (nonatomic, copy  )          NSArray                         *headerViews;
 @property (nonatomic, strong)          NSDate                          *startDate;
 @property (nonatomic, weak  ) IBOutlet UILabel                         *monthAndYearLabel;

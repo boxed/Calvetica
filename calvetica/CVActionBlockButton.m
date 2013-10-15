@@ -22,7 +22,7 @@
 
 + (CVActionBlockButton *)buttonWithTitle:(NSString *)title andActionBlock:(void (^)(void))tapActionBlock {
 	
-	CVActionBlockButton *button = [CVActionBlockButton viewFromNib:[CVActionBlockButton nib]];
+	CVActionBlockButton *button = [CVActionBlockButton fromNibOfSameName];
 	
 	button.titleLabel.text = title;
 	button.actionBlock = tapActionBlock;

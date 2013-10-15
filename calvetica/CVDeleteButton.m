@@ -12,6 +12,8 @@
 
 - (void)setupPencil
 {
+    [super setupPencil];
+    
     CGRect frame = CGRectMake(0, 0, 15, 17);
     frame.origin.x = (self.width / 2) - (frame.size.width / 2);
     frame.origin.y = (self.height / 2) - (frame.size.height / 2);
@@ -39,7 +41,7 @@
     [path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 4.5, CGRectGetMinY(frame) + 14.5)];
 
 
-    [[[[[_pencil move] delay:0.1] color:[UIColor whiteColor]] width:1] duration:0.5];
+    [[[_pencil config] delay:0.1] duration:0.5];
     [[_pencil move] to:CGPointMake(0, 6)];
     [[_pencil draw] path:path.CGPath];
 }

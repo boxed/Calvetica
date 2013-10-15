@@ -36,7 +36,7 @@ typedef enum {
 @protocol CVEventViewControllerDelegate;
 
 
-@interface CVEventViewController_iPhone : CVNavigationController <CVEventDayViewControllerDelegate, CVEventDetailsViewControllerDelegate, CVModalProtocol>
+@interface CVEventViewController : CVNavigationController <CVEventDayViewControllerDelegate, CVEventDetailsViewControllerDelegate, CVModalProtocol>
 
 @property (nonatomic, weak  )          id<CVEventViewControllerDelegate> delegate;
 @property (nonatomic, strong)          EKEvent                           *event;
@@ -61,5 +61,5 @@ typedef enum {
 
 @protocol CVEventViewControllerDelegate <NSObject>
 @required
-- (void)eventViewController:(CVEventViewController_iPhone *)controller didFinishWithResult:(CVEventResult)result;
+- (void)eventViewController:(CVEventViewController *)controller didFinishWithResult:(CVEventResult)result;
 @end

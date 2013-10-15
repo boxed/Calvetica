@@ -9,8 +9,13 @@
 #import "CVNativeAlertView.h"
 
 
-@implementation CVFAQViewController
+@interface CVFAQViewController () <UIWebViewDelegate>
+@property (nonatomic, weak) IBOutlet UIWebView               *helpScreen;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
+@end
 
+
+@implementation CVFAQViewController
 
 - (void)dealloc
 {
@@ -67,14 +72,6 @@
 	else {
 		return YES;
     }
-}
-
-
-#pragma mark - CVModalProtocal
-
-- (void)modalBackdropWasTouched 
-{
-	[_delegate faqControllerDidFinish:self];
 }
 
 

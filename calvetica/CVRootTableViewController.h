@@ -6,25 +6,22 @@
 //
 
 #import "CVViewController.h"
-
-@protocol CVRootTableViewControllerProtocol;
-
+#import "CVEventCell.h"
 
 
+@protocol CVRootTableViewControllerDelegate;
 
-@interface CVRootTableViewController : CVViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak  ) NSObject <CVRootTableViewControllerProtocol> *tableControllerProtocol;
+@interface CVRootTableViewController : CVViewController <CVEventCellDelegate>
+
+@property (nonatomic, weak  ) NSObject <CVRootTableViewControllerDelegate> *delegate;
 @property (nonatomic, strong) NSDate                                       *selectedDate;
 @property (nonatomic, strong) UITableView                                  *tableView;
 
-// this is necessary because the selected.date is set before the table is loaded
-// and you can't scroll before the table is loaded
 @property (nonatomic, assign) BOOL shouldScrollToCurrentHour;
 @property (nonatomic, assign) BOOL shouldScrollToDate;
 
-- (void)setDelegate:(id)delegate;
-- (void)loadTableView;
+- (void)reloadTableView;
 - (id)cellDataHolderAtIndexPath:(NSIndexPath *)index;
 - (void)removeObjectAtIndexPath:(NSIndexPath *)index;
 - (void)scrollToCurrentHour;
@@ -35,7 +32,14 @@
 
 
 
-@protocol CVRootTableViewControllerProtocol <NSObject>
-@optional
-- (void)tableViewDidScrollToDay:(NSDate *)day;
+@protocol CVRootTableViewControllerDelegate <NSObject>
+- (void)rootTableViewController:(CVRootTableViewController *)controller didScrollToDay:(NSDate *)day;
+- (void)rootTableViewController:(CVRootTableViewController *)controller tappedCell:(CVEventCell *)cell;
+- (void)rootTableViewController:(CVRootTableViewController *)controller tappedHourOnCell:(CVEventCell *)cell;
+- (void)rootTableViewController:(CVRootTableViewController *)controller longPressedCell:(CVEventCell *)cell;
+- (void)rootTableViewController:(CVRootTableViewController *)controller
+                     swipedCell:(CVEventCell *)cell
+                    inDirection:(CVEventCellSwipedDirection)direction;
+- (void)rootTableViewController:(CVRootTableViewController *)controller tappedAlarmOnCell:(CVEventCell *)cell;
+- (void)rootTableViewController:(CVRootTableViewController *)controller tappedDeleteOnCell:(CVEventCell *)cell;
 @end

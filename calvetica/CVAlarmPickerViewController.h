@@ -27,8 +27,8 @@ typedef enum {
 
 @interface CVAlarmPickerViewController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, weak) id<CVAlarmPickerViewControllerDelegate> delegate;
-@property (nonatomic, strong) EKCalendarItem *calendarItem;
+@property (nonatomic, weak  ) id<CVAlarmPickerViewControllerDelegate> delegate;
+@property (nonatomic, strong) EKCalendarItem                          *calendarItem;
 
 - (NSArray *)alarms;
 

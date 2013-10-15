@@ -55,9 +55,6 @@ typedef enum {
 
 
 @protocol CVEventCellDelegate <NSObject>
-@optional
-- (void)searchController:(CVSearchViewController_iPhone *)controller cellWasTapped:(CVEventCell *)cell;
-@required
 - (void)cellHourTimeWasTapped:(CVEventCell *)cell;
 - (void)cellWasTapped:(CVEventCell *)cell;
 - (void)cellWasLongPressed:(CVEventCell *)cell;

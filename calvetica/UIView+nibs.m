@@ -6,44 +6,64 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIView+nibs.h"
+#import "UIView+Nibs.h"
 
 
-@implementation UIView (UIView_Nibs)
+@implementation UIView (Nibs)
 
 #pragma mark - Convenience Constructors
 
-+ (id)viewFromNib:(UINib *)nib {
++ (NSCache *)sharedNibCache
+{
+    static NSCache *UINibCache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UINibCache = [NSCache new];
+    });
+    return UINibCache;
+}
+
+
+
+#pragma mark - Public
+
++ (instancetype)fromNibOfSameName
+{
+    NSCache *nibCache       = [self sharedNibCache];
+    NSString *nibFileName   = [self nibFileName];
+    UINib *nib              = [nibCache objectForKey:nibFileName];
+
+    if (!nib) {
+        nib = [self nib];
+        [nibCache setObject:nib forKey:nibFileName];
+    }
+
+    return [self viewFromNib:nib];
+}
+
+
+
+
+#pragma mark - Private
+
++ (id)viewFromNib:(UINib *)nib
+{
     NSArray *nibObjects = [nib instantiateWithOwner:nil options:nil];
-        NSAssert2(([nibObjects count] > 0) && 
-                  [[nibObjects objectAtIndex:0] isKindOfClass:[self class]],
-                  @"Nib '%@' does not appear to contain a valid %@", 
-                  [self nibName], NSStringFromClass([self class]));
-    return [nibObjects objectAtIndex:0];
+    NSAssert2([[nibObjects lastObject] isKindOfClass:[self class]],
+              @"Nib '%@' does not appear to contain a valid %@",
+              [self nibFileName],
+              NSStringFromClass([self class]));
+    return [nibObjects lastObject];
 }
 
-+ (id)viewFromNib:(UINib *)nib withPosition:(CGPoint)position {
-    UIView *view = [UIView viewFromNib:nib];
-    view.frame = CGRectMake(position.x, position.y, view.bounds.size.width, view.bounds.size.height);
-    return view;
-}
-
-#pragma mark - Methods
-
-+ (UINib *)nib  {
++ (UINib *)nib
+{
     NSBundle *classBundle = [NSBundle bundleForClass:[self class]];
-    return [UINib nibWithNibName:[self nibName] bundle:classBundle];
+    return [UINib nibWithNibName:[self nibFileName] bundle:classBundle];
 }
 
-+ (NSString *)viewIdentifier {
-    return NSStringFromClass(self);
-}
-
-+ (NSString *)nibName  {
-    return [self viewIdentifier];
-}
-
-+ (NSString *)className {
++ (NSString *)nibFileName
+{
     return NSStringFromClass(self);
 }
 

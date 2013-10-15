@@ -8,41 +8,23 @@
 #import "CVAgendaEventCell.h"
 
 
+@interface CVAgendaEventCell ()
+@property (nonatomic, weak  ) IBOutlet CVLabel *timeLabel;
+@property (nonatomic, assign)          BOOL    isAllDay;
+@property (nonatomic, assign)          BOOL    continuedFromPreviousDay;
+
+@end
 
 
 @implementation CVAgendaEventCell
 
-
-
-
-#pragma mark - Properties
-
-- (void)setIsEmpty:(BOOL)empty 
+- (void)setIsEmpty:(BOOL)empty
 {
-    super.isEmpty = empty;
-    self.coloredDotView.hidden = YES;
-    self.timeLabel.hidden = YES;
-    self.titleLabel.text = @"No Events";
+    super.isEmpty               = empty;
+    self.coloredDotView.hidden  = YES;
+    self.timeLabel.hidden       = YES;
+    self.titleLabel.text        = @"No Events";
 }
-
-#pragma mark - Constructor
-
-
-
-
-#pragma mark - Memory Management
-
-
-
-
-
-#pragma mark - View lifecycle
-
-- (void)awakeFromNib 
-{
-	[super awakeFromNib];
-}
-
 
 
 
@@ -52,8 +34,8 @@
 {
     self.event = newEvent;
 	
-	continuedFromPreviousDay = continued;
-	isAllDay = allDay;
+	self.continuedFromPreviousDay = continued;
+	self.isAllDay = allDay;
         
 	// update event elements with even details
 	self.titleLabel.text = [_event readTitle];
@@ -62,10 +44,10 @@
 	
 	
 	// set cell time labels
-    if (continuedFromPreviousDay) {
+    if (self.continuedFromPreviousDay) {
         _timeLabel.text = @"...";
     } 
-	else if (isAllDay) {
+	else if (self.isAllDay) {
 		_timeLabel.text = @"ALL DAY";
 		_timeLabel.textColor = patentedRed;
 	}
@@ -80,7 +62,7 @@
 - (IBAction)cellWasTapped:(id)sender 
 {
     [super cellWasTapped:sender];
-    [_delegate cellWasTapped:self];
+    [_delegate cellWasTapped:(CVEventCell *)self];
 }
 
 - (IBAction)cellWasLongPressed:(UILongPressGestureRecognizer *)gesture 
@@ -90,8 +72,8 @@
 
 - (IBAction)accessoryButtonWasTapped:(id)sender 
 {
-    if (!isAllDay) {
-        [_delegate cellHourTimeWasTapped:self];
+    if (!self.isAllDay) {
+        [_delegate cellHourTimeWasTapped:(CVEventCell *)self];
     }
 }
 

@@ -29,7 +29,6 @@
 @property (nonatomic, weak  ) IBOutlet UIImageView                     *todayImage;
 
 
-#pragma mark - Methods
 - (void)redraw;
 
 
@@ -42,8 +41,6 @@
 
 
 @protocol CVWeekTableViewCellDelegate <NSObject>
-@required
-- (BOOL)isInPortrait;
 - (void)weekTableViewCell:(CVWeekTableViewCell *)cell wasPressedOnDate:(NSDate *)date;
 - (void)weekTableViewCell:(CVWeekTableViewCell *)cell wasLongPressedOnDate:(NSDate *)date withPlaceholder:(UIView *)placeholder;
 @end

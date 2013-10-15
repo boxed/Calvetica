@@ -10,39 +10,27 @@
 #import "NSMutableArray+Utilities.h"
 
 
+@interface CVEventsFullDayTableViewController ()
+@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
+@end
+
 
 @implementation CVEventsFullDayTableViewController
 
-- (UINib *)eventCellNib 
+
+
+- (void)reloadTableView 
 {
-    if (!_eventCellNib) {
-        self.eventCellNib = [CVEventCell nib];
-    }
-    return _eventCellNib;    
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
-
-#pragma mark - Methods
-
-- (void)loadTableView 
-{
-    [super loadTableView];
+    [super reloadTableView];
     
     // date can't be null
     if (!self.selectedDate) return;
     
     // copy the date so that its copied into the operation and not tied to the ivar
     NSDate *dateCopy = [self.selectedDate copy];
-    
-    dispatch_async([CVOperationQueue backgroundQueue], ^{
-        
+
+    [MTq def:^{
+
         NSMutableArray *hours = [NSMutableArray array];
         
         // create a date for every hour if agenda view is off
@@ -191,15 +179,11 @@
                 return [h1.event.title localizedCaseInsensitiveCompare:h2.event.title];
             }
             
-            // @iOS5
-            // calv4.3 needs to be included
             else if (h1.event != nil && h2.event != nil) {
 				return [h1.event.startingDate mt_isBefore:h2.event.startingDate] ? NSOrderedAscending : NSOrderedDescending;
             }
 
 
-            // @iOS5
-            // calv4.3 needs to be included
             else {
                 return NSOrderedAscending;
             }
@@ -216,14 +200,13 @@
             
             [self.tableView reloadData];
             
-            if (self.shouldScrollToCurrentHour) {
+            if (self.shouldScrollToCurrentHour && [self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
                 [self scrollToCurrentHour];
                 self.shouldScrollToCurrentHour = NO;
             }
             
         });
-    });
-    
+    }];
 }
 
 - (void)calculateDurationBars 
@@ -334,10 +317,6 @@
 
 
 
-#pragma mark - IBActions
-
-
-
 
 #pragma mark - UITableViewDataSource
 
@@ -349,9 +328,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {  
     
-    CVEventCell *cell = [CVEventCell cellForTableView:tableView fromNib:self.eventCellNib];
-    CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:indexPath.row];
-    
+    CVEventCell *cell               = [CVEventCell cellForTableView:tableView];
+    CVEventCellDataHolder *holder   = [_cellDataHolderArray objectAtIndex:indexPath.row];
+
     cell.isEmpty = NO;
     cell.event = holder.event;
     cell.date = holder.date;
@@ -360,7 +339,7 @@
 	cell.secondaryDurationBarPercent = holder.secondaryDurationBarPercent;
     cell.durationBarColor = holder.durationBarColor;
 	cell.secondaryDurationBarColor = holder.secondaryDurationBarColor;
-    cell.delegate = self.delegate;
+    cell.delegate = self;
 	[cell resetAccessoryButton];
     holder.cell = cell;
     

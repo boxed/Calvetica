@@ -16,26 +16,6 @@
 
 @implementation CVLandscapeWeekView_iPad
 
-@synthesize weekdayCellNib = _weekdayCellNib;
-
-- (UINib *)weekdayCellNib 
-{
-    if (!_weekdayCellNib) {
-        _weekdayCellNib = [CVWeekdayTableViewCell_iPad nib];
-    }
-    return _weekdayCellNib;
-}
-
-@synthesize weekdayHeaderNib = _weekdayHeaderNib;
-
-- (UINib *)weekdayHeaderNib 
-{
-    if (!_weekdayHeaderNib) {
-        _weekdayHeaderNib = [CVWeekdayTableHeaderView_iPad nib];
-    }
-    return _weekdayHeaderNib;
-}
-
 @synthesize headerViews = _headerViews;
 
 - (NSArray *)headerViews 
@@ -43,13 +23,13 @@
     if (!_headerViews) {
         CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(90.0f));
         
-        CVWeekdayTableHeaderView_iPad *cell1 = [CVWeekdayTableHeaderView_iPad viewFromNib:self.weekdayHeaderNib];
+        CVWeekdayTableHeaderView_iPad *cell1 = [CVWeekdayTableHeaderView_iPad fromNibOfSameName];
         cell1.transform = rotateTransform;
         
-        CVWeekdayTableHeaderView_iPad *cell2 = [CVWeekdayTableHeaderView_iPad viewFromNib:self.weekdayHeaderNib];
+        CVWeekdayTableHeaderView_iPad *cell2 = [CVWeekdayTableHeaderView_iPad fromNibOfSameName];
         cell2.transform = rotateTransform;
         
-        CVWeekdayTableHeaderView_iPad *cell3 = [CVWeekdayTableHeaderView_iPad viewFromNib:self.weekdayHeaderNib];
+        CVWeekdayTableHeaderView_iPad *cell3 = [CVWeekdayTableHeaderView_iPad fromNibOfSameName];
         cell3.transform = rotateTransform;
         
         _headerViews = @[cell1, cell2, cell3];
@@ -157,7 +137,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 
-    CVWeekdayTableViewCell_iPad *cell = [CVWeekdayTableViewCell_iPad viewFromNib:self.weekdayCellNib];
+    CVWeekdayTableViewCell_iPad *cell = [CVWeekdayTableViewCell_iPad cellForTableView:tableView];
     
     NSInteger daysAfter = (indexPath.section * 7) + indexPath.row;
     cell.date = [self.startDate mt_dateDaysAfter:daysAfter];
@@ -232,7 +212,7 @@
     [super weekdayCell:cell wasPressedOnEvent:event withPlaceholder:placeholder];
     
     // put up the edit event modal
-    CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:event andMode:CVEventModeDetails];
+    CVEventViewController *eventViewController = [[CVEventViewController alloc] initWithEvent:event andMode:CVEventModeDetails];
     eventViewController.delegate = self;
     eventViewController.attachPopoverArrowToSide = CVPopoverModalAttachToSideCenter;
     [self presentPopoverModalViewController:eventViewController forView:placeholder animated:YES];
@@ -244,7 +224,7 @@
 
 #pragma mark - Event view controller delegate
 
-- (void)eventViewController:(CVEventViewController_iPhone *)controller didFinishWithResult:(CVEventResult)result
+- (void)eventViewController:(CVEventViewController *)controller didFinishWithResult:(CVEventResult)result
 {
     [super eventViewController:controller didFinishWithResult:result];
     if (result == CVEventResultDeleted || CVEventResultSaved) {
@@ -263,7 +243,7 @@
     [super quickAddViewController:controller didCompleteWithAction:result];
         
     if (result == CVQuickAddResultMore) {
-        CVEventViewController_iPhone *eventViewController = [[CVEventViewController_iPhone alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
+        CVEventViewController *eventViewController = [[CVEventViewController alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
         eventViewController.delegate = self;
         [self dismissPopoverModalViewControllerAnimated:YES];
         [self presentPopoverModalViewController:eventViewController forView:controller.popoverTargetView animated:YES];

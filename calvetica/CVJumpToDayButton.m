@@ -6,10 +6,10 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVDayButton_iPhone.h"
+#import "CVJumpToDayButton.h"
 
 
-@interface CVDayButton_iPhone ()
+@interface CVJumpToDayButton ()
 @property NSUInteger dotColumn;
 @property NSUInteger dotRow;
 @property NSUInteger maxOffset;
@@ -18,7 +18,7 @@
 
 
 
-@implementation CVDayButton_iPhone
+@implementation CVJumpToDayButton
 
 
 - (void)setIsToday:(BOOL)isTodayBool 

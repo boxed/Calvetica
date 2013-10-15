@@ -18,7 +18,7 @@ typedef enum {
 @protocol CVGenericReminderViewControllerDelegate;
 
 
-@interface CVGenericReminderViewController_iPhone : CVViewController <CVModalProtocol>
+@interface CVGenericReminderViewController : CVViewController <CVModalProtocol>
 
 @property (nonatomic, weak) id<CVGenericReminderViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
@@ -29,5 +29,5 @@ typedef enum {
 
 @protocol CVGenericReminderViewControllerDelegate <NSObject>
 @required
-- (void)genericReminderViewController:(CVGenericReminderViewController_iPhone *)controller didFinishWithResult:(CVGenericReminderViewControllerResult)result;
+- (void)genericReminderViewController:(CVGenericReminderViewController *)controller didFinishWithResult:(CVGenericReminderViewControllerResult)result;
 @end

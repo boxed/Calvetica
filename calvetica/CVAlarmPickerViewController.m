@@ -10,25 +10,9 @@
 #import "CVExtraAlarmButton.h"
 
 
-
-
-@interface CVAlarmPickerViewController ()
-@property (nonatomic, strong) UINib *extraAlarmButtonNib;
-
-@end
-
-
 @implementation CVAlarmPickerViewController
 
-- (UINib *)extraAlarmButtonNib 
-{
-	if (!_extraAlarmButtonNib) {
-		_extraAlarmButtonNib = [CVExtraAlarmButton nib];
-	}
-	return _extraAlarmButtonNib;
-}
-
-- (id)init 
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -118,7 +102,7 @@
 		if (!found) {
 			
 			// create the new button
-			CVExtraAlarmButton *extraButton = [CVExtraAlarmButton viewFromNib:self.extraAlarmButtonNib];
+			CVExtraAlarmButton *extraButton = [CVExtraAlarmButton fromNibOfSameName];
 			
 			extraButton.selected = YES;
 			

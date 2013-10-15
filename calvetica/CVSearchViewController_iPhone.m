@@ -17,7 +17,6 @@
 @property (nonatomic, weak  ) IBOutlet UITableView                *tableView;
 @property (nonatomic, weak  ) IBOutlet CVTextField                *searchTextField;
 @property (nonatomic, strong)          NSMutableArray             *results;
-@property (nonatomic, strong)          UINib                      *eventCellNib;
 @property (nonatomic, weak  ) IBOutlet UIActivityIndicatorView    *activityIndicator;
 @property (nonatomic, copy  )          NSString                   *currentSearchText;
 @property (nonatomic, assign)          CVSearchScopePopoverOption searchScope;
@@ -26,14 +25,6 @@
 
 
 @implementation CVSearchViewController_iPhone
-
-- (UINib *)eventCellNib 
-{
-    if (!_eventCellNib) {
-        self.eventCellNib = [CVSearchEventCell nib];
-    }
-    return _eventCellNib;    
-}
 
 - (void)dealloc
 {
@@ -198,7 +189,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVSearchEventCell *cell = [CVSearchEventCell cellForTableView:tv fromNib:self.eventCellNib];
+    CVSearchEventCell *cell = [CVSearchEventCell cellForTableView:tv];
     EKEvent *event = [_results objectAtIndex:indexPath.row];
     
     cell.delegate = self;
@@ -272,8 +263,7 @@
 - (void)searchCellWasTapped:(CVSearchEventCell *)cell 
 {
     [_searchTextField resignFirstResponder];
-    id<CVEventCellDelegate> d = (id<CVEventCellDelegate>)self.delegate;
-    [d searchController:self cellWasTapped:(CVEventCell *)cell];
+    [self.delegate searchViewController:self tappedCell:cell];
 }
 
 

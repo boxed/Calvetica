@@ -19,8 +19,7 @@
 @interface CVEventDetailsPeopleTableViewController_iPhone : UITableViewController <CVPeopleTableViewCell_iPhoneDelegate>
 @property (nonatomic, weak  ) NSObject <CVEventDetailsPeopleTableViewController_iPhoneDelegate> *delegate;
 @property (nonatomic, strong) EKEvent                                                           *event;
-@property (nonatomic, strong) UINib                                                             *peopleCellNib;
-@property (nonatomic, strong  ) NSMutableArray                                                    *participantDataHolderArray;
+@property (nonatomic, strong) NSMutableArray                                                    *participantDataHolderArray;
 @property (nonatomic        ) BOOL                                                              hasAttendees;
 - (id)initWithEvent:(EKEvent *)newEvent;
 - (NSString *)descriptionForParticipantStatus:(EKParticipantStatus)status;

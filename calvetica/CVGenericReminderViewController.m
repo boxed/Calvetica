@@ -5,19 +5,19 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVGenericReminderViewController_iPhone.h"
+#import "CVGenericReminderViewController.h"
 #import "viewtagoffsets.h"
 #import "EKEvent+Utilities.h"
 
 
 
-@interface CVGenericReminderViewController_iPhone ()
+@interface CVGenericReminderViewController ()
 @property (nonatomic, weak) IBOutlet UITextField *eventTitleTextField;
 @end
 
 
 
-@implementation CVGenericReminderViewController_iPhone
+@implementation CVGenericReminderViewController
 
 - (id)init
 {

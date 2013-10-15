@@ -145,7 +145,7 @@
 
 #pragma mark - Event view controller delegate
 
-- (void)eventViewController:(CVEventViewController_iPhone *)controller didFinishWithResult:(CVEventResult)result
+- (void)eventViewController:(CVEventViewController *)controller didFinishWithResult:(CVEventResult)result
 {
     if (result == CVEventResultSaved) {
 

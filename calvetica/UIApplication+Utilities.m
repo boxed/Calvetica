@@ -59,7 +59,7 @@
 
 + (void)showBezelWithTitle:(NSString *)title
 {
-    CVHUD *bezel = [CVHUD viewFromNib:[CVHUD nib]];
+    CVHUD *bezel = [CVHUD fromNibOfSameName];
     bezel.titleLabel.text = title;
     
 	CVViewController *topmostViewController = [[UIApplication sharedApplication] topmostSystemPresentedViewController];

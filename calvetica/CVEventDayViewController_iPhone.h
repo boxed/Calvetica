@@ -28,7 +28,6 @@
 @property (nonatomic, strong  ) NSMutableArray                       *dayButtons;
 @property (nonatomic, strong  ) NSMutableArray                       *weekButtons;
 
-@property (nonatomic, strong)          UINib        *dayButtonNib;
 @property (nonatomic, weak  ) IBOutlet UITableView  *yearTableView;
 @property (nonatomic, weak  ) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak  ) IBOutlet UIView       *containerView;

@@ -13,11 +13,6 @@
 
 @implementation CVMonthTextButton_iPad
 
-
-
-
-#pragma mark - Properties
-
 - (void)setHighlighted:(BOOL)highlighted 
 {
     super.highlighted = highlighted;
@@ -35,29 +30,6 @@
         }
     }
 }
-
-
-
-
-#pragma mark - Constructor
-
-
-
-
-#pragma mark - Memory Management
-
-
-
-
-
-#pragma mark - View lifecycle
-
-
-
-
-#pragma mark - Methods
-
-
 
 
 @end

@@ -890,6 +890,7 @@
                         <subviews>
                             <webView contentMode="scaleToFill" id="qq0-XD-2a7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="k6c-Tj-KGf">
@@ -963,7 +964,7 @@
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" id="exp-1j-d7P">
                                         <rect key="frame" x="141" y="-5" width="38" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000007149999997" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>

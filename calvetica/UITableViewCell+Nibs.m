@@ -7,14 +7,16 @@
 //
 
 #import "UITableViewCell+Nibs.h"
+#import "UIView+Nibs.h"
 
 
-@implementation UITableViewCell (UITableViewCell_Nibs)
+@implementation UITableViewCell (Nibs)
 
 #pragma mark - Convenience Constructors
 
-+ (id)cellWithStyle:(UITableViewCellStyle)style forTableView:(UITableView *)tableView {
-    NSString *cellID = [self className];
++ (id)cellWithStyle:(UITableViewCellStyle)style forTableView:(UITableView *)tableView
+{
+    NSString *cellID = NSStringFromClass([self class]);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
@@ -24,11 +26,12 @@
     return cell;
 }
 
-+ (id)cellForTableView:(UITableView *)tableView fromNib:(UINib *)nib {
-    NSString *cellID = [self className];
++ (id)cellForTableView:(UITableView *)tableView
+{
+    NSString *cellID = NSStringFromClass([self class]);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [self viewFromNib:nib];
+        cell = [self fromNibOfSameName];
     }
     return cell;
 }
