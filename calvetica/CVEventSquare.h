@@ -14,6 +14,6 @@
 @property (nonatomic, assign) CGFloat        width;
 @property (nonatomic, assign) CGFloat        height;
 @property (nonatomic, assign) NSInteger      *days;
-@property (nonatomic, strong  ) NSMutableArray *sharedEvents;
+@property (nonatomic, strong) NSMutableArray *sharedEvents;
 
 @end

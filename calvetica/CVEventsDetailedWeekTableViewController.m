@@ -20,10 +20,10 @@
 @implementation CVEventsDetailedWeekTableViewController
 
 
-- (void)reloadTableView
+- (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
-    [super reloadTableView];
-    
+    [super reloadTableViewWithCompletion:completion];
+
     // date can't be null
     if (!self.selectedDate) return;
     
@@ -39,7 +39,7 @@
         // fetch events for each day of the daysOfWeekArray
         for (NSDate *weekDay in self.daysOfWeekArray) {
             // fetch the events
-            NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:weekDay 
+            NSMutableArray *events = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:weekDay 
                                                                                           toDate:[weekDay mt_endOfCurrentDay]
                                                                               forActiveCalendars:YES]];
             
@@ -124,12 +124,9 @@
             // replace the old data holder array with the one we just generated
             self.cellDataHolderArray = [tempCellArrays mutableCopy];
             
-            [self.tableView reloadData];  
-            
-            if (self.shouldScrollToDate) {
-                [self scrollToDate:self.selectedDate];
-                self.shouldScrollToDate = NO;
-            }
+            [self.tableView reloadData];
+
+            if (completion) completion();
         });
     }];
     
@@ -199,7 +196,6 @@
     cell.secondaryDurationBarColor  = [UIColor clearColor];
     cell.delegate                   = self;
     [cell resetAccessoryButton];
-    holder.cell                     = cell;
 
     [cell drawDurationBarAnimated:NO];
     

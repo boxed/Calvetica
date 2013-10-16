@@ -66,7 +66,7 @@
     UIButton *button = (UIButton *)sender;
     NSTimeInterval interval = button.tag * SECONDS_IN_MINUTE;
 
-//	EKEvent *event = [CVEventStore eventWithIdentifier:_event.identifier];
+//	EKEvent *event = [EKEventStore eventWithIdentifier:_event.identifier];
 
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
 		// figure out what alarms have already gone off

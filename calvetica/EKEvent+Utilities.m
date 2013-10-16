@@ -67,7 +67,7 @@
                                    allDay:(BOOL)isAllDay
                                  calendar:(EKCalendar *)cal
 {
-    EKEvent *event = [CVEventStore event];
+    EKEvent *event = [EKEventStore event];
     
     if (cal) {
         event.calendar = cal;
@@ -126,7 +126,7 @@
 
 - (BOOL)hadRecurrenceRuleOnPreviousSave 
 {
-	EKEvent *e = [CVEventStore eventWithIdentifier:self.identifier];
+	EKEvent *e = [EKEventStore eventWithIdentifier:self.identifier];
 	return e != nil && e.hasRecurrenceRules;
 }
 
@@ -147,7 +147,7 @@
 {
 	if (self.hasRecurrenceRules && [self hadRecurrenceRuleOnPreviousSave]) {
 		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change only this one", @"Button text for a repeating event, it will only edit the selected event")  andActionBlock:^(void) {
-			NSError *error = [CVEventStore saveEvent:self forAllOccurrences:NO];
+			NSError *error = [EKEventStore saveEvent:self forAllOccurrences:NO];
 
 			if (error) {
 				
@@ -166,7 +166,7 @@
 		}];
 		
 		CVActionBlockButton *b2 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change all future events", @"Button text that will edit the repeating event's future details") andActionBlock:^(void) {
-			NSError *error = [CVEventStore saveEvent:self forAllOccurrences:YES];
+			NSError *error = [EKEventStore saveEvent:self forAllOccurrences:YES];
 			
 			if (error) {
 				
@@ -196,7 +196,7 @@
                                completion:nil];
 	}
 	else {
-		NSError *error = [CVEventStore saveEvent:self forAllOccurrences:YES];
+		NSError *error = [EKEventStore saveEvent:self forAllOccurrences:YES];
 		
 		if (error) {
 			
@@ -219,7 +219,7 @@
 
 - (void)saveForThisOccurrence 
 {
-	NSError *error = [CVEventStore saveEvent:self forAllOccurrences:NO];
+	NSError *error = [EKEventStore saveEvent:self forAllOccurrences:NO];
 	
 	if (error) {
 		
@@ -240,7 +240,7 @@
 	
 	if (self.hasRecurrenceRules) {
 		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change only this one", @"Button text for a repeating event, it will only edit the selected event")  andActionBlock:^(void) {
-			NSError *error = [CVEventStore removeEvent:self forAllOccurrences:NO];
+			NSError *error = [EKEventStore removeEvent:self forAllOccurrences:NO];
 			
 			if (error) {
 				
@@ -259,7 +259,7 @@
 		}];
 		
 		CVActionBlockButton *b2 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change all future events", @"Button text that will edit the repeating event's future details") andActionBlock:^(void) {
-			NSError *error = [CVEventStore removeEvent:self forAllOccurrences:YES];
+			NSError *error = [EKEventStore removeEvent:self forAllOccurrences:YES];
 			
 			if (error) {
 				
@@ -289,7 +289,7 @@
                                completion:nil];
 	}
 	else {
-		NSError *error = [CVEventStore removeEvent:self forAllOccurrences:YES];
+		NSError *error = [EKEventStore removeEvent:self forAllOccurrences:YES];
 		
 		if (error) {
 			

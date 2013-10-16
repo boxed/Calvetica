@@ -18,6 +18,6 @@
 
 - (void)showQuickAddWithTitle:(NSString *)title date:(NSDate *)date;
 - (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent;
-- (void)refreshUI;
+- (void)refreshUIAnimated:(BOOL)animated;
 
 @end

@@ -10,7 +10,7 @@
 #import "UIView+Nibs.h"
 #import "NSDate+ViewHelpers.h"
 #import "EKEvent+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "colors.h"
 #import "times.h"
 #import "dimensions.h"
@@ -95,7 +95,7 @@
         
         
         // grab all the events we need
-        NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:startOfDay
+        NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startOfDay
                                                                                           toDate:endOfDay
                                                                               forActiveCalendars:YES]];  
         

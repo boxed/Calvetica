@@ -43,7 +43,7 @@
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
 }
 
-- (void)reloadTableView 
+- (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     _tableView.delegate     = self;
     _tableView.dataSource   = self;

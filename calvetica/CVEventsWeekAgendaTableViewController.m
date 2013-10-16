@@ -8,10 +8,8 @@
 #import "CVEventsWeekAgendaTableViewController.h"
 #import "CVEventCellDataHolder.h"
 #import "CVAgendaDateCell.h"
-#import "CVFriendlyCell.h"
 #import "dimensions.h"
 #import "CVAgendaEventCell.h"
-#import "CVFriendlyCellDataHolder.h"
 #import "CVWeekNumberCell.h"
 #import "NSString+Utilities.h"
 
@@ -24,9 +22,9 @@
 @implementation CVEventsWeekAgendaTableViewController
 
 
-- (void)reloadTableView 
+- (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
-    [super reloadTableView];
+    [super reloadTableViewWithCompletion:completion];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
@@ -40,10 +38,8 @@
 
         NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
 		
-        CVWeekNumberHolder *weekNumberRow = [[CVWeekNumberHolder alloc] init];
         NSInteger weekOfYear = [self.selectedDate mt_weekOfYear];
-        weekNumberRow.weekNumber = weekOfYear;
-        [tempCellDataHolderArray addObject:weekNumberRow];
+        [tempCellDataHolderArray addObject:@(weekOfYear)];
         
         // for each day
 		NSDate *startOfWeek = [dateCopy mt_startOfCurrentWeek];
@@ -59,7 +55,7 @@
 			[tempCellDataHolderArray addObject:dayTitleRow];
 			
 			// fetch the events
-			NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:day toDate:[day mt_endOfCurrentDay] forActiveCalendars:YES]];
+			NSMutableArray *events = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:day toDate:[day mt_endOfCurrentDay] forActiveCalendars:YES]];
             
             // sort the events
             [events sortUsingComparator:(NSComparator)^(id obj1, id obj2){
@@ -114,28 +110,18 @@
             }
         }
 		
-		
-		// create a holder for the friendly phrase
-		CVFriendlyCellDataHolder *friendlyPhraseRow = [[CVFriendlyCellDataHolder alloc] init];
-		[tempCellDataHolderArray addObject:friendlyPhraseRow];
-        
-        
         // sort the data holders so that all day events are first, then events that started
         // previously, then events that start today
         [tempCellDataHolderArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            CVDataHolder *dataHolder1 = obj1;
-            CVDataHolder *dataHolder2 = obj2;
-            
+            CVEventCellDataHolder *h1 = obj1;
+            CVEventCellDataHolder *h2 = obj2;
+
             // The week number is first and the friendly phrase is last.
-            if ([dataHolder1 isKindOfClass:[CVWeekNumberHolder class]] || [dataHolder2 isKindOfClass:[CVWeekNumberHolder class]]) {
+            if ([h1 isKindOfClass:[NSNumber class]] || [h2 isKindOfClass:[NSNumber class]]) {
                 return NSOrderedAscending;
-            } else if ([dataHolder1 isKindOfClass:[CVFriendlyCellDataHolder class]] || [dataHolder2 isKindOfClass:[CVFriendlyCellDataHolder class]]) {
-                return [dataHolder1 isKindOfClass:[CVFriendlyCellDataHolder class]] ? NSOrderedDescending : NSOrderedAscending;
             }
             else {
-                CVEventCellDataHolder *h1 = obj1;
-                CVEventCellDataHolder *h2 = obj2;
-                
+
                 // if the dates are not equal, order them in chrono order
                 if (![h1.date isEqualToDate:h2.date]) {
 					return [h1.date mt_isBefore:h2.date] ? NSOrderedAscending : NSOrderedDescending;
@@ -167,7 +153,6 @@
             }
         }];
         
-        
         // update the table with our new event or cell
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -175,11 +160,9 @@
             self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
 
             [self.tableView reloadData];
+
+            if (completion) completion();
             
-            if (self.shouldScrollToDate) {
-                [self scrollToDate:self.selectedDate];
-                self.shouldScrollToDate = NO;
-            }
         });
     }];
 }
@@ -187,10 +170,9 @@
 - (void)scrollToDate:(NSDate *)date 
 {
     for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
-        CVDataHolder *holder = [self.cellDataHolderArray objectAtIndex:i];
-        
-        if ([holder isKindOfClass:[CVEventCellDataHolder class]]) {
-            CVEventCellDataHolder *eventHolder = (CVEventCellDataHolder *)holder;
+        CVEventCellDataHolder *eventHolder = [self.cellDataHolderArray objectAtIndex:i];
+
+        if ([eventHolder isKindOfClass:[CVEventCellDataHolder class]]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             if (!eventHolder.event  &&
                 eventHolder.date    &&
@@ -210,8 +192,8 @@
 
 
 
-#pragma mark - UITableViewDataSource
 
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
@@ -220,18 +202,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-
-    CVDataHolder *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
+    CVEventCellDataHolder *eventHolder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
     
 	CVCell *returnCell = nil;
 	
-	if ([holder isKindOfClass:[CVEventCellDataHolder class]]) {
-        CVEventCellDataHolder *eventHolder = (CVEventCellDataHolder *)holder;
-        
+	if ([eventHolder isKindOfClass:[CVEventCellDataHolder class]]) {
+
         if (eventHolder.event) {
             CVAgendaEventCell *cell = [CVAgendaEventCell cellForTableView:tableView];
             [cell setEvent:eventHolder.event continued:eventHolder.continuedFromPreviousDay allDay:eventHolder.isAllDay];
-            eventHolder.cell = cell;
             cell.delegate = self;
             
             
@@ -249,16 +228,15 @@
         } else if (eventHolder.date) {
             CVAgendaDateCell *cell = [CVAgendaDateCell cellForTableView:tableView];
             cell.date = eventHolder.date;
-            eventHolder.cell = cell;	
             returnCell = cell;	
         }
-	} else if ([holder isKindOfClass:[CVWeekNumberHolder class]]) {
+	} else if ([eventHolder isKindOfClass:[NSNumber class]]) {
         returnCell = [CVWeekNumberCell cellForTableView:tableView];
-        NSInteger weekOfYearNumber = ((CVWeekNumberHolder *)holder).weekNumber;
-        ((CVWeekNumberCell *)returnCell).weekNumberLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i", @"The week number of a selected date. %1$i: the week number."), weekOfYearNumber];
-    } else if ([holder isKindOfClass:[CVFriendlyCellDataHolder class]]) {
-        returnCell = [CVFriendlyCell cellForTableView:tableView];
-        ((CVFriendlyCell *)returnCell).friendlyPhraseLabel.text = ((CVFriendlyCellDataHolder *)holder).friendlyText;
+        NSInteger weekOfYearNumber = [(NSNumber *)eventHolder integerValue];
+        ((CVWeekNumberCell *)returnCell).weekNumberLabel.text =
+        [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
+                                                     @"The week number of a selected date. %1$i: the week number."),
+         weekOfYearNumber];
     }
 	
     return returnCell;
@@ -271,16 +249,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	CVDataHolder *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
-    
-    if ([holder isKindOfClass:[CVWeekNumberHolder class]]) {
+    CVEventCellDataHolder *eventHolder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
+
+    if ([eventHolder isKindOfClass:[NSNumber class]]) {
         return WEEK_NUM_CELL_HEIGHT;
-    } else if ([holder isKindOfClass:[CVFriendlyCellDataHolder class]]) {
-        return FRIENDLY_CELL_HEIGHT;
     }
-    
-    CVEventCellDataHolder *eventHolder = (CVEventCellDataHolder *)holder;
-    
+
     // call the NSString category method to set the cell height of the regular cells
     // add a little padding to keep padding consistent
     CGFloat width;

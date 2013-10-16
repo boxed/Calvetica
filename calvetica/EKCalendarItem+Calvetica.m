@@ -12,9 +12,9 @@
 
 + (EKCalendarItem *)calendarItemWithIdentifier:(NSString *)identifier
 {
-	EKCalendarItem *calendarItem = [[[CVEventStore sharedStore].eventStore calendarItemsWithExternalIdentifier:identifier] lastObject];
+	EKCalendarItem *calendarItem = [[[EKEventStore sharedStore] calendarItemsWithExternalIdentifier:identifier] lastObject];
 	if (!calendarItem)
-		calendarItem = [[CVEventStore sharedStore].eventStore calendarItemWithIdentifier:identifier];
+		calendarItem = [[EKEventStore sharedStore] calendarItemWithIdentifier:identifier];
 	return calendarItem;
 }
 

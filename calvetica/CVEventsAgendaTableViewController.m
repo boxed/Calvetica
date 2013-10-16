@@ -10,7 +10,7 @@
 
 
 @interface CVEventsAgendaTableViewController ()
-@property (nonatomic, strong) NSMutableArray *cellDataHolderArray;
+@property (nonatomic, strong) NSMutableArray *calendarItems;
 @end
 
 
@@ -18,9 +18,9 @@
 
 
 
-- (void)reloadTableView 
+- (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
-    [super reloadTableView];
+    [super reloadTableViewWithCompletion:completion];
     
     // date can't be null
     if (!self.selectedDate) return;
@@ -31,16 +31,16 @@
     [MTq def:^{
 
         // fetch the events
-        NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:dateCopy 
+        NSMutableArray *events = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:dateCopy 
                                                                                       toDate:[dateCopy mt_endOfCurrentDay]
                                                                           forActiveCalendars:YES]];
         
         // create cell data holders
-        NSMutableArray *tempCellDataHolderArray = [NSMutableArray array];
+        NSMutableArray *tempArray = [NSMutableArray array];
         if (events.count == 0) {
             // create data holder
             CVEventCellDataHolder *cellDataHolder = [[CVEventCellDataHolder alloc] init];
-            [tempCellDataHolderArray addObject:cellDataHolder];
+            [tempArray addObject:cellDataHolder];
         }
         else {
             for (EKEvent *event in events) {
@@ -54,7 +54,7 @@
                     cellDataHolder.date = event.startingDate;
                     cellDataHolder.isAllDay = YES;
                     
-                    [tempCellDataHolderArray addObject:cellDataHolder];
+                    [tempArray addObject:cellDataHolder];
                 }
                 
                 // if it spans the whole day, make it an all day event
@@ -63,7 +63,7 @@
                     cellDataHolder.date = event.startingDate;
                     cellDataHolder.isAllDay = YES;
                     
-                    [tempCellDataHolderArray addObject:cellDataHolder];
+                    [tempArray addObject:cellDataHolder];
                 }
                 
                 // if event started before date (but obviously cant end after it) show it at the beginning
@@ -74,7 +74,7 @@
                     cellDataHolder.date = nil;
                     cellDataHolder.isAllDay = NO;
                     
-                    [tempCellDataHolderArray addObject:cellDataHolder];
+                    [tempArray addObject:cellDataHolder];
                 }
                 
                 else {
@@ -82,14 +82,13 @@
                     cellDataHolder.date = event.startingDate;
                     cellDataHolder.isAllDay = NO;
                     
-                    [tempCellDataHolderArray addObject:cellDataHolder];
+                    [tempArray addObject:cellDataHolder];
                 }
             }
-            
-            
+
             // sort the data holders so that all day events are first, then events that started
             // previously, then events that start today
-            [tempCellDataHolderArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            [tempArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                 CVEventCellDataHolder *h1 = obj1;
                 CVEventCellDataHolder *h2 = obj2;
                 
@@ -110,20 +109,16 @@
                 }
             }];
         }
-        
-        
+
         // update the table with our new event or cell
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // replace the old data holder array with the one we just generated
-            self.cellDataHolderArray = [tempCellDataHolderArray mutableCopy];
+            self.calendarItems = [tempArray mutableCopy];
             
-            [self.tableView reloadData]; 
-            
-            if (self.shouldScrollToCurrentHour && [self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
-                [self scrollToCurrentHour];
-                self.shouldScrollToCurrentHour = NO;
-            }
+            [self.tableView reloadData];
+
+            if (completion) completion();
         });
     }];
     
@@ -134,8 +129,8 @@
     // scroll to current hour
     [self.tableView reloadData];
     NSInteger currentHour = [[NSDate date] mt_hourOfDay];
-    for (NSInteger i = 0; i < self.cellDataHolderArray.count; i++) {
-        CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:i];
+    for (NSInteger i = 0; i < self.calendarItems.count; i++) {
+        CVEventCellDataHolder *holder = [_calendarItems objectAtIndex:i];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         if ([holder.date mt_hourOfDay] == currentHour &&
             [self.tableView numberOfSections] > indexPath.section &&
@@ -151,12 +146,12 @@
 
 - (id)cellDataHolderAtIndexPath:(NSIndexPath *)index 
 {
-    return [_cellDataHolderArray objectAtIndex:index.row];
+    return [_calendarItems objectAtIndex:index.row];
 }
 
 - (void)removeObjectAtIndexPath:(NSIndexPath *)index 
 {
-    [_cellDataHolderArray removeObjectAtIndex:index.row];
+    [_calendarItems removeObjectAtIndex:index.row];
 }
 
 
@@ -166,14 +161,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return self.cellDataHolderArray.count;
+    return self.calendarItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {  
     
     CVEventCell *cell = [CVEventCell cellForTableView:tableView];
-    CVEventCellDataHolder *holder = [_cellDataHolderArray objectAtIndex:indexPath.row];
+    CVEventCellDataHolder *holder = [_calendarItems objectAtIndex:indexPath.row];
     
     if (holder.event) {
         cell.isEmpty = NO;
@@ -190,7 +185,6 @@
 	cell.secondaryDurationBarColor = [UIColor clearColor];
     cell.delegate = self;
 	[cell resetAccessoryButton];
-    holder.cell = cell;
     
     [cell drawDurationBarAnimated:NO];
     

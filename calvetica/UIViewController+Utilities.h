@@ -7,9 +7,8 @@
 //
 
 
-@interface UIViewController (UIViewController_Utilities)
+@interface UIViewController (UIViewController)
 
 - (CGRect)fullScreenRectBasedOnOrientation;
-- (BOOL)isLandscape;
 
 @end

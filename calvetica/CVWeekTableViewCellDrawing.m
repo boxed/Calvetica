@@ -30,7 +30,7 @@
     
     
     // grab all the events we need
-    NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:startOfWeek
+    NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startOfWeek
                                                                                       toDate:endOfWeek
                                                                           forActiveCalendars:YES]];  
     

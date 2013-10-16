@@ -23,7 +23,7 @@
 												 ascending:YES
 												  selector:@selector(localizedCaseInsensitiveCompare:)];
 	NSArray *sortDescriptors = @[sortDescriptor];
-	_availableCalendars = [[CVEventStore eventCalendars] sortedArrayUsingDescriptors:sortDescriptors];
+	_availableCalendars = [[EKEventStore eventCalendars] sortedArrayUsingDescriptors:sortDescriptors];
 	
 	_availableCalendars = [_availableCalendars filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKCalendar *calendar, NSDictionary *bindings) {
 		return calendar.allowsContentModifications ? YES : NO;

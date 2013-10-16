@@ -66,7 +66,7 @@
 
 - (void)loadCellDataHolderArray
 {
-    NSArray *calendars = [CVEventStore eventCalendars];
+    NSArray *calendars = [EKEventStore eventCalendars];
     //sort the calendars
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"

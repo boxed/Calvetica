@@ -35,8 +35,8 @@
                                                       selector:@selector(localizedCaseInsensitiveCompare:)];  
         NSArray *sortDescriptors = @[sortDescriptor];
         
-		_editableCalendars = [[CVEventStore editableCalendarsForEntityType:EKEntityTypeEvent] sortedArrayUsingDescriptors:sortDescriptors];
-		_allCalendars = [CVEventStore eventCalendars];
+		_editableCalendars = [[EKEventStore editableCalendarsForEntityType:EKEntityTypeEvent] sortedArrayUsingDescriptors:sortDescriptors];
+		_allCalendars = [EKEventStore eventCalendars];
 		_allCalendars = [_allCalendars  sortedArrayUsingDescriptors:sortDescriptors];
 	}
 	return _showUneditableCalendars ? _allCalendars : _editableCalendars;

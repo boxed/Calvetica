@@ -12,7 +12,7 @@
 
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 
 
 @interface EventStoreTests : SenTestCase {

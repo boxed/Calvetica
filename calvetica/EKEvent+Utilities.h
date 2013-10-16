@@ -3,7 +3,7 @@
 #import "times.h"
 #import "EKEvent+Utilities.h"
 #import "EKRecurrenceRule+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "strings.h"
 
 
@@ -11,13 +11,10 @@
 
 @interface EKEvent (Utilities)
 
-
 @property (nonatomic, strong) NSDate *startingDate;
 @property (nonatomic, strong) NSDate *endingDate;
 
-
 #pragma mark - CONSTRUCTORS
-
 + (EKEvent *)eventWithDefaultsAtDate:(NSDate *)date allDay:(BOOL)isAllDay;
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay;
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay calendar:(EKCalendar *)cal;
@@ -35,11 +32,9 @@
 - (BOOL)isACurrentAlarm:(EKAlarm *)alarm;
 
 #pragma mark - COMPARATORS
-
 - (BOOL)startsOnSameDayAsDate:(NSDate *)dayDate;
 
 #pragma mark - UTILITIES
-
 - (EKCalendar *)readCalendar;
 - (NSTimeInterval)eventDuration;
 - (CGFloat)percentOfDay;

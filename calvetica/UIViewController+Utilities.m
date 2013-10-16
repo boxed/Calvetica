@@ -9,7 +9,7 @@
 #import "UIViewController+Utilities.h"
 
 
-@implementation UIViewController (UIViewController_Utilities)
+@implementation UIViewController (UIViewController)
 
 - (CGRect)fullScreenRectBasedOnOrientation 
 {
@@ -23,12 +23,6 @@
         r.size.height = temp;
         return r;
     }
-}
-
-- (BOOL)isLandscape 
-{
-    UIInterfaceOrientation o = self.interfaceOrientation;
-    return (o == UIInterfaceOrientationLandscapeLeft || o == UIInterfaceOrientationLandscapeRight);
 }
 
 @end

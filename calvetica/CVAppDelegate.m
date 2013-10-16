@@ -12,20 +12,30 @@
 #import "NSJSONSerialization+Utilities.h"
 #import "CVRootViewController.h"
 #import "EKEvent+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "dictionarykeys.h"
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
 #import "EKCalendarItem+Calvetica.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 
 
 @interface CVAppDelegate () 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
+@property (nonatomic, assign) BOOL isLaunching;
 @end
 
 
 @implementation CVAppDelegate
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _isLaunching = YES;
+    }
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
@@ -130,19 +140,22 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application 
 {
-	CVRootViewController *rvc = (CVRootViewController *)_window.rootViewController;
-    
-    // check whether it's a new day, if so update the month buttons to reflect today
-    if (![rvc.todaysDate mt_isWithinSameDay:[NSDate date]]) {
-		rvc.todaysDate		= [NSDate date];
-        rvc.selectedDate	= [NSDate date];
-    }
-    [rvc refreshUI];
+    if (!self.isLaunching) {
+        self.isLaunching = YES;
 
+        CVRootViewController *rvc = (CVRootViewController *)_window.rootViewController;
+
+        // check whether it's a new day, if so update the month buttons to reflect today
+        if (![rvc.todaysDate mt_isWithinSameDay:[NSDate date]]) {
+            rvc.todaysDate		= [NSDate date];
+            rvc.selectedDate	= [NSDate date];
+        }
+        [rvc refreshUIAnimated:YES];
+    }
 
 	// trigger a pull request for remote sources
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
-		[[CVEventStore sharedStore].eventStore refreshSourcesIfNecessary];
+		[[EKEventStore sharedStore] refreshSourcesIfNecessary];
 	});
 }
 
@@ -166,7 +179,7 @@
     // you the first occurrence.
     NSDate *rightBeforeEvent	= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
     NSDate *rightAfterEvent		= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
-    NSArray *events				= [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
+    NSArray *events				= [EKEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
 
     for (EKEvent *event in events) {
         if ([event hasIdentifier:identifier]) {
@@ -206,7 +219,7 @@
     NSDate *rightAfterEvent		= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
 
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
-		NSArray *events = [CVEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
+		NSArray *events = [EKEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			for (EKEvent *event in events) {
 				if ([event hasIdentifier:identifier]) {
@@ -352,7 +365,7 @@
 	NSString *soundToPlay	= [CVSettings customAlertSoundFile] ? [CVSettings customAlertSoundFile] : UILocalNotificationDefaultSoundName;
     
     // fetch month events
-    NSMutableArray *monthEvents = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:startDate
+    NSMutableArray *monthEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startDate
                                                                                        toDate:endDate
                                                                            forActiveCalendars:NO]];
     

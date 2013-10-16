@@ -6,8 +6,7 @@
 //
 
 #import "CVCustomColorDataHolder.h"
-
-
+#import "colors.h"
 
 
 @implementation CVCustomColorDataHolder

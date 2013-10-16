@@ -79,7 +79,7 @@
     [self reloadTableView];
 }
 
-- (void)reloadTableView 
+- (void)reloadTableView
 {
     [self.tableView reloadData];
 }
@@ -125,7 +125,6 @@
     // only do this if the table view has been added to the screen
     if (self.tableView.window) {
 
-
         void (^animations)(void) = ^{
             CGRect f = [_startDate rectOfDayButtonInTableView:self.tableView forDate:_selectedDate];
             f = CGRectInset(f, -TODAY_BOX_INNER_OFFSET_IPAD, -TODAY_BOX_INNER_OFFSET_IPAD);
@@ -141,24 +140,13 @@
         if (animated) {
 
             [UIView mt_animateViews:@[_selectedDayView]
-                           duration:0.1
-                     timingFunction:kMTEaseOutSine
+                           duration:0.2
+                     timingFunction:kMTEaseInOutExpo
                          animations:^
             {
-                [_selectedDayView setSuperFrame:CGRectInset(_selectedDayView.frame, 20, 20)];
-            } completion:^{
                 animations();
-                [_selectedDayView setSuperFrame:CGRectInset(_selectedDayView.frame, 20, 20)];
-                [UIView mt_animateViews:@[_selectedDayView]
-                               duration:0.2
-                         timingFunction:kMTEaseOutBack
-                                options:UIViewAnimationOptionBeginFromCurrentState
-                             animations:^
-                {
-                    [_selectedDayView setSuperFrame:CGRectInset(_selectedDayView.frame, -20, -20)];
-                } completion:^{
-                    complete();
-                }];
+            } completion:^{
+                complete();
             }];
         }
         else {

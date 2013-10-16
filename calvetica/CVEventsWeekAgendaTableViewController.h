@@ -6,7 +6,6 @@
 //
 
 #import "CVRootTableViewController.h"
-#import "CVWeekNumberHolder.h"
 
 
 @interface CVEventsWeekAgendaTableViewController : CVRootTableViewController

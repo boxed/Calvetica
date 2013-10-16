@@ -45,7 +45,7 @@
 
 - (NSInteger)indexOfCalendarEditable:(BOOL)editable 
 {
-    NSArray *cals = editable ? [CVEventStore editableCalendarsForEntityType:EKEntityMaskEvent] : [CVEventStore eventCalendars];
+    NSArray *cals = editable ? [EKEventStore editableCalendarsForEntityType:EKEntityMaskEvent] : [EKEventStore eventCalendars];
     for (EKCalendar *c in cals) {
         if ([c.calendarIdentifier isEqualToString:self.calendarIdentifier]) {
             return [cals indexOfObject:c];
@@ -61,12 +61,12 @@
 
 - (BOOL)save
 {
-	return [CVEventStore saveCalendar:self] == nil;
+	return [EKEventStore saveCalendar:self] == nil;
 }
 
 - (BOOL)remove
 {
-	return [CVEventStore removeCalendar:self] == nil;
+	return [EKEventStore removeCalendar:self] == nil;
 }
 
 @end

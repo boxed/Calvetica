@@ -1,14 +1,16 @@
-
+//
+//  CVSettings.h
+//  calvetica
+//
+//  Created by Adam Kirk on 5/14/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
 
 #import "EKCalendar+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVEventDetailsOrderViewController.h"
-#import "CVEventSubtitleTextPriorityViewController.h"
-#import "CVEventStore.h"
-#import "settingskeys.h"
 #import "UIColor+Utilities.h"
-#import "CVCustomColorDataHolder.h"
-#import "CVDebug.h"
+
 
 @interface CVSettings : NSObject
 

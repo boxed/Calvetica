@@ -1,12 +1,12 @@
 //
-//  CVEventStore.m
+//  EKEventStore.m
 //  calvetica
 //
 //  Created by Adam Kirk on 4/21/11.
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "EKEvent+Utilities.h"
 #import "EKCalendarItem+Calvetica.h"
 #import "CVEventSquare.h"
@@ -14,18 +14,22 @@
 
 
 
-@implementation CVEventStore
+@implementation EKEventStore (Shared)
 
 static BOOL __permissionGranted = NO;
-static CVEventStore *__sharedStore = nil;
+static EKEventStore *__sharedStore = nil;
 
-+ (CVEventStore *)sharedStore
++ (EKEventStore *)sharedStore
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedStore = [[CVEventStore alloc] init];
-        __sharedStore.eventStore = [[EKEventStore alloc] init];
+        __sharedStore = [EKEventStore new];
     });
+
+    if (!__permissionGranted) {
+        return nil;
+    }
+
     return __sharedStore;
 }
 
@@ -39,15 +43,10 @@ static CVEventStore *__sharedStore = nil;
     return __permissionGranted;
 }
 
-- (EKEventStore *)eventStore
++ (EKEventStore *)permissionStore
 {
-    if (!__permissionGranted) return nil;
-    return _eventStore;
-}
-
-- (EKEventStore *)permissionStore
-{
-    return _eventStore;
+    [self sharedStore];
+    return __sharedStore;
 }
 
 
@@ -75,8 +74,8 @@ static CVEventStore *__sharedStore = nil;
         }
     }
 
-    NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:bufferedStartDate endDate:bufferedEndDate calendars:calendars];
-    NSMutableArray *events = [NSMutableArray arrayWithArray:[[CVEventStore sharedStore].eventStore eventsMatchingPredicate:predicate]];
+    NSPredicate *predicate = [[EKEventStore sharedStore] predicateForEventsWithStartDate:bufferedStartDate endDate:bufferedEndDate calendars:calendars];
+    NSMutableArray *events = [NSMutableArray arrayWithArray:[[EKEventStore sharedStore] eventsMatchingPredicate:predicate]];
 
     // strip out any events we grabbed because of the buffer that are outside our originally requested range
 	[events filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent *event, NSDictionary *bindings) {
@@ -100,7 +99,7 @@ static CVEventStore *__sharedStore = nil;
 	startDate = [startDate dateByAddingTimeInterval:-1];
 
     // grab all the events we need
-    NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:startDate
+    NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startDate
                                                                                       toDate:endDate
                                                                           forActiveCalendars:activeCalsOnly]];
     
@@ -203,8 +202,8 @@ static CVEventStore *__sharedStore = nil;
 	NSMutableArray *foundEvents = [NSMutableArray array];
 	
 	for (NSInteger i = 0; i < [endDate mt_monthsSinceDate:startDate]; i+=6) {
-		NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForEventsWithStartDate:[startDate mt_dateMonthsAfter:i] endDate:[startDate mt_dateMonthsAfter:i+6] calendars:calendars];
-		NSMutableArray *events = [NSMutableArray arrayWithArray:[[CVEventStore sharedStore].eventStore eventsMatchingPredicate:predicate]];
+		NSPredicate *predicate = [[EKEventStore sharedStore] predicateForEventsWithStartDate:[startDate mt_dateMonthsAfter:i] endDate:[startDate mt_dateMonthsAfter:i+6] calendars:calendars];
+		NSMutableArray *events = [NSMutableArray arrayWithArray:[[EKEventStore sharedStore] eventsMatchingPredicate:predicate]];
 		
 		[events filterUsingPredicate:searchPredicate];
 
@@ -217,7 +216,7 @@ static CVEventStore *__sharedStore = nil;
 + (EKEvent *)event
 {
     if (!__permissionGranted) return nil;
-    return [EKEvent eventWithEventStore:[CVEventStore sharedStore].eventStore];
+    return [EKEvent eventWithEventStore:[EKEventStore sharedStore]];
 }
 
 + (EKEvent *)eventWithIdentifier:(NSString *)identifier
@@ -231,7 +230,7 @@ static CVEventStore *__sharedStore = nil;
     if (!__permissionGranted) return nil;
     NSError *error = nil;
     EKSpan span = forAll ? EKSpanFutureEvents : EKSpanThisEvent;
-    [[CVEventStore sharedStore].eventStore saveEvent:event span:span error:&error];
+    [[EKEventStore sharedStore] saveEvent:event span:span error:&error];
     return error;
 }
 
@@ -239,16 +238,16 @@ static CVEventStore *__sharedStore = nil;
 {
     if (!__permissionGranted) return nil;
     NSError *error = nil;
-    [[CVEventStore sharedStore].eventStore removeEvent:event span:(forAll ? EKSpanFutureEvents : EKSpanThisEvent) error:&error];
+    [[EKEventStore sharedStore] removeEvent:event span:(forAll ? EKSpanFutureEvents : EKSpanThisEvent) error:&error];
     return error;
 }
 
 + (NSArray *)eventCalendars
 {
     if (!__permissionGranted) return nil;
-	NSArray *array = [[CVEventStore sharedStore].eventStore calendarsForEntityType:EKEntityTypeEvent];
+	NSArray *array = [[EKEventStore sharedStore] calendarsForEntityType:EKEntityTypeEvent];
 	if (array.count == 0) {
-		EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:[CVEventStore sharedStore].eventStore];
+		EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:[EKEventStore sharedStore]];
 		[calendar save];
 		array = @[calendar];
 	}
@@ -258,7 +257,7 @@ static CVEventStore *__sharedStore = nil;
 + (EKCalendar *)defaultCalendarForNewEvents
 {
     if (!__permissionGranted) return nil;
-    return [CVEventStore sharedStore].eventStore.defaultCalendarForNewEvents;
+    return [EKEventStore sharedStore].defaultCalendarForNewEvents;
 }
 
 
@@ -268,8 +267,8 @@ static CVEventStore *__sharedStore = nil;
 
 + (void)remindersForDate:(NSDate *)date completion:(void (^)(NSArray *reminders))completion
 {
-    NSPredicate *predicate = [[CVEventStore sharedStore].eventStore predicateForRemindersInCalendars:nil];
-    [[CVEventStore sharedStore].eventStore fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
+    NSPredicate *predicate = [[EKEventStore sharedStore] predicateForRemindersInCalendars:nil];
+    [[EKEventStore sharedStore] fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
         if (completion) completion(reminders);
     }];
 }
@@ -282,7 +281,7 @@ static CVEventStore *__sharedStore = nil;
 {
     if (!__permissionGranted) return nil;
     NSMutableArray *editableCals = [NSMutableArray array];
-    for (EKCalendar *c in [[CVEventStore sharedStore].eventStore calendarsForEntityType:entityType]) {
+    for (EKCalendar *c in [[EKEventStore sharedStore] calendarsForEntityType:entityType]) {
         if (c.allowsContentModifications) {
             [editableCals addObject:c];
         }
@@ -293,13 +292,13 @@ static CVEventStore *__sharedStore = nil;
 + (EKCalendar *)calendarWithIdentifier:(NSString *)identifier
 {
     if (!__permissionGranted) return nil;
-	return [[CVEventStore sharedStore].eventStore calendarWithIdentifier:identifier];
+	return [[EKEventStore sharedStore] calendarWithIdentifier:identifier];
 }
 
 + (NSArray *)calendarSources
 {
     if (!__permissionGranted) return nil;
-	return [CVEventStore sharedStore].eventStore.sources;
+	return [EKEventStore sharedStore].sources;
 }
 
 + (NSError *)saveCalendar:(EKCalendar *)calendar
@@ -307,8 +306,8 @@ static CVEventStore *__sharedStore = nil;
     if (!__permissionGranted) return nil;
     NSError *error;
 	if (!calendar.title) calendar.title = @"Untitled";
-	if (!calendar.source) calendar.source = [CVEventStore defaultSource];
-	[[CVEventStore sharedStore].eventStore saveCalendar:calendar commit:YES error:&error];
+	if (!calendar.source) calendar.source = [EKEventStore defaultSource];
+	[[EKEventStore sharedStore] saveCalendar:calendar commit:YES error:&error];
 	return error;
 }
 
@@ -316,7 +315,7 @@ static CVEventStore *__sharedStore = nil;
 {
     if (!__permissionGranted) return nil;
     NSError *error;
-	[[self sharedStore].eventStore removeCalendar:calendar commit:YES error:&error];
+	[[self sharedStore] removeCalendar:calendar commit:YES error:&error];
 	return error;
 }
 
@@ -328,7 +327,7 @@ static CVEventStore *__sharedStore = nil;
 + (EKSource *)defaultSource
 {
     if (!__permissionGranted) return nil;
-	NSArray *array = [CVEventStore sharedStore].eventStore.sources;
+	NSArray *array = [EKEventStore sharedStore].sources;
 	for (EKSource *source in array) {
 		if (source.sourceType == EKSourceTypeLocal || source.sourceType == EKSourceTypeMobileMe) {
 			return source;

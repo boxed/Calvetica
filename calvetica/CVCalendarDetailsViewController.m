@@ -7,7 +7,7 @@
 //
 
 #import "CVCalendarDetailsViewController.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVNativeAlertView.h"
 #import "CVCustomColorDataHolder.h"
 
@@ -86,7 +86,7 @@
 - (NSArray *)loadColors
 {
     NSArray *colors = [CVCustomColorDataHolder customColorsDataHolderCollection];
-    for (EKCalendar *grp in [CVEventStore eventCalendars]) {
+    for (EKCalendar *grp in [EKEventStore eventCalendars]) {
         for (CVCustomColorDataHolder *holder in colors) {
             if ([[grp customColor] isEqual:holder.color]) {
                 holder.isSelected = YES;

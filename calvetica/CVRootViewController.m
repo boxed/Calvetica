@@ -19,6 +19,7 @@
 #import "CVSubHourPickerViewController.h"
 #import "CVLandscapeWeekView.h"
 #import "CVSearchViewController_iPhone.h"
+#import "CVEventCellDataHolder.h"
 // iPhone
 #import "CVLandscapeWeekView_iPhone.h"
 // iPad
@@ -26,9 +27,9 @@
 #import "CVLandscapeWeekView_iPad.h"
 
 
-typedef NS_ENUM(NSUInteger, CVRootMonthViewAnimateDirection) {
-    CVRootMonthViewAnimateDirectionDown,
-    CVRootMonthViewAnimateDirectionUp
+typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
+    CVRootMonthViewMoveDirectionDown,
+    CVRootMonthViewMoveDirectionUp
 };
 
 typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
@@ -54,27 +55,27 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
                                     CVSearchViewControllerDelegate,
                                     CVLandscapeWeekViewDelegate>
 
-@property (nonatomic, weak  ) IBOutlet UIControl                       *redBarPlusButton;
-@property (nonatomic, strong)          CVRootTableViewController       *rootTableViewController;
-@property (nonatomic, weak  ) IBOutlet CVMonthTableViewController      *monthTableViewController;
-@property (nonatomic, weak  ) IBOutlet UIButton                        *openCalendarsButton;
-@property (nonatomic, strong)          UIPopoverController             *nativePopoverController;
-@property (nonatomic, weak  ) IBOutlet UIButton                        *showViewOptionsButton;
-@property (nonatomic, assign)          CVRootTableViewMode             tableMode;
-@property (nonatomic, weak  ) IBOutlet UITableView                     *rootTableView;
-@property (nonatomic, weak  ) IBOutlet UIButton                        *monthLabelControl;
-@property (nonatomic, weak  ) IBOutlet UIView                          *monthTableViewContainer;
-@property (nonatomic, weak  ) IBOutlet UIView                          *redBar;
-@property (nonatomic, weak  ) IBOutlet UIView                          *weekdayTitleBar;
+@property (nonatomic, weak  ) IBOutlet UIControl                    *redBarPlusButton;
+@property (nonatomic, strong)          CVRootTableViewController    *rootTableViewController;
+@property (nonatomic, weak  ) IBOutlet CVMonthTableViewController   *monthTableViewController;
+@property (nonatomic, weak  ) IBOutlet UIButton                     *openCalendarsButton;
+@property (nonatomic, strong)          UIPopoverController          *nativePopoverController;
+@property (nonatomic, weak  ) IBOutlet UIButton                     *showViewOptionsButton;
+@property (nonatomic, assign)          CVRootTableViewMode          rootTableMode;
+@property (nonatomic, weak  ) IBOutlet UITableView                  *rootTableView;
+@property (nonatomic, weak  ) IBOutlet UIButton                     *monthLabelControl;
+@property (nonatomic, weak  ) IBOutlet UIView                       *monthTableViewContainer;
+@property (nonatomic, weak  ) IBOutlet UIView                       *redBar;
+@property (nonatomic, weak  ) IBOutlet UIView                       *weekdayTitleBar;
 
 // iPhone
-@property (nonatomic, assign)          CVRootMonthViewAnimateDirection monthViewPushedUpDirection;
+@property (nonatomic, assign)          CVRootMonthViewMoveDirection monthViewPushedUpDirection;
 
 // iPad
-@property (nonatomic, weak  ) IBOutlet UILabel                         *redBarMonthLabel;
-@property (nonatomic, weak  ) IBOutlet UILabel                         *redBarYearLabel;
-@property (nonatomic, weak  ) IBOutlet UILabel                         *grayBarWeekdayLabel;
-@property (nonatomic, weak  ) IBOutlet UILabel                         *grayBarDateLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel                      *redBarMonthLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel                      *redBarYearLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel                      *grayBarWeekdayLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel                      *grayBarDateLabel;
 @end
 
 
@@ -105,24 +106,32 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 {
     [super viewDidAppearAfterLoad:animated];
 
-    if (![CVEventStore isPermissionGranted]) {
-        [[[CVEventStore sharedStore] permissionStore] requestAccessToEntityType:EKEntityTypeEvent
-                                                                     completion:^(BOOL granted, NSError *error)
-        {
-            [MTq main:^{
-                if (granted) {
-                    [CVEventStore setPermissionGranted:granted];
-                    self.selectedDate = self.todaysDate;
-                }
-                else {
+    if (![EKEventStore isPermissionGranted]) {
+        [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (granted) {
+                [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+                    [MTq main:^{
+                        if (granted) {
+                            [EKEventStore setPermissionGranted:granted];
+                            self.selectedDate = self.todaysDate;
+                            [self refreshUIAnimated:NO];
+                            [self showWelcomeScreen];
+                        }
+                        else {
+                            [self notifyOfNeededPermission];
+                        }
+                    }];
+                }];
+            }
+            else {
+                [MTq main:^{
                     [self notifyOfNeededPermission];
-                }
-            }];
+                }];
+            }
         }];
     }
 
-    [self updateLayout];
-    [self showWelcomeScreen];
+    [self updateLayoutAnimated:NO];
 }
 
 #pragma mark (rotation)
@@ -153,7 +162,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[self updateLayout];
+	[self updateLayoutAnimated:YES];
 }
 
 
@@ -200,7 +209,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     [self updateWeekdayTitleLabels];
     [self reloadMonthTableView];
     [self updateSelectionSquare:NO];
-    [self reloadRootTableView];
+    [self reloadRootTableViewWithCompletion:nil];
 
 	if (PAD) {
 		if (self.nativePopoverController) {
@@ -224,35 +233,35 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 	if (sender.state != UIGestureRecognizerStateEnded) return;
 
     if (sender.scale < 1) {
-        if (self.tableMode < CVRootTableViewModeDetailedWeek) {
-            self.tableMode += 1;
+        if (self.rootTableMode < CVRootTableViewModeDetailedWeek) {
+            self.rootTableMode += 1;
         }
     }
     else {
-        if (self.tableMode > CVRootTableViewModeFull) {
-            self.tableMode -= 1;
+        if (self.rootTableMode > CVRootTableViewModeFull) {
+            self.rootTableMode -= 1;
         }
     }
 
-    if (self.tableMode == CVRootTableViewModeFull) {
+    if (self.rootTableMode == CVRootTableViewModeFull) {
         [UIApplication showBezelWithTitle:@"Full Day"];
     }
-    else if (self.tableMode == CVRootTableViewModeAgenda) {
+    else if (self.rootTableMode == CVRootTableViewModeAgenda) {
         [UIApplication showBezelWithTitle:@"Agenda"];
     }
-    else if (self.tableMode == CVRootTableViewModeWeek) {
+    else if (self.rootTableMode == CVRootTableViewModeWeek) {
         [UIApplication showBezelWithTitle:@"Week"];
     }
-    else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
+    else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
         [UIApplication showBezelWithTitle:@"Detail Week"];
     }
 
-    [self reloadRootTableView];
+    [self reloadRootTableViewWithCompletion:nil];
 }
 
 - (IBAction)handleSwipeOnTableView:(UISwipeGestureRecognizer *)gesture
 {
-    if (self.tableMode == CVRootTableViewModeWeek) {
+    if (self.rootTableMode == CVRootTableViewModeWeek) {
         NSDate *newSelectedDate = nil;
 
         if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
@@ -266,8 +275,9 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
             self.selectedDate = newSelectedDate;
             [self reloadMonthTableView];
             [self scrollMonthTableView];
-            [self reloadRootTableView];
-            [self scrollRootTableView];
+            [self reloadRootTableViewWithCompletion:^{
+                [self scrollRootTableView];
+            }];
         }
     }
 }
@@ -302,8 +312,9 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     self.selectedDate                       = chosenDate;
     [self reloadMonthTableView];
     [self scrollMonthTableView];
-    [self reloadRootTableView];
-    [self scrollRootTableView];
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableView];
+    }];
     [self updateSelectionSquare:YES];
 }
 
@@ -324,7 +335,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 {
     CVViewOptionsPopoverViewController *viewOptionsPopover = [[CVViewOptionsPopoverViewController alloc] init];
     viewOptionsPopover.delegate = self;
-    viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.tableMode;
+    viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.rootTableMode;
     if (PAD) {
         viewOptionsPopover.popoverBackdropColor = patentedDarkGray;
         viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
@@ -385,21 +396,23 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
         self.selectedDate = [self.selectedDate mt_oneMonthNext];
         [self updateSelectionSquare:YES];
         [self scrollMonthTableView];
-        [self reloadRootTableView];
-        [self scrollRootTableView];
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
     else if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
         self.selectedDate = [self.selectedDate mt_oneMonthPrevious];
         [self updateSelectionSquare:YES];
         [self scrollMonthTableView];
-        [self reloadRootTableView];
-        [self scrollRootTableView];
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
 	else if (gesture.direction == UISwipeGestureRecognizerDirectionUp) {
-		[self animateMonthViewDirection:CVRootMonthViewAnimateDirectionUp];
+		[self moveMonthView:CVRootMonthViewMoveDirectionUp animated:YES];
 	}
 	else if (gesture.direction == UISwipeGestureRecognizerDirectionDown) {
-		[self animateMonthViewDirection:CVRootMonthViewAnimateDirectionDown];
+		[self moveMonthView:CVRootMonthViewMoveDirectionDown animated:YES];
 	}
 }
 
@@ -414,8 +427,9 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 {
 	[self scrollMonthTableView];
     [self updateSelectionSquare:YES];
-    [self reloadRootTableView];
-    [self scrollRootTableView];
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableView];
+    }];
 }
 
 - (IBAction)showWeekViewButtonWasTapped:(id)sender
@@ -456,14 +470,15 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 	[self presentFullScreenModalViewController:eventSnoozeController animated:YES];
 }
 
-- (void)refreshUI
+- (void)refreshUIAnimated:(BOOL)animated
 {
     [self reloadMonthTableView];
     [self scrollMonthTableView];
-    [self updateSelectionSquare:YES];
-    [self updateLayout];
-    [self reloadRootTableView];
-    [self scrollRootTableView];
+    [self updateSelectionSquare:animated];
+    [self updateLayoutAnimated:animated];
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableView];
+    }];
     [self updateWeekdayTitleLabels];
     [self updateMonthAndDayLabels];
 }
@@ -557,8 +572,9 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 	else {
         self.selectedDate = [self.selectedDate mt_oneDayPrevious];
 	}
-    [self reloadRootTableView];
-    [self scrollRootTableView];
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableView];
+    }];
     [self updateSelectionSquare:YES];
 }
 
@@ -604,15 +620,15 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 			holder.event = nil;
 			holder.isAllDay = NO;
 
-			if (![holder.date mt_isStartOfAnHour] || self.tableMode != CVRootTableViewModeFull) {
+			if (![holder.date mt_isStartOfAnHour] || self.rootTableMode != CVRootTableViewModeFull) {
 				[self.rootTableViewController removeObjectAtIndexPath:indexPath];
                 [self.rootTableView beginUpdates];
-				[self.rootTableView deleteRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]]
+				[self.rootTableView deleteRowsAtIndexPaths:@[indexPath]
                                           withRowAnimation:UITableViewRowAnimationFade];
                 [self.rootTableView endUpdates];
 			}
 			else {
-				[self.rootTableView reloadRowsAtIndexPaths:@[[self.rootTableView indexPathForCell:cell]]
+				[self.rootTableView reloadRowsAtIndexPaths:@[indexPath]
                                           withRowAnimation:UITableViewRowAnimationFade];
 			}
 
@@ -638,9 +654,12 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 {
     self.selectedDate = date;
     [self updateSelectionSquare:YES];
-    [self scrollMonthTableView];
-    [self reloadRootTableView];
-    [self scrollRootTableView];
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableView];
+    }];
+    if (!PAD) {
+        [self scrollMonthTableView];
+    }
 }
 
 - (void)monthTableViewController:(CVMonthTableViewController *)controller
@@ -649,7 +668,6 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
                  placeholderView:(UIView *)placeholder
 {
     self.selectedDate = date;
-    [self refreshUI];
 
     [self showQuickAddWithDefault:NO
                      durationMode:NO
@@ -669,7 +687,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
                   didFinishWithResult:(CVManageCalendarsResult)result
 {
     if (result == CVManageCalendarsResultModified) {
-        [self refreshUI];
+        [self refreshUIAnimated:YES];
     }
 
     if (PAD) {
@@ -690,7 +708,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 {
     if (result == CVQuickAddResultSaved) {
         [UIApplication showBezelWithTitle:@"Event Added"];
-        [self refreshUI];
+        [self refreshUIAnimated:YES];
     }
 
     if (PAD) {
@@ -701,7 +719,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     }
 
     if (result == CVQuickAddResultSaved) {
-        [self reloadRowsForEvent:(EKEvent *)controller.calendarItem];
+        [self reloadMonthTableViewRowsForEvent:(EKEvent *)controller.calendarItem];
     }
     else if (result == CVQuickAddResultMore) {
         CVEventViewController *eventViewController = [[CVEventViewController alloc]
@@ -733,7 +751,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
         NSDate *chosenDate = controller.chosenDate;
         self.monthTableViewController.startDate = [[chosenDate mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
         self.selectedDate = chosenDate;
-        [self refreshUI];
+        [self refreshUIAnimated:YES];
     }
 
     if (PAD) {
@@ -752,12 +770,12 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 - (void)eventViewController:(CVEventViewController *)controller didFinishWithResult:(CVEventResult)result
 {
     if (result == CVEventResultSaved) {
-        [self.rootTableViewController reloadTableView];
-        [self.monthTableViewController.tableView reloadData];
+        [self reloadRootTableViewWithCompletion:nil];
+        [self reloadMonthTableView];
     }
     else if (result == CVEventResultDeleted) {       
-        [self.rootTableViewController reloadTableView];
-        [self.monthTableViewController.tableView reloadData];
+        [self reloadRootTableViewWithCompletion:nil];
+        [self reloadMonthTableView];
     }
 
     if (result == CVEventResultSaved || result == CVEventResultDeleted) {
@@ -792,7 +810,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
               didFinishWithResult:(CVEventSnoozeResult)result
 {
     self.selectedDate = [controller.event.startingDate mt_startOfCurrentDay];
-    [self refreshUI];
+    [self refreshUIAnimated:NO];
 
     [self dismissFullScreenModalViewControllerAnimated:YES];
 
@@ -826,23 +844,31 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 	[self dismissPopoverModalViewControllerAnimated:YES];
 	
     if (option == CVViewOptionsPopoverOptionFullDayView) {
-        self.tableMode = CVRootTableViewModeFull;
-        [self refreshUI];
+        self.rootTableMode = CVRootTableViewModeFull;
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
 
     else if (option == CVViewOptionsPopoverOptionAgendaView) {
-        self.tableMode = CVRootTableViewModeAgenda;
-        [self refreshUI];
+        self.rootTableMode = CVRootTableViewModeAgenda;
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
 
     else if (option == CVViewOptionsPopoverOptionWeekView) {
-        self.tableMode = CVRootTableViewModeWeek;
-        [self refreshUI];
+        self.rootTableMode = CVRootTableViewModeWeek;
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
 
     else if (option == CVViewOptionsPopoverOptionDetailedWeekView) {
-        self.tableMode = CVRootTableViewModeDetailedWeek;
-        [self refreshUI];
+        self.rootTableMode = CVRootTableViewModeDetailedWeek;
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
 
     else if (option == CVViewOptionsPopoverOptionSearch) {
@@ -940,8 +966,9 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
         self.selectedDate = [NSDate date];
         [self reloadMonthTableView];
         [self scrollMonthTableView];
-        [self reloadRootTableView];
-        [self scrollRootTableView];
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableView];
+        }];
     }
 
     if (PAD) {
@@ -1033,7 +1060,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     if (PAD) {
         if (self.view.window) return;
-        [self updateLayout];
+        [self updateLayoutAnimated:YES];
     }
     else {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -1061,7 +1088,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)eventStoreChanged
 {
     [self reloadMonthTableView];
-    [self reloadRootTableView];
+    [self reloadRootTableViewWithCompletion:nil];
 }
 
 
@@ -1178,13 +1205,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)setupDefaults
 {
     // if the view is not scrollable, lock it
-    if (![CVSettings scrollableMonthView]) {
+    if (!PAD && ![CVSettings scrollableMonthView]) {
         self.monthTableViewController.tableView.scrollEnabled = NO;
     }
 
     // set todays day, used for reference when coming out of background
     self.todaysDate     = [[NSDate date] mt_startOfCurrentDay];;
     self.selectedDate   = self.todaysDate;
+
+    self.monthViewPushedUpDirection = CVRootMonthViewMoveDirectionDown;
 }
 
 - (void)setupUI
@@ -1206,16 +1235,14 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupRootTableViewController
 {
-    self.tableMode                              = [CVSettings eventRootTableMode];
-    self.rootTableViewController.delegate       = self;
-    self.rootTableViewController.selectedDate   = self.todaysDate;
+    self.rootTableMode = [CVSettings eventRootTableMode];
 }
 
 
 
 #pragma mark (iphone)
 
-- (void)updateLayout
+- (void)updateLayoutAnimated:(BOOL)animated
 {
     if (PAD) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -1247,7 +1274,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         NSInteger numberOfRows = [self.selectedDate numberOfCalendarRowsInCurrentMonth];
         CGFloat h = 40.0f;
 
-        [UIView animateWithDuration:0.25 animations:^{
+        void (^animations)(void) = ^{
             // stretch day button container
             self.monthTableViewContainer.height = numberOfRows * h;
             self.redBar.height = self.monthTableViewContainer.height;
@@ -1257,14 +1284,27 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
             r.size.height = self.view.height - self.rootTableView.y;
             self.rootTableView.frame = r;
+        };
 
-        } completion:^(BOOL finished) {
-            [self animateMonthViewDirection:self.monthViewPushedUpDirection];
-        }];
+        void (^completion)(void) = ^{
+            [self moveMonthView:self.monthViewPushedUpDirection animated:animated];
+        };
+
+        if (animated) {
+            [UIView animateWithDuration:0.25 animations:^{
+                animations();
+            } completion:^(BOOL finished) {
+                completion();
+            }];
+        }
+        else {
+            animations();
+            completion();
+        }
     }
 }
 
-- (void)animateMonthViewDirection:(CVRootMonthViewAnimateDirection)direction
+- (void)moveMonthView:(CVRootMonthViewMoveDirection)direction animated:(BOOL)animated
 {
 	self.monthViewPushedUpDirection = direction;
 
@@ -1277,25 +1317,38 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     UITableView *rootTableView  = self.rootTableView;
     UIView *redBar              = self.redBar;
 
+    void (^animations)(void) = ^{
+        if (direction == CVRootMonthViewMoveDirectionDown) {
+            redBar.y                = self.weekdayTitleBar.y + self.weekdayTitleBar.height;
+            monthTableView.height   = numberOfRows * h;
+        }
+        else {
+            redBar.y                = -(h * rowsToHide) + self.weekdayTitleBar.height;
+            monthTableView.height   = 2 * h;
+        }
+        rootTableView.y         = monthTableView.y + monthTableView.height;
+        rootTableView.height    = self.view.height - rootTableView.y;
+    };
 
-    [UIView mt_animateViews:@[monthTableView, rootTableView, redBar]
-                   duration:0.4
-             timingFunction:(direction == CVRootMonthViewAnimateDirectionUp ? kMTEaseOutBack : kMTEaseOutBounce)
-                    options:UIViewAnimationOptionBeginFromCurrentState
-                 animations:^{
-                     if (direction == CVRootMonthViewAnimateDirectionDown) {
-                         redBar.y                = self.weekdayTitleBar.y + self.weekdayTitleBar.height;
-                         monthTableView.height   = numberOfRows * h;
-                     }
-                     else {
-                         redBar.y                = -(h * rowsToHide) + self.weekdayTitleBar.height;
-                         monthTableView.height   = 2 * h;
-                     }
-                     rootTableView.y         = monthTableView.y + monthTableView.height;
-                     rootTableView.height    = self.view.height - rootTableView.y;
-                 } completion:^{
-                     [self updateSelectionSquare:NO];
-                 }];
+    void (^completion)(void) = ^{
+        [self updateSelectionSquare:NO];
+    };
+
+    if (animated) {
+        [UIView mt_animateViews:@[monthTableView, rootTableView, redBar]
+                       duration:0.4
+                 timingFunction:(direction == CVRootMonthViewMoveDirectionUp ? kMTEaseOutBack : kMTEaseOutBounce)
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         animations();
+                     } completion:^{
+                         completion();
+                     }];
+    }
+    else {
+        animations();
+        completion();
+    }
 }
 
 
@@ -1328,6 +1381,100 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         self.monthLabelControl.titleLabel.text = [titleOfCurrentMonthAbbreviated uppercaseString];
     }
 }
+
+
+#pragma mark (Refreshing the UI)
+
+- (void)setRootTableMode:(CVRootTableViewMode)newTableMode
+{
+    _rootTableMode = newTableMode;
+    [CVSettings setEventRootTableMode:self.rootTableMode];
+
+    if (self.rootTableMode == CVRootTableViewModeFull) {
+        self.rootTableViewController = [CVEventsFullDayTableViewController new];
+    }
+
+    else if (self.rootTableMode == CVRootTableViewModeAgenda) {
+        self.rootTableViewController = [CVEventsAgendaTableViewController new];
+    }
+
+    else if (self.rootTableMode == CVRootTableViewModeWeek) {
+        self.rootTableViewController = [CVEventsWeekAgendaTableViewController new];
+    }
+
+    else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
+        self.rootTableViewController = [CVEventsDetailedWeekTableViewController new];
+    }
+
+    self.rootTableViewController.delegate       = self;
+    self.rootTableViewController.selectedDate   = self.selectedDate;
+    self.rootTableViewController.tableView      = self.rootTableView;
+}
+
+- (void)updateWeekdayTitleLabels
+{
+    // set weekday labels
+    for (int i = 0; i < 7; i++) {
+        UILabel *l = (UILabel *)[self.weekdayTitleBar viewWithTag:WEEKDAY_TITLES_OFFSET + i];
+        BOOL abbr = (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
+                     self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+        NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
+        l.text = weekDayAbbr;
+    }
+}
+
+- (void)reloadRootTableViewWithCompletion:(void (^)(void))completion
+{
+    [self.rootTableViewController reloadTableViewWithCompletion:completion];
+}
+
+- (void)scrollRootTableView
+{
+    // check whether the table view needs to scroll
+    if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
+        [self.rootTableViewController scrollToCurrentHour];
+    }
+    [self.rootTableViewController scrollToDate:self.selectedDate];
+}
+
+- (void)reloadMonthTableView
+{
+    [self.monthTableViewController reloadTableView];
+}
+
+- (void)scrollMonthTableView
+{
+    if (PAD) {
+        NSInteger midRow = [self.monthTableViewController rowInMiddleOfVisibleRegion];
+        [self.monthTableViewController scrollToRow:midRow animated:NO];
+    }
+    else {
+        if (self.monthViewPushedUpDirection == CVRootMonthViewMoveDirectionUp) {
+            [self.monthTableViewController scrollToRowForDate:self.selectedDate
+                                                     animated:YES
+                                               scrollPosition:UITableViewScrollPositionTop];
+        }
+        else {
+            [self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth]
+                                                     animated:YES
+                                               scrollPosition:UITableViewScrollPositionTop];
+        }
+    }
+}
+
+- (void)updateSelectionSquare:(BOOL)animated
+{
+    [self.monthTableViewController reframeRedSelectedDaySquareAnimated:animated];
+}
+
+- (void)reloadMonthTableViewRowsForEvent:(EKEvent *)event
+{
+	NSInteger daysDuration = [event.endingDate mt_daysSinceDate:event.startingDate];
+	for (NSInteger i = 0; i <= daysDuration; i++) {
+		[self.monthTableViewController reloadRowForDate:[event.startingDate mt_dateDaysAfter:i]];
+	}
+}
+
 
 
 
@@ -1411,10 +1558,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)notifyOfNeededPermission
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"We need permission"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"We need permission!"
                                                         message:(@"This app can't function unless you give it permission "
                                                                  @"to access your calendars: Go to Settings.app > "
-                                                                 @"Privacy > Calendars and make sure Calvetica is ON")];
+                                                                 @"Privacy > Calendars/Reminders and make sure Calvetica is ON")];
     [alertView addButtonWithTitle:@"OK" handler:nil];
     [alertView show];
 }
@@ -1434,95 +1581,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 }
 
-- (void)setTableMode:(CVRootTableViewMode)newTableMode
-{
-    _tableMode = newTableMode;
-    [CVSettings setEventRootTableMode:self.tableMode];
-
-    if (self.tableMode == CVRootTableViewModeFull) {
-        self.rootTableViewController = [[CVEventsFullDayTableViewController alloc] init];
-    }
-
-    else if (self.tableMode == CVRootTableViewModeAgenda) {
-        self.rootTableViewController = [[CVEventsAgendaTableViewController alloc] init];
-    }
-
-    else if (self.tableMode == CVRootTableViewModeWeek) {
-        self.rootTableViewController = [[CVEventsWeekAgendaTableViewController alloc] init];
-    }
-
-    else if (self.tableMode == CVRootTableViewModeDetailedWeek) {
-        self.rootTableViewController = [[CVEventsDetailedWeekTableViewController alloc] init];
-    }
-
-    self.rootTableViewController.delegate = self;
-    self.rootTableViewController.tableView = self.rootTableView;
-}
-
-
-- (void)updateWeekdayTitleLabels
-{
-    // set weekday labels
-    for (int i = 0; i < 7; i++) {
-        UILabel *l = (UILabel *)[self.weekdayTitleBar viewWithTag:WEEKDAY_TITLES_OFFSET + i];
-        BOOL abbr = (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
-                     self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
-        NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
-        l.text = weekDayAbbr;
-    }
-}
-
-- (void)reloadRootTableView
-{
-    [self.rootTableViewController reloadTableView];
-}
-
-- (void)scrollRootTableView
-{
-    // check whether the table view needs to scroll
-    if ([self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
-        [self.rootTableViewController scrollToCurrentHour];
-    }
-    [self.rootTableViewController scrollToDate:self.selectedDate];
-}
-
-- (void)reloadMonthTableView
-{
-    [self.monthTableViewController reloadTableView];
-}
-
-- (void)updateSelectionSquare:(BOOL)animated
-{
-    [self.monthTableViewController reframeRedSelectedDaySquareAnimated:animated];
-}
-
-- (void)scrollMonthTableView
-{
-    if (PAD) {
-        NSInteger midRow = [self.monthTableViewController rowInMiddleOfVisibleRegion];
-        [self.monthTableViewController scrollToRow:midRow animated:NO];
-    }
-    else {
-        if (self.monthViewPushedUpDirection == CVRootMonthViewAnimateDirectionUp) {
-            [self.monthTableViewController scrollToRowForDate:self.selectedDate
-                                                     animated:YES
-                                               scrollPosition:UITableViewScrollPositionTop];
-        }
-        else {
-            [self.monthTableViewController scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth]
-                                                     animated:YES
-                                               scrollPosition:UITableViewScrollPositionTop];
-        }
-    }
-}
-
-- (void)reloadRowsForEvent:(EKEvent *)event
-{
-	NSInteger daysDuration = [event.endingDate mt_daysSinceDate:event.startingDate];
-	for (NSInteger i = 0; i <= daysDuration; i++) {
-		[self.monthTableViewController reloadRowForDate:[event.startingDate mt_dateDaysAfter:i]];
-	}
-}
 
 
 @end

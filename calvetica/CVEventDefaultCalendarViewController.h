@@ -6,7 +6,7 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVNativeAlertView.h"
 
 

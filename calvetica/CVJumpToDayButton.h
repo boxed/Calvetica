@@ -7,7 +7,7 @@
 //
 
 #import "UILabel+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVTodayBoxView.h"
 #import "CVColoredDotView.h"
 

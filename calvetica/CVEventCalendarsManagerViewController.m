@@ -7,7 +7,7 @@
 //
 
 #import "CVEventCalendarsManagerViewController.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "EKSource+Calvetica.h"
 
 
@@ -22,7 +22,7 @@
 {
 	[super viewDidLoad];
 
-	_calendarSources = [CVEventStore calendarSources];
+	_calendarSources = [EKEventStore calendarSources];
 
 	self.tableView.allowsSelectionDuringEditing = YES;
 
@@ -187,7 +187,7 @@
 		if (indexPath.row != calendars.count)
 			detailsView.calendar = [calendars objectAtIndex:indexPath.row];
 		else {
-			EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:[CVEventStore sharedStore].eventStore];
+			EKCalendar *calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:[EKEventStore sharedStore]];
 			calendar.source = source;
 			detailsView.calendar = calendar;
 		}
@@ -203,7 +203,7 @@
 - (void)calendarDetailsController:(CVCalendarDetailsViewController *)controller didFinishWithResult:(CVCalendarDetailsControllerResult)result
 {
     if (result == CVCalendarDetailsControllerResultSaved) {
-        _calendarSources = [CVEventStore calendarSources];
+        _calendarSources = [EKEventStore calendarSources];
     }
 	else if (controller.calendar.isNew) {
 		[controller.calendar remove];

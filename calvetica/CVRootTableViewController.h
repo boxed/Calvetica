@@ -18,10 +18,7 @@
 @property (nonatomic, strong) NSDate                                       *selectedDate;
 @property (nonatomic, strong) UITableView                                  *tableView;
 
-@property (nonatomic, assign) BOOL shouldScrollToCurrentHour;
-@property (nonatomic, assign) BOOL shouldScrollToDate;
-
-- (void)reloadTableView;
+- (void)reloadTableViewWithCompletion:(void (^)(void))completion;
 - (id)cellDataHolderAtIndexPath:(NSIndexPath *)index;
 - (void)removeObjectAtIndexPath:(NSIndexPath *)index;
 - (void)scrollToCurrentHour;

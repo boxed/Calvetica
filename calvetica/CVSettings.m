@@ -1,10 +1,17 @@
+//
+//  CVSettings.h
+//  calvetica
+//
+//  Created by Adam Kirk on 5/14/11.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
+//
 
 #import "NSString+Utilities.h"
+#import "settingskeys.h"
+#import "CVEventSubtitleTextPriorityViewController.h"
 
 
 @implementation CVSettings
-
-
 
 #pragma mark - IN APP SAVED STATE
 
@@ -39,12 +46,12 @@
     NSMutableArray *selectedCalendars = [[NSUserDefaults standardUserDefaults] objectForKey:SELECTED_EVENT_CALENDARS];
     
     if (!selectedCalendars) {
-        return [NSMutableArray arrayWithArray:[CVEventStore eventCalendars]];
+        return [NSMutableArray arrayWithArray:[EKEventStore eventCalendars]];
     }
     
     NSMutableArray *calendars = [NSMutableArray array];
     
-    for (EKCalendar *c in [CVEventStore eventCalendars]) {
+    for (EKCalendar *c in [EKEventStore eventCalendars]) {
         for (NSString *cd in selectedCalendars) {
             if ([cd isEqualToString:c.calendarIdentifier]) {
                 [calendars addObject:c];
@@ -109,11 +116,11 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *def = (NSString *)[defaults objectForKey:DEFAULT_EVENT_CALENDAR];
 
-    EKCalendar *defCal = [CVEventStore calendarWithIdentifier:def];
+    EKCalendar *defCal = [EKEventStore calendarWithIdentifier:def];
     if (defCal) {
         return defCal;
     } else {
-        return [CVEventStore defaultCalendarForNewEvents];
+        return [EKEventStore defaultCalendarForNewEvents];
     }
 }
 

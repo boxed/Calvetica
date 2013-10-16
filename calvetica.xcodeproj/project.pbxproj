@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */; };
 		6A0CD58E13983974009B6EFE /* CVMultiToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */; };
-		6A10C09E14031EDD00B20B5A /* CVFriendlyCellDataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A10C09D14031EDD00B20B5A /* CVFriendlyCellDataHolder.m */; };
 		6A17301A138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A173018138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController_iPhone.m */; };
 		6A17301F138EDC4800C2165B /* CVEventDetailsRepeatMonthlyViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A17301D138EDC4800C2165B /* CVEventDetailsRepeatMonthlyViewController_iPhone.m */; };
 		6A173024138EDC6200C2165B /* CVEventDetailsRepeatYearlyViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A173022138EDC6200C2165B /* CVEventDetailsRepeatYearlyViewController_iPhone.m */; };
@@ -24,10 +23,8 @@
 		6AA216021391AD2000490CC9 /* EKRecurrenceDayOfWeek+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA216011391AD2000490CC9 /* EKRecurrenceDayOfWeek+Utilities.m */; };
 		6AD9B6F913DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9B6F713DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.m */; };
 		6AD9B6FA13DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9B6F813DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.xib */; };
-		6AF3CE3B1402EA4000A193E4 /* CVWeekNumberHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3CE3A1402EA4000A193E4 /* CVWeekNumberHolder.m */; };
 		6AF3CE3F1403022D00A193E4 /* CVWeekNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */; };
 		6AF3CE411403026700A193E4 /* CVWeekNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */; };
-		6AF3CE44140317EB00A193E4 /* CVDataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3CE43140317EB00A193E4 /* CVDataHolder.m */; };
 		9B0127A813CBA2B50006C2EA /* CVGestureHowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */; };
 		9B0AD8A913CF5AC300DF1F2F /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AD8A713CF5AC300DF1F2F /* slider.png */; };
 		9B0AD8AA13CF5AC300DF1F2F /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AD8A813CF5AC300DF1F2F /* slider@2x.png */; };
@@ -87,8 +84,6 @@
 		9BE2F2EC13CC017100F46F37 /* longpressmonth_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE2F2E013CC017100F46F37 /* longpressmonth_iphone@2x.png */; };
 		9BE359C613EDF8BD003ACCE6 /* quickreminder_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE359C413EDF8BD003ACCE6 /* quickreminder_ipad.png */; };
 		9BE359C713EDF8BD003ACCE6 /* today_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE359C513EDF8BD003ACCE6 /* today_ipad.png */; };
-		9BE359CE13EE0428003ACCE6 /* longtap_week.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE359CC13EE0428003ACCE6 /* longtap_week.png */; };
-		9BE359CF13EE0428003ACCE6 /* longtap_week@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE359CD13EE0428003ACCE6 /* longtap_week@2x.png */; };
 		9BE359D113EE0710003ACCE6 /* closemonth_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE359D013EE0710003ACCE6 /* closemonth_ipad.png */; };
 		9BE6398A1385F3F900FB31F3 /* CVEventDefaultAlarmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE639891385F3F900FB31F3 /* CVEventDefaultAlarmsViewController.m */; };
 		9BE6399E138624E500FB31F3 /* CVEventDefaultCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE6399D138624E500FB31F3 /* CVEventDefaultCalendarViewController.m */; };
@@ -141,6 +136,9 @@
 		C23BB29217F294FE003752FF /* CVSevenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BB29117F294FE003752FF /* CVSevenButton.m */; };
 		C23BDDAB136F5DA600020FD6 /* CVTextToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BDDAA136F5DA600020FD6 /* CVTextToggleButton.m */; };
 		C23BDDB1136F61A700020FD6 /* CVEventHourViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BDDAF136F61A700020FD6 /* CVEventHourViewController_iPhone.m */; };
+		C240D96C180E05680089E963 /* CVReminderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C240D96B180E05680089E963 /* CVReminderCell.m */; };
+		C240D96E180E05870089E963 /* CVReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C240D96D180E05870089E963 /* CVReminderCell.xib */; };
+		C240D971180E1DFD0089E963 /* EKEvent+Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C240D970180E1DFD0089E963 /* EKEvent+Cell.m */; };
 		C24113BA135E4ED000A51A78 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2978713341B9500FA7638 /* EventKit.framework */; };
 		C2468C2616F97ECD006F047F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2468C2516F97ECD006F047F /* libz.dylib */; };
 		C24BAB9E13948C7500ED298B /* CVPageModalViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C24BAB9C13948C7500ED298B /* CVPageModalViewController_iPhone.m */; };
@@ -183,7 +181,7 @@
 		C277E4D613DF95B900794F53 /* CVAllDayEventSquaresView.m in Sources */ = {isa = PBXBuildFile; fileRef = C277E4D513DF95B900794F53 /* CVAllDayEventSquaresView.m */; };
 		C27B896417EA8D4F00F12871 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */; };
 		C27B896617EA8DE900F12871 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27B896517EA8DE900F12871 /* Main_iPad.storyboard */; };
-		C27EAA251630BD57008046CF /* CVEventStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C27EAA241630BD57008046CF /* CVEventStore.m */; };
+		C27EAA251630BD57008046CF /* EKEventStore+Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = C27EAA241630BD57008046CF /* EKEventStore+Shared.m */; };
 		C280C9A913E0782500656992 /* CVWeekdayTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C280C9A813E0782500656992 /* CVWeekdayTableHeaderView.m */; };
 		C280C9AE13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C280C9AD13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.m */; };
 		C280C9B013E07C8A00656992 /* CVWeekdayTableViewCell_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C280C9AF13E07C8A00656992 /* CVWeekdayTableViewCell_iPhone.xib */; };
@@ -225,8 +223,6 @@
 		C2B3C47613C5226D0055018A /* CVEventsWeekAgendaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47513C5226D0055018A /* CVEventsWeekAgendaTableViewController.m */; };
 		C2B3C47A13C52A450055018A /* CVAgendaDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47913C52A450055018A /* CVAgendaDateCell.m */; };
 		C2B3C47C13C52A5B0055018A /* CVAgendaDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3C47B13C52A5B0055018A /* CVAgendaDateCell.xib */; };
-		C2B3C47F13C53E510055018A /* CVFriendlyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3C47E13C53E510055018A /* CVFriendlyCell.xib */; };
-		C2B3C48213C53E680055018A /* CVFriendlyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C48113C53E680055018A /* CVFriendlyCell.m */; };
 		C2BE7DD713CC979200925D53 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE7DD613CC979200925D53 /* NSString+Utilities.m */; };
 		C2C33D7413AD182D00D62D27 /* CVEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C33D7613AD182D00D62D27 /* CVEventCell.xib */; };
 		C2C33D7A13AD197200D62D27 /* CVGenericReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C33D7C13AD197200D62D27 /* CVGenericReminderViewController.xib */; };
@@ -321,8 +317,6 @@
 		0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventSubtitleTextPriorityViewController.m; sourceTree = "<group>"; };
 		6A0CD58C13983974009B6EFE /* CVMultiToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMultiToggleButton.h; sourceTree = "<group>"; };
 		6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMultiToggleButton.m; sourceTree = "<group>"; };
-		6A10C09C14031EDD00B20B5A /* CVFriendlyCellDataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVFriendlyCellDataHolder.h; sourceTree = "<group>"; };
-		6A10C09D14031EDD00B20B5A /* CVFriendlyCellDataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVFriendlyCellDataHolder.m; sourceTree = "<group>"; };
 		6A173010138EA93000C2165B /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strings.h; sourceTree = "<group>"; };
 		6A173017138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsRepeatWeeklyViewController_iPhone.h; sourceTree = "<group>"; };
 		6A173018138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVEventDetailsRepeatWeeklyViewController_iPhone.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -349,13 +343,9 @@
 		6AD9B6F613DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVMonthlyRecurrenceSelectionViewController_iPhone.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6AD9B6F713DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMonthlyRecurrenceSelectionViewController_iPhone.m; sourceTree = "<group>"; };
 		6AD9B6F813DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVMonthlyRecurrenceSelectionViewController_iPhone.xib; sourceTree = "<group>"; };
-		6AF3CE391402EA4000A193E4 /* CVWeekNumberHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekNumberHolder.h; sourceTree = "<group>"; };
-		6AF3CE3A1402EA4000A193E4 /* CVWeekNumberHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekNumberHolder.m; sourceTree = "<group>"; };
 		6AF3CE3D1403022D00A193E4 /* CVWeekNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekNumberCell.h; sourceTree = "<group>"; };
 		6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekNumberCell.m; sourceTree = "<group>"; };
 		6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVWeekNumberCell.xib; sourceTree = "<group>"; };
-		6AF3CE42140317EA00A193E4 /* CVDataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDataHolder.h; sourceTree = "<group>"; };
-		6AF3CE43140317EB00A193E4 /* CVDataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDataHolder.m; sourceTree = "<group>"; };
 		9B0127A513CBA2B50006C2EA /* CVGestureHowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGestureHowToViewController.h; sourceTree = "<group>"; };
 		9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVGestureHowToViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B0AD8A713CF5AC300DF1F2F /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
@@ -438,8 +428,6 @@
 		9BE2F2E013CC017100F46F37 /* longpressmonth_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "longpressmonth_iphone@2x.png"; sourceTree = "<group>"; };
 		9BE359C413EDF8BD003ACCE6 /* quickreminder_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quickreminder_ipad.png; sourceTree = "<group>"; };
 		9BE359C513EDF8BD003ACCE6 /* today_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = today_ipad.png; sourceTree = "<group>"; };
-		9BE359CC13EE0428003ACCE6 /* longtap_week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = longtap_week.png; sourceTree = "<group>"; };
-		9BE359CD13EE0428003ACCE6 /* longtap_week@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "longtap_week@2x.png"; sourceTree = "<group>"; };
 		9BE359D013EE0710003ACCE6 /* closemonth_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closemonth_ipad.png; sourceTree = "<group>"; };
 		9BE639881385F3F900FB31F3 /* CVEventDefaultAlarmsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVEventDefaultAlarmsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9BE639891385F3F900FB31F3 /* CVEventDefaultAlarmsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDefaultAlarmsViewController.m; sourceTree = "<group>"; };
@@ -466,7 +454,7 @@
 		9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Utilities.m"; sourceTree = "<group>"; };
 		C2027EAD1360B4B6002E58BF /* CVRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRootViewController.h; sourceTree = "<group>"; };
 		C2027EAE1360B4B6002E58BF /* CVRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootViewController.m; sourceTree = "<group>"; };
-		C2027EB11360C405002E58BF /* CVEventStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventStore.h; sourceTree = "<group>"; };
+		C2027EB11360C405002E58BF /* EKEventStore+Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Shared.h"; sourceTree = "<group>"; };
 		C202A4C316FBF494000B4281 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C20698581396F656005C8192 /* geometry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = geometry.c; sourceTree = "<group>"; };
 		C20698591396F657005C8192 /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
@@ -521,6 +509,11 @@
 		C23BDDAA136F5DA600020FD6 /* CVTextToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTextToggleButton.m; sourceTree = "<group>"; };
 		C23BDDAE136F61A700020FD6 /* CVEventHourViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventHourViewController_iPhone.h; sourceTree = "<group>"; };
 		C23BDDAF136F61A700020FD6 /* CVEventHourViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVEventHourViewController_iPhone.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		C240D96A180E05680089E963 /* CVReminderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVReminderCell.h; sourceTree = "<group>"; };
+		C240D96B180E05680089E963 /* CVReminderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVReminderCell.m; sourceTree = "<group>"; };
+		C240D96D180E05870089E963 /* CVReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVReminderCell.xib; sourceTree = "<group>"; };
+		C240D96F180E1DFD0089E963 /* EKEvent+Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEvent+Cell.h"; sourceTree = "<group>"; };
+		C240D970180E1DFD0089E963 /* EKEvent+Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEvent+Cell.m"; sourceTree = "<group>"; };
 		C242B182137D8661005BC735 /* times.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = times.h; sourceTree = "<group>"; };
 		C242B18A137DB63B005BC735 /* dimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dimensions.h; sourceTree = "<group>"; };
 		C2468C2516F97ECD006F047F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -595,7 +588,7 @@
 		C277E4D513DF95B900794F53 /* CVAllDayEventSquaresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAllDayEventSquaresView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C27B896517EA8DE900F12871 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
-		C27EAA241630BD57008046CF /* CVEventStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventStore.m; sourceTree = "<group>"; };
+		C27EAA241630BD57008046CF /* EKEventStore+Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+Shared.m"; sourceTree = "<group>"; };
 		C280C9A713E0782500656992 /* CVWeekdayTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekdayTableHeaderView.h; sourceTree = "<group>"; };
 		C280C9A813E0782500656992 /* CVWeekdayTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekdayTableHeaderView.m; sourceTree = "<group>"; };
 		C280C9AC13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekdayTableViewCell_iPhone.h; sourceTree = "<group>"; };
@@ -671,9 +664,6 @@
 		C2B3C47813C52A450055018A /* CVAgendaDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAgendaDateCell.h; sourceTree = "<group>"; };
 		C2B3C47913C52A450055018A /* CVAgendaDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAgendaDateCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2B3C47B13C52A5B0055018A /* CVAgendaDateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVAgendaDateCell.xib; sourceTree = "<group>"; };
-		C2B3C47E13C53E510055018A /* CVFriendlyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVFriendlyCell.xib; sourceTree = "<group>"; };
-		C2B3C48013C53E680055018A /* CVFriendlyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVFriendlyCell.h; sourceTree = "<group>"; };
-		C2B3C48113C53E680055018A /* CVFriendlyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVFriendlyCell.m; sourceTree = "<group>"; };
 		C2BE7DD513CC979200925D53 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		C2BE7DD613CC979200925D53 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		C2C33D7513AD182D00D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventCell.xib; sourceTree = "<group>"; };
@@ -921,8 +911,6 @@
 			isa = PBXGroup;
 			children = (
 				9BE359D013EE0710003ACCE6 /* closemonth_ipad.png */,
-				9BE359CC13EE0428003ACCE6 /* longtap_week.png */,
-				9BE359CD13EE0428003ACCE6 /* longtap_week@2x.png */,
 				9BE359C413EDF8BD003ACCE6 /* quickreminder_ipad.png */,
 				9BE359C513EDF8BD003ACCE6 /* today_ipad.png */,
 				9BCECC4513EB52D5004123E9 /* longpressday_ipad.png */,
@@ -1205,6 +1193,8 @@
 		C20DDDA3161D019B00CC9D47 /* EventKit */ = {
 			isa = PBXGroup;
 			children = (
+				C2027EB11360C405002E58BF /* EKEventStore+Shared.h */,
+				C27EAA241630BD57008046CF /* EKEventStore+Shared.m */,
 				C2E29764133419E900FA7638 /* EKCalendar+Utilities.h */,
 				C2E29765133419E900FA7638 /* EKCalendar+Utilities.m */,
 				C2174D8F1605043C00F3778D /* EKCalendarItem+Calvetica.h */,
@@ -1217,6 +1207,8 @@
 				6A8483CB13A7081600CB7047 /* EKRecurrenceRule+Utilities.m */,
 				C20DDDA6161D020200CC9D47 /* EKSource+Calvetica.h */,
 				C20DDDA7161D020200CC9D47 /* EKSource+Calvetica.m */,
+				C240D96F180E1DFD0089E963 /* EKEvent+Cell.h */,
+				C240D970180E1DFD0089E963 /* EKEvent+Cell.m */,
 			);
 			name = EventKit;
 			sourceTree = "<group>";
@@ -1418,6 +1410,16 @@
 				C2C33D9113AD220400D62D27 /* CVEventHourViewController_iPhone.xib */,
 			);
 			name = "Event - Hour View Controller";
+			sourceTree = "<group>";
+		};
+		C240D969180E05370089E963 /* Reminder Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C240D96A180E05680089E963 /* CVReminderCell.h */,
+				C240D96B180E05680089E963 /* CVReminderCell.m */,
+				C240D96D180E05870089E963 /* CVReminderCell.xib */,
+			);
+			name = "Reminder Cell";
 			sourceTree = "<group>";
 		};
 		C24BAB9A13948C3D00ED298B /* Page Modal View Controller */ = {
@@ -1895,11 +1897,11 @@
 				C2927A1B1395DF9B00CEF39D /* CVCell.h */,
 				C2927A1C1395DF9B00CEF39D /* CVCell.m */,
 				C2691547136CC704002053C5 /* Event Cell */,
+				C240D969180E05370089E963 /* Reminder Cell */,
 				C28F7BA413A8665E001D6F07 /* Search Event Cell */,
 				C22EA3C313C519AB00CFFCC2 /* Agenda Event Cell */,
 				C2B3C47713C52A230055018A /* Agenda Date Cell */,
 				6AF3CE3C140301F500A193E4 /* Week Number Cell */,
-				C2B3C47D13C53D280055018A /* Friendly Cell */,
 				C2A4C97313845A3D00442AFF /* Cell Accessory Button */,
 			);
 			name = Cell;
@@ -2046,16 +2048,6 @@
 				C2B3C47B13C52A5B0055018A /* CVAgendaDateCell.xib */,
 			);
 			name = "Agenda Date Cell";
-			sourceTree = "<group>";
-		};
-		C2B3C47D13C53D280055018A /* Friendly Cell */ = {
-			isa = PBXGroup;
-			children = (
-				C2B3C48013C53E680055018A /* CVFriendlyCell.h */,
-				C2B3C48113C53E680055018A /* CVFriendlyCell.m */,
-				C2B3C47E13C53E510055018A /* CVFriendlyCell.xib */,
-			);
-			name = "Friendly Cell";
 			sourceTree = "<group>";
 		};
 		C2C9944913731906005A4EB1 /* Event - Details */ = {
@@ -2269,24 +2261,16 @@
 			children = (
 				9BFEA8A713A6A146002211B7 /* CVCustomColorDataHolder.h */,
 				9BFEA8A813A6A146002211B7 /* CVCustomColorDataHolder.m */,
-				6AF3CE42140317EA00A193E4 /* CVDataHolder.h */,
-				6AF3CE43140317EB00A193E4 /* CVDataHolder.m */,
 				C286BFC6137F26E2009F78E3 /* CVEventCellDataHolder.h */,
 				C286BFC7137F26E2009F78E3 /* CVEventCellDataHolder.m */,
-				C2027EB11360C405002E58BF /* CVEventStore.h */,
-				C27EAA241630BD57008046CF /* CVEventStore.m */,
 				C286BFC9137F2748009F78E3 /* CVEventDot.h */,
 				C286BFCA137F2748009F78E3 /* CVEventDot.m */,
 				C266F01313D93400002CD8F1 /* CVEventSquare.h */,
 				C266F01413D93400002CD8F1 /* CVEventSquare.m */,
-				6A10C09C14031EDD00B20B5A /* CVFriendlyCellDataHolder.h */,
-				6A10C09D14031EDD00B20B5A /* CVFriendlyCellDataHolder.m */,
 				9B34709313A918D400B08F00 /* CVParticipantCellDataHolder.h */,
 				9B34709413A918D400B08F00 /* CVParticipantCellDataHolder.m */,
 				C2E2977113341A0100FA7638 /* CVSettings.h */,
 				C2E2977213341A0100FA7638 /* CVSettings.m */,
-				6AF3CE391402EA4000A193E4 /* CVWeekNumberHolder.h */,
-				6AF3CE3A1402EA4000A193E4 /* CVWeekNumberHolder.m */,
 				C23A642717FE45F3006097C9 /* CVCalendarCellDataHolder.h */,
 				C23A642817FE45F3006097C9 /* CVCalendarCellDataHolder.m */,
 			);
@@ -2607,7 +2591,6 @@
 				C2F7CD7E13D6273900FBB45E /* CVSearchScopePopoverController.xib in Resources */,
 				C22EA3C513C519C600CFFCC2 /* CVAgendaEventCell.xib in Resources */,
 				C2B3C47C13C52A5B0055018A /* CVAgendaDateCell.xib in Resources */,
-				C2B3C47F13C53E510055018A /* CVFriendlyCell.xib in Resources */,
 				C22F152813C68DFA005A6488 /* CVExtraAlarmButton.xib in Resources */,
 				9B72B38B13C96BB50068C715 /* help.html in Resources */,
 				9B72B38D13C96C270068C715 /* icon_big.png in Resources */,
@@ -2642,9 +2625,8 @@
 				9BCECC4613EB52D7004123E9 /* longpressday_ipad.png in Resources */,
 				9BE359C613EDF8BD003ACCE6 /* quickreminder_ipad.png in Resources */,
 				9BE359C713EDF8BD003ACCE6 /* today_ipad.png in Resources */,
-				9BE359CE13EE0428003ACCE6 /* longtap_week.png in Resources */,
-				9BE359CF13EE0428003ACCE6 /* longtap_week@2x.png in Resources */,
 				9BE359D113EE0710003ACCE6 /* closemonth_ipad.png in Resources */,
+				C240D96E180E05870089E963 /* CVReminderCell.xib in Resources */,
 				9BEF493F13F32AD400F837FB /* CVCalendarPickerViewController_iPhone.xib in Resources */,
 				9B29FE7D1401A95C009926FB /* SCEventDetailsAllDayAlarmPicker.xib in Resources */,
 				9B29FE7F1401A95C009926FB /* SCEventDetailsAlarmPicker.xib in Resources */,
@@ -2835,7 +2817,6 @@
 				C22EA3C813C519E900CFFCC2 /* CVAgendaEventCell.m in Sources */,
 				C2B3C47613C5226D0055018A /* CVEventsWeekAgendaTableViewController.m in Sources */,
 				C2B3C47A13C52A450055018A /* CVAgendaDateCell.m in Sources */,
-				C2B3C48213C53E680055018A /* CVFriendlyCell.m in Sources */,
 				9BFE2CB013C6490D00360D5C /* CVNativeAlertView.m in Sources */,
 				C22F152B13C68E10005A6488 /* CVExtraAlarmButton.m in Sources */,
 				9B72B38013C95E180068C715 /* CVFAQViewController.m in Sources */,
@@ -2843,6 +2824,7 @@
 				9B0127A813CBA2B50006C2EA /* CVGestureHowToViewController.m in Sources */,
 				C2D170AD13CBFDA20092F0C1 /* CVWelcomeViewController.m in Sources */,
 				C2A0C7CA17FD04EA005D17B5 /* CVTimeZoneViewController.m in Sources */,
+				C240D971180E1DFD0089E963 /* EKEvent+Cell.m in Sources */,
 				C2BE7DD713CC979200925D53 /* NSString+Utilities.m in Sources */,
 				9BB278C413CE2B8D00CC411C /* CVSlideLockControl.m in Sources */,
 				0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */,
@@ -2872,12 +2854,9 @@
 				C251351F13EDEC7900936CC0 /* CVEventEditViewController.m in Sources */,
 				C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */,
 				9BEF493E13F32AD400F837FB /* CVCalendarPickerViewController_iPhone.m in Sources */,
-				6AF3CE3B1402EA4000A193E4 /* CVWeekNumberHolder.m in Sources */,
 				C26AA7EC17F72FFA00EA75E4 /* CVCheckButton.m in Sources */,
 				6AF3CE3F1403022D00A193E4 /* CVWeekNumberCell.m in Sources */,
 				C2E6A5B917EE4DD0006D035A /* CVHamburgerButton.m in Sources */,
-				6AF3CE44140317EB00A193E4 /* CVDataHolder.m in Sources */,
-				6A10C09E14031EDD00B20B5A /* CVFriendlyCellDataHolder.m in Sources */,
 				9B5CFA21141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m in Sources */,
 				9B5CFA24141E797800EDB2FA /* CVCalendarDetailsViewController.m in Sources */,
 				C28D9A73180C33770077E637 /* CVMonthTextButton_iPhone.m in Sources */,
@@ -2894,11 +2873,12 @@
 				C2174D911605043D00F3778D /* EKCalendarItem+Calvetica.m in Sources */,
 				C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */,
 				C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */,
+				C240D96C180E05680089E963 /* CVReminderCell.m in Sources */,
 				C2E3A1C1161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m in Sources */,
 				C2E3A1C4161223DA00F00FB8 /* CVSettingNavigationController.m in Sources */,
 				C20DDDA8161D020200CC9D47 /* EKSource+Calvetica.m in Sources */,
 				C2D4D342162CC7F5002484A6 /* CVStartWeekOnViewController.m in Sources */,
-				C27EAA251630BD57008046CF /* CVEventStore.m in Sources */,
+				C27EAA251630BD57008046CF /* EKEventStore+Shared.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

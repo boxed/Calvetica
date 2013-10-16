@@ -7,7 +7,7 @@
 //
 
 #import "EKSource+Calvetica.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 
 @implementation EKSource (Calvetica)
 

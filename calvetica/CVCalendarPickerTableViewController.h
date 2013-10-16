@@ -7,7 +7,7 @@
 //
 
 #import "EKCalendar+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVCalendarTableViewCell_iPhone.h"
 
 

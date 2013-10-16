@@ -10,7 +10,7 @@
 #import "CVEventEditViewController.h"
 #import "UIApplication+Utilities.h"
 #import "NSArray+Utilities.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVActionBlockButton.h"
 #import "CVTimeZoneViewController.h"
 
@@ -756,7 +756,7 @@
     // had to subclass the built in EK VC cause the dumb thing wouldn't rotate upside down.
     CVEventEditViewController *eventEditViewController = [[CVEventEditViewController alloc] init];
     eventEditViewController.event = self.event;
-    eventEditViewController.eventStore = [CVEventStore sharedStore].eventStore;
+    eventEditViewController.eventStore = [EKEventStore sharedStore];
     eventEditViewController.editViewDelegate = self;
     eventEditViewController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self.closestSystemPresentedViewController presentViewController:eventEditViewController animated:YES completion:nil];

@@ -8,7 +8,7 @@
 #import "CVSearchViewController_iPhone.h"
 #import "UIActivityIndicatorView+Utilities.h"
 #import "CVSearchScopePopoverController.h"
-#import "CVEventStore.h"
+#import "EKEventStore+Shared.h"
 #import "CVEventCell.h"
 
 
@@ -142,7 +142,7 @@
 		}
         
         // fetch the events
-        NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsSearchedWithText:text startDate:startDate endDate:endDate forActiveCalendars:YES]];
+        NSMutableArray *events = [NSMutableArray arrayWithArray:[EKEventStore eventsSearchedWithText:text startDate:startDate endDate:endDate forActiveCalendars:YES]];
         
         
         // sort the dates so that those that start first will appear first

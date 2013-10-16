@@ -34,7 +34,6 @@
 
 	_availableGestures = [NSMutableArray array];
 
-
 	// add the info about each screen to the array
 	// verify which device they're on if ipad don't show the screens that aren't applicable
 	if (PAD) {
@@ -125,13 +124,6 @@
 		[dict6 setObject:image6 forKey:@"image"];
 		[_availableGestures addObject:dict6];
 	}
-
-	NSMutableDictionary *dict7 = [[NSMutableDictionary alloc] init];
-	NSString *title7 = @"In the view popup menu, tap and hold the week option to switch styles, or use the shake gesture while in week mode";
-	NSString *image7 = @"longtap_week";
-	[dict7 setObject:title7 forKey:@"title"];
-	[dict7 setObject:image7 forKey:@"image"];
-	[_availableGestures addObject:dict7];
 
     self.navigationItem.title = @"Gestures How To";
 }

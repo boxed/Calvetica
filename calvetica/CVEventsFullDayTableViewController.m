@@ -19,9 +19,9 @@
 
 
 
-- (void)reloadTableView 
+- (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
-    [super reloadTableView];
+    [super reloadTableViewWithCompletion:completion];
     
     // date can't be null
     if (!self.selectedDate) return;
@@ -45,7 +45,7 @@
 
 
         // fetch the events
-        NSMutableArray *events = [NSMutableArray arrayWithArray:[CVEventStore eventsFromDate:dateCopy 
+        NSMutableArray *events = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:dateCopy 
                                                                                       toDate:[dateCopy mt_endOfCurrentDay]
                                                                           forActiveCalendars:YES]];
         
@@ -199,11 +199,8 @@
             [self calculateDurationBars];    
             
             [self.tableView reloadData];
-            
-            if (self.shouldScrollToCurrentHour && [self.selectedDate mt_isWithinSameDay:[NSDate date]]) {
-                [self scrollToCurrentHour];
-                self.shouldScrollToCurrentHour = NO;
-            }
+
+            if (completion) completion();
             
         });
     }];
@@ -341,7 +338,6 @@
 	cell.secondaryDurationBarColor = holder.secondaryDurationBarColor;
     cell.delegate = self;
 	[cell resetAccessoryButton];
-    holder.cell = cell;
     
     return cell;
 }

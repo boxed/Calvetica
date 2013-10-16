@@ -1,5 +1,5 @@
 //
-//  CVEventStore.h
+//  EKEventStore+Shared.h
 //  calvetica
 //
 //  Created by Adam Kirk on 4/21/11.
@@ -7,14 +7,12 @@
 //
 
 
-@interface CVEventStore : NSObject
+@interface EKEventStore (Shared)
 
-@property (nonatomic, strong) EKEventStore *eventStore;
-
-+ (CVEventStore *)sharedStore;
++ (EKEventStore *)sharedStore;
 
 // asking permission
-- (EKEventStore *)permissionStore;
++ (EKEventStore *)permissionStore;
 + (void)setPermissionGranted:(BOOL)granted;
 + (BOOL)isPermissionGranted;
 
