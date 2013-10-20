@@ -1,11 +1,9 @@
 
 #import "EKEvent+Utilities.h"
-#import "EKCalendarItem+Calvetica.h"
-#import "UIApplication+Utilities.h"
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
-#import "CVActionBlockButton.h"
-
+#import "times.h"
+#import "strings.h"
 
 
 @implementation EKEvent (Utilities)
@@ -143,171 +141,6 @@
     }
 }
 
-- (void)saveThenDoActionBlock:(void (^)(void))saveActionBlock cancelBlock:(void (^)(void))cancelBlock 
-{
-	if (self.hasRecurrenceRules && [self hadRecurrenceRuleOnPreviousSave]) {
-		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change only this one", @"Button text for a repeating event, it will only edit the selected event")  andActionBlock:^(void) {
-			NSError *error = [EKEventStore saveEvent:self forAllOccurrences:NO];
-
-			if (error) {
-				
-				CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-				}];
-				
-				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-										  message:[error localizedDescription]
-										  buttons:@[b1]
-                                       completion:nil];
-				
-				[self reset];
-			}
-			
-			saveActionBlock();	
-		}];
-		
-		CVActionBlockButton *b2 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change all future events", @"Button text that will edit the repeating event's future details") andActionBlock:^(void) {
-			NSError *error = [EKEventStore saveEvent:self forAllOccurrences:YES];
-			
-			if (error) {
-				
-				CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-				}];
-				
-				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-										  message:[error localizedDescription]
-										  buttons:@[b1]
-                                       completion:nil];
-				
-				[self reset];
-			}
-			
-			saveActionBlock();
-		}];
-		
-		CVActionBlockButton *b3 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Cancel", @"Button text that lets the user cancel an edit to an event") andActionBlock:^(void) {
-			cancelBlock();
-		}];
-
-		NSArray *buttons = @[b1, b2, b3];
-		
-		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Repeating Event", @"The title for a message displayed to user") uppercaseString] 
-								  message:NSLocalizedString(@"This event repeats.  What would you like to do?", @"Message text. The user is presented with choices")
-								  buttons:buttons
-                               completion:nil];
-	}
-	else {
-		NSError *error = [EKEventStore saveEvent:self forAllOccurrences:YES];
-		
-		if (error) {
-			
-			CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-				cancelBlock();
-			}];
-			
-			[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-									  message:[error localizedDescription]
-									  buttons:@[b1]
-                                   completion:nil];
-			
-			[self reset];
-		}
-		else {
-			saveActionBlock();			
-		}
-	}
-}
-
-- (void)saveForThisOccurrence 
-{
-	NSError *error = [EKEventStore saveEvent:self forAllOccurrences:NO];
-	
-	if (error) {
-		
-		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-		}];
-		
-		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-								  message:[error localizedDescription]
-								  buttons:@[b1]
-                               completion:nil];
-		
-		[self reset];
-	}
-}
-
-- (void)removeThenDoActionBlock:(void (^)(void))removeActionBlock cancelBlock:(void (^)(void))cancelBlock 
-{
-	
-	if (self.hasRecurrenceRules) {
-		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change only this one", @"Button text for a repeating event, it will only edit the selected event")  andActionBlock:^(void) {
-			NSError *error = [EKEventStore removeEvent:self forAllOccurrences:NO];
-			
-			if (error) {
-				
-				CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-				}];
-				
-				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-										  message:[error localizedDescription]
-										  buttons:@[b1]
-                                       completion:nil];
-				
-				[self reset];
-			}
-
-			removeActionBlock();
-		}];
-		
-		CVActionBlockButton *b2 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change all future events", @"Button text that will edit the repeating event's future details") andActionBlock:^(void) {
-			NSError *error = [EKEventStore removeEvent:self forAllOccurrences:YES];
-			
-			if (error) {
-				
-				CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-				}];
-				
-				[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-										  message:[error localizedDescription]
-										  buttons:@[b1]
-                                       completion:nil];
-				
-				[self reset];
-			}
-			
-			removeActionBlock();
-		}];
-		
-		CVActionBlockButton *b3 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Cancel", @"Button text that lets the user cancel an edit to an event") andActionBlock:^(void) {			
-			cancelBlock();
-		}];
-		
-		NSArray *buttons = @[b1, b2, b3];
-		
-		[UIApplication showAlertWithTitle:[NSLocalizedString(@"Repeating Event", @"The title for a message displayed to user") uppercaseString] 
-								  message:NSLocalizedString(@"This event repeats.  What would you like to do?", @"Message text. The user is presented with choices")
-								  buttons:buttons
-                               completion:nil];
-	}
-	else {
-		NSError *error = [EKEventStore removeEvent:self forAllOccurrences:YES];
-		
-		if (error) {
-			
-			CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"OK", @"Button text on the alert message") andActionBlock:^(void) {
-			}];
-			
-			[UIApplication showAlertWithTitle:[NSLocalizedString(@"Error Saving Event", @"The title for an alert message") uppercaseString]
-									  message:[error localizedDescription]
-									  buttons:@[b1]
-                                   completion:nil];
-			
-			[self reset];
-		}
-
-		removeActionBlock();
-	}
-}
-
 - (void)addSnoozeAlarmWithTimeInterval:(NSTimeInterval)interval 
 {
     if (interval > 0) {
@@ -377,17 +210,7 @@
 
 #pragma mark - COMPARATORS
 
-- (BOOL)startsOnSameDayAsDate:(NSDate *)dayDate 
-{
-    NSDate *eventStart = self.startingDate;
-    if ([eventStart mt_year]        == [dayDate mt_year] &&
-        [eventStart mt_monthOfYear] == [dayDate mt_monthOfYear] &&
-        [eventStart mt_dayOfMonth]  == [dayDate mt_dayOfMonth]) {
 
-        return YES;
-    }
-    return NO;
-}
 
 
 
@@ -411,46 +234,6 @@
     return (NSTimeInterval)abs([self.startingDate timeIntervalSinceDate:self.endingDate]);
 }
 
-- (CGFloat)percentOfDay 
-{
-    return [self eventDuration] / SECONDS_IN_DAY;
-}
-
-- (CGFloat)durationBarSecondsForDate:(NSDate *)date 
-{
-	if ([self.startingDate mt_isWithinSameDay:date]) {
-		return [self eventDuration];
-	}
-	else if ([self.endingDate mt_isWithinSameDay:date]) {
-		return [self.endingDate timeIntervalSinceDate:[self.endingDate mt_startOfCurrentDay]];
-	}
-	return 0;
-}
-
-- (BOOL)occursAtAllOnDate:(NSDate *)date
-{
-	NSDate *startDate   = [date mt_startOfCurrentDay];
-    NSDate *endDate     = [date mt_endOfCurrentDay];
-    return !(   
-             ([self.startingDate mt_isBefore:startDate]     && [self.endingDate mt_isOnOrBefore:startDate]) ||
-             ([self.startingDate mt_isAfter:endDate]		&& [self.endingDate mt_isAfter:endDate])
-            );
-}
-
-- (BOOL)spansEntireDayOfDate:(NSDate *)date 
-{
-    return [self.startingDate mt_isOnOrBefore:[date mt_startOfCurrentDay]] && [self.endingDate mt_isOnOrAfter:[date mt_endOfCurrentDay]];
-}
-
-- (BOOL)spansEntireDayOfOnlyDate:(NSDate *)date 
-{
-    return [self.startingDate isEqualToDate:[date mt_startOfCurrentDay]] && [self.endingDate isEqualToDate:[date mt_endOfCurrentDay]];
-}
-
-- (BOOL)fitsWithinDayOfDate:(NSDate *)date 
-{
-    return [self.startingDate mt_isWithinSameDay:date] && [self.endingDate mt_isWithinSameDay:date];
-}
 
 - (BOOL)fitsWithinWeekOfDate:(NSDate *)date 
 {
@@ -569,23 +352,6 @@
 		}
 	}
 	return serialized;
-}
-
-- (NSString *)readTitle 
-{
-	NSString *t = self.title;
-	if (t && ![t isEqualToString:@""]) {
-		return t;
-	} else {
-		NSString *hack = [NSString stringWithFormat:@"%@",self];
-		if(hack){
-            t = self.title;
-            if (t && ![t isEqualToString:@""]) {
-                return t;
-            }
-        }
-	}
-	return NSLocalizedString(@"Untitled",@"Untitled");
 }
 
 - (NSString *)stringWithRelativeEndTime 

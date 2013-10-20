@@ -94,6 +94,8 @@
 }
 
 
+
+
 #pragma mark - Table View Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -164,6 +166,9 @@
 - (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller didCompleteWithAction:(CVQuickAddResult)result
 {
 }
+
+
+
 
 #pragma mark - CVJumpToDateViewControllerDelegate Methods
 

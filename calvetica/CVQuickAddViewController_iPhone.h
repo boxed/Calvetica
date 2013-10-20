@@ -9,7 +9,6 @@
 #import "CVQuickAddViewController_iPhone.h"
 #import "CVCalendarPickerViewController_iPhone.h"
 
-#import "EKEvent+Utilities.h"
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 

@@ -12,7 +12,6 @@
 
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "EKEventStore+Shared.h"
 
 
 @interface EventStoreTests : SenTestCase {

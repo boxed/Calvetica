@@ -6,11 +6,9 @@
 //
 
 #import "CVWeekdayTableViewCell.h"
-#import "CVEventSquare.h"
+#import "CVEventSquareModel.h"
 #import "UIView+Nibs.h"
 #import "NSDate+ViewHelpers.h"
-#import "EKEvent+Utilities.h"
-#import "EKEventStore+Shared.h"
 #import "colors.h"
 #import "times.h"
 #import "dimensions.h"
@@ -112,24 +110,24 @@
         NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
         NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
         NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
-        NSMutableArray *eventSquareDataHolders = [NSMutableArray array];
+        NSMutableArray *eventSquareModels = [NSMutableArray array];
         for (EKEvent *event in weekEvents) {
             
-            CVEventSquare *eventSquareDataHolder = [[CVEventSquare alloc] init];
-            eventSquareDataHolder.event = event;
-            eventSquareDataHolder.startSeconds = [event.startingDate timeIntervalSinceDate:startOfDay];
-            eventSquareDataHolder.endSeconds = [event.endingDate timeIntervalSinceDate:startOfDay];
+            CVEventSquareModel *eventSquareModel = [[CVEventSquareModel alloc] init];
+            eventSquareModel.event = event;
+            eventSquareModel.startSeconds = [event.startingDate timeIntervalSinceDate:startOfDay];
+            eventSquareModel.endSeconds = [event.endingDate timeIntervalSinceDate:startOfDay];
             
             if (![event spansEntireDayOfDate:startOfDay]) {
                 
                 // if any concurrent events end before this one starts, it is no longer concurrent
-                for (CVEventSquare *e in concurrentEvents) {
-                    if (e.endSeconds <= eventSquareDataHolder.startSeconds) {
+                for (CVEventSquareModel *e in concurrentEvents) {
+                    if (e.endSeconds <= eventSquareModel.startSeconds) {
                         [eventsToRemoveFromConcurrent addObject:e];
                     }
                 }
                 
-                for (CVEventSquare *e in eventsToRemoveFromConcurrent) {
+                for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
                     [concurrentEvents removeObject:e];
                 }
                 [eventsToRemoveFromConcurrent removeAllObjects];
@@ -141,22 +139,22 @@
                 }
                 
                 // loop n^2 to make sure that any offset checked before an increment was not missed
-                eventSquareDataHolder.offset = 0;
+                eventSquareModel.offset = 0;
                 for (NSInteger i=0; i < concurrentEvents.count; i++) {
-                    for (CVEventSquare *ie in concurrentEvents) {
-                        if ( ie.offset == eventSquareDataHolder.offset ) {
-                            eventSquareDataHolder.offset++;
+                    for (CVEventSquareModel *ie in concurrentEvents) {
+                        if ( ie.offset == eventSquareModel.offset ) {
+                            eventSquareModel.offset++;
                         }
                     }
                 }
                 
                 // add the event to both sets because it's either a continuation or a start of a chain
-                [chainedEvents addObject:eventSquareDataHolder];
-                [concurrentEvents addObject:eventSquareDataHolder];
+                [chainedEvents addObject:eventSquareModel];
+                [concurrentEvents addObject:eventSquareModel];
                 
                 // change the overlap count of all chained events to the max overlap count (so they are all the same width)
                 NSInteger maxOverlaps = 0;
-                for (CVEventSquare *e in chainedEvents) {
+                for (CVEventSquareModel *e in chainedEvents) {
                     if (e.overlaps < concurrentEvents.count) {
                         e.overlaps = concurrentEvents.count;
                     }
@@ -166,19 +164,19 @@
                     }
                 }
                 
-                if (maxOverlaps > eventSquareDataHolder.overlaps) {
-                    eventSquareDataHolder.overlaps = maxOverlaps;
+                if (maxOverlaps > eventSquareModel.overlaps) {
+                    eventSquareModel.overlaps = maxOverlaps;
                 }
             }
             
-            [eventSquareDataHolders addObject:eventSquareDataHolder];
+            [eventSquareModels addObject:eventSquareModel];
         }
         
 
         NSMutableArray *allDayEventSquares = [NSMutableArray array];
         NSMutableArray *eventSquares = [NSMutableArray array];
         
-        for (CVEventSquare *square in eventSquareDataHolders) {
+        for (CVEventSquareModel *square in eventSquareModels) {
             if ([square.event.startingDate mt_isOnOrBefore:startOfDay] && [square.event.endingDate mt_isOnOrAfter:endOfDay]) {
                 [allDayEventSquares addObject:square];
             }

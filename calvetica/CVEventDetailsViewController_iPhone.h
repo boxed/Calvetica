@@ -10,9 +10,6 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <EventKitUI/EventKitUI.h>
-#import "EKCalendar+Utilities.h"
-#import "EKRecurrenceDayOfWeek+Utilities.h"
-#import "EKRecurrenceRule+Utilities.h"
 #import "CVTextView.h"
 #import "CVButton.h"
 #import "CVNavigationController.h"
@@ -31,7 +28,6 @@
 #import "UIView+nibs.h"
 #import "SCEventDetailsAllDayAlarmPicker.h"
 #import "SCEventDetailsAlarmPicker.h"
-#import "EKEvent+Utilities.h"
 #import "CVViewController.h"
 
 typedef enum {

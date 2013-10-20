@@ -32,9 +32,9 @@
     self.navigationItem.title = NSLocalizedString(@"Event Default Calendar", @"Navigation item to select from a list of calendars");
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (CGSize)preferredContentSize
 {
-    self.contentSizeForViewInPopover = CGSizeMake(320, 416);
+    return CGSizeMake(320, 416);
 }
 
 

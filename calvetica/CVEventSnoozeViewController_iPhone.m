@@ -7,7 +7,6 @@
 //
 
 #import "CVEventSnoozeViewController_iPhone.h"
-#import "EKCalendarItem+Calvetica.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -52,7 +51,7 @@
 	
 	
     
-    self.eventNameLabel.text = [self.event readTitle];
+    self.eventNameLabel.text = [self.event mys_title];
     [super viewDidLoad];
 }
 

@@ -9,34 +9,39 @@
 #import "MTLabel.h"
 
 
+@interface MTLabel ()
+@property (nonatomic, strong) NSMutableArray *characterColors;
+@end
+
+
 @implementation MTLabel
 
 
 - (id)initWithFrame:(CGRect)frame 
 {
     if ((self = [super initWithFrame:frame])) {
-        characterColors = [[NSMutableArray alloc] initWithCapacity:0];
+        _characterColors = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
 }
 
 - (void)awakeFromNib 
 {
-    characterColors = [[NSMutableArray alloc] initWithCapacity:0];
+    self.characterColors = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
 
 - (void)reset 
 {
-	characterColors = [[NSMutableArray alloc] initWithCapacity:0];
+	self.characterColors = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
 - (void)initCharacterColors 
 {
-	if (characterColors.count < self.text.length) {
-		for (int i = characterColors.count; i < self.text.length; i++)
+	if (self.characterColors.count < self.text.length) {
+		for (int i = self.characterColors.count; i < self.text.length; i++)
 		{
-			[characterColors addObject:self.textColor];
+			[self.characterColors addObject:self.textColor];
 		}
 	}
 }
@@ -44,7 +49,7 @@
 - (void)changeColor:(UIColor *)color ofCharacterAtIndex:(int)idx 
 {
 	[self initCharacterColors];
-	[characterColors replaceObjectAtIndex:idx withObject:color];
+	[self.characterColors replaceObjectAtIndex:idx withObject:color];
 }
 
 - (void)changeColor:(UIColor *)color ofCharacter:(NSString *)ch 
@@ -56,7 +61,7 @@
 		c = [c lowercaseString];
 		ch = [ch lowercaseString];
 		if ([ch compare:c options:(NSDiacriticInsensitiveSearch | NSCaseInsensitiveSearch)] == NSOrderedSame) {
-			[characterColors replaceObjectAtIndex:i withObject:color];
+			[self.characterColors replaceObjectAtIndex:i withObject:color];
 		}
 	}
 }
@@ -86,8 +91,8 @@
 		{
 			CGContextSetFillColorWithColor(context, [self.textColor CGColor]);
 			
-			if (characterColors.count > i && [characterColors objectAtIndex:i]) {
-				CGContextSetFillColorWithColor(context, [[characterColors objectAtIndex:i]  CGColor]);
+			if (self.characterColors.count > i && [self.characterColors objectAtIndex:i]) {
+				CGContextSetFillColorWithColor(context, [[self.characterColors objectAtIndex:i]  CGColor]);
 				
 			} else {
 				CGContextSetFillColorWithColor(context, [self.textColor CGColor]);

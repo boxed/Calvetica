@@ -128,9 +128,9 @@
     self.navigationItem.title = @"Gestures How To";
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (CGSize)preferredContentSize
 {
-    self.contentSizeForViewInPopover = CGSizeMake(320, 416);
+    return CGSizeMake(320, 416);
 }
 
 - (void)viewDidAppear:(BOOL)animated

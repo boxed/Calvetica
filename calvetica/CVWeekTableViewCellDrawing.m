@@ -10,15 +10,15 @@
 
 
 #import "CVWeekTableViewCellDrawing.h"
-#import "CVEventSquare.h"
-#import "EKEvent+Utilities.h"
+#import "CVEventSquareModel.h"
+#import "UIColor+Calvetica.h"
+#import "UIColor+Compare.h"
 #import "geometry.h"
+#import "times.h"
+#import "colors.h"
 
 
 @implementation CVWeekTableViewCellDrawing
-
-
-#pragma mark - Methods
 
 - (NSArray *)prepareDataHolders
 {
@@ -47,45 +47,45 @@
     NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
     NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
     NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
-    NSMutableArray *eventSquareDataHolders = [NSMutableArray array];
+    NSMutableArray *eventSquareModels = [NSMutableArray array];
     for (EKEvent *event in weekEvents) {
         
         NSDate *startDate = event.startingDate;
         NSDate *endDate = event.endingDate;
         
-        CVEventSquare *eventSquareDataHolder = [[CVEventSquare alloc] init];
-        eventSquareDataHolder.event = event;
-        eventSquareDataHolder.startSeconds = [startDate timeIntervalSinceDate:startOfWeek];
-        eventSquareDataHolder.endSeconds = [endDate timeIntervalSinceDate:startOfWeek];
+        CVEventSquareModel *eventSquareModel = [[CVEventSquareModel alloc] init];
+        eventSquareModel.event = event;
+        eventSquareModel.startSeconds = [startDate timeIntervalSinceDate:startOfWeek];
+        eventSquareModel.endSeconds = [endDate timeIntervalSinceDate:startOfWeek];
         
         if ([event.endingDate mt_isBefore:[NSDate date]]) {
-            eventSquareDataHolder.isPassed = YES;
+            eventSquareModel.isPassed = YES;
         }
         
         for (NSInteger day = 0; day < 7; day++) {
             NSDate *date = [startOfWeek mt_dateDaysAfter:day];
             if ([event occursAtAllOnDate:date]) {
-                eventSquareDataHolder.days[day] = 1;
+                eventSquareModel.days[day] = 1;
             }
         }
         
         
         if ([event eventDuration] < 60 * 60 * 8) { //([event fitsWithinDayOfDate:event.startingDate] && ![event isAllDay]) || [event eventDuration] < SECONDS_IN_DAY - 1 ) {
-            eventSquareDataHolder.offset = -1;
-            eventSquareDataHolder.overlaps = -1;
-            [eventSquareDataHolders addObject:eventSquareDataHolder];
+            eventSquareModel.offset = -1;
+            eventSquareModel.overlaps = -1;
+            [eventSquareModels addObject:eventSquareModel];
             continue;
         }
         
             
         // if any concurrent events end before this one starts, it is no longer concurrent
-        for (CVEventSquare *e in concurrentEvents) {
-            if (e.endSeconds <= eventSquareDataHolder.startSeconds) {
+        for (CVEventSquareModel *e in concurrentEvents) {
+            if (e.endSeconds <= eventSquareModel.startSeconds) {
                 [eventsToRemoveFromConcurrent addObject:e];
             }
         }
         
-        for (CVEventSquare *e in eventsToRemoveFromConcurrent) {
+        for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
             [concurrentEvents removeObject:e];
         }
         [eventsToRemoveFromConcurrent removeAllObjects];
@@ -97,22 +97,22 @@
         }
         
         // loop n^2 to make sure that any offset checked before an increment was not missed
-        eventSquareDataHolder.offset = 0;
+        eventSquareModel.offset = 0;
         for (NSInteger i = 0; i < concurrentEvents.count; i++) {
-            for (CVEventSquare *ie in concurrentEvents) {
-                if ( ie.offset == eventSquareDataHolder.offset ) {
-                    eventSquareDataHolder.offset++;
+            for (CVEventSquareModel *ie in concurrentEvents) {
+                if ( ie.offset == eventSquareModel.offset ) {
+                    eventSquareModel.offset++;
                 }
             }
         }            
         
         // add the event to both sets because it's either a continuation or a start of a chain
-        [chainedEvents addObject:eventSquareDataHolder];
-        [concurrentEvents addObject:eventSquareDataHolder];
+        [chainedEvents addObject:eventSquareModel];
+        [concurrentEvents addObject:eventSquareModel];
         
         // change the overlap count of all chained events to the max overlap count (so they are all the same width)
         NSInteger maxOverlaps = 0;
-        for (CVEventSquare *e in chainedEvents) {
+        for (CVEventSquareModel *e in chainedEvents) {
             if (e.overlaps < concurrentEvents.count) {
                 e.overlaps = concurrentEvents.count;
             }
@@ -122,14 +122,14 @@
             }
         }
         
-        if (maxOverlaps > eventSquareDataHolder.overlaps) {
-            eventSquareDataHolder.overlaps = maxOverlaps;
+        if (maxOverlaps > eventSquareModel.overlaps) {
+            eventSquareModel.overlaps = maxOverlaps;
         }
         
-        [eventSquareDataHolders addObject:eventSquareDataHolder];
+        [eventSquareModels addObject:eventSquareModel];
     }
     
-    return eventSquareDataHolders;
+    return eventSquareModels;
 }
 
 - (void)draw 
@@ -159,7 +159,7 @@
 {
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
-    for (CVEventSquare *e in self.dataHolders) {
+    for (CVEventSquareModel *e in self.dataHolders) {
         if (e.offset == -1 || [CVSettings dotsOnlyMonthView]) {
             [dots addObject:e];
         }
@@ -181,7 +181,7 @@
     
     
     // DRAW BARS
-    for (CVEventSquare *e in bars) {
+    for (CVEventSquareModel *e in bars) {
         
         NSInteger startSecondsIntoWeek;
         NSInteger endSecondsIntoDay;
@@ -280,7 +280,7 @@
     memset(column, 0, 7 * sizeof(NSInteger));
     memset(row, 0, 7 * sizeof(NSInteger));
 
-    for (CVEventSquare *e in dots) {
+    for (CVEventSquareModel *e in dots) {
         
         e.width = 5;
         e.height = 5;
@@ -346,7 +346,7 @@
     
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
-    for (CVEventSquare *e in self.dataHolders) {
+    for (CVEventSquareModel *e in self.dataHolders) {
         
         for (NSInteger day = 0; day < 7; day++) {
             if (e.days[day] == 1) totalEventsPerDay[day]++;
@@ -385,7 +385,7 @@
     
     
     // DRAW BARS
-    for (CVEventSquare *e in bars) {
+    for (CVEventSquareModel *e in bars) {
         
         NSInteger startSecondsIntoWeek;
         NSInteger endSecondsIntoDay;
@@ -492,7 +492,7 @@
         textFrame.origin.x += 5.0f;
         textFrame.size.width -= 10.0f;
 
-		NSString *title = [e.event readTitle];
+		NSString *title = [e.event mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
         
         for (NSInteger day = 0; day < 7; day++) {
@@ -519,7 +519,7 @@
     NSInteger fullDays[DAYS_IN_WEEK];
     memset(fullDays, 0, DAYS_IN_WEEK * sizeof(NSInteger));
     
-    for (CVEventSquare *e in dots) {
+    for (CVEventSquareModel *e in dots) {
         
         e.width = 6;
         e.height = 6;
@@ -589,7 +589,7 @@
             textFrame.origin.y -= 3.0f;
             textFrame.size.width = boxWidth - boxFrame.size.width - (barSpacing * 2.0f);
 
-            NSString *title = [e.event readTitle];
+            NSString *title = [e.event mys_title];
             [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
 
             eventsDrawnPerDay[day]++;

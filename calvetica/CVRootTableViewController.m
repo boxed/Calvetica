@@ -6,10 +6,9 @@
 //
 
 #import "CVRootTableViewController.h"
-
-
-@interface CVRootTableViewController () <UITableViewDelegate, UITableViewDataSource>
-@end
+#import "CVRootTableViewController_Protected.h"
+#import "CVCalendarItemCellModel.h"
+#import "CVReminderCell.h"
 
 
 @implementation CVRootTableViewController
@@ -39,7 +38,7 @@
     _tableView                  = newTableView;
     _tableView.delegate         = self;
     _tableView.dataSource       = self;
-    _tableView.separatorColor   = RGB(214, 214, 214);
+    _tableView.separatorColor   = RGBHex(0xF0F0F0);
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
 }
 
@@ -49,25 +48,17 @@
     _tableView.dataSource   = self;
 }
 
-- (id)cellDataHolderAtIndexPath:(NSIndexPath *)index 
+- (void)scrollToCurrentHourAnimated:(BOOL)animated
 {
-    return nil;
+
 }
 
-- (void)removeObjectAtIndexPath:(NSIndexPath *)index 
+- (void)scrollToDate:(NSDate *)date animated:(BOOL)animated
 {
-    
+
 }
 
-- (void)scrollToCurrentHour 
-{
-    
-}
 
-- (void)scrollToDate:(NSDate *)date 
-{
-	
-}
 
 
 
@@ -84,40 +75,61 @@
     return nil;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
+    if (!model.isNull) {
+        if (model.calendarItem.isReminder) {
+            EKReminder *reminder = (EKReminder *)model.calendarItem;
+            reminder.completed = !reminder.completed;
+            [reminder saveWithError:nil];
+            CVReminderCell *cell = (CVReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
+            [cell.titleLabel toggleStrikeThroughWithCompletion:^{
+                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            }];
+        }
+    }
+}
+
 
 
 #pragma mark - DELEGATE table view cell
 
-- (void)cellHourTimeWasTapped:(CVEventCell *)cell
+- (void)calendarItemCell:(UITableViewCell *)cell tappedTime:(NSDate *)date view:(UIView *)view
 {
-    [self.delegate rootTableViewController:self tappedHourOnCell:cell];
+    [self.delegate rootTableViewController:self tappedCell:cell onTime:date view:view];
 }
 
-- (void)cellWasTapped:(CVEventCell *)cell
+- (void)calendarItemCell:(UITableViewCell *)cell wasTappedForItem:(EKCalendarItem *)calendarItem
 {
-    [self.delegate rootTableViewController:self tappedCell:cell];
+    if (calendarItem.isReminder) {
+        [self tableView:self.tableView didSelectRowAtIndexPath:[self.tableView indexPathForCell:cell]];
+    }
+    else {
+        [self.delegate rootTableViewController:self tappedCell:cell calendarItem:calendarItem];
+    }
 }
 
-- (void)cellWasLongPressed:(CVEventCell *)cell
+- (void)calendarItemCell:(UITableViewCell *)cell wasLongPressedForItem:(EKCalendarItem *)calendarItem
 {
-    [self.delegate rootTableViewController:self longPressedCell:cell];
+    [self.delegate rootTableViewController:self longPressedCell:cell calendarItem:calendarItem];
 }
 
-- (void)cell:(CVEventCell *)cell wasSwipedInDirection:(CVEventCellSwipedDirection)direction
+- (void)calendarItemCell:(UITableViewCell *)cell
+                 forItem:(EKCalendarItem *)calendarItem
+    wasSwipedInDirection:(CVCalendarItemCellSwipedDirection)direction
 {
-    [self.delegate rootTableViewController:self swipedCell:cell inDirection:direction];
+    [self.delegate rootTableViewController:self swipedCell:cell forItem:calendarItem inDirection:direction];
 }
 
-- (void)cell:(CVCell *)cell alarmButtonWasTappedForCalendarItem:(EKCalendarItem *)calendarItem
+- (void)calendarItemCell:(UITableViewCell *)cell tappedAlarmView:(UIView *)alarmView forItem:(EKCalendarItem *)calendarItem
 {
-    [self.delegate rootTableViewController:self tappedAlarmOnCell:(CVEventCell *)cell];
+    [self.delegate rootTableViewController:self tappedCell:cell alarmView:alarmView calendarItem:calendarItem];
 }
 
-- (void)cellEventWasDeleted:(CVEventCell *)cell
+- (void)calendarItemCell:(UITableViewCell *)cell tappedDeleteForItem:(EKCalendarItem *)calendarItem
 {
-    [self.delegate rootTableViewController:self tappedDeleteOnCell:cell];
+    [self.delegate rootTableViewController:self tappedDeleteOnCell:cell calendarItem:calendarItem];
 }
-
-
 
 @end

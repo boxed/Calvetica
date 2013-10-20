@@ -6,14 +6,11 @@
 //
 
 #import "CVSearchEventCell.h"
-
-
+#import "colors.h"
 
 
 @implementation CVSearchEventCell
 
-
-#pragma mark - View lifecycle
 
 - (void)awakeFromNib 
 {

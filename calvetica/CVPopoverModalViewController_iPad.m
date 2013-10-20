@@ -114,8 +114,8 @@ typedef struct {
 	
 	NSDictionary* info = [aNotification userInfo];
     CGRect kbRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-	kbRect = [rootView convertRect:kbRect fromView:[UIApplication sharedApplication].keyWindow];
-	
+	kbRect = [self.view convertRect:kbRect fromView:nil];
+
 	// if the modal will be hidden behind the keyboard push it up with the keyboard
 	if ((f.origin.y + f.size.height) > (rootView.bounds.size.height - kbRect.size.height)) {
         // save state

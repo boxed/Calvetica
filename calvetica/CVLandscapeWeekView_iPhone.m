@@ -9,7 +9,6 @@
 #import "CVWeekdayTableHeaderView_iPhone.h"
 #import "UIApplication+Utilities.h"
 #import "geometry.h"
-#import "EKCalendarItem+Calvetica.h"
 #import "CVActionBlockButton.h"
 
 

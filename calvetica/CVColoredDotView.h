@@ -10,38 +10,14 @@ typedef enum {
     CVColoredShapeCircle,
     CVColoredShapeTriangle,
     CVColoredShapeRectangle,
-    CVColoredShapeRoundedRect,
-    CVColoredShapeSquaredLeftEnd,
-    CVColoredShapeSquaredRightEnd,
-    CVColoredShapeSquaredBothEnds
+    CVColoredShapeCheck
 } CVColoredShape;
-
 
 
 @protocol CVColoredDotViewDelegate;
 
 
-
 @interface CVColoredDotView : UIView
-
-@property (nonatomic, weak) id<CVColoredDotViewDelegate> delegate;
-@property (nonatomic, strong) UIColor *color;
-@property (nonatomic) CVColoredShape shape;
-
-- (void)drawCircle;
-- (void)drawTriangle;
-- (void)drawRectangle;
-- (void)drawRoundedRect;
-- (void)drawCircleSquaredLeftEnd;
-- (void)drawCircleSquaredRightEnd;
-- (void)drawCircleSquaredBothEnds;
-
-@end
-
-
-
-
-@protocol CVColoredDotViewDelegate <NSObject>
-@optional
-- (void)coloredDot:(CVColoredDotView *)coloredDot didChangeColor:(UIColor *)color;
+@property (nonatomic, strong) UIColor        *color;
+@property (nonatomic, assign) CVColoredShape shape;
 @end

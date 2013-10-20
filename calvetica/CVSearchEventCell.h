@@ -6,7 +6,6 @@
 //
 
 #import "CVCell.h"
-#import "EKEvent+Utilities.h"
 #import "MTLabel.h"
 
 @protocol CVSearchEventCellDelegate;

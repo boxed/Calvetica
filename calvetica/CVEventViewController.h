@@ -11,8 +11,6 @@
 #import "CVEventHourViewController_iPhone.h"
 #import "CVEventDetailsViewController_iPhone.h"
 #import "CVEventSnoozeViewController_iPhone.h"
-#import "EKEvent+Utilities.h"
-#import "EKEvent+Utilities.h"
 #import "CVEventDayViewController_iPhone.h"
 #import "CVEventHourViewController_iPhone.h"
 #import "CVEventDetailsViewController_iPhone.h"

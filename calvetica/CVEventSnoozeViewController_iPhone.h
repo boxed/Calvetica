@@ -7,7 +7,6 @@
 //
 
 #import "times.h"
-#import "EKEvent+Utilities.h"
 #import "CVViewController.h"
 
 

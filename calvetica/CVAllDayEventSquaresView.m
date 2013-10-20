@@ -6,16 +6,15 @@
 //
 
 #import "CVAllDayEventSquaresView.h"
-#import "EKCalendar+Utilities.h"
-#import "CVEventSquare.h"
-#import "EKEvent+Utilities.h"
+#import "CVEventSquareModel.h"
+#import "UIColor+Calvetica.h"
 #import "colors.h"
 #import "geometry.h"
+#import "times.h"
+#import "UIColor+Compare.h"
 
 
 @implementation CVAllDayEventSquaresView
-
-
 
 - (void)setSquares:(NSArray *)newSquares 
 {
@@ -95,7 +94,7 @@
     CGFloat squareWidth = self.bounds.size.width / _squares.count;
     NSInteger offset = 0;
     
-    for (CVEventSquare *e in _squares) {
+    for (CVEventSquareModel *e in _squares) {
         
         e.height = self.bounds.size.height;
         e.y = 0;
@@ -155,7 +154,7 @@
 //            //textFrame.size.height -= 2.0f;
 //        }
         
-        NSString *title = [e.event readTitle];
+        NSString *title = [e.event mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];
     }
 }
@@ -171,7 +170,7 @@
     
     // figure event
     CGPoint pointOfTouch = [gesture locationInView:self];
-    for (CVEventSquare *e in _squares) {
+    for (CVEventSquareModel *e in _squares) {
         CGRect rectOfEvent = CGRectMake(e.x, e.y, e.width, e.height);
         if (CGRectContainsPoint(rectOfEvent, pointOfTouch)) {
             

@@ -7,7 +7,6 @@
 
 #import "CVGenericReminderViewController.h"
 #import "viewtagoffsets.h"
-#import "EKEvent+Utilities.h"
 
 
 

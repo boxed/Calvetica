@@ -6,7 +6,6 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "EKEvent+Utilities.h"
 #import "NSDate+ViewHelpers.h"
 #import "viewtagoffsets.h"
 #import "CVTapGestureRecognizer.h"

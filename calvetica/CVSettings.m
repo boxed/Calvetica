@@ -9,6 +9,7 @@
 #import "NSString+Utilities.h"
 #import "settingskeys.h"
 #import "CVEventSubtitleTextPriorityViewController.h"
+#import "UIColor+Calvetica.h"
 
 
 @implementation CVSettings

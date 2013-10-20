@@ -6,12 +6,11 @@
 //
 
 #import "CVAgendaDateCell.h"
-
-
+#import "colors.h"
+#import "UILabel+Utilities.h"
 
 
 @implementation CVAgendaDateCell
-
 
 - (void)setDate:(NSDate *)newDate 
 {

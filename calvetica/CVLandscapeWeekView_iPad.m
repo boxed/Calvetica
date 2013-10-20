@@ -10,7 +10,6 @@
 #import "CVWeekdayTableHeaderView_iPad.h"
 #import "UIApplication+Utilities.h"
 #import "geometry.h"
-#import "EKCalendarItem+Calvetica.h"
 
 
 
@@ -39,6 +38,7 @@
 
 
 
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad 
@@ -59,12 +59,12 @@
     r.origin.x = tableX;
     r.origin.y = tableY;
     self.weeksTable.frame = r;
-    
+
     UISwipeGestureRecognizer *slideInLandscapeWeekGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleThreeFingerSwipeOnWeekView:)];
     slideInLandscapeWeekGesture.numberOfTouchesRequired = 3;
     slideInLandscapeWeekGesture.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.weeksTable addGestureRecognizer:slideInLandscapeWeekGesture];
-    
+
     [super viewDidLoad];
 }
 
@@ -74,16 +74,15 @@
     self.monthAndYearLabel.text = [[NSDate date] stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+- (NSUInteger)supportedInterfaceOrientations
 {
-    return YES;
+    return UIInterfaceOrientationMaskAll;
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+- (BOOL)shouldAutorotate
 {
-	[self.weeksTable reloadData];
+    return NO;
 }
-
 
 
 
@@ -153,8 +152,6 @@
         self.monthAndYearLabel.text = [cell.date stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
         [UIApplication showBezelWithTitle:self.monthAndYearLabel.text];
     }
-    
-    //CVLog(@"width:%f height:%f", self.weeksTable.bounds.size.width, self.weeksTable.bounds.size.height);
     
     return cell;
 }

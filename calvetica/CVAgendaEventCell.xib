@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="18"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12:45pm" textAlignment="right" lineBreakMode="wordWrap" minimumFontSize="13" adjustsFontSizeToFit="NO" id="17" userLabel="Time Label" customClass="CVLabel">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12:45pm" textAlignment="right" lineBreakMode="wordWrap" minimumFontSize="13" adjustsFontSizeToFit="NO" id="17" userLabel="Time Label">
                         <rect key="frame" x="14" y="2" width="56" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.4784313738" green="0.4784313738" blue="0.4784313738" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -26,9 +26,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" text="Take out the trash" lineBreakMode="wordWrap" numberOfLines="11" minimumFontSize="13" adjustsFontSizeToFit="NO" id="5" userLabel="Title Label" customClass="CVLabel">
-                        <rect key="frame" x="88" y="0.0" width="222" height="18"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Take out the trash" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" id="5" userLabel="Title Label">
+                        <rect key="frame" x="88" y="0.0" width="232" height="18"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.4784313738" green="0.4784313738" blue="0.4784313738" alpha="0.0" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                         <nil key="highlightedColor"/>
@@ -49,10 +49,10 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="calendarItemTitleLabel" destination="5" id="DtS-T6-njR"/>
                 <outlet property="coloredDotView" destination="4" id="18"/>
                 <outlet property="gestureHitArea" destination="23" id="24"/>
                 <outlet property="timeLabel" destination="17" id="21"/>
-                <outlet property="titleLabel" destination="5" id="19"/>
             </connections>
         </tableViewCell>
     </objects>

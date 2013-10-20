@@ -6,16 +6,13 @@
 //
 
 #import "CVCell.h"
-#import "EKEvent+Utilities.h"
-#import "CVEventCell.h"
+#import "CVCalendarItemCellDelegate.h"
 
-@interface CVAgendaEventCell : CVCell {
-}
+@interface CVAgendaEventCell : CVCell
 
-@property (nonatomic, weak) id<CVEventCellDelegate> delegate;
-@property (nonatomic, strong) EKEvent *event;
+@property (nonatomic, weak  ) id<CVCalendarItemCellDelegate> delegate;
+@property (nonatomic, strong) EKCalendarItem                 *calendarItem;
 
-- (void)setEvent:(EKEvent *)newEvent continued:(BOOL)continued allDay:(BOOL)isAllDay;
-
+- (void)setCalendarItem:(EKCalendarItem *)newCalendarItem continued:(BOOL)continued allDay:(BOOL)isAllDay;
 
 @end

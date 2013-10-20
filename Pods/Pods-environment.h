@@ -24,11 +24,17 @@
 #define COCOAPODS_VERSION_MINOR_MTAnimation 1
 #define COCOAPODS_VERSION_PATCH_MTAnimation 4
 
+// MTColorDistance
+#define COCOAPODS_POD_AVAILABLE_MTColorDistance
+#define COCOAPODS_VERSION_MAJOR_MTColorDistance 0
+#define COCOAPODS_VERSION_MINOR_MTColorDistance 0
+#define COCOAPODS_VERSION_PATCH_MTColorDistance 2
+
 // MTDates
 #define COCOAPODS_POD_AVAILABLE_MTDates
 #define COCOAPODS_VERSION_MAJOR_MTDates 0
 #define COCOAPODS_VERSION_MINOR_MTDates 10
-#define COCOAPODS_VERSION_PATCH_MTDates 0
+#define COCOAPODS_VERSION_PATCH_MTDates 1
 
 // MTGeometry
 #define COCOAPODS_POD_AVAILABLE_MTGeometry
@@ -54,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_MTQueue 0
 #define COCOAPODS_VERSION_PATCH_MTQueue 3
 
+// MYSCategoryProperties
+#define COCOAPODS_POD_AVAILABLE_MYSCategoryProperties
+#define COCOAPODS_VERSION_MAJOR_MYSCategoryProperties 0
+#define COCOAPODS_VERSION_MINOR_MYSCategoryProperties 0
+#define COCOAPODS_VERSION_PATCH_MYSCategoryProperties 1
+
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 0
@@ -62,10 +74,9 @@
 
 // TestFlightSDK
 #define COCOAPODS_POD_AVAILABLE_TestFlightSDK
-// This library does not follow semantic-versioning,
-// so we were not able to define version macros.
-// Please contact the author.
-// Version: 2.1.1b.
+#define COCOAPODS_VERSION_MAJOR_TestFlightSDK 2
+#define COCOAPODS_VERSION_MINOR_TestFlightSDK 1
+#define COCOAPODS_VERSION_PATCH_TestFlightSDK 1
 
 // libffi
 #define COCOAPODS_POD_AVAILABLE_libffi

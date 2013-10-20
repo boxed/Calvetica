@@ -9,7 +9,7 @@
 #import "UILabel+Utilities.h"
 
 
-@implementation UILabel (UILabel_Utilities)
+@implementation UILabel (Utilities)
 
 - (CGSize)sizeOfTextInLabel 
 {

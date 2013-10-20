@@ -9,7 +9,7 @@
 #import <AddressBook/AddressBook.h>
 #import "CVPeopleTableViewCell_iPhone.h"
 #import "UITableView+Utilities.h"
-#import "CVParticipantCellDataHolder.h"
+#import "CVParticipantCellModel.h"
 #import "colors.h"
 
 

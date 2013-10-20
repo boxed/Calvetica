@@ -5,7 +5,6 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "EKEvent+Utilities.h"
 #import "CVToggleButton.h"
 
 

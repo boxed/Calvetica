@@ -1201,10 +1201,10 @@ So, to put it all together into a complex example: If you are in Melbourne, Aust
             </objects>
             <point key="canvasLocation" x="2399" y="144"/>
         </scene>
-        <!--Calendar Details View Controller-->
+        <!--Edit Calendar View Controller-->
         <scene sceneID="UYX-i8-hyB">
             <objects>
-                <tableViewController id="NbG-wm-1s9" customClass="CVCalendarDetailsViewController" sceneMemberID="viewController">
+                <tableViewController id="NbG-wm-1s9" customClass="CVEditCalendarViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="I5y-ys-5B7">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

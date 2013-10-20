@@ -47,9 +47,9 @@
     self.navigationItem.title = @"Alert Audio";
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (CGSize)preferredContentSize
 {
-    self.contentSizeForViewInPopover = CGSizeMake(320, 416);
+    return CGSizeMake(320, 416);
 }
 
 - (void)viewWillDisappear:(BOOL)animated

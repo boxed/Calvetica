@@ -5,11 +5,11 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "EKCalendar+Utilities.h"
 #import "CVLandscapeWeekView.h"
 #import "CVEventSquaresView.h"
-#import "EKEvent+Utilities.h"
-#import "CVEventSquare.h"
+#import "CVEventSquareModel.h"
+#import "UIColor+Calvetica.h"
+#import "UIColor+Compare.h"
 #import "dimensions.h"
 #import "geometry.h"
 #import "colors.h"
@@ -110,7 +110,7 @@
     // DRAW SQAURES
 	CGFloat padding = 1.0f;
     
-    for (CVEventSquare *e in _squares) {
+    for (CVEventSquareModel *e in _squares) {
         
         NSInteger startSecondsIntoDay;
         NSInteger endSecondsIntoDay;
@@ -207,7 +207,7 @@
             //textFrame.size.height -= 2.0f;
         }
         
-        NSString *title = [e.event readTitle];
+        NSString *title = [e.event mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];
     }
 }
@@ -223,7 +223,7 @@
     
     // figure event
     CGPoint pointOfTouch = [gesture locationInView:self];
-    for (CVEventSquare *e in _squares) {
+    for (CVEventSquareModel *e in _squares) {
         CGRect rectOfEvent = CGRectMake(e.x, e.y, e.width, e.height);
         if (CGRectContainsPoint(rectOfEvent, pointOfTouch)) {
             

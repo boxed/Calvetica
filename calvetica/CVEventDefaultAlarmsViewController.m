@@ -85,9 +85,9 @@
     self.navigationItem.title = NSLocalizedString(@"Default Event Alarms", @"Navigation item to Default Alarms");
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (CGSize)preferredContentSize
 {
-    self.contentSizeForViewInPopover = CGSizeMake(320, 416);
+    return CGSizeMake(320, 416);
 }
 
 

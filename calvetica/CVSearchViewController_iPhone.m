@@ -8,7 +8,6 @@
 #import "CVSearchViewController_iPhone.h"
 #import "UIActivityIndicatorView+Utilities.h"
 #import "CVSearchScopePopoverController.h"
-#import "EKEventStore+Shared.h"
 #import "CVEventCell.h"
 
 

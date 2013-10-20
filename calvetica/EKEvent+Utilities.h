@@ -1,13 +1,5 @@
 
 
-#import "times.h"
-#import "EKEvent+Utilities.h"
-#import "EKRecurrenceRule+Utilities.h"
-#import "EKEventStore+Shared.h"
-#import "strings.h"
-
-
-
 
 @interface EKEvent (Utilities)
 
@@ -23,26 +15,16 @@
 #pragma mark - Methods
 - (BOOL)hadRecurrenceRuleOnPreviousSave;
 - (void)shiftEndDateBySettingStartDate:(NSDate *)newDate;
-- (void)saveThenDoActionBlock:(void (^)(void))saveActionBlock cancelBlock:(void (^)(void))cancelBlock;
-- (void)saveForThisOccurrence;
-- (void)removeThenDoActionBlock:(void (^)(void))removeActionBlock cancelBlock:(void (^)(void))cancelBlock;
 - (void)addSnoozeAlarmWithTimeInterval:(NSTimeInterval)interval;
 - (void)resetDefaultAlarms;
 - (void)resetDurationToDefault;
 - (BOOL)isACurrentAlarm:(EKAlarm *)alarm;
 
 #pragma mark - COMPARATORS
-- (BOOL)startsOnSameDayAsDate:(NSDate *)dayDate;
 
 #pragma mark - UTILITIES
 - (EKCalendar *)readCalendar;
 - (NSTimeInterval)eventDuration;
-- (CGFloat)percentOfDay;
-- (CGFloat)durationBarSecondsForDate:(NSDate *)date;
-- (BOOL)occursAtAllOnDate:(NSDate *)date;
-- (BOOL)spansEntireDayOfDate:(NSDate *)date;
-- (BOOL)spansEntireDayOfOnlyDate:(NSDate *)date;
-- (BOOL)fitsWithinDayOfDate:(NSDate *)date;
 - (BOOL)fitsWithinWeekOfDate:(NSDate *)date;
 - (BOOL)willBeABar;
 
@@ -50,7 +32,6 @@
 - (NSString *)availabilityAsString;
 - (NSString *)stringForParticipantStatus: (EKParticipantStatus)status;
 - (NSString *)serialize;
-- (NSString *)readTitle;
 
 - (NSString *)stringWithRelativeEndTime;
 - (NSString *)stringWithRepeat;

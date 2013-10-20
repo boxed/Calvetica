@@ -6,10 +6,7 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "EKCalendar+Utilities.h"
-#import "EKEventStore+Shared.h"
 #import "CVEventDetailsOrderViewController.h"
-#import "UIColor+Utilities.h"
 
 
 @interface CVSettings : NSObject

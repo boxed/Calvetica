@@ -7,12 +7,12 @@
 //
 
 #import "CVEventCalendarsManagerViewController.h"
-#import "EKEventStore+Shared.h"
-#import "EKSource+Calvetica.h"
+#import "UIImage+Clear.h"
 
 
 @interface CVEventCalendarsManagerViewController ()
-@property (nonatomic, copy) NSArray *calendarSources;
+@property (nonatomic, copy  ) NSArray *calendarSources;
+@property (nonatomic, strong) UIImage *clearImage;
 @end
 
 
@@ -22,7 +22,9 @@
 {
 	[super viewDidLoad];
 
-	_calendarSources = [EKEventStore calendarSources];
+	self.calendarSources = [EKEventStore calendarSources];
+
+    self.clearImage = [UIImage clearImageWithSize:CGSizeMake(30, 30)];
 
 	self.tableView.allowsSelectionDuringEditing = YES;
 
@@ -32,10 +34,12 @@
 	self.title = @"Calendars";
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (CGSize)preferredContentSize
 {
-    self.contentSizeForViewInPopover = CGSizeMake(320, 416);
+    return CGSizeMake(320, 416);
 }
+
+
 
 
 
@@ -77,15 +81,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EKSource *source = [_calendarSources objectAtIndex:indexPath.section];
-    NSArray *calendars = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
+    EKSource *source            = [_calendarSources objectAtIndex:indexPath.section];
+    NSArray *calendars          = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
 
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CalendarCell"];
-	cell.imageView.image = [UIImage imageNamed:@"bg_clear_cell_image"];
-	cell.textLabel.textColor = [UIColor colorWithWhite:0.32 alpha:1];
-	cell.selectionStyle = UITableViewCellSelectionStyleGray;
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	cell.userInteractionEnabled = YES;
+    UITableViewCell *cell       = [tableView dequeueReusableCellWithIdentifier:@"CalendarCell"];
+    cell.imageView.image        = self.clearImage;
+    cell.textLabel.textColor    = [UIColor colorWithWhite:0.32 alpha:1];
+    cell.selectionStyle         = UITableViewCellSelectionStyleGray;
+    cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
+    cell.userInteractionEnabled = YES;
     cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
 
@@ -97,9 +101,9 @@
 		cell.imageView.backgroundColor = [UIColor colorWithCGColor:cal.CGColor];
 
 		if (cal.isImmutable) {
-			cell.textLabel.textColor = [UIColor grayColor];
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell.userInteractionEnabled = NO;
+            cell.textLabel.textColor    = [UIColor grayColor];
+            cell.accessoryType          = UITableViewCellAccessoryNone;
+            cell.userInteractionEnabled = NO;
 		}
     }
 
@@ -156,9 +160,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		EKSource *source = [_calendarSources objectAtIndex:indexPath.section];
-		NSArray *calendars = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
-		EKCalendar *calendar = [calendars objectAtIndex:indexPath.row];
+        EKSource *source        = [_calendarSources objectAtIndex:indexPath.section];
+        NSArray *calendars      = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
+        EKCalendar *calendar    = [calendars objectAtIndex:indexPath.row];
 		if ([calendar remove]) {
             [tableView beginUpdates];
 			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -175,7 +179,7 @@
 {
 	if ([segue.identifier isEqualToString:@"CalendarDetailSegue"]) {
 
-		CVCalendarDetailsViewController *detailsView = segue.destinationViewController;
+		CVEditCalendarViewController *detailsView = segue.destinationViewController;
 		detailsView.delegate = self;
 
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -200,7 +204,7 @@
 
 #pragma mark - Detail Delegate
 
-- (void)calendarDetailsController:(CVCalendarDetailsViewController *)controller didFinishWithResult:(CVCalendarDetailsControllerResult)result
+- (void)calendarDetailsController:(CVEditCalendarViewController *)controller didFinishWithResult:(CVCalendarDetailsControllerResult)result
 {
     if (result == CVCalendarDetailsControllerResultSaved) {
         _calendarSources = [EKEventStore calendarSources];
@@ -211,8 +215,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 	[self.tableView reloadData];
 }
-
-
 
 
 - (NSUInteger)supportedInterfaceOrientations

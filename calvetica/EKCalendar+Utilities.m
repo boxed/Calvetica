@@ -1,6 +1,6 @@
 
 #import "EKCalendar+Utilities.h"
-#import "UIColor+Utilities.h"
+#import "UIColor+Calvetica.h"
 
 @implementation EKCalendar (Utilities)
 
@@ -40,7 +40,7 @@
 		case EKSourceTypeSubscribed:	return NSLocalizedString(@"SUBSCRIPTION",	@"The calendar's type:SUBSCRIPTION");
 		case EKSourceTypeBirthdays:		return NSLocalizedString(@"BIRTHDAY",		@"The calendar's type:BIRTHDAY");
 	}
-	return NSLocalizedString(@"LOCAL",@"The calendar's type:LOCAL");
+	return NSLocalizedString(@"LOCAL", @"The calendar's type:LOCAL");
 }
 
 - (NSInteger)indexOfCalendarEditable:(BOOL)editable 

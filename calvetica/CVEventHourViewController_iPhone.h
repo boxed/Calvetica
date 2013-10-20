@@ -7,7 +7,6 @@
 //
 
 #import "colors.h"
-#import "EKEvent+Utilities.h"
 #import "CVSelectionTableViewCell_iPhone.h"
 #import "CVViewButton.h"
 #import "viewtagoffsets.h"

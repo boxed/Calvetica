@@ -15,7 +15,6 @@
 
 - (void)awakeFromNib 
 {
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(cellWasTapped:)];
     [self.gestureHitArea addGestureRecognizer:tapGesture];
     
@@ -70,16 +69,6 @@
 
 - (IBAction)cellWasTapped:(id)sender 
 {
-//    self.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1);
-//    [UIView mt_animateViews:@[self]
-//                   duration:0.45
-//             timingFunction:kMTEaseOutElastic animations:^
-//     {
-//         self.layer.transform = CATransform3DIdentity;
-//     } completion:^{
-//         self.layer.transform = CATransform3DIdentity;
-//     }];
-
     [UIView mt_animateViews:@[self]
                    duration:0.15
              timingFunction:kMTEaseOutBack animations:^

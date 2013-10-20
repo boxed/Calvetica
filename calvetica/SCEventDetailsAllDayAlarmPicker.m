@@ -6,19 +6,10 @@
 //
 
 #import "SCEventDetailsAllDayAlarmPicker.h"
-
-
-
-
-#pragma mark - Private
-@interface SCEventDetailsAllDayAlarmPicker ()
-@end
-
-
+#import "times.h"
 
 
 @implementation SCEventDetailsAllDayAlarmPicker
-
 
 - (void)viewDidLoad 
 {

@@ -6,8 +6,6 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "EKCalendar+Utilities.h"
-#import "EKEventStore+Shared.h"
 #import "CVCalendarTableViewCell_iPhone.h"
 
 

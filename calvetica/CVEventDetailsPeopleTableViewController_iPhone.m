@@ -127,7 +127,7 @@
 						participants = [participants arrayByAddingObjectsFromArray:_event.attendees];
 						for (EKParticipant *participant in participants) {
 							// add the participant info to the holder nad array
-							CVParticipantCellDataHolder *holder = [[CVParticipantCellDataHolder alloc] init];
+							CVParticipantCellModel *holder = [[CVParticipantCellModel alloc] init];
 							holder.participant = participant;
 
 							// get the participants email address
@@ -164,7 +164,7 @@
 			}
         }
         else {
-            CVParticipantCellDataHolder *holder = [[CVParticipantCellDataHolder alloc] init];
+            CVParticipantCellModel *holder = [[CVParticipantCellModel alloc] init];
             [_participantDataHolderArray addObject:holder];
         }
     }
@@ -191,7 +191,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     CVPeopleTableViewCell_iPhone *cell = [CVPeopleTableViewCell_iPhone cellForTableView:tableView];
-    CVParticipantCellDataHolder *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
+    CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.participant) {
         if (holder.email) {
@@ -232,7 +232,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVParticipantCellDataHolder *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
+    CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.telephoneNumbers) {
         [_delegate callButtonWasPressedWithTelephoneNumbers:holder.telephoneNumbers];
@@ -244,7 +244,7 @@
 - (void)cellWasSwiped:(CVPeopleTableViewCell_iPhone *)cell 
 {
     NSIndexPath *indexPath = [self.tableView indexPathForRowContainingView:cell];
-    CVParticipantCellDataHolder *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
+    CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     if (holder.recordID) {
         [_delegate personWasSwiped:holder.recordID];
     }
@@ -254,7 +254,7 @@
 {
     UIButton *chatButton = (UIButton *)button;
     NSIndexPath *indexPath = [self.tableView indexPathForRowContainingView:chatButton];
-    CVParticipantCellDataHolder *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
+    CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.telephoneNumbers) { 
         [_delegate chatButtonWasPressedWithTelephoneNumbers:holder.telephoneNumbers];
@@ -265,7 +265,7 @@
 {
     UIButton *emailButton = (UIButton *)button;
     NSIndexPath *indexPath = [self.tableView indexPathForRowContainingView:emailButton];
-    CVParticipantCellDataHolder *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
+    CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.email) {
         [_delegate emailButtonWasPressedForParticipants:@[holder.email]];

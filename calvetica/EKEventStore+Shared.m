@@ -7,17 +7,18 @@
 //
 
 #import "EKEventStore+Shared.h"
-#import "EKEvent+Utilities.h"
-#import "EKCalendarItem+Calvetica.h"
-#import "CVEventSquare.h"
+#import "CVEventSquareModel.h"
 #import "CVDebug.h"
-
 
 
 @implementation EKEventStore (Shared)
 
-static BOOL __permissionGranted = NO;
-static EKEventStore *__sharedStore = nil;
+static BOOL __permissionGranted     = NO;
+static EKEventStore *__sharedStore  = nil;
+static NSArray *__allReminders      = nil;
+
+
+#pragma mark - Public
 
 + (EKEventStore *)sharedStore
 {
@@ -32,6 +33,9 @@ static EKEventStore *__sharedStore = nil;
 
     return __sharedStore;
 }
+
+
+#pragma mark (Permission)
 
 + (void)setPermissionGranted:(BOOL)granted
 {
@@ -51,7 +55,7 @@ static EKEventStore *__sharedStore = nil;
 
 
 
-#pragma mark - Events
+#pragma mark (Events)
 
 + (NSArray *)eventsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
 {
@@ -75,10 +79,16 @@ static EKEventStore *__sharedStore = nil;
     }
 
     NSPredicate *predicate = [[EKEventStore sharedStore] predicateForEventsWithStartDate:bufferedStartDate endDate:bufferedEndDate calendars:calendars];
-    NSMutableArray *events = [NSMutableArray arrayWithArray:[[EKEventStore sharedStore] eventsMatchingPredicate:predicate]];
+    NSMutableArray *events = [[[EKEventStore sharedStore] eventsMatchingPredicate:predicate] mutableCopy];
 
     // strip out any events we grabbed because of the buffer that are outside our originally requested range
 	[events filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent *event, NSDictionary *bindings) {
+
+        // it returned an EKReminder one time...whatever.
+        if (![event isKindOfClass:[EKEvent class]]) {
+            return NO;
+        }
+
         NSComparisonResult startsBeforeEndResult    = [event.startDate compare:endDate];
         BOOL startsBeforeEnd                        = (startsBeforeEndResult == NSOrderedAscending ||
                                                        startsBeforeEndResult == NSOrderedSame);
@@ -93,7 +103,7 @@ static EKEventStore *__sharedStore = nil;
 	return events;
 }
 
-+ (NSArray *)chainedEventDataHoldersFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly includeAllDayEvents:(BOOL)includeAllDayEvents
++ (NSArray *)chainedEventModelsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly includeAllDayEvents:(BOOL)includeAllDayEvents
 {
     if (!__permissionGranted) return nil;
 	startDate = [startDate dateByAddingTimeInterval:-1];
@@ -113,24 +123,24 @@ static EKEventStore *__sharedStore = nil;
 	NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
 	NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
 	NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
-	NSMutableArray *eventSquareDataHolders = [NSMutableArray array];
+	NSMutableArray *eventSquareModels = [NSMutableArray array];
 	for (EKEvent *event in weekEvents) {
 		
-		CVEventSquare *eventSquareDataHolder = [[CVEventSquare alloc] init];
-		eventSquareDataHolder.event = event;
-        eventSquareDataHolder.startSeconds = [event.startingDate timeIntervalSinceDate:startDate];
-        eventSquareDataHolder.endSeconds = [event.endingDate timeIntervalSinceDate:startDate];
+		CVEventSquareModel *eventSquareModel = [CVEventSquareModel new];
+		eventSquareModel.event = event;
+        eventSquareModel.startSeconds = [event.startingDate timeIntervalSinceDate:startDate];
+        eventSquareModel.endSeconds = [event.endingDate timeIntervalSinceDate:startDate];
 		
 		if (![event spansEntireDayOfDate:startDate] || includeAllDayEvents) {
             
             // if any concurrent events end before this one starts, it is no longer concurrent
-			for (CVEventSquare *e in concurrentEvents) {
-				if (e.endSeconds <= eventSquareDataHolder.startSeconds) {
+			for (CVEventSquareModel *e in concurrentEvents) {
+				if (e.endSeconds <= eventSquareModel.startSeconds) {
 					[eventsToRemoveFromConcurrent addObject:e];
 				}
 			}
 			
-			for (CVEventSquare *e in eventsToRemoveFromConcurrent) {
+			for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
 				[concurrentEvents removeObject:e];
 			}
 			[eventsToRemoveFromConcurrent removeAllObjects];
@@ -142,22 +152,22 @@ static EKEventStore *__sharedStore = nil;
 			}
 			
             // loop n^2 to make sure that any offset checked before an increment was not missed
-			eventSquareDataHolder.offset = 0;
+			eventSquareModel.offset = 0;
 			for (NSInteger i=0; i < concurrentEvents.count; i++) {
-				for (CVEventSquare *ie in concurrentEvents) {
-					if ( ie.offset == eventSquareDataHolder.offset ) {
-						eventSquareDataHolder.offset++;
+				for (CVEventSquareModel *ie in concurrentEvents) {
+					if ( ie.offset == eventSquareModel.offset ) {
+						eventSquareModel.offset++;
 					}
 				}
 			}
 			
             // add the event to both sets because it's either a continuation or a start of a chain
-			[chainedEvents addObject:eventSquareDataHolder];
-			[concurrentEvents addObject:eventSquareDataHolder];
+			[chainedEvents addObject:eventSquareModel];
+			[concurrentEvents addObject:eventSquareModel];
 			
             // change the overlap count of all chained events to the max overlap count (so they are all the same width)
 			NSInteger maxOverlaps = 0;
-			for (CVEventSquare *e in chainedEvents) {
+			for (CVEventSquareModel *e in chainedEvents) {
 				if (e.overlaps < concurrentEvents.count) {
 					e.overlaps = concurrentEvents.count;
 				}
@@ -167,15 +177,15 @@ static EKEventStore *__sharedStore = nil;
 				}
 			}
 			
-			if (maxOverlaps > eventSquareDataHolder.overlaps) {
-				eventSquareDataHolder.overlaps = maxOverlaps;
+			if (maxOverlaps > eventSquareModel.overlaps) {
+				eventSquareModel.overlaps = maxOverlaps;
 			}
 		}
 		
-		[eventSquareDataHolders addObject:eventSquareDataHolder];
+		[eventSquareModels addObject:eventSquareModel];
 	}
     
-    return  eventSquareDataHolders;
+    return  eventSquareModels;
 }
 
 + (NSArray *)eventsSearchedWithText:(NSString *)text startDate:(NSDate *)startDate endDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
@@ -225,23 +235,6 @@ static EKEventStore *__sharedStore = nil;
 	return (EKEvent *)[EKCalendarItem calendarItemWithIdentifier:identifier];
 }
 
-+ (NSError *)saveEvent:(EKEvent *)event forAllOccurrences:(BOOL)forAll
-{
-    if (!__permissionGranted) return nil;
-    NSError *error = nil;
-    EKSpan span = forAll ? EKSpanFutureEvents : EKSpanThisEvent;
-    [[EKEventStore sharedStore] saveEvent:event span:span error:&error];
-    return error;
-}
-
-+ (NSError *)removeEvent:(EKEvent *)event forAllOccurrences:(BOOL)forAll
-{
-    if (!__permissionGranted) return nil;
-    NSError *error = nil;
-    [[EKEventStore sharedStore] removeEvent:event span:(forAll ? EKSpanFutureEvents : EKSpanThisEvent) error:&error];
-    return error;
-}
-
 + (NSArray *)eventCalendars
 {
     if (!__permissionGranted) return nil;
@@ -263,14 +256,45 @@ static EKEventStore *__sharedStore = nil;
 
 
 
-#pragma mark - Reminders
+#pragma mark (Reminders)
 
-+ (void)remindersForDate:(NSDate *)date completion:(void (^)(NSArray *reminders))completion
+- (BOOL)remindersFromDate:(NSDate *)fromDate
+                   toDate:(NSDate *)toDate
+                calendars:(NSArray *)calendars
+                  options:(MYSEKEventStoreReminderFetchOptions)options
+               completion:(void (^)(NSArray *reminders))completion
 {
-    NSPredicate *predicate = [[EKEventStore sharedStore] predicateForRemindersInCalendars:nil];
-    [[EKEventStore sharedStore] fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
-        if (completion) completion(reminders);
+    if (!__permissionGranted) return YES;
+    return [self fetchAllRemindersInCalendars:calendars completion:^(NSArray *allReminders) {
+        allReminders = [allReminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder,
+                                                                                                       NSDictionary *bindings) {
+            if ((options & MYSEKEventStoreReminderFetchOptionsExcludeCompleted) && reminder.completed) {
+                return NO;
+            }
+            if (reminder.isFloating) {
+                return !(options & MYSEKEventStoreReminderFetchOptionsExcludeFloating);
+            }
+            return [reminder occursBetweenDate:fromDate date:toDate];
+        }]];
+        if (completion) completion(allReminders);
     }];
+}
+
+- (void)clearRemindersCache
+{
+    [self clearRemindersCacheAndReloadWithCompletion:nil];
+}
+
+- (void)clearRemindersCacheAndReloadWithCompletion:(void (^)(void))completion
+{
+    __allReminders = nil;
+    if (completion) {
+        [MTq def:^{
+            [self fetchAllRemindersInCalendars:nil completion:^(NSArray *allReminders) {
+                completion();
+            }];
+        }];
+    }
 }
 
 
@@ -335,5 +359,34 @@ static EKEventStore *__sharedStore = nil;
 	}
 	return [array lastObject];
 }
+
+
+
+
+#pragma mark - Private
+
+/**
+ * Returns YES if it is able to return immediate with cached reminders. Otherwise NO.
+ */
+- (BOOL)fetchAllRemindersInCalendars:(NSArray *)calendars completion:(void (^)(NSArray *allReminders))completion
+{
+    @synchronized(self) {
+        NSArray *remindersCache = [__allReminders copy];
+        if (remindersCache) {
+            if (completion) completion(remindersCache);
+            return YES;
+        }
+        else {
+            NSLog(@"Had to fetch all reminders");
+            NSPredicate *predicate = [[EKEventStore sharedStore] predicateForRemindersInCalendars:calendars];
+            [[EKEventStore sharedStore] fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
+                __allReminders = [reminders copy];
+                if (completion) completion(reminders);
+            }];
+            return NO;
+        }
+    }
+}
+
 
 @end

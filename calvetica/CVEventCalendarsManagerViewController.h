@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CVCalendarDetailsViewController.h"
+#import "CVEditCalendarViewController.h"
 
 @interface CVEventCalendarsManagerViewController : UITableViewController <CVCalendarDetailsViewControllerDelegate>
 @end

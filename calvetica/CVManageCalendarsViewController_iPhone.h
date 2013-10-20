@@ -8,13 +8,10 @@
 
 
 #import "CVManageCalendarTableViewCell_iPhone.h"
-#import "EKEventStore+Shared.h"
-#import "EKCalendar+Utilities.h"
 #import "UIApplication+Utilities.h"
 #import "CVDebug.h"
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
-#import "EKEventStore+Shared.h"
 
 
 typedef enum {

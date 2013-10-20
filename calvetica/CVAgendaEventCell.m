@@ -6,13 +6,14 @@
 //
 
 #import "CVAgendaEventCell.h"
+#import "colors.h"
 
 
 @interface CVAgendaEventCell ()
-@property (nonatomic, weak  ) IBOutlet CVLabel *timeLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel *timeLabel;
 @property (nonatomic, assign)          BOOL    isAllDay;
+@property (nonatomic, weak  ) IBOutlet UILabel *calendarItemTitleLabel;
 @property (nonatomic, assign)          BOOL    continuedFromPreviousDay;
-
 @end
 
 
@@ -20,29 +21,45 @@
 
 - (void)setIsEmpty:(BOOL)empty
 {
-    super.isEmpty               = empty;
-    self.coloredDotView.hidden  = YES;
-    self.timeLabel.hidden       = YES;
-    self.titleLabel.text        = @"No Events";
+    super.isEmpty                       = empty;
+    self.coloredDotView.hidden          = YES;
+    self.timeLabel.hidden               = YES;
+    self.calendarItemTitleLabel.text    = @"No Events";
 }
 
 
 
 #pragma mark - Methods
 
-- (void)setEvent:(EKEvent *)newEvent continued:(BOOL)continued allDay:(BOOL)allDay 
+- (void)setCalendarItem:(EKCalendarItem *)newCalendarItem continued:(BOOL)continued allDay:(BOOL)isAllDay
 {
-    self.event = newEvent;
+    self.calendarItem = newCalendarItem;
 	
 	self.continuedFromPreviousDay = continued;
-	self.isAllDay = allDay;
+	self.isAllDay = isAllDay;
         
 	// update event elements with even details
-	self.titleLabel.text = [_event readTitle];
-	self.coloredDotView.color = [_event.calendar customColor];
+	self.coloredDotView.color = [self.calendarItem.calendar customColor];
 	_timeLabel.textColor = patentedQuiteDarkGray;
-	
-	
+
+    if (newCalendarItem.isReminder) {
+        if ([(EKReminder *)newCalendarItem isCompleted]) {
+            NSAttributedString *attributedTitle =
+            [[NSAttributedString alloc] initWithString:newCalendarItem.mys_title
+                                            attributes:@{ NSStrikethroughStyleAttributeName : @(YES) }];
+            self.calendarItemTitleLabel.attributedText = attributedTitle;
+        }
+        else {
+            self.calendarItemTitleLabel.text = self.calendarItem.mys_title;
+        }
+        self.backgroundColor        = [self.coloredDotView.color colorWithAlphaComponent:0.1];
+        self.coloredDotView.shape   = [(EKReminder *)newCalendarItem colorDotShapeForPriority];
+    }
+    else {
+        self.calendarItemTitleLabel.text = self.calendarItem.mys_title;
+        self.backgroundColor = [UIColor whiteColor];
+    }
+
 	// set cell time labels
     if (self.continuedFromPreviousDay) {
         _timeLabel.text = @"...";
@@ -52,17 +69,19 @@
 		_timeLabel.textColor = patentedRed;
 	}
 	else {
-		_timeLabel.text = [_event.startingDate stringWithHourMinuteAndLowercaseAMPM];
+		_timeLabel.text = [newCalendarItem.mys_date stringWithHourMinuteAndLowercaseAMPM];
     }
-	
+
 }
 
 #pragma mark - Actions
 
-- (IBAction)cellWasTapped:(id)sender 
+- (IBAction)cellWasTapped:(id)sender
 {
-    [super cellWasTapped:sender];
-    [_delegate cellWasTapped:(CVEventCell *)self];
+    if (self.calendarItem.isEvent) {
+        [super cellWasTapped:sender];
+    }
+    [self.delegate calendarItemCell:self wasTappedForItem:self.calendarItem];
 }
 
 - (IBAction)cellWasLongPressed:(UILongPressGestureRecognizer *)gesture 
@@ -73,10 +92,10 @@
 - (IBAction)accessoryButtonWasTapped:(id)sender 
 {
     if (!self.isAllDay) {
-        [_delegate cellHourTimeWasTapped:(CVEventCell *)self];
+        [self.delegate calendarItemCell:self
+                             tappedTime:[self.calendarItem.mys_date mt_startOfCurrentHour]
+                                   view:self.timeLabel];
     }
 }
-
-
 
 @end

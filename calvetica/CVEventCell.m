@@ -7,6 +7,22 @@
 //
 
 #import "CVEventCell.h"
+#import "UILabel+Utilities.h"
+
+
+@interface CVEventCell ()
+@property (nonatomic, weak) IBOutlet UILabel     *noEventLabel;
+@property (nonatomic, weak) IBOutlet UIView      *durationBarView;
+@property (nonatomic, weak) IBOutlet UIView      *secondaryDurationBarView;
+@property (nonatomic, weak) IBOutlet UILabel     *hourAndMinuteLabel;
+@property (nonatomic, weak) IBOutlet UILabel     *AMPMLabel;
+@property (nonatomic, weak) IBOutlet UILabel     *allDayLabel;
+@property (nonatomic, weak) IBOutlet UIControl   *timeTextHitArea;
+@property (nonatomic, weak) IBOutlet UIImageView *repeatTinyIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *notesTinyIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *locationTinyIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *attendeesTinyIcon;
+@end
 
 
 @implementation CVEventCell
@@ -15,18 +31,18 @@
 {
     super.isEmpty = empty;
     if (empty) {
-        self.titleLabel.hidden = YES;
-        self.coloredDotView.hidden = YES;
-        self.redSubtitleLabel.hidden = YES;
-        self.hourAndMinuteLabel.hidden = YES;
-        self.AMPMLabel.hidden = YES;
-        self.allDayLabel.hidden = YES;
+        self.titleLabel.hidden          = YES;
+        self.coloredDotView.hidden      = YES;
+        self.redSubtitleLabel.hidden    = YES;
+        self.hourAndMinuteLabel.hidden  = YES;
+        self.AMPMLabel.hidden           = YES;
+        self.allDayLabel.hidden         = YES;
         self.cellAccessoryButton.hidden = YES;
-        self.repeatTinyIcon.hidden = YES;
-        self.notesTinyIcon.hidden = YES;
-        self.locationTinyIcon.hidden = YES;
-        self.attendeesTinyIcon.hidden = YES;
-        self.noEventLabel.hidden = NO;
+        self.repeatTinyIcon.hidden      = YES;
+        self.notesTinyIcon.hidden       = YES;
+        self.locationTinyIcon.hidden    = YES;
+        self.attendeesTinyIcon.hidden   = YES;
+        self.noEventLabel.hidden        = NO;
     }
     else {
         self.noEventLabel.hidden = YES;
@@ -44,11 +60,13 @@
     
     // set cell time labels
     if (_date != nil) {
-        _hourAndMinuteLabel.alpha = 1;
-        _AMPMLabel.alpha = 1;
         if (![_date mt_isStartOfAnHour]) {
-            _hourAndMinuteLabel.alpha = 0.6f;
-            _AMPMLabel.alpha = 0.6f;
+            _hourAndMinuteLabel.alpha   = 0.8f;
+            _AMPMLabel.alpha            = 0.8f;
+        }
+        else {
+            _hourAndMinuteLabel.alpha   = 1;
+            _AMPMLabel.alpha            = 1;
         }
         _hourAndMinuteLabel.text = [_date stringWithHourAndMinute];
         _AMPMLabel.text = [_date stringWithAMPM];
@@ -77,7 +95,7 @@
         self.coloredDotView.hidden = NO;
         
         // update event elements with even details
-        self.titleLabel.text = [_event readTitle];
+        self.titleLabel.text = [_event mys_title];
         self.coloredDotView.color = [_event.calendar customColor];
         self.cellAccessoryButton.defaultImage = [UIImage imageNamed:(_event.alarms.count > 0 ? @"icon_alarm_selected" : @"icon_alarm")];
 
@@ -165,9 +183,7 @@
         
         self.redSubtitleLabel.text = subtitleText;
         
-        
-        
-        
+
         // place icons
         CGFloat currentX = self.redSubtitleLabel.frame.origin.x + [self.redSubtitleLabel sizeOfTextInLabel].width + 8.0f;
         
@@ -263,14 +279,13 @@
 - (IBAction)cellWasTapped:(id)sender 
 {
     [super cellWasTapped:sender];
-    [_delegate cellWasTapped:self];
+    [self.delegate calendarItemCell:self wasTappedForItem:self.event];
 }
 
 - (IBAction)cellWasLongPressed:(UILongPressGestureRecognizer *)gesture 
 {
     if (gesture.state != UIGestureRecognizerStateBegan) return;
-
-    [_delegate cellWasLongPressed:self];
+    [self.delegate calendarItemCell:self wasLongPressedForItem:self.event];
 }
 
 
@@ -280,10 +295,10 @@
         [self toggleAccessoryButton];        
     } else {
 		if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
-			[_delegate cell:self wasSwipedInDirection:CVEventCellSwipedDirectionLeft];
+            [self.delegate calendarItemCell:self forItem:self.event wasSwipedInDirection:CVCalendarItemCellSwipedDirectionLeft];
 		}
 		else {
-			[_delegate cell:self wasSwipedInDirection:CVEventCellSwipedDirectionRight];
+            [self.delegate calendarItemCell:self forItem:self.event wasSwipedInDirection:CVCalendarItemCellSwipedDirectionRight];
 		}
 	}
 }
@@ -291,9 +306,9 @@
 - (IBAction)accessoryButtonWasTapped:(id)sender 
 {
     if (self.cellAccessoryButton.mode == CVCellAccessoryButtonModeDefault) {
-        [_delegate cell:self alarmButtonWasTappedForCalendarItem:self.event];
+        [self.delegate calendarItemCell:self tappedAlarmView:self.cellAccessoryButton forItem:self.event];
     } else {
-        [_delegate cellEventWasDeleted:self];
+        [self.delegate calendarItemCell:self tappedDeleteForItem:self.event];
         [self toggleAccessoryButton];
     }
 }
@@ -301,7 +316,7 @@
 - (IBAction)hourTimeWasTapped:(id)sender 
 {
     if (!self.isAllDay && self.date != nil) {
-        [self.delegate cellHourTimeWasTapped:self];        
+        [self.delegate calendarItemCell:self tappedTime:self.date view:self.timeTextHitArea];
     }
 }
 @end

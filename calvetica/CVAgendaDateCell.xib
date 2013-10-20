@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="tuesday" lineBreakMode="wordWrap" numberOfLines="11" minimumFontSize="14" adjustsFontSizeToFit="NO" id="5" userLabel="Weekday Label" customClass="CVLabel">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="tuesday" lineBreakMode="wordWrap" numberOfLines="11" minimumFontSize="14" adjustsFontSizeToFit="NO" id="5" userLabel="Weekday Label">
                         <rect key="frame" x="14" y="9" width="222" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -21,7 +21,7 @@
                         <color key="textColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="19" lineBreakMode="wordWrap" minimumFontSize="14" adjustsFontSizeToFit="NO" id="3" userLabel="Date Label" customClass="CVLabel">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="19" lineBreakMode="wordWrap" minimumFontSize="14" adjustsFontSizeToFit="NO" id="3" userLabel="Date Label">
                         <rect key="frame" x="119" y="11" width="201" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

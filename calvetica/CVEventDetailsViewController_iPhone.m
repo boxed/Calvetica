@@ -10,7 +10,6 @@
 #import "CVEventEditViewController.h"
 #import "UIApplication+Utilities.h"
 #import "NSArray+Utilities.h"
-#import "EKEventStore+Shared.h"
 #import "CVActionBlockButton.h"
 #import "CVTimeZoneViewController.h"
 
@@ -93,7 +92,7 @@
 {
     [super viewDidLoad];
 
-    _eventTitleTextView.text = [self.event readTitle];
+    _eventTitleTextView.text = [self.event mys_title];
     _eventNotesTextView.text = self.event.notes;
     _eventLocationTextView.text = self.event.location;
 
@@ -725,7 +724,7 @@
         mailComposer.mailComposeDelegate = self;
         mailComposer.modalPresentationStyle = UIModalPresentationPageSheet;
         [mailComposer setMessageBody:[self.event naturalDescription] isHTML:NO];
-        [mailComposer setSubject:[self.event readTitle]];
+        [mailComposer setSubject:[self.event mys_title]];
         NSString *icsString = [self.event iCalString];
         NSData *data = [icsString dataUsingEncoding:NSUTF8StringEncoding];
         [mailComposer addAttachmentData:data mimeType:@"text/calendar" fileName:[NSString stringWithFormat:@"%@.ics", self.event.title]];

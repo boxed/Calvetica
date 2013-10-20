@@ -6,20 +6,10 @@
 //
 
 #import "CVCell.h"
-#import "EKEvent+Utilities.h"
 
 
 @interface CVAgendaDateCell : CVCell
-
-#pragma mark - Properties
-@property (nonatomic, strong) NSDate *date;
-@property (nonatomic, weak) IBOutlet CVLabel *weekdayLabel; 
-@property (nonatomic, weak) IBOutlet CVLabel *dateLabel; 
-
-#pragma mark - Methods
-
-
-#pragma mark - IBActions
-
-
+@property (nonatomic, strong)          NSDate  *date;
+@property (nonatomic, weak  ) IBOutlet UILabel *weekdayLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel *dateLabel;
 @end

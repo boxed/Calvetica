@@ -11,13 +11,9 @@
 #import "NSURLConnection+Utilities.h"
 #import "NSJSONSerialization+Utilities.h"
 #import "CVRootViewController.h"
-#import "EKEvent+Utilities.h"
-#import "EKEventStore+Shared.h"
 #import "dictionarykeys.h"
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
-#import "EKCalendarItem+Calvetica.h"
-#import "EKEventStore+Shared.h"
 
 
 @interface CVAppDelegate () 
@@ -186,7 +182,7 @@
             
             // get infor for the alert
             NSString *title			= @"Calvetica";
-            NSString *message		= [NSString stringWithFormat:@"%@\n%@", [event readTitle], [event.startingDate stringWithWeekdayMonthDayYearHourMinute]];
+            NSString *message		= [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinute]];
             NSString *sound			= notif.soundName;
             NSString *cancelTitle	= @"Cancel";
             NSString *otherTitle	= @"Snooze";
@@ -393,7 +389,7 @@
             localNotif.timeZone		= tz;
             
             // compose the alert
-            localNotif.alertBody	= [NSString stringWithFormat:@"%@\n%@", [event readTitle], [event.startingDate stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:fireDate]];
+            localNotif.alertBody	= [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:fireDate]];
             localNotif.alertAction	= @"Snooze";
             
             // we need the start date because repeating events could have the same ei, 

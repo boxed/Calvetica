@@ -7,7 +7,7 @@
 //
 
 #import "CVManageCalendarsViewController_iPhone.h"
-#import "CVCalendarCellDataHolder.h"
+#import "CVCalendarCellModel.h"
 
 
 @implementation CVManageCalendarsViewController_iPhone
@@ -42,7 +42,7 @@
 {
     if (self.modified) {
         NSMutableArray *newSelectedArray = [NSMutableArray array];
-        for (CVCalendarCellDataHolder *holder in self.cellDataHolderArray) {
+        for (CVCalendarCellModel *holder in self.cellDataHolderArray) {
             if (holder.isSelected) {
                 [newSelectedArray addObject:holder.calendar];
             }
@@ -76,7 +76,7 @@
     calendars = [calendars sortedArrayUsingDescriptors:sortDescriptors];
 
     for (EKCalendar *cal in calendars) {
-        CVCalendarCellDataHolder *holder = [[CVCalendarCellDataHolder alloc] init];
+        CVCalendarCellModel *holder = [[CVCalendarCellModel alloc] init];
         holder.calendar = cal;
         if ([cal isASelectedCalendar]) {
             holder.isSelected = YES;
@@ -107,7 +107,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     CVManageCalendarTableViewCell_iPhone *cell = [CVManageCalendarTableViewCell_iPhone cellForTableView:tv];
-    CVCalendarCellDataHolder *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
+    CVCalendarCellModel *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
 
     cell.calendarTitleLabel.text = holder.calendar.title;
     cell.calendarTypeLabel.text = holder.calendar.source.title;
@@ -126,7 +126,7 @@
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CVManageCalendarTableViewCell_iPhone *cell = (CVManageCalendarTableViewCell_iPhone *)[tv cellForRowAtIndexPath:indexPath];
-    CVCalendarCellDataHolder *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
+    CVCalendarCellModel *holder = [self.cellDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.isSelected) {
         holder.isSelected = NO;

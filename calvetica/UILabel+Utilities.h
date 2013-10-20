@@ -9,7 +9,7 @@
 #import "colors.h"
 #import "CVDebug.h"
 
-@interface UILabel (UILabel_Utilities)
+@interface UILabel (Utilities)
 
 
 #pragma mark - Methods
