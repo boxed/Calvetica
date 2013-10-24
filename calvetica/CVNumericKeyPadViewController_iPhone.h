@@ -21,8 +21,8 @@
 - (id)initWithTargetView:(UIView *)view;
 
 @property (nonatomic, weak  )          id<CVNumericKeyPadDelegate> delegate;
-@property (nonatomic, assign)          int                         maxValue;
-@property (nonatomic, assign)          int                         minValue;
+@property (nonatomic, assign)          NSInteger                         maxValue;
+@property (nonatomic, assign)          NSInteger                         minValue;
 @property (nonatomic, strong)          UIView                      *targetView;
 
 @property (nonatomic, weak  ) IBOutlet UILabel                     *keypadValue;

@@ -6,7 +6,6 @@
 //
 
 #import "CVCell.h"
-#import "MTLabel.h"
 
 @protocol CVSearchEventCellDelegate;
 

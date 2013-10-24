@@ -73,8 +73,8 @@
 {
     // We'll throw an exception if the recurrence end date is greater than the number of years we're allowing.
     if (self.initialRecurrenceRule.recurrenceEnd && self.initialRecurrenceRule.recurrenceEnd.endDate) {
-        int recurrenceEndYear = [self.initialRecurrenceRule.recurrenceEnd.endDate mt_year];
-        int currentYearCount = [self.startDate mt_year] + MIN_YEAR_COUNT;
+        NSInteger recurrenceEndYear = [self.initialRecurrenceRule.recurrenceEnd.endDate mt_year];
+        NSInteger currentYearCount = [self.startDate mt_year] + MIN_YEAR_COUNT;
         if (recurrenceEndYear >= currentYearCount) {
             // Add 11 to give a small buffer. For example, if the end date is 2065, we'll allow years up to 2075.
             return (recurrenceEndYear - currentYearCount) + MIN_YEAR_COUNT + 11;
@@ -89,7 +89,7 @@
 #pragma mark - Methods
 
 
-- (int)dayCount 
+- (NSInteger)dayCount
 {
     NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
     
@@ -101,14 +101,14 @@
     return [date mt_daysInCurrentMonth];
 }
 
-- (int)dayForIndexPath:(NSIndexPath *)indexPath 
+- (NSInteger)dayForIndexPath:(NSIndexPath *)indexPath 
 {
     NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
-    int offset = [date mt_daysInCurrentMonth] - ([self dayCount] - 1);
+    NSInteger offset = [date mt_daysInCurrentMonth] - ([self dayCount] - 1);
     return indexPath.row + offset;
 }
 
-+ (NSString *)endTypeButtonTitleForIndex:(int)index {
++ (NSString *)endTypeButtonTitleForIndex:(NSInteger)index {
     NSString *buttonTitle = nil;
     if (index == 0) {
         buttonTitle = NSLocalizedString(@"Never", @"Never");
@@ -121,11 +121,11 @@
     return buttonTitle;
 }
 
-- (NSIndexPath *)indexPathForDay:(int)day 
+- (NSIndexPath *)indexPathForDay:(NSInteger)day 
 {
     NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:_selectedMonth day:1];
-    int offset = [date mt_daysInCurrentMonth] - ([self dayCount] - 1);
-    int row = day - offset;
+    NSInteger offset = [date mt_daysInCurrentMonth] - ([self dayCount] - 1);
+    NSInteger row = day - offset;
     
     // A negative value means the selected day is in the past.
     if (row < 0) {
@@ -134,10 +134,10 @@
     return [NSIndexPath indexPathForRow:row inSection:0];
 }
 
-- (NSIndexPath *)indexPathForMonth:(int)month 
+- (NSIndexPath *)indexPathForMonth:(NSInteger)month 
 {
-    int offset = 12 - ([self monthCount] - 1);
-    int row = month - offset;
+    NSInteger offset = 12 - ([self monthCount] - 1);
+    NSInteger row = month - offset;
     
     if (row < 0) {
         row = 0;
@@ -145,13 +145,13 @@
     return [NSIndexPath indexPathForRow:row inSection:0];
 }
 
-- (NSIndexPath *)indexPathForYear:(int)year 
+- (NSIndexPath *)indexPathForYear:(NSInteger)year 
 {
-    int row = year - [self.startDate mt_year];
+    NSInteger row = year - [self.startDate mt_year];
     return [NSIndexPath indexPathForRow:row inSection:0];
 }
 
-- (int)monthCount 
+- (NSInteger)monthCount 
 {
     // The user isn't allowed to select a month in the past.
     if (_selectedYear == [self.startDate mt_year]) {
@@ -162,9 +162,9 @@
     return 12;
 }
 
-- (int)monthForIndexPath:(NSIndexPath *)indexPath 
+- (NSInteger)monthForIndexPath:(NSIndexPath *)indexPath 
 {
-    int offset = 12 - ([self monthCount] - 1);
+    NSInteger offset = 12 - ([self monthCount] - 1);
     return indexPath.row + offset;
 }
 
@@ -206,7 +206,7 @@
     [self.dateYear selectRowAtIndexPath:[self indexPathForYear:_selectedYear] animated:animate scrollPosition:UITableViewScrollPositionMiddle];
 }
 
-- (int)yearForIndexPath:(NSIndexPath *)indexPath 
+- (NSInteger)yearForIndexPath:(NSIndexPath *)indexPath 
 {
     return [self.startDate mt_year] + indexPath.row;
 }
@@ -305,12 +305,12 @@
     cell.textLabel.textColor = patentedQuiteDarkGray;
     
     if (tableView == self.dateDayTableView) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%i", [self dayForIndexPath:indexPath]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%li", (long)[self dayForIndexPath:indexPath]];
     } else if (tableView == self.dateMonth) {
         NSDate *date = [NSDate mt_dateFromYear:_selectedYear month:[self monthForIndexPath:indexPath] day:1];
         cell.textLabel.text = [date stringWithTitleOfCurrentMonthAbbreviated:NO];
     } else if (tableView == self.dateYear) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%i", [self yearForIndexPath:indexPath]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%li", (long)[self yearForIndexPath:indexPath]];
     }
     
     return cell;
@@ -346,7 +346,7 @@
 {
     [super viewDidLoad];
     
-    self.repeatTimesLabel.text = [NSString stringWithFormat:@"%i", self.initialRecurrenceRule.interval];
+    self.repeatTimesLabel.text = [NSString stringWithFormat:@"%li", (long)self.initialRecurrenceRule.interval];
     
     self.endTypeButton.states = @[END_NEVER, END_ON_DATE, END_AFTER];
     
@@ -358,7 +358,7 @@
         self.dateView.hidden = NO;
         _endType = 1;
     } else if (end && end.occurrenceCount != 0) {
-        self.endAfterLabel.text = [NSString stringWithFormat:@"%i", end.occurrenceCount];
+        self.endAfterLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)end.occurrenceCount];
         self.endAfterView.hidden = NO;
         _endType = 2;
     }

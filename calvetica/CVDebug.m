@@ -7,7 +7,7 @@
 
 #import "CVDebug.h"
 
-void CVDebug(const char *fileName, int lineNumber, NSString *fmt, ...) {
+void CVDebug(const char *fileName, NSInteger lineNumber, NSString *fmt, ...) {
     va_list args;
     va_start(args, fmt);
     
@@ -23,11 +23,11 @@ void CVDebug(const char *fileName, int lineNumber, NSString *fmt, ...) {
     
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
     NSString *appName = [info objectForKey:(NSString *)kCFBundleNameKey];
-    fprintf(stdout, "%s %s[%s:%d] %s\n",
+    fprintf(stdout, "%s %s[%s:%ld] %s\n",
             [timestamp UTF8String],
             [appName UTF8String],
             [[filePath lastPathComponent] UTF8String],
-            lineNumber,
+            (long)lineNumber,
             [msg UTF8String]);
     
     va_end(args);

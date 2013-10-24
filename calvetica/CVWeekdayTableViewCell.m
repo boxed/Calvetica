@@ -26,7 +26,7 @@
     _date = newDate;
     
     _weekdayTitleLabel.text = [[_date stringWithTitleOfCurrentWeekDayAbbreviated:YES] uppercaseString];
-    _monthDayTitleLabel.text = [NSString stringWithFormat:@"%d", [_date mt_dayOfMonth]];
+    _monthDayTitleLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[_date mt_dayOfMonth]];
     _redBarView.alpha = 1;
     
     _squaresView.date = newDate;

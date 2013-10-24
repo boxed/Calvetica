@@ -25,7 +25,7 @@
 - (void)setDate:(NSDate *)newDate 
 {
     _date = newDate;
-    self.weekNumberLabel.text = [NSString stringWithFormat:@"%d",[newDate mt_weekOfYear]];
+    self.weekNumberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[newDate mt_weekOfYear]];
 }
 
 - (void)didMoveToWindow
@@ -34,7 +34,7 @@
 	for (NSInteger i = 0; i <= NUM_LABELS; i++) {
 		UILabel *hourLabel = (UILabel *)[self viewWithTag:i + TAG_OFFSET];
 		if ([CVSettings isTwentyFourHourFormat] && i > 0)
-			hourLabel.text = [NSString stringWithFormat:@"%d", i - 1];
+			hourLabel.text = [NSString stringWithFormat:@"%ld", (NSInteger)(i - 1)];
 		CGRect f		= hourLabel.frame;
 		f.size.height	= rowHeight;
 		f.size.width	= self.bounds.size.width - 5;

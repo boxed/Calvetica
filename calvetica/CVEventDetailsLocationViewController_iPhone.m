@@ -203,13 +203,13 @@
 //    float latitude = view.annotation.coordinate.latitude;
 //    float longitude = view.annotation.coordinate.longitude;
 
-    UIActionSheet *actionSheet = [UIActionSheet actionSheetWithTitle:@"Open in…"];
-    [actionSheet addButtonWithTitle:@"Apple Maps" handler:^{
+    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Open in…"];
+    [actionSheet addButtonWithTitle:@"Apple Maps" block:^{
         NSString *stringURL = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", title];
         NSURL *url = [NSURL URLWithString:stringURL];
         [[UIApplication sharedApplication] openURL:url];
     }];
-    [actionSheet addButtonWithTitle:@"Google Maps" handler:^{
+    [actionSheet addButtonWithTitle:@"Google Maps" block:^{
         NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", title];
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
             stringURL = [NSString stringWithFormat:@"comgooglemaps://?q=%@", title];
@@ -217,7 +217,7 @@
         NSURL *url = [NSURL URLWithString:stringURL];
         [[UIApplication sharedApplication] openURL:url];
     }];
-    [actionSheet setCancelButtonWithTitle:@"Cancel" handler:nil];
+    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
     [actionSheet showFromRect:view.frame inView:view.superview animated:YES];
 
 }

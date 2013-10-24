@@ -77,7 +77,7 @@
     for (int i = 0; i < self.dayButtons.count; i++) {
         CVJumpToDayButton *b = [self.dayButtons objectAtIndex:i];
         NSDate *dateForButton = [self.date dateForCalendarSquare:i shiftedToBottom:NO];
-        NSString *dateString = [NSString stringWithFormat:@"%d", [dateForButton mt_dayOfMonth]];
+        NSString *dateString = [NSString stringWithFormat:@"%lu", (unsigned long)[dateForButton mt_dayOfMonth]];
         b.label.text = dateString;
         
         if ([dateForButton mt_isWithinSameMonth:self.date]) {
@@ -111,7 +111,7 @@
     // set month week numbers
     for (int i = 0; i < self.weekButtons.count; i++) {
         CVJumpToDayButton *b = [self.weekButtons objectAtIndex:i];
-        b.label.text = [NSString stringWithFormat:@"%d", [self.date weekNumberForSquareIndex:i]];
+        b.label.text = [NSString stringWithFormat:@"%ld", (long)[self.date weekNumberForSquareIndex:i]];
     }
     
     [self.delegate eventDayViewController:self didUpdateDate:self.date];
@@ -169,8 +169,8 @@
         // layout day buttons
         self.dayButtons = [NSMutableArray array];
         
-        int gridw = 7.0;
-        int gridh = 6.0;
+        NSInteger gridw = 7.0;
+        NSInteger gridh = 6.0;
         float containerw = _dayButtonsContainer.frame.size.width;
         float containerh = _dayButtonsContainer.frame.size.height;
         float w = containerw / gridw;
@@ -258,7 +258,7 @@
     CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", [self yearFromTableIndex:indexPath.row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)[self yearFromTableIndex:indexPath.row]];
     cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.frame = cell.bounds;
     cell.textLabel.textColor = patentedQuiteDarkGray;

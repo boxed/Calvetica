@@ -17,7 +17,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="238">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="238">
             <rect key="frame" x="0.0" y="0.0" width="285" height="362"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -345,15 +345,15 @@
                                     <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <view contentMode="scaleToFill" id="190" userLabel="Calendar Grid">
-                                    <rect key="frame" x="-1" y="151" width="285" height="211"/>
+                                    <rect key="frame" x="0.0" y="151" width="285" height="211"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <view opaque="NO" contentMode="scaleToFill" id="222" userLabel="Day Buttons Container">
                                             <rect key="frame" x="35" y="1" width="251" height="210"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </view>
-                                        <view opaque="NO" contentMode="scaleToFill" id="224" userLabel="Week Buttons Container">
-                                            <rect key="frame" x="0.0" y="1" width="35" height="210"/>
+                                        <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="224" userLabel="Week Buttons Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="36" height="211"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>

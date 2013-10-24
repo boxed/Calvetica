@@ -6,12 +6,6 @@
 // project.
 
 
-// BlocksKit
-#define COCOAPODS_POD_AVAILABLE_BlocksKit
-#define COCOAPODS_VERSION_MAJOR_BlocksKit 1
-#define COCOAPODS_VERSION_MINOR_BlocksKit 8
-#define COCOAPODS_VERSION_PATCH_BlocksKit 3
-
 // FrameAccessor
 #define COCOAPODS_POD_AVAILABLE_FrameAccessor
 #define COCOAPODS_VERSION_MAJOR_FrameAccessor 1
@@ -72,6 +66,12 @@
 #define COCOAPODS_VERSION_MINOR_MYSCategoryProperties 0
 #define COCOAPODS_VERSION_PATCH_MYSCategoryProperties 1
 
+// PSAlertView
+#define COCOAPODS_POD_AVAILABLE_PSAlertView
+#define COCOAPODS_VERSION_MAJOR_PSAlertView 1
+#define COCOAPODS_VERSION_MINOR_PSAlertView 1
+#define COCOAPODS_VERSION_PATCH_PSAlertView 0
+
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 0
@@ -83,10 +83,4 @@
 #define COCOAPODS_VERSION_MAJOR_TestFlightSDK 2
 #define COCOAPODS_VERSION_MINOR_TestFlightSDK 1
 #define COCOAPODS_VERSION_PATCH_TestFlightSDK 1
-
-// libffi
-#define COCOAPODS_POD_AVAILABLE_libffi
-#define COCOAPODS_VERSION_MAJOR_libffi 3
-#define COCOAPODS_VERSION_MINOR_libffi 0
-#define COCOAPODS_VERSION_PATCH_libffi 13
 

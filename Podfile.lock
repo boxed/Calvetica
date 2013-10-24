@@ -1,9 +1,6 @@
 PODS:
-  - BlocksKit (1.8.3):
-    - libffi
   - FrameAccessor (1.2.0)
   - GVUserDefaults (0.9.2)
-  - libffi (3.0.13)
   - MTAnimation (0.1.4)
   - MTColorDistance (0.0.2)
   - MTDates (0.10.1)
@@ -13,13 +10,13 @@ PODS:
     - MTGeometry
   - MTQueue (0.0.3)
   - MYSCategoryProperties (0.0.1)
+  - PSAlertView (HEAD based on 1.1)
   - SVProgressHUD (HEAD based on 0.9)
   - TestFlightSDK (2.1.1-beta)
 
 DEPENDENCIES:
-  - BlocksKit (~> 1.8.1)
   - FrameAccessor
-  - GVUserDefaults
+  - GVUserDefaults (from `https://github.com/atomkirk/GVUserDefaults.git`)
   - MTAnimation (from `libs/MTAnimation`)
   - MTColorDistance (from `libs/MTColorDistance`)
   - MTDates (from `libs/MTDates`)
@@ -28,10 +25,13 @@ DEPENDENCIES:
   - MTPencil (from `libs/MTPencil/`)
   - MTQueue
   - MYSCategoryProperties (from `libs/MYSCategoryProperties`)
+  - PSAlertView (HEAD)
   - SVProgressHUD (HEAD)
-  - TestFlightSDK (~> 2.0)
+  - TestFlightSDK (= 2.1.1-beta)
 
 EXTERNAL SOURCES:
+  GVUserDefaults:
+    :git: https://github.com/atomkirk/GVUserDefaults.git
   MTAnimation:
     :path: libs/MTAnimation
   MTColorDistance:
@@ -48,10 +48,8 @@ EXTERNAL SOURCES:
     :path: libs/MYSCategoryProperties
 
 SPEC CHECKSUMS:
-  BlocksKit: 27257f9cbbec0ea98c80ba83cc2ea7111ae62eb2
   FrameAccessor: 9cab222a118092deba0ae186d07fa51d4830d3e4
   GVUserDefaults: 736b928d6281f506045f1109846841ea2f80b854
-  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MTAnimation: 2a6e443981b45b1342d9a3481da4ad9355757fce
   MTColorDistance: e250006b39ba275e4c926437855cda5e4ec9e2d8
   MTDates: 295741c2ea13cfb9572bf07bd1fae226112c2609
@@ -60,7 +58,8 @@ SPEC CHECKSUMS:
   MTPencil: 4577d2b30edf6c2f1889367c84e864fb575e5f64
   MTQueue: a345ceaab62f443bcacae30586537cbc9caf002b
   MYSCategoryProperties: 441ee0bd536b633c8f1ad94941e10296add2a589
+  PSAlertView: bdccae3cbd14f6060772654ae641daec7415d9fa
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TestFlightSDK: dea28c16f0bf65c49c4ed8939b2ae0b0ed9bf8b0
 
-COCOAPODS: 0.26.2
+COCOAPODS: 0.27.1

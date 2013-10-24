@@ -210,7 +210,6 @@
 		C28D9A76180C33800077E637 /* CVMonthTextButton_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C28D9A75180C33800077E637 /* CVMonthTextButton_iPad.m */; };
 		C28F7BA713A86680001D6F07 /* CVSearchEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F7BA613A86680001D6F07 /* CVSearchEventCell.m */; };
 		C28F7BA913A866A0001D6F07 /* CVSearchEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28F7BA813A866A0001D6F07 /* CVSearchEventCell.xib */; };
-		C28F7BB213A869DF001D6F07 /* MTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F7BB113A869DF001D6F07 /* MTLabel.m */; };
 		C290198817EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C290198717EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib */; };
 		C2927A1D1395DF9B00CEF39D /* CVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2927A1C1395DF9B00CEF39D /* CVCell.m */; };
 		C2927A281395FB3F00CEF39D /* UILabel+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2927A271395FB3F00CEF39D /* UILabel+Utilities.m */; };
@@ -665,8 +664,6 @@
 		C28F7BA513A86680001D6F07 /* CVSearchEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSearchEventCell.h; sourceTree = "<group>"; };
 		C28F7BA613A86680001D6F07 /* CVSearchEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSearchEventCell.m; sourceTree = "<group>"; };
 		C28F7BA813A866A0001D6F07 /* CVSearchEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVSearchEventCell.xib; sourceTree = "<group>"; };
-		C28F7BB013A869DF001D6F07 /* MTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLabel.h; sourceTree = "<group>"; };
-		C28F7BB113A869DF001D6F07 /* MTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLabel.m; sourceTree = "<group>"; };
 		C290198617EBB2C00033476F /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		C290198717EBEDD70033476F /* CVQuickAddViewController-Landscape_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CVQuickAddViewController-Landscape_iPhone.xib"; sourceTree = "<group>"; };
 		C2927A1B1395DF9B00CEF39D /* CVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCell.h; sourceTree = "<group>"; };
@@ -1054,8 +1051,6 @@
 				C2B2174C138899A9006878DC /* CVTextField.m */,
 				C2708789137B3A1100810BF1 /* CVOperationQueue.h */,
 				C270878A137B3A1100810BF1 /* CVOperationQueue.m */,
-				C28F7BB013A869DF001D6F07 /* MTLabel.h */,
-				C28F7BB113A869DF001D6F07 /* MTLabel.m */,
 				6A85E13713D09C3200DF959B /* CVTapGestureRecognizer.h */,
 				6A85E13813D09C3200DF959B /* CVTapGestureRecognizer.m */,
 				6A8C3D1313E48B1200D8AB76 /* CVTapReleaseGestureRecognizer.h */,
@@ -2997,7 +2992,6 @@
 				C2A0C7C517FCDC25005D17B5 /* CVMoreButton.m in Sources */,
 				C23A642917FE45F3006097C9 /* CVCalendarCellModel.m in Sources */,
 				C28F7BA713A86680001D6F07 /* CVSearchEventCell.m in Sources */,
-				C28F7BB213A869DF001D6F07 /* MTLabel.m in Sources */,
 				C220478C13AA5DFC0079FC81 /* CVGenericReminderViewController.m in Sources */,
 				C23BB28F17F2695E003752FF /* CVLineButton.m in Sources */,
 				C2997F10180F65190030D944 /* EKReminder+Sorting.m in Sources */,
@@ -3322,6 +3316,7 @@
 		C2C9945F1374EC24005A4EB1 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -3399,6 +3394,7 @@
 		C2E2975B133419A900FA7638 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -3425,6 +3421,7 @@
 		C2E2975C133419A900FA7638 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;

@@ -62,9 +62,9 @@
     for (int i = 0; i < sortedArray.count; i++) {
         NSInteger dayNum = [[sortedArray objectAtIndex:i] intValue];
         if (i == sortedArray.count - 1) {
-            [selectedDaysString appendFormat:@"%i", dayNum];
+            [selectedDaysString appendFormat:@"%li", (long)dayNum];
         } else {
-            [selectedDaysString appendFormat:@"%i, ", dayNum];
+            [selectedDaysString appendFormat:@"%li, ", (long)dayNum];
         }
     }
     return selectedDaysString;

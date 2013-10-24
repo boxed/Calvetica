@@ -24,7 +24,7 @@
 	NSInteger day = [self mt_dayOfMonth];
 	NSInteger year = [self mt_year];
 
-	return [NSString stringWithFormat:@"%@, %@ %d, %d", weekday, month, day, year];
+	return [NSString stringWithFormat:@"%@, %@ %ld, %ld", weekday, month, (long)day, (long)year];
 }
 
 // Sep 16, 2012, 1:00 AM
@@ -91,7 +91,7 @@
 // Sunday 16
 - (NSString *)stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:(BOOL)abbreviated 
 {
-    NSString *weekday = [NSString stringWithFormat:@"%@ %d", [self stringWithTitleOfCurrentWeekDayAbbreviated:abbreviated], [self mt_dayOfMonth]];
+    NSString *weekday = [NSString stringWithFormat:@"%@ %lu", [self stringWithTitleOfCurrentWeekDayAbbreviated:abbreviated], (unsigned long)[self mt_dayOfMonth]];
     return weekday;
 }
 
@@ -167,35 +167,35 @@
 	NSInteger months = floor(absInterval / (float)SECONDS_IN_MONTH);
 
 	if (months > 0) {
-		[s appendFormat:@"%d months, ", months];
+		[s appendFormat:@"%ld months, ", (long)months];
 		absInterval -= months * SECONDS_IN_MONTH;
 	}
 
 	NSInteger days = floor(absInterval / (float)SECONDS_IN_DAY);
 
 	if (days > 0) {
-		[s appendFormat:@"%d days, ", days];
+		[s appendFormat:@"%ld days, ", (long)days];
 		absInterval -= days * SECONDS_IN_DAY;
 	}
 
 	NSInteger hours = floor(absInterval / (float)SECONDS_IN_HOUR);
 
 	if (hours > 0) {
-		[s appendFormat:@"%d hours, ", hours];
+		[s appendFormat:@"%ld hours, ", (long)hours];
 		absInterval -= hours * SECONDS_IN_HOUR;
 	}
 
 	NSInteger minutes = floor(absInterval / (float)SECONDS_IN_MINUTE);
 
 	if (minutes > 0) {
-		[s appendFormat:@"%d minutes, ", minutes];
+		[s appendFormat:@"%ld minutes, ", (long)minutes];
 		absInterval -= minutes * SECONDS_IN_MINUTE;
 	}
 
 	NSInteger seconds = absInterval;
 
 	if (seconds > 0) {
-		[s appendFormat:@"%d seconds, ", seconds];
+		[s appendFormat:@"%ld seconds, ", (long)seconds];
 	}
 
 	NSString *preString = [s stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"]];
@@ -220,7 +220,7 @@
 {
     NSString *firstDay = [[self mt_startOfCurrentWeek] mt_stringFromDateWithFormat:@"MMM dd, yyyy" localized:YES];
     NSString *lastDay = [[self mt_endOfCurrentWeek] mt_stringFromDateWithFormat:@"MMM dd, yyyy" localized:YES];
-    return [NSString stringWithFormat:@"%@ - %@ · Week %d", firstDay, lastDay, [self mt_weekOfYear]];
+    return [NSString stringWithFormat:@"%@ - %@ · Week %ld", firstDay, lastDay, (long)[self mt_weekOfYear]];
 }
 
 @end

@@ -28,4 +28,4 @@
 // pass this an an arg to CVLog to see the command/method
 #define COMMAND_STRING NSStringFromSelector(_cmd)
 
-void CVDebug(const char *fileName, int lineNumber, NSString *format, ...);
+void CVDebug(const char *fileName, NSInteger lineNumber, NSString *format, ...);

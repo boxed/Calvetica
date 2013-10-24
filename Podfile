@@ -11,8 +11,8 @@ pod 'MTColorDistance',          path: "libs/MTColorDistance"
 pod 'MTQueue'
 
 # Third Party
-pod 'BlocksKit',                '~> 1.8.1'
+pod 'PSAlertView',              :head
 pod 'SVProgressHUD',            :head
 pod 'FrameAccessor'
-pod 'TestFlightSDK',            '~> 2.0'
-pod 'GVUserDefaults'
+pod 'TestFlightSDK',            '2.1.1-beta'
+pod 'GVUserDefaults',           git: 'https://github.com/atomkirk/GVUserDefaults.git'

@@ -73,7 +73,7 @@
         
         NSInteger num = i + 100;
         UILabel *label = (UILabel *)[self viewWithTag:num];
-        label.text = [NSString stringWithFormat:@"%d", dayOfMonth];
+        label.text = [NSString stringWithFormat:@"%ld", (long)dayOfMonth];
         
         // gray out day labels that have passed
         if ([date mt_isBefore:today]) {

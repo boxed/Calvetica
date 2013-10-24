@@ -344,24 +344,24 @@
 
 	if (_militaryTime) {
 		if (col == 0) {
-			return [NSString stringWithFormat:@"%d", row];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)row];
 		}
 		else if (col == 1) {
-			return [NSString stringWithFormat:@"%d", row + 12];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)row + 12];
 		}
 		else if (col == 2) {
-			return [NSString stringWithFormat:@":%02d", row * 5];
+			return [NSString stringWithFormat:@":%02lu", (unsigned long)row * 5];
 		}
 	}
 	else {
 		if (col == 0) {
-			return [NSString stringWithFormat:@"%d", (row == 0 ? 12 : row)];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)(row == 0 ? 12 : row)];
 		}
 		else if (col == 1) {
-			return [NSString stringWithFormat:@"%d", (row == 0 ? 12 : row)];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)(row == 0 ? 12 : row)];
 		}
 		else if (col == 2) {
-			return [NSString stringWithFormat:@":%02d", row * 5];
+			return [NSString stringWithFormat:@":%02lu", (unsigned long)(row * 5)];
 		}
 	}
 

@@ -194,7 +194,7 @@
 
 + (NSInteger)defaultDuration {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	int defaultduration = [defaults integerForKey:DEFAULT_DURATION];
+	NSInteger defaultduration = [defaults integerForKey:DEFAULT_DURATION];
 	if (defaultduration != 0) {
 		return defaultduration;
 	}
@@ -241,7 +241,7 @@
 
 + (NSInteger)dayStartHour{
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	int daystarthour = [defaults integerForKey:DAY_START_HOUR];    
+	NSInteger daystarthour = [defaults integerForKey:DAY_START_HOUR];
     return daystarthour != 0 ? (daystarthour == -1 ? 0 : daystarthour) : 8;
 }
 
@@ -255,7 +255,7 @@
 
 + (NSInteger)dayEndHour {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	int dayendhour = [defaults integerForKey:DAY_END_HOUR];    
+	NSInteger dayendhour = [defaults integerForKey:DAY_END_HOUR];
 	return dayendhour != 0 ? (dayendhour == -1 ? 0 : dayendhour) : 17;
 }
 

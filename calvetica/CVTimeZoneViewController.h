@@ -15,6 +15,7 @@
 @interface CVTimeZoneViewController : UIViewController
 @property (nonatomic, weak  ) id<CVTimeZoneViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSTimeZone                           *selectedTimeZone;
+@property (nonatomic, assign) BOOL                                 showsDoneButton;
 @end
 
 

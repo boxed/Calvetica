@@ -368,7 +368,7 @@
     else {
         [string appendString:[self.endingDate mt_stringFromDateWithFullMonth]];
         [string appendString:@" "];
-        [string appendFormat:@"%d", [self.endingDate mt_dayOfMonth]];
+        [string appendFormat:@"%lu", (unsigned long)[self.endingDate mt_dayOfMonth]];
         [string appendString:@" "]; 
         [string appendString:hourAndMinute];
     }
@@ -489,7 +489,7 @@
             NSArray *partsArray = [attendeesDetails componentsSeparatedByString:@"email = "]; 
             if ([partsArray count] > 1) {
                 NSString *secondHalf = [partsArray objectAtIndex:1];
-                int loc = [secondHalf rangeOfString:@";"].location;
+                NSInteger loc = [secondHalf rangeOfString:@";"].location;
                 if (loc > 0) {
                     attendeeEmail = [secondHalf substringToIndex:loc];
                 }
@@ -589,7 +589,7 @@
             NSArray *partsArray = [attendeesDetails componentsSeparatedByString:@"email = "]; 
             if ([partsArray count] > 1) {
                 NSString *secondHalf = [partsArray objectAtIndex:1];
-                int loc = [secondHalf rangeOfString:@";"].location;
+                NSInteger loc = [secondHalf rangeOfString:@";"].location;
                 if (loc > 0) {
                     attendeeEmail = [secondHalf substringToIndex:loc];
                     
@@ -761,7 +761,7 @@
     
     if ([partsArray count] > 1) {
         NSString *secondHalf = [partsArray objectAtIndex:1];
-        // int loc = [secondHalf rangeOfString:@"Z"].location;
+        // NSInteger loc = [secondHalf rangeOfString:@"Z"].location;
         //if (loc > 0) {
         //   [secondHalf substringToIndex:loc];
         [iCalString appendFormat:@"\nRRULE:%@",secondHalf];
@@ -854,38 +854,38 @@
             }
             else {
                 
-                int i = offset * - 1;
+                NSInteger i = offset * - 1;
                 
-                int day = i / (24*60*60);
+                NSInteger day = i / (24*60*60);
                 i = i % (24*60*60);
                 
-                int hour = i / (60*60);
+                NSInteger hour = i / (60*60);
                 i = i % (60*60);
                 
-                int minute = i / 60;
+                NSInteger minute = i / 60;
                 i = i % 60;
                 
-                int second = i;
+                NSInteger second = i;
                 
                 [iCalString appendFormat:@"\nTRIGGER:-P"];
                 
                 if (day != 0) {
-                    [iCalString appendFormat:@"%dD", day];
+                    [iCalString appendFormat:@"%ldD", (long)day];
                 }
                 
                 if (hour || minute || second != 0) {
                     [iCalString appendString:@"T"];
                     
                     if (hour != 0) {
-                        [iCalString appendFormat:@"%dH", hour];
+                        [iCalString appendFormat:@"%ldH", (long)hour];
                     }
                     
                     if (minute != 0) {
-                        [iCalString appendFormat:@"%dM", minute];
+                        [iCalString appendFormat:@"%ldM", (long)minute];
                     }
                     
                     if (second != 0) {
-                        [iCalString appendFormat:@"%dS", second];
+                        [iCalString appendFormat:@"%ldS", (long)second];
                     }
                 }
             }

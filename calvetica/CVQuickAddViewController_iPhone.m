@@ -150,10 +150,10 @@
 	// add hour to array
 	NSString *hourString = @"";
 	if ([CVSettings isTwentyFourHourFormat]) {
-		hourString = [NSString stringWithFormat:@"%d", hourOfDay];
+		hourString = [NSString stringWithFormat:@"%ld", (long)hourOfDay];
 	}
 	else {
-		hourString = [NSString stringWithFormat:@"%02d", hourOfDay];
+		hourString = [NSString stringWithFormat:@"%02ld", (long)hourOfDay];
 	}
 
     for (NSInteger i = 0; i < hourString.length; i++) {
@@ -163,7 +163,7 @@
 	
     // add minutes
 	if (minuteOfHour > 0) {
-		NSString *minuteString = [NSString stringWithFormat:@"%02d", minuteOfHour];
+		NSString *minuteString = [NSString stringWithFormat:@"%02ld", (long)minuteOfHour];
 		for (NSInteger i = 0; i < minuteString.length; i++) {
 			NSString *character = [minuteString substringWithRange:NSMakeRange(i, 1)];
             
@@ -559,7 +559,7 @@
 	// get character
     UIView *v = (UIView *)sender;
     NSInteger tag = v.tag;	
-	NSString *c = [NSString stringWithFormat:@"%d",tag];
+	NSString *c = [NSString stringWithFormat:@"%ld",(long)tag];
 	
 	// if our digits is empty, add the first typed key to it.
 	if (self.hourDigits.count == 0 || (self.hourDigits.count == 1 && [[self.hourDigits firstObject] intValue] == 0)) {

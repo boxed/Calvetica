@@ -602,7 +602,7 @@
                 
                 NSUInteger eventsLeftToday = totalEventsPerDay[day] - eventsDrawnPerDay[day];
                 if (eventsLeftToday > 0) {
-                    NSString *title = [NSString stringWithFormat:@"%d more...", eventsLeftToday];
+                    NSString *title = [NSString stringWithFormat:@"%lu more...", (unsigned long)eventsLeftToday];
                     [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];                    
                 }
                 

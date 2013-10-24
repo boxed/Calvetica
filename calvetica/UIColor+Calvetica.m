@@ -120,7 +120,7 @@
 
 + (UIColor *)randomColorFromPalette:(NSArray *)palette
 {
-    int index = arc4random() % [palette count];
+    NSInteger index = arc4random() % [palette count];
     return palette[index];
 }
 

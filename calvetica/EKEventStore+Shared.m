@@ -265,36 +265,50 @@ static NSArray *__allReminders      = nil;
                completion:(void (^)(NSArray *reminders))completion
 {
     if (!__permissionGranted) return YES;
-    return [self fetchAllRemindersInCalendars:calendars completion:^(NSArray *allReminders) {
-        allReminders = [allReminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder,
-                                                                                                       NSDictionary *bindings) {
-            if ((options & MYSEKEventStoreReminderFetchOptionsExcludeCompleted) && reminder.completed) {
-                return NO;
-            }
-            if (reminder.isFloating) {
-                return !(options & MYSEKEventStoreReminderFetchOptionsExcludeFloating);
-            }
-            return [reminder occursBetweenDate:fromDate date:toDate];
-        }]];
-        if (completion) completion(allReminders);
+    NSDate *beforePaddedDate = [fromDate mt_oneDayPrevious];
+    NSDate *afterPaddingDate = [toDate mt_oneDayNext];
+
+    NSPredicate *incompletePredicate = [self predicateForIncompleteRemindersWithDueDateStarting:beforePaddedDate
+                                                                                         ending:afterPaddingDate
+                                                                                      calendars:calendars];
+    NSPredicate *completePredicate = [self predicateForCompletedRemindersWithCompletionDateStarting:beforePaddedDate
+                                                                                             ending:afterPaddingDate
+                                                                                          calendars:calendars];
+    [self fetchRemindersMatchingPredicate:incompletePredicate completion:^(NSArray *incompleteReminders) {
+        [self fetchRemindersMatchingPredicate:completePredicate completion:^(NSArray *completeReminders) {
+            NSArray *allReminders = [incompleteReminders arrayByAddingObjectsFromArray:completeReminders];
+            allReminders = [allReminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder,
+                                                                                                           NSDictionary *bindings) {
+                if ((options & MYSEKEventStoreReminderFetchOptionsExcludeCompleted) && reminder.completed) {
+                    return NO;
+                }
+                if (reminder.isFloating) {
+                    return !(options & MYSEKEventStoreReminderFetchOptionsExcludeFloating);
+                }
+                return [reminder occursBetweenDate:fromDate date:toDate];
+            }]];
+
+            if (completion) completion(allReminders);
+        }];
     }];
+    return YES;
 }
 
 - (void)clearRemindersCache
 {
-    [self clearRemindersCacheAndReloadWithCompletion:nil];
+//    [self clearRemindersCacheAndReloadWithCompletion:nil];
 }
 
 - (void)clearRemindersCacheAndReloadWithCompletion:(void (^)(void))completion
 {
-    __allReminders = nil;
-    if (completion) {
-        [MTq def:^{
-            [self fetchAllRemindersInCalendars:nil completion:^(NSArray *allReminders) {
-                completion();
-            }];
-        }];
-    }
+//    __allReminders = nil;
+//    if (completion) {
+//        [MTq def:^{
+////            [self fetchAllRemindersInCalendars:nil completion:^(NSArray *allReminders) {
+////                completion();
+////            }];
+//        }];
+//    }
 }
 
 
@@ -370,22 +384,23 @@ static NSArray *__allReminders      = nil;
  */
 - (BOOL)fetchAllRemindersInCalendars:(NSArray *)calendars completion:(void (^)(NSArray *allReminders))completion
 {
-    @synchronized(self) {
-        NSArray *remindersCache = [__allReminders copy];
-        if (remindersCache) {
-            if (completion) completion(remindersCache);
-            return YES;
-        }
-        else {
-            NSLog(@"Had to fetch all reminders");
-            NSPredicate *predicate = [[EKEventStore sharedStore] predicateForRemindersInCalendars:calendars];
-            [[EKEventStore sharedStore] fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
-                __allReminders = [reminders copy];
-                if (completion) completion(reminders);
-            }];
-            return NO;
-        }
-    }
+//    @synchronized(self) {
+//        NSArray *remindersCache = [__allReminders copy];
+//        if (remindersCache) {
+//            if (completion) completion(remindersCache);
+//            return YES;
+//        }
+//        else {
+//            NSLog(@"Had to fetch all reminders");
+//            NSPredicate *predicate = [self predicateForRemindersInCalendars:calendars];
+//            [self fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
+//                __allReminders = [reminders copy];
+//                if (completion) completion(reminders);
+//            }];
+//            return NO;
+//        }
+//    }
+    return YES;
 }
 
 

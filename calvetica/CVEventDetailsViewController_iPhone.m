@@ -769,10 +769,7 @@
     timeZoneViewController.delegate                     = self;
     timeZoneViewController.selectedTimeZone             = self.event.timeZone;
     timeZoneViewController.title                        = @"Select Time Zone";
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
-        [self.closestSystemPresentedViewController dismissViewControllerAnimated:YES completion:nil];
-    }];
-    timeZoneViewController.navigationItem.rightBarButtonItem = barButtonItem;
+    timeZoneViewController.showsDoneButton              = YES;
     [self.closestSystemPresentedViewController presentViewController:navigationController animated:YES completion:nil];
 }
 

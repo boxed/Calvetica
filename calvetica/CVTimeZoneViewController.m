@@ -28,6 +28,13 @@
     _availableTimeZones = [NSTimeZone knownTimeZoneNames];
     _filteredTimeZones  = [_availableTimeZones copy];
     _toggleSwitch.on    = self.selectedTimeZone != nil;
+
+    if (self.showsDoneButton) {
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                       target:self
+                                                                                       action:@selector(doneBarButtonWasTapped:)];
+        self.navigationItem.rightBarButtonItem = barButtonItem;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +91,10 @@
     [self.delegate timeZoneViewController:self didToggleSupportOn:_toggleSwitch.isOn];
 }
 
+- (void)doneBarButtonWasTapped:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 

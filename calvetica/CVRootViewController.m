@@ -1370,7 +1370,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     else {
         // adjust layout
         NSInteger numberOfRows = [self.selectedDate numberOfCalendarRowsInCurrentMonth];
-        NSLog(@"%d", (int)numberOfRows);
         CGFloat h = 40.0f;
 
         void (^animations)(void) = ^{
@@ -1463,7 +1462,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     if (PAD) {
         _redBarMonthLabel.text      = [[self.selectedDate stringWithTitleOfCurrentMonthAbbreviated:NO] lowercaseString];
-        _redBarYearLabel.text       = [NSString stringWithFormat:@"%d", [self.selectedDate mt_year]];
+        _redBarYearLabel.text       = [NSString stringWithFormat:@"%lu", (unsigned long)[self.selectedDate mt_year]];
         _grayBarWeekdayLabel.text   = [[self.selectedDate stringWithTitleOfCurrentWeekDayAbbreviated:NO] lowercaseString];
         _grayBarDateLabel.text      = [[self.selectedDate stringWithMonthAndDayAbbreviated:YES] uppercaseString];
 
@@ -1659,11 +1658,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)notifyOfNeededPermission
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"We need permission!"
-                                                        message:(@"This app can't function unless you give it permission "
-                                                                 @"to access your calendars: Go to Settings.app > "
-                                                                 @"Privacy > Calendars/Reminders and make sure Calvetica is ON")];
-    [alertView addButtonWithTitle:@"OK" handler:nil];
+    PSPDFAlertView *alertView = [[PSPDFAlertView alloc] initWithTitle:@"We need permission!"
+                                                              message:(@"This app can't function unless you give it permission "
+                                                                       @"to access your calendars: Go to Settings.app > "
+                                                                       @"Privacy > Calendars/Reminders and make sure Calvetica is ON")];
+    [alertView addButtonWithTitle:@"OK" block:nil];
     [alertView show];
 }
 

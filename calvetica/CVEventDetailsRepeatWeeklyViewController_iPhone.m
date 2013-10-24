@@ -53,9 +53,9 @@
 
 - (NSInteger)dayNumberForButtonTag:(NSInteger)tag 
 {
-    int startDay = [CVSettings weekStartsOnWeekday];
+    NSInteger startDay = [CVSettings weekStartsOnWeekday];
     
-    int dayNumber = tag + startDay -1;
+    NSInteger dayNumber = tag + startDay -1;
     if (dayNumber > 7) {
         dayNumber -= 7;
     }
@@ -83,7 +83,7 @@
 
 - (void)weekButtonTapped:(CVToggleButton *)button 
 {
-    int dayOfWeek = [self dayNumberForButtonTag:button.tag];
+    NSInteger dayOfWeek = [self dayNumberForButtonTag:button.tag];
     for (int i = 0; i < [self.daysOfTheWeek count]; i++) {
         EKRecurrenceDayOfWeek *d = [self.daysOfTheWeek objectAtIndex:i];
         if ([d dayOfTheWeek] == dayOfWeek) {

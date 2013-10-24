@@ -70,28 +70,28 @@ typedef enum {
 #pragma mark - Methods
 
 // Returns the number of days in the day table view.
-- (int)dayCount;
+- (NSInteger)dayCount;
 
 // Returns the day of the month for the given index path.
-- (int)dayForIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)dayForIndexPath:(NSIndexPath *)indexPath;
 
 // Returns the end type button's title for the given index.
-+ (NSString *)endTypeButtonTitleForIndex:(int)index;
++ (NSString *)endTypeButtonTitleForIndex:(NSInteger)index;
 
 // Determines the index path for the given day.
-- (NSIndexPath *)indexPathForDay:(int)day;
+- (NSIndexPath *)indexPathForDay:(NSInteger)day;
 
 // Determines the index path for the given month.
-- (NSIndexPath *)indexPathForMonth:(int)month;
+- (NSIndexPath *)indexPathForMonth:(NSInteger)month;
 
 // Determines the index path for the given year.
-- (NSIndexPath *)indexPathForYear:(int)year;
+- (NSIndexPath *)indexPathForYear:(NSInteger)year;
 
 // Returns the number of months in the month table view.
-- (int)monthCount;
+- (NSInteger)monthCount;
 
 // Returns the month of the year for the given index path.
-- (int)monthForIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)monthForIndexPath:(NSIndexPath *)indexPath;
 
 // Gets the new recurrence rule.
 - (EKRecurrenceRule *)recurrenceRule;
@@ -106,7 +106,7 @@ typedef enum {
 - (void)updateSelectedYearWithAnimation:(BOOL)animate;
 
 // Determines the year to display for the given index path.
-- (int)yearForIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)yearForIndexPath:(NSIndexPath *)indexPath;
 
 
 #pragma mark IBActions

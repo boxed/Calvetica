@@ -32,7 +32,6 @@
 
     // pods
     #import <MTPencil.h>
-    #import <TestFlight.h>
     #import <UIView+MTAnimation.h>
 	#import <NSDate+MTDates.h>
     #import <MTQueue/MTq.h>
@@ -40,7 +39,9 @@
     #import <GVUserDefaults+Settings.h>
 
     #import <FrameAccessor.h>
-    #import <BlocksKit.h>
+    #import <TestFlight.h>
+    #import <PSPDFActionSheet.h>
+    #import <PSPDFAlertView.h>
 #endif
 
 
