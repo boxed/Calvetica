@@ -109,7 +109,7 @@
     NSDictionary *alarmDict = [self.alarms objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [alarmDict objectForKey:Title_Key];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
     
     if ([[alarmDict objectForKey:Selected_Key] boolValue]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

@@ -98,7 +98,7 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
 
     if (indexPath.section == 0) {
         cell.textLabel.text = @"Email";

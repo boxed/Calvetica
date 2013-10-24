@@ -118,12 +118,12 @@
             UILabel *label = (UILabel *)[self viewWithTag:num];
             UIInterfaceOrientation orientation = self.window.rootViewController.interfaceOrientation;
             if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
-                _monthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+                label.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+                _monthLabel.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
             }
             else {
-                label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
-                _monthLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+                label.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+                _monthLabel.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
             }
         }
     }

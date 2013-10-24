@@ -57,8 +57,8 @@
     UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     NSNumber *time = [self.hoursArray objectAtIndex:indexPath.row];
 
-    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+    cell.textLabel.font         = [UIFont systemFontOfSize:17];
+    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

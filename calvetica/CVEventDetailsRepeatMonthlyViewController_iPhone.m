@@ -160,13 +160,13 @@
 {
     _repeatOnState = [button nextState];
     if (button.currentState == 0) {
-        [UIView animateWithDuration:0.1f animations:^(void) {
+        [UIView animateWithDuration:0.15 animations:^(void) {
             self.eachDayButton.alpha = 0.0f;
             self.weekNumberButton.alpha = 1.0f;
             self.dayOfWeekButton.alpha = 1.0f;
         } completion:nil];
     } else if (button.currentState == 1) {
-        [UIView animateWithDuration:0.1f animations:^(void) {
+        [UIView animateWithDuration:0.15 animations:^(void) {
             self.weekNumberButton.alpha = 0.0f;
             self.dayOfWeekButton.alpha = 0.0f;
             self.eachDayButton.alpha = 1.0f;

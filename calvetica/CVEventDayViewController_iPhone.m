@@ -259,7 +259,7 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [NSString stringWithFormat:@"%d", [self yearFromTableIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.frame = cell.bounds;
     cell.textLabel.textColor = patentedQuiteDarkGray;
     

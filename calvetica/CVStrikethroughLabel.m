@@ -53,7 +53,7 @@
 
         CGSize size = [self.attributedText size];
         [_pencil reset];
-        [[[[_pencil config] strokeColor:[UIColor blackColor]] duration:0.15] width:1];
+        [[[[_pencil config] strokeColor:[UIColor blackColor]] duration:0.25] width:1];
         [[_pencil move] to:CGPointMake(0, CGRectGetMidY(self.bounds) + 1.5)];
         [[_pencil draw] to:CGPointMake(size.width, CGRectGetMidY(self.bounds) + 1.5)];
 

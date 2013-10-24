@@ -55,8 +55,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     UITableViewCell *cell           = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
-    cell.textLabel.font             = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.detailTextLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+    cell.textLabel.font             = [UIFont systemFontOfSize:17];
+    cell.detailTextLabel.font       = [UIFont systemFontOfSize:13];
     cell.detailTextLabel.textColor  = [UIColor lightGrayColor];
 
     EKCalendar *calendar = [self.availableCalendars objectAtIndex:indexPath.row];

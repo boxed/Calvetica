@@ -109,8 +109,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell       = [tableView dequeueReusableCellWithIdentifier:@"CalendarDetailCell"];
-    cell.textLabel.font         = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-    cell.detailTextLabel.font   = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+    cell.textLabel.font         = [UIFont systemFontOfSize:17];
+    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
 
     if (indexPath.section == 0) {
         cell.selectionStyle         = UITableViewCellSelectionStyleNone;

@@ -106,7 +106,7 @@
 
 - (void)sizeToFitWithAnimation 
 {
-    [UIView animateWithDuration:0.2f animations:^(void) {
+    [UIView animateWithDuration:0.2 animations:^(void) {
         [self sizeToFit];
     }];
 }

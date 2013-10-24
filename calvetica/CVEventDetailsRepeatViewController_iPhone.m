@@ -301,7 +301,7 @@
     CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
     cell.textLabel.textColor = patentedQuiteDarkGray;
     
     if (tableView == self.dateDayTableView) {

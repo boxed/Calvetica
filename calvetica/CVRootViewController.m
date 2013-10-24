@@ -456,16 +456,32 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     if (gesture.state != UIGestureRecognizerStateEnded) return;
 
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
-        self.selectedDate = [self.selectedDate mt_oneMonthNext];
+        if (self.monthViewPushedUpDirection == CVRootMonthViewMoveDirectionDown) {
+            self.selectedDate = [self.selectedDate mt_oneMonthNext];
+            [self updateLayoutAnimated:YES];
+        }
+        else {
+            self.selectedDate = [self.selectedDate mt_dateWeeksAfter:2];
+            [self updateLayoutAnimated:NO];
+        }
         [self updateSelectionSquare:YES];
+        [self updateMonthAndDayLabels];
         [self scrollMonthTableViewAnimated:YES];
         [self reloadRootTableViewWithCompletion:^{
             [self scrollRootTableViewAnimated:YES];
         }];
     }
     else if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
-        self.selectedDate = [self.selectedDate mt_oneMonthPrevious];
+        if (self.monthViewPushedUpDirection == CVRootMonthViewMoveDirectionDown) {
+            self.selectedDate = [self.selectedDate mt_oneMonthPrevious];
+            [self updateLayoutAnimated:YES];
+        }
+        else {
+            self.selectedDate = [self.selectedDate mt_dateWeeksBefore:2];
+            [self updateLayoutAnimated:NO];
+        }
         [self updateSelectionSquare:YES];
+        [self updateMonthAndDayLabels];
         [self scrollMonthTableViewAnimated:YES];
         [self reloadRootTableViewWithCompletion:^{
             [self scrollRootTableViewAnimated:YES];
@@ -1364,8 +1380,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
             // adjust table view
             CGRect r = self.rootTableView.frame;
-            r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
-            r.size.height = self.view.height - self.rootTableView.y;// - self.bottomToolbar.height;
+            r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height) + 1;
+            r.size.height = self.view.height - self.rootTableView.y - 1;// - self.bottomToolbar.height;
             self.rootTableView.frame = r;
         };
 
@@ -1409,8 +1425,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             redBar.y                = -(h * rowsToHide) + self.weekdayTitleBar.height;
             monthTableView.height   = 2 * h;
         }
-        rootTableView.y         = monthTableView.y + monthTableView.height;
-        rootTableView.height    = self.view.height - rootTableView.y;// - self.bottomToolbar.height;
+        rootTableView.y         = monthTableView.y + monthTableView.height + 1;
+        rootTableView.height    = self.view.height - rootTableView.y - 1;// - self.bottomToolbar.height;
     };
 
     void (^completion)(void) = ^{
@@ -1418,9 +1434,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     };
 
     if (animated) {
+        BOOL isUp = direction == CVRootMonthViewMoveDirectionUp;
         [UIView mt_animateViews:@[monthTableView, rootTableView, redBar]
-                       duration:0.4
-                 timingFunction:(direction == CVRootMonthViewMoveDirectionUp ? kMTEaseOutBack : kMTEaseOutBounce)
+                       duration:(isUp ? 0.3 : 0.5)
+                 timingFunction:(isUp ? kMTEaseOutBack : kMTEaseOutBounce)
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          animations();

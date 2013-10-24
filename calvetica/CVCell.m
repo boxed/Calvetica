@@ -44,7 +44,7 @@
 - (void)toggleAccessoryButton 
 {
     [UIView mt_animateViews:@[_cellAccessoryButton]
-                   duration:0.25
+                   duration:0.20
              timingFunction:kMTEaseInBack
                     options:UIViewAnimationOptionBeginFromCurrentState
                  animations:^
@@ -53,7 +53,7 @@
     } completion:^{
         [_cellAccessoryButton toggleMode];
         [UIView mt_animateViews:@[_cellAccessoryButton]
-                       duration:0.25
+                       duration:0.20
                  timingFunction:kMTEaseOutBack
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^

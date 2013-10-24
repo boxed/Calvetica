@@ -41,7 +41,7 @@
     [path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 4.5, CGRectGetMinY(frame) + 14.5)];
 
 
-    [[[_pencil config] delay:0.1] duration:0.5];
+    [[[_pencil config] delay:0.15] duration:0.5];
     [[_pencil move] to:CGPointMake(0, 6)];
     [[_pencil draw] path:path.CGPath];
 }
