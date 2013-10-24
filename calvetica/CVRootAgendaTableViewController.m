@@ -89,26 +89,35 @@
     [MTq def:^{
         NSDate *startDate = dateCopy;
         NSDate *endDate = [dateCopy mt_endOfCurrentDay];
+        BOOL isToday = [dateCopy mt_isWithinSameDay:[NSDate date]];
 
         // fetch the events
         NSMutableArray *calendarItems = [[EKEventStore eventsFromDate:startDate
                                                                toDate:endDate
                                                    forActiveCalendars:YES] mutableCopy];
 
-        // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
-        // and another when remindrs are done.
-        BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                              toDate:endDate
-                                                           calendars:nil
-                                                             options:0
-                                                          completion:^(NSArray *reminders)
-                        {
-                            [calendarItems addObjectsFromArray:reminders];
-                            processCalendarItems(calendarItems);
-                        }];
-        
-        if (!inCache) {
-//            processCalendarItems(calendarItems);
+        if (PREFS.showReminders) {
+            // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
+            // and another when remindrs are done.
+            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                                  toDate:endDate
+                                                               calendars:nil
+                                                                 options:0
+                                                              completion:^(NSArray *reminders)
+                            {
+                                reminders = [reminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder, NSDictionary *bindings) {
+                                    return !reminder.isFloating || isToday;
+                                }]];
+                                [calendarItems addObjectsFromArray:reminders];
+                                processCalendarItems(calendarItems);
+                            }];
+
+            if (!inCache) {
+                //            processCalendarItems(calendarItems);
+            }
+        }
+        else {
+            processCalendarItems(calendarItems);
         }
     }];
 }
@@ -202,7 +211,7 @@
 
             UIColor *calendarColor      = [UIColor colorWithCGColor:reminder.calendar.CGColor];
             cell.coloredDotView.color   = calendarColor;
-            cell.coloredDotView.shape   = [reminder colorDotShapeForPriority];
+            cell.coloredDotView.shape   = CVColoredShapeCheck;
             cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];
 
             return cell;
@@ -235,7 +244,11 @@
 
 - (void)calendarItemCell:(UITableViewCell *)cell tappedDeleteForItem:(EKCalendarItem *)calendarItem
 {
-    [self.cellModelArray removeObject:calendarItem];
+    for (CVCalendarItemCellModel *model in [self.cellModelArray copy]) {
+        if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
+            [self.cellModelArray removeObject:model];
+        }
+    }
     [super calendarItemCell:cell tappedDeleteForItem:calendarItem];
 }
 

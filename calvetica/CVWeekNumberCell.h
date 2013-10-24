@@ -9,18 +9,6 @@
 #define WEEK_NUM_CELL_HEIGHT 30.0f
 
 
-@interface CVWeekNumberCell : CVCell {
-}
-
-
-#pragma mark - Properties
-
-
-#pragma mark - Methods
-
-
-#pragma mark - IBActions
+@interface CVWeekNumberCell : CVCell
 @property (nonatomic, weak) IBOutlet UILabel *weekNumberLabel;
-
-
 @end

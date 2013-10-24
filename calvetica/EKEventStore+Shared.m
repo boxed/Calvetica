@@ -7,7 +7,7 @@
 //
 
 #import "EKEventStore+Shared.h"
-#import "CVEventSquareModel.h"
+#import "CVCalendarItemShape.h"
 #import "CVDebug.h"
 
 
@@ -103,90 +103,90 @@ static NSArray *__allReminders      = nil;
 	return events;
 }
 
-+ (NSArray *)chainedEventModelsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly includeAllDayEvents:(BOOL)includeAllDayEvents
-{
-    if (!__permissionGranted) return nil;
-	startDate = [startDate dateByAddingTimeInterval:-1];
-
-    // grab all the events we need
-    NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startDate
-                                                                                      toDate:endDate
-                                                                          forActiveCalendars:activeCalsOnly]];
-    
-    // sort the events in chrono order
-    [weekEvents sortUsingComparator:(NSComparator)^(id obj1, id obj2){
-        EKEvent *e1 = obj1;
-        EKEvent *e2 = obj2;
-        return [e1 compareStartDateWithEvent:e2];
-    }];
-	
-	NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
-	NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
-	NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
-	NSMutableArray *eventSquareModels = [NSMutableArray array];
-	for (EKEvent *event in weekEvents) {
-		
-		CVEventSquareModel *eventSquareModel = [CVEventSquareModel new];
-		eventSquareModel.event = event;
-        eventSquareModel.startSeconds = [event.startingDate timeIntervalSinceDate:startDate];
-        eventSquareModel.endSeconds = [event.endingDate timeIntervalSinceDate:startDate];
-		
-		if (![event spansEntireDayOfDate:startDate] || includeAllDayEvents) {
-            
-            // if any concurrent events end before this one starts, it is no longer concurrent
-			for (CVEventSquareModel *e in concurrentEvents) {
-				if (e.endSeconds <= eventSquareModel.startSeconds) {
-					[eventsToRemoveFromConcurrent addObject:e];
-				}
-			}
-			
-			for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
-				[concurrentEvents removeObject:e];
-			}
-			[eventsToRemoveFromConcurrent removeAllObjects];
-			
-			
-			// chained events array is only emptied if there are no concurrent events
-			if (concurrentEvents.count == 0) {
-				[chainedEvents removeAllObjects];
-			}
-			
-            // loop n^2 to make sure that any offset checked before an increment was not missed
-			eventSquareModel.offset = 0;
-			for (NSInteger i=0; i < concurrentEvents.count; i++) {
-				for (CVEventSquareModel *ie in concurrentEvents) {
-					if ( ie.offset == eventSquareModel.offset ) {
-						eventSquareModel.offset++;
-					}
-				}
-			}
-			
-            // add the event to both sets because it's either a continuation or a start of a chain
-			[chainedEvents addObject:eventSquareModel];
-			[concurrentEvents addObject:eventSquareModel];
-			
-            // change the overlap count of all chained events to the max overlap count (so they are all the same width)
-			NSInteger maxOverlaps = 0;
-			for (CVEventSquareModel *e in chainedEvents) {
-				if (e.overlaps < concurrentEvents.count) {
-					e.overlaps = concurrentEvents.count;
-				}
-				
-				if (e.overlaps > maxOverlaps) {
-					maxOverlaps = e.overlaps;
-				}
-			}
-			
-			if (maxOverlaps > eventSquareModel.overlaps) {
-				eventSquareModel.overlaps = maxOverlaps;
-			}
-		}
-		
-		[eventSquareModels addObject:eventSquareModel];
-	}
-    
-    return  eventSquareModels;
-}
+//+ (NSArray *)chainedEventModelsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly includeAllDayEvents:(BOOL)includeAllDayEvents
+//{
+//    if (!__permissionGranted) return nil;
+//	startDate = [startDate dateByAddingTimeInterval:-1];
+//
+//    // grab all the events we need
+//    NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startDate
+//                                                                                      toDate:endDate
+//                                                                          forActiveCalendars:activeCalsOnly]];
+//    
+//    // sort the events in chrono order
+//    [weekEvents sortUsingComparator:(NSComparator)^(id obj1, id obj2){
+//        EKEvent *e1 = obj1;
+//        EKEvent *e2 = obj2;
+//        return [e1 compareStartDateWithEvent:e2];
+//    }];
+//	
+//	NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
+//	NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
+//	NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
+//	NSMutableArray *eventSquareModels = [NSMutableArray array];
+//	for (EKEvent *event in weekEvents) {
+//		
+//		CVEventSquareModel *eventSquareModel = [CVEventSquareModel new];
+//		eventSquareModel.event = event;
+//        eventSquareModel.startSeconds = [event.startingDate timeIntervalSinceDate:startDate];
+//        eventSquareModel.endSeconds = [event.endingDate timeIntervalSinceDate:startDate];
+//		
+//		if (![event spansEntireDayOfDate:startDate] || includeAllDayEvents) {
+//            
+//            // if any concurrent events end before this one starts, it is no longer concurrent
+//			for (CVEventSquareModel *e in concurrentEvents) {
+//				if (e.endSeconds <= eventSquareModel.startSeconds) {
+//					[eventsToRemoveFromConcurrent addObject:e];
+//				}
+//			}
+//			
+//			for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
+//				[concurrentEvents removeObject:e];
+//			}
+//			[eventsToRemoveFromConcurrent removeAllObjects];
+//			
+//			
+//			// chained events array is only emptied if there are no concurrent events
+//			if (concurrentEvents.count == 0) {
+//				[chainedEvents removeAllObjects];
+//			}
+//			
+//            // loop n^2 to make sure that any offset checked before an increment was not missed
+//			eventSquareModel.offset = 0;
+//			for (NSInteger i=0; i < concurrentEvents.count; i++) {
+//				for (CVEventSquareModel *ie in concurrentEvents) {
+//					if ( ie.offset == eventSquareModel.offset ) {
+//						eventSquareModel.offset++;
+//					}
+//				}
+//			}
+//			
+//            // add the event to both sets because it's either a continuation or a start of a chain
+//			[chainedEvents addObject:eventSquareModel];
+//			[concurrentEvents addObject:eventSquareModel];
+//			
+//            // change the overlap count of all chained events to the max overlap count (so they are all the same width)
+//			NSInteger maxOverlaps = 0;
+//			for (CVEventSquareModel *e in chainedEvents) {
+//				if (e.overlaps < concurrentEvents.count) {
+//					e.overlaps = concurrentEvents.count;
+//				}
+//				
+//				if (e.overlaps > maxOverlaps) {
+//					maxOverlaps = e.overlaps;
+//				}
+//			}
+//			
+//			if (maxOverlaps > eventSquareModel.overlaps) {
+//				eventSquareModel.overlaps = maxOverlaps;
+//			}
+//		}
+//		
+//		[eventSquareModels addObject:eventSquareModel];
+//	}
+//    
+//    return  eventSquareModels;
+//}
 
 + (NSArray *)eventsSearchedWithText:(NSString *)text startDate:(NSDate *)startDate endDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly
 {

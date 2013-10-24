@@ -12,12 +12,12 @@
 
 
 @interface CVSettingsViewController () <CVTimeZoneViewControllerDelegate>
-@property (nonatomic, weak) IBOutlet UITableViewCell *askForCalendarCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *multipleExchangeAlarmsCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *twentyFourHourFormatCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *dotsOnlyMonthViewCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *scrollingMonthViewCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *durationBarReadOnlyCell;
+@property (nonatomic, weak) IBOutlet UISwitch *askForCalendarSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *showRemindersSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *twentyFourHourFormatSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *dotsOnlyMonthViewSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *scrollingMonthSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *durationBarReadOnlySwitch;
 @end
 
 
@@ -29,12 +29,13 @@
 {
     [super viewDidLoad];
 
-	[self checkCell:_askForCalendarCell withSetting:ALWAYS_ASK_FOR_CALENDAR];
-	[self checkCell:_multipleExchangeAlarmsCell withSetting:MULTIPLE_EXCHANGE_ALARMS];
-	[self checkCell:_twentyFourHourFormatCell withSetting:TWENTY_FOUR_HOUR_FORMAT];
-	[self checkCell:_dotsOnlyMonthViewCell withSetting:DOTS_ONLY_MONTH_VIEW];
-	[self checkCell:_scrollingMonthViewCell withSetting:SCROLLABLE_MONTH_VIEW];
-	[self checkCell:_durationBarReadOnlyCell withSetting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
+	[self flipSwitch:_askForCalendarSwitch          withSetting:ALWAYS_ASK_FOR_CALENDAR];
+	[self flipSwitch:_twentyFourHourFormatSwitch    withSetting:TWENTY_FOUR_HOUR_FORMAT];
+	[self flipSwitch:_dotsOnlyMonthViewSwitch       withSetting:DOTS_ONLY_MONTH_VIEW];
+	[self flipSwitch:_scrollingMonthSwitch          withSetting:SCROLLABLE_MONTH_VIEW];
+	[self flipSwitch:_durationBarReadOnlySwitch     withSetting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
+
+    self.showRemindersSwitch.on = PREFS.showReminders;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -44,6 +45,42 @@
         controller.delegate                     = self;
         controller.selectedTimeZone             = [CVSettings timeZoneSupport] ? [CVSettings timezone] : nil;
     }
+}
+
+
+
+
+#pragma mark - Actions
+
+- (IBAction)askForCalendarWasFlipped:(id)sender
+{
+    [self toggleSwitch:sender setting:ALWAYS_ASK_FOR_CALENDAR];
+}
+
+- (IBAction)showRemindersWasFlipped:(UISwitch *)sender
+{
+    PREFS.showReminders = sender.isOn;
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)twentyFourHourFormatWasFlipped:(id)sender
+{
+    [self toggleSwitch:sender setting:TWENTY_FOUR_HOUR_FORMAT];
+}
+
+- (IBAction)dotsOnlyMonthViewFlipped:(id)sender
+{
+    [self toggleSwitch:sender setting:DOTS_ONLY_MONTH_VIEW];
+}
+
+- (IBAction)scrollingMonthFlipped:(id)sender
+{
+    [self toggleSwitch:sender setting:SCROLLABLE_MONTH_VIEW];
+}
+
+- (IBAction)durationBarReadOnlyFlipped:(id)sender
+{
+    [self toggleSwitch:sender setting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
 }
 
 
@@ -69,24 +106,6 @@
 			[app openURL:url];
 		}
 	}
-
-	else if (cell == _askForCalendarCell)
-		[self toggleCell:cell setting:ALWAYS_ASK_FOR_CALENDAR];
-
-	else if (cell == _multipleExchangeAlarmsCell)
-		[self toggleCell:cell setting:MULTIPLE_EXCHANGE_ALARMS];
-
-	else if (cell == _twentyFourHourFormatCell)
-		[self toggleCell:cell setting:TWENTY_FOUR_HOUR_FORMAT];
-
-	else if (cell == _dotsOnlyMonthViewCell)
-		[self toggleCell:cell setting:DOTS_ONLY_MONTH_VIEW];
-
-	else if (cell == _scrollingMonthViewCell)
-		[self toggleCell:cell setting:SCROLLABLE_MONTH_VIEW];
-
-	else if (cell == _durationBarReadOnlyCell)
-		[self toggleCell:cell setting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
 
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -118,17 +137,14 @@
 
 #pragma mark - Private
 
-- (void)checkCell:(UITableViewCell *)cell withSetting:(NSString *)settingKey
+- (void)flipSwitch:(UISwitch *)swich withSetting:(NSString *)settingKey
 {
-	BOOL setting = [[NSUserDefaults standardUserDefaults] boolForKey:settingKey];
-	cell.accessoryType = setting ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	swich.on = [[NSUserDefaults standardUserDefaults] boolForKey:settingKey];
 }
 
-- (void)toggleCell:(UITableViewCell *)cell setting:(NSString *)settingKey
+- (void)toggleSwitch:(UISwitch *)swich setting:(NSString *)settingKey
 {
-	BOOL on = cell.accessoryType == UITableViewCellAccessoryCheckmark;
-	cell.accessoryType = on ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
-	[[NSUserDefaults standardUserDefaults] setBool:!on forKey:settingKey];
+	[[NSUserDefaults standardUserDefaults] setBool:swich.isOn forKey:settingKey];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 

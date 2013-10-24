@@ -90,7 +90,7 @@
     
     NSInteger row = [_startDate rowOfDate:date];
     CVWeekTableViewCell *cell = (CVWeekTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-	[cell setNeedsDisplay];
+    [cell redraw];
 }
 
 - (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position 

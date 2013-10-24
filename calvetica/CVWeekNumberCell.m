@@ -12,20 +12,10 @@
 
 @implementation CVWeekNumberCell
 
-
-- (id)init 
+- (void)awakeFromNib
 {
-    self = [super init];
-    if (self) {
-        _weekNumberLabel = nil;
-        self.weekNumberLabel = nil;
-    }
-    return self;
-}
-
-- (void)cellWasTapped:(id)sender
-{
-
+    [super awakeFromNib];
+//    UINavigationBar *dummyNavBar = [UINavigationBar alloc] init
 }
 
 @end

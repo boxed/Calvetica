@@ -16,18 +16,6 @@
 
 #pragma mark - IN APP SAVED STATE
 
-+ (BOOL)isAgendaView {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults objectForKey:AGENDA_VIEW] != nil ? [defaults boolForKey:AGENDA_VIEW] : NO;
-}
-
-+ (void)setAgendaView:(BOOL)b {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:b forKey:AGENDA_VIEW];
-	[defaults synchronize];
-}
-
-
 + (NSInteger)eventRootTableMode {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults valueForKey:EVENT_ROOT_TABLE_MODE] != nil ? [[defaults valueForKey:EVENT_ROOT_TABLE_MODE] intValue] : 1;
@@ -97,20 +85,6 @@
         }
     }
     [CVSettings setSelectedEventCalendars:newSelectedCalendars];
-}
-
-+ (BOOL)isSelectedCalendar:(EKCalendar *)calendar {
-
-    NSMutableArray *selectedCalendars = [CVSettings selectedEventCalendars];
-	
-	// check if calendar exists in the array of selected calendars
-    for (EKCalendar *c in selectedCalendars) {
-        if ([c.calendarIdentifier isEqualToString:calendar.calendarIdentifier]) {
-            return YES;
-        }
-    }
-	
-	return NO;
 }
 
 + (EKCalendar *)defaultEventCalendar {
@@ -304,15 +278,9 @@
 }
 
 + (BOOL)multipleExchangeAlarms {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults boolForKey:MULTIPLE_EXCHANGE_ALARMS];
+    return YES;
 }
 
-+ (void)setMultipleExchangeAlarms:(BOOL)multiple {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:multiple forKey:MULTIPLE_EXCHANGE_ALARMS];
-    [defaults synchronize];
-}
 
 
 #pragma mark - INTERNATIONAL

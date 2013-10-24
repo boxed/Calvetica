@@ -39,6 +39,10 @@ static CGFloat const CVRootTableViewReminderRowHeight   = 20;
                  didScrollToDay:(NSDate *)day;
 
 - (void)rootTableViewController:(CVRootTableViewController *)controller
+                           cell:(UITableViewCell *)cell
+                    updatedItem:(EKCalendarItem *)item;
+
+- (void)rootTableViewController:(CVRootTableViewController *)controller
                      tappedCell:(UITableViewCell *)cell
                    calendarItem:(EKCalendarItem *)calendarItem;
 

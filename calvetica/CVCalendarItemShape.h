@@ -1,8 +1,8 @@
 
 
-@interface CVEventSquareModel : NSObject
+@interface CVCalendarItemShape : NSObject
 
-@property (nonatomic, strong) EKEvent        *event;
+@property (nonatomic, strong) EKCalendarItem *calendarItem;
 @property (nonatomic, assign) BOOL           consideredAllDay;
 @property (nonatomic, assign) BOOL           isPassed;
 @property (nonatomic, assign) NSInteger      startSeconds;
@@ -13,7 +13,7 @@
 @property (nonatomic, assign) CGFloat        y;
 @property (nonatomic, assign) CGFloat        width;
 @property (nonatomic, assign) CGFloat        height;
-@property (nonatomic, assign) NSInteger      *days;
+@property (nonatomic, assign) NSUInteger     *days;
 @property (nonatomic, strong) NSMutableArray *sharedEvents;
 
 @end

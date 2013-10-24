@@ -132,20 +132,25 @@
                                                                toDate:[endDate mt_endOfCurrentDay]
                                                    forActiveCalendars:YES] mutableCopy];
 
-        // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
-        // and another when remindrs are done.
-        BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                              toDate:endDate
-                                                           calendars:nil
-                                                             options:0
-                                                          completion:^(NSArray *reminders)
-                        {
-                            [calendarItems addObjectsFromArray:reminders];
-                            processCalendarItems(calendarItems, startDate, endDate);
-                        }];
+        if (PREFS.showReminders) {
+            // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
+            // and another when remindrs are done.
+            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                                  toDate:endDate
+                                                               calendars:nil
+                                                                 options:0
+                                                              completion:^(NSArray *reminders)
+                            {
+                                [calendarItems addObjectsFromArray:reminders];
+                                processCalendarItems(calendarItems, startDate, endDate);
+                            }];
 
-        if (!inCache) {
-//            processCalendarItems(calendarItems, startDate, endDate);
+            if (!inCache) {
+                //            processCalendarItems(calendarItems, startDate, endDate);
+            }
+        }
+        else {
+            processCalendarItems(calendarItems, startDate, endDate);
         }
     }];
     
@@ -259,7 +264,7 @@
 
         UIColor *calendarColor      = [UIColor colorWithCGColor:reminder.calendar.CGColor];
         cell.coloredDotView.color   = calendarColor;
-        cell.coloredDotView.shape   = [reminder colorDotShapeForPriority];
+        cell.coloredDotView.shape   = CVColoredShapeCheck;
         cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];
 
         return cell;
@@ -291,7 +296,7 @@
         [reminder saveWithError:nil];
         CVReminderCell *cell = (CVReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
         [cell.titleLabel toggleStrikeThroughWithCompletion:^{
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
         }];
     }
 }

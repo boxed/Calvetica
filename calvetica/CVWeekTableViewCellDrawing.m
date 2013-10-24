@@ -10,7 +10,7 @@
 
 
 #import "CVWeekTableViewCellDrawing.h"
-#import "CVEventSquareModel.h"
+#import "CVCalendarItemShape.h"
 #import "UIColor+Calvetica.h"
 #import "UIColor+Compare.h"
 #import "geometry.h"
@@ -20,7 +20,7 @@
 
 @implementation CVWeekTableViewCellDrawing
 
-- (NSArray *)prepareDataHolders
+- (void)prepareCalendarItemsWithCompletion:(void (^)(NSArray *models))completion
 {
     NSDate  *startDateOfWeek  = [self.delegate startDateForDrawingView:self];
     
@@ -44,25 +44,25 @@
         return [e1 compareStartDateWithEvent:e2];
     }];
     
-    NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
-    NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
-    NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
-    NSMutableArray *eventSquareModels = [NSMutableArray array];
+    NSMutableArray *chainedEvents                   = [NSMutableArray new];       // a collection of events that are chained together by any occurence of simultaneous overlap
+    NSMutableArray *concurrentEvents                = [NSMutableArray new];       // a collection of events that occur simultaneously
+    NSMutableArray *eventsToRemoveFromConcurrent    = [NSMutableArray new];
+    NSMutableArray *eventSquareModels               = [NSMutableArray new];
     for (EKEvent *event in weekEvents) {
         
-        NSDate *startDate = event.startingDate;
-        NSDate *endDate = event.endingDate;
-        
-        CVEventSquareModel *eventSquareModel = [[CVEventSquareModel alloc] init];
-        eventSquareModel.event = event;
-        eventSquareModel.startSeconds = [startDate timeIntervalSinceDate:startOfWeek];
-        eventSquareModel.endSeconds = [endDate timeIntervalSinceDate:startOfWeek];
-        
+        NSDate *startDate   = event.startingDate;
+        NSDate *endDate     = event.endingDate;
+
+        CVCalendarItemShape *eventSquareModel    = [CVCalendarItemShape new];
+        eventSquareModel.calendarItem           = event;
+        eventSquareModel.startSeconds           = [startDate timeIntervalSinceDate:startOfWeek];
+        eventSquareModel.endSeconds             = [endDate timeIntervalSinceDate:startOfWeek];
+
         if ([event.endingDate mt_isBefore:[NSDate date]]) {
             eventSquareModel.isPassed = YES;
         }
         
-        for (NSInteger day = 0; day < 7; day++) {
+        for (NSUInteger day = 0; day < 7; day++) {
             NSDate *date = [startOfWeek mt_dateDaysAfter:day];
             if ([event occursAtAllOnDate:date]) {
                 eventSquareModel.days[day] = 1;
@@ -79,13 +79,13 @@
         
             
         // if any concurrent events end before this one starts, it is no longer concurrent
-        for (CVEventSquareModel *e in concurrentEvents) {
+        for (CVCalendarItemShape *e in concurrentEvents) {
             if (e.endSeconds <= eventSquareModel.startSeconds) {
                 [eventsToRemoveFromConcurrent addObject:e];
             }
         }
         
-        for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
+        for (CVCalendarItemShape *e in eventsToRemoveFromConcurrent) {
             [concurrentEvents removeObject:e];
         }
         [eventsToRemoveFromConcurrent removeAllObjects];
@@ -98,8 +98,8 @@
         
         // loop n^2 to make sure that any offset checked before an increment was not missed
         eventSquareModel.offset = 0;
-        for (NSInteger i = 0; i < concurrentEvents.count; i++) {
-            for (CVEventSquareModel *ie in concurrentEvents) {
+        for (NSUInteger i = 0; i < concurrentEvents.count; i++) {
+            for (CVCalendarItemShape *ie in concurrentEvents) {
                 if ( ie.offset == eventSquareModel.offset ) {
                     eventSquareModel.offset++;
                 }
@@ -111,8 +111,8 @@
         [concurrentEvents addObject:eventSquareModel];
         
         // change the overlap count of all chained events to the max overlap count (so they are all the same width)
-        NSInteger maxOverlaps = 0;
-        for (CVEventSquareModel *e in chainedEvents) {
+        NSUInteger maxOverlaps = 0;
+        for (CVCalendarItemShape *e in chainedEvents) {
             if (e.overlaps < concurrentEvents.count) {
                 e.overlaps = concurrentEvents.count;
             }
@@ -128,21 +128,75 @@
         
         [eventSquareModels addObject:eventSquareModel];
     }
-    
-    return eventSquareModels;
+
+    if (PREFS.showReminders) {
+        [[EKEventStore sharedStore] remindersFromDate:startOfWeek
+                                               toDate:endOfWeek
+                                            calendars:nil
+                                              options:0
+                                           completion:^(NSArray *reminders)
+         {
+             NSDate *now        = [NSDate date];
+             NSDate *endOfToday = [now mt_endOfCurrentDay];
+             BOOL isThisWeek    = [startOfWeek mt_isWithinSameWeek:endOfToday];
+
+             for (EKReminder *reminder in reminders) {
+
+                 NSDate *reminderDate = reminder.mys_date;
+                 if (reminder.isFloating && isThisWeek) {
+                     reminderDate = endOfToday;
+                 }
+
+                 CVCalendarItemShape *eventSquareModel    = [CVCalendarItemShape new];
+                 eventSquareModel.calendarItem           = reminder;
+                 eventSquareModel.startSeconds           = [reminderDate timeIntervalSinceDate:startOfWeek];
+                 eventSquareModel.endSeconds             = eventSquareModel.startSeconds;
+                 eventSquareModel.offset                 = -1;
+                 eventSquareModel.overlaps               = -1;
+
+
+                 if ([reminderDate mt_isBefore:now]) {
+                     eventSquareModel.isPassed = YES;
+                 }
+
+                 for (NSUInteger day = 0; day < 7; day++) {
+                     NSDate *date = [startOfWeek mt_dateDaysAfter:day];
+                     if ([reminderDate mt_isWithinSameDay:date]) {
+                         eventSquareModel.days[day] = 1;
+                     }
+                 }
+                 [eventSquareModels addObject:eventSquareModel];
+             }
+
+             [eventSquareModels sortUsingComparator:^NSComparisonResult(CVCalendarItemShape *c1, CVCalendarItemShape *c2) {
+                 return [c1.calendarItem compareWithCalendarItem:c2.calendarItem];
+             }];
+             
+             if (completion) completion(eventSquareModels);
+         }];
+    }
+    else {
+        [eventSquareModels sortUsingComparator:^NSComparisonResult(CVCalendarItemShape *c1, CVCalendarItemShape *c2) {
+            return [c1.calendarItem compareWithCalendarItem:c2.calendarItem];
+        }];
+
+        if (completion) completion(eventSquareModels);
+    }
 }
 
-- (void)draw 
+- (void)draw
 {
-    dispatch_async([CVOperationQueue backgroundQueue], ^(void) {
+    [MTq def:^{
         if (!self.window) return;
-        self.dataHolders = [self prepareDataHolders];
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            if (!self.window) return;
-            self.hidden = NO;
-            [self setNeedsDisplay];
-        });
-    });
+        [self prepareCalendarItemsWithCompletion:^(NSArray *models) {
+            self.calendarItems = models;
+            [MTq main:^{
+                if (!self.window) return;
+                self.hidden = NO;
+                [self setNeedsDisplay];
+            }];
+        }];
+    }];
 }
 
 - (void)drawRect:(CGRect)rect 
@@ -159,7 +213,7 @@
 {
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
-    for (CVEventSquareModel *e in self.dataHolders) {
+    for (CVCalendarItemShape *e in self.calendarItems) {
         if (e.offset == -1 || [CVSettings dotsOnlyMonthView]) {
             [dots addObject:e];
         }
@@ -167,24 +221,20 @@
             [bars addObject:e];
         }
     }
+
+    CGFloat padding = 1.0f;
+    CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
+    NSUInteger maxOffset[DAYS_IN_WEEK];
+    memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
     
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetShouldAntialias(context, YES);
-    CGContextSetLineWidth(context, 0.5f);
-    
-    CGFloat padding = 1.0f;
-    CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
-    NSInteger maxOffset[DAYS_IN_WEEK];
-    memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSInteger));
-    
-    
-    
+
     // DRAW BARS
-    for (CVEventSquareModel *e in bars) {
+    for (CVCalendarItemShape *e in bars) {
         
-        NSInteger startSecondsIntoWeek;
-        NSInteger endSecondsIntoDay;
+        NSUInteger startSecondsIntoWeek;
+        NSUInteger endSecondsIntoDay;
         
         
         
@@ -231,7 +281,7 @@
         e.height = 5;
         e.y = e.offset * e.height;
         
-        for (NSInteger day = 0; day < 7; day++) {
+        for (NSUInteger day = 0; day < 7; day++) {
             // check if occurs on day
             if (e.days[day] == 0) continue;
             maxOffset[day] = e.offset >= maxOffset[day] ? e.offset + 1 : maxOffset[day];
@@ -250,11 +300,12 @@
         
         
         // DRAW
-        
-        UIColor *calendarColor = [e.event.calendar customColor];
-        CGColorRef color = [calendarColor CGColor];
+        CGColorRef color = [e.calendarItem.calendar customColor].CGColor;
 
+        CGContextSetFillColorWithColor(context, color);
+        CGContextSetShouldAntialias(context, YES);
         CGContextSetAlpha(context, 1.0f);
+
         if (e.isPassed) {
             CGContextSetAlpha(context, OLD_EVENT_ALPHA);
         }
@@ -264,31 +315,26 @@
                                      roundf(e.width),
                                      roundf(e.height));
         
-        CGContextSetFillColorWithColor(context, color);
-        CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
-        CGContextSetLineWidth(context, 1.0f);
-        
         CVContextFillRoundedRect(context, boxFrame, 2.5f);
-        
     }
     
     
     
     // DRAW DOTS
-    NSInteger column[7];
-    NSInteger row[7];
-    memset(column, 0, 7 * sizeof(NSInteger));
-    memset(row, 0, 7 * sizeof(NSInteger));
+    NSUInteger column[7];
+    NSUInteger row[7];
+    memset(column, 0, 7 * sizeof(NSUInteger));
+    memset(row, 0, 7 * sizeof(NSUInteger));
 
-    for (CVEventSquareModel *e in dots) {
+    for (CVCalendarItemShape *e in dots) {
         
         e.width = 5;
         e.height = 5;
         
-        for (NSInteger day = 0; day < 7; day++) {
+        for (NSUInteger day = 0; day < 7; day++) {
             
-            NSInteger c = column[day];
-            NSInteger r = row[day] + maxOffset[day];
+            NSUInteger c = column[day];
+            NSUInteger r = row[day] + maxOffset[day];
 
             // check if occurs on day
             if (e.days[day] == 0) continue;
@@ -312,43 +358,46 @@
                 column[day]++;
             }
             
-            
-            // DRAW
-            
-            UIColor *calendarColor = [e.event.calendar customColor];
-            CGColorRef color = [calendarColor CGColor];
-            
-            CGContextSetAlpha(context, 1.0f);
-            if (e.isPassed) {
-                CGContextSetAlpha(context, OLD_EVENT_ALPHA);
-            }
-            
+
             CGRect boxFrame = CGRectMake(roundf(e.x),
                                          roundf(e.y) - 1.0,
                                          roundf(e.width),
                                          roundf(e.height));
-            
+
+            // DRAW
+            CGColorRef color = [e.calendarItem.calendar customColor].CGColor;
             CGContextSetFillColorWithColor(context, color);
-            CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
-            CGContextSetLineWidth(context, 1.0f);
-            
-            CGContextFillEllipseInRect(context, boxFrame);
+            CGContextSetStrokeColorWithColor(context, color);
+            CGContextSetAlpha(context, 1.0f);
+            if (e.isPassed) {
+                CGContextSetAlpha(context, OLD_EVENT_ALPHA);
+            }
+
+            if (e.calendarItem.isEvent) {
+                CGContextFillEllipseInRect(context, boxFrame);
+            }
+            else {
+                boxFrame = CGRectInset(boxFrame, 0.5, 0.5);
+                CGContextSetLineWidth(context, 1.5);
+                CGContextMoveToPoint(context, CGRectGetMinX(boxFrame), CGRectGetMidY(boxFrame));
+                CGContextAddLineToPoint(context, CGRectGetMidX(boxFrame), CGRectGetMaxY(boxFrame));
+                CGContextAddLineToPoint(context, CGRectGetMaxX(boxFrame), CGRectGetMinY(boxFrame));
+                CGContextStrokePath(context);
+            }
         }
-        
     }
-    
 }
 
 - (void)drawiPad 
 {
-    NSInteger totalEventsPerDay[DAYS_IN_WEEK];
-    memset(totalEventsPerDay, 0, DAYS_IN_WEEK * sizeof(NSInteger));
+    NSUInteger totalEventsPerDay[DAYS_IN_WEEK];
+    memset(totalEventsPerDay, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
     
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
-    for (CVEventSquareModel *e in self.dataHolders) {
+    for (CVCalendarItemShape *e in self.calendarItems) {
         
-        for (NSInteger day = 0; day < 7; day++) {
+        for (NSUInteger day = 0; day < 7; day++) {
             if (e.days[day] == 1) totalEventsPerDay[day]++;
         }
         
@@ -366,10 +415,10 @@
     CGContextSetLineWidth(context, 0.5f);
     
 
-    NSInteger maxOffset[DAYS_IN_WEEK];
-    memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSInteger));
-    NSInteger eventsDrawnPerDay[DAYS_IN_WEEK];
-    memset(eventsDrawnPerDay, 0, DAYS_IN_WEEK * sizeof(NSInteger));
+    NSUInteger maxOffset[DAYS_IN_WEEK];
+    memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
+    NSUInteger eventsDrawnPerDay[DAYS_IN_WEEK];
+    memset(eventsDrawnPerDay, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
     
     
     // DIMENSIONS
@@ -385,10 +434,10 @@
     
     
     // DRAW BARS
-    for (CVEventSquareModel *e in bars) {
+    for (CVCalendarItemShape *e in bars) {
         
-        NSInteger startSecondsIntoWeek;
-        NSInteger endSecondsIntoDay;
+        NSUInteger startSecondsIntoWeek;
+        NSUInteger endSecondsIntoDay;
         
         
         // SET X COORD
@@ -452,7 +501,7 @@
             break;
         }
         
-        for (NSInteger day = 0; day < 7; day++) {
+        for (NSUInteger day = 0; day < 7; day++) {
             // check if occurs on day
             if (e.days[day] == 0) continue;
             maxOffset[day] = e.offset >= maxOffset[day] ? e.offset + 1 : maxOffset[day];
@@ -460,8 +509,7 @@
         
         
         // DRAW
-        
-        UIColor *calendarColor = [e.event.calendar customColor];
+        UIColor *calendarColor = [e.calendarItem.calendar customColor];
         CGColorRef color = [calendarColor CGColor];
         
         CGContextSetAlpha(context, 1.0f);
@@ -492,10 +540,10 @@
         textFrame.origin.x += 5.0f;
         textFrame.size.width -= 10.0f;
 
-		NSString *title = [e.event mys_title];
+		NSString *title = [e.calendarItem mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
         
-        for (NSInteger day = 0; day < 7; day++) {
+        for (NSUInteger day = 0; day < 7; day++) {
             if (e.days[day] == 1) {
                 eventsDrawnPerDay[day]++;
             }
@@ -514,19 +562,21 @@
     
     // DRAW DOTS
     barSpacing = 4.0f;
-    NSInteger row[7];
-    memset(row, 0, 7 * sizeof(NSInteger));
-    NSInteger fullDays[DAYS_IN_WEEK];
-    memset(fullDays, 0, DAYS_IN_WEEK * sizeof(NSInteger));
+    NSUInteger row[7];
+    memset(row, 0, 7 * sizeof(NSUInteger));
+    NSUInteger fullDays[DAYS_IN_WEEK];
+    memset(fullDays, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
     
-    for (CVEventSquareModel *e in dots) {
+    for (CVCalendarItemShape *e in dots) {
         
         e.width = 6;
         e.height = 6;
         
-        for (NSInteger day = 0; day < 7; day++) {
-            
-            NSInteger r = row[day];
+        for (NSUInteger day = 0; day < 7; day++) {
+
+            CGContextSetShouldAntialias(context, YES);
+
+            NSUInteger r = row[day];
             
             // check if occurs on day
             if (e.days[day] == 0 || fullDays[day] == 1) continue;
@@ -550,7 +600,7 @@
                 textFrame.size.height = e.height;
                 textFrame.size.width = boxWidth;
                 
-                NSInteger eventsLeftToday = totalEventsPerDay[day] - eventsDrawnPerDay[day];
+                NSUInteger eventsLeftToday = totalEventsPerDay[day] - eventsDrawnPerDay[day];
                 if (eventsLeftToday > 0) {
                     NSString *title = [NSString stringWithFormat:@"%d more...", eventsLeftToday];
                     [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];                    
@@ -561,27 +611,36 @@
             }
             
             
-            // DRAW
-            
-            UIColor *calendarColor = [e.event.calendar customColor];
-            CGColorRef color = [calendarColor CGColor];
-            
-            CGContextSetAlpha(context, 1.0f);
-            if (e.isPassed) {
-                CGContextSetAlpha(context, OLD_EVENT_ALPHA);
-            }
-            
             CGRect boxFrame = CGRectMake(roundf(e.x),
                                          roundf(e.y),
                                          roundf(e.width),
                                          roundf(e.height));
 
+            // DRAW
+            CGColorRef color = [e.calendarItem.calendar customColor].CGColor;
+
             CGContextSetFillColorWithColor(context, color);
-            CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
-            CGContextSetLineWidth(context, 1.0f);
+            CGContextSetStrokeColorWithColor(context, color);
+            CGContextSetAlpha(context, 1.0f);
+            if (e.isPassed) {
+                CGContextSetAlpha(context, OLD_EVENT_ALPHA);
+            }
             
-            CGContextFillEllipseInRect(context, boxFrame);
-            
+            if (e.calendarItem.isEvent) {
+                CGContextFillEllipseInRect(context, boxFrame);
+            }
+            else {
+                boxFrame.origin.y -= 1;
+                CGContextSetLineWidth(context, 2);
+                CGContextMoveToPoint(context, CGRectGetMinX(boxFrame), CGRectGetMidY(boxFrame));
+                CGContextAddLineToPoint(context, CGRectGetMidX(boxFrame), CGRectGetMaxY(boxFrame));
+                CGContextAddLineToPoint(context, CGRectGetMaxX(boxFrame), CGRectGetMinY(boxFrame));
+                CGContextStrokePath(context);
+                boxFrame.origin.y += 1;
+            }
+
+
+            // DRAW TEXT
             CGContextSetFillColorWithColor(context, [patentedBlack CGColor]);
 
             CGRect textFrame = boxFrame;
@@ -589,8 +648,28 @@
             textFrame.origin.y -= 3.0f;
             textFrame.size.width = boxWidth - boxFrame.size.width - (barSpacing * 2.0f);
 
-            NSString *title = [e.event mys_title];
+            NSString *title = [e.calendarItem mys_title];
             [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
+
+            CGRect textRect = [title boundingRectWithSize:CGSizeMake(textFrame.size.width, 1000)
+                                                  options:0
+                                               attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:9.0] }
+                                                  context:nil];
+
+            CGContextSetShouldAntialias(context, NO);
+            CGContextSetLineWidth(context, 0.1);
+            // draw strikethrough if reminder and completed
+            if (e.calendarItem.isReminder && [(EKReminder *)e.calendarItem isCompleted]) {
+                CGRect strikeLineRect       = CGRectZero;
+                strikeLineRect.origin.x     = CGRectGetMinX(textFrame);
+                strikeLineRect.origin.y     = CGRectGetMinY(textFrame) + (textRect.size.height / 2);
+                strikeLineRect.size.width   = MIN(textRect.size.width, textFrame.size.width - 10);
+                strikeLineRect.size.height  = 1;
+                strikeLineRect              = CGRectIntegral(strikeLineRect);
+                CGContextMoveToPoint(context, CGRectGetMinX(strikeLineRect), CGRectGetMaxY(strikeLineRect));
+                CGContextAddLineToPoint(context, CGRectGetMaxX(strikeLineRect), CGRectGetMaxY(strikeLineRect));
+                CGContextStrokePath(context);
+            }
 
             eventsDrawnPerDay[day]++;
         }

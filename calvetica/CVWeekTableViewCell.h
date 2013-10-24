@@ -15,6 +15,7 @@
 
 @protocol CVWeekTableViewCellDelegate;
 
+
 @interface CVWeekTableViewCell : UITableViewCell <UIGestureRecognizerDelegate, CVWeekTableViewCellDrawingDataSource> {}
 
 @property (nonatomic, weak  )          id<CVWeekTableViewCellDelegate> delegate;
@@ -27,14 +28,7 @@
 @property (nonatomic, weak  ) IBOutlet UILabel                         *monthLabel;
 @property (nonatomic, weak  ) IBOutlet UIImageView                     *todayImage;
 
-
 - (void)redraw;
-
-
-#pragma mark - IBActions
-- (IBAction)handleTapGesture:(UITapGestureRecognizer *)gesture;
-- (IBAction)handleLongPressGesture:(UILongPressGestureRecognizer *)gesture;
-
 
 @end
 

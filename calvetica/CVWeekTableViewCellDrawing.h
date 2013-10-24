@@ -13,16 +13,13 @@
 @interface CVWeekTableViewCellDrawing : UIView
 
 @property (nonatomic, weak) id<CVWeekTableViewCellDrawingDataSource> delegate;
-@property (nonatomic, copy) NSArray                                  *dataHolders;
+@property (nonatomic, copy) NSArray                                  *calendarItems;
 
-- (NSArray *)prepareDataHolders;
 - (void)draw;
 
 @end
 
 
-
 @protocol CVWeekTableViewCellDrawingDataSource <NSObject>
-@required
 - (NSDate *)startDateForDrawingView:(CVWeekTableViewCellDrawing *)view;
 @end

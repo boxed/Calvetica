@@ -7,7 +7,7 @@
 
 #import "CVLandscapeWeekView.h"
 #import "CVEventSquaresView.h"
-#import "CVEventSquareModel.h"
+#import "CVCalendarItemShape.h"
 #import "UIColor+Calvetica.h"
 #import "UIColor+Compare.h"
 #import "dimensions.h"
@@ -110,7 +110,7 @@
     // DRAW SQAURES
 	CGFloat padding = 1.0f;
     
-    for (CVEventSquareModel *e in _squares) {
+    for (CVCalendarItemShape *e in _squares) {
         
         NSInteger startSecondsIntoDay;
         NSInteger endSecondsIntoDay;
@@ -165,7 +165,7 @@
             e.height = EVENT_SQUARE_MIN_HEIGHT_IPHONE;
         }
         
-        UIColor *calendarColor = [e.event.calendar customColor];
+        UIColor *calendarColor = [e.calendarItem.calendar customColor];
         CGColorRef c = [calendarColor CGColor];
         
         CGRect boxFrame = CGRectMake(e.x, e.y, e.width, e.height);
@@ -207,7 +207,7 @@
             //textFrame.size.height -= 2.0f;
         }
         
-        NSString *title = [e.event mys_title];
+        NSString *title = [e.calendarItem mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];
     }
 }
@@ -223,7 +223,7 @@
     
     // figure event
     CGPoint pointOfTouch = [gesture locationInView:self];
-    for (CVEventSquareModel *e in _squares) {
+    for (CVCalendarItemShape *e in _squares) {
         CGRect rectOfEvent = CGRectMake(e.x, e.y, e.width, e.height);
         if (CGRectContainsPoint(rectOfEvent, pointOfTouch)) {
             
@@ -233,7 +233,7 @@
             placeholder.alpha = 0.3f;
             [self addSubview:placeholder];
             
-            [_delegate squaresView:self wasPressedOnEvent:e.event withPlaceholder:placeholder];
+            [_delegate squaresView:self wasPressedOnEvent:(EKEvent *)e.calendarItem withPlaceholder:placeholder];
             break;
         }
     }

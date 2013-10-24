@@ -37,7 +37,11 @@
 	#import <NSDate+MTDates.h>
     #import <MTQueue/MTq.h>
     #import <MTMigration.h>
+    #import <GVUserDefaults+Settings.h>
 
     #import <FrameAccessor.h>
     #import <BlocksKit.h>
 #endif
+
+
+#define PREFS [GVUserDefaults standardUserDefaults]

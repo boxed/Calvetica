@@ -76,10 +76,11 @@
         _tinyIcon.hidden = NO;
     }
 
-    _foundTextLabel.text = [NSString stringWithFormat:@"%@%@%@", (startsAtBeginning ? @"" : @"..."), text, (endsAtEnding ? @"" : @"...")];
-    [_foundTextLabel changeColor:patentedRed ofSubstring:searchText];
-    
-    
+    NSString *excerpt = [NSString stringWithFormat:@"%@%@%@", (startsAtBeginning ? @"" : @"..."), text, (endsAtEnding ? @"" : @"...")];
+    NSRange range = [excerpt rangeOfString:searchText];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:excerpt];
+    [attributedString setAttributes:@{ NSForegroundColorAttributeName : patentedRed } range:range];
+
     // update color
     self.coloredDotView.color = [_event.calendar customColor];
     

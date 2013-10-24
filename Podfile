@@ -15,3 +15,4 @@ pod 'BlocksKit',                '~> 1.8.1'
 pod 'SVProgressHUD',            :head
 pod 'FrameAccessor'
 pod 'TestFlightSDK',            '~> 2.0'
+pod 'GVUserDefaults'

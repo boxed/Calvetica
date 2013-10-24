@@ -6,7 +6,7 @@
 //
 
 #import "CVWeekdayTableViewCell.h"
-#import "CVEventSquareModel.h"
+#import "CVCalendarItemShape.h"
 #import "UIView+Nibs.h"
 #import "NSDate+ViewHelpers.h"
 #import "colors.h"
@@ -107,27 +107,27 @@
             return [e1 compareStartDateWithEvent:e2];
         }];
         
-        NSMutableArray *chainedEvents = [NSMutableArray array]; // a collection of events that are chained together by any occurence of simultaneous overlap
-        NSMutableArray *concurrentEvents = [NSMutableArray array]; // a collection of events that occur simultaneously
-        NSMutableArray *eventsToRemoveFromConcurrent = [NSMutableArray array];
-        NSMutableArray *eventSquareModels = [NSMutableArray array];
+        NSMutableArray *chainedEvents                   = [NSMutableArray new];       // a collection of events that are chained together by any occurence of simultaneous overlap
+        NSMutableArray *concurrentEvents                = [NSMutableArray new];       // a collection of events that occur simultaneously
+        NSMutableArray *eventsToRemoveFromConcurrent    = [NSMutableArray new];
+        NSMutableArray *eventSquareModels               = [NSMutableArray new];
         for (EKEvent *event in weekEvents) {
             
-            CVEventSquareModel *eventSquareModel = [[CVEventSquareModel alloc] init];
-            eventSquareModel.event = event;
-            eventSquareModel.startSeconds = [event.startingDate timeIntervalSinceDate:startOfDay];
-            eventSquareModel.endSeconds = [event.endingDate timeIntervalSinceDate:startOfDay];
-            
+            CVCalendarItemShape *eventSquareModel    = [CVCalendarItemShape new];
+            eventSquareModel.calendarItem           = event;
+            eventSquareModel.startSeconds           = [event.startingDate timeIntervalSinceDate:startOfDay];
+            eventSquareModel.endSeconds             = [event.endingDate timeIntervalSinceDate:startOfDay];
+
             if (![event spansEntireDayOfDate:startOfDay]) {
                 
                 // if any concurrent events end before this one starts, it is no longer concurrent
-                for (CVEventSquareModel *e in concurrentEvents) {
+                for (CVCalendarItemShape *e in concurrentEvents) {
                     if (e.endSeconds <= eventSquareModel.startSeconds) {
                         [eventsToRemoveFromConcurrent addObject:e];
                     }
                 }
                 
-                for (CVEventSquareModel *e in eventsToRemoveFromConcurrent) {
+                for (CVCalendarItemShape *e in eventsToRemoveFromConcurrent) {
                     [concurrentEvents removeObject:e];
                 }
                 [eventsToRemoveFromConcurrent removeAllObjects];
@@ -141,7 +141,7 @@
                 // loop n^2 to make sure that any offset checked before an increment was not missed
                 eventSquareModel.offset = 0;
                 for (NSInteger i=0; i < concurrentEvents.count; i++) {
-                    for (CVEventSquareModel *ie in concurrentEvents) {
+                    for (CVCalendarItemShape *ie in concurrentEvents) {
                         if ( ie.offset == eventSquareModel.offset ) {
                             eventSquareModel.offset++;
                         }
@@ -154,7 +154,7 @@
                 
                 // change the overlap count of all chained events to the max overlap count (so they are all the same width)
                 NSInteger maxOverlaps = 0;
-                for (CVEventSquareModel *e in chainedEvents) {
+                for (CVCalendarItemShape *e in chainedEvents) {
                     if (e.overlaps < concurrentEvents.count) {
                         e.overlaps = concurrentEvents.count;
                     }
@@ -176,8 +176,9 @@
         NSMutableArray *allDayEventSquares = [NSMutableArray array];
         NSMutableArray *eventSquares = [NSMutableArray array];
         
-        for (CVEventSquareModel *square in eventSquareModels) {
-            if ([square.event.startingDate mt_isOnOrBefore:startOfDay] && [square.event.endingDate mt_isOnOrAfter:endOfDay]) {
+        for (CVCalendarItemShape *square in eventSquareModels) {
+            EKEvent *event = (EKEvent *)square.calendarItem;
+            if ([event.startingDate mt_isOnOrBefore:startOfDay] && [event.endingDate mt_isOnOrAfter:endOfDay]) {
                 [allDayEventSquares addObject:square];
             }
             else {

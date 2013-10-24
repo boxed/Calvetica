@@ -159,8 +159,9 @@
 
     [MTq def:^{
 
-        NSDate *startDate = dateCopy;
-        NSDate *endDate = [dateCopy mt_endOfCurrentDay];
+        NSDate *startDate   = dateCopy;
+        NSDate *endDate     = [dateCopy mt_endOfCurrentDay];
+        BOOL isToday        = [dateCopy mt_isWithinSameDay:[NSDate date]];
 
         NSMutableArray *hours = [NSMutableArray array];
 
@@ -181,20 +182,28 @@
                                                    forActiveCalendars:YES] mutableCopy];
 
 
-        // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
-        // and another when remindrs are done.
-        BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                              toDate:endDate
-                                                           calendars:nil
-                                                             options:0
-                                                          completion:^(NSArray *reminders)
-                        {
-                            [calendarItems addObjectsFromArray:reminders];
-                            processCalendarItems(calendarItems, hours);
-                        }];
-        
-        if (!inCache) {
-//            processCalendarItems(calendarItems, hours);
+        if (PREFS.showReminders) {
+            // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
+            // and another when remindrs are done.
+            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                                  toDate:endDate
+                                                               calendars:nil
+                                                                 options:0
+                                                              completion:^(NSArray *reminders)
+                            {
+                                reminders = [reminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder, NSDictionary *bindings) {
+                                    return !reminder.isFloating || isToday;
+                                }]];
+                                [calendarItems addObjectsFromArray:reminders];
+                                processCalendarItems(calendarItems, hours);
+                            }];
+
+            if (!inCache) {
+                //            processCalendarItems(calendarItems, hours);
+            }
+        }
+        else {
+            processCalendarItems(calendarItems, hours);
         }
     }];
 }
@@ -304,7 +313,7 @@
 
         UIColor *calendarColor      = [UIColor colorWithCGColor:reminder.calendar.CGColor];
         cell.coloredDotView.color   = calendarColor;
-        cell.coloredDotView.shape   = [reminder colorDotShapeForPriority];
+        cell.coloredDotView.shape   = CVColoredShapeCheck;
         cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];
 
         return cell;
@@ -324,25 +333,24 @@
 {
     CVCalendarItemCellModel *model = [self.cellModelArray objectAtIndex:indexPath.row];
 
-    UITableViewCell *c;
     if (!model.calendarItem.isReminder) {
-        CVEventCell *cell  = [CVEventCell cellForTableView:tableView];
-        [cell drawDurationBarAnimated:NO];
-        c = cell;
-    }
-    else {
-        CVReminderCell *cell = [CVReminderCell cellForTableView:tableView];
-        c = cell;
+        [(CVEventCell *)cell drawDurationBarAnimated:NO];
     }
 
-    if ([model.date mt_hourOfDay] < [CVSettings dayStartHour] ||
-        [model.date mt_hourOfDay] >= [CVSettings dayEndHour] ||
-        model.isAllDay)
-    {
-        c.backgroundColor = RGBHex(0xF6F6F6);
+    BOOL isBeforeWorkingHours   = [model.date mt_hourOfDay] < [CVSettings dayStartHour];
+    BOOL isAfterWorkingHours    = [model.date mt_hourOfDay] >= [CVSettings dayEndHour];
+    BOOL isOutsideWorkingHours  = isBeforeWorkingHours || isAfterWorkingHours;
+    BOOL isAllDay               = model.isAllDay;
+    BOOL isAnHour               = model.calendarItem == nil;
+    BOOL isAnEvent              = model.calendarItem.isEvent;
+    BOOL isEligibleCell         = isAnHour || isAnEvent;
+
+    // if its just an hour
+    if (isEligibleCell && (isOutsideWorkingHours || isAllDay)) {
+        cell.backgroundColor = RGBHex(0xF6F6F6);
     }
-    else {
-        c.backgroundColor = RGBHex(0xFFFFFF);
+    else if (isEligibleCell) {
+        cell.backgroundColor = RGBHex(0xFFFFFF);
     }
 }
 

@@ -21,6 +21,7 @@
 #import "CVSearchViewController_iPhone.h"
 #import "CVCalendarItemCellModel.h"
 #import "CVEventStoreNotificationCenter.h"
+#import "CVLineButton.h"
 // iPhone
 #import "CVLandscapeWeekView_iPhone.h"
 // iPad
@@ -69,6 +70,13 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 @property (nonatomic, weak  ) IBOutlet UIView                       *monthTableViewContainer;
 @property (nonatomic, weak  ) IBOutlet UIView                       *redBar;
 @property (nonatomic, weak  ) IBOutlet UIView                       *weekdayTitleBar;
+@property (nonatomic, weak  ) IBOutlet UIView                       *bottomToolbar;
+@property (nonatomic, weak  ) IBOutlet CVLineButton                 *twoBarButton;
+@property (nonatomic, weak  ) IBOutlet CVLineButton                 *threeBarButton;
+@property (nonatomic, weak  ) IBOutlet CVLineButton                 *fourBarButton;
+@property (nonatomic, weak  ) IBOutlet CVLineButton                 *fiveBarButton;
+@property (nonatomic, weak  ) IBOutlet CVLineButton                 *settingsButton;
+@property (nonatomic, weak  ) IBOutlet CVLineButton                 *searchButton;
 
 // iPhone
 @property (nonatomic, assign)          CVRootMonthViewMoveDirection monthViewPushedUpDirection;
@@ -242,37 +250,6 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 	}
 }
 
-- (IBAction)handleEventTableViewPinchGesture:(UIPinchGestureRecognizer *)sender
-{
-	if (sender.state != UIGestureRecognizerStateEnded) return;
-
-    if (sender.scale < 1) {
-        if (self.rootTableMode < CVRootTableViewModeDetailedWeek) {
-            self.rootTableMode += 1;
-        }
-    }
-    else {
-        if (self.rootTableMode > CVRootTableViewModeFull) {
-            self.rootTableMode -= 1;
-        }
-    }
-
-    if (self.rootTableMode == CVRootTableViewModeFull) {
-        [UIApplication showBezelWithTitle:@"Full Day"];
-    }
-    else if (self.rootTableMode == CVRootTableViewModeAgenda) {
-        [UIApplication showBezelWithTitle:@"Agenda"];
-    }
-    else if (self.rootTableMode == CVRootTableViewModeWeek) {
-        [UIApplication showBezelWithTitle:@"Week"];
-    }
-    else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
-        [UIApplication showBezelWithTitle:@"Detail Week"];
-    }
-
-    [self reloadRootTableViewWithCompletion:nil];
-}
-
 - (IBAction)handleSwipeOnTableView:(UISwipeGestureRecognizer *)gesture
 {
     if (self.rootTableMode == CVRootTableViewModeWeek) {
@@ -399,6 +376,78 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     }
 }
 
+- (IBAction)twoBarButtonWasTapped:(id)sender
+{
+    self.rootTableMode = CVRootTableViewModeFull;
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableViewAnimated:NO];
+    }];
+}
+
+- (IBAction)threeBarButtonWasTapped:(id)sender
+{
+    self.rootTableMode = CVRootTableViewModeAgenda;
+    [self reloadRootTableViewWithCompletion:nil];
+}
+
+- (IBAction)fourBarButtonTapped:(id)sender
+{
+    self.rootTableMode = CVRootTableViewModeWeek;
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableViewAnimated:NO];
+    }];
+}
+
+- (IBAction)fiveBarButtonWasTapped:(id)sender
+{
+    self.rootTableMode = CVRootTableViewModeDetailedWeek;
+    [self reloadRootTableViewWithCompletion:^{
+        [self scrollRootTableViewAnimated:NO];
+    }];
+}
+
+- (IBAction)handleEventTableViewPinchGesture:(UIPinchGestureRecognizer *)sender
+{
+	if (sender.state != UIGestureRecognizerStateEnded) return;
+
+    if (sender.scale < 1) {
+        if (self.rootTableMode < CVRootTableViewModeDetailedWeek) {
+            self.rootTableMode += 1;
+        }
+    }
+    else {
+        if (self.rootTableMode > CVRootTableViewModeFull) {
+            self.rootTableMode -= 1;
+        }
+    }
+
+    if (self.rootTableMode == CVRootTableViewModeFull) {
+        [UIApplication showBezelWithTitle:@"Full Day"];
+    }
+    else if (self.rootTableMode == CVRootTableViewModeAgenda) {
+        [UIApplication showBezelWithTitle:@"Agenda"];
+    }
+    else if (self.rootTableMode == CVRootTableViewModeWeek) {
+        [UIApplication showBezelWithTitle:@"Week"];
+    }
+    else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
+        [UIApplication showBezelWithTitle:@"Detail Week"];
+    }
+
+    [self reloadRootTableViewWithCompletion:nil];
+}
+
+- (IBAction)settingsButtonWasTapped:(id)sender
+{
+    [self openSettingsWithCompletionHandler:nil];
+}
+
+- (IBAction)searchButtonWasTapped:(id)sender
+{
+    [self openSearch];
+}
+
+
 
 #pragma mark (iphone)
 
@@ -508,6 +557,15 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     self.selectedDate = date;
     [self updateSelectionSquare:YES];
     [self scrollMonthTableViewAnimated:YES];
+}
+
+- (void)rootTableViewController:(CVRootTableViewController *)controller
+                           cell:(UITableViewCell *)cell
+                    updatedItem:(EKCalendarItem *)item
+{
+    NSDate *date = item.mys_date ?: [NSDate date];
+    [self.monthTableViewController reloadRowForDate:date];
+    [self reloadRootTableViewWithCompletion:nil];
 }
 
 - (void)rootTableViewController:(CVRootTableViewController *)controller
@@ -673,6 +731,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 {
     self.selectedDate = date;
     [self updateSelectionSquare:YES];
+    [self updateMonthAndDayLabels];
     [self reloadRootTableViewWithCompletion:^{
         [self scrollRootTableViewAnimated:YES];
     }];
@@ -891,15 +950,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     }
 
     else if (option == CVViewOptionsPopoverOptionSearch) {
-		if (PAD) {
-            CVSearchViewController_iPhone *searchViewController = [[CVSearchViewController_iPhone alloc] init];
-            searchViewController.delegate = self;
-            [self presentPopoverModalViewController:searchViewController
-                                            forView:viewOptionsViewController.popoverTargetView animated:YES];
-        }
-        else {
-            [self performSegueWithIdentifier:@"SearchSegue" sender:self];
-        }
+        [self openSearch];
     }
 
 	else if (option == CVViewOptionsPopoverOptionSettings) {
@@ -1303,6 +1354,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     else {
         // adjust layout
         NSInteger numberOfRows = [self.selectedDate numberOfCalendarRowsInCurrentMonth];
+        NSLog(@"%d", (int)numberOfRows);
         CGFloat h = 40.0f;
 
         void (^animations)(void) = ^{
@@ -1313,7 +1365,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             // adjust table view
             CGRect r = self.rootTableView.frame;
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height);
-            r.size.height = self.view.height - self.rootTableView.y;
+            r.size.height = self.view.height - self.rootTableView.y;// - self.bottomToolbar.height;
             self.rootTableView.frame = r;
         };
 
@@ -1358,7 +1410,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             monthTableView.height   = 2 * h;
         }
         rootTableView.y         = monthTableView.y + monthTableView.height;
-        rootTableView.height    = self.view.height - rootTableView.y;
+        rootTableView.height    = self.view.height - rootTableView.y;// - self.bottomToolbar.height;
     };
 
     void (^completion)(void) = ^{
@@ -1604,7 +1656,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     // was updated, show them the welcome screen
     static BOOL launched = NO;
     if (!launched) {
-        [MTMigration migrateToVersion:@"5.0.1" block:^{
+        [MTMigration applicationUpdateBlock:^{
             CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
             welcomeController.delegate = self;
             [self presentPageModalViewController:welcomeController animated:YES completion:nil];
@@ -1613,6 +1665,18 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 }
 
+- (void)openSearch
+{
+    if (PAD) {
+        CVSearchViewController_iPhone *searchViewController = [[CVSearchViewController_iPhone alloc] init];
+        searchViewController.delegate = self;
+        [self presentPopoverModalViewController:searchViewController
+                                        forView:self.searchButton animated:YES];
+    }
+    else {
+        [self performSegueWithIdentifier:@"SearchSegue" sender:self];
+    }
+}
 
 
 @end

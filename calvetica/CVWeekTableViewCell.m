@@ -8,7 +8,7 @@
 
 #import "CVWeekTableViewCell.h"
 #import "CVWeekTableViewCellDrawing.h"
-#import "CVEventSquareModel.h"
+#import "CVCalendarItemShape.h"
 #import "CVRootViewController.h"
 
 

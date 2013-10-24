@@ -37,6 +37,8 @@
 
         NSMutableArray *tempArray = [NSMutableArray array];
 
+        NSDate *today = [NSDate date];
+
         // for each day
         NSDate *startOfWeek = [dateCopy mt_startOfCurrentWeek];
 
@@ -54,6 +56,9 @@
                                          if (calendarItem.isEvent) {
                                              EKEvent *event = (EKEvent *)calendarItem;
                                              return [event occursAtAllOnDate:day];
+                                         }
+                                         if (calendarItem.isReminder && [(EKReminder *)calendarItem isFloating]) {
+                                             return [day mt_isWithinSameDay:today];
                                          }
                                          return [calendarItem.mys_date mt_isWithinSameDay:day];
                                      }]];
@@ -89,7 +94,7 @@
                         cellModel.calendarItem              = calendarItem;
                         cellModel.date                      = day;
                         cellModel.isAllDay                  = NO;
-                        cellModel.continuedFromPreviousDay  = YES;
+                        cellModel.continuedFromPreviousDay  = calendarItem.isEvent;
                     }
                 }
 
@@ -127,6 +132,18 @@
                 return [d2 compare:d1];
             }
 
+            else if ([h1.calendarItem class] != [h2.calendarItem class]) {
+                return h1.calendarItem.isEvent ? NSOrderedAscending : NSOrderedDescending;
+            }
+
+            else if (h1.calendarItem.mys_date == nil && h2.calendarItem.mys_date == nil) {
+                return [h1.calendarItem.mys_title localizedCaseInsensitiveCompare:h2.calendarItem.mys_title];
+            }
+
+            else if (h1.calendarItem.mys_date == nil || h2.calendarItem.mys_date == nil) {
+                return h2.calendarItem.mys_date == nil ? NSOrderedAscending : NSOrderedDescending;
+            }
+
             else {
                 return [h1.date compare:h2.date];
             }
@@ -150,20 +167,25 @@
                                                                toDate:endDate
                                                    forActiveCalendars:YES] mutableCopy];
 
-        // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
-        // and another when remindrs are done.
-        BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                              toDate:endDate
-                                                           calendars:nil
-                                                             options:0
-                                                          completion:^(NSArray *reminders)
-                        {
-                            [calendarItems addObjectsFromArray:reminders];
-                            processCalendarItems(calendarItems);
-                        }];
+        if (PREFS.showReminders) {
+            // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
+            // and another when remindrs are done.
+            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                                  toDate:endDate
+                                                               calendars:nil
+                                                                 options:0
+                                                              completion:^(NSArray *reminders)
+                            {
+                                [calendarItems addObjectsFromArray:reminders];
+                                processCalendarItems(calendarItems);
+                            }];
 
-        if (!inCache) {
-//            processCalendarItems(calendarItems);
+            if (!inCache) {
+                //            processCalendarItems(calendarItems);
+            }
+        }
+        else {
+            processCalendarItems(calendarItems);
         }
     }];
 }
@@ -219,9 +241,7 @@
         else {
             width = TABLE_ROW_EVENT_WIDTH_IPHONE;
         }
-        cell.titleLabel.numberOfLines = [cell.titleLabel.text linesOfWordWrapTextWithFont:[UIFont systemFontOfSize:12]
-                                                                          constraintWidth:width];
-
+        cell.titleLabel.numberOfLines = 0;
         return cell;
     }
 
@@ -251,8 +271,10 @@
     else {
         width = TABLE_ROW_EVENT_WIDTH_IPHONE;
     }
-    CGFloat height = [model.calendarItem.mys_title totalHeightOfWordWrapTextWithFont:[UIFont systemFontOfSize:12]
-                                                                     constraintWidth:width] + 3;
+
+    UIFont *footnoteFont = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    CGFloat height = [model.calendarItem.mys_title totalHeightOfWordWrapTextWithFont:footnoteFont
+                                                                     constraintWidth:width] + 5;
     
 	return height;
 }
@@ -266,8 +288,17 @@
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
     else {
-        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
+        if (model.calendarItem.isReminder) {
+            EKReminder *reminder = (EKReminder *)model.calendarItem;
+            reminder.completed = !reminder.completed;
+            [reminder saveWithError:nil];
+            CVAgendaEventCell *cell = (CVAgendaEventCell *)[tableView cellForRowAtIndexPath:indexPath];
+            [cell.calendarItemTitleLabel toggleStrikeThroughWithCompletion:^{
+                [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
+            }];
+        }
     }
 }
 

@@ -85,12 +85,13 @@
 
 - (void)drawCheck
 {
+    self.clipsToBounds = NO;
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2);
     CGContextSetStrokeColorWithColor(context, [self.color CGColor]);
     CGContextSetLineCap(context, kCGLineCapRound);
 
-    CGRect rect = _drawRect;
+    CGRect rect = CGRectInset(_drawRect, 1, 1);
     rect.origin.x = 0;
     rect.origin.y = 0;
 	CGFloat minX = CGRectGetMinX(rect);

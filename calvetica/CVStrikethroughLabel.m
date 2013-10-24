@@ -53,25 +53,31 @@
 
         CGSize size = [self.attributedText size];
         [_pencil reset];
-        [[[[[_pencil config] strokeColor:[UIColor blackColor]] speed:50] width:1] easingFunction:kMTPencilEaseInOutExpo];
-        [[_pencil move] to:CGPointMake(0, CGRectGetMidY(self.bounds))];
-        [[_pencil draw] to:CGPointMake(size.width, CGRectGetMidY(self.bounds))];
+        [[[[_pencil config] strokeColor:[UIColor blackColor]] duration:0.15] width:1];
+        [[_pencil move] to:CGPointMake(0, CGRectGetMidY(self.bounds) + 1.5)];
+        [[_pencil draw] to:CGPointMake(size.width, CGRectGetMidY(self.bounds) + 1.5)];
 
         NSAttributedString *attributedString    = self.attributedText;
         NSMutableDictionary *attributes         = [[attributedString attributesAtIndex:0 effectiveRange:NULL] mutableCopy];
         BOOL striked = [attributes[NSStrikethroughStyleAttributeName] boolValue];
         if (!striked) {
+            [[_pencil config] easingFunction:kMTEaseOutExpo];
             [_pencil drawWithCompletion:^(MTPencil *pencil) {
+                [_pencil reset];
                 attributes[NSStrikethroughStyleAttributeName] = @(YES);
                 self.attributedText = [[NSAttributedString alloc] initWithString:self.text attributes:attributes];
+                self.isDrawing = NO;
                 if (completion) completion();
             }];
         }
         else {
             [attributes removeObjectForKey:NSStrikethroughStyleAttributeName];
             self.attributedText = [[NSAttributedString alloc] initWithString:self.text attributes:attributes];
-            [_pencil finish];
+            [[_pencil config] easingFunction:kMTEaseInExpo];
+//            [_pencil finish];
             [_pencil eraseWithCompletion:^(MTPencil *pencil) {
+                [_pencil reset];
+                self.isDrawing = NO;
                 if (completion) completion();
             }];
         }

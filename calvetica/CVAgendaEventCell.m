@@ -10,10 +10,9 @@
 
 
 @interface CVAgendaEventCell ()
-@property (nonatomic, weak  ) IBOutlet UILabel *timeLabel;
-@property (nonatomic, assign)          BOOL    isAllDay;
-@property (nonatomic, weak  ) IBOutlet UILabel *calendarItemTitleLabel;
-@property (nonatomic, assign)          BOOL    continuedFromPreviousDay;
+@property (nonatomic, weak  ) IBOutlet UILabel              *timeLabel;
+@property (nonatomic, assign)          BOOL                 isAllDay;
+@property (nonatomic, assign)          BOOL                 continuedFromPreviousDay;
 @end
 
 
@@ -53,11 +52,12 @@
             self.calendarItemTitleLabel.text = self.calendarItem.mys_title;
         }
         self.backgroundColor        = [self.coloredDotView.color colorWithAlphaComponent:0.1];
-        self.coloredDotView.shape   = [(EKReminder *)newCalendarItem colorDotShapeForPriority];
+        self.coloredDotView.shape   = CVColoredShapeCheck;
     }
     else {
-        self.calendarItemTitleLabel.text = self.calendarItem.mys_title;
-        self.backgroundColor = [UIColor whiteColor];
+        self.calendarItemTitleLabel.text    = self.calendarItem.mys_title;
+        self.backgroundColor                = [UIColor whiteColor];
+        self.coloredDotView.shape           = CVColoredShapeCircle;
     }
 
 	// set cell time labels

@@ -13,8 +13,6 @@
 
 #pragma mark - IN APP SAVED STATE
 
-+ (BOOL)isAgendaView;
-+ (void)setAgendaView:(BOOL)b;
 
 + (NSInteger)eventRootTableMode;
 + (void)setEventRootTableMode:(NSInteger)mode;
@@ -26,8 +24,6 @@
 
 + (void)addSelectedEventCalendar:(EKCalendar *)calendar;
 + (void)removeSelectedEventCalendar:(EKCalendar *)calendar;
-
-+ (BOOL)isSelectedCalendar:(EKCalendar *)calendar;
 
 + (EKCalendar *)defaultEventCalendar;
 + (void)setDefaultEventCalendar:(EKCalendar *)defCal;
@@ -65,7 +61,6 @@
 + (void)setAlwaysAskForCalendar:(BOOL)ask;
 
 + (BOOL)multipleExchangeAlarms;
-+ (void)setMultipleExchangeAlarms:(BOOL)multiple;
 
 
 #pragma mark - INTERNATIONAL

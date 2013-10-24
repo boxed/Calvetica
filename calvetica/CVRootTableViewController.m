@@ -85,7 +85,7 @@
             [reminder saveWithError:nil];
             CVReminderCell *cell = (CVReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
             [cell.titleLabel toggleStrikeThroughWithCompletion:^{
-                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
             }];
         }
     }
