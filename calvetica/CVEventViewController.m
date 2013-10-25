@@ -89,7 +89,7 @@
 
 - (void)dayBarButtonWasTapped:(id)sender 
 {
-    CVEventDayViewController_iPhone *dayViewController = [[CVEventDayViewController_iPhone alloc] init];
+    CVEventDayViewController *dayViewController = [[CVEventDayViewController alloc] init];
     dayViewController.delegate = self;
     dayViewController.initialDate = self.event.startingDate;
     self.viewControllers = @[dayViewController];
@@ -211,7 +211,7 @@
 
 #pragma mark - Event Day View Controller Delegate
 
-- (void)eventDayViewController:(CVEventDayViewController_iPhone *)controller didUpdateDate:(NSDate *)date
+- (void)eventDayViewController:(CVEventDayViewController *)controller didUpdateDate:(NSDate *)date
 {
     NSDate *newDate = [NSDate mt_dateFromYear:[date mt_year]
                                         month:[date mt_monthOfYear]

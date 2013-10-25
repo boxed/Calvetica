@@ -12,11 +12,12 @@
 #import "viewtagoffsets.h"
 #import "CVViewController.h"
 
-typedef enum {
+
+typedef NS_ENUM(NSUInteger, CVEventHourViewControllerMode) {
     CVEventHourViewControllerModeStartTime,
     CVEventHourViewControllerModeEndTime,
     CVEventHourViewControllerModeAllDay
-} CVEventHourViewControllerMode;
+};
 
 
 @interface CVEventHourViewController_iPhone : CVViewController

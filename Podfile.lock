@@ -1,7 +1,7 @@
 PODS:
   - FrameAccessor (1.2.0)
   - GVUserDefaults (0.9.2)
-  - MTAnimation (0.1.4)
+  - MTAnimation (0.1.5)
   - MTColorDistance (0.0.2)
   - MTDates (0.10.1)
   - MTGeometry (0.0.4)
@@ -50,7 +50,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FrameAccessor: 9cab222a118092deba0ae186d07fa51d4830d3e4
   GVUserDefaults: 736b928d6281f506045f1109846841ea2f80b854
-  MTAnimation: 2a6e443981b45b1342d9a3481da4ad9355757fce
+  MTAnimation: 81b927c0539cf5073f4f4f27a54f4cb7cf54c8e4
   MTColorDistance: e250006b39ba275e4c926437855cda5e4ec9e2d8
   MTDates: 295741c2ea13cfb9572bf07bd1fae226112c2609
   MTGeometry: abe03e5490a44c95ecf7419b96b4b7cf8af4c7dc

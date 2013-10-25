@@ -7,28 +7,28 @@
 //
 
 #import "CVTextToggleButton.h"
-#import "CVEventDayViewController_iPhone.h"
+#import "CVEventDayViewController.h"
 #import "CVEventHourViewController_iPhone.h"
 #import "CVEventDetailsViewController_iPhone.h"
 #import "CVEventSnoozeViewController_iPhone.h"
-#import "CVEventDayViewController_iPhone.h"
+#import "CVEventDayViewController.h"
 #import "CVEventHourViewController_iPhone.h"
 #import "CVEventDetailsViewController_iPhone.h"
 #import "CVNavigationController.h"
 #import "CVModalProtocol.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVEventResult) {
     CVEventResultCancelled,
     CVEventResultSaved,
     CVEventResultDeleted
-} CVEventResult;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVEventMode) {
     CVEventModeDay,
     CVEventModeHour,
     CVEventModeDetails,
     CVEventModeDetailsMore,
-} CVEventMode;
+};
 
 
 @protocol CVEventViewControllerDelegate;

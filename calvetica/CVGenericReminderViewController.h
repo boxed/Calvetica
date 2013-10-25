@@ -9,10 +9,10 @@
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVGenericReminderViewControllerResult) {
     CVGenericReminderViewControllerResultCancelled,
     CVGenericReminderViewControllerResultAdded
-} CVGenericReminderViewControllerResult;
+};
 
 
 @protocol CVGenericReminderViewControllerDelegate;

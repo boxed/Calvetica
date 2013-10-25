@@ -15,9 +15,9 @@
 #define ITEM_ROW_HEIGHT 29.0f;
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVComboBoxResult) {
     CVComboBoxResultFinished
-} CVComboBoxResult;
+};
 
 
 @protocol CVComboBoxDelegate;

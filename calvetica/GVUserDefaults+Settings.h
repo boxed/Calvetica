@@ -8,6 +8,10 @@
 
 #import "GVUserDefaults.h"
 
+
+#define PREFS [GVUserDefaults standardUserDefaults]
+
+
 @interface GVUserDefaults (Settings)
 @property (nonatomic, assign) BOOL showReminders;
 @end

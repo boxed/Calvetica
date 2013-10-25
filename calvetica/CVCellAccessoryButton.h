@@ -8,10 +8,10 @@
 
 #import "geometry.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVCellAccessoryButtonMode) {
     CVCellAccessoryButtonModeDefault,
     CVCellAccessoryButtonModeDelete
-} CVCellAccessoryButtonMode;
+};
 
 @interface CVCellAccessoryButton : UIControl
 

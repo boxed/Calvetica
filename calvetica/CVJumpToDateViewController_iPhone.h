@@ -6,15 +6,15 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVEventDayViewController_iPhone.h"
+#import "CVEventDayViewController.h"
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVJumpToDateResult) {
     CVJumpToDateResultCancelled,
     CVJumpToDateResultDateChosen
-} CVJumpToDateResult;
+};
 
 
 @protocol CVJumpToDateViewControllerDelegate;

@@ -10,7 +10,7 @@
 #import "colors.h"
 #import "geometry.h"
 
-typedef enum {
+typedef NS_OPTIONS(NSUInteger, CVPopoverArrowDirection) {
 	CVPopoverArrowDirectionNone			= 0,
     CVPopoverArrowDirectionTopLeft		= 1UL << 0,
     CVPopoverArrowDirectionTopMiddle	= 1UL << 1,
@@ -24,18 +24,23 @@ typedef enum {
     CVPopoverArrowDirectionRightTop		= 1UL << 9,
     CVPopoverArrowDirectionRightMiddle	= 1UL << 10,
     CVPopoverArrowDirectionRightBottom	= 1UL << 11,
-	CVPopoverArrowDirectionAny			= CVPopoverArrowDirectionTopLeft | CVPopoverArrowDirectionTopMiddle | CVPopoverArrowDirectionTopRight | CVPopoverArrowDirectionBottomLeft | CVPopoverArrowDirectionBottomMiddle | CVPopoverArrowDirectionBottomRight | CVPopoverArrowDirectionLeftTop | CVPopoverArrowDirectionLeftMiddle | CVPopoverArrowDirectionLeftBottom | CVPopoverArrowDirectionRightTop | CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom
-} CVPopoverArrowDirection;
+	CVPopoverArrowDirectionAny			= (CVPopoverArrowDirectionTopLeft | CVPopoverArrowDirectionTopMiddle |
+                                           CVPopoverArrowDirectionTopRight | CVPopoverArrowDirectionBottomLeft |
+                                           CVPopoverArrowDirectionBottomMiddle | CVPopoverArrowDirectionBottomRight |
+                                           CVPopoverArrowDirectionLeftTop | CVPopoverArrowDirectionLeftMiddle |
+                                           CVPopoverArrowDirectionLeftBottom | CVPopoverArrowDirectionRightTop |
+                                           CVPopoverArrowDirectionRightMiddle | CVPopoverArrowDirectionRightBottom)
+};
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVPopoverModalAttachToSide) {
 	CVPopoverModalAttachToSideNone,
 	CVPopoverModalAttachToSideTop,
     CVPopoverModalAttachToSideRight,
     CVPopoverModalAttachToSideBottom,
     CVPopoverModalAttachToSideLeft,
 	CVPopoverModalAttachToSideCenter
-} CVPopoverModalAttachToSide;
+};
 
 
 @interface CVPopoverBackdrop : UIView

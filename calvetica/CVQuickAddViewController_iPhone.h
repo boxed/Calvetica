@@ -12,11 +12,11 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVQuickAddResult) {
     CVQuickAddResultCancelled,
     CVQuickAddResultSaved,
     CVQuickAddResultMore
-} CVQuickAddResult;
+};
 
 
 @protocol CVQuickAddViewControllerDelegate;

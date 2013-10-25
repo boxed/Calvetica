@@ -8,11 +8,11 @@
 
 #import "CVViewController.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVEventDetailsNotesResult) {
     CVEventDetailsNotesResultDone,
     CVEventDetailsNotesResultSaved,
     CVEventDetailsNotesResultCancelled
-} CVEventDetailsNotesResult;
+};
 
 
 @protocol CVEventDetailsNotesViewControllerDelegate;

@@ -6,12 +6,12 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVColoredShape) {
     CVColoredShapeCircle,
     CVColoredShapeTriangle,
     CVColoredShapeRectangle,
     CVColoredShapeCheck
-} CVColoredShape;
+};
 
 
 @protocol CVColoredDotViewDelegate;

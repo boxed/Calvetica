@@ -11,11 +11,11 @@
 #import "CVViewController.h"
 #import "CVNativeAlertView.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVEventDetailsLocationResult) {
     CVEventDetailsLocationResultDone,
     CVEventDetailsLocationResultSaved,
     CVEventDetailsLocationResultCancelled
-} CVEventDetailsLocationResult;
+};
 
 @protocol CVEventDetailsLocationViewControllerDelegate;
 

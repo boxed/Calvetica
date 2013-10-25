@@ -10,14 +10,14 @@
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVViewOptionsPopoverOption) {
     CVViewOptionsPopoverOptionFullDayView,
     CVViewOptionsPopoverOptionAgendaView,
     CVViewOptionsPopoverOptionWeekView,
     CVViewOptionsPopoverOptionDetailedWeekView,
     CVViewOptionsPopoverOptionSearch,
     CVViewOptionsPopoverOptionSettings,
-} CVViewOptionsPopoverOption;
+};
 
 
 @protocol CVViewOptionsPopoverViewControllerDelegate;

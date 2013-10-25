@@ -12,12 +12,12 @@
 #import "CVEventViewController.h"
 #import "CVQuickAddViewController_iPhone.h"
 #import "CVJumpToDateViewController_iPhone.h"
-#import "NSArray+Utilities.h"
 
-typedef enum {
+
+typedef NS_ENUM(NSUInteger, CVLandscapeWeekViewResult) {
     CVLandscapeWeekViewResultFinished,
     CVLandscapeWeekViewResultModified
-} CVLandscapeWeekViewResult;
+};
 
 
 @protocol CVLandscapeWeekViewDelegate;

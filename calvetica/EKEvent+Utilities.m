@@ -1,7 +1,6 @@
 
 #import "EKEvent+Utilities.h"
 #import "NSString+Utilities.h"
-#import "NSArray+Utilities.h"
 #import "times.h"
 #import "strings.h"
 

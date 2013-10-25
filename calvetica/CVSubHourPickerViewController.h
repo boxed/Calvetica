@@ -9,9 +9,9 @@
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVSubHourPickerViewControllerResult) {
     CVSubHourPickerViewControllerResultCancelled
-} CVSubHourPickerViewControllerResult;
+};
 
 
 @protocol CVSubHourPickerViewControllerDelegate;

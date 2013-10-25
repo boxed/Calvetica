@@ -9,13 +9,13 @@
 #import "CVViewController.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVWelcomeViewControllerResult) {
     CVWelcomeViewControllerResultFAQ,
     CVWelcomeViewControllerResultGestures,
     CVWelcomeViewControllerResultContactUs,
     CVWelcomeViewControllerResultDontShowMe,
 	CVWelcomeViewControllerResultCancel
-} CVWelcomeViewControllerResult;
+};
 
 
 @protocol CVWelcomeViewControllerDelegate;

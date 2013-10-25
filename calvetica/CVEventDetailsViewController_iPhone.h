@@ -30,9 +30,10 @@
 #import "SCEventDetailsAlarmPicker.h"
 #import "CVViewController.h"
 
-typedef enum {
+
+typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
     CVEventDetailsResultDeleted
-} CVEventDetailsResult;
+};
 
 
 @protocol CVEventDetailsViewControllerDelegate;

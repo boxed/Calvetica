@@ -44,5 +44,3 @@
     #import <PSPDFAlertView.h>
 #endif
 
-
-#define PREFS [GVUserDefaults standardUserDefaults]

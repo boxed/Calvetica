@@ -20,13 +20,13 @@
 @protocol CVEventDayViewControllerDelegate;
 
 
-@interface CVEventDayViewController_iPhone : CVViewController
+@interface CVEventDayViewController : CVViewController
 
 @property (nonatomic, weak  ) id<CVEventDayViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSDate                               *initialDate;
 @property (nonatomic, strong) NSDate                               *date;
-@property (nonatomic, strong  ) NSMutableArray                       *dayButtons;
-@property (nonatomic, strong  ) NSMutableArray                       *weekButtons;
+@property (nonatomic, strong) NSMutableArray                       *dayButtons;
+@property (nonatomic, strong) NSMutableArray                       *weekButtons;
 
 @property (nonatomic, weak  ) IBOutlet UITableView  *yearTableView;
 @property (nonatomic, weak  ) IBOutlet UIScrollView *scrollView;
@@ -49,5 +49,5 @@
 
 @protocol CVEventDayViewControllerDelegate <NSObject>
 @required
-- (void)eventDayViewController:(CVEventDayViewController_iPhone *)controller didUpdateDate:(NSDate *)date;
+- (void)eventDayViewController:(CVEventDayViewController *)controller didUpdateDate:(NSDate *)date;
 @end

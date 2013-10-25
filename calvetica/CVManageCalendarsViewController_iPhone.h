@@ -14,11 +14,11 @@
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVManageCalendarsResult) {
     CVManageCalendarsResultClosed,
     CVManageCalendarsResultModified,
     CVManageCalendarsResultCancelled
-} CVManageCalendarsResult;
+};
 
 
 @protocol CVManageCalendarsViewControllerDelegate;

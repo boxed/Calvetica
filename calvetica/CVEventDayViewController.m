@@ -6,7 +6,7 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVEventDayViewController_iPhone.h"
+#import "CVEventDayViewController.h"
 #import "CVJumpToDateViewController_iPhone.h"
 #import "CVSelectionTableViewCell_iPhone.h"
 #import "colors.h"
@@ -16,7 +16,7 @@
 #import "UIView+Nibs.h"
 
 
-@implementation CVEventDayViewController_iPhone
+@implementation CVEventDayViewController
 
 
 - (void)dealloc
@@ -233,8 +233,9 @@
             self.date = self.initialDate;
         });
     });
-    
-    self.scrollView.contentSize = CGSizeMake(self.containerView.bounds.size.width, self.containerView.bounds.size.height);
+
+    self.containerView.height = MAX(self.containerView.height, 362);
+    self.scrollView.contentSize = CGSizeMake(self.containerView.width, self.containerView.height);
 
 }
 

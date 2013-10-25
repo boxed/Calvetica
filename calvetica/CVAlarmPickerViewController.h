@@ -16,10 +16,10 @@
 #import "CVViewController.h"
 
 
-typedef enum {
+typedef NS_ENUM (NSUInteger, CVAlarmPickerResult) {
     CVAlarmPickerResultCancelled,
     CVAlarmPickerResultChanged
-} CVAlarmPickerResult;
+};
 
 
 @protocol CVAlarmPickerViewControllerDelegate;

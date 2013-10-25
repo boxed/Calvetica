@@ -10,11 +10,11 @@
 #import "CVViewController.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVEventSnoozeResult) {
     CVEventSnoozeResultCancelled,
     CVEventSnoozeResultShowDetails,
     CVEventSnoozeResultSnoozed
-} CVEventSnoozeResult;
+};
 
 
 @protocol CVEventSnoozeViewControllerDelegate;

@@ -9,7 +9,6 @@
 #import "CVEventDetailsViewController_iPhone.h"
 #import "CVEventEditViewController.h"
 #import "UIApplication+Utilities.h"
-#import "NSArray+Utilities.h"
 #import "CVActionBlockButton.h"
 #import "CVTimeZoneViewController.h"
 

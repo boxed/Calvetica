@@ -85,20 +85,18 @@
 
 - (void)drawCheck
 {
-    self.clipsToBounds = NO;
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2);
     CGContextSetStrokeColorWithColor(context, [self.color CGColor]);
-    CGContextSetLineCap(context, kCGLineCapRound);
 
     CGRect rect = CGRectInset(_drawRect, 1, 1);
-    rect.origin.x = 0;
-    rect.origin.y = 0;
+//    rect.origin.x = 0;
+//    rect.origin.y = 0;
 	CGFloat minX = CGRectGetMinX(rect);
     CGFloat minY = CGRectGetMinY(rect);
     CGFloat maxY = CGRectGetMaxY(rect);
     CGContextMoveToPoint(context, minX, minY + (rect.size.height * 0.6));
-    CGContextAddLineToPoint(context, minX + (rect.size.width / 2), maxY);
+    CGContextAddLineToPoint(context, minX + (rect.size.width * 0.4), maxY);
     CGContextAddLineToPoint(context, minX + (rect.size.width * 0.8), minY);
     CGContextStrokePath(context);
 }

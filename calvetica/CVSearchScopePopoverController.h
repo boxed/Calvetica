@@ -10,13 +10,13 @@
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVSearchScopePopoverOption) {
     CVSearchScopePopoverOption3Months,
 	CVSearchScopePopoverOption6Months,
 	CVSearchScopePopoverOption1Year,
 	CVSearchScopePopoverOption5Years,
 	CVSearchScopePopoverOptionEverything
-} CVSearchScopePopoverOption;
+};
 
 
 @protocol CVSearchScopePopoverControllerDelegate;

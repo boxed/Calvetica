@@ -8,11 +8,11 @@
 
 #import "CVEventStoreNotificationCenter.h"
 #import "CVEventStoreNotification.h"
-#import "MYSStack.h"
+#import "NSMutableArray+Stack.h"
 
 
 @interface CVEventStoreNotificationCenter ()
-@property (nonatomic, strong) MYSStack *stack;
+@property (nonatomic, strong) NSMutableArray *stack;
 @end
 
 
@@ -32,7 +32,7 @@
 {
     self = [super init];
     if (self) {
-        _stack = [MYSStack new];
+        _stack = [NSMutableArray new];
     }
     return self;
 }

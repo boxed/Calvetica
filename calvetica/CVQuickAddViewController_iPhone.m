@@ -13,9 +13,7 @@
 #import "CVSelectionTableViewCell_iPhone.h"
 #import "times.h"
 #import "UITableViewCell+Nibs.h"
-#import "NSDictionary+Utilities.h"
-#import "NSMutableArray+Utilities.h"
-
+#import "NSMutableArray+Stack.h"
 
 
 
@@ -613,8 +611,8 @@
 
 - (IBAction)clearButtonWasHit:(id)sender 
 {
-    self.hourDigits = [NSMutableArray array];
-	self.minuteDigits = [NSMutableArray array];
+    self.hourDigits = [NSMutableArray new];
+	self.minuteDigits = [NSMutableArray new];
     [self renderEventStartTimeString];
 }
 

@@ -17,11 +17,11 @@
 
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVEventDetailsRepeatResult) {
     CVEventDetailsRepeatResultDone,
     CVEventDetailsRepeatResultSaved,
     CVEventDetailsRepeatResultCancelled
-} CVEventDetailsRepeatResult;
+};
 
 
 

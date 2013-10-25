@@ -6,10 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVCalendarDetailsControllerResult) {
     CVCalendarDetailsControllerResultSaved,
     CVCalendarDetailsControllerResultCancelled
-} CVCalendarDetailsControllerResult;
+};
 
 
 @protocol CVCalendarDetailsViewControllerDelegate;

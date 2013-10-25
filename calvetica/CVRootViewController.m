@@ -359,7 +359,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 - (IBAction)monthLabelWasTapped:(UITapGestureRecognizer *)gesture
 {
-    CVEventDayViewController_iPhone *eventDayViewController = [[CVEventDayViewController_iPhone alloc] init];
+    CVEventDayViewController *eventDayViewController = [[CVEventDayViewController alloc] init];
     eventDayViewController.initialDate = self.selectedDate;
 
     CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc]
@@ -616,10 +616,10 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
         }
     }
 
-    else {
+    else if ([cell isKindOfClass:[CVEventCell class]]) {
         [self showQuickAddWithDefault:YES
                          durationMode:YES
-                                 date:calendarItem.mys_date
+                                 date:[(CVEventCell *)cell date]
                                 title:nil
                                  view:cell];
     }

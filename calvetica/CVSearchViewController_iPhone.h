@@ -13,9 +13,9 @@
 #import "CVModalProtocol.h"
 
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CVSearchViewControllerResult) {
     CVSearchViewControllerResultFinished
-} CVSearchViewControllerResult;
+};
 
 
 @protocol CVSearchViewControllerDelegate;

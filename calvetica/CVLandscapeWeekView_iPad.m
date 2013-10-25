@@ -92,7 +92,7 @@
 
 - (void)openJumpToDateWithDate:(NSDate *)date 
 {
-    CVEventDayViewController_iPhone *eventDayViewController = [[CVEventDayViewController_iPhone alloc] init];
+    CVEventDayViewController *eventDayViewController = [[CVEventDayViewController alloc] init];
     eventDayViewController.initialDate = date;
     CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc] initWithContentViewController:eventDayViewController];
     jumpToDateController.delegate = self;
