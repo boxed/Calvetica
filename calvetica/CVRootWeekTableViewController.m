@@ -170,19 +170,15 @@
         if (PREFS.showReminders) {
             // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
             // and another when remindrs are done.
-            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                                  toDate:endDate
-                                                               calendars:nil
-                                                                 options:0
-                                                              completion:^(NSArray *reminders)
-                            {
-                                [calendarItems addObjectsFromArray:reminders];
-                                processCalendarItems(calendarItems);
-                            }];
-
-            if (!inCache) {
-                //            processCalendarItems(calendarItems);
-            }
+            [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                   toDate:endDate
+                                                calendars:nil
+                                                  options:0
+                                               completion:^(NSArray *reminders)
+             {
+                 [calendarItems addObjectsFromArray:reminders];
+                 processCalendarItems(calendarItems);
+             }];
         }
         else {
             processCalendarItems(calendarItems);

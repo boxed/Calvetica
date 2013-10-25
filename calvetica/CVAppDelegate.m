@@ -36,10 +36,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
 
-#ifdef ADHOC
+#ifndef DEBUG
     [TestFlight takeOff:@"781a1420-e37c-4042-bfc7-48e2ed98b6fb"];
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice].identifierForVendor UUIDString]];
-#else
     [Crashlytics startWithAPIKey:@"237b422d5ee51789eac82b82a6b214d838f1fd4e"];
 #endif
 

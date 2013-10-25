@@ -46,7 +46,12 @@
     _allDaySquaresView.delegate = self;
 }
 
-- (void)didMoveToWindow
+//- (void)didMoveToWindow
+//{
+
+//}
+
+- (void)layoutSubviews
 {
 	CGFloat rowHeight = round((self.bounds.size.height - _redBarView.frame.size.height) / (float)NUM_LABELS);
 	CGRect f = _allDaySquaresView.frame;
@@ -65,7 +70,6 @@
 }
 
 
-
 #pragma mark - Methods
 
 - (void)drawEventSquares 
@@ -78,7 +82,7 @@
     NSDate *dateCopy = [_date copy];
     
     
-    dispatch_async([CVOperationQueue backgroundQueue], ^(void) {
+    [MTq def:^{
         
         // if this cell doesn't event represent day week anymore, then abort
         if (![dateCopy isEqualToDate:self.date]) return;
@@ -190,7 +194,7 @@
             _allDaySquaresView.squares = allDayEventSquares;
             _squaresView.squares = eventSquares;
         });
-    });
+    }];
 }
 
 

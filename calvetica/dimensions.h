@@ -7,7 +7,7 @@
 #define TABLE_ROW_DAY_TITLE_HEIGHT 60.0
 
 //week agenda row widths
-#define TABLE_ROW_EVENT_WIDTH_IPHONE 229
+#define TABLE_ROW_EVENT_WIDTH_IPHONE 250
 #define TABLE_ROW_EVENT_WIDTH_IPAD 226
 
 // month view dots

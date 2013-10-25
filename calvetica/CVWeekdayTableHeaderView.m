@@ -34,7 +34,7 @@
 	for (NSInteger i = 0; i <= NUM_LABELS; i++) {
 		UILabel *hourLabel = (UILabel *)[self viewWithTag:i + TAG_OFFSET];
 		if ([CVSettings isTwentyFourHourFormat] && i > 0)
-			hourLabel.text = [NSString stringWithFormat:@"%ld", (NSInteger)(i - 1)];
+			hourLabel.text = [NSString stringWithFormat:@"%ld", (long)(i - 1)];
 		CGRect f		= hourLabel.frame;
 		f.size.height	= rowHeight;
 		f.size.width	= self.bounds.size.width - 5;
@@ -66,11 +66,6 @@
         CGContextSetStrokeColorWithColor(context, [patentedBlack CGColor]);
 		CGContextMoveToPoint(context, 0, y);
 		CGContextAddLineToPoint(context, viewHeight, y);
-        CGContextStrokePath(context);
-        
-        CGContextSetStrokeColorWithColor(context, [patentedVeryDarkGray CGColor]);
-		CGContextMoveToPoint(context, 0, y + 0.5f);
-		CGContextAddLineToPoint(context, viewHeight, y + 0.5f);
         CGContextStrokePath(context);
 	}
 }

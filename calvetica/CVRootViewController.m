@@ -1012,6 +1012,9 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     if (!PAD) {
         [self dismissViewControllerAnimated:YES completion:NO];
     }
+    else {
+        [self dismissPopoverModalViewControllerAnimated:YES];
+    }
 }
 
 - (void)searchViewController:(CVSearchViewController_iPhone *)controller tappedCell:(CVSearchEventCell *)cell
@@ -1675,7 +1678,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [MTMigration applicationUpdateBlock:^{
             CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
             welcomeController.delegate = self;
-            [self presentPageModalViewController:welcomeController animated:YES completion:nil];
+            [self presentPageModalViewController:welcomeController
+                                        animated:YES
+                                      completion:nil];
         }];
         launched = YES;
     }
@@ -1687,7 +1692,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         CVSearchViewController_iPhone *searchViewController = [[CVSearchViewController_iPhone alloc] init];
         searchViewController.delegate = self;
         [self presentPopoverModalViewController:searchViewController
-                                        forView:self.searchButton animated:YES];
+                                        forView:self.monthLabelControl
+                                       animated:YES];
     }
     else {
         [self performSegueWithIdentifier:@"SearchSegue" sender:self];

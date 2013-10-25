@@ -46,7 +46,7 @@
                     </view>
                     <view contentMode="scaleToFill" id="15" customClass="CVEventSquaresView">
                         <rect key="frame" x="0.0" y="58" width="146" height="689"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333730000001" green="0.93333333730000001" blue="0.93333333730000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>

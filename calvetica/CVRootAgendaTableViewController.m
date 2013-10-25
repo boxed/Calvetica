@@ -99,22 +99,19 @@
         if (PREFS.showReminders) {
             // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
             // and another when remindrs are done.
-            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                                  toDate:endDate
-                                                               calendars:nil
-                                                                 options:0
-                                                              completion:^(NSArray *reminders)
-                            {
-                                reminders = [reminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder, NSDictionary *bindings) {
-                                    return !reminder.isFloating || isToday;
-                                }]];
-                                [calendarItems addObjectsFromArray:reminders];
-                                processCalendarItems(calendarItems);
-                            }];
+            [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                   toDate:endDate
+                                                calendars:nil
+                                                  options:0
+                                               completion:^(NSArray *reminders)
+             {
+                 reminders = [reminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder, NSDictionary *bindings) {
+                     return !reminder.isFloating || isToday;
+                 }]];
+                 [calendarItems addObjectsFromArray:reminders];
+                 processCalendarItems(calendarItems);
+             }];
 
-            if (!inCache) {
-                //            processCalendarItems(calendarItems);
-            }
         }
         else {
             processCalendarItems(calendarItems);
@@ -127,7 +124,7 @@
 
 #pragma mark - DELEGATE table view
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.cellModelArray count];
 }

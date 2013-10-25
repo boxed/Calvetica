@@ -83,17 +83,13 @@
     // DRAW BACKGROUND LINES
     
     NSInteger numLines = 24;
-    CGFloat distanceBetweenLines = self.bounds.size.height / numLines;
+    CGFloat viewHeight = self.bounds.size.height;
+    CGFloat distanceBetweenLines = viewHeight / numLines;
     
 	for (int i = 0; i < numLines; i++) {
-        CGFloat y = round(distanceBetweenLines * i);
+        CGFloat y = floorf(distanceBetweenLines * i);
         CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);
 		CGContextMoveToPoint(context, 0, y);
-		CGContextAddLineToPoint(context, self.bounds.size.width, y);
-        CGContextStrokePath(context);
-        
-        CGContextSetStrokeColorWithColor(context, [patentedWhite CGColor]);
-		CGContextMoveToPoint(context, 0, y + 0.5f);
 		CGContextAddLineToPoint(context, self.bounds.size.width, y);
         CGContextStrokePath(context);
 	}

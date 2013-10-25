@@ -32,11 +32,11 @@
     f.origin.x = 0;
     f.origin.y = 1;
     f.size.width = self.bounds.size.width;
-    f.size.height = self.bounds.size.height * 0.8f;
+    f.size.height = self.bounds.size.height * 0.9f;
 
     self.drawingView = [[CVWeekTableViewCellDrawing alloc] initWithFrame:f];
 
-    self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
     self.drawingView.opaque = NO;
     self.drawingView.delegate = self;
     [self addSubview:self.drawingView];

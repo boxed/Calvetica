@@ -185,22 +185,18 @@
         if (PREFS.showReminders) {
             // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
             // and another when remindrs are done.
-            BOOL inCache = [[EKEventStore sharedStore] remindersFromDate:startDate
-                                                                  toDate:endDate
-                                                               calendars:nil
-                                                                 options:0
-                                                              completion:^(NSArray *reminders)
-                            {
-                                reminders = [reminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder, NSDictionary *bindings) {
-                                    return !reminder.isFloating || isToday;
-                                }]];
-                                [calendarItems addObjectsFromArray:reminders];
-                                processCalendarItems(calendarItems, hours);
-                            }];
-
-            if (!inCache) {
-                //            processCalendarItems(calendarItems, hours);
-            }
+            [[EKEventStore sharedStore] remindersFromDate:startDate
+                                                   toDate:endDate
+                                                calendars:nil
+                                                  options:0
+                                               completion:^(NSArray *reminders)
+             {
+                 reminders = [reminders filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKReminder *reminder, NSDictionary *bindings) {
+                     return !reminder.isFloating || isToday;
+                 }]];
+                 [calendarItems addObjectsFromArray:reminders];
+                 processCalendarItems(calendarItems, hours);
+             }];
         }
         else {
             processCalendarItems(calendarItems, hours);

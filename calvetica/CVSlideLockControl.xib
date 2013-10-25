@@ -18,7 +18,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="34" userLabel="Horizontal Slider">
-                    <rect key="frame" x="2" y="1" width="251" height="29"/>
+                    <rect key="frame" x="2" y="4" width="251" height="29"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="sliderEnded:" destination="2" eventType="touchUpInside" id="36"/>

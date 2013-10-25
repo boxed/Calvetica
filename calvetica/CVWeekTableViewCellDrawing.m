@@ -593,7 +593,7 @@
             
             // INCREMENT
             row[day]++;
-            if ( (e.y + (dotHeightWithSpacing * 2.0f)) > self.bounds.size.height ) {
+            if ((e.y + (dotHeightWithSpacing * 2.0f)) > self.bounds.size.height ) {
                 CGRect textFrame = CGRectZero;
                 textFrame.origin.x = e.x;
                 textFrame.origin.y = e.y;
