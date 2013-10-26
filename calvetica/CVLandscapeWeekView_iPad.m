@@ -94,7 +94,7 @@
 {
     CVEventDayViewController *eventDayViewController = [[CVEventDayViewController alloc] init];
     eventDayViewController.initialDate = date;
-    CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc] initWithContentViewController:eventDayViewController];
+    CVJumpToDateViewController *jumpToDateController = [[CVJumpToDateViewController alloc] initWithContentViewController:eventDayViewController];
     jumpToDateController.delegate = self;
     jumpToDateController.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
     [self presentPopoverModalViewController:jumpToDateController forView:self.monthAndYearLabel animated:YES];
@@ -188,7 +188,7 @@
 {
     [super weekdayCell:cell wasLongPressedAtDate:datePressed allDay:allDay withPlaceholder:placeholder];
     
-    CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
+    CVQuickAddViewController *quickAddViewController = [[CVQuickAddViewController alloc] init];
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = datePressed;
     quickAddViewController.isAllDay = allDay;
@@ -235,7 +235,7 @@
 
 #pragma mark - Quick add view controller delegate
 
-- (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller didCompleteWithAction:(CVQuickAddResult)result
+- (void)quickAddViewController:(CVQuickAddViewController *)controller didCompleteWithAction:(CVQuickAddResult)result
 {
     [super quickAddViewController:controller didCompleteWithAction:result];
         
@@ -259,7 +259,7 @@
 
 #pragma mark - CVJumpToDateViewControllerDelegate Methods
 
-- (void)jumpToDateViewController:(CVJumpToDateViewController_iPhone *)controller didFinishWithResult:(CVJumpToDateResult)result
+- (void)jumpToDateViewController:(CVJumpToDateViewController *)controller didFinishWithResult:(CVJumpToDateResult)result
 {
     [super jumpToDateViewController:controller didFinishWithResult:result];
     

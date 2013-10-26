@@ -8,12 +8,12 @@
 
 #import "CVTextToggleButton.h"
 #import "CVEventDayViewController.h"
-#import "CVEventHourViewController_iPhone.h"
-#import "CVEventDetailsViewController_iPhone.h"
-#import "CVEventSnoozeViewController_iPhone.h"
+#import "CVEventHourViewController.h"
+#import "CVEventDetailsViewController.h"
+#import "CVEventSnoozeViewController.h"
 #import "CVEventDayViewController.h"
-#import "CVEventHourViewController_iPhone.h"
-#import "CVEventDetailsViewController_iPhone.h"
+#import "CVEventHourViewController.h"
+#import "CVEventDetailsViewController.h"
 #import "CVNavigationController.h"
 #import "CVModalProtocol.h"
 

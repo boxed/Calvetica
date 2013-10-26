@@ -7,7 +7,7 @@
 //
 
 #import "CVEventDayViewController.h"
-#import "CVJumpToDateViewController_iPhone.h"
+#import "CVJumpToDateViewController.h"
 #import "CVSelectionTableViewCell_iPhone.h"
 #import "colors.h"
 #import "viewtagoffsets.h"

@@ -23,12 +23,10 @@
 + (void)setSelectedEventCalendars:(NSMutableArray *)calendars;
 
 + (void)addSelectedEventCalendar:(EKCalendar *)calendar;
-+ (void)removeSelectedEventCalendar:(EKCalendar *)calendar;
 
 + (EKCalendar *)defaultEventCalendar;
 + (void)setDefaultEventCalendar:(EKCalendar *)defCal;
 
-+ (UIColor *)customColorForCalendar:(EKCalendar *)calendar;
 + (void)setCustomColor:(UIColor *)color forCalendar:(EKCalendar *)calendar;
 
 #pragma mark - DEFAULTS
@@ -40,7 +38,6 @@
 + (void)setDefaultAllDayEventAlarms:(NSArray *)defaultAlarms;
 
 + (NSInteger)defaultDuration;
-+ (void)setDefaultDuration:(NSInteger)dd;
 
 
 #pragma mark - CALENDAR
@@ -79,13 +76,10 @@
 #pragma mark - THE PAINFUL CHOICE
 
 + (NSInteger)badgeOrAlerts;
-+ (void)setBadgeOrAlerts:(NSInteger)i;
 
 
 
 #pragma mark - APPEARANCE
-+ (BOOL)isAEventDetailBlock:(NSDictionary *)detail;
-+ (BOOL)eventDetailBlockIsSaved:(NSDictionary *)detail;
 + (NSArray *)eventDetailsOrderingArray;
 + (void)setDetailsOrderingArray:(NSArray *)array;
 
@@ -98,7 +92,6 @@
 + (BOOL)scrollableMonthView;
 
 + (BOOL)showDurationOnReadOnlyEvents;
-+ (void)setShowDurationOnReadOnlyEvents:(BOOL)showDuration;
 
 
 #pragma mark - CUSTOM ALERT SOUNDS

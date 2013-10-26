@@ -10,8 +10,8 @@
 #import "CVWeekdayTableViewCell.h"
 #import "CVViewController.h"
 #import "CVEventViewController.h"
-#import "CVQuickAddViewController_iPhone.h"
-#import "CVJumpToDateViewController_iPhone.h"
+#import "CVQuickAddViewController.h"
+#import "CVJumpToDateViewController.h"
 
 
 typedef NS_ENUM(NSUInteger, CVLandscapeWeekViewResult) {

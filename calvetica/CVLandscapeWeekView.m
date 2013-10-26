@@ -163,7 +163,7 @@
 
 #pragma mark - Quick add view controller delegate
 
-- (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller didCompleteWithAction:(CVQuickAddResult)result
+- (void)quickAddViewController:(CVQuickAddViewController *)controller didCompleteWithAction:(CVQuickAddResult)result
 {
 }
 
@@ -172,7 +172,7 @@
 
 #pragma mark - CVJumpToDateViewControllerDelegate Methods
 
-- (void)jumpToDateViewController:(CVJumpToDateViewController_iPhone *)controller didFinishWithResult:(CVJumpToDateResult)result
+- (void)jumpToDateViewController:(CVJumpToDateViewController *)controller didFinishWithResult:(CVJumpToDateResult)result
 {
 }
 

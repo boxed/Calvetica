@@ -13,7 +13,7 @@
 #import "CVRootDetailedWeekTableViewController.h"
 #import "CVGenericReminderViewController.h"
 #import "CVWelcomeViewController.h"
-#import "CVManageCalendarsViewController_iPhone.h"
+#import "CVManageCalendarsViewController.h"
 #import "CVAllDayAlarmPickerViewController.h"
 #import "CVViewOptionsPopoverViewController.h"
 #import "CVSubHourPickerViewController.h"
@@ -22,12 +22,14 @@
 #import "CVCalendarItemCellModel.h"
 #import "CVEventStoreNotificationCenter.h"
 #import "CVLineButton.h"
+#import "UITableView+Utilities.h"
 // iPhone
 #import "CVLandscapeWeekView_iPhone.h"
 // iPad
 #import "CVPopoverModalViewController_iPad.h"
 #import "CVLandscapeWeekView_iPad.h"
 #import "UILabel+Utilities.h"
+
 
 
 typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
@@ -311,7 +313,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 - (IBAction)showCalendarsButtonWasTapped:(id)sender
 {
-    CVManageCalendarsViewController_iPhone *manageCalendarsController = [CVManageCalendarsViewController_iPhone new];
+    CVManageCalendarsViewController *manageCalendarsController = [CVManageCalendarsViewController new];
     manageCalendarsController.delegate = self;
 
     if (PAD) {
@@ -362,7 +364,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     CVEventDayViewController *eventDayViewController = [[CVEventDayViewController alloc] init];
     eventDayViewController.initialDate = self.selectedDate;
 
-    CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc]
+    CVJumpToDateViewController *jumpToDateController = [[CVJumpToDateViewController alloc]
                                                                initWithContentViewController:eventDayViewController];
     jumpToDateController.delegate = self;
 
@@ -539,7 +541,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 - (void)showSnoozeDialogForEvent:(EKEvent *)snoozeEvent
 {
-	CVEventSnoozeViewController_iPhone *eventSnoozeController = [[CVEventSnoozeViewController_iPhone alloc] init];
+	CVEventSnoozeViewController *eventSnoozeController = [[CVEventSnoozeViewController alloc] init];
 	eventSnoozeController.event = snoozeEvent;
 	eventSnoozeController.delegate = self;
 
@@ -777,7 +779,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 #pragma mark - DELEATE manage calendars
 
-- (void)manageCalendarsViewController:(CVManageCalendarsViewController_iPhone *)controller
+- (void)manageCalendarsViewController:(CVManageCalendarsViewController *)controller
                   didFinishWithResult:(CVManageCalendarsResult)result
 {
     if (result == CVManageCalendarsResultModified) {
@@ -797,7 +799,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 #pragma mark - DELEGATE quick add
 
-- (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller
+- (void)quickAddViewController:(CVQuickAddViewController *)controller
          didCompleteWithAction:(CVQuickAddResult)result
 {
     if (result == CVQuickAddResultSaved) {
@@ -838,7 +840,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 #pragma mark - DELEGATE jump to date
 
-- (void)jumpToDateViewController:(CVJumpToDateViewController_iPhone *)controller
+- (void)jumpToDateViewController:(CVJumpToDateViewController *)controller
              didFinishWithResult:(CVJumpToDateResult)result
 {
 	if (result == CVJumpToDateResultDateChosen) {
@@ -900,7 +902,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 #pragma mark - DELEGATE snooze view controller
 
-- (void)eventSnoozeViewController:(CVEventSnoozeViewController_iPhone *)controller
+- (void)eventSnoozeViewController:(CVEventSnoozeViewController *)controller
               didFinishWithResult:(CVEventSnoozeResult)result
 {
     self.selectedDate = [controller.event.startingDate mt_startOfCurrentDay];
@@ -917,7 +919,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
                                             forView:self.redBarPlusButton animated:YES];
             [self.monthTableViewController scrollToRowForDate:controller.event.startingDate
                                                      animated:YES
-                                               scrollPosition:UITableViewScrollPositionMiddle];
+                                               scrollPosition:UITableViewScrollPositionTop];
         }
         else {
             [self presentPageModalViewController:eventViewController animated:YES completion:nil];
@@ -1549,7 +1551,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     if (PAD) {
         [self.monthTableViewController scrollToRowForDate:self.selectedDate
                                                  animated:animated
-                                           scrollPosition:UITableViewScrollPositionMiddle];
+                                           scrollPosition:UITableViewScrollPositionTop];
     }
     else {
         if (self.monthViewPushedUpDirection == CVRootMonthViewMoveDirectionUp) {
@@ -1590,7 +1592,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                            view:(UIView *)view
 {
     if (PAD) {
-        CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
+        CVQuickAddViewController *quickAddViewController = [[CVQuickAddViewController alloc] init];
         quickAddViewController.defaultTitle     = title;
         quickAddViewController.delegate         = self;
         quickAddViewController.startDate        = date;
@@ -1629,7 +1631,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         }
     }
     else {
-        CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] init];
+        CVQuickAddViewController *quickAddViewController = [[CVQuickAddViewController alloc] init];
         quickAddViewController.defaultTitle     = title;
         quickAddViewController.delegate         = self;
         quickAddViewController.startDate        = date;

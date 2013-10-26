@@ -8,14 +8,14 @@
 
 #import "UITableViewCell+Nibs.h"
 
-@protocol CVPeopleTableViewCell_iPhoneDelegate;
+@protocol CVPeopleTableViewCellDelegate;
 
 @interface CVPeopleTableViewCell_iPhone : UITableViewCell {
     
 }
 
 #pragma mark - IBOutlets
-@property (nonatomic, weak)          id <CVPeopleTableViewCell_iPhoneDelegate> delegate;
+@property (nonatomic, weak)          id <CVPeopleTableViewCellDelegate> delegate;
 @property (nonatomic, weak) IBOutlet UILabel                                   *personTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel                                   *personStatusLabel;
 @property (nonatomic, weak) IBOutlet UIView                                    *gestureHitArea;
@@ -29,7 +29,7 @@
 
 @end
 
-@protocol CVPeopleTableViewCell_iPhoneDelegate <NSObject>
+@protocol CVPeopleTableViewCellDelegate <NSObject>
 - (void)cellWasSwiped:(CVPeopleTableViewCell_iPhone *)cell;
 - (void)cellChatButtonWasPressed:(id)button;
 - (void)cellEmailButtonWasPressed:(id)button;

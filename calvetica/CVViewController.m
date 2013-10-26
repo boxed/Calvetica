@@ -7,7 +7,7 @@
 //
 
 #import "CVViewController.h"
-#import "CVPageModalViewController_iPhone.h"
+#import "CVPageModalViewController.h"
 #import "CVPopoverModalViewController_iPad.h"
 #import "UIViewController+Utilities.h"
 #import "animations.h"
@@ -118,8 +118,8 @@
                               animated:(BOOL)animated
                             completion:(void (^)(void))completion
 {
-    CVPageModalViewController_iPhone *containerViewController =
-    [[CVPageModalViewController_iPhone alloc] initWithContentViewController:modalViewController];
+    CVPageModalViewController *containerViewController =
+    [[CVPageModalViewController alloc] initWithContentViewController:modalViewController];
 
     [self.pageModalViewControllers addObject:containerViewController];
     containerViewController.containingViewController = self;
@@ -165,7 +165,7 @@
 - (void)dismissPageModalViewControllerAnimated:(BOOL)animated completion:(void (^)(void))completion
 {
     // pop the most recently added view controller (view controllers are dismissed in LIFO order)
-    CVPageModalViewController_iPhone *containerViewController = [self.pageModalViewControllers lastObject];
+    CVPageModalViewController *containerViewController = [self.pageModalViewControllers lastObject];
     CVViewController *modalViewController = containerViewController.contentViewController;
     if (!modalViewController) {
         return;

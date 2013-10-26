@@ -87,7 +87,7 @@
 
 - (void)openQuickAddWithDate:(NSDate *)datePressed allDay:(BOOL)allDay 
 {
-    CVQuickAddViewController_iPhone *quickAddViewController = [[CVQuickAddViewController_iPhone alloc] initWithNibName:@"CVQuickAddViewController-Landscape_iPhone" bundle:nil];
+    CVQuickAddViewController *quickAddViewController = [[CVQuickAddViewController alloc] initWithNibName:@"CVQuickAddViewController-Landscape_iPhone" bundle:nil];
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = datePressed;
     quickAddViewController.isAllDay = allDay;
@@ -102,7 +102,7 @@
 {
     CVEventDayViewController *eventDayViewController = [[CVEventDayViewController alloc] init];
     eventDayViewController.initialDate = date;
-    CVJumpToDateViewController_iPhone *jumpToDateController = [[CVJumpToDateViewController_iPhone alloc] initWithContentViewController:eventDayViewController];
+    CVJumpToDateViewController *jumpToDateController = [[CVJumpToDateViewController alloc] initWithContentViewController:eventDayViewController];
     jumpToDateController.delegate = self;
     [self presentPageModalViewController:jumpToDateController animated:YES completion:nil];
 }
@@ -236,7 +236,7 @@
 
 #pragma mark - Quick add view controller delegate
 
-- (void)quickAddViewController:(CVQuickAddViewController_iPhone *)controller didCompleteWithAction:(CVQuickAddResult)result
+- (void)quickAddViewController:(CVQuickAddViewController *)controller didCompleteWithAction:(CVQuickAddResult)result
 {
     [super quickAddViewController:controller didCompleteWithAction:result];
 	
@@ -259,7 +259,7 @@
 
 #pragma mark - CVJumpToDateViewControllerDelegate Methods
 
-- (void)jumpToDateViewController:(CVJumpToDateViewController_iPhone *)controller didFinishWithResult:(CVJumpToDateResult)result
+- (void)jumpToDateViewController:(CVJumpToDateViewController *)controller didFinishWithResult:(CVJumpToDateResult)result
 {
     [super jumpToDateViewController:controller didFinishWithResult:result];
     

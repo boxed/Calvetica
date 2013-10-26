@@ -76,17 +76,6 @@
     [CVSettings setSelectedEventCalendars:selectedCalendars];
 }
 
-+ (void)removeSelectedEventCalendar:(EKCalendar *)calendar {
-    NSMutableArray *selectedCalendars = [CVSettings selectedEventCalendars];
-    NSMutableArray *newSelectedCalendars = [NSMutableArray array];
-    for (EKCalendar *c in selectedCalendars) {
-        if (![c.calendarIdentifier isEqualToString:calendar.calendarIdentifier]) {
-            [newSelectedCalendars addObject:c];
-        }
-    }
-    [CVSettings setSelectedEventCalendars:newSelectedCalendars];
-}
-
 + (EKCalendar *)defaultEventCalendar {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *def = (NSString *)[defaults objectForKey:DEFAULT_EVENT_CALENDAR];
@@ -105,21 +94,6 @@
 	[defaults synchronize];
 }
 
-+ (UIColor *)customColorForCalendar:(EKCalendar *)calendar {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *calendarsCollectionDictionary = [defaults objectForKey:CUSTOM_COLORS_FOR_CALENDARS_COLLECTION];
-    NSDictionary *calendars = [calendarsCollectionDictionary objectForKey:CUSTOMIZED_CALENDARS];
-    NSDictionary *calendarDict = [calendars objectForKey:calendar.calendarIdentifier];
-    
-    if (!calendarDict) {
-        return nil;
-    }
-    
-    NSData *colorData = [calendarDict objectForKey:CUSTOM_COLOR];
-    UIColor *color = [NSKeyedUnarchiver unarchiveObjectWithData:colorData];
-    
-    return color;
-}
 
 + (void)setCustomColor:(UIColor *)color forCalendar:(EKCalendar *)calendar {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -201,12 +175,6 @@
 	else {
 		return 60 * 60;
 	}
-}
-
-+ (void)setDefaultDuration:(NSInteger)dd {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setInteger:dd forKey:DEFAULT_DURATION];
-	[defaults synchronize];
 }
 
 
@@ -333,13 +301,6 @@
 	return [defaults objectForKey:BADGE_OR_ALERTS] != nil ? [defaults integerForKey:BADGE_OR_ALERTS] : 0;
 }
 
-+ (void)setBadgeOrAlerts:(NSInteger)i {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setInteger:i forKey:BADGE_OR_ALERTS];
-	[defaults synchronize];
-}
-
-
 
 
 #pragma mark - APPEARANCE
@@ -437,12 +398,6 @@
 + (BOOL)showDurationOnReadOnlyEvents {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	return [defaults objectForKey:SHOW_DURATION_ON_READ_ONLY_EVENTS] != nil ? [defaults boolForKey:SHOW_DURATION_ON_READ_ONLY_EVENTS] : NO;
-}
-
-+ (void)setShowDurationOnReadOnlyEvents:(BOOL)showDuration {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:showDuration forKey:SHOW_DURATION_ON_READ_ONLY_EVENTS];
-	[defaults synchronize];
 }
 
 

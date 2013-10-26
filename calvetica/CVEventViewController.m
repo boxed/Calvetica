@@ -99,13 +99,13 @@
 
 - (void)hourBarButtonWasTapped:(id)sender 
 {
-	CVEventHourViewController_iPhone *hourViewController = [[CVEventHourViewController_iPhone alloc] initWithStartDate:self.event.startingDate
+	CVEventHourViewController *hourViewController = [[CVEventHourViewController alloc] initWithStartDate:self.event.startingDate
 																											   endDate:self.event.endingDate
 																												allDay:self.event.allDay
 																									   useMilitaryTime:[CVSettings isTwentyFourHourFormat]];
 	hourViewController.editable = _event.calendar.allowsContentModifications;
 
-    __block CVEventHourViewController_iPhone *hrv = hourViewController;
+    __block CVEventHourViewController *hrv = hourViewController;
 
 	[hourViewController setStartDateUpdatedBlock:^(NSDate *date) {
 		NSDate *endDateBefore = [_event.endingDate copy];
@@ -143,7 +143,7 @@
 
 - (void)detailsBarButtonWasTapped:(id)sender 
 {
-    CVEventDetailsViewController_iPhone *detailViewController = [[CVEventDetailsViewController_iPhone alloc] initWithEvent:self.event];
+    CVEventDetailsViewController *detailViewController = [[CVEventDetailsViewController alloc] initWithEvent:self.event];
     detailViewController.delegate = self;
     
     // add it to the navigation controller (which means it gets added to the screen)
@@ -154,18 +154,18 @@
 
 - (IBAction)applyButtonWasTapped:(id)sender 
 {
-    if ([self.visibleViewController isKindOfClass:[CVEventDetailsNotesViewController_iPhone class]]) {
-        CVEventDetailsNotesViewController_iPhone *controller = (CVEventDetailsNotesViewController_iPhone *)self.visibleViewController;
+    if ([self.visibleViewController isKindOfClass:[CVEventDetailsNotesViewController class]]) {
+        CVEventDetailsNotesViewController *controller = (CVEventDetailsNotesViewController *)self.visibleViewController;
         self.event.notes = controller.notesTextView.text;
         [controller.delegate eventDetailsNotesViewController:controller didFinish:CVEventDetailsNotesResultSaved];
     }
-    if ([self.visibleViewController isKindOfClass:[CVEventDetailsLocationViewController_iPhone class]]) {
-        CVEventDetailsLocationViewController_iPhone *controller = (CVEventDetailsLocationViewController_iPhone *)self.visibleViewController;
+    if ([self.visibleViewController isKindOfClass:[CVEventDetailsLocationViewController class]]) {
+        CVEventDetailsLocationViewController *controller = (CVEventDetailsLocationViewController *)self.visibleViewController;
         self.event.location = controller.locationTextView.text;
         [controller.delegate eventDetailsLocationViewController:controller didFinish:CVEventDetailsLocationResultSaved];
     }
-    if ([self.visibleViewController isKindOfClass:[CVEventDetailsRepeatViewController_iPhone class]]) {
-        CVEventDetailsRepeatViewController_iPhone *controller = (CVEventDetailsRepeatViewController_iPhone *)self.visibleViewController;
+    if ([self.visibleViewController isKindOfClass:[CVEventDetailsRepeatViewController class]]) {
+        CVEventDetailsRepeatViewController *controller = (CVEventDetailsRepeatViewController *)self.visibleViewController;
         self.event.recurrenceRules = @[[controller recurrenceRule]];
         [controller.delegate eventDetailsRepeatViewController:controller didFinish:CVEventDetailsRepeatResultSaved];
     }
@@ -226,25 +226,25 @@
 
 #pragma mark - Event Details View Controller Delegate
 
-- (void)eventDetailsViewController:(CVEventDetailsViewController_iPhone *)controller didPushViewController:(CVViewController *)pushedController animated:(BOOL)animated
+- (void)eventDetailsViewController:(CVEventDetailsViewController *)controller didPushViewController:(CVViewController *)pushedController animated:(BOOL)animated
 {
     self.mode = CVEventModeDetailsMore;
-    if ([pushedController isKindOfClass:[CVEventDetailsNotesViewController_iPhone class]]) {
+    if ([pushedController isKindOfClass:[CVEventDetailsNotesViewController class]]) {
         self.subDetailHeaderTitle.text = @"EVENT NOTES";
     }
-    else if ([pushedController isKindOfClass:[CVEventDetailsLocationViewController_iPhone class]]) {
+    else if ([pushedController isKindOfClass:[CVEventDetailsLocationViewController class]]) {
         self.subDetailHeaderTitle.text = @"EVENT LOCATION";
     }
-    else if ([pushedController isKindOfClass:[CVEventDetailsRepeatViewController_iPhone class]]) {
+    else if ([pushedController isKindOfClass:[CVEventDetailsRepeatViewController class]]) {
         self.subDetailHeaderTitle.text = @"EVENT REPEAT";
     }
 }
 
-- (void)eventDetailsViewController:(CVEventDetailsViewController_iPhone *)controller didFinishWithResult:(CVEventDetailsResult)result
+- (void)eventDetailsViewController:(CVEventDetailsViewController *)controller didFinishWithResult:(CVEventDetailsResult)result
 {
     if (result == CVEventDetailsResultDeleted) {
         [self.event removeThenDoActionBlock:^() { [self.delegate eventViewController:self didFinishWithResult:CVEventResultDeleted]; } cancelBlock:^(void) {
-            CVEventDetailsViewController_iPhone *controller = (CVEventDetailsViewController_iPhone *)self.visibleViewController;
+            CVEventDetailsViewController *controller = (CVEventDetailsViewController *)self.visibleViewController;
             [controller.deleteSlideLock resetSlider];
         }];
     }
