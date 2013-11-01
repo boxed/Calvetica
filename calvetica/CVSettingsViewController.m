@@ -59,7 +59,7 @@
 
 - (IBAction)showRemindersWasFlipped:(UISwitch *)sender
 {
-    PREFS.showReminders = sender.isOn;
+    PREFS.showReminders = @(sender.isOn);
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

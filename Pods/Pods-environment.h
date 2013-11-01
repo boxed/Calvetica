@@ -12,12 +12,6 @@
 #define COCOAPODS_VERSION_MINOR_FrameAccessor 2
 #define COCOAPODS_VERSION_PATCH_FrameAccessor 0
 
-// GVUserDefaults
-#define COCOAPODS_POD_AVAILABLE_GVUserDefaults
-#define COCOAPODS_VERSION_MAJOR_GVUserDefaults 0
-#define COCOAPODS_VERSION_MINOR_GVUserDefaults 9
-#define COCOAPODS_VERSION_PATCH_GVUserDefaults 2
-
 // MTAnimation
 #define COCOAPODS_POD_AVAILABLE_MTAnimation
 #define COCOAPODS_VERSION_MAJOR_MTAnimation 0
@@ -28,7 +22,7 @@
 #define COCOAPODS_POD_AVAILABLE_MTColorDistance
 #define COCOAPODS_VERSION_MAJOR_MTColorDistance 0
 #define COCOAPODS_VERSION_MINOR_MTColorDistance 0
-#define COCOAPODS_VERSION_PATCH_MTColorDistance 2
+#define COCOAPODS_VERSION_PATCH_MTColorDistance 3
 
 // MTDates
 #define COCOAPODS_POD_AVAILABLE_MTDates
@@ -52,7 +46,7 @@
 #define COCOAPODS_POD_AVAILABLE_MTPencil
 #define COCOAPODS_VERSION_MAJOR_MTPencil 0
 #define COCOAPODS_VERSION_MINOR_MTPencil 1
-#define COCOAPODS_VERSION_PATCH_MTPencil 0
+#define COCOAPODS_VERSION_PATCH_MTPencil 1
 
 // MTQueue
 #define COCOAPODS_POD_AVAILABLE_MTQueue
@@ -64,7 +58,7 @@
 #define COCOAPODS_POD_AVAILABLE_MYSCategoryProperties
 #define COCOAPODS_VERSION_MAJOR_MYSCategoryProperties 0
 #define COCOAPODS_VERSION_MINOR_MYSCategoryProperties 0
-#define COCOAPODS_VERSION_PATCH_MYSCategoryProperties 1
+#define COCOAPODS_VERSION_PATCH_MYSCategoryProperties 2
 
 // PSAlertView
 #define COCOAPODS_POD_AVAILABLE_PSAlertView

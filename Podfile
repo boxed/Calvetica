@@ -15,4 +15,3 @@ pod 'PSAlertView',              :head
 pod 'SVProgressHUD',            :head
 pod 'FrameAccessor'
 pod 'TestFlightSDK',            '2.1.1-beta'
-pod 'GVUserDefaults',           git: 'https://github.com/atomkirk/GVUserDefaults.git'
