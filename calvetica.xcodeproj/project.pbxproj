@@ -2299,7 +2299,6 @@
 		C2E2972B133419A900FA7638 /* calvetica */ = {
 			isa = PBXGroup;
 			children = (
-				C273D7AD181B4248004A8144 /* calvetica.entitlements */,
 				C27B896317EA8D4F00F12871 /* Main_iPhone.storyboard */,
 				C27B896517EA8DE900F12871 /* Main_iPad.storyboard */,
 				C275449C13354970004203C6 /* Shared */,
@@ -2314,6 +2313,7 @@
 		C2E2972C133419A900FA7638 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C273D7AD181B4248004A8144 /* calvetica.entitlements */,
 				C2E2972D133419A900FA7638 /* calvetica-Info.plist */,
 				C24E2E3013C3ADED003C5E4B /* help */,
 				9BEFC7C013BB7D34001CB080 /* sounds */,
