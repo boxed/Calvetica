@@ -6,10 +6,10 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVSelectionTableViewCell_iPhone.h"
+#import "CVSelectionTableViewCell.h"
 
 
-@implementation CVSelectionTableViewCell_iPhone
+@implementation CVSelectionTableViewCell
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated 
 {

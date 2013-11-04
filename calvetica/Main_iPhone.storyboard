@@ -273,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="643" y="104"/>
         </scene>
-        <!--Search View Controller i Phone-->
+        <!--Search View Controller-->
         <scene sceneID="J0G-qc-dZw">
             <objects>
-                <viewController id="Jo8-72-Pl6" customClass="CVSearchViewController_iPhone" sceneMemberID="viewController">
+                <viewController id="Jo8-72-Pl6" customClass="CVSearchViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="I4d-9Z-J71" userLabel="View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>

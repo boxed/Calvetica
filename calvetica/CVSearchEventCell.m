@@ -80,6 +80,7 @@
     NSRange range = [excerpt rangeOfString:searchText];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:excerpt];
     [attributedString setAttributes:@{ NSForegroundColorAttributeName : patentedRed } range:range];
+    self.foundTextLabel.attributedText = attributedString;
 
     // update color
     self.coloredDotView.color = [_event.calendar customColor];

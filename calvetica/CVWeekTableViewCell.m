@@ -14,9 +14,7 @@
 
 @implementation CVWeekTableViewCell
 
-#pragma mark - View Lifecycle
-
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
     [super awakeFromNib];
     _weekStartDate = nil;
@@ -39,7 +37,7 @@
     self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
     self.drawingView.opaque = NO;
     self.drawingView.delegate = self;
-    [self addSubview:self.drawingView];
+    [self insertSubview:self.drawingView atIndex:0];
 }
 
 - (void)prepareForReuse

@@ -382,7 +382,6 @@ static NSArray *__allReminders      = nil;
     }
     else {
         __allReminders = @[];
-        NSLog(@"Had to fetch all reminders");
         NSPredicate *predicate = [[EKEventStore sharedStore] predicateForRemindersInCalendars:calendars];
         [self fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
             __allReminders = [reminders copy];

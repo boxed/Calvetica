@@ -78,12 +78,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVCalendarTableViewCell_iPhone *cell = [CVCalendarTableViewCell_iPhone cellForTableView:tv];
+    CVCalendarTableViewCell *cell = [CVCalendarTableViewCell cellForTableView:tv];
 	
     EKCalendar *calendar            = [[self calendars] objectAtIndex:indexPath.row];
     cell.calendarTitleLabel.text    = calendar.title;
     cell.disabled                   = !calendar.allowsContentModifications;
-    cell.calendarTypeLabel.text     = [NSString stringWithFormat:@"%@ %@", [calendar sourceString], [calendar account]];
+    cell.calendarTypeLabel.text     = [NSString stringWithFormat:@"%@", [calendar account]];
     cell.coloredDotView.color       = [calendar customColor];
 
     return cell;
@@ -94,7 +94,7 @@
 
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	CVCalendarTableViewCell_iPhone *cell = (CVCalendarTableViewCell_iPhone *)[tv cellForRowAtIndexPath:indexPath];
+	CVCalendarTableViewCell *cell = (CVCalendarTableViewCell *)[tv cellForRowAtIndexPath:indexPath];
 	if (cell.disabled) return;
     EKCalendar *calendar = [[self calendars] objectAtIndex:indexPath.row];
     [_delegate calendarPicker:self didPickCalendar:calendar];

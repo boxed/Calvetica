@@ -10,7 +10,7 @@
 #import "geometry.h"
 #import "UIView+Utilities.h"
 #import "CVRoundedButton.h"
-#import "CVSelectionTableViewCell_iPhone.h"
+#import "CVSelectionTableViewCell.h"
 #import "times.h"
 #import "UITableViewCell+Nibs.h"
 #import "NSMutableArray+Stack.h"
@@ -126,7 +126,7 @@
 
 - (void)displayDefault 
 {
-    self.titleTextField.text = self.defaultTitle;
+    self.titleTextField.text = self.titleTextField.text ?: self.defaultTitle;
 
     self.hourDigits = [NSMutableArray new];
     self.minuteDigits = [NSMutableArray new];
@@ -655,7 +655,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
+    CVSelectionTableViewCell *cell = [CVSelectionTableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:12];

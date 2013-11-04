@@ -58,6 +58,12 @@
 
 }
 
+- (void)removeCalendarItem:(EKCalendarItem *)calendarItem
+{
+
+}
+
+
 
 
 

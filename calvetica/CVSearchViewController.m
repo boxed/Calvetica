@@ -5,14 +5,14 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVSearchViewController_iPhone.h"
+#import "CVSearchViewController.h"
 #import "UIActivityIndicatorView+Utilities.h"
 #import "CVSearchScopePopoverController.h"
 #import "CVEventCell.h"
 
 
 
-@interface CVSearchViewController_iPhone ()
+@interface CVSearchViewController ()
 @property (nonatomic, weak  ) IBOutlet UITableView                *tableView;
 @property (nonatomic, weak  ) IBOutlet CVTextField                *searchTextField;
 @property (nonatomic, strong)          NSMutableArray             *results;
@@ -23,7 +23,7 @@
 
 
 
-@implementation CVSearchViewController_iPhone
+@implementation CVSearchViewController
 
 - (void)dealloc
 {

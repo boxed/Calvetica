@@ -87,7 +87,7 @@
 
 - (void)openQuickAddWithDate:(NSDate *)datePressed allDay:(BOOL)allDay 
 {
-    CVQuickAddViewController *quickAddViewController = [[CVQuickAddViewController alloc] initWithNibName:@"CVQuickAddViewController-Landscape_iPhone" bundle:nil];
+    CVQuickAddViewController *quickAddViewController = [[CVQuickAddViewController alloc] initWithNibName:@"CVQuickAddViewController-Landscape" bundle:nil];
     quickAddViewController.delegate = self;
     quickAddViewController.startDate = datePressed;
     quickAddViewController.isAllDay = allDay;

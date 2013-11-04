@@ -8,7 +8,7 @@
 
 #import "CVNumericKeyPadViewController.h"
 #import "CVMultiToggleButton.h"
-#import "CVSelectionTableViewCell_iPhone.h"
+#import "CVSelectionTableViewCell.h"
 #import "CVViewController.h"
 #import "strings.h"
 

@@ -155,7 +155,7 @@
                 
                 else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Notes"]) {
                     BOOL hidden = [[dict objectForKey:@"HiddenKey"] boolValue];
-                    if (!hidden && _event.notes) {
+                    if (!hidden && [_event.notes length] > 0) {
                         subtitleText = [_event stringWithNotes];
                         break;
                     }
@@ -164,7 +164,7 @@
                 
                 else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Location"]) {
                     BOOL hidden = [[dict objectForKey:@"HiddenKey"] boolValue];
-                    if (!hidden && _event.location) {
+                    if (!hidden && [_event.location length] > 0) {
                         subtitleText = [_event stringWithLocation];
                         break;
                     }
@@ -319,4 +319,5 @@
         [self.delegate calendarItemCell:self tappedTime:self.date view:self.timeTextHitArea];
     }
 }
+
 @end

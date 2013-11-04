@@ -27,6 +27,7 @@ static CGFloat const CVRootTableViewReminderRowHeight   = 20;
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion;
 - (void)scrollToCurrentHourAnimated:(BOOL)animated;
 - (void)scrollToDate:(NSDate *)date animated:(BOOL)animated;
+- (void)removeCalendarItem:(EKCalendarItem *)calendarItem;
 
 @end
 

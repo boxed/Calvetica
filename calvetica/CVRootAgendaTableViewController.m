@@ -119,6 +119,16 @@
     }];
 }
 
+- (void)removeCalendarItem:(EKCalendarItem *)calendarItem
+{
+    for (CVCalendarItemCellModel *model in [self.cellModelArray copy]) {
+        if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
+            [self.cellModelArray removeObject:model];
+            break;
+        }
+    }
+}
+
 
 
 
@@ -232,21 +242,6 @@
         }
     }
     return CVRootTableViewEventRowHeight;
-}
-
-
-
-
-#pragma mark - DELEGATE cell view
-
-- (void)calendarItemCell:(UITableViewCell *)cell tappedDeleteForItem:(EKCalendarItem *)calendarItem
-{
-    for (CVCalendarItemCellModel *model in [self.cellModelArray copy]) {
-        if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
-            [self.cellModelArray removeObject:model];
-        }
-    }
-    [super calendarItemCell:cell tappedDeleteForItem:calendarItem];
 }
 
 

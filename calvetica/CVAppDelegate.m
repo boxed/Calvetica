@@ -17,6 +17,7 @@
 @interface CVAppDelegate () 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
 @property (nonatomic, assign) BOOL isLaunching;
+@property (nonatomic, strong) NSTimer *refreshTimer;
 @end
 
 
@@ -121,6 +122,7 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application 
 {
+    [self.refreshTimer invalidate];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application 
@@ -147,10 +149,9 @@
         [rvc refreshUIAnimated:YES];
     }
 
-	// trigger a pull request for remote sources
-	dispatch_async([CVOperationQueue backgroundQueue], ^{
-		[[EKEventStore sharedStore] refreshSourcesIfNecessary];
-	});
+    // trigger a pull request for remote sources
+    [self refreshSources];
+    [self scheduleRefreshTimer];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 
@@ -232,7 +233,26 @@
 
 
 
-#pragma mark - Local Notifs
+#pragma mark - Private
+
+#pragma mark (refresh)
+
+- (void)scheduleRefreshTimer
+{
+    [self.refreshTimer invalidate];
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:30
+                                                         target:self
+                                                       selector:@selector(refreshSources)
+                                                       userInfo:nil
+                                                        repeats:YES];
+}
+
+- (void)refreshSources
+{
+    [[EKEventStore sharedStore] refreshSourcesIfNecessary];
+}
+
+#pragma mark (local notifs)
 
 - (void)setLocalNotifs
 {

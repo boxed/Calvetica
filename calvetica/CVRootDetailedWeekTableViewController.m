@@ -170,6 +170,17 @@
     }
 }
 
+- (void)removeCalendarItem:(EKCalendarItem *)calendarItem
+{
+    for (NSMutableArray *models in self.cellModelArray) {
+        for (CVCalendarItemCellModel *model in [models copy]) {
+            if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
+                [models removeObject:model];
+                break;
+            }
+        }
+    }
+}
 
 
 
@@ -313,17 +324,5 @@
     return sectionView;
 }
 
-
-
-
-#pragma mark - DELEGATE cell view
-
-- (void)calendarItemCell:(UITableViewCell *)cell tappedDeleteForItem:(EKCalendarItem *)calendarItem
-{
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSMutableArray *calendarItems = self.cellModelArray[indexPath.section];
-    [calendarItems removeObjectAtIndex:indexPath.row];
-    [super calendarItemCell:cell tappedDeleteForItem:calendarItem];
-}
 
 @end

@@ -192,7 +192,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVPeopleTableViewCell_iPhone *cell = [CVPeopleTableViewCell_iPhone cellForTableView:tableView];
+    CVPeopleTableViewCell *cell = [CVPeopleTableViewCell cellForTableView:tableView];
     CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];
     
     if (holder.participant) {
@@ -243,7 +243,7 @@
 
 #pragma mark CVPeopleTableViewCellDelegate Methods
 
-- (void)cellWasSwiped:(CVPeopleTableViewCell_iPhone *)cell 
+- (void)cellWasSwiped:(CVPeopleTableViewCell *)cell 
 {
     NSIndexPath *indexPath = [self.tableView indexPathForRowContainingView:cell];
     CVParticipantCellModel *holder = [_participantDataHolderArray objectAtIndex:indexPath.row];

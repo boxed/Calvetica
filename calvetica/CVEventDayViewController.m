@@ -8,7 +8,7 @@
 
 #import "CVEventDayViewController.h"
 #import "CVJumpToDateViewController.h"
-#import "CVSelectionTableViewCell_iPhone.h"
+#import "CVSelectionTableViewCell.h"
 #import "colors.h"
 #import "viewtagoffsets.h"
 #import "NSDate+ViewHelpers.h"
@@ -256,7 +256,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
+    CVSelectionTableViewCell *cell = [CVSelectionTableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)[self yearFromTableIndex:indexPath.row]];

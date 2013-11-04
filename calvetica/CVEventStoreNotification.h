@@ -8,6 +8,7 @@
 
 
 typedef NS_ENUM(NSUInteger, CVNotificationSource) {
+    CVNotificationSourceUnknown,
     CVNotificationSourceInternal,
     CVNotificationSourceExternal
 };
@@ -21,7 +22,7 @@ typedef NS_ENUM(NSUInteger, CVNotificationChangeType) {
 
 
 @interface CVEventStoreNotification : NSObject
-@property (nonatomic, strong) EKCalendarItem                    *calendarObject;
-@property (nonatomic, assign) CVNotificationSource source;
-@property (nonatomic, assign) CVNotificationChangeType         changeType;
+@property (nonatomic, strong) EKCalendarItem           *calendarObject;
+@property (nonatomic, assign) CVNotificationSource     source;
+@property (nonatomic, assign) CVNotificationChangeType changeType;
 @end

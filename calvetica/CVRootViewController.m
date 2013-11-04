@@ -18,7 +18,7 @@
 #import "CVViewOptionsPopoverViewController.h"
 #import "CVSubHourPickerViewController.h"
 #import "CVLandscapeWeekView.h"
-#import "CVSearchViewController_iPhone.h"
+#import "CVSearchViewController.h"
 #import "CVCalendarItemCellModel.h"
 #import "CVEventStoreNotificationCenter.h"
 #import "CVLineButton.h"
@@ -120,26 +120,22 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
     if (![EKEventStore isPermissionGranted]) {
         [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if (granted) {
-                [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-                    [MTq main:^{
-                        if (granted) {
-                            [EKEventStore setPermissionGranted:granted];
-                            self.selectedDate = self.todaysDate;
-                            [self refreshUIAnimated:NO];
-                            [self showWelcomeScreen];
-                        }
-                        else {
-                            [self notifyOfNeededPermission];
-                        }
-                    }];
-                }];
-            }
-            else {
+            if (!granted) {
                 [MTq main:^{
                     [self notifyOfNeededPermission];
                 }];
             }
+            [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+                [MTq main:^{
+                    if (!granted) {
+                        [self notifyOfNeededPermission];
+                    }
+                    [EKEventStore setPermissionGranted:granted];
+                    self.selectedDate = self.todaysDate;
+                    [self refreshUIAnimated:NO];
+                    [self showWelcomeScreen];
+                }];
+            }];
         }];
     }
 
@@ -221,7 +217,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
         }
     }
     else if ([segue.identifier isEqualToString:@"SearchSegue"]) {
-        CVSearchViewController_iPhone *searchViewController = [segue destinationViewController];
+        CVSearchViewController *searchViewController = [segue destinationViewController];
         searchViewController.delegate = self;
     }
 }
@@ -309,6 +305,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
         [self scrollRootTableViewAnimated:YES];
     }];
     [self updateSelectionSquare:YES];
+    [self updateMonthAndDayLabels];
 }
 
 - (IBAction)showCalendarsButtonWasTapped:(id)sender
@@ -714,26 +711,29 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 	if (calendarItem.isEvent) {
         EKEvent *eventToDelete = (EKEvent *)calendarItem;
 
-		[eventToDelete removeThenDoActionBlock:^(void) {
-
-			if (![eventToDelete.startDate mt_isStartOfAnHour] || self.rootTableMode != CVRootTableViewModeFull) {
+        [self.rootTableViewController removeCalendarItem:calendarItem];
+        [eventToDelete removeThenDoActionBlock:^(void) {
+            if (![eventToDelete.startDate mt_isStartOfAnHour] ||
+                calendarItem.mys_isAllDay ||
+                self.rootTableMode != CVRootTableViewModeFull)
+            {
                 [self.rootTableView beginUpdates];
 				[self.rootTableView deleteRowsAtIndexPaths:@[indexPath]
                                           withRowAnimation:UITableViewRowAnimationFade];
                 [self.rootTableView endUpdates];
-			}
-			else {
-				[self.rootTableView reloadRowsAtIndexPaths:@[indexPath]
+            }
+            else {
+                [self.rootTableView reloadRowsAtIndexPaths:@[indexPath]
                                           withRowAnimation:UITableViewRowAnimationFade];
-			}
+            }
+        } cancelBlock:^(void) {}];
 
-			// if it repeats we need to reload all the rows in ase dots for this week appear on other weeks
-			if (eventToDelete.hasRecurrenceRules || ![eventToDelete fitsWithinWeekOfDate:self.selectedDate]) {
-				[self.monthTableViewController reloadTableView];
-			} else {
-				[self.monthTableViewController reloadRowForDate:self.selectedDate];
-			}
-		} cancelBlock:^(void) {}];
+        // if it repeats we need to reload all the rows in ase dots for this week appear on other weeks
+        if (eventToDelete.hasRecurrenceRules || ![eventToDelete fitsWithinWeekOfDate:self.selectedDate]) {
+            [self.monthTableViewController reloadTableView];
+        } else {
+            [self.monthTableViewController reloadRowForDate:self.selectedDate];
+        }
     }
 }
 
@@ -1008,7 +1008,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 #pragma mark - DELEGATE search view controller
 
-- (void)searchViewController:(CVSearchViewController_iPhone *)searchViewController
+- (void)searchViewController:(CVSearchViewController *)searchViewController
          didFinishWithResult:(CVSearchViewControllerResult)result
 {
     if (!PAD) {
@@ -1019,7 +1019,7 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     }
 }
 
-- (void)searchViewController:(CVSearchViewController_iPhone *)controller tappedCell:(CVSearchEventCell *)cell
+- (void)searchViewController:(CVSearchViewController *)controller tappedCell:(CVSearchEventCell *)cell
 {
     if (PAD) {
         CVEventViewController *eventViewController = [[CVEventViewController alloc] initWithEvent:cell.event
@@ -1180,14 +1180,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     CVEventStoreNotification *notification = [notif object];
 
-//    if (notification.source == CVNotificationSourceExternal) {
-//        NSLog(@"external notification received");
-//        [[EKEventStore sharedStore] clearRemindersCacheAndReloadWithCompletion:^{
-//            [self reloadMonthTableView];
-//            [self reloadRootTableViewWithCompletion:nil];
-//        }];
-//        return;
-//    }
+    NSLog(@"%@", notif);
+
+    if (notification.source == CVNotificationSourceExternal) {
+        [[EKEventStore sharedStore] clearRemindersCacheAndReloadWithCompletion:^{
+            [self reloadMonthTableView];
+            [self reloadRootTableViewWithCompletion:nil];
+        }];
+        return;
+    }
 
     EKCalendarItem *calendarItem = notification.calendarObject;
 
@@ -1691,7 +1692,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)openSearch
 {
     if (PAD) {
-        CVSearchViewController_iPhone *searchViewController = [[CVSearchViewController_iPhone alloc] init];
+        CVSearchViewController *searchViewController = [[CVSearchViewController alloc] init];
         searchViewController.delegate = self;
         [self presentPopoverModalViewController:searchViewController
                                         forView:self.monthLabelControl

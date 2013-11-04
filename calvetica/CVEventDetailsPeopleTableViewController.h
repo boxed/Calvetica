@@ -6,7 +6,7 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVPeopleTableViewCell_iPhone.h"
+#import "CVPeopleTableViewCell.h"
 
 
 @protocol CVEventDetailsPeopleTableViewControllerDelegate;

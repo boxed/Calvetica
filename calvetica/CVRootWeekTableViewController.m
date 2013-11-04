@@ -228,15 +228,6 @@
                     continued:model.continuedFromPreviousDay
                        allDay:model.isAllDay];
         cell.delegate = self;
-        
-        // call the NSString category method to set the number of lines for the textLabel
-        CGFloat width;
-        if (PAD) {
-            width = TABLE_ROW_EVENT_WIDTH_IPAD;
-        }
-        else {
-            width = TABLE_ROW_EVENT_WIDTH_IPHONE;
-        }
         cell.titleLabel.numberOfLines = 0;
         return cell;
     }
@@ -258,20 +249,12 @@
         return TABLE_ROW_DAY_TITLE_HEIGHT;
     }
 
-    // call the NSString category method to set the cell height of the regular cells
-    // add a little padding to keep padding consistent
-    CGFloat width;
-    if (PAD) {
-        width = TABLE_ROW_EVENT_WIDTH_IPAD;
-    }
-    else {
-        width = TABLE_ROW_EVENT_WIDTH_IPHONE;
-    }
-
     UIFont *footnoteFont = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    CGFloat height = [model.calendarItem.mys_title totalHeightOfWordWrapTextWithFont:footnoteFont
-                                                                     constraintWidth:width] + 5;
-    
+    CGFloat height = [model.calendarItem.mys_title boundingRectWithSize:CGSizeMake(212, FLT_MAX)
+                                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                                             attributes:@{ NSFontAttributeName : footnoteFont }
+                                                                context:NULL].size.height + 6;
+
 	return height;
 }
 
