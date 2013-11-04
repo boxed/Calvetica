@@ -10,3 +10,12 @@
 [submodule "libs/MTMigration"]
 	path = libs/MTMigration
 	url = https://github.com/mysterioustrousers/MTMigration.git
+[submodule "libs/MYSRuntime"]
+	path = libs/MYSRuntime
+	url = https://github.com/mysterioustrousers/MYSRuntime.git
+[submodule "libs/MYSCategoryProperties"]
+	path = libs/MYSCategoryProperties
+	url = https://github.com/mysterioustrousers/MYSCategoryProperties.git
+[submodule "libs/MYSSharedSettings"]
+	path = libs/MYSSharedSettings
+	url = https://github.com/mysterioustrousers/MYSSharedSettings.git
