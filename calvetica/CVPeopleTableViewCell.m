@@ -6,10 +6,10 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVPeopleTableViewCell_iPhone.h"
+#import "CVPeopleTableViewCell.h"
 
 
-@implementation CVPeopleTableViewCell_iPhone
+@implementation CVPeopleTableViewCell
 
 - (void)awakeFromNib 
 {

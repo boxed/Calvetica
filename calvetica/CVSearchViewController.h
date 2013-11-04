@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, CVSearchViewControllerResult) {
 @protocol CVSearchViewControllerDelegate;
 
 
-@interface CVSearchViewController_iPhone : CVViewController <CVModalProtocol,
+@interface CVSearchViewController : CVViewController <CVModalProtocol,
                                                                 UITableViewDelegate,
                                                                 UITableViewDataSource,
                                                                 UITextFieldDelegate,
@@ -35,6 +35,6 @@ typedef NS_ENUM(NSUInteger, CVSearchViewControllerResult) {
 
 
 @protocol CVSearchViewControllerDelegate <NSObject>
-- (void)searchViewController:(CVSearchViewController_iPhone *)controller didFinishWithResult:(CVSearchViewControllerResult)result;
-- (void)searchViewController:(CVSearchViewController_iPhone *)controller tappedCell:(CVSearchEventCell *)cell;
+- (void)searchViewController:(CVSearchViewController *)controller didFinishWithResult:(CVSearchViewControllerResult)result;
+- (void)searchViewController:(CVSearchViewController *)controller tappedCell:(CVSearchEventCell *)cell;
 @end

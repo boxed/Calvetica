@@ -71,7 +71,13 @@
 	else {
 		_timeLabel.text = [newCalendarItem.mys_date stringWithHourMinuteAndLowercaseAMPM];
     }
+}
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.titleLabel.height  = self.height - 6;
+    self.titleLabel.y       = 3;
 }
 
 #pragma mark - Actions

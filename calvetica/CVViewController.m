@@ -342,7 +342,7 @@
 - (UIView *)keyboardAccessoryView 
 {
     if (!_keyboardAccessoryView) {
-        UINib *inputAccessoryViewNib = [UINib nibWithNibName:@"CVInputAccessory_iPhone" bundle:nil];        
+        UINib *inputAccessoryViewNib = [UINib nibWithNibName:@"CVInputAccessory" bundle:nil];        
         [inputAccessoryViewNib instantiateWithOwner:self options:nil];
     }
     return _keyboardAccessoryView;

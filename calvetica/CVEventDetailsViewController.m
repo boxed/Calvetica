@@ -857,8 +857,9 @@
         mailComposer.modalPresentationStyle = UIModalPresentationPageSheet;
     
         [mailComposer setToRecipients:participantEmails];
-        
-        [self.presentedViewController presentViewController:mailComposer animated:YES completion:nil];
+
+        self.rootController = self.closestSystemPresentedViewController;
+        [self.rootController presentViewController:mailComposer animated:YES completion:nil];
     }
 }
 

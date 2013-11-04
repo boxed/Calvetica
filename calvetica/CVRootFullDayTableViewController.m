@@ -140,6 +140,9 @@
         [tempArray sortUsingComparator:^NSComparisonResult(CVCalendarItemCellModel *model1,
                                                            CVCalendarItemCellModel *model2)
          {
+             if (!model1.calendarItem || model2.calendarItem) {
+                 return [model1.date compare:model2.date];
+             }
              return [model1.calendarItem compareWithCalendarItem:model2.calendarItem];
          }];
 
@@ -219,6 +222,21 @@
             [self.tableView scrollToRowAtIndexPath:indexPath
                                   atScrollPosition:UITableViewScrollPositionTop
                                           animated:animated];
+            break;
+        }
+    }
+}
+
+- (void)removeCalendarItem:(EKCalendarItem *)calendarItem
+{
+    for (CVCalendarItemCellModel *model in [self.cellModelArray copy]) {
+        if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
+            if (![model.date mt_isStartOfAnHour] || calendarItem.mys_isAllDay) {
+                [self.cellModelArray removeObject:model];
+            }
+            else {
+                model.calendarItem = nil;
+            }
             break;
         }
     }
@@ -348,17 +366,6 @@
     else if (isEligibleCell) {
         cell.backgroundColor = RGBHex(0xFFFFFF);
     }
-}
-
-
-
-
-#pragma mark - DELEGATE cell view
-
-- (void)calendarItemCell:(UITableViewCell *)cell tappedDeleteForItem:(EKCalendarItem *)calendarItem
-{
-    [self.cellModelArray removeObject:calendarItem];
-    [super calendarItemCell:cell tappedDeleteForItem:calendarItem];
 }
 
 

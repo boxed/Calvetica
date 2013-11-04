@@ -45,7 +45,6 @@
 
 - (void)viewDidLoad 
 {
-    
     // set buttons selected appearance
     for (int i = 0; i < _buttons.count; i++) {
         CVToggleButton *button = (CVToggleButton *)[self.view viewWithTag:(i+1)];
@@ -145,6 +144,7 @@
 
 
 #pragma mark - Actions
+
 - (IBAction)alarmButtonWasPressed:(id)sender 
 {
     CVToggleButton *button = (CVToggleButton *)sender;

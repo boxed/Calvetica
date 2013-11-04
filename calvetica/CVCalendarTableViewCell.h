@@ -10,7 +10,7 @@
 #import "UITableViewCell+Nibs.h"
 #import "CVCheckButton.h"
 
-@interface CVCalendarTableViewCell_iPhone : UITableViewCell
+@interface CVCalendarTableViewCell : UITableViewCell
 
 #pragma mark - IBOutlets
 @property (nonatomic, weak) IBOutlet CVColoredDotView *coloredDotView;

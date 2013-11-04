@@ -6,10 +6,10 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVCalendarTableViewCell_iPhone.h"
+#import "CVCalendarTableViewCell.h"
 
 
-@implementation CVCalendarTableViewCell_iPhone
+@implementation CVCalendarTableViewCell
 
 - (id)init 
 {

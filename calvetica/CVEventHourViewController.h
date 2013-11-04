@@ -7,7 +7,7 @@
 //
 
 #import "colors.h"
-#import "CVSelectionTableViewCell_iPhone.h"
+#import "CVSelectionTableViewCell.h"
 #import "CVViewButton.h"
 #import "viewtagoffsets.h"
 #import "CVViewController.h"

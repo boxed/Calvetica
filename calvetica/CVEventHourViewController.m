@@ -121,7 +121,7 @@
 		_startTimeButton.selected	= NO;
         _endTimeButton.selected		= NO;
         _allDayButton.selected		= YES;
-		self.allDay					= _allDay;
+		self.allDay					= YES;
     }
 }
 
@@ -194,6 +194,8 @@
 
 - (IBAction)unitButtonWasTapped:(CVViewButton *)button
 {
+    self.allDay = NO;
+
     NSInteger tag   = button.tag - HOUR_BUTTON_TAG_OFFSET;
     NSUInteger col  = floor(tag / 12.0);
 
@@ -231,11 +233,13 @@
 
 - (IBAction)startTimeButtonWasTapped:(id)sender 
 {
+    self.allDay = NO;
     self.mode = CVEventHourViewControllerModeStartTime;
 }
 
 - (IBAction)endTimeButtonWasTapped:(id)sender 
 {
+    self.allDay = NO;
     self.mode = CVEventHourViewControllerModeEndTime;
 }
 
@@ -268,7 +272,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    CVSelectionTableViewCell_iPhone *cell = [CVSelectionTableViewCell_iPhone cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
+    CVSelectionTableViewCell *cell = [CVSelectionTableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
     NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

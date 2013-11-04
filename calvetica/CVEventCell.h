@@ -12,7 +12,7 @@
 
 
 
-@class CVSearchViewController_iPhone;
+@class CVSearchViewController;
 
 
 @interface CVEventCell : CVCell

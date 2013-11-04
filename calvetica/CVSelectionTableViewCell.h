@@ -9,7 +9,7 @@
 #import "colors.h"
 
 
-@interface CVSelectionTableViewCell_iPhone : UITableViewCell
+@interface CVSelectionTableViewCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL isDarkRed;
 
