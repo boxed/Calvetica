@@ -38,7 +38,6 @@ typedef NS_ENUM (NSUInteger, CVAlarmPickerResult) {
 
 
 @protocol CVAlarmPickerViewControllerDelegate <NSObject>
-@required
 - (void)alarmPicker:(CVAlarmPickerViewController *)picker didFinishWithResult:(CVAlarmPickerResult)result;
 @end
 

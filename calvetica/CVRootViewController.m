@@ -892,9 +892,10 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 #pragma mark - DELEGATE alarm picker
 
-- (void)alarmPicker:(CVAlarmPickerViewController *)picker didFinishWithResult:(CVAlarmPickerResult)result 
+- (void)alarmPicker:(CVAlarmPickerViewController *)picker didFinishWithResult:(CVAlarmPickerResult)result
 {
     [self dismissPopoverModalViewControllerAnimated:YES];
+    [self.rootTableView reloadData];
 }
 
 
@@ -1455,6 +1456,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         completion();
     }
 }
+
+
 
 
 #pragma mark (iPad)
