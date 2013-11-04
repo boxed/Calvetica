@@ -19,3 +19,6 @@
 [submodule "libs/MYSSharedSettings"]
 	path = libs/MYSSharedSettings
 	url = https://github.com/mysterioustrousers/MYSSharedSettings.git
+[submodule "libs/MTColorDistance"]
+	path = libs/MTColorDistance
+	url = https://github.com/mysterioustrousers/MTColorDistance.git
