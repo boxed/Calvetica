@@ -182,20 +182,9 @@
 
 #pragma mark - CALENDAR
 
-+ (BOOL)timeZoneSupport {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:TIMEZONE_SUPPORT] != nil ? [defaults boolForKey:TIMEZONE_SUPPORT] : YES;
-}
-
-+ (void)setTimeZoneSupport:(BOOL)support {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:support forKey:TIMEZONE_SUPPORT];
-	[defaults synchronize];
-}
-
 + (NSTimeZone *)timezone {
     NSString *timeZoneName = [[NSUserDefaults standardUserDefaults] objectForKey:DEFAULT_TIMEZONE];
-    if (timeZoneName && [CVSettings timeZoneSupport])
+    if (timeZoneName && PREFS.timezoneSupportEnabled)
 		return [NSTimeZone timeZoneWithName:timeZoneName];
 
     return [NSTimeZone systemTimeZone];
@@ -234,17 +223,6 @@
 	[defaults synchronize];
 }
 
-+ (BOOL)alwaysAskForCalendar {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:ALWAYS_ASK_FOR_CALENDAR] != nil ? [defaults boolForKey:ALWAYS_ASK_FOR_CALENDAR] : NO;
-}
-
-+ (void)setAlwaysAskForCalendar:(BOOL)ask {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:ask forKey:ALWAYS_ASK_FOR_CALENDAR];
-    [defaults synchronize];
-}
-
 + (BOOL)multipleExchangeAlarms {
     return YES;
 }
@@ -276,18 +254,6 @@
 + (void)setWeekStartsOnWeekday:(NSInteger)startsOnWeekday {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setInteger:startsOnWeekday forKey:START_WEEK_ON_WEEKDAY];
-	[defaults synchronize];
-}
-
-
-+ (BOOL)isTwentyFourHourFormat {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults objectForKey:TWENTY_FOUR_HOUR_FORMAT] != nil ? [defaults boolForKey:TWENTY_FOUR_HOUR_FORMAT] : NO;
-}
-
-+ (void)setTwentyFourHourFormat:(BOOL)b {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:b forKey:TWENTY_FOUR_HOUR_FORMAT];
 	[defaults synchronize];
 }
 
@@ -376,28 +342,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:array forKey:EVENT_DETAILS_SUBTITLE_ORDERING];
     [defaults synchronize];
-}
-
-
-+ (BOOL)dotsOnlyMonthView {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults objectForKey:DOTS_ONLY_MONTH_VIEW] != nil ? [defaults boolForKey:DOTS_ONLY_MONTH_VIEW] : NO;
-}
-
-+ (void)dotsOnlyMonthView:(BOOL)dotsOnly {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:dotsOnly forKey:DOTS_ONLY_MONTH_VIEW];
-	[defaults synchronize];
-}
-
-+ (BOOL)scrollableMonthView {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults objectForKey:SCROLLABLE_MONTH_VIEW] != nil ? [defaults boolForKey:SCROLLABLE_MONTH_VIEW] : NO;    
-}
-
-+ (BOOL)showDurationOnReadOnlyEvents {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults objectForKey:SHOW_DURATION_ON_READ_ONLY_EVENTS] != nil ? [defaults boolForKey:SHOW_DURATION_ON_READ_ONLY_EVENTS] : NO;
 }
 
 

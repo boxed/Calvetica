@@ -386,9 +386,21 @@
                     buttonFont = self.buttonFont;
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
-                [button.titleLabel.text drawInRect:CGRectMake(button.frame.origin.x, button.frame.origin.y+10, button.frame.size.width, button.frame.size.height) withFont:buttonFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+                [button.titleLabel.text drawInRect:CGRectMake(button.frame.origin.x,
+                                                              button.frame.origin.y+10,
+                                                              button.frame.size.width,
+                                                              button.frame.size.height)
+                                          withFont:buttonFont
+                                     lineBreakMode:NSLineBreakByClipping
+                                         alignment:NSTextAlignmentCenter];
 #else
-                [button.titleLabel.text drawInRect:CGRectMake(button.frame.origin.x, button.frame.origin.y+10, button.frame.size.width, button.frame.size.height) withFont:buttonFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+                [button.titleLabel.text drawInRect:CGRectMake(button.frame.origin.x,
+                                                              button.frame.origin.y+10,
+                                                              button.frame.size.width,
+                                                              button.frame.size.height)
+                                          withFont:buttonFont
+                                     lineBreakMode:UILineBreakModeClip
+                                         alignment:UITextAlignmentCenter];
 #endif
             }
         }

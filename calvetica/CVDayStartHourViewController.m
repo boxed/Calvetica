@@ -62,7 +62,7 @@
     cell.textLabel.font         = [UIFont systemFontOfSize:17];
     cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
 
-    if ([CVSettings isTwentyFourHourFormat]) {
+    if (PREFS.twentyFourHourFormat) {
         cell.textLabel.text = [NSString stringWithFormat:@"%d", [time intValue]];
     }
     else {

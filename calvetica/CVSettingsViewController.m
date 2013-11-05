@@ -29,13 +29,12 @@
 {
     [super viewDidLoad];
 
-	[self flipSwitch:_askForCalendarSwitch          withSetting:ALWAYS_ASK_FOR_CALENDAR];
-	[self flipSwitch:_twentyFourHourFormatSwitch    withSetting:TWENTY_FOUR_HOUR_FORMAT];
-	[self flipSwitch:_dotsOnlyMonthViewSwitch       withSetting:DOTS_ONLY_MONTH_VIEW];
-	[self flipSwitch:_scrollingMonthSwitch          withSetting:SCROLLABLE_MONTH_VIEW];
-	[self flipSwitch:_durationBarReadOnlySwitch     withSetting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
-
-    self.showRemindersSwitch.on = PREFS.showReminders;
+    self.askForCalendarSwitch.on        = PREFS.alwaysAskForCalendar;
+    self.showRemindersSwitch.on         = PREFS.remindersEnabled;
+    self.twentyFourHourFormatSwitch.on  = PREFS.twentyFourHourFormat;
+    self.dotsOnlyMonthViewSwitch.on     = PREFS.dotsOnlyMonthView;
+    self.scrollingMonthSwitch.on        = PREFS.iPhoneScrollableMonthView;
+    self.durationBarReadOnlySwitch.on   = PREFS.showDurationOnReadOnlyEvents;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -43,7 +42,7 @@
     if ([segue.identifier isEqualToString:@"TimeZoneSegue"]) {
         CVTimeZoneViewController *controller    = [segue destinationViewController];
         controller.delegate                     = self;
-        controller.selectedTimeZone             = [CVSettings timeZoneSupport] ? [CVSettings timezone] : nil;
+        controller.selectedTimeZone             = PREFS.timezoneSupportEnabled ? [CVSettings timezone] : nil;
     }
 }
 
@@ -52,40 +51,39 @@
 
 #pragma mark - Actions
 
-- (IBAction)askForCalendarWasFlipped:(id)sender
+- (IBAction)askForCalendarWasFlipped:(UISwitch *)sender
 {
-    [self toggleSwitch:sender setting:ALWAYS_ASK_FOR_CALENDAR];
+    PREFS.alwaysAskForCalendar = sender.isOn;
 }
 
 - (IBAction)showRemindersWasFlipped:(UISwitch *)sender
 {
-    PREFS.showReminders = @(sender.isOn);
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    PREFS.remindersEnabled = sender.isOn;
 }
 
-- (IBAction)twentyFourHourFormatWasFlipped:(id)sender
+- (IBAction)twentyFourHourFormatWasFlipped:(UISwitch *)sender
 {
-    [self toggleSwitch:sender setting:TWENTY_FOUR_HOUR_FORMAT];
+    PREFS.twentyFourHourFormat = sender.isOn;
 }
 
-- (IBAction)dotsOnlyMonthViewFlipped:(id)sender
+- (IBAction)dotsOnlyMonthViewFlipped:(UISwitch *)sender
 {
-    [self toggleSwitch:sender setting:DOTS_ONLY_MONTH_VIEW];
+    PREFS.dotsOnlyMonthView = sender.isOn;
 }
 
-- (IBAction)scrollingMonthFlipped:(id)sender
+- (IBAction)scrollingMonthFlipped:(UISwitch *)sender
 {
-    [self toggleSwitch:sender setting:SCROLLABLE_MONTH_VIEW];
+    PREFS.iPhoneScrollableMonthView = sender.isOn;
 }
 
-- (IBAction)durationBarReadOnlyFlipped:(id)sender
+- (IBAction)durationBarReadOnlyFlipped:(UISwitch *)sender
 {
-    [self toggleSwitch:sender setting:SHOW_DURATION_ON_READ_ONLY_EVENTS];
+    PREFS.showDurationOnReadOnlyEvents = sender.isOn;
 }
 
 
 
-#pragma mark - Table View
+#pragma mark - DATASOURCE Table View
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -123,7 +121,7 @@
 
 - (void)timeZoneViewController:(CVTimeZoneViewController *)controller didToggleSupportOn:(BOOL)isOn
 {
-    [CVSettings setTimeZoneSupport:isOn];
+    PREFS.timezoneSupportEnabled = isOn;
     if (isOn) {
         [NSDate mt_setTimeZone:[CVSettings timezone]];
     }
@@ -131,23 +129,6 @@
         [NSDate mt_setTimeZone:[NSTimeZone systemTimeZone]];
     }
 }
-
-
-
-
-#pragma mark - Private
-
-- (void)flipSwitch:(UISwitch *)swich withSetting:(NSString *)settingKey
-{
-	swich.on = [[NSUserDefaults standardUserDefaults] boolForKey:settingKey];
-}
-
-- (void)toggleSwitch:(UISwitch *)swich setting:(NSString *)settingKey
-{
-	[[NSUserDefaults standardUserDefaults] setBool:swich.isOn forKey:settingKey];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 
 
 @end

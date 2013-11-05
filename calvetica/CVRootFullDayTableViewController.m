@@ -185,7 +185,7 @@
                                                    forActiveCalendars:YES] mutableCopy];
 
 
-        if (PREFS.showReminders) {
+        if (PREFS.remindersEnabled) {
             // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
             // and another when remindrs are done.
             [[EKEventStore sharedStore] remindersFromDate:startDate
@@ -299,14 +299,14 @@
 
             NSDate *startDate = [reminder dateRelativeToDate:self.selectedDate];
 
-            if ([CVSettings isTwentyFourHourFormat]) {
+            if (PREFS.twentyFourHourFormat) {
                 cell.timeLabel.text = [startDate mt_stringFromDateWithFormat:@"H:mm" localized:NO];
             }
             else {
                 cell.timeLabel.text = [startDate mt_stringFromDateWithFormat:@"h:mm" localized:NO];
             }
 
-            if ([CVSettings isTwentyFourHourFormat]) {
+            if (PREFS.twentyFourHourFormat) {
                 cell.AMPMLabel.hidden   = YES;
             }
             else {
@@ -396,7 +396,9 @@
 
 
 		// figure out if this event should show a duration bar
-		BOOL shouldShowDurationBar = [CVSettings showDurationOnReadOnlyEvents] || c.calendarItem.calendar.allowsContentModifications || c.calendarItem.calendar.type == EKCalendarTypeExchange;
+		BOOL shouldShowDurationBar = (PREFS.showDurationOnReadOnlyEvents ||
+                                      c.calendarItem.calendar.allowsContentModifications ||
+                                      c.calendarItem.calendar.type == EKCalendarTypeExchange);
 
 		if (c.calendarItem != nil && shouldShowDurationBar) {
 

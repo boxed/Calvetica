@@ -102,7 +102,7 @@
         }
     }
 
-	if ([CVSettings timeZoneSupport]) event.timeZone = [CVSettings timezone];
+	if (PREFS.timezoneSupportEnabled) event.timeZone = [CVSettings timezone];
 
     event.startingDate = startDate;
     if (endDate) {
@@ -246,7 +246,7 @@
 	BOOL isGreaterThanThreshold     = [self eventDuration] >= MIN_EVENT_DURATION;
 	BOOL fitsWithinItsStartDay      = [self fitsWithinDayOfDate:self.startingDate];
 	BOOL isReadOnly                 = !self.calendar.allowsContentModifications;
-	BOOL settingAllowsBar           = [CVSettings showDurationOnReadOnlyEvents];
+	BOOL settingAllowsBar           = PREFS.showDurationOnReadOnlyEvents;
 	BOOL isBirthday                 = self.calendar.type == EKCalendarTypeBirthday;
 	
 			// if its an all day event of only one day (because this is the one case that should pass, but all else will fail in the next test)
@@ -356,7 +356,7 @@
 - (NSString *)stringWithRelativeEndTime 
 {
 
-	NSString *hourAndMinute = [self.endingDate mt_stringFromDateWithHourAndMinuteFormat:([CVSettings isTwentyFourHourFormat] ? MTDateHourFormat24Hour : MTDateHourFormat12Hour)];
+	NSString *hourAndMinute = [self.endingDate mt_stringFromDateWithHourAndMinuteFormat:(PREFS.twentyFourHourFormat ? MTDateHourFormat24Hour : MTDateHourFormat12Hour)];
 
     NSMutableString *string = [NSMutableString stringWithString:@"ENDS: "];
 

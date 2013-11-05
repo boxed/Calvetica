@@ -132,7 +132,7 @@
                                                                toDate:[endDate mt_endOfCurrentDay]
                                                    forActiveCalendars:YES] mutableCopy];
 
-        if (PREFS.showReminders) {
+        if (PREFS.remindersEnabled) {
             // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
             // and another when remindrs are done.
             [[EKEventStore sharedStore] remindersFromDate:startDate
@@ -244,14 +244,14 @@
 
             NSDate *startDate = model.date;
 
-            if ([CVSettings isTwentyFourHourFormat]) {
+            if (PREFS.twentyFourHourFormat) {
                 cell.timeLabel.text = [startDate mt_stringFromDateWithFormat:@"H:mm" localized:NO];
             }
             else {
                 cell.timeLabel.text = [startDate mt_stringFromDateWithFormat:@"h:mm" localized:NO];
             }
 
-            if ([CVSettings isTwentyFourHourFormat]) {
+            if (PREFS.twentyFourHourFormat) {
                 cell.AMPMLabel.hidden   = YES;
             }
             else {

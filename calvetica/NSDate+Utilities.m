@@ -30,7 +30,7 @@
 // Sep 16, 2012, 1:00 AM
 - (NSString *)stringWithWeekdayMonthDayYearHourMinute
 {
-	if (![CVSettings isTwentyFourHourFormat])
+	if (!PREFS.twentyFourHourFormat)
 		return [self mt_stringFromDateWithFormat:@"EE MMM d, yyyy, h:mm a" localized:YES];
 	else
 		return [self mt_stringFromDateWithFormat:@"EE MMM d, yyyy, H:mm" localized:YES];
@@ -98,13 +98,13 @@
 // 1:00
 - (NSString *)stringWithHourAndMinute 
 {
-	return [self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mm") localized:NO];
+	return [self mt_stringFromDateWithFormat:(PREFS.twentyFourHourFormat ? @"H:mm" : @"h:mm") localized:NO];
 }
 
 // AM
 - (NSString *)stringWithAMPM 
 {
-    if ([CVSettings isTwentyFourHourFormat]) {
+    if (PREFS.twentyFourHourFormat) {
         return @"";
     }
 
@@ -114,13 +114,13 @@
 // 1:00AM
 - (NSString *)stringWithHourMinuteAndAMPM 
 {
-	return [self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mma") localized:NO];
+	return [self mt_stringFromDateWithFormat:(PREFS.twentyFourHourFormat ? @"H:mm" : @"h:mma") localized:NO];
 }
 
 // 1:00am
 - (NSString *)stringWithHourMinuteAndLowercaseAMPM 
 {
-	return [[self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H:mm" : @"h:mma") localized:NO] lowercaseStringWithLocale:[NSLocale currentLocale]];
+	return [[self mt_stringFromDateWithFormat:(PREFS.twentyFourHourFormat ? @"H:mm" : @"h:mma") localized:NO] lowercaseStringWithLocale:[NSLocale currentLocale]];
 }
 
 // Sun Sep 16
@@ -153,7 +153,7 @@
 // 1am
 - (NSString *)stringWithHourAndLowercaseAMPM 
 {
-	return [[self mt_stringFromDateWithFormat:([CVSettings isTwentyFourHourFormat] ? @"H" : @"ha") localized:NO] lowercaseStringWithLocale:[NSLocale currentLocale]];
+	return [[self mt_stringFromDateWithFormat:(PREFS.twentyFourHourFormat ? @"H" : @"ha") localized:NO] lowercaseStringWithLocale:[NSLocale currentLocale]];
 }
 
 // 8 hours, 20 minutes after

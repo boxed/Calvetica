@@ -238,11 +238,11 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 		}
 	}
 	else {
-		if (![CVSettings scrollableMonthView]) {
-			self.monthTableViewController.tableView.scrollEnabled = NO;
+		if (PREFS.iPhoneScrollableMonthView) {
+			self.monthTableViewController.tableView.scrollEnabled = YES;
 		}
 		else {
-			self.monthTableViewController.tableView.scrollEnabled = YES;
+			self.monthTableViewController.tableView.scrollEnabled = NO;
 		}
 		[self dismissViewControllerAnimated:YES completion:nil];
 	}
@@ -1207,6 +1207,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 }
 
+- (void)sharedSettingsChanged
+{
+    [self reloadMonthTableView];
+    [self reloadRootTableViewWithCompletion:nil];
+}
 
 
 
@@ -1316,12 +1321,17 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                              selector:@selector(eventStoreChanged:)
                                                  name:CVEventStoreChangedNotification
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sharedSettingsChanged)
+                                                 name:MYSSharedSettingsChangedNotification
+                                               object:nil];
 }
 
 - (void)setupDefaults
 {
     // if the view is not scrollable, lock it
-    if (!PAD && ![CVSettings scrollableMonthView]) {
+    if (!PAD && !PREFS.iPhoneScrollableMonthView) {
         self.monthTableViewController.tableView.scrollEnabled = NO;
     }
 

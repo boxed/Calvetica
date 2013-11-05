@@ -62,7 +62,7 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if ([CVSettings isTwentyFourHourFormat]) {
+    if (PREFS.twentyFourHourFormat) {
         cell.textLabel.text = [NSString stringWithFormat:@"%d", [time intValue]];
     }
     else {

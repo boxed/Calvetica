@@ -13,9 +13,9 @@
 
 #pragma mark - IN APP SAVED STATE
 
-
 + (NSInteger)eventRootTableMode;
 + (void)setEventRootTableMode:(NSInteger)mode;
+
 
 #pragma mark - IN APP SETTINGS
 
@@ -42,9 +42,6 @@
 
 #pragma mark - CALENDAR
 
-+ (BOOL)timeZoneSupport;
-+ (void)setTimeZoneSupport:(BOOL)support;
-
 + (NSTimeZone *)timezone;
 + (void)setTimeZone:(NSTimeZone *)timezone;
 
@@ -53,9 +50,6 @@
 
 + (NSInteger)dayEndHour;
 + (void)setDayEndHour:(NSInteger)i;
-
-+ (BOOL)alwaysAskForCalendar;
-+ (void)setAlwaysAskForCalendar:(BOOL)ask;
 
 + (BOOL)multipleExchangeAlarms;
 
@@ -68,15 +62,10 @@
 + (NSInteger)weekStartsOnWeekday;
 + (void)setWeekStartsOnWeekday:(NSInteger)startsOnWeekday;
 
-+ (BOOL)isTwentyFourHourFormat;
-+ (void)setTwentyFourHourFormat:(BOOL)b;
-
-
 
 #pragma mark - THE PAINFUL CHOICE
 
 + (NSInteger)badgeOrAlerts;
-
 
 
 #pragma mark - APPEARANCE
@@ -85,13 +74,6 @@
 
 + (NSArray *)eventDetailsSubtitleTextOrderingArray;
 + (void)setEventDetailsSubtitleTextOrderingArray:(NSArray *)array;
-
-+ (BOOL)dotsOnlyMonthView;
-+ (void)dotsOnlyMonthView:(BOOL)dotsOnly;
-
-+ (BOOL)scrollableMonthView;
-
-+ (BOOL)showDurationOnReadOnlyEvents;
 
 
 #pragma mark - CUSTOM ALERT SOUNDS

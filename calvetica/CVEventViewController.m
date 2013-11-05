@@ -99,10 +99,11 @@
 
 - (void)hourBarButtonWasTapped:(id)sender 
 {
-	CVEventHourViewController *hourViewController = [[CVEventHourViewController alloc] initWithStartDate:self.event.startingDate
-																											   endDate:self.event.endingDate
-																												allDay:self.event.allDay
-																									   useMilitaryTime:[CVSettings isTwentyFourHourFormat]];
+	CVEventHourViewController *hourViewController =
+    [[CVEventHourViewController alloc] initWithStartDate:self.event.startingDate
+                                                 endDate:self.event.endingDate
+                                                  allDay:self.event.allDay
+                                         useMilitaryTime:PREFS.twentyFourHourFormat];
 	hourViewController.editable = _event.calendar.allowsContentModifications;
 
     __block CVEventHourViewController *hrv = hourViewController;

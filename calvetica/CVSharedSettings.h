@@ -1,34 +1,25 @@
 //
-//  DOSharedSettings.h
-//  DOCore
+//  CVSharedSettings.h
+//  calvetica
 //
-//  Created by Ben Dolman on 6/27/13.
+//  Created by Adam Kirk on 11/4/13.
+//
 //
 
-
-#define PREFS [CVSharedSettings defaultSettings]
-
-/**
- * Settings that are stored in iCloud and shared between the Mac and iOS apps using NSUbiquitousKeyValueStore.
- * These properties are all KVO-compliant.
- *
- * You should always use the defaultSettings instance.
- *
- * CVSharedSettings is currently designed to be used only on the main thread.
- */
-@interface CVSharedSettings : NSObject
-
-/**
- * Always use this default instance
- */
-+ (CVSharedSettings *)defaultSettings;
+#import "MYSSharedSettings.h"
 
 
-@property (nonatomic, assign, getter=isICloudEnabled) BOOL iCloudEnabled;
+#define PREFS [CVSharedSettings sharedSettings]
 
 
-// settings
-@property (nonatomic, strong) NSNumber *showReminders;
+@interface CVSharedSettings : MYSSharedSettings
 
+@property (nonatomic, assign) BOOL remindersEnabled;
+@property (nonatomic, assign) BOOL timezoneSupportEnabled;
+@property (nonatomic, assign) BOOL alwaysAskForCalendar;
+@property (nonatomic, assign) BOOL twentyFourHourFormat;
+@property (nonatomic, assign) BOOL dotsOnlyMonthView;
+@property (nonatomic, assign) BOOL iPhoneScrollableMonthView;
+@property (nonatomic, assign) BOOL showDurationOnReadOnlyEvents;
 
 @end

@@ -135,7 +135,7 @@
     NSInteger hourOfDay;
 	NSInteger minuteOfHour = [self.startDate mt_minuteOfHour];
 	
-    if (![CVSettings isTwentyFourHourFormat]) {
+    if (!PREFS.twentyFourHourFormat) {
         hourOfDay = [self.startDate mt_hourOfDay] % 12;
         self.isAM = [self.startDate mt_isInAM];
         [self.ampmButton setTitle:(self.isAM ? @"pm" : @"am") forState:UIControlStateNormal];
@@ -147,7 +147,7 @@
 	
 	// add hour to array
 	NSString *hourString = @"";
-	if ([CVSettings isTwentyFourHourFormat]) {
+	if (PREFS.twentyFourHourFormat) {
 		hourString = [NSString stringWithFormat:@"%ld", (long)hourOfDay];
 	}
 	else {
@@ -182,7 +182,7 @@
 	NSInteger minute = [[self minuteStringFromMinuteDigits] intValue];
 	
 	// adjust hour if its 12 hour format
-	if (![CVSettings isTwentyFourHourFormat]) {
+	if (!PREFS.twentyFourHourFormat) {
 		hour = _isAM ? hour : (hour % 12) + 12;
 	}
 	
@@ -223,7 +223,7 @@
 	[string appendString:@":"];
 	[string appendString:[self minuteStringFromMinuteDigits]];
 	
-    if (![CVSettings isTwentyFourHourFormat]) {
+    if (!PREFS.twentyFourHourFormat) {
         // add ampm
         [string appendString:(_isAM ? @"am" : @"pm")];
     }
@@ -339,7 +339,7 @@
 {
 	NSMutableString *s = [NSMutableString string];
     
-	if ([CVSettings isTwentyFourHourFormat]) {
+	if (PREFS.twentyFourHourFormat) {
 		if (self.hourDigits.count == 0) {
 			[s appendString:@"00"];
 		}
@@ -435,7 +435,7 @@
     self.moreButton.layer.masksToBounds     = YES;
 
 
-    if ([CVSettings isTwentyFourHourFormat]) {
+    if (PREFS.twentyFourHourFormat) {
         self.startTimeLabel.text = @"00:00";
     } else {
         [self.ampmButton setTitle:(self.isAM ? @"pm" : @"am") forState:UIControlStateNormal];
@@ -538,7 +538,7 @@
 
 - (IBAction)addButtonWasHit:(id)sender 
 {
-    if ([CVSettings alwaysAskForCalendar]) {
+    if (PREFS.alwaysAskForCalendar) {
         [self showCalendarPicker];
     }
     else {
@@ -567,7 +567,11 @@
 	// otherwise, if the minute string is not full, add it
 	else if (self.minuteDigits.count < 2) {
         //in 24 hr format if the user types 6,7,8,9 for the second integer it is inserted directly into the hours place.
-		if (tag > 5 && [CVSettings isTwentyFourHourFormat] && self.hourDigits.count < 2 && self.minuteDigits.count == 0 && [[self.hourDigits firstObject] intValue] == 1) {
+		if (tag > 5 && PREFS.twentyFourHourFormat &&
+            self.hourDigits.count < 2 &&
+            self.minuteDigits.count == 0 &&
+            [[self.hourDigits firstObject] intValue] == 1)
+        {
             [self.hourDigits push:c];
         }
         else {
@@ -580,7 +584,7 @@
 		NSString *potentialHourString = [NSString stringWithFormat:@"%@%@", [self.hourDigits lastObject], [self.minuteDigits firstObject]];
 		
 		// see if it would be valid if we shifted it to a double digit hour
-		if ([CVSettings isTwentyFourHourFormat]) {
+		if (PREFS.twentyFourHourFormat) {
 			if ([potentialHourString intValue] > 23) return;
 		}
 		else {
@@ -618,7 +622,7 @@
 
 - (IBAction)ampmToggleButtonWasHit:(id)sender 
 {
-    if (![CVSettings isTwentyFourHourFormat]) {
+    if (!PREFS.twentyFourHourFormat) {
         self.isAM = !self.isAM;
         [self.ampmButton setTitle:(self.isAM ? @"pm" : @"am") forState:UIControlStateNormal];
         [self renderEventStartTimeString];

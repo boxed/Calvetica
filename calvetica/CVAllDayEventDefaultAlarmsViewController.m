@@ -27,7 +27,7 @@
     NSArray *availableAlarmTitles;
     NSArray *availableAlarmValues;
     
-    if ([CVSettings isTwentyFourHourFormat]) {
+    if (PREFS.twentyFourHourFormat) {
         availableAlarmTitles = @[@"18 the day before",
                                          @"22 the day before",
                                          @"6 the day of",

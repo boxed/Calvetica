@@ -27,7 +27,7 @@
     #import "EventKitAdditions.h"
 	#import "CVOperationQueue.h"
 	#import "CVSettings.h"
-    #import "CVSharedSettings.m"
+    #import "CVSharedSettings.h"
     #import <Crashlytics/Crashlytics.h>
     #import "color.h"
 

@@ -101,7 +101,7 @@ static NSArray *__allReminders      = nil;
         return (endsAfterStart && startsBeforeEnd);
 	}]];
 
-	return events;
+	return events ?: @[];
 }
 
 //+ (NSArray *)chainedEventModelsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate forActiveCalendars:(BOOL)activeCalsOnly includeAllDayEvents:(BOOL)includeAllDayEvents

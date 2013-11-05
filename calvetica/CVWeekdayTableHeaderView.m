@@ -33,7 +33,7 @@
 	CGFloat rowHeight = (self.bounds.size.height - _redBar.frame.size.height) / (float)NUM_LABELS;
 	for (NSInteger i = 0; i <= NUM_LABELS; i++) {
 		UILabel *hourLabel = (UILabel *)[self viewWithTag:i + TAG_OFFSET];
-		if ([CVSettings isTwentyFourHourFormat] && i > 0)
+		if (PREFS.twentyFourHourFormat && i > 0)
 			hourLabel.text = [NSString stringWithFormat:@"%ld", (long)(i - 1)];
 		CGRect f		= hourLabel.frame;
 		f.size.height	= rowHeight;

@@ -37,7 +37,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self commonInit];
-        UITableViewDelegate
     }
     return self;
 }

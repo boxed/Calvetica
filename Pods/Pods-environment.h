@@ -9,8 +9,8 @@
 // FrameAccessor
 #define COCOAPODS_POD_AVAILABLE_FrameAccessor
 #define COCOAPODS_VERSION_MAJOR_FrameAccessor 1
-#define COCOAPODS_VERSION_MINOR_FrameAccessor 2
-#define COCOAPODS_VERSION_PATCH_FrameAccessor 0
+#define COCOAPODS_VERSION_MINOR_FrameAccessor 3
+#define COCOAPODS_VERSION_PATCH_FrameAccessor 2
 
 // MTAnimation
 #define COCOAPODS_POD_AVAILABLE_MTAnimation
@@ -28,7 +28,7 @@
 #define COCOAPODS_POD_AVAILABLE_MTDates
 #define COCOAPODS_VERSION_MAJOR_MTDates 0
 #define COCOAPODS_VERSION_MINOR_MTDates 10
-#define COCOAPODS_VERSION_PATCH_MTDates 1
+#define COCOAPODS_VERSION_PATCH_MTDates 2
 
 // MTGeometry
 #define COCOAPODS_POD_AVAILABLE_MTGeometry
@@ -58,7 +58,19 @@
 #define COCOAPODS_POD_AVAILABLE_MYSCategoryProperties
 #define COCOAPODS_VERSION_MAJOR_MYSCategoryProperties 0
 #define COCOAPODS_VERSION_MINOR_MYSCategoryProperties 0
-#define COCOAPODS_VERSION_PATCH_MYSCategoryProperties 2
+#define COCOAPODS_VERSION_PATCH_MYSCategoryProperties 3
+
+// MYSRuntime
+#define COCOAPODS_POD_AVAILABLE_MYSRuntime
+#define COCOAPODS_VERSION_MAJOR_MYSRuntime 0
+#define COCOAPODS_VERSION_MINOR_MYSRuntime 0
+#define COCOAPODS_VERSION_PATCH_MYSRuntime 2
+
+// MYSSharedSettings
+#define COCOAPODS_POD_AVAILABLE_MYSSharedSettings
+#define COCOAPODS_VERSION_MAJOR_MYSSharedSettings 0
+#define COCOAPODS_VERSION_MINOR_MYSSharedSettings 0
+#define COCOAPODS_VERSION_PATCH_MYSSharedSettings 1
 
 // PSAlertView
 #define COCOAPODS_POD_AVAILABLE_PSAlertView
@@ -68,8 +80,8 @@
 
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD
-#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 0
-#define COCOAPODS_VERSION_MINOR_SVProgressHUD 9
+#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
 
 // TestFlightSDK

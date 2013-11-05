@@ -129,7 +129,7 @@
         [eventSquareModels addObject:eventSquareModel];
     }
 
-    if (PREFS.showReminders) {
+    if (PREFS.remindersEnabled) {
         [[EKEventStore sharedStore] remindersFromDate:startOfWeek
                                                toDate:endOfWeek
                                             calendars:nil
@@ -214,7 +214,7 @@
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
     for (CVCalendarItemShape *e in self.calendarItems) {
-        if (e.offset == -1 || [CVSettings dotsOnlyMonthView]) {
+        if (e.offset == -1 || PREFS.dotsOnlyMonthView) {
             [dots addObject:e];
         }
         else {
@@ -401,7 +401,7 @@
             if (e.days[day] == 1) totalEventsPerDay[day]++;
         }
         
-        if (e.offset == -1 || [CVSettings dotsOnlyMonthView]) {
+        if (e.offset == -1 || PREFS.dotsOnlyMonthView) {
             [dots addObject:e];
         }
         else {

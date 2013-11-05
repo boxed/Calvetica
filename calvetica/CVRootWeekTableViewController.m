@@ -167,7 +167,7 @@
                                                                toDate:endDate
                                                    forActiveCalendars:YES] mutableCopy];
 
-        if (PREFS.showReminders) {
+        if (PREFS.remindersEnabled) {
             // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
             // and another when remindrs are done.
             [[EKEventStore sharedStore] remindersFromDate:startDate
