@@ -18,21 +18,21 @@
     if (self) {
         _buttons = [NSMutableArray array];
 		[_buttons addObject:@-0];								// 0min
-		[_buttons addObject:@(-(45 * SECONDS_IN_MINUTE))];			// 45min
-		[_buttons addObject:@(-(12 * SECONDS_IN_HOUR))];			// 12hr
-		[_buttons addObject:@(-(5 * SECONDS_IN_DAY))];				// 5d
-		[_buttons addObject:@(-(5 * SECONDS_IN_MINUTE))];			// 5min
-		[_buttons addObject:@(-(1 * SECONDS_IN_HOUR))];			// 1hr
-		[_buttons addObject:@(-(1 * SECONDS_IN_DAY))];				// 1d
-		[_buttons addObject:@(-(1 * SECONDS_IN_WEEK))];			// 1wk
-		[_buttons addObject:@(-(15 * SECONDS_IN_MINUTE))];			// 15min
-		[_buttons addObject:@(-(2 * SECONDS_IN_HOUR))];			// 2hr
-		[_buttons addObject:@(-(2 * SECONDS_IN_DAY))];				// 2d
-		[_buttons addObject:@(-(2 * SECONDS_IN_WEEK))];			// 2wk
-		[_buttons addObject:@(-(30 * SECONDS_IN_MINUTE))];			// 30min
-		[_buttons addObject:@(-(6 * SECONDS_IN_HOUR))];			// 6hr
-		[_buttons addObject:@(-(3 * SECONDS_IN_DAY))];				// 3d
-		[_buttons addObject:@(-(1 * SECONDS_IN_MONTH))];			// 1mo
+		[_buttons addObject:@(-(45 * MTDateConstantSecondsInMinute))];			// 45min
+		[_buttons addObject:@(-(12 * MTDateConstantSecondsInHour))];			// 12hr
+		[_buttons addObject:@(-(5 * MTDateConstantSecondsInDay))];				// 5d
+		[_buttons addObject:@(-(5 * MTDateConstantSecondsInMinute))];			// 5min
+		[_buttons addObject:@(-(1 * MTDateConstantSecondsInHour))];			// 1hr
+		[_buttons addObject:@(-(1 * MTDateConstantSecondsInDay))];				// 1d
+		[_buttons addObject:@(-(1 * MTDateConstantSecondsInWeek))];			// 1wk
+		[_buttons addObject:@(-(15 * MTDateConstantSecondsInMinute))];			// 15min
+		[_buttons addObject:@(-(2 * MTDateConstantSecondsInHour))];			// 2hr
+		[_buttons addObject:@(-(2 * MTDateConstantSecondsInDay))];				// 2d
+		[_buttons addObject:@(-(2 * MTDateConstantSecondsInWeek))];			// 2wk
+		[_buttons addObject:@(-(30 * MTDateConstantSecondsInMinute))];			// 30min
+		[_buttons addObject:@(-(6 * MTDateConstantSecondsInHour))];			// 6hr
+		[_buttons addObject:@(-(3 * MTDateConstantSecondsInDay))];				// 3d
+		[_buttons addObject:@(-(1 * MTDateConstantSecondsInMonth))];			// 1mo
     }
     return self;
 }
@@ -149,25 +149,7 @@
 {
     CVToggleButton *button = (CVToggleButton *)sender;
     // only allow one at a time
-    if (_calendarItem.calendar.source.sourceType == EKSourceTypeExchange && ![CVSettings multipleExchangeAlarms]) {
-        for (int i = 0; i < _buttons.count; i++) {
-            CVToggleButton *alarmButton = (CVToggleButton *)[self.view viewWithTag:(i+1)];
-            if ([alarmButton isEqual:button]) {
-                if (alarmButton.selected == YES) {
-                    alarmButton.selected = NO;
-                }
-                else {
-                    alarmButton.selected = YES;
-                }
-            }
-            else {
-                alarmButton.selected = NO;
-            }
-        }
-    }
-    else {
-        button.selected = !button.selected;
-    }
+    button.selected = !button.selected;
 }
 
 - (void)modalBackdropWasTouched 

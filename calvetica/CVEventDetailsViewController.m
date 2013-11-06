@@ -97,7 +97,7 @@
 
     _eventTitleTextView.inputAccessoryView = self.keyboardAccessoryView;
 
-    if (![self.event.calendar canAddAttendees]) {
+    if (!self.event.calendar.allowsContentModifications) {
         _addAttendeesButton.enabled = NO;
         [_addAttendeesButton setTitle:@"Does not support attendees" forState:UIControlStateDisabled];
     }
@@ -271,7 +271,7 @@
 {    
     
     // rearrange detail blocks to match user preferences
-    NSArray *detailsOrderingArray = [CVSettings eventDetailsOrderingArray];
+    NSArray *detailsOrderingArray = PREFS.eventDetailsOrdering;
     
     // if there are no preferences set, just return
     if (!detailsOrderingArray) {

@@ -23,7 +23,7 @@
 												 ascending:YES
 												  selector:@selector(localizedCaseInsensitiveCompare:)];
 	NSArray *sortDescriptors = @[sortDescriptor];
-	_availableCalendars = [[EKEventStore eventCalendars] sortedArrayUsingDescriptors:sortDescriptors];
+	_availableCalendars = [[[EKEventStore sharedStore] eventCalendars] sortedArrayUsingDescriptors:sortDescriptors];
 	
 	_availableCalendars = [_availableCalendars filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKCalendar *calendar, NSDictionary *bindings) {
 		return calendar.allowsContentModifications ? YES : NO;
@@ -63,9 +63,9 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = calendar.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [calendar account]];
+    cell.detailTextLabel.text = calendar.accountName;
     
-    if (calendar == [CVSettings defaultEventCalendar]) {
+    if (calendar == [[EKEventStore sharedStore] defaultEventCalendar]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -93,8 +93,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     EKCalendar *calendar = [_availableCalendars objectAtIndex: indexPath.row];
-    [CVSettings setDefaultEventCalendar:calendar];
-    
+    PREFS.defaultEventCalendarIdentifier = calendar.calendarExternalIdentifier;
     [tableView reloadData];
 }
 

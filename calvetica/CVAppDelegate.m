@@ -42,11 +42,13 @@
     [Crashlytics startWithAPIKey:@"237b422d5ee51789eac82b82a6b214d838f1fd4e"];
 #endif
 
-	[NSDate mt_setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
+	[NSDate mt_setFirstDayOfWeek:PREFS.weekStartsOnWeekday];
 	[NSDate mt_setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
 
-    NSTimeZone *tz = [CVSettings timezone];
-    [NSDate mt_setTimeZone:tz];
+    if (PREFS.timeZoneName) {
+        NSTimeZone *tz = [NSTimeZone timeZoneWithName:PREFS.timeZoneName];
+        [NSDate mt_setTimeZone:tz];
+    }
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 
@@ -257,13 +259,13 @@
 - (void)setLocalNotifs
 {
 	UIApplication *app = [UIApplication sharedApplication];
-    NSInteger badgeOrAlerts = [CVSettings badgeOrAlerts];
+    NSInteger badgeOrAlerts = PREFS.badgeOrAlerts;
     
     // immediately set the icon badge, notifs are set below
-    if (badgeOrAlerts == 1 || badgeOrAlerts == 3) {
+    if (badgeOrAlerts == CVLocalNotificationTypeBadge || badgeOrAlerts == CVLocalNotificationTypeBadgeAndAlerts) {
         app.applicationIconBadgeNumber = [[[NSDate date] mt_startOfCurrentDay] mt_dayOfMonth];
     }
-    if (badgeOrAlerts == 0 || badgeOrAlerts == 2) {
+    if (badgeOrAlerts == CVLocalNotificationTypeNone || badgeOrAlerts == CVLocalNotificationTypeAlerts) {
         app.applicationIconBadgeNumber = 0;
         
         // remove badge notifs immediately so that if the app is killed the 
@@ -275,7 +277,7 @@
             }
         }
 
-		if (badgeOrAlerts == 0) return;
+		if (badgeOrAlerts == CVLocalNotificationTypeNone) return;
     }
 	
 	// if the device cant do background tasks, don't try
@@ -310,7 +312,6 @@
         /**********************/
 
 
-        //NSInteger showiconbadge = [CVSettings badgeOrAlerts];
         NSInteger availableNotifsCount = 64;
 		
 		[[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -350,7 +351,7 @@
 - (void)scheduleBadgeNotifications:(NSInteger)count 
 {
 	UIApplication *app = [UIApplication sharedApplication];
-	NSTimeZone *tz = [CVSettings timezone];
+	NSTimeZone *tz = PREFS.timeZoneName ? [NSTimeZone timeZoneWithName:PREFS.timeZoneName] : nil;
     
     NSDate *today = [[NSDate date] mt_startOfCurrentDay];
     
@@ -375,8 +376,10 @@
 	NSDate *startDate		= [rightNow mt_dateDaysBefore:3];
 	NSDate *endDate			= [startDate mt_dateWeeksAfter:5];
 	UIApplication *app		= [UIApplication sharedApplication];
-	NSTimeZone *tz			= [CVSettings timezone];
-	NSString *soundToPlay	= [CVSettings customAlertSoundFile] ? [CVSettings customAlertSoundFile] : UILocalNotificationDefaultSoundName;
+	NSTimeZone *tz			= PREFS.timeZoneName ? [NSTimeZone timeZoneWithName:PREFS.timeZoneName] : nil;
+	NSString *soundToPlay	= (PREFS.customAlertSoundFileName ?
+                               PREFS.customAlertSoundFileName :
+                               UILocalNotificationDefaultSoundName);
     
     // fetch month events
     NSMutableArray *monthEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startDate

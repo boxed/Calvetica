@@ -22,7 +22,7 @@
     [super viewDidLoad];
 
 	self.alarms = [NSMutableArray array];
-	self.selectedAlarms = [NSMutableArray arrayWithArray:[CVSettings defaultAllDayEventAlarms]];
+	self.selectedAlarms = [PREFS.defaultAllDayEventAlarms mutableCopy];
 
     NSArray *availableAlarmTitles;
     NSArray *availableAlarmValues;
@@ -44,12 +44,12 @@
                                 @"9am the day of"];
     }
     
-    availableAlarmValues = @[@(-SECONDS_IN_HOUR * 6), 
-                                     @(-SECONDS_IN_HOUR * 2), 
-                                     @(SECONDS_IN_HOUR * 6), 
-                                     @(SECONDS_IN_HOUR * 7), 
-                                     @(SECONDS_IN_HOUR * 8), 
-                                     @(SECONDS_IN_HOUR * 9)];
+    availableAlarmValues = @[@(-MTDateConstantSecondsInHour * 6), 
+                                     @(-MTDateConstantSecondsInHour * 2), 
+                                     @(MTDateConstantSecondsInHour * 6), 
+                                     @(MTDateConstantSecondsInHour * 7), 
+                                     @(MTDateConstantSecondsInHour * 8), 
+                                     @(MTDateConstantSecondsInHour * 9)];
     
     for (int i = 0; i < [availableAlarmTitles count]; i++) {
         BOOL selected = NO;
@@ -140,7 +140,7 @@
         [dict setObject:@(NO) forKey:Selected_Key];
         [self.selectedAlarms removeObject:[dict objectForKey:Value_Key]];
     }
-    [CVSettings setDefaultAllDayEventAlarms:self.selectedAlarms];
+    PREFS.defaultAllDayEventAlarms = self.selectedAlarms;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 

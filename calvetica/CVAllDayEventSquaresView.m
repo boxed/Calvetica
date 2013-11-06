@@ -193,7 +193,7 @@
     // figure the date
     CGPoint pointOfTouch = [gesture locationInView:self];
     CGFloat percentThroughDay = pointOfTouch.y / self.bounds.size.height;
-    CGFloat nearestHour = floorf(percentThroughDay * HOURS_IN_DAY);
+    CGFloat nearestHour = floorf(percentThroughDay * MTDateConstantHoursInDay);
     NSDate *dateToReturn = [[self.date mt_startOfCurrentDay] mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:nearestHour minutes:0 seconds:0];
 
     // create view to point to

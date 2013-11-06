@@ -112,7 +112,7 @@
     NSIndexPath *indexPath = [self.weeksTable indexPathForCell:[array firstObject]];
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row + 1;
-    NSTimeInterval interval = (row * SECONDS_IN_DAY) + (section * SECONDS_IN_WEEK);
+    NSTimeInterval interval = (row * MTDateConstantSecondsInDay) + (section * MTDateConstantSecondsInWeek);
     NSDate *date = [NSDate dateWithTimeInterval:interval sinceDate:self.startDate];
     
     [self openJumpToDateWithDate:date];

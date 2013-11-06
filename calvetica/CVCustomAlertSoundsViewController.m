@@ -162,7 +162,7 @@
         
         cell.textLabel.text = name;
         
-        if ([filename isEqualToString:[CVSettings customAlertSoundFile]]) {
+        if ([filename isEqualToString:PREFS.customAlertSoundFileName]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             if ([self.audioPlayer isPlaying]) {
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %0.0f sec", @"tap to stop", duration];
@@ -196,20 +196,20 @@
         NSDictionary *dict = [self.audioFileNamesArray objectAtIndex:indexPath.row];
         NSString *filename = [dict objectForKey:@"filename"];
         
-        if ([self.audioPlayer isPlaying] && [filename isEqualToString:[CVSettings customAlertSoundFile]]) {
+        if ([self.audioPlayer isPlaying] && [filename isEqualToString:PREFS.customAlertSoundFileName]) {
             [self.audioPlayer stop];
         }
         else {
             [self startPlayingAudioWithFilename:filename];
         }
         
-        [CVSettings setCustomAlertSoundFile:filename];
+        PREFS.customAlertSoundFileName = filename;
     }
     else {
         if ([self.audioPlayer isPlaying]) {
             [self.audioPlayer stop];
         }
-        [CVSettings setCustomAlertSoundFile:nil];
+        PREFS.customAlertSoundFileName = nil;
     }
     [self.tableView reloadData];
 }

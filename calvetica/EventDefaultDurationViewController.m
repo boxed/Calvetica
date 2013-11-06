@@ -1,6 +1,6 @@
 //
 //  EventDefaultDurationViewController.m
-//  calvetica
+//  accross
 //
 //  Created by Adam Kirk on 9/24/12.
 //
@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
 
-	_duration = [CVSettings defaultDuration];
+	_duration = PREFS.defaultDuration;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -35,11 +35,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	_duration = cell.tag;
-	[[NSUserDefaults standardUserDefaults] setInteger:cell.tag forKey:DEFAULT_DURATION];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    UITableViewCell *cell   = [tableView cellForRowAtIndexPath:indexPath];
+    _duration               = cell.tag;
+    PREFS.defaultDuration   = cell.tag;
+    cell.accessoryType      = UITableViewCellAccessoryCheckmark;
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	[tableView reloadData];
 }

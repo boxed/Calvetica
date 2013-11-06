@@ -37,13 +37,6 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     CVRootMonthViewMoveDirectionUp
 };
 
-typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
-    CVRootTableViewModeFull,
-    CVRootTableViewModeAgenda,
-    CVRootTableViewModeWeek,
-    CVRootTableViewModeDetailedWeek
-};
-
 
 @interface CVRootViewController () <CVMonthTableViewControllerDelegate,
                                     CVQuickAddViewControllerDelegate,
@@ -224,8 +217,10 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
 
 - (IBAction)closeSettings:(UIStoryboardSegue *)segue
 {
-	[NSDate mt_setFirstDayOfWeek:[CVSettings weekStartsOnWeekday]];
-	[NSDate mt_setTimeZone:[CVSettings timezone]];
+	[NSDate mt_setFirstDayOfWeek:PREFS.weekStartsOnWeekday];
+    if (PREFS.timeZoneName) {
+        [NSDate mt_setTimeZone:[NSTimeZone timeZoneWithName:PREFS.timeZoneName]];
+    }
     [self updateWeekdayTitleLabels];
     [self reloadMonthTableView];
     [self updateSelectionSquare:NO];
@@ -646,11 +641,13 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
                 longPressedCell:(UITableViewCell *)cell
                    calendarItem:(EKCalendarItem *)calendarItem
 {
-    [self showQuickAddWithDefault:YES
-                     durationMode:YES
-                             date:calendarItem.mys_date
-                            title:nil
-                             view:cell];
+    if ([cell isKindOfClass:[CVEventCell class]]) {
+        [self showQuickAddWithDefault:YES
+                         durationMode:YES
+                                 date:[(CVEventCell *)cell date]
+                                title:nil
+                                 view:cell];
+    }
 }
 
 - (void)rootTableViewController:(CVRootTableViewController *)controller
@@ -1211,6 +1208,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     [self reloadMonthTableView];
     [self reloadRootTableViewWithCompletion:nil];
+    [self updateMonthAndDayLabels];
+    [self updateWeekdayTitleLabels];
 }
 
 
@@ -1361,7 +1360,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupRootTableViewController
 {
-    self.rootTableMode = [CVSettings eventRootTableMode];
+    self.rootTableMode = PREFS.localRootTableViewMode;
 }
 
 
@@ -1506,7 +1505,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)setRootTableMode:(CVRootTableViewMode)newTableMode
 {
     _rootTableMode = newTableMode;
-    [CVSettings setEventRootTableMode:self.rootTableMode];
+    PREFS.localRootTableViewMode = self.rootTableMode;
 
     if (self.rootTableMode == CVRootTableViewModeFull) {
         self.rootTableViewController = [CVRootFullDayTableViewController new];

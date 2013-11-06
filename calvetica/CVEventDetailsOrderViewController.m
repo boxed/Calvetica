@@ -55,15 +55,15 @@
 - (void)setDetailsOrderArray:(NSMutableArray *)newDetailsOrderArray 
 {
     _detailsOrderArray = newDetailsOrderArray;
-    [CVSettings setDetailsOrderingArray:newDetailsOrderArray];
+    PREFS.eventDetailsOrdering = newDetailsOrderArray;
 }
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
     
-    if ([CVSettings eventDetailsOrderingArray]) {
-        self.detailsOrderArray = [NSMutableArray arrayWithArray:[CVSettings eventDetailsOrderingArray]];
+    if (PREFS.eventDetailsOrdering) {
+        self.detailsOrderArray = [[self eventDetailsOrderingArray] mutableCopy];
     }
     else {
         self.detailsOrderArray = [CVEventDetailsOrderViewController standardDetailsOrderingArray];
@@ -81,7 +81,7 @@
 
 
 
-#pragma mark - Table view data source
+#pragma mark - DATASOURCE table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
@@ -138,11 +138,6 @@
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
-{ 
-    // do nothing 
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
@@ -220,6 +215,66 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
+}
+
+
+
+
+#pragma mark - Private
+
+- (BOOL)isAEventDetailBlock:(NSDictionary *)detail
+{
+    NSArray *standardArray = [CVEventDetailsOrderViewController standardDetailsOrderingArray];
+    for (NSDictionary *dict in standardArray) {
+        if ([[detail objectForKey:@"TitleKey"] isEqualToString:[dict objectForKey:@"TitleKey"]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)eventDetailBlockIsSaved:(NSDictionary *)detail
+{
+    NSArray *savedArray = PREFS.eventDetailsOrdering;
+    for (NSDictionary *dict in savedArray) {
+        if ([[detail objectForKey:@"TitleKey"] isEqualToString:[dict objectForKey:@"TitleKey"]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSArray *)eventDetailsOrderingArray
+{
+    NSMutableArray *savedArray  = [PREFS.eventDetailsOrdering mutableCopy];
+    NSArray *standardArray      = [CVEventDetailsOrderViewController standardDetailsOrderingArray];
+
+    // check for a valid details ordering array
+    if (savedArray) {
+        // check that each item in the standard array is in the saved array
+        // if not add it to the saved array
+        for (NSDictionary *dict in standardArray) {
+            if (![self eventDetailBlockIsSaved:dict]) {
+                [savedArray addObject:dict];
+            }
+        }
+
+        // check that each item in the saved array is in the standard array
+        // if not remove it from the saved array
+        for (NSDictionary *dict in savedArray) {
+            if (![self isAEventDetailBlock:dict]) {
+                [savedArray removeObject:dict];
+            }
+        }
+
+    }
+    // if no valid details ordering array, save the standard ordering array
+    else {
+        savedArray = [standardArray mutableCopy];
+        PREFS.eventDetailsOrdering = standardArray;
+    }
+
+    return savedArray;
 }
 
 

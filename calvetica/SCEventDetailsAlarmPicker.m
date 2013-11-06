@@ -46,21 +46,21 @@
 {
     self.alarmOptions = [NSMutableArray array];
     [self.alarmOptions addObject:@-0];								// 0min
-    [self.alarmOptions addObject:@(-(5 * SECONDS_IN_MINUTE))];		// 5min
-    [self.alarmOptions addObject:@(-(15 * SECONDS_IN_MINUTE))];		// 15min
-    [self.alarmOptions addObject:@(-(30 * SECONDS_IN_MINUTE))];		// 30min
-    [self.alarmOptions addObject:@(-(45 * SECONDS_IN_MINUTE))];		// 45min
-    [self.alarmOptions addObject:@(-(1 * SECONDS_IN_HOUR))];			// 1hr
-    [self.alarmOptions addObject:@(-(2 * SECONDS_IN_HOUR))];			// 2hr
-    [self.alarmOptions addObject:@(-(6 * SECONDS_IN_HOUR))];			// 6hr
-    [self.alarmOptions addObject:@(-(12 * SECONDS_IN_HOUR))];			// 12hr
-    [self.alarmOptions addObject:@(-(1 * SECONDS_IN_DAY))];			// 1d
-    [self.alarmOptions addObject:@(-(2 * SECONDS_IN_DAY))];			// 2d
-    [self.alarmOptions addObject:@(-(3 * SECONDS_IN_DAY))];			// 3d
-    [self.alarmOptions addObject:@(-(5 * SECONDS_IN_DAY))];			// 5d
-    [self.alarmOptions addObject:@(-(1 * SECONDS_IN_WEEK))];			// 1wk
-    [self.alarmOptions addObject:@(-(2 * SECONDS_IN_WEEK))];			// 2wk
-    [self.alarmOptions addObject:@(-(1 * SECONDS_IN_MONTH))];			// 1mo  
+    [self.alarmOptions addObject:@(-(5 * MTDateConstantSecondsInMinute))];		// 5min
+    [self.alarmOptions addObject:@(-(15 * MTDateConstantSecondsInMinute))];		// 15min
+    [self.alarmOptions addObject:@(-(30 * MTDateConstantSecondsInMinute))];		// 30min
+    [self.alarmOptions addObject:@(-(45 * MTDateConstantSecondsInMinute))];		// 45min
+    [self.alarmOptions addObject:@(-(1 * MTDateConstantSecondsInHour))];			// 1hr
+    [self.alarmOptions addObject:@(-(2 * MTDateConstantSecondsInHour))];			// 2hr
+    [self.alarmOptions addObject:@(-(6 * MTDateConstantSecondsInHour))];			// 6hr
+    [self.alarmOptions addObject:@(-(12 * MTDateConstantSecondsInHour))];			// 12hr
+    [self.alarmOptions addObject:@(-(1 * MTDateConstantSecondsInDay))];			// 1d
+    [self.alarmOptions addObject:@(-(2 * MTDateConstantSecondsInDay))];			// 2d
+    [self.alarmOptions addObject:@(-(3 * MTDateConstantSecondsInDay))];			// 3d
+    [self.alarmOptions addObject:@(-(5 * MTDateConstantSecondsInDay))];			// 5d
+    [self.alarmOptions addObject:@(-(1 * MTDateConstantSecondsInWeek))];			// 1wk
+    [self.alarmOptions addObject:@(-(2 * MTDateConstantSecondsInWeek))];			// 2wk
+    [self.alarmOptions addObject:@(-(1 * MTDateConstantSecondsInMonth))];			// 1mo  
     
     [self configureAlarmButtons];
 }
@@ -103,27 +103,8 @@
 - (IBAction)buttonWasTapped:(id)sender 
 {
     CVToggleButton *button = (CVToggleButton *)sender;
-    
-    if (self.event.calendar.source.sourceType == EKSourceTypeExchange && ![CVSettings multipleExchangeAlarms]) {
-        // only allow one at a time
-        for (CVToggleButton *alarmButton in self.alarmButtons) {
-            if ([alarmButton isEqual:button]) {
-                if (alarmButton.selected == YES) {
-                    alarmButton.selected = NO;
-                }
-                else {
-                    alarmButton.selected = YES;
-                }
-            }
-            else {
-                alarmButton.selected = NO;
-            }
-        }
-    }
-    else {
-        button.selected = !button.selected;
-    }
-    
+    button.selected = !button.selected;
+
     NSMutableArray *alarms = [NSMutableArray array];
     
     for (CVToggleButton *button in self.alarmButtons) {

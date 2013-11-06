@@ -42,7 +42,11 @@
     _calendarTitleTextField.text    = self.calendar.title;
     self.navigationItem.title       = @"Edit Calendar";
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(doneButtonPressed:)];
+    self.navigationItem.rightBarButtonItem =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                  target:self
+                                                  action:@selector(doneButtonPressed:)];
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
 }
 
@@ -80,7 +84,7 @@
 	else
 		_calendar.title = _calendarTitleTextField.text;
 
-	if ([_calendar save]) {
+	if ([_calendar saveWithError:nil]) {
 		[_delegate calendarDetailsController:self didFinishWithResult:CVCalendarDetailsControllerResultSaved];
 	}
 	else
@@ -164,8 +168,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        UIColor *color      = [_availableColors objectAtIndex:indexPath.row];
-        _calendar.CGColor   = color.CGColor;
+        UIColor *color          = [_availableColors objectAtIndex:indexPath.row];
+        _calendar.customColor   = color;
         for (UIColor *c in self.availableColors) {
             if ([color isEqualToColor:c]) {
                 c.mys_selected = YES;
@@ -216,7 +220,7 @@
     [colors addObjectsFromArray:[UIColor primaryPalette]];
     [colors addObjectsFromArray:[UIColor secondaryPalette]];
     [colors addObjectsFromArray:[UIColor systemPalette]];
-    for (EKCalendar *calendar in [EKEventStore eventCalendars]) {
+    for (EKCalendar *calendar in [[EKEventStore sharedStore] eventCalendars]) {
         for (UIColor *color in colors) {
             if ([[calendar customColor] isEqualToColor:color]) {
                 color.mys_selected = YES;

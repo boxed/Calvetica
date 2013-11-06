@@ -53,7 +53,7 @@
 
 - (NSInteger)dayNumberForButtonTag:(NSInteger)tag 
 {
-    NSInteger startDay = [CVSettings weekStartsOnWeekday];
+    NSInteger startDay = PREFS.weekStartsOnWeekday;
     
     NSInteger dayNumber = tag + startDay -1;
     if (dayNumber > 7) {

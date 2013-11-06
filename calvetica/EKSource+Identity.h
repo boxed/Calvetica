@@ -8,8 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
-@interface EKSource (Calvetica)
+@interface EKSource (Identity)
 
++ (EKSource *)defaultSource;
 - (NSString *)localizedTitle; // TODO: not localized
 
 @end

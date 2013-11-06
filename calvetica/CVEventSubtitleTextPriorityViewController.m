@@ -54,16 +54,15 @@
 - (void)setSubtitleTextPriorityArray:(NSMutableArray *)newSubtitleTextPriorityArray 
 {
     _subtitleTextPriorityArray = newSubtitleTextPriorityArray;
-    
-    [CVSettings setEventDetailsSubtitleTextOrderingArray:newSubtitleTextPriorityArray];
+    PREFS.eventDetailsSubtitleTextPriority = newSubtitleTextPriorityArray;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    if ([CVSettings eventDetailsSubtitleTextOrderingArray]) {
-        self.subtitleTextPriorityArray = [NSMutableArray arrayWithArray:[CVSettings eventDetailsSubtitleTextOrderingArray]];
+    if (PREFS.eventDetailsSubtitleTextPriority) {
+        self.subtitleTextPriorityArray = [PREFS.eventDetailsSubtitleTextPriority mutableCopy];
     }
     else {
         self.subtitleTextPriorityArray = [CVEventSubtitleTextPriorityViewController standardSubtitleTextPriorityArray];

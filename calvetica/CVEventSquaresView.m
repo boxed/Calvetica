@@ -120,22 +120,22 @@
             
             // otherwise it starts on this day
         } else {
-            startSecondsIntoDay = e.startSeconds % SECONDS_IN_DAY;
-            e.y = (startSecondsIntoDay / (float)SECONDS_IN_DAY) * self.frame.size.height;	
+            startSecondsIntoDay = e.startSeconds % MTDateConstantSecondsInDay;
+            e.y = (startSecondsIntoDay / (float)MTDateConstantSecondsInDay) * self.frame.size.height;	
         }
         
         
         // set the height
         
         // if it ends after the end of this day
-        if (e.endSeconds >= SECONDS_IN_DAY) {
+        if (e.endSeconds >= MTDateConstantSecondsInDay) {
             e.height = self.frame.size.height - e.y;
         } 
         
         // otherise, it ends within this day
         else {
-            endSecondsIntoDay = e.endSeconds % SECONDS_IN_DAY;
-            e.height = ((endSecondsIntoDay - startSecondsIntoDay) / (float)SECONDS_IN_DAY) * self.frame.size.height;	
+            endSecondsIntoDay = e.endSeconds % MTDateConstantSecondsInDay;
+            e.height = ((endSecondsIntoDay - startSecondsIntoDay) / (float)MTDateConstantSecondsInDay) * self.frame.size.height;	
         }
         
         e.width = (self.bounds.size.width / e.overlaps);
@@ -242,11 +242,11 @@
     // figure the date
     CGPoint pointOfTouch = [gesture locationInView:self];
     CGFloat percentThroughDay = pointOfTouch.y / self.bounds.size.height;
-    CGFloat nearestHour = (percentThroughDay * HOURS_IN_DAY);
+    CGFloat nearestHour = (percentThroughDay * MTDateConstantHoursInDay);
     NSDate *dateToReturn = [[self.date mt_startOfCurrentDay] mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:nearestHour minutes:0 seconds:0];
     
     // figure placholder rect
-    CGFloat hourHeight = self.bounds.size.height / HOURS_IN_DAY;
+    CGFloat hourHeight = self.bounds.size.height / MTDateConstantHoursInDay;
     CGFloat bottomY = hourHeight * nearestHour;
     CGFloat topY = hourHeight * (nearestHour + 1);
     CGRect placeholderRect = CGRectMake(0, bottomY, self.bounds.size.width, (topY - bottomY));

@@ -35,8 +35,8 @@
                                                       selector:@selector(localizedCaseInsensitiveCompare:)];  
         NSArray *sortDescriptors = @[sortDescriptor];
         
-		_editableCalendars = [[EKEventStore editableCalendarsForEntityType:EKEntityTypeEvent] sortedArrayUsingDescriptors:sortDescriptors];
-		_allCalendars = [EKEventStore eventCalendars];
+		_editableCalendars = [[[EKEventStore sharedStore] editableCalendarsForEntityType:EKEntityTypeEvent] sortedArrayUsingDescriptors:sortDescriptors];
+		_allCalendars = [[EKEventStore sharedStore] eventCalendars];
 		_allCalendars = [_allCalendars  sortedArrayUsingDescriptors:sortDescriptors];
 	}
 	return _showUneditableCalendars ? _allCalendars : _editableCalendars;
@@ -83,7 +83,7 @@
     EKCalendar *calendar            = [[self calendars] objectAtIndex:indexPath.row];
     cell.calendarTitleLabel.text    = calendar.title;
     cell.disabled                   = !calendar.allowsContentModifications;
-    cell.calendarTypeLabel.text     = [NSString stringWithFormat:@"%@", [calendar account]];
+    cell.calendarTypeLabel.text     = calendar.accountName;
     cell.coloredDotView.color       = [calendar customColor];
 
     return cell;

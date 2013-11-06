@@ -41,13 +41,14 @@
 - (IBAction)saveButtonWasTapped:(id)sender
 {
     if (self.modified) {
-        NSMutableArray *newSelectedArray = [NSMutableArray array];
         for (CVCalendarCellModel *holder in self.cellDataHolderArray) {
             if (holder.isSelected) {
-                [newSelectedArray addObject:holder.calendar];
+                holder.calendar.hidden = NO;
+            }
+            else {
+                holder.calendar.hidden = YES;
             }
         }
-        [CVSettings setSelectedEventCalendars:newSelectedArray];
     }
 
     CVManageCalendarsResult result = self.modified ? CVManageCalendarsResultModified : CVManageCalendarsResultCancelled;
@@ -62,11 +63,11 @@
 
 
 
-#pragma mark - Private Methods
+#pragma mark - Private
 
 - (void)loadCellDataHolderArray
 {
-    NSArray *calendars = [EKEventStore eventCalendars];
+    NSArray *calendars = [[EKEventStore sharedStore] eventCalendars];
     //sort the calendars
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
@@ -78,7 +79,7 @@
     for (EKCalendar *cal in calendars) {
         CVCalendarCellModel *holder = [[CVCalendarCellModel alloc] init];
         holder.calendar = cal;
-        if ([cal isASelectedCalendar]) {
+        if (!cal.isHidden) {
             holder.isSelected = YES;
         }
         else {

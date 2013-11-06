@@ -33,7 +33,7 @@
 
 - (CGFloat)percentIntoDay 
 {
-    return [self mt_secondsIntoDay] / SECONDS_IN_DAY;
+    return [self mt_secondsIntoDay] / MTDateConstantSecondsInDay;
 }
 
 

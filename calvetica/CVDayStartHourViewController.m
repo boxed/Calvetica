@@ -74,7 +74,7 @@
         }
     }
     
-    if ([CVSettings dayStartHour] == [time intValue]) {
+    if (PREFS.dayStartHour == [time intValue]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -94,7 +94,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSNumber *time = [self.hoursArray objectAtIndex:indexPath.row];
     
-    [CVSettings setDayStartHour:[time intValue]];
+    PREFS.dayStartHour = [time intValue];
     
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

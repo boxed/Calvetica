@@ -209,7 +209,7 @@
         }
     }
     else {
-        _endDate = [_startDate dateByAddingTimeInterval:[CVSettings defaultDuration]];
+        _endDate = [_startDate dateByAddingTimeInterval:PREFS.defaultDuration];
     }
     [self renderEventEndTimeString];
 }
@@ -264,18 +264,18 @@
                             NSLocalizedString(@"12hr", @"12hr")];
     
     NSArray *hoursValues = @[@0,                     // 0hr
-                            @SECONDS_IN_HOUR,       // 1hr
-                            @(SECONDS_IN_HOUR * 2),   // 2hr
-                            @(SECONDS_IN_HOUR * 3),   // 3hr
-                            @(SECONDS_IN_HOUR * 4),   // 4hr
-                            @(SECONDS_IN_HOUR * 5),   // 5hr
-                            @(SECONDS_IN_HOUR * 6),   // 6hr
-                            @(SECONDS_IN_HOUR * 7),   // 7hr
-                            @(SECONDS_IN_HOUR * 8),   // 8hr
-                            @(SECONDS_IN_HOUR * 9),   // 9hr
-                            @(SECONDS_IN_HOUR * 10),  // 10hr
-                            @(SECONDS_IN_HOUR * 11),  // 11hr
-                            @(SECONDS_IN_HOUR * 12)];
+                            @(MTDateConstantSecondsInHour),       // 1hr
+                            @(MTDateConstantSecondsInHour * 2),   // 2hr
+                            @(MTDateConstantSecondsInHour * 3),   // 3hr
+                            @(MTDateConstantSecondsInHour * 4),   // 4hr
+                            @(MTDateConstantSecondsInHour * 5),   // 5hr
+                            @(MTDateConstantSecondsInHour * 6),   // 6hr
+                            @(MTDateConstantSecondsInHour * 7),   // 7hr
+                            @(MTDateConstantSecondsInHour * 8),   // 8hr
+                            @(MTDateConstantSecondsInHour * 9),   // 9hr
+                            @(MTDateConstantSecondsInHour * 10),  // 10hr
+                            @(MTDateConstantSecondsInHour * 11),  // 11hr
+                            @(MTDateConstantSecondsInHour * 12)];
     
     NSArray *minutesTitles = @[NSLocalizedString(@"0min", @"0min"),
                               NSLocalizedString(@"5min", @"5min"), 
@@ -291,17 +291,17 @@
                               NSLocalizedString(@"55min", @"55min")];
     
     NSArray *minutesValues = @[@0,                          // 0m
-                              @(SECONDS_IN_MINUTE * 5),      // 5m
-                              @(SECONDS_IN_MINUTE * 10),     // 10m
-                              @(SECONDS_IN_MINUTE * 15),     // 15m
-                              @(SECONDS_IN_MINUTE * 20),     // 20m
-                              @(SECONDS_IN_MINUTE * 25),     // 25m
-                              @(SECONDS_IN_MINUTE * 30),     // 30m
-                              @(SECONDS_IN_MINUTE * 35),     // 35m
-                              @(SECONDS_IN_MINUTE * 40),     // 40m
-                              @(SECONDS_IN_MINUTE * 45),     // 45m
-                              @(SECONDS_IN_MINUTE * 50),     // 50m
-                              @(SECONDS_IN_MINUTE * 55)];
+                              @(MTDateConstantSecondsInMinute * 5),      // 5m
+                              @(MTDateConstantSecondsInMinute * 10),     // 10m
+                              @(MTDateConstantSecondsInMinute * 15),     // 15m
+                              @(MTDateConstantSecondsInMinute * 20),     // 20m
+                              @(MTDateConstantSecondsInMinute * 25),     // 25m
+                              @(MTDateConstantSecondsInMinute * 30),     // 30m
+                              @(MTDateConstantSecondsInMinute * 35),     // 35m
+                              @(MTDateConstantSecondsInMinute * 40),     // 40m
+                              @(MTDateConstantSecondsInMinute * 45),     // 45m
+                              @(MTDateConstantSecondsInMinute * 50),     // 50m
+                              @(MTDateConstantSecondsInMinute * 55)];
     
     _hoursArray = [NSMutableArray array];
     _minutesArray = [NSMutableArray array];
@@ -321,15 +321,15 @@
         [_minutesArray push:[CVQuickAddViewController dictionaryFromTitle:[minutesTitles objectAtIndex:i] value:[minutesValues objectAtIndex:i]]];
     }
     
-    NSInteger defaultDuration = [CVSettings defaultDuration];
+    NSInteger defaultDuration = PREFS.defaultDuration;
     NSInteger flags = NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSDate *fromDate = [NSDate date];
     NSDate *toDate = [NSDate dateWithTimeInterval:defaultDuration sinceDate:fromDate];
     
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:flags fromDate:fromDate toDate:toDate options:0];
     
-    NSInteger hour = [comps hour] * SECONDS_IN_HOUR;
-    NSInteger minute = [comps minute] * SECONDS_IN_MINUTE;
+    NSInteger hour = [comps hour] * MTDateConstantSecondsInHour;
+    NSInteger minute = [comps minute] * MTDateConstantSecondsInMinute;
 
     _hourInterval = @(hour);
     _minuteInterval = @(minute);
@@ -392,8 +392,8 @@
         self.calendarItem.title = _titleTextField.text;
     }
     
-    if (!more && ![self.calendarItem.calendar isASelectedCalendar]) {
-        [CVSettings addSelectedEventCalendar:self.calendarItem.calendar];
+    if (!more && self.calendarItem.calendar.isHidden) {
+        self.calendarItem.calendar.hidden = NO;
     }
     
     if (more) {

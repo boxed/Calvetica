@@ -12,6 +12,7 @@
 
 
 @interface CVSettingsViewController () <CVTimeZoneViewControllerDelegate>
+@property (nonatomic, weak) IBOutlet UISwitch *syncSettingsOveriCloudSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *askForCalendarSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *showRemindersSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *twentyFourHourFormatSwitch;
@@ -29,12 +30,13 @@
 {
     [super viewDidLoad];
 
-    self.askForCalendarSwitch.on        = PREFS.alwaysAskForCalendar;
-    self.showRemindersSwitch.on         = PREFS.remindersEnabled;
-    self.twentyFourHourFormatSwitch.on  = PREFS.twentyFourHourFormat;
-    self.dotsOnlyMonthViewSwitch.on     = PREFS.dotsOnlyMonthView;
-    self.scrollingMonthSwitch.on        = PREFS.iPhoneScrollableMonthView;
-    self.durationBarReadOnlySwitch.on   = PREFS.showDurationOnReadOnlyEvents;
+    self.syncSettingsOveriCloudSwitch.on    = PREFS.syncSettingsWithiCloud;
+    self.askForCalendarSwitch.on            = PREFS.alwaysAskForCalendar;
+    self.showRemindersSwitch.on             = PREFS.remindersEnabled;
+    self.twentyFourHourFormatSwitch.on      = PREFS.twentyFourHourFormat;
+    self.dotsOnlyMonthViewSwitch.on         = PREFS.dotsOnlyMonthView;
+    self.scrollingMonthSwitch.on            = PREFS.iPhoneScrollableMonthView;
+    self.durationBarReadOnlySwitch.on       = PREFS.showDurationOnReadOnlyEvents;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -42,7 +44,8 @@
     if ([segue.identifier isEqualToString:@"TimeZoneSegue"]) {
         CVTimeZoneViewController *controller    = [segue destinationViewController];
         controller.delegate                     = self;
-        controller.selectedTimeZone             = PREFS.timezoneSupportEnabled ? [CVSettings timezone] : nil;
+        NSTimeZone *tz                          = PREFS.timeZoneName ? [NSTimeZone timeZoneWithName:PREFS.timeZoneName] : nil;
+        controller.selectedTimeZone             = PREFS.timezoneSupportEnabled ? tz : nil;
     }
 }
 
@@ -50,6 +53,14 @@
 
 
 #pragma mark - Actions
+
+- (IBAction)syncSettingsOveriCloudWasFlipped:(UISwitch *)sender
+{
+    PREFS.syncSettingsWithiCloud = sender.isOn;
+    if (sender.isOn) {
+        [[CVSharedSettings sharedSettings] pushLocalToiCloud];
+    }
+}
 
 - (IBAction)askForCalendarWasFlipped:(UISwitch *)sender
 {
@@ -115,15 +126,15 @@
 
 - (void)timeZoneViewController:(CVTimeZoneViewController *)controller didSelectTimeZone:(NSTimeZone *)timeZone
 {
-    [CVSettings setTimeZone:timeZone];
+    PREFS.timeZoneName = timeZone.name;
     [NSDate mt_setTimeZone:timeZone];
 }
 
 - (void)timeZoneViewController:(CVTimeZoneViewController *)controller didToggleSupportOn:(BOOL)isOn
 {
     PREFS.timezoneSupportEnabled = isOn;
-    if (isOn) {
-        [NSDate mt_setTimeZone:[CVSettings timezone]];
+    if (isOn && PREFS.timeZoneName) {
+        [NSDate mt_setTimeZone:[NSTimeZone timeZoneWithName:PREFS.timeZoneName]];
     }
     else {
         [NSDate mt_setTimeZone:[NSTimeZone systemTimeZone]];

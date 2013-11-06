@@ -325,7 +325,7 @@
 
         }
 
-        UIColor *calendarColor      = [UIColor colorWithCGColor:reminder.calendar.CGColor];
+        UIColor *calendarColor      = reminder.calendar.customColor;
         cell.coloredDotView.color   = calendarColor;
         cell.coloredDotView.shape   = CVColoredShapeCheck;
         cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];
@@ -351,8 +351,8 @@
         [(CVEventCell *)cell drawDurationBarAnimated:NO];
     }
 
-    BOOL isBeforeWorkingHours   = [model.date mt_hourOfDay] < [CVSettings dayStartHour];
-    BOOL isAfterWorkingHours    = [model.date mt_hourOfDay] >= [CVSettings dayEndHour];
+    BOOL isBeforeWorkingHours   = [model.date mt_hourOfDay] < PREFS.dayStartHour;
+    BOOL isAfterWorkingHours    = [model.date mt_hourOfDay] >= PREFS.dayEndHour;
     BOOL isOutsideWorkingHours  = isBeforeWorkingHours || isAfterWorkingHours;
     BOOL isAllDay               = model.isAllDay;
     BOOL isAnHour               = model.calendarItem == nil;

@@ -9,6 +9,14 @@
 #import "CVEventCell.h"
 
 
+typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
+    CVRootTableViewModeFull,
+    CVRootTableViewModeAgenda,
+    CVRootTableViewModeWeek,
+    CVRootTableViewModeDetailedWeek
+};
+
+
 static CGFloat const CVRootTableViewEventRowHeight      = 44;
 static CGFloat const CVRootTableViewReminderRowHeight   = 20;
 

@@ -75,7 +75,7 @@
     }
     
     
-    if ([CVSettings dayEndHour] == [time intValue]) {
+    if (PREFS.dayEndHour == [time intValue]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -95,7 +95,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSNumber *time = [self.hoursArray objectAtIndex:indexPath.row];
     
-    [CVSettings setDayEndHour:[time intValue]];
+    PREFS.dayEndHour = [time intValue];
     
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

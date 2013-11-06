@@ -14,7 +14,7 @@
 
 + (UIColor *)colorUnarchivedFromData:(NSData *)data;
 
-- (NSString *)colorToString;
+- (NSString *)stringValue;
 
 + (UIColor *)colorFromString:(NSString *)string;
 

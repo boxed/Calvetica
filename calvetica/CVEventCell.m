@@ -111,7 +111,7 @@
         NSString *subtitleText = @"";
         
         // rearrange detail blocks to match user preferences
-        NSArray *subtitlePriorities = [CVSettings eventDetailsSubtitleTextOrderingArray];
+        NSArray *subtitlePriorities = PREFS.eventDetailsSubtitleTextPriority;
         
         // if there are no preferences set, just return
         if (subtitlePriorities) {
@@ -145,7 +145,7 @@
                 
                 else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"End Time (if not default)"]) {
                     BOOL hidden = [[dict objectForKey:@"HiddenKey"] boolValue];
-                    BOOL isNotDefaultDuration = [_event eventDuration] != [CVSettings defaultDuration];
+                    BOOL isNotDefaultDuration = [_event eventDuration] != PREFS.defaultDuration;
                     if (!hidden && isNotDefaultDuration) {
                         subtitleText = [_event stringWithRelativeEndTime];
                         break;

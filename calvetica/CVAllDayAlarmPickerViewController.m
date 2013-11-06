@@ -16,12 +16,12 @@
     self = [super init];
     if (self) {
         self.buttons = [NSMutableArray array];
-		[self.buttons addObject:@(-(6 * SECONDS_IN_HOUR))];			// 6pm the day before
-		[self.buttons addObject:@(-(2 * SECONDS_IN_HOUR))];			// 10pm the day before
-		[self.buttons addObject:@(6 * SECONDS_IN_HOUR)];				// 6am the day of
-		[self.buttons addObject:@(7 * SECONDS_IN_HOUR)];				// 7am the day of
-		[self.buttons addObject:@(8 * SECONDS_IN_HOUR)];				// 8am the day of
-		[self.buttons addObject:@(9 * SECONDS_IN_HOUR)];				// 9am the day of
+		[self.buttons addObject:@(-(6 * MTDateConstantSecondsInHour))];			// 6pm the day before
+		[self.buttons addObject:@(-(2 * MTDateConstantSecondsInHour))];			// 10pm the day before
+		[self.buttons addObject:@(6 * MTDateConstantSecondsInHour)];				// 6am the day of
+		[self.buttons addObject:@(7 * MTDateConstantSecondsInHour)];				// 7am the day of
+		[self.buttons addObject:@(8 * MTDateConstantSecondsInHour)];				// 8am the day of
+		[self.buttons addObject:@(9 * MTDateConstantSecondsInHour)];				// 9am the day of
     }
     return self;
 }

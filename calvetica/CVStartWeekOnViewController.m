@@ -56,7 +56,7 @@
     cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
 
     cell.textLabel.text = _weekdayTitles[indexPath.row];
-	if (indexPath.row == [CVSettings weekStartsOnWeekday] - 1)
+	if (indexPath.row == PREFS.weekStartsOnWeekday - 1)
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	else
 		cell.accessoryType = UITableViewCellAccessoryNone;
@@ -71,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[CVSettings setWeekStartsOnWeekday:indexPath.row + 1];
+    PREFS.weekStartsOnWeekday = indexPath.row + 1;
 	[self.tableView reloadData];
 }
 

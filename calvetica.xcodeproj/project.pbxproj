@@ -30,7 +30,6 @@
 		9B0AD8AA13CF5AC300DF1F2F /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AD8A813CF5AC300DF1F2F /* slider@2x.png */; };
 		9B0AD8B113CF671D00DF1F2F /* slider_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AD8B013CF671D00DF1F2F /* slider_background.png */; };
 		9B0AD8D613CFA90F00DF1F2F /* CVDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0AD8D513CFA90F00DF1F2F /* CVDebug.m */; };
-		9B0C59B913B252E200ADC5E6 /* CVDefaultLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C59B813B252E200ADC5E6 /* CVDefaultLanguageViewController.m */; };
 		9B0FF93313BCDE1B00B316A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0FF93213BCDE1B00B316A9 /* QuartzCore.framework */; };
 		9B0FF97F13BD0E6500B316A9 /* CVHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FF97E13BD0E6500B316A9 /* CVHUD.m */; };
 		9B0FF98113BD0E9500B316A9 /* CVHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0FF98013BD0E9500B316A9 /* CVHUD.xib */; };
@@ -103,7 +102,7 @@
 		C202A4C416FBF494000B4281 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C202A4C316FBF494000B4281 /* Crashlytics.framework */; };
 		C206985A1396F657005C8192 /* geometry.c in Sources */ = {isa = PBXBuildFile; fileRef = C20698581396F656005C8192 /* geometry.c */; };
 		C20DAACB181080D500F0E7A2 /* NSObject+Null.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DAACA181080D500F0E7A2 /* NSObject+Null.m */; };
-		C20DDDA8161D020200CC9D47 /* EKSource+Calvetica.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DDDA7161D020200CC9D47 /* EKSource+Calvetica.m */; };
+		C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */; };
 		C212260F151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = C212260E151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m */; };
 		C213C75F13A6712C00A20E17 /* CVRootFullDayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C75E13A6712C00A20E17 /* CVRootFullDayTableViewController.m */; };
 		C213C76313A6783B00A20E17 /* CVRootAgendaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C76213A6783B00A20E17 /* CVRootAgendaTableViewController.m */; };
@@ -114,6 +113,7 @@
 		C21AD4731810A7B30061B7C7 /* EKEvent+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = C21AD4721810A7B30061B7C7 /* EKEvent+Store.m */; };
 		C21AD4761810B2F70061B7C7 /* CVEventStoreNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = C21AD4751810B2F70061B7C7 /* CVEventStoreNotification.m */; };
 		C21AD4791810B39A0061B7C7 /* CVEventStoreNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C21AD4781810B39A0061B7C7 /* CVEventStoreNotificationCenter.m */; };
+		C21C53AA182979630064D2AD /* EKEventStore+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = C21C53A9182979630064D2AD /* EKEventStore+Settings.m */; };
 		C21E028A138B26F9008CB6EA /* CVTodayBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E0289138B26F9008CB6EA /* CVTodayBoxView.m */; };
 		C220478C13AA5DFC0079FC81 /* CVGenericReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C220478A13AA5DFC0079FC81 /* CVGenericReminderViewController.m */; };
 		C22B0C4013BB85DE00455F47 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B12A0DF13A7DFDD00BF1D7F /* AddressBook.framework */; };
@@ -123,6 +123,11 @@
 		C22B0C4413BB85F700455F47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D388B013B8F54E002527A7 /* SystemConfiguration.framework */; };
 		C22B0C4513BB85F700455F47 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AC518213789528000A96CE /* MapKit.framework */; };
 		C22B0C4613BB867500455F47 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2603916138168D300F8619C /* CoreData.framework */; };
+		C22EA29918298C96004F2589 /* EKCalendar+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA29818298C96004F2589 /* EKCalendar+Settings.m */; };
+		C22EA29C18298CBE004F2589 /* EKCalendar+Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA29B18298CBE004F2589 /* EKCalendar+Identity.m */; };
+		C22EA29F18298F6D004F2589 /* EKEventStore+Calendars.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA29E18298F6D004F2589 /* EKEventStore+Calendars.m */; };
+		C22EA2A21829925A004F2589 /* EKEventStore+Events.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA2A11829925A004F2589 /* EKEventStore+Events.m */; };
+		C22EA2A518299264004F2589 /* EKEventStore+Reminders.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA2A418299264004F2589 /* EKEventStore+Reminders.m */; };
 		C22EA3C513C519C600CFFCC2 /* CVAgendaEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EA3C413C519C600CFFCC2 /* CVAgendaEventCell.xib */; };
 		C22EA3C813C519E900CFFCC2 /* CVAgendaEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EA3C713C519E900CFFCC2 /* CVAgendaEventCell.m */; };
 		C22F152813C68DFA005A6488 /* CVExtraAlarmButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22F152713C68DFA005A6488 /* CVExtraAlarmButton.xib */; };
@@ -286,9 +291,8 @@
 		C2E2974C133419A900FA7638 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E29727133419A900FA7638 /* Foundation.framework */; };
 		C2E2974D133419A900FA7638 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E29729133419A900FA7638 /* CoreGraphics.framework */; };
 		C2E29755133419A900FA7638 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E29753133419A900FA7638 /* InfoPlist.strings */; };
-		C2E29768133419E900FA7638 /* EKCalendar+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29765133419E900FA7638 /* EKCalendar+Utilities.m */; };
+		C2E29768133419E900FA7638 /* EKCalendar+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29765133419E900FA7638 /* EKCalendar+Store.m */; };
 		C2E29769133419E900FA7638 /* EKEvent+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29767133419E900FA7638 /* EKEvent+Utilities.m */; };
-		C2E2977613341A0100FA7638 /* CVSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E2977213341A0100FA7638 /* CVSettings.m */; };
 		C2E2978813341B9500FA7638 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2978713341B9500FA7638 /* EventKit.framework */; };
 		C2E3A1A5160D488400F00FB8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A1A4160D488400F00FB8 /* Settings.storyboard */; };
 		C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */; };
@@ -365,8 +369,6 @@
 		9B0AD8B013CF671D00DF1F2F /* slider_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_background.png; sourceTree = "<group>"; };
 		9B0AD8D413CFA90F00DF1F2F /* CVDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDebug.h; sourceTree = "<group>"; };
 		9B0AD8D513CFA90F00DF1F2F /* CVDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDebug.m; sourceTree = "<group>"; };
-		9B0C59B713B252E200ADC5E6 /* CVDefaultLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDefaultLanguageViewController.h; sourceTree = "<group>"; };
-		9B0C59B813B252E200ADC5E6 /* CVDefaultLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDefaultLanguageViewController.m; sourceTree = "<group>"; };
 		9B0FF93213BCDE1B00B316A9 /* QuartzCore.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9B0FF97D13BD0E6500B316A9 /* CVHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVHUD.h; sourceTree = "<group>"; };
 		9B0FF97E13BD0E6500B316A9 /* CVHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVHUD.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -471,8 +473,8 @@
 		C20DAAC8181077C100F0E7A2 /* CVRootTableViewController_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVRootTableViewController_Protected.h; sourceTree = "<group>"; };
 		C20DAAC9181080D500F0E7A2 /* NSObject+Null.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Null.h"; sourceTree = "<group>"; };
 		C20DAACA181080D500F0E7A2 /* NSObject+Null.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Null.m"; sourceTree = "<group>"; };
-		C20DDDA6161D020200CC9D47 /* EKSource+Calvetica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKSource+Calvetica.h"; sourceTree = "<group>"; };
-		C20DDDA7161D020200CC9D47 /* EKSource+Calvetica.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKSource+Calvetica.m"; sourceTree = "<group>"; };
+		C20DDDA6161D020200CC9D47 /* EKSource+Identity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKSource+Identity.h"; sourceTree = "<group>"; };
+		C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKSource+Identity.m"; sourceTree = "<group>"; };
 		C212260D151CD8C70055F6AE /* CVWeekTableViewCellDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekTableViewCellDrawing.h; sourceTree = "<group>"; };
 		C212260E151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekTableViewCellDrawing.m; sourceTree = "<group>"; };
 		C213C75D13A6712C00A20E17 /* CVRootFullDayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVRootFullDayTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -493,6 +495,8 @@
 		C21AD4751810B2F70061B7C7 /* CVEventStoreNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventStoreNotification.m; sourceTree = "<group>"; };
 		C21AD4771810B39A0061B7C7 /* CVEventStoreNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventStoreNotificationCenter.h; sourceTree = "<group>"; };
 		C21AD4781810B39A0061B7C7 /* CVEventStoreNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventStoreNotificationCenter.m; sourceTree = "<group>"; };
+		C21C53A8182979630064D2AD /* EKEventStore+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Settings.h"; sourceTree = "<group>"; };
+		C21C53A9182979630064D2AD /* EKEventStore+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+Settings.m"; sourceTree = "<group>"; };
 		C21E0288138B26F9008CB6EA /* CVTodayBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTodayBoxView.h; sourceTree = "<group>"; };
 		C21E0289138B26F9008CB6EA /* CVTodayBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTodayBoxView.m; sourceTree = "<group>"; };
 		C220478913AA5DFC0079FC81 /* CVGenericReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGenericReminderViewController.h; sourceTree = "<group>"; };
@@ -501,6 +505,16 @@
 		C22A881D1810736200EF58C9 /* EventKitAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventKitAdditions.h; sourceTree = "<group>"; };
 		C22B0C5413BB8A5800455F47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C22B0C5513BB8A5800455F47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C22EA29718298C96004F2589 /* EKCalendar+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKCalendar+Settings.h"; sourceTree = "<group>"; };
+		C22EA29818298C96004F2589 /* EKCalendar+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKCalendar+Settings.m"; sourceTree = "<group>"; };
+		C22EA29A18298CBE004F2589 /* EKCalendar+Identity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKCalendar+Identity.h"; sourceTree = "<group>"; };
+		C22EA29B18298CBE004F2589 /* EKCalendar+Identity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKCalendar+Identity.m"; sourceTree = "<group>"; };
+		C22EA29D18298F6D004F2589 /* EKEventStore+Calendars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Calendars.h"; sourceTree = "<group>"; };
+		C22EA29E18298F6D004F2589 /* EKEventStore+Calendars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+Calendars.m"; sourceTree = "<group>"; };
+		C22EA2A01829925A004F2589 /* EKEventStore+Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Events.h"; sourceTree = "<group>"; };
+		C22EA2A11829925A004F2589 /* EKEventStore+Events.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+Events.m"; sourceTree = "<group>"; };
+		C22EA2A318299264004F2589 /* EKEventStore+Reminders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Reminders.h"; sourceTree = "<group>"; };
+		C22EA2A418299264004F2589 /* EKEventStore+Reminders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+Reminders.m"; sourceTree = "<group>"; };
 		C22EA3C413C519C600CFFCC2 /* CVAgendaEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVAgendaEventCell.xib; sourceTree = "<group>"; };
 		C22EA3C613C519E900CFFCC2 /* CVAgendaEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAgendaEventCell.h; sourceTree = "<group>"; };
 		C22EA3C713C519E900CFFCC2 /* CVAgendaEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAgendaEventCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -775,12 +789,10 @@
 		C2E29752133419A900FA7638 /* calveticaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "calveticaTests-Info.plist"; sourceTree = "<group>"; };
 		C2E29754133419A900FA7638 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C2E29756133419A900FA7638 /* calveticaTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "calveticaTests-Prefix.pch"; sourceTree = "<group>"; };
-		C2E29764133419E900FA7638 /* EKCalendar+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKCalendar+Utilities.h"; sourceTree = "<group>"; };
-		C2E29765133419E900FA7638 /* EKCalendar+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKCalendar+Utilities.m"; sourceTree = "<group>"; };
+		C2E29764133419E900FA7638 /* EKCalendar+Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKCalendar+Store.h"; sourceTree = "<group>"; };
+		C2E29765133419E900FA7638 /* EKCalendar+Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKCalendar+Store.m"; sourceTree = "<group>"; };
 		C2E29766133419E900FA7638 /* EKEvent+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEvent+Utilities.h"; sourceTree = "<group>"; };
 		C2E29767133419E900FA7638 /* EKEvent+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEvent+Utilities.m"; sourceTree = "<group>"; };
-		C2E2977113341A0100FA7638 /* CVSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettings.h; sourceTree = "<group>"; };
-		C2E2977213341A0100FA7638 /* CVSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSettings.m; sourceTree = "<group>"; };
 		C2E2978713341B9500FA7638 /* EventKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		C2E3A1A4160D488400F00FB8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettingsViewController.h; sourceTree = "<group>"; };
@@ -992,15 +1004,6 @@
 				9B0AD8D513CFA90F00DF1F2F /* CVDebug.m */,
 			);
 			name = "Debug Logging";
-			sourceTree = "<group>";
-		};
-		9B0C59B513B252B100ADC5E6 /* Language picker */ = {
-			isa = PBXGroup;
-			children = (
-				9B0C59B713B252E200ADC5E6 /* CVDefaultLanguageViewController.h */,
-				9B0C59B813B252E200ADC5E6 /* CVDefaultLanguageViewController.m */,
-			);
-			name = "Language picker";
 			sourceTree = "<group>";
 		};
 		9B0FF97913BD0E1700B316A9 /* HUD */ = {
@@ -1412,6 +1415,14 @@
 			children = (
 				C2027EB11360C405002E58BF /* EKEventStore+Shared.h */,
 				C27EAA241630BD57008046CF /* EKEventStore+Shared.m */,
+				C22EA2A01829925A004F2589 /* EKEventStore+Events.h */,
+				C22EA2A11829925A004F2589 /* EKEventStore+Events.m */,
+				C22EA2A318299264004F2589 /* EKEventStore+Reminders.h */,
+				C22EA2A418299264004F2589 /* EKEventStore+Reminders.m */,
+				C22EA29D18298F6D004F2589 /* EKEventStore+Calendars.h */,
+				C22EA29E18298F6D004F2589 /* EKEventStore+Calendars.m */,
+				C21C53A8182979630064D2AD /* EKEventStore+Settings.h */,
+				C21C53A9182979630064D2AD /* EKEventStore+Settings.m */,
 			);
 			name = EKEventStore;
 			sourceTree = "<group>";
@@ -1419,8 +1430,12 @@
 		C22A881A1810726200EF58C9 /* EKCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				C2E29764133419E900FA7638 /* EKCalendar+Utilities.h */,
-				C2E29765133419E900FA7638 /* EKCalendar+Utilities.m */,
+				C22EA29A18298CBE004F2589 /* EKCalendar+Identity.h */,
+				C22EA29B18298CBE004F2589 /* EKCalendar+Identity.m */,
+				C2E29764133419E900FA7638 /* EKCalendar+Store.h */,
+				C2E29765133419E900FA7638 /* EKCalendar+Store.m */,
+				C22EA29718298C96004F2589 /* EKCalendar+Settings.h */,
+				C22EA29818298C96004F2589 /* EKCalendar+Settings.m */,
 			);
 			name = EKCalendar;
 			sourceTree = "<group>";
@@ -1439,8 +1454,8 @@
 		C22A881C1810728100EF58C9 /* EKSource */ = {
 			isa = PBXGroup;
 			children = (
-				C20DDDA6161D020200CC9D47 /* EKSource+Calvetica.h */,
-				C20DDDA7161D020200CC9D47 /* EKSource+Calvetica.m */,
+				C20DDDA6161D020200CC9D47 /* EKSource+Identity.h */,
+				C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */,
 			);
 			name = EKSource;
 			sourceTree = "<group>";
@@ -2066,7 +2081,6 @@
 				9B72B37C13C95D7C0068C715 /* FAQ */,
 				9B1A7A8B13E144210028A960 /* Contact us */,
 				9B0127A413CBA25B0006C2EA /* Gestures */,
-				9B0C59B513B252B100ADC5E6 /* Language picker */,
 			);
 			name = "Settings View Controllers";
 			sourceTree = "<group>";
@@ -2382,8 +2396,6 @@
 				C266F01413D93400002CD8F1 /* CVCalendarItemShape.m */,
 				9B34709313A918D400B08F00 /* CVParticipantCellModel.h */,
 				9B34709413A918D400B08F00 /* CVParticipantCellModel.m */,
-				C2E2977113341A0100FA7638 /* CVSettings.h */,
-				C2E2977213341A0100FA7638 /* CVSettings.m */,
 				C23A642717FE45F3006097C9 /* CVCalendarCellModel.h */,
 				C23A642817FE45F3006097C9 /* CVCalendarCellModel.m */,
 				C21AD4771810B39A0061B7C7 /* CVEventStoreNotificationCenter.h */,
@@ -2847,9 +2859,8 @@
 				C21AD4761810B2F70061B7C7 /* CVEventStoreNotification.m in Sources */,
 				C2E29733133419A900FA7638 /* main.m in Sources */,
 				C2E29736133419A900FA7638 /* CVAppDelegate.m in Sources */,
-				C2E29768133419E900FA7638 /* EKCalendar+Utilities.m in Sources */,
+				C2E29768133419E900FA7638 /* EKCalendar+Store.m in Sources */,
 				C2E29769133419E900FA7638 /* EKEvent+Utilities.m in Sources */,
-				C2E2977613341A0100FA7638 /* CVSettings.m in Sources */,
 				C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */,
 				C23BB29217F294FE003752FF /* CVSevenButton.m in Sources */,
 				C2997F1F180F762F0030D944 /* EKReminder+Dates.m in Sources */,
@@ -2880,6 +2891,7 @@
 				C270878B137B3A1100810BF1 /* CVOperationQueue.m in Sources */,
 				9BC0758E137F930600449B78 /* CVManageCalendarsViewController.m in Sources */,
 				9BC07596137F950E00449B78 /* CVManageCalendarTableViewCell.m in Sources */,
+				C21C53AA182979630064D2AD /* EKEventStore+Settings.m in Sources */,
 				C286BFBA137EEFB0009F78E3 /* CVEventDetailsRepeatDailyViewController.m in Sources */,
 				C286BFC8137F26E2009F78E3 /* CVCalendarItemCellModel.m in Sources */,
 				C257C9C518138FF300A5A8FD /* CVTwoBarButton.m in Sources */,
@@ -2906,6 +2918,7 @@
 				C2983043139580BB00C9CEB0 /* CVPopoverBackdrop.m in Sources */,
 				C2927A1D1395DF9B00CEF39D /* CVCell.m in Sources */,
 				C2927A281395FB3F00CEF39D /* UILabel+Utilities.m in Sources */,
+				C22EA29C18298CBE004F2589 /* EKCalendar+Identity.m in Sources */,
 				C28D9A76180C33800077E637 /* CVMonthTextButton_iPad.m in Sources */,
 				C2FE8BA51396BB1200641937 /* UIColor+Calvetica.m in Sources */,
 				C206985A1396F657005C8192 /* geometry.c in Sources */,
@@ -2920,6 +2933,7 @@
 				C257C9C81813905B00A5A8FD /* CVThreeBarButton.m in Sources */,
 				C23E68621811F72A0083CCF4 /* UIColor+Serialization.m in Sources */,
 				C2FCCA5113A0386800214648 /* CVRoundedToggleButton.m in Sources */,
+				C22EA29F18298F6D004F2589 /* EKEventStore+Calendars.m in Sources */,
 				C2FCCA5413A03EC600214648 /* CVToggleButton.m in Sources */,
 				C2DA059818242EFF00C08CBD /* NSObject+Description.m in Sources */,
 				C2CA998518286BEB008866C6 /* CVSharedSettings.m in Sources */,
@@ -2946,7 +2960,6 @@
 				C2A0C7C217FCD930005D17B5 /* CVClearButton.m in Sources */,
 				9B27D79913AD5C280084104C /* CVDayEndHourViewController.m in Sources */,
 				9B16EE8813AFB32300368AF7 /* CVAllDayEventDefaultAlarmsViewController.m in Sources */,
-				9B0C59B913B252E200ADC5E6 /* CVDefaultLanguageViewController.m in Sources */,
 				C21401D813B2B68400211277 /* CVAllDayAlarmPickerViewController.m in Sources */,
 				C2D3888013B8D075002527A7 /* UIView+Utilities.m in Sources */,
 				9BEFC7D113BB8174001CB080 /* CVCustomAlertSoundsViewController.m in Sources */,
@@ -2987,12 +3000,14 @@
 				C280C9AE13E07C5F00656992 /* CVWeekdayTableViewCell_iPhone.m in Sources */,
 				C280C9B413E07CF200656992 /* CVWeekdayTableHeaderView_iPhone.m in Sources */,
 				C280C9BA13E07DDA00656992 /* CVWeekdayTableViewCell.m in Sources */,
+				C22EA2A518299264004F2589 /* EKEventStore+Reminders.m in Sources */,
 				9B1A7A9213E145040028A960 /* CVContactUsViewController.m in Sources */,
 				6A2816FD13E2FAA700A5981E /* CVComboBoxViewController.m in Sources */,
 				6A8C3D1513E48B1200D8AB76 /* CVTapReleaseGestureRecognizer.m in Sources */,
 				9B13F66913E5437F0009D37A /* CVTableSectionHeaderView.m in Sources */,
 				C23AB1FB181B370200056F14 /* NSMutableArray+Stack.m in Sources */,
 				C2997F19180F6A070030D944 /* EKEvent+RelativeToDay.m in Sources */,
+				C22EA29918298C96004F2589 /* EKCalendar+Settings.m in Sources */,
 				9B13F66F13E545030009D37A /* CVRootDetailedWeekTableViewController.m in Sources */,
 				C251350A13EDBC7100936CC0 /* UIApplication+Utilities.m in Sources */,
 				C251351F13EDEC7900936CC0 /* CVEventEditViewController.m in Sources */,
@@ -3010,6 +3025,7 @@
 				9B858CE71447A96E00A370FC /* CVEventDetailsLocationViewController.m in Sources */,
 				9B1C2135144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m in Sources */,
 				C257C9BF1813647800A5A8FD /* CVStrikethroughLabel.m in Sources */,
+				C22EA2A21829925A004F2589 /* EKEventStore+Events.m in Sources */,
 				9B1C2138144DF61300447661 /* SCEventDetailsAlarmPicker.m in Sources */,
 				C212260F151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m in Sources */,
 				C2D759CD1522082D00B04B4D /* CVMonthTableViewController.m in Sources */,
@@ -3023,7 +3039,7 @@
 				C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */,
 				C240D96C180E05680089E963 /* CVReminderCell.m in Sources */,
 				C2E3A1C1161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m in Sources */,
-				C20DDDA8161D020200CC9D47 /* EKSource+Calvetica.m in Sources */,
+				C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */,
 				C2D4D342162CC7F5002484A6 /* CVStartWeekOnViewController.m in Sources */,
 				C27EAA251630BD57008046CF /* EKEventStore+Shared.m in Sources */,
 			);

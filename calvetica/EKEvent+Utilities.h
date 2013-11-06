@@ -1,18 +1,18 @@
 
 
+#define MIN_EVENT_DURATION 36000 // 10 hours
+
 
 @interface EKEvent (Utilities)
 
 @property (nonatomic, strong) NSDate *startingDate;
 @property (nonatomic, strong) NSDate *endingDate;
 
-#pragma mark - CONSTRUCTORS
 + (EKEvent *)eventWithDefaultsAtDate:(NSDate *)date allDay:(BOOL)isAllDay;
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay;
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay calendar:(EKCalendar *)cal;
 
 
-#pragma mark - Methods
 - (BOOL)hadRecurrenceRuleOnPreviousSave;
 - (void)shiftEndDateBySettingStartDate:(NSDate *)newDate;
 - (void)addSnoozeAlarmWithTimeInterval:(NSTimeInterval)interval;
@@ -20,9 +20,6 @@
 - (void)resetDurationToDefault;
 - (BOOL)isACurrentAlarm:(EKAlarm *)alarm;
 
-#pragma mark - COMPARATORS
-
-#pragma mark - UTILITIES
 - (EKCalendar *)readCalendar;
 - (NSTimeInterval)eventDuration;
 - (BOOL)fitsWithinWeekOfDate:(NSDate *)date;

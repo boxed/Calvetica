@@ -26,7 +26,6 @@
     #import "NSObject+Null.h"
     #import "EventKitAdditions.h"
 	#import "CVOperationQueue.h"
-	#import "CVSettings.h"
     #import "CVSharedSettings.h"
     #import <Crashlytics/Crashlytics.h>
     #import "color.h"

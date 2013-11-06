@@ -164,32 +164,32 @@
 
 	NSTimeInterval absInterval = CVABS(interval);
 
-	NSInteger months = floor(absInterval / (float)SECONDS_IN_MONTH);
+	NSInteger months = floor(absInterval / (float)MTDateConstantSecondsInMonth);
 
 	if (months > 0) {
 		[s appendFormat:@"%ld months, ", (long)months];
-		absInterval -= months * SECONDS_IN_MONTH;
+		absInterval -= months * MTDateConstantSecondsInMonth;
 	}
 
-	NSInteger days = floor(absInterval / (float)SECONDS_IN_DAY);
+	NSInteger days = floor(absInterval / (float)MTDateConstantSecondsInDay);
 
 	if (days > 0) {
 		[s appendFormat:@"%ld days, ", (long)days];
-		absInterval -= days * SECONDS_IN_DAY;
+		absInterval -= days * MTDateConstantSecondsInDay;
 	}
 
-	NSInteger hours = floor(absInterval / (float)SECONDS_IN_HOUR);
+	NSInteger hours = floor(absInterval / (float)MTDateConstantSecondsInHour);
 
 	if (hours > 0) {
 		[s appendFormat:@"%ld hours, ", (long)hours];
-		absInterval -= hours * SECONDS_IN_HOUR;
+		absInterval -= hours * MTDateConstantSecondsInHour;
 	}
 
-	NSInteger minutes = floor(absInterval / (float)SECONDS_IN_MINUTE);
+	NSInteger minutes = floor(absInterval / (float)MTDateConstantSecondsInMinute);
 
 	if (minutes > 0) {
 		[s appendFormat:@"%ld minutes, ", (long)minutes];
-		absInterval -= minutes * SECONDS_IN_MINUTE;
+		absInterval -= minutes * MTDateConstantSecondsInMinute;
 	}
 
 	NSInteger seconds = absInterval;

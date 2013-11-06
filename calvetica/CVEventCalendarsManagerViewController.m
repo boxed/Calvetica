@@ -22,7 +22,7 @@
 {
 	[super viewDidLoad];
 
-	self.calendarSources = [EKEventStore calendarSources];
+	self.calendarSources = [EKEventStore sharedStore].sources;
 
     self.clearImage = [UIImage clearImageWithSize:CGSizeMake(30, 30)];
 
@@ -98,7 +98,7 @@
 		EKCalendar *cal = [calendars objectAtIndex:indexPath.row];
 
         cell.textLabel.text = cal.title;
-		cell.imageView.backgroundColor = [UIColor colorWithCGColor:cal.CGColor];
+		cell.imageView.backgroundColor = cal.customColor;
 
 		if (cal.isImmutable) {
             cell.textLabel.textColor    = [UIColor grayColor];
@@ -163,7 +163,7 @@
         EKSource *source        = [_calendarSources objectAtIndex:indexPath.section];
         NSArray *calendars      = [[source calendarsForEntityType:EKEntityTypeEvent] allObjects];
         EKCalendar *calendar    = [calendars objectAtIndex:indexPath.row];
-		if ([calendar remove]) {
+		if ([calendar removeWithError:nil]) {
             [tableView beginUpdates];
 			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView endUpdates];
@@ -207,10 +207,10 @@
 - (void)calendarDetailsController:(CVEditCalendarViewController *)controller didFinishWithResult:(CVCalendarDetailsControllerResult)result
 {
     if (result == CVCalendarDetailsControllerResultSaved) {
-        _calendarSources = [EKEventStore calendarSources];
+        _calendarSources = [EKEventStore sharedStore].sources;
     }
 	else if (controller.calendar.isNew) {
-		[controller.calendar remove];
+		[controller.calendar removeWithError:nil];
 	}
     [self.navigationController popViewControllerAnimated:YES];
 	[self.tableView reloadData];

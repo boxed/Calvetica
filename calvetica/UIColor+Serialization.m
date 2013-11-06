@@ -15,17 +15,19 @@
 	return [NSKeyedArchiver archivedDataWithRootObject:self];
 }
 
-+ (UIColor *)colorUnarchivedFromData:(NSData *)data {
++ (UIColor *)colorUnarchivedFromData:(NSData *)data
+{
 	return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
-- (NSString *)colorToString
+- (NSString *)stringValue
 {
 	const CGFloat *components = CGColorGetComponents(self.CGColor);
 	return [NSString stringWithFormat:@"%f,%f,%f,%f", components[0], components[1], components[2], components[3]];
 }
 
-+ (UIColor *)colorFromString:(NSString *)string {
++ (UIColor *)colorFromString:(NSString *)string
+{
 	NSArray *components = [string componentsSeparatedByString:@","];
 	CGFloat r = [[components objectAtIndex:0] floatValue];
 	CGFloat g = [[components objectAtIndex:1] floatValue];

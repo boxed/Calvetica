@@ -70,7 +70,7 @@
         }
         
         
-        if ([event eventDuration] < 60 * 60 * 8) { //([event fitsWithinDayOfDate:event.startingDate] && ![event isAllDay]) || [event eventDuration] < SECONDS_IN_DAY - 1 ) {
+        if ([event eventDuration] < 60 * 60 * 8) { //([event fitsWithinDayOfDate:event.startingDate] && ![event isAllDay]) || [event eventDuration] < MTDateConstantSecondsInDay - 1 ) {
             eventSquareModel.offset = -1;
             eventSquareModel.overlaps = -1;
             [eventSquareModels addObject:eventSquareModel];
@@ -223,9 +223,9 @@
     }
 
     CGFloat padding = 1.0f;
-    CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
-    NSUInteger maxOffset[DAYS_IN_WEEK];
-    memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
+    CGFloat boxWidth = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
+    NSUInteger maxOffset[MTDateConstantDaysInWeek];
+    memset(maxOffset, 0, MTDateConstantDaysInWeek * sizeof(NSUInteger));
     
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -250,8 +250,8 @@
         
         // otherwise it starts on this day
         else {
-            startSecondsIntoWeek = e.startSeconds % SECONDS_IN_WEEK;
-            e.x = (startSecondsIntoWeek / (float)SECONDS_IN_WEEK) * self.frame.size.width;	
+            startSecondsIntoWeek = e.startSeconds % MTDateConstantSecondsInWeek;
+            e.x = (startSecondsIntoWeek / (float)MTDateConstantSecondsInWeek) * self.frame.size.width;	
         }
         
         
@@ -260,14 +260,14 @@
         // SET WIDTH
         
         // if it ends after the end of this week
-        if (e.endSeconds >= SECONDS_IN_WEEK) {
+        if (e.endSeconds >= MTDateConstantSecondsInWeek) {
             e.width = self.frame.size.width - e.x;
         } 
         
         // otherise, it ends within this week
         else {
-            endSecondsIntoDay = e.endSeconds % SECONDS_IN_WEEK;
-            e.width = ((endSecondsIntoDay - startSecondsIntoWeek) / (float)SECONDS_IN_WEEK) * self.frame.size.width;
+            endSecondsIntoDay = e.endSeconds % MTDateConstantSecondsInWeek;
+            e.width = ((endSecondsIntoDay - startSecondsIntoWeek) / (float)MTDateConstantSecondsInWeek) * self.frame.size.width;
             //iPhone min bar width
             if (e.width < 8) {
                 e.width = 8;
@@ -300,7 +300,7 @@
         
         
         // DRAW
-        CGColorRef color = [e.calendarItem.calendar customColor].CGColor;
+        CGColorRef color = e.calendarItem.calendar.customColor.CGColor;
 
         CGContextSetFillColorWithColor(context, color);
         CGContextSetShouldAntialias(context, YES);
@@ -365,7 +365,7 @@
                                          roundf(e.height));
 
             // DRAW
-            CGColorRef color = [e.calendarItem.calendar customColor].CGColor;
+            CGColorRef color = e.calendarItem.calendar.customColor.CGColor;
             CGContextSetFillColorWithColor(context, color);
             CGContextSetStrokeColorWithColor(context, color);
             CGContextSetAlpha(context, 1.0f);
@@ -390,8 +390,8 @@
 
 - (void)drawiPad 
 {
-    NSUInteger totalEventsPerDay[DAYS_IN_WEEK];
-    memset(totalEventsPerDay, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
+    NSUInteger totalEventsPerDay[MTDateConstantDaysInWeek];
+    memset(totalEventsPerDay, 0, MTDateConstantDaysInWeek * sizeof(NSUInteger));
     
     NSMutableArray *bars = [NSMutableArray array];
     NSMutableArray *dots = [NSMutableArray array];
@@ -415,15 +415,15 @@
     CGContextSetLineWidth(context, 0.5f);
     
 
-    NSUInteger maxOffset[DAYS_IN_WEEK];
-    memset(maxOffset, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
-    NSUInteger eventsDrawnPerDay[DAYS_IN_WEEK];
-    memset(eventsDrawnPerDay, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
+    NSUInteger maxOffset[MTDateConstantDaysInWeek];
+    memset(maxOffset, 0, MTDateConstantDaysInWeek * sizeof(NSUInteger));
+    NSUInteger eventsDrawnPerDay[MTDateConstantDaysInWeek];
+    memset(eventsDrawnPerDay, 0, MTDateConstantDaysInWeek * sizeof(NSUInteger));
     
     
     // DIMENSIONS
     
-    CGFloat boxWidth                = floorf(self.frame.size.width / (float)DAYS_IN_WEEK);
+    CGFloat boxWidth                = floorf(self.frame.size.width / (float)MTDateConstantDaysInWeek);
     CGFloat topPadding              = 3.0f;
     
     CGFloat barSidePadding          = 2.0f;
@@ -450,8 +450,8 @@
         
         // otherwise it starts on this day
         else {
-            startSecondsIntoWeek = e.startSeconds % SECONDS_IN_WEEK;
-            e.x = (startSecondsIntoWeek / (float)SECONDS_IN_WEEK) * self.frame.size.width;	
+            startSecondsIntoWeek = e.startSeconds % MTDateConstantSecondsInWeek;
+            e.x = (startSecondsIntoWeek / (float)MTDateConstantSecondsInWeek) * self.frame.size.width;	
         }
         
         
@@ -460,14 +460,14 @@
         // SET WIDTH
         
         // if it ends after the end of this week
-        if (e.endSeconds >= SECONDS_IN_WEEK) {
+        if (e.endSeconds >= MTDateConstantSecondsInWeek) {
             e.width = self.frame.size.width - e.x;
         } 
         
         // otherise, it ends within this week
         else {
-            endSecondsIntoDay = e.endSeconds % SECONDS_IN_WEEK;
-            e.width = ((endSecondsIntoDay - startSecondsIntoWeek) / (float)SECONDS_IN_WEEK) * self.frame.size.width;	
+            endSecondsIntoDay = e.endSeconds % MTDateConstantSecondsInWeek;
+            e.width = ((endSecondsIntoDay - startSecondsIntoWeek) / (float)MTDateConstantSecondsInWeek) * self.frame.size.width;	
             //iPad min bar width
             if (e.width < 20) {
                 e.width = 20;
@@ -564,8 +564,8 @@
     barSpacing = 4.0f;
     NSUInteger row[7];
     memset(row, 0, 7 * sizeof(NSUInteger));
-    NSUInteger fullDays[DAYS_IN_WEEK];
-    memset(fullDays, 0, DAYS_IN_WEEK * sizeof(NSUInteger));
+    NSUInteger fullDays[MTDateConstantDaysInWeek];
+    memset(fullDays, 0, MTDateConstantDaysInWeek * sizeof(NSUInteger));
     
     for (CVCalendarItemShape *e in dots) {
         
@@ -617,7 +617,7 @@
                                          roundf(e.height));
 
             // DRAW
-            CGColorRef color = [e.calendarItem.calendar customColor].CGColor;
+            CGColorRef color = e.calendarItem.calendar.customColor.CGColor;
 
             CGContextSetFillColorWithColor(context, color);
             CGContextSetStrokeColorWithColor(context, color);

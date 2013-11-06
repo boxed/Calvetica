@@ -137,7 +137,7 @@
     _todayImage.hidden = YES;
     if ([today mt_isOnOrAfter:_weekStartDate] && [today mt_isBefore:[_weekStartDate mt_endOfCurrentWeek]]) {
         _todayImage.hidden  = NO;
-        CGFloat boxWidth    = self.bounds.size.width / (float)DAYS_IN_WEEK;
+        CGFloat boxWidth    = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
         CGRect f            = _todayImage.frame;
         f.origin.x          = floorf(boxWidth * ([today mt_weekdayOfWeek] - 1));
         f.origin.y          = 0;
@@ -153,7 +153,7 @@
 
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, NO);
-    CGFloat boxWidth = self.bounds.size.width / (float)DAYS_IN_WEEK;
+    CGFloat boxWidth = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
 
     // gray out every other month
     if (PAD) {
@@ -205,7 +205,7 @@
     
     // figure date
     CGPoint pointOfTouch = [gesture locationInView:self];
-    NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * DAYS_IN_WEEK);
+    NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * MTDateConstantDaysInWeek);
     NSDate *date = [self.weekStartDate mt_dateDaysAfter:daysIntoWeek];
     
     [self.delegate weekTableViewCell:self wasPressedOnDate:date];
@@ -217,11 +217,11 @@
     
     // figure date
     CGPoint pointOfTouch = [gesture locationInView:self];
-    NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * DAYS_IN_WEEK);
+    NSInteger daysIntoWeek = floor( ( pointOfTouch.x / self.bounds.size.width ) * MTDateConstantDaysInWeek);
     NSDate *date = [self.weekStartDate mt_dateDaysAfter:daysIntoWeek];
     
     CGRect rectOfPlaceHolder = CGRectZero;
-    rectOfPlaceHolder.size.width = (self.bounds.size.width / (DAYS_IN_WEEK * 1.0f));
+    rectOfPlaceHolder.size.width = (self.bounds.size.width / (MTDateConstantDaysInWeek * 1.0f));
     rectOfPlaceHolder.size.height = self.bounds.size.height;
     rectOfPlaceHolder.origin.x = daysIntoWeek * rectOfPlaceHolder.size.width;
     rectOfPlaceHolder.origin.y = 0;

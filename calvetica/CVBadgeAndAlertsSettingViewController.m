@@ -25,8 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-	_selection = [[NSUserDefaults standardUserDefaults] integerForKey:BADGE_OR_ALERTS];
+	_selection = PREFS.badgeOrAlerts;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -41,11 +40,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	_selection = cell.tag;
-	[[NSUserDefaults standardUserDefaults] setInteger:cell.tag forKey:BADGE_OR_ALERTS];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    UITableViewCell *cell   = [tableView cellForRowAtIndexPath:indexPath];
+    _selection              = cell.tag;
+    PREFS.badgeOrAlerts     = cell.tag;
+    cell.accessoryType      = UITableViewCellAccessoryCheckmark;
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	[tableView reloadData];
 }

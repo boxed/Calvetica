@@ -41,7 +41,7 @@
 				relativeOffset = [alarm.absoluteDate timeIntervalSinceDate:self.event.startingDate];
 			}
 			
-			if (relativeOffset <= SECONDS_IN_MINUTE) {
+			if (relativeOffset <= MTDateConstantSecondsInMinute) {
                 self.eventStartButton.hidden = YES;
                 self.tenMinutesButton.frame = CGRectMake(12, 80, 261, 48);
 				break;				
@@ -63,7 +63,7 @@
 - (IBAction)snoozeButtonWasHit:(id)sender 
 {
     UIButton *button = (UIButton *)sender;
-    NSTimeInterval interval = button.tag * SECONDS_IN_MINUTE;
+    NSTimeInterval interval = button.tag * MTDateConstantSecondsInMinute;
 
 //	EKEvent *event = [EKEventStore eventWithIdentifier:_event.identifier];
 

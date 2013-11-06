@@ -216,7 +216,7 @@
 
             }
 
-            UIColor *calendarColor      = [UIColor colorWithCGColor:reminder.calendar.CGColor];
+            UIColor *calendarColor      = reminder.calendar.customColor;
             cell.coloredDotView.color   = calendarColor;
             cell.coloredDotView.shape   = CVColoredShapeCheck;
             cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];

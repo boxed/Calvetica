@@ -7,7 +7,6 @@
 //
 
 #import "CVTimeZoneViewController.h"
-#import "CVSettings.h"
 
 
 @interface CVTimeZoneViewController () <UISearchBarDelegate>

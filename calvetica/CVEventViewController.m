@@ -197,8 +197,8 @@
 - (void)saveButtonWasTapped:(id)sender 
 {
     // if the selected calendar is hidden show it
-    if (![self.event.calendar isASelectedCalendar]) {
-        [CVSettings addSelectedEventCalendar:self.event.calendar];
+    if (self.event.calendar.isHidden) {
+        self.event.calendar.hidden = NO;
     }
 	[self.event saveThenDoActionBlock:^(void) {
 		[self.delegate eventViewController:self didFinishWithResult:CVEventResultSaved];

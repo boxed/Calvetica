@@ -8,7 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
-#import "EKCalendar+Utilities.h"
+#import "EKCalendar+Store.h"
+#import "EKCalendar+Identity.h"
+#import "EKCalendar+Settings.h"
 
 #import "EKCalendarItem+Identity.h"
 #import "EKCalendarItem+Sorting.h"
@@ -20,6 +22,10 @@
 #import "EKEvent+Store.h"
 
 #import "EKEventStore+Shared.h"
+#import "EKEventStore+Events.h"
+#import "EKEventStore+Reminders.h"
+#import "EKEventStore+Calendars.h"
+#import "EKEventStore+Settings.h"
 
 #import "EKRecurrenceDayOfWeek+Utilities.h"
 #import "EKRecurrenceRule+Utilities.h"
@@ -30,4 +36,4 @@
 #import "EKReminder+Store.h"
 #import "EKReminder+UI.h"
 
-#import "EKSource+Calvetica.h"
+#import "EKSource+Identity.h"

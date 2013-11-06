@@ -46,9 +46,9 @@
 + (EKEvent *)eventWithDefaultsAtDate:(NSDate *)date allDay:(BOOL)isAllDay
 {
     return [EKEvent eventWithDefaultsAtStartDate:date
-                                         endDate:[date dateByAddingTimeInterval:[CVSettings defaultDuration]]
+                                         endDate:[date dateByAddingTimeInterval:PREFS.defaultDuration]
                                           allDay:isAllDay
-                                        calendar:[CVSettings defaultEventCalendar]];
+                                        calendar:[[EKEventStore sharedStore] defaultEventCalendar]];
 }
 
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)isAllDay
@@ -56,7 +56,7 @@
     return [EKEvent eventWithDefaultsAtStartDate:startDate
                                          endDate:endDate
                                           allDay:isAllDay
-                                        calendar:[CVSettings defaultEventCalendar]];
+                                        calendar:[[EKEventStore sharedStore] defaultEventCalendar]];
 }
 
 + (EKEvent *)eventWithDefaultsAtStartDate:(NSDate *)startDate
@@ -64,52 +64,41 @@
                                    allDay:(BOOL)isAllDay
                                  calendar:(EKCalendar *)cal
 {
-    EKEvent *event = [EKEventStore event];
+    EKEvent *event = [EKEvent eventWithEventStore:[EKEventStore sharedStore]];
     
     if (cal) {
         event.calendar = cal;
     }
     else {
-        event.calendar = [CVSettings defaultEventCalendar];
+        event.calendar = [[EKEventStore sharedStore] defaultEventCalendar];
     }
     event.title = @"Untitled"; 
     
     NSArray *defaultAlarms;
     
     if (isAllDay) {
-        defaultAlarms = [CVSettings defaultAllDayEventAlarms];
-        if (event.calendar.source.sourceType == EKSourceTypeExchange && ![CVSettings multipleExchangeAlarms] && defaultAlarms.count > 0) {
-            NSNumber *number = [defaultAlarms firstObject];
+        defaultAlarms = PREFS.defaultAllDayEventAlarms;
+        for (NSNumber *number in defaultAlarms) {
             [event addAlarm:[EKAlarm alarmWithRelativeOffset:[number integerValue]]];
-        }
-        else {
-            for (NSNumber *number in defaultAlarms) {
-                [event addAlarm:[EKAlarm alarmWithRelativeOffset:[number integerValue]]];
-            } 
         }
     }
     else {
-        defaultAlarms = [CVSettings defaultEventAlarms];
-        if (event.calendar.source.sourceType == EKSourceTypeExchange && ![CVSettings multipleExchangeAlarms] && defaultAlarms.count > 0) {
-            
-            NSNumber *number = [defaultAlarms firstObject];
+        defaultAlarms = PREFS.defaultEventAlarms;
+        for (NSNumber *number in defaultAlarms) {
             [event addAlarm:[EKAlarm alarmWithRelativeOffset:-[number integerValue]]];
-        }
-        else {
-            for (NSNumber *number in defaultAlarms) {
-                [event addAlarm:[EKAlarm alarmWithRelativeOffset:-[number integerValue]]];
-            } 
         }
     }
 
-	if (PREFS.timezoneSupportEnabled) event.timeZone = [CVSettings timezone];
+	if (PREFS.timezoneSupportEnabled && PREFS.timeZoneName) {
+        event.timeZone = [NSTimeZone timeZoneWithName:PREFS.timeZoneName];
+    }
 
     event.startingDate = startDate;
     if (endDate) {
         event.endingDate = endDate;
     }
     else {
-        event.endingDate = [event.startingDate dateByAddingTimeInterval:[CVSettings defaultDuration]];
+        event.endingDate = [event.startingDate dateByAddingTimeInterval:PREFS.defaultDuration];
     }
     event.allDay = isAllDay;
     
@@ -123,7 +112,7 @@
 
 - (BOOL)hadRecurrenceRuleOnPreviousSave 
 {
-	EKEvent *e = [EKEventStore eventWithIdentifier:self.identifier];
+	EKEvent *e = [[EKEventStore sharedStore] eventWithIdentifier:self.identifier];
 	return e != nil && e.hasRecurrenceRules;
 }
 
@@ -158,22 +147,22 @@
     self.alarms = nil;
     if (self.isAllDay) {
         if (self.calendar.source.sourceType == EKSourceTypeExchange && newAlarms.count > 0) {
-            NSNumber *number = [[CVSettings defaultAllDayEventAlarms] firstObject];
+            NSNumber *number = [PREFS.defaultAllDayEventAlarms firstObject];
             [newAlarms addObject:[EKAlarm alarmWithRelativeOffset:[number integerValue]]];
         }
         else {
-            for (NSNumber *time in [CVSettings defaultAllDayEventAlarms]) {
+            for (NSNumber *time in PREFS.defaultAllDayEventAlarms) {
                 [newAlarms addObject:[EKAlarm alarmWithRelativeOffset:[time integerValue]]];
             }
         }
     }
     else {
         if (self.calendar.source.sourceType == EKSourceTypeExchange && newAlarms.count > 0) {
-            NSNumber *number = [[CVSettings defaultEventAlarms] firstObject];
+            NSNumber *number = [PREFS.defaultEventAlarms firstObject];
             [newAlarms addObject:[EKAlarm alarmWithRelativeOffset:-[number integerValue]]];
         }
         else {
-            for (NSNumber *number in [CVSettings defaultEventAlarms]) {
+            for (NSNumber *number in PREFS.defaultEventAlarms) {
                 [newAlarms addObject:[EKAlarm alarmWithRelativeOffset:-[number integerValue]]];
             }
         }
@@ -184,7 +173,7 @@
 
 - (void)resetDurationToDefault 
 {
-    self.endingDate = [self.startingDate dateByAddingTimeInterval:[CVSettings defaultDuration]];
+    self.endingDate = [self.startingDate dateByAddingTimeInterval:PREFS.defaultDuration];
 }
 
 - (BOOL)isACurrentAlarm:(EKAlarm *)alarm 
@@ -365,7 +354,7 @@
     }
     
     else {
-        [string appendString:[self.endingDate mt_stringFromDateWithFullMonth]];
+        [string appendString:[self.endingDate mt_stringFromDateWithShortMonth]];
         [string appendString:@" "];
         [string appendFormat:@"%lu", (unsigned long)[self.endingDate mt_dayOfMonth]];
         [string appendString:@" "]; 
@@ -639,9 +628,9 @@
         //[iCalString appendFormat:@"\r\nX-WR-CALNAME:%@",self.calendar.title];
     }
     //TimeZonef
-    NSTimeZone *timeZone = [CVSettings timezone];
-    NSString *timeZoneName = [timeZone name];
-    NSString *timeZoneAbb = [timeZone abbreviation];
+    NSTimeZone *timeZone    = PREFS.timeZoneName ? [NSTimeZone timeZoneWithName:PREFS.timeZoneName] : [NSTimeZone defaultTimeZone];
+    NSString *timeZoneName  = [timeZone name];
+    NSString *timeZoneAbb   = [timeZone abbreviation];
 
     NSDateFormatter *offsetFormat = [[NSDateFormatter alloc] init];
     [offsetFormat setDateFormat:@"Z"];

@@ -41,12 +41,12 @@
 - (void)configureAlarmOptions 
 {
     self.alarmOptions = [NSMutableArray array];
-    [self.alarmOptions addObject:@(-(6 * SECONDS_IN_HOUR))];	// 6pm the day before
-    [self.alarmOptions addObject:@(-(2 * SECONDS_IN_HOUR))];	// 10pm the day before
-    [self.alarmOptions addObject:@(6 * SECONDS_IN_HOUR)];		// 6am the day of
-    [self.alarmOptions addObject:@(7 * SECONDS_IN_HOUR)];		// 7am the day of
-    [self.alarmOptions addObject:@(8 * SECONDS_IN_HOUR)];		// 8am the day of
-    [self.alarmOptions addObject:@(9 * SECONDS_IN_HOUR)];		// 9am the day of  
+    [self.alarmOptions addObject:@(-(6 * MTDateConstantSecondsInHour))];	// 6pm the day before
+    [self.alarmOptions addObject:@(-(2 * MTDateConstantSecondsInHour))];	// 10pm the day before
+    [self.alarmOptions addObject:@(6 * MTDateConstantSecondsInHour)];		// 6am the day of
+    [self.alarmOptions addObject:@(7 * MTDateConstantSecondsInHour)];		// 7am the day of
+    [self.alarmOptions addObject:@(8 * MTDateConstantSecondsInHour)];		// 8am the day of
+    [self.alarmOptions addObject:@(9 * MTDateConstantSecondsInHour)];		// 9am the day of  
     
     [self configureAlarmButtons];
 }
@@ -82,26 +82,8 @@
 {
     CVToggleButton *button = (CVToggleButton *)sender;
     
-    if (self.event.calendar.source.sourceType == EKSourceTypeExchange && ![CVSettings multipleExchangeAlarms]) {
-        // only allow one at a time
-        for (CVToggleButton *alarmButton in self.alarmButtons) {
-            if ([alarmButton isEqual:button]) {
-                if (alarmButton.selected == YES) {
-                    alarmButton.selected = NO;
-                }
-                else {
-                    alarmButton.selected = YES;
-                }
-            }
-            else {
-                alarmButton.selected = NO;
-            }
-        }
-    }
-    else {
-        button.selected = !button.selected;
-    }
-    
+    button.selected = !button.selected;
+
     NSMutableArray *alarms = [NSMutableArray array];
     
     for (CVToggleButton *button in self.alarmButtons) {

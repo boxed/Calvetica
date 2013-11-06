@@ -33,7 +33,7 @@
     [super viewDidLoad];
 
 	self.alarms = [NSMutableArray array];
-	self.selectedAlarms = [NSMutableArray arrayWithArray:[CVSettings defaultEventAlarms]];
+	self.selectedAlarms = [PREFS.defaultEventAlarms mutableCopy];
 	
     NSArray *availableAlarmTitles = @[NSLocalizedString(@"0 minutes before", @"0m"),
                                             NSLocalizedString(@"5 minutes before", @"5m"),
@@ -53,21 +53,21 @@
                                             NSLocalizedString(@"1 month before", @"1mo")];
     
     NSArray *availableAlarmValues = @[@0, 
-                                            @(SECONDS_IN_MINUTE * 5), 
-                                            @(SECONDS_IN_MINUTE * 15), 
-                                            @(SECONDS_IN_MINUTE * 30), 
-                                            @(SECONDS_IN_MINUTE * 45), 
-                                            @SECONDS_IN_HOUR, 
-                                            @(SECONDS_IN_HOUR * 2), 
-                                            @(SECONDS_IN_HOUR * 6), 
-                                            @(SECONDS_IN_HOUR * 12), 
-                                            @SECONDS_IN_DAY, 
-                                            @(SECONDS_IN_DAY * 2), 
-                                            @(SECONDS_IN_DAY * 3), 
-                                            @(SECONDS_IN_DAY * 5), 
-                                            @SECONDS_IN_WEEK, 
-                                            @(SECONDS_IN_WEEK * 2), 
-                                            @SECONDS_IN_MONTH];
+                                            @(MTDateConstantSecondsInMinute * 5), 
+                                            @(MTDateConstantSecondsInMinute * 15), 
+                                            @(MTDateConstantSecondsInMinute * 30), 
+                                            @(MTDateConstantSecondsInMinute * 45), 
+                                            @(MTDateConstantSecondsInHour),
+                                            @(MTDateConstantSecondsInHour * 2), 
+                                            @(MTDateConstantSecondsInHour * 6), 
+                                            @(MTDateConstantSecondsInHour * 12), 
+                                            @(MTDateConstantSecondsInDay),
+                                            @(MTDateConstantSecondsInDay * 2), 
+                                            @(MTDateConstantSecondsInDay * 3), 
+                                            @(MTDateConstantSecondsInDay * 5), 
+                                            @(MTDateConstantSecondsInWeek),
+                                            @(MTDateConstantSecondsInWeek * 2), 
+                                            @(MTDateConstantSecondsInMonth)];
     
     for (int i = 0; i < [availableAlarmTitles count]; i++) {
         BOOL selected = NO;
@@ -129,7 +129,11 @@
     return cell;
 }
 
+
+
+
 #pragma mark - Table view delegate
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
     return NSLocalizedString(@"Available alarms", @"Table header for Default alarms");
@@ -156,7 +160,7 @@
         [dict setObject:@(NO) forKey:Selected_Key];
         [self.selectedAlarms removeObject:[dict objectForKey:Value_Key]];
     }
-    [CVSettings setDefaultEventAlarms:self.selectedAlarms];
+    PREFS.defaultEventAlarms = self.selectedAlarms;
 }
 
 
