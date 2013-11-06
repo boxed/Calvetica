@@ -217,15 +217,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
 - (IBAction)closeSettings:(UIStoryboardSegue *)segue
 {
-	[NSDate mt_setFirstDayOfWeek:PREFS.weekStartsOnWeekday];
-    if (PREFS.timeZoneName) {
-        [NSDate mt_setTimeZone:[NSTimeZone timeZoneWithName:PREFS.timeZoneName]];
-    }
-    [self updateWeekdayTitleLabels];
-    [self reloadMonthTableView];
-    [self updateSelectionSquare:NO];
-    [self reloadRootTableViewWithCompletion:nil];
-
+    [self refreshUIBasedOnChangedSettings];
 	if (PAD) {
 		if (self.nativePopoverController) {
 			[self.nativePopoverController dismissPopoverAnimated:YES];
@@ -233,12 +225,6 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 		}
 	}
 	else {
-		if (PREFS.iPhoneScrollableMonthView) {
-			self.monthTableViewController.tableView.scrollEnabled = YES;
-		}
-		else {
-			self.monthTableViewController.tableView.scrollEnabled = NO;
-		}
 		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 }
@@ -1206,10 +1192,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)sharedSettingsChanged
 {
-    [self reloadMonthTableView];
-    [self reloadRootTableViewWithCompletion:nil];
-    [self updateMonthAndDayLabels];
-    [self updateWeekdayTitleLabels];
+    [self refreshUIBasedOnChangedSettings];
 }
 
 
@@ -1591,6 +1574,79 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 	for (NSInteger i = 0; i <= daysDuration; i++) {
 		[self.monthTableViewController reloadRowForDate:[event.startingDate mt_dateDaysAfter:i]];
 	}
+}
+
+- (void)refreshUIBasedOnChangedSettings
+{
+    NSArray *changedSettings = [[CVSharedSettings sharedSettings] changedPropertyNames];
+
+    if ([changedSettings containsObject:@"remindersEnabled"]) {
+        [self reloadMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"timezoneSupportEnabled"] ||
+        [changedSettings containsObject:@"timeZoneName"])
+    {
+        if (PREFS.timeZoneName) {
+            [NSDate mt_setTimeZone:[NSTimeZone timeZoneWithName:PREFS.timeZoneName]];
+        }
+    }
+
+    if ([changedSettings containsObject:@"twentyFourHourFormat"]) {
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"dotsOnlyMonthView"]) {
+        [self reloadMonthTableView];
+    }
+
+    if ([changedSettings containsObject:@"iPhoneScrollableMonthView"]) {
+        if (PREFS.iPhoneScrollableMonthView && !PAD) {
+            self.monthTableViewController.tableView.scrollEnabled = YES;
+        }
+        else {
+            self.monthTableViewController.tableView.scrollEnabled = NO;
+        }
+    }
+
+    if ([changedSettings containsObject:@"showDurationOnReadOnlyEvents"]) {
+        [self reloadMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"hiddenEventCalendarIdentifiers"]) {
+        [self reloadMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"customCalendarColors"]) {
+        [self reloadMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"customCalendarColors"]) {
+        [self reloadMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"weekStartsOnWeekday"]) {
+        [NSDate mt_setFirstDayOfWeek:PREFS.weekStartsOnWeekday];
+        [self.monthTableViewController resetStartDate];
+        [self reloadMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
+        [self updateWeekdayTitleLabels];
+    }
+
+    if ([changedSettings containsObject:@"dayStartHour"] ||
+        [changedSettings containsObject:@"dayEndHour"])
+    {
+        [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"eventDetailsSubtitleTextPriority"]) {
+        [self reloadRootTableViewWithCompletion:nil];
+    }
 }
 
 

@@ -122,7 +122,6 @@
 
 	[hourViewController setAllDayUpdatedBlock:^(BOOL allDay) {
         _event.allDay = NO;
-		[_event resetDefaultAlarms];
 		[_event resetDurationToDefault];
 
 		// if the event is saved right after it is no longer in all day mode (start time = 12:00am)

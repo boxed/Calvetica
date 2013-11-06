@@ -22,6 +22,7 @@
 @property (nonatomic, weak  ) IBOutlet CVTodayBoxView                         *selectedDayView;
 
 - (void)reloadTableView;
+- (void)resetStartDate;
 - (void)reloadRowForDate:(NSDate *)date;
 - (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position;
 - (void)scrollToRow:(NSInteger)row animated:(BOOL)animated;

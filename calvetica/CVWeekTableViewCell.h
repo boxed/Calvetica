@@ -20,7 +20,6 @@
 
 @property (nonatomic, weak  )          id<CVWeekTableViewCellDelegate> delegate;
 @property (nonatomic, strong)          NSDate                          *weekStartDate;
-@property (nonatomic, strong)          NSDate                          *absoluteStartDate;
 @property (nonatomic, strong)          NSDate                          *selectedDate;
 @property (nonatomic, assign)          NSInteger                       mode;
 @property (nonatomic, assign)          NSInteger                       fontSize;

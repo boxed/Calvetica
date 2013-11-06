@@ -26,7 +26,7 @@
     // this turned on produces weird jumpy scrolling
     self.tableView.scrollsToTop = NO;
 
-    self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+    [self resetStartDate];
 
     if (PAD) {
 		if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
@@ -72,23 +72,22 @@
 
 #pragma mark - Public
 
-- (void)setStartDate:(NSDate *)newStartDate
-{
-    _startDate = newStartDate;
-    [self.tableView reloadData];
-    [self reloadTableView];
-}
 
 - (void)reloadTableView
 {
     [self.tableView reloadData];
 }
 
+- (void)resetStartDate
+{
+    self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+}
+
 - (void)reloadRowForDate:(NSDate *)date 
 {
     if (!date) return;
     
-    NSInteger row = [_startDate rowOfDate:date];
+    NSInteger row = [self rowOfDate:date];
     CVWeekTableViewCell *cell = (CVWeekTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [cell redraw];
 }
@@ -96,18 +95,24 @@
 - (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position 
 {
     if (!date) return;
-    NSInteger row = [_startDate rowOfDate:date];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:position animated:animated];
+    NSInteger row = [self rowOfDate:date];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
+                          atScrollPosition:position
+                                  animated:animated];
 }
 
 - (void)scrollToRow:(NSInteger)row animated:(BOOL)animated 
 {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:animated];    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
+                          atScrollPosition:UITableViewScrollPositionMiddle
+                                  animated:animated];
 }
 
 - (void)scrollToSelectedDay 
 {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_startDate rowOfDate:_selectedDate] inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self rowOfDate:_selectedDate] inSection:0]
+                          atScrollPosition:UITableViewScrollPositionMiddle
+                                  animated:YES];
 }
 
 - (NSInteger)rowInMiddleOfVisibleRegion 
@@ -126,7 +131,7 @@
     if (self.tableView.window) {
 
         void (^animations)(void) = ^{
-            CGRect f = [_startDate rectOfDayButtonInTableView:self.tableView forDate:_selectedDate];
+            CGRect f = [self rectOfDayButtonInTableView:self.tableView forDate:_selectedDate];
             f = CGRectInset(f, -TODAY_BOX_INNER_OFFSET_IPAD, -TODAY_BOX_INNER_OFFSET_IPAD);
             [_selectedDayView setSuperFrame:f];
         };
@@ -157,6 +162,16 @@
 }
 
 
+#pragma mark (properties)
+
+- (void)setStartDate:(NSDate *)newStartDate
+{
+    _startDate = newStartDate;
+    [self reloadTableView];
+}
+
+
+
 
 
 
@@ -172,8 +187,7 @@
     static NSString *cellIdentifier = @"CVWeekTableViewCell";
     CVWeekTableViewCell *cell = (CVWeekTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier
                                                                                        forIndexPath:indexPath];
-    cell.absoluteStartDate  = self.startDate;
-    cell.weekStartDate      = [self.startDate dateOfFirstDayOnRow:indexPath.row];
+    cell.weekStartDate      = [self dateOfFirstDayOnRow:indexPath.row];
     cell.selectedDate       = _selectedDate;
     cell.delegate           = self;
 
@@ -206,5 +220,44 @@
 {
     [self.delegate monthTableViewController:self longPressedOnCell:cell onDate:date placeholderView:placeholder];
 }
+
+
+
+#pragma mark - Private
+
+- (NSDate *)dateOfFirstDayOnRow:(NSUInteger)row
+{
+    return [[self.startDate mt_dateWeeksAfter:row] mt_startOfCurrentWeek];
+}
+
+- (NSInteger)rowOfDate:(NSDate *)date
+{
+    return [date mt_weeksSinceDate:self.startDate];
+}
+
+- (NSInteger)columnOfDate:(NSDate *)date
+{
+    NSInteger row = [self rowOfDate:date];
+    NSDate *firstDate = [self dateOfFirstDayOnRow:row];
+    return [date mt_daysSinceDate:firstDate];
+}
+
+- (CGRect)rectOfDayButtonInTableView:(UITableView *)tableView forDate:(NSDate *)date
+{
+    CGRect rect = CGRectZero;
+
+    NSInteger row = [self rowOfDate:date];
+    CGFloat boxHeight = tableView.rowHeight;
+
+    CGFloat boxWidth = tableView.frame.size.width / 7.0;
+
+    rect.origin.x       = floorf([self columnOfDate:date] * boxWidth);
+    rect.origin.y       = floorf(row * boxHeight);
+    rect.size.width     = floorf(boxWidth);
+    rect.size.height    = floorf(boxHeight);
+
+    return rect;
+}
+
 
 @end

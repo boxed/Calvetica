@@ -20,15 +20,11 @@
     return ceil((weekDayStart - 1 + [self mt_daysInCurrentMonth]) / 7.0f);
 }
 
-+ (NSString *)stringWithWeekDayAbbreviated:(BOOL)abbr forWeekdayIndex:(NSInteger)index {
++ (NSString *)stringWithWeekDayAbbreviated:(BOOL)abbr forWeekdayIndex:(NSInteger)index
+{
     NSAssert(index >= 1 && index <= 7, @"index must be between 1 and 7 inclusive");
-    
     NSDate *date = [[[NSDate date] mt_startOfCurrentWeek] mt_dateDaysAfter:(index - 1)];
-    
-    // use date formatter to generate the name of the weekday at that index
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:(abbr ? @"EE" : @"EEEE")];
-    return [formatter stringFromDate:date];
+    return [date mt_stringFromDateWithFormat:(abbr ? @"EE" : @"EEEE") localized:YES];
 }
 
 - (CGFloat)percentIntoDay 
@@ -99,45 +95,5 @@
     NSInteger nextMonthStartWeekday = [[self mt_startOfNextMonth] mt_weekdayStartOfCurrentMonth];
     return [[self mt_endOfCurrentMonth] mt_dateDaysAfter:(nextMonthStartWeekday == 1 ? 0 : 8 - nextMonthStartWeekday)];
 }
-
-
-
-#pragma mark - iPad month view table helpers
-
-// assumes self is the start date
-- (NSDate *)dateOfFirstDayOnRow:(NSInteger)row 
-{
-    return [[self mt_dateWeeksAfter:row] mt_startOfCurrentWeek];
-}
-
-- (NSInteger)rowOfDate:(NSDate *)date 
-{
-    return [date mt_weeksSinceDate:self];
-}
-
-- (NSInteger)columnOfDate:(NSDate *)date 
-{
-    NSInteger row = [self rowOfDate:date];
-    NSDate *firstDate = [self dateOfFirstDayOnRow:row];
-    return [date mt_daysSinceDate:firstDate];
-}
-
-- (CGRect)rectOfDayButtonInTableView:(UITableView *)tableView forDate:(NSDate *)date 
-{
-    CGRect rect = CGRectZero;
-
-    NSInteger row = [self rowOfDate:date];
-    CGFloat boxHeight = tableView.rowHeight;
-    
-    CGFloat boxWidth = tableView.frame.size.width / 7.0;
-    
-    rect.origin.x       = floorf([self columnOfDate:date] * boxWidth);
-    rect.origin.y       = floorf(row * boxHeight);
-    rect.size.width     = floorf(boxWidth);
-    rect.size.height    = floorf(boxHeight);
-
-    return rect;
-}
-
 
 @end

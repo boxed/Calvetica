@@ -155,7 +155,6 @@
 
 - (void)setAllDay:(BOOL)allDay
 {
-	if (_allDayUpdatedBlock) _allDayUpdatedBlock(allDay);
 	_allDay = allDay;
 
 	self.editable = !allDay;
@@ -247,10 +246,12 @@
 {
 	if (_mode == CVEventHourViewControllerModeAllDay) {
 		self.mode = CVEventHourViewControllerModeStartTime;
+        if (_allDayUpdatedBlock) _allDayUpdatedBlock(NO);
 		self.allDay = NO;
 	}
 	else {
 		self.mode = CVEventHourViewControllerModeAllDay;
+        if (_allDayUpdatedBlock) _allDayUpdatedBlock(YES);
 		self.allDay = YES;
 	}
 }

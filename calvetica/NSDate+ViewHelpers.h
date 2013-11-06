@@ -22,11 +22,4 @@
 - (NSDate *)dateForFirstVisibleCalendarSquare;
 - (NSDate *)dateForLastVisibleCalendarSquare;
 
-#pragma mark - iPad month view table helpers
-
-- (NSDate *)dateOfFirstDayOnRow:(NSInteger)row;
-- (NSInteger)rowOfDate:(NSDate *)date;
-- (NSInteger)columnOfDate:(NSDate *)date;
-- (CGRect)rectOfDayButtonInTableView:(UITableView *)tableView forDate:(NSDate *)date;
-
 @end
