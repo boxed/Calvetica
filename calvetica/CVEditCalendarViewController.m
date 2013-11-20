@@ -170,6 +170,7 @@
     if (indexPath.section == 1) {
         UIColor *color          = [_availableColors objectAtIndex:indexPath.row];
         _calendar.customColor   = color;
+        _calendar.CGColor       = color.CGColor;
         for (UIColor *c in self.availableColors) {
             if ([color isEqualToColor:c]) {
                 c.mys_selected = YES;

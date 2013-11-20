@@ -153,46 +153,35 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="aez-5D-FaH">
                                             <rect key="frame" x="20" y="0.0" width="245" height="263"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <string key="text">5.1
-Nothing removed.
-NOTE: You'd be surprised the difference good reviews on the App Store make. If you're happy with an update we release and have a spare minute, reviews after each update help us really a lot.
-
-5.0
-We removed reminders. Let's face it, our management of reminders stunk. Rather than spend a lot of time fixing all the bugs without improving the user experience, we removed reminders until we could integrate them into Calvetica in a seamless and useful way.
-
-In the meantime, the Reminders.app that comes with your device does a much better job of managing reminders than Calvetica did. There are also many apps on the App Store that are great for managing reminders. Please support quality apps by giving them your business.</string>
+                                            <mutableString key="text">5.2
+- Fixed issue where calvetica would not work if it did not have permission to view reminders.
+- Fixed bug where reminders that appeared on the month view didn't appear on the list below.
+- Fixed bug where if syncing with Google Calendars and Location was the prioritized subtitle, event end time would not show when no location was present.
+- Simplified the display of a calendar's source in calendar picker.
+- Fixed yet another alignment issue with event titles not aligning with colored dot in week view.
+- Fixed bug where Month/Year would not update when jumping to a date.
+- Calendar numbers now show on top of bars/dots when thy pile tall enough to reach past the day numbers.
+- Fixing issues on 64-bit devices where jumping to Feb 2014 displayed wrong. This also fixed the issue where jump to date always showed teh calendars month day #1 starting at the top left.
+- Fixed bug where swiping on the start time in the quick add screen wiped the title text.
+- Fixed issue where the @ button on attendees did not respond.
+- Fixed issue where all day events were not being added as true all-day events, but as events the spanned the whole day (if that makes sense ;)
+- Fixed bug where users were experiencing issues when deleting an event.
+- Fixed issues where events and reminders where not being updated/synced automatically.
+- Tweaked the week number label to not block the week view.
+- Custom colors on all calendars work again.
+- Fixed bug where the alarm icon was not turning red/grey when it should.
+- Fixed issue with alarms being reset when going to the hour tab and back to details.
+- Fixed weekday labels being labelled one day off under some configurations.
+- Fixed issue where month name in red bar didn't update correctly.
+- Changed behavior so that if an event ends at 12:00am (00:00) the next day, it does not show up on the next day's list of events.</mutableString>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ccX-0V-uDl">
                                             <rect key="frame" x="306" y="0.0" width="245" height="263"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <mutableString key="text">5.1
-+ Reminders are back but read-only. You can mark them complete. You can turn them back off in settings.
-+ Dynamic Type throughout the app. If you turn on system wide bold text, our app will respect that. Many labels and text fields will be a different size depending on your system text size settings.
-+ "add" URL action. "title" and "date" are optional parameters. They should be percent escaped. 
-Example: 
-calvetica://add?title=party&amp;date=2013-10-11%2023:24:29%20+0000
-- Bug where alarms on recurring events wouldn't save. 
-- Faster animations. 
-- Darkened text to make it easier to read. 
-- Bug where wrong button was selected when selecting end time. 
-- Bug where creating event in landscape week view had wrong start time. 
-- Bug where moving event start time didn't shift end time to preserve event duration. 
-- Bug where tapping top of week view went to wrong date. 
-- Bug where you couldn't scroll to see long event titles in "DETAILS" tab. 
-- Bug where maps would open in Safari. It now gives you a choice between Apple maps and Google maps.\ 
-- Bug where tapping "All Day" in the "HOUR" tab did the opposite of what it should. 
-- Bug where welcome screen on iPad displayed incorrectly in landscape. 
-- Bug where text on iPad was not taking up all available width of day. 
-- Crash where long pressing on text in week view. 
-- All day events are sorted in alphabetical order.
-
-5.0
-+ iOS 7 Face Lift.
-+ Edit the time zone of events.
-+ URL Scheme to be used by Launch Center and other apps: "calvetica://".
-+ Lots of bug fixes related to crashes, changing event start and end times, time zones, etc.</mutableString>
+                                            <string key="text">5.2
++ Sync settings over iCloud. If you use Calvetica on multiple devices, this will keep all of your settings like time zone, appearance customization, calendar colors, all in sync across your devices automatically. (iCloud must be enabled for this to work. You can also turn this off in Calvetica settings.)</string>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>

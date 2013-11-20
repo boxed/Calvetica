@@ -11,7 +11,7 @@ PODS:
   - MYSCategoryProperties (0.0.3):
     - MYSRuntime (~> 0.0.2)
   - MYSRuntime (0.0.2)
-  - MYSSharedSettings (0.0.1):
+  - MYSSharedSettings (0.0.2):
     - MYSRuntime (~> 0.0.2)
   - PSAlertView (HEAD based on 1.1)
   - SVProgressHUD (HEAD based on 1.0)
@@ -64,9 +64,9 @@ SPEC CHECKSUMS:
   MTQueue: a345ceaab62f443bcacae30586537cbc9caf002b
   MYSCategoryProperties: 2a4ca6b42600d7707ad2fc32da82b6ade0756c3c
   MYSRuntime: 54beb28afb12699cb549b89d5c6ab7e21425310f
-  MYSSharedSettings: ebf67e05a88dc1eb43574f4270b649437beadbd0
+  MYSSharedSettings: 579adb4fb75366855b221dba13967c480c24a609
   PSAlertView: bdccae3cbd14f6060772654ae641daec7415d9fa
   SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
   TestFlightSDK: dea28c16f0bf65c49c4ed8939b2ae0b0ed9bf8b0
 
-COCOAPODS: 0.27.1
+COCOAPODS: 0.28.0

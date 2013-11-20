@@ -7,9 +7,6 @@
 //
 
 #import "CVBadgeAndAlertsSettingViewController.h"
-#import "settingskeys.h"
-
-
 
 
 @interface CVBadgeAndAlertsSettingViewController ()
@@ -17,10 +14,7 @@
 @end
 
 
-
-
 @implementation CVBadgeAndAlertsSettingViewController
-
 
 - (void)viewDidLoad
 {

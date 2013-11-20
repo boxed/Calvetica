@@ -7,7 +7,6 @@
 //
 
 #import "EventDefaultDurationViewController.h"
-#import "settingskeys.h"
 
 
 @interface EventDefaultDurationViewController ()
@@ -19,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 	_duration = PREFS.defaultDuration;
 }
 

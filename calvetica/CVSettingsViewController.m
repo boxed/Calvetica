@@ -8,7 +8,6 @@
 
 #import "CVSettingsViewController.h"
 #import "CVTimeZoneViewController.h"
-#import "settingskeys.h"
 
 
 @interface CVSettingsViewController () <CVTimeZoneViewControllerDelegate>
