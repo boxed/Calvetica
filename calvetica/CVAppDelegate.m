@@ -251,7 +251,9 @@
 
 - (void)refreshSources
 {
-    [[EKEventStore sharedStore] refreshSourcesIfNecessary];
+    [MTq def:^{
+        [[EKEventStore sharedStore] refreshSourcesIfNecessary];
+    }];
 }
 
 #pragma mark (local notifs)

@@ -1164,12 +1164,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     CVEventStoreNotification *notification = [notif object];
 
-    NSLog(@"%@", notif);
-
     if (notification.source == CVNotificationSourceExternal) {
         [[EKEventStore sharedStore] clearRemindersCacheAndReloadWithCompletion:^{
-            [self reloadMonthTableView];
-            [self reloadRootTableViewWithCompletion:nil];
+            [MTq main:^{
+                [self reloadMonthTableView];
+                [self reloadRootTableViewWithCompletion:nil];
+            }];
         }];
         return;
     }
@@ -1183,8 +1183,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         }
         else if (notification.changeType != CVNotificationChangeTypeUpdate) {
             [[EKEventStore sharedStore] clearRemindersCacheAndReloadWithCompletion:^{
-                [self reloadMonthTableView];
-                [self reloadRootTableViewWithCompletion:nil];
+                [MTq main:^{
+                    [self reloadMonthTableView];
+                    [self reloadRootTableViewWithCompletion:nil];
+                }];
             }];
         }
     }

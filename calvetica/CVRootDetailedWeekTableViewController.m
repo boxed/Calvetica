@@ -57,7 +57,8 @@
                                      {
                                          if (calendarItem.isEvent) {
                                              EKEvent *event = (EKEvent *)calendarItem;
-                                             return [event occursAtAllOnDate:weekDay];
+                                             return [event occursAtAllBetweenDate:[weekDay mt_startOfCurrentDay]
+                                                                          andDate:[weekDay mt_endOfCurrentDay]];
                                          }
                                          if (calendarItem.isReminder && [(EKReminder *)calendarItem isFloating]) {
                                              return [weekDay mt_isWithinSameDay:today];

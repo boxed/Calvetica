@@ -112,7 +112,7 @@
 
 - (BOOL)hadRecurrenceRuleOnPreviousSave 
 {
-	EKEvent *e = [[EKEventStore sharedStore] eventWithIdentifier:self.identifier];
+	EKEvent *e = [[EKEventStore sharedStore] eventWithIdentifier:self.eventIdentifier];
 	return e != nil && e.hasRecurrenceRules;
 }
 

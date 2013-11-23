@@ -27,8 +27,7 @@
     // get date range
     NSDate *startOfWeek = [startDateOfWeek mt_startOfCurrentWeek];
     NSDate *endOfWeek = [startDateOfWeek mt_endOfCurrentWeek];
-    
-    
+
     // grab all the events we need
     NSMutableArray *weekEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startOfWeek
                                                                                       toDate:endOfWeek
@@ -61,12 +60,14 @@
         if ([event.endingDate mt_isBefore:[NSDate date]]) {
             eventSquareModel.isPassed = YES;
         }
-        
-        for (NSUInteger day = 0; day < 7; day++) {
+
+        NSDate *previousDate = startOfWeek;
+        for (NSUInteger day = 1; day < 8; day++) {
             NSDate *date = [startOfWeek mt_dateDaysAfter:day];
-            if ([event occursAtAllOnDate:date]) {
+            if ([event occursAtAllBetweenDate:previousDate andDate:date]) {
                 eventSquareModel.days[day] = 1;
             }
+            previousDate = date;
         }
         
         

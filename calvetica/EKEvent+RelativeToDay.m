@@ -21,10 +21,8 @@
     return self.isAllDay || [self spansEntireDayOfDate:date];
 }
 
-- (BOOL)occursAtAllOnDate:(NSDate *)date
+- (BOOL)occursAtAllBetweenDate:(NSDate *)startDate andDate:(NSDate *)endDate
 {
-	NSDate *startDate   = [date mt_startOfCurrentDay];
-    NSDate *endDate     = [date mt_endOfCurrentDay];
     return [self.endingDate mt_isOnOrAfter:startDate] && [self.startingDate mt_isOnOrBefore:endDate];
 }
 
