@@ -14,7 +14,6 @@
 
 @property (nonatomic, weak            ) IBOutlet CVColoredDotView *coloredShape;
 @property (nonatomic                  )          CVColoredShape   shape;
-@property (nonatomic, weak            ) IBOutlet UIImageView      *imageView;
 @property (nonatomic, strong          )          UIImage          *image;
 @property (nonatomic, weak,   readonly) IBOutlet UILabel          *titleLabel;
 

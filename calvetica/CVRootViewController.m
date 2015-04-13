@@ -973,12 +973,12 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker
           didPickDate:(NSDate *)date
 {
+    [self dismissPopoverModalViewControllerAnimated:YES];
     [self showQuickAddWithDefault:YES
 					 durationMode:YES
 							 date:date
                             title:nil
 							 view:self.redBarPlusButton];
-    [self dismissPopoverModalViewControllerAnimated:YES];
 }
 
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker
@@ -1435,15 +1435,14 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     if (animated) {
         BOOL isUp = direction == CVRootMonthViewMoveDirectionUp;
-        [UIView mt_animateViews:@[monthTableView, rootTableView, redBar]
-                       duration:(isUp ? 0.3 : 0.5)
-                 timingFunction:(isUp ? kMTEaseOutBack : kMTEaseOutBounce)
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         animations();
-                     } completion:^{
-                         completion();
-                     }];
+        [UIView mt_animateWithDuration:(isUp ? 0.3 : 0.5)
+                        timingFunction:(isUp ? kMTEaseOutBack : kMTEaseOutBounce)
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^{
+                                animations();
+                            } completion:^{
+                                completion();
+                            }];
     }
     else {
         animations();

@@ -65,7 +65,7 @@
         for (NSUInteger day = 1; day < 8; day++) {
             NSDate *date = [startOfWeek mt_dateDaysAfter:day];
             if ([event occursAtAllBetweenDate:previousDate andDate:date]) {
-                eventSquareModel.days[day] = 1;
+                eventSquareModel.days[day - 1] = 1;
             }
             previousDate = date;
         }

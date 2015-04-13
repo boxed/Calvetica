@@ -35,23 +35,21 @@
     // in the future add cases here for various animation options
     // add perhaps add some enums
 
-    [UIView mt_animateViews:@[self]
-                   duration:0.5
-             timingFunction:kMTEaseOutBack
-                    options:UIViewAnimationOptionBeginFromCurrentState
-                 animations:^{
-                     [self setBezelPosition];
-                 } completion:^{
-                     [UIView mt_animateViews:@[self]
-                                    duration:0.75
-                              timingFunction:kMTEaseInExpo
-                                     options:UIViewAnimationOptionBeginFromCurrentState
-                                  animations:^{
-                                      self.x = [UIScreen mainScreen].bounds.size.height;
-                                  } completion:^{
-                                      [self removeFromSuperview];
-                                  }];
-                 }];
+    [UIView mt_animateWithDuration:0.5
+                    timingFunction:kMTEaseOutBack
+                           options:UIViewAnimationOptionBeginFromCurrentState
+                        animations:^{
+                            [self setBezelPosition];
+                        } completion:^{
+                            [UIView mt_animateWithDuration:0.75
+                                            timingFunction:kMTEaseInExpo
+                                                   options:UIViewAnimationOptionBeginFromCurrentState
+                                                animations:^{
+                                                    self.x = [UIScreen mainScreen].bounds.size.height;
+                                                } completion:^{
+                                                    [self removeFromSuperview];
+                                                }];
+                        }];
 
 //	dispatch_queue_t animationQueue = dispatch_queue_create("com.mysterioustrousers.animationqueue", NULL);
 //	dispatch_async(animationQueue, ^(void) {

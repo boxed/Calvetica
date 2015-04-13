@@ -38,7 +38,6 @@
     #import <MTMigration.h>
 
     #import <FrameAccessor.h>
-    #import <TestFlight.h>
     #import <PSPDFActionSheet.h>
     #import <PSPDFAlertView.h>
 #endif

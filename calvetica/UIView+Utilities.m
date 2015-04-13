@@ -13,15 +13,14 @@
 - (void)bounce 
 {
     self.y -= 10;
-    [UIView mt_animateViews:@[self]
-                   duration:0.3
-             timingFunction:kMTEaseOutElastic
-                    options:UIViewAnimationOptionBeginFromCurrentState
-                 animations:^
-    {
-        self.y += 10;
-    } completion:^{
-    }];
+    [UIView mt_animateWithDuration:0.3
+                    timingFunction:kMTEaseOutElastic
+                           options:UIViewAnimationOptionBeginFromCurrentState
+                        animations:^
+     {
+         self.y += 10;
+     } completion:^{
+     }];
 }
 
 @end

@@ -35,7 +35,7 @@
 {
     UITableViewCell *cell   = [tableView cellForRowAtIndexPath:indexPath];
     _duration               = cell.tag;
-    PREFS.defaultDuration   = cell.tag;
+    PREFS.defaultDuration   = (int)cell.tag;
     cell.accessoryType      = UITableViewCellAccessoryCheckmark;
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	[tableView reloadData];

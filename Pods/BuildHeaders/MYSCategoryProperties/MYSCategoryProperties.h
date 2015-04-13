@@ -1,1 +1,0 @@
-../../../libs/MYSCategoryProperties/MYSCategoryProperties/MYSCategoryProperties.h

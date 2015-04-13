@@ -74,14 +74,17 @@ view.frame = newFrame;
 
 Property | Type | Аvailability
 --- | --- | ---
-`origin` | `CGPoint` | *readwrite*
-`size` | `CGSize` | *readwrite*
+`viewOrigin` | `CGPoint` | *readwrite*
+`viewSize` | `CGSize` | *readwrite*
 `x`, `y` | `CGFloat` | *readwrite*
 `width`, `height` | `CGFloat` | *readwrite*
 `top`, `left`, `bottom`, `right` | `CGFloat` | *readwrite*
 `centerX`, `centerY` | `CGFloat` | *readwrite*
 `middlePoint` | `CGPoint` | **readonly**
 `middleX`, `middleY` | `CGFloat` | **readonly**
+
+__Note:__ the names of @viewOrigin and @viewSize properties are prefixed with `view` to not create conflicts with Apple's private internals (As discussed in [#7](https://github.com/AlexDenisov/FrameAccessor/issues/7)).
+
 
 `UIScrollView` properties:
 
@@ -102,4 +105,5 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 

@@ -204,12 +204,12 @@
 //    float longitude = view.annotation.coordinate.longitude;
 
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Open in…"];
-    [actionSheet addButtonWithTitle:@"Apple Maps" block:^{
+    [actionSheet addButtonWithTitle:@"Apple Maps" block:^(NSInteger index) {
         NSString *stringURL = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", title];
         NSURL *url = [NSURL URLWithString:stringURL];
         [[UIApplication sharedApplication] openURL:url];
     }];
-    [actionSheet addButtonWithTitle:@"Google Maps" block:^{
+    [actionSheet addButtonWithTitle:@"Google Maps" block:^(NSInteger index) {
         NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", title];
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
             stringURL = [NSString stringWithFormat:@"comgooglemaps://?q=%@", title];

@@ -43,24 +43,22 @@
 
 - (void)toggleAccessoryButton 
 {
-    [UIView mt_animateViews:@[_cellAccessoryButton]
-                   duration:0.20
-             timingFunction:kMTEaseInBack
-                    options:UIViewAnimationOptionBeginFromCurrentState
-                 animations:^
-    {
-        _cellAccessoryButton.x += _cellAccessoryButton.width;
-    } completion:^{
-        [_cellAccessoryButton toggleMode];
-        [UIView mt_animateViews:@[_cellAccessoryButton]
-                       duration:0.20
-                 timingFunction:kMTEaseOutBack
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
-        {
-            _cellAccessoryButton.x -= _cellAccessoryButton.width;
-        } completion:^{
-        }];
+    [UIView mt_animateWithDuration:0.20
+                    timingFunction:kMTEaseInBack
+                           options:UIViewAnimationOptionBeginFromCurrentState
+                        animations:^
+     {
+         _cellAccessoryButton.x += _cellAccessoryButton.width;
+     } completion:^{
+         [_cellAccessoryButton toggleMode];
+         [UIView mt_animateWithDuration:0.20
+                         timingFunction:kMTEaseOutBack
+                                options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:^
+          {
+              _cellAccessoryButton.x -= _cellAccessoryButton.width;
+          } completion:^{
+          }];
     }];
 }
 
@@ -69,22 +67,20 @@
 
 - (IBAction)cellWasTapped:(id)sender 
 {
-    [UIView mt_animateViews:@[self]
-                   duration:0.15
-             timingFunction:kMTEaseOutBack animations:^
-    {
-        self.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1);
-    } completion:^{
-        [UIView mt_animateViews:@[self]
-                       duration:0.15
-                 timingFunction:kMTEaseOutBack
-                     animations:^
-        {
-            self.layer.transform = CATransform3DIdentity;
-        } completion:^{
-            self.layer.transform = CATransform3DIdentity;
-        }];
-    }];
+    [UIView mt_animateWithDuration:0.15
+                    timingFunction:kMTEaseOutBack animations:^
+     {
+         self.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1);
+     } completion:^{
+         [UIView mt_animateWithDuration:0.15
+                         timingFunction:kMTEaseOutBack
+                             animations:^
+          {
+              self.layer.transform = CATransform3DIdentity;
+          } completion:^{
+              self.layer.transform = CATransform3DIdentity;
+          }];
+     }];
 }
 
 - (IBAction)cellWasLongPressed:(id)sender 

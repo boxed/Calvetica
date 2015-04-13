@@ -143,16 +143,15 @@
             containerView.alpha = 1;
         } completion:^(BOOL finished) {
             modalView.hidden = NO;
-            [UIView mt_animateViews:@[modalView]
-                           duration:0.2
-                     timingFunction:kMTEaseOutExpo
-                            options:UIViewAnimationOptionBeginFromCurrentState
-                         animations:^
-            {
-                modalView.frame = orignalRect;
-            } completion:^{
-                if (completion) completion();
-            }];
+            [UIView mt_animateWithDuration:0.2
+                            timingFunction:kMTEaseOutExpo
+                                   options:UIViewAnimationOptionBeginFromCurrentState
+                                animations:^
+             {
+                 modalView.frame = orignalRect;
+             } completion:^{
+                 if (completion) completion();
+             }];
         }];
 
     } else {
@@ -175,11 +174,10 @@
     UIView *modalView       = modalViewController.view;
 
     if (animated) {
-        [UIView mt_animateViews:@[modalView]
-                       duration:0.2
-                 timingFunction:kMTEaseInExpo
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
+        [UIView mt_animateWithDuration:0.2
+                        timingFunction:kMTEaseInExpo
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^
          {
              modalView.x = self.view.bounds.size.width;
          } completion:^{
@@ -219,15 +217,14 @@
         view.x = -view.width;
         [self.view addSubview:fullScreenViewController.view];
 
-        [UIView mt_animateViews:@[view]
-                       duration:0.2
-                 timingFunction:kMTEaseOutExpo
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         view.frame = self.view.bounds;
-                     } completion:^{
-                         view.frame = self.view.bounds;
-                     }];
+        [UIView mt_animateWithDuration:0.2
+                        timingFunction:kMTEaseOutExpo
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^{
+                                view.frame = self.view.bounds;
+                            } completion:^{
+                                view.frame = self.view.bounds;
+                            }];
     } else {
         [self.view addSubview:fullScreenViewController.view];
     }
@@ -245,16 +242,15 @@
     UIView *view = fullScreenViewController.view;
     
     if (animated) {
-        [UIView mt_animateViews:@[view]
-                       duration:0.2
-                 timingFunction:kMTEaseInExpo
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         view.x = view.width;
-                     } completion:^{
-                         [view removeFromSuperview];
-                         [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
-                     }];
+        [UIView mt_animateWithDuration:0.2
+                        timingFunction:kMTEaseInExpo
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^{
+                                view.x = view.width;
+                            } completion:^{
+                                [view removeFromSuperview];
+                                [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
+                            }];
     } else {
         [fullScreenViewController.view removeFromSuperview]; 
         [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
@@ -280,16 +276,15 @@
         v.mt_animationPerspective = -1 / 1600.0;
         v.layer.transform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
 
-        [UIView mt_animateViews:@[v]
-                       duration:0.2
-                 timingFunction:kMTEaseOutBack
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
-        {
-            v.layer.transform = CATransform3DIdentity;
-        } completion:^{
-            v.layer.transform = CATransform3DIdentity;
-        }];
+        [UIView mt_animateWithDuration:0.2
+                        timingFunction:kMTEaseOutBack
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^
+         {
+             v.layer.transform = CATransform3DIdentity;
+         } completion:^{
+             v.layer.transform = CATransform3DIdentity;
+         }];
     }
 }
 
@@ -312,19 +307,18 @@
         v.mt_animationPerspective = -1 / 1600.0;
         v.layer.transform = CATransform3DIdentity;
 
-        [UIView mt_animateViews:@[v]
-                       duration:0.4
-                 timingFunction:kMTEaseInBack
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
-        {
-            v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
-        } completion:^{
-            v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
-            [wrapper removeFromSuperview];
+        [UIView mt_animateWithDuration:0.4
+                        timingFunction:kMTEaseInBack
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^
+         {
+             v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+         } completion:^{
+             v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+             [wrapper removeFromSuperview];
              [self.popoverModalViewControllers removeObject:popoverToDismiss];
-            popoverToDismiss.ignoreKeyboard = NO;
-        }];
+             popoverToDismiss.ignoreKeyboard = NO;
+         }];
 
     } else {
         [wrapper removeFromSuperview];

@@ -71,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PREFS.weekStartsOnWeekday = indexPath.row + 1;
+    PREFS.weekStartsOnWeekday = (int)indexPath.row + 1;
 	[self.tableView reloadData];
 }
 

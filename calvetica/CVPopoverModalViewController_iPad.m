@@ -124,11 +124,10 @@ typedef struct {
         self.popoverBackdropView.arrowDirection = CVPopoverArrowDirectionNone;
 
         // move it up
-		[UIView mt_animateViews:@[self.modalViewContainer]
-                       duration:0.4
-                 timingFunction:kMTEaseOutBack
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
+		[UIView mt_animateWithDuration:0.4
+                        timingFunction:kMTEaseOutBack
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^
         {
             CGFloat y = MAX(20, self.view.bounds.size.height - kbRect.size.height - self.modalViewContainer.height - 20);
             self.modalViewContainer.y = y;
@@ -139,15 +138,14 @@ typedef struct {
 - (void)keyboardWillHide 
 {
 	if (keyboardAppearedModalSavedYCoord != -1) {
-		[UIView mt_animateViews:@[self.modalViewContainer]
-                       duration:0.4
-                 timingFunction:kMTEaseOutBack
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
+		[UIView mt_animateWithDuration:0.4
+                        timingFunction:kMTEaseOutBack
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^
          {
-			self.modalViewContainer.y = keyboardAppearedModalSavedYCoord;
-			self.popoverBackdropView.arrowDirection = keyboardAppearedArrowSavedDirection;
-		} completion:nil];
+             self.modalViewContainer.y = keyboardAppearedModalSavedYCoord;
+             self.popoverBackdropView.arrowDirection = keyboardAppearedArrowSavedDirection;
+         } completion:nil];
 	}
 }
 

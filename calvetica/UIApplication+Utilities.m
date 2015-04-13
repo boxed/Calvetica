@@ -44,16 +44,15 @@
 
 	[topmostViewController presentPageModalViewController:alertViewController animated:YES completion:^{
         alertViewController.view.x -= 20;
-        [UIView mt_animateViews:@[alertViewController.view]
-                       duration:0.5
-                 timingFunction:kMTEaseOutElastic
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^
-        {
-            alertViewController.view.x += 20;
-        } completion:^{
-            if (completion) completion();
-        }];
+        [UIView mt_animateWithDuration:0.5
+                        timingFunction:kMTEaseOutElastic
+                               options:UIViewAnimationOptionBeginFromCurrentState
+                            animations:^
+         {
+             alertViewController.view.x += 20;
+         } completion:^{
+             if (completion) completion();
+         }];
     }];
 }
 

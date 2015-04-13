@@ -144,15 +144,14 @@
 
         if (animated) {
 
-            [UIView mt_animateViews:@[_selectedDayView]
-                           duration:0.2
-                     timingFunction:kMTEaseInOutExpo
-                         animations:^
-            {
-                animations();
-            } completion:^{
-                complete();
-            }];
+            [UIView mt_animateWithDuration:0.2
+                            timingFunction:kMTEaseInOutExpo
+                                animations:^
+             {
+                 animations();
+             } completion:^{
+                 complete();
+             }];
         }
         else {
             animations();

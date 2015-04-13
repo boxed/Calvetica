@@ -11,7 +11,7 @@
 @implementation MTq
 
 
-+ (NSOperationQueue *)main
++ (NSOperationQueue *)mainQueue
 {
 	return [NSOperationQueue mainQueue];
 }
@@ -54,7 +54,7 @@
 
 + (void)main:(MTQueueBlock)operation
 {
-    [[MTq main] addOperationWithBlock:^{
+    [[MTq mainQueue] addOperationWithBlock:^{
         if (operation) operation();
     }];
 }
@@ -108,6 +108,14 @@
 + (void)low:(MTQueueBlock)block
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        if (block) block();
+    });
+}
+
+
++ (void)after:(NSTimeInterval)delay block:(MTQueueBlock)block
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (block) block();
     });
 }

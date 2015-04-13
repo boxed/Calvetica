@@ -103,6 +103,7 @@
 		C206985A1396F657005C8192 /* geometry.c in Sources */ = {isa = PBXBuildFile; fileRef = C20698581396F656005C8192 /* geometry.c */; };
 		C20DAACB181080D500F0E7A2 /* NSObject+Null.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DAACA181080D500F0E7A2 /* NSObject+Null.m */; };
 		C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */; };
+		C20DF2F91ADC595600C87F82 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20DF2F81ADC595600C87F82 /* Launch Screen.xib */; };
 		C212260F151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = C212260E151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m */; };
 		C213C75F13A6712C00A20E17 /* CVRootFullDayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C75E13A6712C00A20E17 /* CVRootFullDayTableViewController.m */; };
 		C213C76313A6783B00A20E17 /* CVRootAgendaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C76213A6783B00A20E17 /* CVRootAgendaTableViewController.m */; };
@@ -475,6 +476,7 @@
 		C20DAACA181080D500F0E7A2 /* NSObject+Null.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Null.m"; sourceTree = "<group>"; };
 		C20DDDA6161D020200CC9D47 /* EKSource+Identity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKSource+Identity.h"; sourceTree = "<group>"; };
 		C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKSource+Identity.m"; sourceTree = "<group>"; };
+		C20DF2F81ADC595600C87F82 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		C212260D151CD8C70055F6AE /* CVWeekTableViewCellDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekTableViewCellDrawing.h; sourceTree = "<group>"; };
 		C212260E151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekTableViewCellDrawing.m; sourceTree = "<group>"; };
 		C213C75D13A6712C00A20E17 /* CVRootFullDayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVRootFullDayTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -2334,6 +2336,7 @@
 				C2E2972E133419A900FA7638 /* InfoPlist.strings */,
 				C2E29731133419A900FA7638 /* calvetica-Prefix.pch */,
 				C2E29732133419A900FA7638 /* main.m */,
+				C20DF2F81ADC595600C87F82 /* Launch Screen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2625,7 +2628,7 @@
 			name = calveticaTests;
 			productName = calveticaTests;
 			productReference = C2E2974A133419A900FA7638 /* calveticaTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -2747,6 +2750,7 @@
 				9BE2F2E813CC017100F46F37 /* longpressday_iphone@2x.png in Resources */,
 				9BE2F2E913CC017100F46F37 /* quickreminder_iphone.png in Resources */,
 				9BE2F2EA13CC017100F46F37 /* quickreminder_iphone@2x.png in Resources */,
+				C20DF2F91ADC595600C87F82 /* Launch Screen.xib in Resources */,
 				9BE2F2EB13CC017100F46F37 /* longpressmonth_iphone.png in Resources */,
 				9BE2F2EC13CC017100F46F37 /* longpressmonth_iphone@2x.png in Resources */,
 				C290198817EBEDD70033476F /* CVQuickAddViewController-Landscape.xib in Resources */,
@@ -3297,7 +3301,6 @@
 			baseConfigurationReference = C25047EB15E039DD00B314EB /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3311,7 +3314,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -3400,7 +3403,6 @@
 			baseConfigurationReference = C25047EB15E039DD00B314EB /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3416,7 +3418,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -3428,10 +3430,9 @@
 			baseConfigurationReference = C25047EB15E039DD00B314EB /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mysterious Trousers, LLC (JXK78JN25R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3443,9 +3444,9 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "E8F150C2-6D7E-4E26-A1C7-EE0DE32FC76B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

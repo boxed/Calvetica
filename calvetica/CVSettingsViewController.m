@@ -93,7 +93,7 @@
 
 
 
-#pragma mark - DATASOURCE Table View
+#pragma mark - DELEGATE Table View
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -118,6 +118,14 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if (section == [tableView numberOfSections] - 1) {
+        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        return [NSString stringWithFormat:@"App Version: %@", appVersion];
+    }
+    return nil;
+}
 
 
 
