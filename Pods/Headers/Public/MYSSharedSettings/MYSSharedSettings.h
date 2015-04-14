@@ -1,0 +1,1 @@
+../../../../libs/MYSSharedSettings/MYSSharedSettings/MYSSharedSettings.h

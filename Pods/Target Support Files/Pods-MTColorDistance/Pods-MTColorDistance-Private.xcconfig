@@ -1,0 +1,6 @@
+#include "Pods-MTColorDistance.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/MTColorDistance" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FrameAccessor" "${PODS_ROOT}/Headers/Public/MTAnimation" "${PODS_ROOT}/Headers/Public/MTColorDistance" "${PODS_ROOT}/Headers/Public/MTDates" "${PODS_ROOT}/Headers/Public/MTGeometry" "${PODS_ROOT}/Headers/Public/MTMigration" "${PODS_ROOT}/Headers/Public/MTPencil" "${PODS_ROOT}/Headers/Public/MTQueue" "${PODS_ROOT}/Headers/Public/MYSCategoryProperties" "${PODS_ROOT}/Headers/Public/MYSRuntime" "${PODS_ROOT}/Headers/Public/MYSSharedSettings" "${PODS_ROOT}/Headers/Public/PSAlertView" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
+OTHER_LDFLAGS = ${PODS_MTCOLORDISTANCE_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

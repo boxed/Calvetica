@@ -27,7 +27,7 @@
 {
 	if (sender.state != 3) return;
 	if (!self.editable) {
-        [self.delegate textViewWasTappedWhenUneditable:self];
+        [self.cv_delegate textViewWasTappedWhenUneditable:self];
     }
 }
 

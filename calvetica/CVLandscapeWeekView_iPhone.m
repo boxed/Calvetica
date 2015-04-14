@@ -47,7 +47,7 @@
     r.size.width = r.size.height;
     r.size.height = t;
     r.origin.x = 0;
-    r.origin.y = 20;
+    r.origin.y = 0;
     self.weeksTable.frame = r;
     
     self.monthAndYearLabel.text = [[NSDate date] stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
@@ -212,7 +212,7 @@
     // put up the edit event modal
     CVEventViewController *eventViewController = [[CVEventViewController alloc] initWithEvent:event andMode:CVEventModeDetails];
     eventViewController.delegate = self;
-    [self presentPageModalViewController:eventViewController animated:YES completion:nil];
+    [self presentFullScreenModalViewController:eventViewController animated:YES];
 }
 
 
@@ -227,8 +227,7 @@
     if (result) {
         [self.delegate landscapeWeekViewController:self didFinishWithResult:CVLandscapeWeekViewResultModified];
     }
-    [self dismissPageModalViewControllerAnimated:NO completion:nil];
-
+    [self dismissFullScreenModalViewControllerAnimated:YES];
 }
 
 

@@ -219,7 +219,7 @@
 
 - (NSTimeInterval)eventDuration 
 {
-    return (NSTimeInterval)abs([self.startingDate timeIntervalSinceDate:self.endingDate]);
+    return (NSTimeInterval)fabs([self.startingDate timeIntervalSinceDate:self.endingDate]);
 }
 
 

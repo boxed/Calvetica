@@ -1,21 +1,20 @@
 PODS:
-  - FrameAccessor (1.3.2)
-  - MTAnimation (0.3.0)
+  - FrameAccessor (2.0)
+  - MTAnimation (1.2.2)
   - MTColorDistance (0.0.3)
-  - MTDates (0.12.0)
+  - MTDates (1.0.1)
   - MTGeometry (0.0.4)
-  - MTMigration (0.0.3)
+  - MTMigration (0.0.5)
   - MTPencil (0.1.1):
     - MTGeometry
-  - MTQueue (0.0.3)
-  - MYSCategoryProperties (0.0.3):
-    - MYSRuntime (~> 0.0.2)
-  - MYSRuntime (0.0.2)
-  - MYSSharedSettings (0.0.2):
-    - MYSRuntime (~> 0.0.2)
-  - PSAlertView (HEAD based on 1.1)
-  - SVProgressHUD (HEAD based on 1.0)
-  - TestFlightSDK (2.1.1-beta)
+  - MTQueue (0.1.0)
+  - MYSCategoryProperties (0.0.4):
+    - MYSRuntime (~> 0.0.3)
+  - MYSRuntime (0.0.5)
+  - MYSSharedSettings (0.1.0):
+    - MYSRuntime (~> 0.0.3)
+  - PSAlertView (HEAD based on 2.0.3)
+  - SVProgressHUD (HEAD based on 1.1.3)
 
 DEPENDENCIES:
   - FrameAccessor
@@ -31,7 +30,6 @@ DEPENDENCIES:
   - MYSSharedSettings (from `libs/MYSSharedSettings`)
   - PSAlertView (HEAD)
   - SVProgressHUD (HEAD)
-  - TestFlightSDK (= 2.1.1-beta)
 
 EXTERNAL SOURCES:
   MTAnimation:
@@ -54,19 +52,18 @@ EXTERNAL SOURCES:
     :path: libs/MYSSharedSettings
 
 SPEC CHECKSUMS:
-  FrameAccessor: 1c383c4dc298925749fb2a6b9c05cd45be0d8857
-  MTAnimation: 3ab8ae32ba51e641534027a796f51e90c1f97b8f
+  FrameAccessor: 443a13e58e23a10ff22180da0897b28c3f6abf66
+  MTAnimation: 1079f4ff38c0282779ced010d7363a8f893fd3ee
   MTColorDistance: 88056e48c6843a5b0e63d281c86bfca5b44bce11
-  MTDates: 67afbc853aa869bac9e9442f25e0df256805b504
+  MTDates: f51fbd9163ad5a379243e08fd63cafb5a5135a29
   MTGeometry: 0f0053250189d12a9e349a164629239cdfc6b802
-  MTMigration: a06e60335edffbb0006a89f15959331d7bad8e14
+  MTMigration: 725315e6469c8fd7d13966887f59e65eb8aecb2e
   MTPencil: aa1ac55ee41bbb9b56e8cbdff62e84d2898acb7d
-  MTQueue: a345ceaab62f443bcacae30586537cbc9caf002b
-  MYSCategoryProperties: d52fcef6a7c48e85e6a72c03dcd5d83cdcb1d64b
-  MYSRuntime: 2fbf500fd402953d906fc9f20af7dcf5cd02fb1b
-  MYSSharedSettings: c9c8a08f38e3742921289f4fba990c2de7c1bcd8
-  PSAlertView: bdccae3cbd14f6060772654ae641daec7415d9fa
-  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
-  TestFlightSDK: 5adb691d3bf1c901b17febba335b070e36734ef4
+  MTQueue: 147632075951119a3ea8f7c29582b4e9ecb573cd
+  MYSCategoryProperties: 8db9acef083a188b5d5edc4082d33aa77374d16a
+  MYSRuntime: 39cb0417f7e58107806989a0a780129a29c2bad2
+  MYSSharedSettings: 88dcc2d219cd9a332be3b6114b2dceffe308ebc8
+  PSAlertView: 16d35f5dba549418492cf68a750d4f0dca21f4a2
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.36.3

@@ -15,11 +15,7 @@
 - (void)textViewWasTappedWhenUneditable:(CVTextView *)textView;
 @end
 
-@interface CVTextView : UITextView {
-    id<CVTextViewDelegate> __weak delegate;
-}
-
-@property (nonatomic, weak) id<CVTextViewDelegate> delegate;
-
+@interface CVTextView : UITextView
+@property (nonatomic, weak) IBOutlet id<CVTextViewDelegate> cv_delegate;
 @end
 
