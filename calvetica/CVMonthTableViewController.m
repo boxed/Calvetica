@@ -72,7 +72,6 @@
 
 #pragma mark - Public
 
-
 - (void)reloadTableView
 {
     [self.tableView reloadData];

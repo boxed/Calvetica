@@ -107,6 +107,12 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     self.rootTableView.dataSource           = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateSelectionSquare:NO];
+}
+
 - (void)viewDidAppearAfterLoad:(BOOL)animated
 {
     [super viewDidAppearAfterLoad:animated];
