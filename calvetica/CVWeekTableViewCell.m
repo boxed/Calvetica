@@ -16,6 +16,7 @@
 
 - (void)awakeFromNib
 {
+    self.backgroundColor = [UIColor whiteColor];
     [super awakeFromNib];
     _weekStartDate = nil;
     _selectedDate = nil;
@@ -155,27 +156,29 @@
     CGContextSetShouldAntialias(context, NO);
     CGFloat boxWidth = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
 
-    // gray out every other month
-    if (PAD) {
-        CGContextSetFillColorWithColor(context, [patentedVeryLightGray CGColor]);
-    }
-    else {
-        CGContextSetFillColorWithColor(context, [patentedPrettyLightGray CGColor]);
-    }
-    
     for (NSInteger i = 0; i < 7; i++) {
         NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
+        CGRect grayRect         = CGRectZero;
+        grayRect.origin.y       = 0;
+        grayRect.origin.x       = floorf(boxWidth * i);
+        grayRect.size.height    = floorf(self.bounds.size.height);
+        grayRect.size.width     = ceil(boxWidth);
         if ([date mt_monthOfYear] % 2 == 0) {
-            CGRect grayRect         = CGRectZero;
-            grayRect.origin.y       = 0;
-            grayRect.origin.x       = floorf(boxWidth * i);
-            grayRect.size.height    = floorf(self.bounds.size.height);
-            grayRect.size.width     = ceil(boxWidth);
-            CGContextFillRect(context, grayRect);
+            // gray out every other month
+            if (PAD) {
+                CGContextSetFillColorWithColor(context, [patentedVeryLightGray CGColor]);
+            }
+            else {
+                CGContextSetFillColorWithColor(context, [patentedPrettyLightGray CGColor]);
+            }
         }
+        else {
+            CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+        }
+        CGContextFillRect(context, grayRect);
     }
 
-    
+
     // DRAW BACKGROUND LINES
     CGContextSetLineWidth(context, 0.5f);
     CGContextSetStrokeColorWithColor(context, [patentedLightGray CGColor]);

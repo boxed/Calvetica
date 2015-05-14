@@ -1264,11 +1264,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         swipeRightOnMonthTableView.direction                            = UISwipeGestureRecognizerDirectionRight;
         [self.monthTableViewContainer addGestureRecognizer:swipeRightOnMonthTableView];
 
-        UISwipeGestureRecognizer *swipeDownOnMonthTableView             = [[UISwipeGestureRecognizer alloc]
-                                                                           initWithTarget:self
-                                                                           action:@selector(monthTableViewWasSwiped:)];
-        swipeDownOnMonthTableView.direction                             = UISwipeGestureRecognizerDirectionDown;
-        [self.monthTableViewContainer addGestureRecognizer:swipeDownOnMonthTableView];
+//        UISwipeGestureRecognizer *swipeDownOnMonthTableView             = [[UISwipeGestureRecognizer alloc]
+//                                                                           initWithTarget:self
+//                                                                           action:@selector(monthTableViewWasSwiped:)];
+//        swipeDownOnMonthTableView.direction                             = UISwipeGestureRecognizerDirectionDown;
+//        [self.monthTableViewContainer addGestureRecognizer:swipeDownOnMonthTableView];
 
         UISwipeGestureRecognizer *swipeLeftOnMonthTableView             = [[UISwipeGestureRecognizer alloc]
                                                                            initWithTarget:self
@@ -1276,11 +1276,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         swipeLeftOnMonthTableView.direction                             = UISwipeGestureRecognizerDirectionLeft;
         [self.monthTableViewContainer addGestureRecognizer:swipeLeftOnMonthTableView];
 
-        UISwipeGestureRecognizer *swipeUpOnMonthTableView               = [[UISwipeGestureRecognizer alloc]
-                                                                           initWithTarget:self
-                                                                           action:@selector(monthTableViewWasSwiped:)];
-        swipeUpOnMonthTableView.direction                               = UISwipeGestureRecognizerDirectionUp;
-        [self.monthTableViewContainer addGestureRecognizer:swipeUpOnMonthTableView];
+//        UISwipeGestureRecognizer *swipeUpOnMonthTableView               = [[UISwipeGestureRecognizer alloc]
+//                                                                           initWithTarget:self
+//                                                                           action:@selector(monthTableViewWasSwiped:)];
+//        swipeUpOnMonthTableView.direction                               = UISwipeGestureRecognizerDirectionUp;
+//        [self.monthTableViewContainer addGestureRecognizer:swipeUpOnMonthTableView];
 
         UISwipeGestureRecognizer *swipeUpOniPhoneRedBar                 = [[UISwipeGestureRecognizer alloc]
                                                                            initWithTarget:self
@@ -1334,6 +1334,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupUI
 {
+    self.view.window.backgroundColor = [UIColor colorWithWhite:0.941 alpha:1];
     if (!PAD) {
         // rotate month button
         CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-90.0f));
@@ -1351,7 +1352,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupRootTableViewController
 {
-    self.rootTableMode = PREFS.localRootTableViewMode;
+    [[self.rootTableView.subviews firstObject] setBackgroundColor:[UIColor colorWithWhite:0.941 alpha:1]];
+    self.rootTableMode = PREFS.localRootTableViewMode ?: CVRootTableViewModeAgenda;
+    [self.rootTableView reloadData];
 }
 
 
@@ -1437,6 +1440,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     void (^completion)(void) = ^{
         [self updateSelectionSquare:NO];
+        self.rootTableView.backgroundColor = [UIColor colorWithWhite:0.941 alpha:1];
+        self.view.backgroundColor = [UIColor colorWithWhite:0.941 alpha:1];
     };
 
     if (animated) {
@@ -1511,6 +1516,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
         self.rootTableViewController = [CVRootDetailedWeekTableViewController new];
+    }
+    else {
+        self.rootTableViewController = [CVRootAgendaTableViewController new];
     }
 
     self.rootTableViewController.delegate       = self;

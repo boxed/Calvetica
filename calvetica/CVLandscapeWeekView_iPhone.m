@@ -244,7 +244,7 @@
     if (result == CVQuickAddResultMore) {
         CVEventViewController *eventViewController = [[CVEventViewController alloc] initWithEvent:(EKEvent *)controller.calendarItem andMode:CVEventModeDetails];
         eventViewController.delegate = self;
-        [self presentPageModalViewController:eventViewController animated:YES completion:nil];
+        [self presentFullScreenModalViewController:eventViewController animated:YES];
     }
     else {
         [self reloadVisibleRows];

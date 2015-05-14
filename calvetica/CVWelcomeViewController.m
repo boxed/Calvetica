@@ -69,7 +69,7 @@
 
 - (IBAction)learnAboutFirehoseWasTapped:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.getfirehose.com/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.firehosechat.com/"]];
 }
 
 - (IBAction)contactUsButtonWasTapped:(id)sender

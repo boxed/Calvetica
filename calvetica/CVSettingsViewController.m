@@ -109,7 +109,7 @@
 
 	else if (cell.tag == 102) {
 		UIApplication *app = [UIApplication sharedApplication];
-		NSURL *url = [NSURL URLWithString:@"http://www.tinkerlearn.com/"];
+		NSURL *url = [NSURL URLWithString:@"http://www.firehosechat.com/"];
 		if ([app canOpenURL:url]) {
 			[app openURL:url];
 		}

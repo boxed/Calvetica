@@ -12,10 +12,4 @@
 
 @implementation CVWeekNumberCell
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-//    UINavigationBar *dummyNavBar = [UINavigationBar alloc] init
-}
-
 @end
