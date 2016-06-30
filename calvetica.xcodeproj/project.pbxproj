@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */; };
+		0A822D08DE725EB75C5E34BC /* libPods-calvetica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */; };
 		6A0CD58E13983974009B6EFE /* CVMultiToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */; };
 		6A17301A138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A173018138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m */; };
 		6A17301F138EDC4800C2165B /* CVEventDetailsRepeatMonthlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A17301D138EDC4800C2165B /* CVEventDetailsRepeatMonthlyViewController.m */; };
@@ -237,7 +238,6 @@
 		C2AED95513A3B8870012ADE1 /* CVNumericKeyPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AED95313A3B8870012ADE1 /* CVNumericKeyPadViewController.xib */; };
 		C2AED96713A3DBAA0012ADE1 /* CVViewOptionsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AED96513A3DBAA0012ADE1 /* CVViewOptionsPopoverViewController.m */; };
 		C2AED97113A3F4200012ADE1 /* CVSubHourPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AED96F13A3F4200012ADE1 /* CVSubHourPickerViewController.m */; };
-		C2AF809915E93A4E005B2A46 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF809815E93A4E005B2A46 /* libPods.a */; };
 		C2B2174D138899A9006878DC /* CVTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2174C138899A9006878DC /* CVTextField.m */; };
 		C2B3C47613C5226D0055018A /* CVRootWeekTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47513C5226D0055018A /* CVRootWeekTableViewController.m */; };
 		C2B3C47A13C52A450055018A /* CVAgendaDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47913C52A450055018A /* CVAgendaDateCell.m */; };
@@ -332,6 +332,8 @@
 /* Begin PBXFileReference section */
 		0432F09713CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVEventSubtitleTextPriorityViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventSubtitleTextPriorityViewController.m; sourceTree = "<group>"; };
+		04B155B80184D2B11B27DEF2 /* Pods-calvetica.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.adhoc.xcconfig"; sourceTree = "<group>"; };
+		5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-calvetica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A0CD58C13983974009B6EFE /* CVMultiToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMultiToggleButton.h; sourceTree = "<group>"; };
 		6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMultiToggleButton.m; sourceTree = "<group>"; };
 		6A173010138EA93000C2165B /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strings.h; sourceTree = "<group>"; };
@@ -363,8 +365,6 @@
 		6AF3CE3D1403022D00A193E4 /* CVWeekNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekNumberCell.h; sourceTree = "<group>"; };
 		6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekNumberCell.m; sourceTree = "<group>"; };
 		6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVWeekNumberCell.xib; sourceTree = "<group>"; };
-		73DD42B733465F701E65D160 /* Pods.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc.xcconfig"; sourceTree = "<group>"; };
-		863F264CE53D81B13BCC5E2E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9B0127A513CBA2B50006C2EA /* CVGestureHowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGestureHowToViewController.h; sourceTree = "<group>"; };
 		9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVGestureHowToViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B0AD8A713CF5AC300DF1F2F /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
@@ -835,7 +835,8 @@
 		C2FF4D3513D89DDD00E662FE /* CVLandscapeWeekView_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLandscapeWeekView_iPad.m; sourceTree = "<group>"; };
 		C2FF4D3913D8A6BC00E662FE /* CVLandscapeWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVLandscapeWeekView.h; sourceTree = "<group>"; };
 		C2FF4D3A13D8A6BC00E662FE /* CVLandscapeWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLandscapeWeekView.m; sourceTree = "<group>"; };
-		E3331D5D41AC20FB526C43E7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DF8C2823FBA37F035E5079CC /* Pods-calvetica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.debug.xcconfig"; sourceTree = "<group>"; };
+		EB4BF7472ED0C0018A8FF2AF /* Pods-calvetica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.release.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -844,7 +845,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2468C2616F97ECD006F047F /* libz.dylib in Frameworks */,
-				C2AF809915E93A4E005B2A46 /* libPods.a in Frameworks */,
 				9B858CF11447AB7C00A370FC /* CoreLocation.framework in Frameworks */,
 				C25134D113ED8D8200936CC0 /* EventKitUI.framework in Frameworks */,
 				9B0FF93313BCDE1B00B316A9 /* QuartzCore.framework in Frameworks */,
@@ -862,6 +862,7 @@
 				C2E2972A133419A900FA7638 /* CoreGraphics.framework in Frameworks */,
 				C2691535136CC14D002053C5 /* MessageUI.framework in Frameworks */,
 				C202A4C416FBF494000B4281 /* Crashlytics.framework in Frameworks */,
+				0A822D08DE725EB75C5E34BC /* libPods-calvetica.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,16 +895,6 @@
 				0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */,
 			);
 			name = "Event Subtitle Text";
-			sourceTree = "<group>";
-		};
-		0F615D89418F428A5BC66A92 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E3331D5D41AC20FB526C43E7 /* Pods.debug.xcconfig */,
-				863F264CE53D81B13BCC5E2E /* Pods.release.xcconfig */,
-				73DD42B733465F701E65D160 /* Pods.adhoc.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		6A173014138EDBB600C2165B /* Event - Details - Repeat - Weekly */ = {
@@ -1234,6 +1225,16 @@
 				9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */,
 			);
 			name = "Native Alert View";
+			sourceTree = "<group>";
+		};
+		A6CFAE203BEA906F8F4F9778 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF8C2823FBA37F035E5079CC /* Pods-calvetica.debug.xcconfig */,
+				EB4BF7472ED0C0018A8FF2AF /* Pods-calvetica.release.xcconfig */,
+				04B155B80184D2B11B27DEF2 /* Pods-calvetica.adhoc.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		C2027E7B13608BFB002E58BF /* Images */ = {
@@ -2282,7 +2283,7 @@
 				C2E29750133419A900FA7638 /* calveticaTests */,
 				C2E29724133419A900FA7638 /* Frameworks */,
 				C2E29722133419A900FA7638 /* Products */,
-				0F615D89418F428A5BC66A92 /* Pods */,
+				A6CFAE203BEA906F8F4F9778 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2318,6 +2319,7 @@
 				C2E29727133419A900FA7638 /* Foundation.framework */,
 				C2E29729133419A900FA7638 /* CoreGraphics.framework */,
 				C22B0C5213BB8A5800455F47 /* Other Frameworks */,
+				5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2607,12 +2609,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2E2975D133419A900FA7638 /* Build configuration list for PBXNativeTarget "calvetica" */;
 			buildPhases = (
+				8B56164618FD53E8D9BE9495 /* [CP] Check Pods Manifest.lock */,
 				C2E2971D133419A900FA7638 /* Sources */,
 				C2E2971E133419A900FA7638 /* Frameworks */,
 				C2E2971F133419A900FA7638 /* Resources */,
-				F5993892FE164968B65FCF0D /* Copy Pods Resources */,
 				C2E51AFF17F3C6560058BB32 /* Bump Build Number */,
 				C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */,
+				90B35967C4010FEE0B2F239B /* [CP] Embed Pods Frameworks */,
+				42473320FDE4615B6CDB2DA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2808,6 +2812,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		42473320FDE4615B6CDB2DA8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B56164618FD53E8D9BE9495 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		90B35967C4010FEE0B2F239B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-calvetica/Pods-calvetica-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2848,20 +2897,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$((bN += 1))\nbN=$(printf \"%d\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
-		};
-		F5993892FE164968B65FCF0D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3310,7 +3345,7 @@
 		};
 		C2C994601374EC24005A4EB1 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73DD42B733465F701E65D160 /* Pods.adhoc.xcconfig */;
+			baseConfigurationReference = 04B155B80184D2B11B27DEF2 /* Pods-calvetica.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -3412,7 +3447,7 @@
 		};
 		C2E2975E133419A900FA7638 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3331D5D41AC20FB526C43E7 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = DF8C2823FBA37F035E5079CC /* Pods-calvetica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -3439,7 +3474,7 @@
 		};
 		C2E2975F133419A900FA7638 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 863F264CE53D81B13BCC5E2E /* Pods.release.xcconfig */;
+			baseConfigurationReference = EB4BF7472ED0C0018A8FF2AF /* Pods-calvetica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;

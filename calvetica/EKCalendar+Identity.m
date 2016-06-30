@@ -13,7 +13,7 @@
 
 + (instancetype)calendarWithExternalIdentifier:(NSString *)externalIdentifier
 {
-    for (EKCalendar *calendar in [[EKEventStore sharedStore] allCalendars]) {
+    for (EKCalendar *calendar in [[EKEventStore sharedStore] mt_allCalendars]) {
         if ([calendar.calendarExternalIdentifier isEqualToString:externalIdentifier]) {
             return calendar;
         }

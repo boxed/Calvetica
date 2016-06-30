@@ -2,7 +2,7 @@
   "name": "MYSRuntime",
   "version": "0.0.5",
   "summary": "Obj-C Library that makes runtime self-inspection and class modification dead easy.",
-  "description": "                   Using objective-c objects to wrap classes methods and properties, it is much easier and\n                   straight-forward to get information about a classes properties.\n\n                   Creating methods from blocks and adding them to classes is also dead easy.\n",
+  "description": "Using objective-c objects to wrap classes methods and properties, it is much easier and\nstraight-forward to get information about a classes properties.\n\nCreating methods from blocks and adding them to classes is also dead easy.",
   "homepage": "https://github.com/mysterioustrousers/MYSRuntime",
   "license": "MIT",
   "authors": {

@@ -11,7 +11,7 @@
 
 @implementation EKEventStore (Calendars)
 
-- (NSArray *)allCalendars
+- (NSArray *)mt_allCalendars
 {
     if (![EKEventStore isPermissionGranted]) return nil;
 	return [([self eventCalendars] ?: @[]) arrayByAddingObjectsFromArray:[self reminderCalendars]];

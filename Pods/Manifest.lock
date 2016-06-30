@@ -13,8 +13,8 @@ PODS:
   - MYSRuntime (0.0.5)
   - MYSSharedSettings (0.1.0):
     - MYSRuntime (~> 0.0.3)
-  - PSAlertView (HEAD based on 2.0.3)
-  - SVProgressHUD (HEAD based on 1.1.3)
+  - PSAlertView (2.0.3)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - FrameAccessor
@@ -28,8 +28,8 @@ DEPENDENCIES:
   - MYSCategoryProperties (from `libs/MYSCategoryProperties`)
   - MYSRuntime (from `libs/MYSRuntime`)
   - MYSSharedSettings (from `libs/MYSSharedSettings`)
-  - PSAlertView (HEAD)
-  - SVProgressHUD (HEAD)
+  - PSAlertView (from `https://github.com/steipete/PSAlertView`)
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD`)
 
 EXTERNAL SOURCES:
   MTAnimation:
@@ -50,20 +50,34 @@ EXTERNAL SOURCES:
     :path: libs/MYSRuntime
   MYSSharedSettings:
     :path: libs/MYSSharedSettings
+  PSAlertView:
+    :git: https://github.com/steipete/PSAlertView
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD
+
+CHECKOUT OPTIONS:
+  PSAlertView:
+    :commit: 132f5436b5608c6f810330743abe13f29d5a71be
+    :git: https://github.com/steipete/PSAlertView
+  SVProgressHUD:
+    :commit: 6ca5946638ed5bbf8ae36e3c3191901f76bf173b
+    :git: https://github.com/SVProgressHUD/SVProgressHUD
 
 SPEC CHECKSUMS:
   FrameAccessor: 443a13e58e23a10ff22180da0897b28c3f6abf66
-  MTAnimation: 1079f4ff38c0282779ced010d7363a8f893fd3ee
+  MTAnimation: 2dc79fea016ba8af8363394727ab44df9dc99f68
   MTColorDistance: 88056e48c6843a5b0e63d281c86bfca5b44bce11
   MTDates: f51fbd9163ad5a379243e08fd63cafb5a5135a29
-  MTGeometry: 0f0053250189d12a9e349a164629239cdfc6b802
+  MTGeometry: 8cddc3f2d30737e657508e8a7b0d77bcbae0a235
   MTMigration: 725315e6469c8fd7d13966887f59e65eb8aecb2e
   MTPencil: aa1ac55ee41bbb9b56e8cbdff62e84d2898acb7d
   MTQueue: 147632075951119a3ea8f7c29582b4e9ecb573cd
-  MYSCategoryProperties: 8db9acef083a188b5d5edc4082d33aa77374d16a
-  MYSRuntime: 39cb0417f7e58107806989a0a780129a29c2bad2
-  MYSSharedSettings: 88dcc2d219cd9a332be3b6114b2dceffe308ebc8
+  MYSCategoryProperties: e57fad96248880186fe68d1f7e14cbe491f396d1
+  MYSRuntime: e87a3cfbb4a378ebcd2d2194aec37a3f904a5caf
+  MYSSharedSettings: 023f35635b28315078567b4d1854e9fa4b8c791b
   PSAlertView: 16d35f5dba549418492cf68a750d4f0dca21f4a2
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-COCOAPODS: 0.36.3
+PODFILE CHECKSUM: ca37e867b95686d0e9269d85a62faa9cfb35c20f
+
+COCOAPODS: 1.0.1

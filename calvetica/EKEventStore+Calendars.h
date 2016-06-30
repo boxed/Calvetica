@@ -10,7 +10,7 @@
 
 @interface EKEventStore (Calendars)
 
-- (NSArray *)allCalendars;
+- (NSArray *)mt_allCalendars;
 - (NSArray *)eventCalendars;
 - (NSArray *)reminderCalendars;
 
