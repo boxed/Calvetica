@@ -22,7 +22,8 @@
 
 - (void)awakeFromNib 
 {
-	self.disabled = NO;
+    [super awakeFromNib];
+    self.disabled = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated 

@@ -143,7 +143,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
 #pragma mark (rotation)
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if (PAD) {
         return UIInterfaceOrientationMaskAll;

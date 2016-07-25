@@ -12,7 +12,7 @@
 
 @implementation CVEventEditViewController
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
 }

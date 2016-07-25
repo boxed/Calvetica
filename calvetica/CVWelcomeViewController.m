@@ -29,7 +29,7 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if (PAD) {
         return UIInterfaceOrientationMaskAll;

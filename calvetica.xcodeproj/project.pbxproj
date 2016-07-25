@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */; };
-		0A822D08DE725EB75C5E34BC /* libPods-calvetica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */; };
+		4B119DD5F492A085B4367C06 /* libPods-calvetica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */; };
 		6A0CD58E13983974009B6EFE /* CVMultiToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */; };
 		6A17301A138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A173018138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m */; };
 		6A17301F138EDC4800C2165B /* CVEventDetailsRepeatMonthlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A17301D138EDC4800C2165B /* CVEventDetailsRepeatMonthlyViewController.m */; };
@@ -100,7 +100,6 @@
 		9BFE2CB013C6490D00360D5C /* CVNativeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */; };
 		9BFFA1C313A1F2BF0012112E /* UITableView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */; };
 		C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2027EAE1360B4B6002E58BF /* CVRootViewController.m */; };
-		C202A4C416FBF494000B4281 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C202A4C316FBF494000B4281 /* Crashlytics.framework */; };
 		C206985A1396F657005C8192 /* geometry.c in Sources */ = {isa = PBXBuildFile; fileRef = C20698581396F656005C8192 /* geometry.c */; };
 		C20DAACB181080D500F0E7A2 /* NSObject+Null.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DAACA181080D500F0E7A2 /* NSObject+Null.m */; };
 		C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */; };
@@ -225,6 +224,8 @@
 		C2A0C7C217FCD930005D17B5 /* CVClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0C7C117FCD930005D17B5 /* CVClearButton.m */; };
 		C2A0C7C517FCDC25005D17B5 /* CVMoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0C7C417FCDC25005D17B5 /* CVMoreButton.m */; };
 		C2A0C7CA17FD04EA005D17B5 /* CVTimeZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0C7C817FD04EA005D17B5 /* CVTimeZoneViewController.m */; };
+		C2A2118C1D46B4F600503F8E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A2118A1D46B4F600503F8E /* Security.framework */; };
+		C2A211901D46B5D400503F8E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A2118E1D46B5D400503F8E /* Security.framework */; };
 		C2A4C97013832E1400442AFF /* CVEventDetailsOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A4C96E13832E1400442AFF /* CVEventDetailsOrderViewController.m */; };
 		C2A4C97613845ABC00442AFF /* CVCellAccessoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A4C97513845ABC00442AFF /* CVCellAccessoryButton.m */; };
 		C2A5E4241811E43A001A673C /* EKCalendarItem+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A5E4231811E43A001A673C /* EKCalendarItem+Common.m */; };
@@ -295,6 +296,9 @@
 		C2E29768133419E900FA7638 /* EKCalendar+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29765133419E900FA7638 /* EKCalendar+Store.m */; };
 		C2E29769133419E900FA7638 /* EKEvent+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29767133419E900FA7638 /* EKEvent+Utilities.m */; };
 		C2E2978813341B9500FA7638 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2978713341B9500FA7638 /* EventKit.framework */; };
+		C2E2C97B1D46B7FE002D17C7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C9791D46B7FE002D17C7 /* Fabric.framework */; };
+		C2E2C97C1D46B7FE002D17C7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C97A1D46B7FE002D17C7 /* Crashlytics.framework */; };
+		C2E2C97E1D46B891002D17C7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C97D1D46B891002D17C7 /* libc++.tbd */; };
 		C2E3A1A5160D488400F00FB8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A1A4160D488400F00FB8 /* Settings.storyboard */; };
 		C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */; };
 		C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */; };
@@ -470,7 +474,6 @@
 		C2027EAD1360B4B6002E58BF /* CVRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRootViewController.h; sourceTree = "<group>"; };
 		C2027EAE1360B4B6002E58BF /* CVRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootViewController.m; sourceTree = "<group>"; };
 		C2027EB11360C405002E58BF /* EKEventStore+Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Shared.h"; sourceTree = "<group>"; };
-		C202A4C316FBF494000B4281 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C20698581396F656005C8192 /* geometry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = geometry.c; sourceTree = "<group>"; };
 		C20698591396F657005C8192 /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
 		C20DAAC8181077C100F0E7A2 /* CVRootTableViewController_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVRootTableViewController_Protected.h; sourceTree = "<group>"; };
@@ -692,6 +695,8 @@
 		C2A0C7C417FCDC25005D17B5 /* CVMoreButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMoreButton.m; sourceTree = "<group>"; };
 		C2A0C7C717FD04EA005D17B5 /* CVTimeZoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTimeZoneViewController.h; sourceTree = "<group>"; };
 		C2A0C7C817FD04EA005D17B5 /* CVTimeZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTimeZoneViewController.m; sourceTree = "<group>"; };
+		C2A2118A1D46B4F600503F8E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C2A2118E1D46B5D400503F8E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C2A4C96E13832E1400442AFF /* CVEventDetailsOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsOrderViewController.m; sourceTree = "<group>"; };
 		C2A4C96F13832E1400442AFF /* CVEventDetailsOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVEventDetailsOrderViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C2A4C97213844CD600442AFF /* animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animations.h; sourceTree = "<group>"; };
@@ -796,6 +801,9 @@
 		C2E29766133419E900FA7638 /* EKEvent+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEvent+Utilities.h"; sourceTree = "<group>"; };
 		C2E29767133419E900FA7638 /* EKEvent+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEvent+Utilities.m"; sourceTree = "<group>"; };
 		C2E2978713341B9500FA7638 /* EventKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		C2E2C9791D46B7FE002D17C7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		C2E2C97A1D46B7FE002D17C7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C2E2C97D1D46B891002D17C7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		C2E3A1A4160D488400F00FB8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettingsViewController.h; sourceTree = "<group>"; };
 		C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSettingsViewController.m; sourceTree = "<group>"; };
@@ -844,16 +852,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2E2C97E1D46B891002D17C7 /* libc++.tbd in Frameworks */,
 				C2468C2616F97ECD006F047F /* libz.dylib in Frameworks */,
 				9B858CF11447AB7C00A370FC /* CoreLocation.framework in Frameworks */,
 				C25134D113ED8D8200936CC0 /* EventKitUI.framework in Frameworks */,
 				9B0FF93313BCDE1B00B316A9 /* QuartzCore.framework in Frameworks */,
+				C2A211901D46B5D400503F8E /* Security.framework in Frameworks */,
 				9BEFC7CE13BB80B1001CB080 /* AVFoundation.framework in Frameworks */,
 				C2D388B513B8F56E002527A7 /* libxml2.dylib in Frameworks */,
+				C2A2118C1D46B4F600503F8E /* Security.framework in Frameworks */,
 				C2D388B313B8F560002527A7 /* libicucore.dylib in Frameworks */,
 				C2D388B113B8F550002527A7 /* SystemConfiguration.framework in Frameworks */,
 				9B12A0E113A7DFDE00BF1D7F /* AddressBook.framework in Frameworks */,
+				C2E2C97B1D46B7FE002D17C7 /* Fabric.framework in Frameworks */,
 				9B12A0E213A7DFDE00BF1D7F /* AddressBookUI.framework in Frameworks */,
+				C2E2C97C1D46B7FE002D17C7 /* Crashlytics.framework in Frameworks */,
 				C2603917138168D300F8619C /* CoreData.framework in Frameworks */,
 				C2AC518313789529000A96CE /* MapKit.framework in Frameworks */,
 				C2E2978813341B9500FA7638 /* EventKit.framework in Frameworks */,
@@ -861,8 +874,7 @@
 				C2E29728133419A900FA7638 /* Foundation.framework in Frameworks */,
 				C2E2972A133419A900FA7638 /* CoreGraphics.framework in Frameworks */,
 				C2691535136CC14D002053C5 /* MessageUI.framework in Frameworks */,
-				C202A4C416FBF494000B4281 /* Crashlytics.framework in Frameworks */,
-				0A822D08DE725EB75C5E34BC /* libPods-calvetica.a in Frameworks */,
+				4B119DD5F492A085B4367C06 /* libPods-calvetica.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2299,9 +2311,13 @@
 		C2E29724133419A900FA7638 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C202A4C316FBF494000B4281 /* Crashlytics.framework */,
+				C2E2C97D1D46B891002D17C7 /* libc++.tbd */,
+				C2E2C9791D46B7FE002D17C7 /* Fabric.framework */,
+				C2E2C97A1D46B7FE002D17C7 /* Crashlytics.framework */,
+				C2A2118E1D46B5D400503F8E /* Security.framework */,
 				C2468C2516F97ECD006F047F /* libz.dylib */,
 				C2AF809815E93A4E005B2A46 /* libPods.a */,
+				C2A2118A1D46B4F600503F8E /* Security.framework */,
 				9B858CF01447AB7C00A370FC /* CoreLocation.framework */,
 				C25134D013ED8D8200936CC0 /* EventKitUI.framework */,
 				9B0FF93213BCDE1B00B316A9 /* QuartzCore.framework */,
@@ -2652,7 +2668,7 @@
 		C2E29718133419A900FA7638 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0730;
 				TargetAttributes = {
 					C2E29720133419A900FA7638 = {
 						DevelopmentTeam = JXK78JN25R;
@@ -2869,7 +2885,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 237b422d5ee51789eac82b82a6b214d838f1fd4e";
+			shellScript = "./Fabric.framework/run 237b422d5ee51789eac82b82a6b214d838f1fd4e e2f68842cabaa23b945fde2c88600caf04c98376f6fe0b5ca96693f770bde247";
 		};
 		C2E29748133419A900FA7638 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3349,12 +3365,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "calvetica/calvetica-Prefix.pch";
@@ -3362,6 +3380,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -3387,6 +3406,7 @@
 					"-framework",
 					SenTestingKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mysterioustrousers.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "87BC771E-94D6-4DFB-A130-6C6A0360A78D";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -3401,6 +3421,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -3457,7 +3478,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3466,8 +3488,9 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77b77c32-1e57-45b4-b7c9-70b52de6b525";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3479,11 +3502,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "calvetica/calvetica-Prefix.pch";
@@ -3491,8 +3516,9 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e871f72a-a30c-4cf0-9c19-6b5193379422";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3516,6 +3542,7 @@
 					"-framework",
 					SenTestingKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mysterioustrousers.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "87BC771E-94D6-4DFB-A130-6C6A0360A78D";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -3542,6 +3569,7 @@
 					"-framework",
 					SenTestingKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mysterioustrousers.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "87BC771E-94D6-4DFB-A130-6C6A0360A78D";
 				TEST_HOST = "$(BUNDLE_LOADER)";

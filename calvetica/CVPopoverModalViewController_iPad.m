@@ -503,7 +503,7 @@ typedef struct {
 
 #pragma mark - View Controller Delegate
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
 }

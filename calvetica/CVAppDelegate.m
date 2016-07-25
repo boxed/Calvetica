@@ -12,6 +12,8 @@
 #import "dictionarykeys.h"
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 
 @interface CVAppDelegate () 
@@ -39,7 +41,7 @@
     [TestFlight takeOff:@"781a1420-e37c-4042-bfc7-48e2ed98b6fb"];
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice].identifierForVendor UUIDString]];
 #else
-    [Crashlytics startWithAPIKey:@"237b422d5ee51789eac82b82a6b214d838f1fd4e"];
+    [Fabric with:@[[Crashlytics class]]];
 #endif
 
 	[NSDate mt_setFirstDayOfWeek:PREFS.weekStartsOnWeekday];

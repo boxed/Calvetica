@@ -27,7 +27,6 @@
     #import "EventKitAdditions.h"
 	#import "CVOperationQueue.h"
     #import "CVSharedSettings.h"
-    #import <Crashlytics/Crashlytics.h>
     #import "color.h"
 
     // pods
