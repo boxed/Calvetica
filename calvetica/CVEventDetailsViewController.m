@@ -38,7 +38,6 @@
 @property (nonatomic, weak) IBOutlet UITableView           *eventCalendarTableView;
 @property (nonatomic, weak) IBOutlet CVTextView            *eventNotesTextView;
 @property (nonatomic, weak) IBOutlet CVTextView            *eventRepeatTextView;
-@property (nonatomic, weak) IBOutlet UITableView           *eventPeopleTableView;
 @property (nonatomic, weak) IBOutlet CVTextView            *eventLocationTextView;
 
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatNoneButton;
@@ -80,8 +79,6 @@
     self.eventCalendarTableView.dataSource  = nil;
     self.eventNotesTextView.delegate        = nil;
     self.eventRepeatTextView.delegate       = nil;
-    self.eventPeopleTableView.delegate      = nil;
-    self.eventPeopleTableView.dataSource    = nil;
     self.eventLocationTextView.delegate     = nil;
 }
 
@@ -140,13 +137,6 @@
     _eventCalendarTableView.delegate = _calendarTableViewController;
     _eventCalendarTableView.dataSource = _calendarTableViewController;
 	_calendarTableViewController.showUneditableCalendars = !self.event.calendar.allowsContentModifications;
-
-    // people table
-    self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController alloc] initWithEvent:self.event];
-    self.peopleTableViewController.delegate = self;
-    self.peopleTableViewController.tableView = self.eventPeopleTableView;
-    self.eventPeopleTableView.delegate = self.peopleTableViewController;
-    self.eventPeopleTableView.dataSource = self.peopleTableViewController;
 
     // repeat block
     [self configureRepeatButtons];
@@ -345,30 +335,7 @@
         }
         
         else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"People"]) {
-            BOOL hide = [[dict objectForKey:@"HiddenKey"] boolValue];
-            if (hide) {
-                _eventPeopleBlock.hidden = YES;
-            }
-            else {
-                CGRect f = _eventPeopleBlock.frame;
-                f.origin.y = currentY;
-                
-                CGFloat peopleTableContentSize = self.peopleTableViewController.participantDataHolderArray.count * cellHeight;
-                CGSize peopleTableFrameSize = self.eventPeopleTableView.frame.size;
-                
-                CGFloat heightDifference = (peopleTableContentSize - peopleTableFrameSize.height);
-                
-                f.size.height += heightDifference;
-                                
-                currentY += f.size.height;
-                [_eventPeopleBlock setFrame:f];
-                
-                f = _addAttendeesButton.frame;
-                f.origin.y += heightDifference;
-                [_addAttendeesButton setFrame:f];
-                
-                self.eventPeopleTableView.frame = CGRectMake(self.eventPeopleTableView.frame.origin.x, self.eventPeopleTableView.frame.origin.y, self.eventPeopleTableView.bounds.size.width, peopleTableContentSize);
-            }
+            _eventPeopleBlock.hidden = YES;
         }
         
         else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Availability"]) {
@@ -770,129 +737,6 @@
     timeZoneViewController.title                        = @"Select Time Zone";
     timeZoneViewController.showsDoneButton              = YES;
     [self.closestSystemPresentedViewController presentViewController:navigationController animated:YES completion:nil];
-}
-
-
-
-
-#pragma mark - CVEventDetailsPeopleTableViewControllerDelegate Methods
-
-- (void)doneViewingPerson 
-{
-    [self.closestSystemPresentedViewController dismissPageModalViewControllerAnimated:YES completion:nil];
-}
-
-- (void)personWasSwiped:(NSNumber *)personID 
-{
-    
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
-	if (addressBook) {
-		ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
-			if (granted) {
-				ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, [personID intValue]);
-				if (person) {
-					ABPersonViewController *personController = [[ABPersonViewController alloc] init];
-					personController.displayedPerson = person;
-					personController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneViewingPerson)];
-
-					UINavigationController *personNavController = [[UINavigationController alloc] initWithRootViewController:personController];
-
-					[self.closestSystemPresentedViewController presentViewController:personNavController animated:YES completion:nil];
-				}
-				CFRelease(addressBook);
-			}
-		});
-    }
-}
-
-- (void)chatButtonWasPressedWithTelephoneNumbers:(NSArray *)telephoneNumbers 
-{
-    if ([MFMessageComposeViewController canSendText]) {
-        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-        messageController.messageComposeDelegate = self;
-        messageController.modalPresentationStyle = UIModalPresentationPageSheet;
-        messageController.wantsFullScreenLayout = YES;
-        
-        if (telephoneNumbers.count > 1) {
-
-            // present alert view and retrieve preferred number			
-			NSMutableArray *alertButtons = [NSMutableArray array];
-            for (NSDictionary *numberDict in telephoneNumbers) {
-                NSString *label = [numberDict objectForKey:@"label"];
-                NSString *telephone = [numberDict objectForKey:@"telephone"];
-				
-				CVActionBlockButton *button = [CVActionBlockButton buttonWithTitle:[NSString stringWithFormat:@"%@: %@", label, telephone]  andActionBlock:^(void) { 
-                    [messageController setRecipients:@[telephone]];
-                    [UIApplication sharedApplication].statusBarHidden = NO;
-                    self.rootController = self.closestSystemPresentedViewController;
-                    [self.rootController presentViewController:messageController animated:YES completion:nil];
-				}];
-				
-				[alertButtons addObject:button];
-            }
-			
-			[UIApplication showAlertWithTitle:[@"Person telephone numbers" uppercaseString] 
-									  message:@"This person has more than one telephone number, please select from the list"
-									  buttons:alertButtons
-                                        completion:nil];
-            
-        }
-        else {
-            NSDictionary *numberDict = [telephoneNumbers lastObject];
-            NSString *telephone = [numberDict objectForKey:@"telephone"];
-            
-            [messageController setRecipients:@[telephone]];
-            [UIApplication sharedApplication].statusBarHidden = NO;
-            self.rootController = self.closestSystemPresentedViewController;
-            [self.rootController presentViewController:messageController animated:YES completion:nil];
-        }
-    }
-}
-
-- (void)emailButtonWasPressedForParticipants:(NSArray *)participantEmails 
-{
-    if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
-        mailComposer.mailComposeDelegate = self;
-        mailComposer.modalPresentationStyle = UIModalPresentationPageSheet;
-    
-        [mailComposer setToRecipients:participantEmails];
-
-        self.rootController = self.closestSystemPresentedViewController;
-        [self.rootController presentViewController:mailComposer animated:YES completion:nil];
-    }
-}
-
-- (void)callButtonWasPressedWithTelephoneNumbers:(NSArray *)telephoneNumbers 
-{
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]]) {
-        if (telephoneNumbers.count > 1) {
-			
-			// present alert view and retrieve preferred number			
-			NSMutableArray *alertButtons = [NSMutableArray array];
-            for (NSDictionary *numberDict in telephoneNumbers) {
-                NSString *label = [numberDict objectForKey:@"label"];
-                NSString *telephone = [numberDict objectForKey:@"telephone"];
-				
-				CVActionBlockButton *button = [CVActionBlockButton buttonWithTitle:[NSString stringWithFormat:@"%@: %@", label, telephone]  andActionBlock:^(void) {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",telephone]]];
-				}];
-				
-				[alertButtons addObject:button];
-            }
-			
-			[UIApplication showAlertWithTitle:[@"Person telephone numbers" uppercaseString] 
-									  message:@"This person has more than one telephone number, please select which one to call."
-									  buttons:alertButtons
-                                        completion:nil];
-        }
-        else {
-            NSDictionary *numberDict = [telephoneNumbers lastObject];
-            NSString *telephone = [numberDict objectForKey:@"telephone"];
-            
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",telephone]]];
-        }
-    }
 }
 
 

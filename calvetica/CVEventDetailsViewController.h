@@ -21,7 +21,6 @@
 #import "CVEventDetailsRepeatWeeklyViewController.h"
 #import "CVEventDetailsRepeatMonthlyViewController.h"
 #import "CVEventDetailsRepeatYearlyViewController.h"
-#import "CVEventDetailsPeopleTableViewController.h"
 #import "CVRoundedToggleButton.h"
 #import "strings.h"
 #import "CVSlideLockControl.h"
@@ -39,13 +38,12 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 @protocol CVEventDetailsViewControllerDelegate;
 
 
-@interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, CVEventDetailsPeopleTableViewControllerDelegate, EKEventEditViewDelegate>
+@interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate>
 
 @property (nonatomic, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
 @property (nonatomic, strong) UIViewController                               *rootController;
 @property (nonatomic, strong) EKEvent                                        *event;
 @property (nonatomic, strong) CVCalendarPickerTableViewController            *calendarTableViewController;
-@property (nonatomic, strong) CVEventDetailsPeopleTableViewController *peopleTableViewController;
 @property (nonatomic, strong) CVSlideLockControl                             *deleteSlideLock;
 @property (nonatomic, strong) SCEventDetailsAlarmPicker                      *alarmPicker;
 @property (nonatomic, strong) SCEventDetailsAllDayAlarmPicker                *allDayAlarmPicker;

@@ -51,7 +51,6 @@
 		9B34709513A918D400B08F00 /* CVParticipantCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B34709413A918D400B08F00 /* CVParticipantCellModel.m */; };
 		9B562EEA1385C6DF001E5EA5 /* CVPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */; };
 		9B562EED1385C788001E5EA5 /* CVPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B562EEC1385C788001E5EA5 /* CVPeopleTableViewCell.m */; };
-		9B562EF11385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B562EF01385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.m */; };
 		9B5CFA21141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CFA20141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m */; };
 		9B5CFA24141E797800EDB2FA /* CVEditCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CFA23141E797800EDB2FA /* CVEditCalendarViewController.m */; };
 		9B72B38013C95E180068C715 /* CVFAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B72B37E13C95E180068C715 /* CVFAQViewController.m */; };
@@ -408,8 +407,6 @@
 		9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVPeopleTableViewCell.xib; sourceTree = "<group>"; };
 		9B562EEB1385C788001E5EA5 /* CVPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPeopleTableViewCell.h; sourceTree = "<group>"; };
 		9B562EEC1385C788001E5EA5 /* CVPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVPeopleTableViewCell.m; sourceTree = "<group>"; };
-		9B562EEF1385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVEventDetailsPeopleTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		9B562EF01385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsPeopleTableViewController.m; sourceTree = "<group>"; };
 		9B5CFA20141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVEventCalendarsManagerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B5CFA22141E797800EDB2FA /* CVEditCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEditCalendarViewController.h; sourceTree = "<group>"; };
 		9B5CFA23141E797800EDB2FA /* CVEditCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVEditCalendarViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1147,15 +1144,6 @@
 				9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */,
 			);
 			name = PeopleCell;
-			sourceTree = "<group>";
-		};
-		9B562EEE1385C93A001E5EA5 /* Event - Details - People Table View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				9B562EEF1385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.h */,
-				9B562EF01385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.m */,
-			);
-			name = "Event - Details - People Table View Controller";
 			sourceTree = "<group>";
 		};
 		9B5CFA1D141E6E6A00EDB2FA /* Manage Event Calendars */ = {
@@ -2214,7 +2202,6 @@
 				C2C9944B13731929005A4EB1 /* CVEventDetailsViewController.m */,
 				6A6183A313BCC04C005BFFCC /* CVEventDetailsViewController.xib */,
 				9B29FE741401A941009926FB /* Event Details Alarm Picker */,
-				9B562EEE1385C93A001E5EA5 /* Event - Details - People Table View Controller */,
 				C239CD65137648440074D731 /* Event - Details - Notes View Controller */,
 				C2AC517813788F98000A96CE /* Event - Details - Location View Controller */,
 				C286BFB4137EEEDB009F78E3 /* Event - Details - Repeat */,
@@ -2834,9 +2821,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2849,13 +2839,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-calvetica-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		90B35967C4010FEE0B2F239B /* [CP] Embed Pods Frameworks */ = {
@@ -2964,7 +2957,6 @@
 				C2A4C97013832E1400442AFF /* CVEventDetailsOrderViewController.m in Sources */,
 				C2A4C97613845ABC00442AFF /* CVCellAccessoryButton.m in Sources */,
 				9B562EED1385C788001E5EA5 /* CVPeopleTableViewCell.m in Sources */,
-				9B562EF11385C98A001E5EA5 /* CVEventDetailsPeopleTableViewController.m in Sources */,
 				9BE6398A1385F3F900FB31F3 /* CVEventDefaultAlarmsViewController.m in Sources */,
 				9BE6399E138624E500FB31F3 /* CVEventDefaultCalendarViewController.m in Sources */,
 				C2EF1C8F1386DD2C00AA7384 /* CVAlertViewController.m in Sources */,
