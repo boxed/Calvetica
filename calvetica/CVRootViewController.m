@@ -96,6 +96,10 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self setupGestures];
     [self setUpMonthTableViewController];
     [self setupRootTableViewController];
+    
+    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+        _monthTableViewContainer.y = 43;
+    }
 }
 
 - (void)dealloc
@@ -1161,7 +1165,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             // if a modal view controller is already being displayed, return
             if (self.presentedViewController) return;
 
-            [self performSegueWithIdentifier:@"WeekViewSegue" sender:self];
+            if ([[UIScreen mainScreen] nativeBounds].size.height != 2436) {
+                [self performSegueWithIdentifier:@"WeekViewSegue" sender:self];
+            }
+            
         }
     }
 }
@@ -1363,6 +1370,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)updateLayoutAnimated:(BOOL)animated
 {
+    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+        self.weekdayTitleBar.height = 43;
+    }
     if (PAD) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
 
@@ -1391,6 +1401,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             CGRect r = self.rootTableView.frame;
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height) + 1;
             r.size.height = self.view.height - self.rootTableView.y - 1;// - self.bottomToolbar.height;
+            if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+                r.origin.y += 10;
+            }
             self.rootTableView.frame = r;
         };
 
@@ -1535,6 +1548,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                      self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
         NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
         l.text = weekDayAbbr;
+        if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+            l.y = 29;
+            l.x -= 2;
+        }
     }
 }
 

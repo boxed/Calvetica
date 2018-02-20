@@ -482,6 +482,11 @@
             v.y -= 20;
         }
     }
+    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+        for (UIView *v in self.view.subviews) {
+            v.y += 20;
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated 
