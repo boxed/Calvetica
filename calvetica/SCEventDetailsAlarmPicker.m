@@ -17,30 +17,6 @@
     [self configureAlarmOptions];
 }
 
-- (void)viewDidUnload 
-{
-    self.button_0 = nil;
-    self.button_1 = nil;
-    self.button_2 = nil;
-    self.button_3 = nil;
-    self.button_4 = nil;
-    self.button_5 = nil;
-    self.button_6 = nil;
-    self.button_7 = nil;
-    self.button_8 = nil;
-    self.button_9 = nil;
-    self.button_10 = nil;
-    self.button_11 = nil;
-    self.button_12 = nil;
-    self.button_13 = nil;
-    self.button_14 = nil;
-    self.button_15 = nil;
-    [super viewDidUnload];
-}
-
-
-
-
 #pragma mark - Methods
 - (void)configureAlarmOptions 
 {

@@ -67,16 +67,6 @@ typedef struct {
                                                object:nil];
 }
 
-- (void)viewDidUnload
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    self.popoverBackdropView = nil;
-    self.modalViewContainer = nil;
-    [super viewDidUnload];
-}
-
-
-
 
 #pragma mark - Public
 
@@ -126,7 +116,7 @@ typedef struct {
         // move it up
 		[UIView mt_animateWithDuration:0.4
                         timingFunction:kMTEaseOutBack
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
         {
             CGFloat y = MAX(20, self.view.bounds.size.height - kbRect.size.height - self.modalViewContainer.height - 20);
@@ -140,7 +130,7 @@ typedef struct {
 	if (keyboardAppearedModalSavedYCoord != -1) {
 		[UIView mt_animateWithDuration:0.4
                         timingFunction:kMTEaseOutBack
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
          {
              self.modalViewContainer.y = keyboardAppearedModalSavedYCoord;

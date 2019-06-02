@@ -1461,7 +1461,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         BOOL isUp = direction == CVRootMonthViewMoveDirectionUp;
         [UIView mt_animateWithDuration:(isUp ? 0.3 : 0.5)
                         timingFunction:(isUp ? kMTEaseOutBack : kMTEaseOutBounce)
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^{
                                 animations();
                             } completion:^{

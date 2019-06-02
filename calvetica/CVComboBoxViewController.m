@@ -61,22 +61,12 @@
     return self;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
-
 
 #pragma mark - View lifecycle
-
-- (void)viewDidUnload 
-{
-    self.itemsTableView = nil;
-    self.itemsView = nil;
-    self.mainView = nil;
-    self.selectedItemLabel = nil;
-    [super viewDidUnload];
-}
 
 - (void)viewWillAppear:(BOOL)animated 
 {

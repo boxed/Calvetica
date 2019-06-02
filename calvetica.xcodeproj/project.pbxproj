@@ -223,7 +223,6 @@
 		C2A0C7C217FCD930005D17B5 /* CVClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0C7C117FCD930005D17B5 /* CVClearButton.m */; };
 		C2A0C7C517FCDC25005D17B5 /* CVMoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0C7C417FCDC25005D17B5 /* CVMoreButton.m */; };
 		C2A0C7CA17FD04EA005D17B5 /* CVTimeZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0C7C817FD04EA005D17B5 /* CVTimeZoneViewController.m */; };
-		C2A2118C1D46B4F600503F8E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A2118A1D46B4F600503F8E /* Security.framework */; };
 		C2A211901D46B5D400503F8E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A2118E1D46B5D400503F8E /* Security.framework */; };
 		C2A4C97013832E1400442AFF /* CVEventDetailsOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A4C96E13832E1400442AFF /* CVEventDetailsOrderViewController.m */; };
 		C2A4C97613845ABC00442AFF /* CVCellAccessoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A4C97513845ABC00442AFF /* CVCellAccessoryButton.m */; };
@@ -353,7 +352,6 @@
 		6A2816FC13E2FAA700A5981E /* CVComboBoxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVComboBoxViewController.xib; sourceTree = "<group>"; };
 		6A3D612B13DF161A00D0E51C /* CVAutoResizableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAutoResizableLabel.h; sourceTree = "<group>"; };
 		6A3D612C13DF161A00D0E51C /* CVAutoResizableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAutoResizableLabel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		6A6183A413BCC04C005BFFCC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsViewController.xib; sourceTree = "<group>"; };
 		6A8483CA13A7081600CB7047 /* EKRecurrenceRule+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+Utilities.h"; sourceTree = "<group>"; };
 		6A8483CB13A7081600CB7047 /* EKRecurrenceRule+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+Utilities.m"; sourceTree = "<group>"; };
 		6A85E13713D09C3200DF959B /* CVTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTapGestureRecognizer.h; sourceTree = "<group>"; };
@@ -417,7 +415,6 @@
 		9B858CE51447A96E00A370FC /* CVEventDetailsLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsLocationViewController.h; sourceTree = "<group>"; };
 		9B858CE61447A96E00A370FC /* CVEventDetailsLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsLocationViewController.m; sourceTree = "<group>"; };
 		9B858CF01447AB7C00A370FC /* CoreLocation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		9B8BBFF113D00D7200C8A0A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVQuickAddViewController.xib; sourceTree = "<group>"; };
 		9BB278C213CE2B8D00CC411C /* CVSlideLockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSlideLockControl.h; sourceTree = "<group>"; };
 		9BB278C313CE2B8D00CC411C /* CVSlideLockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSlideLockControl.m; sourceTree = "<group>"; };
 		9BB278C513CE2BA600CC411C /* CVSlideLockControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVSlideLockControl.xib; sourceTree = "<group>"; };
@@ -592,6 +589,29 @@
 		C258DE9113664F750016DC11 /* CVJumpToDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVJumpToDateViewController.h; sourceTree = "<group>"; };
 		C258DE9213664F750016DC11 /* CVJumpToDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVJumpToDateViewController.m; sourceTree = "<group>"; };
 		C2603916138168D300F8619C /* CoreData.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C2609D3522A3790F0019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventViewController.xib; sourceTree = "<group>"; };
+		C2609D3622A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventHourViewController.xib; sourceTree = "<group>"; };
+		C2609D3722A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsViewController.xib; sourceTree = "<group>"; };
+		C2609D3822A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsNotesViewController.xib; sourceTree = "<group>"; };
+		C2609D3922A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsLocationViewController.xib; sourceTree = "<group>"; };
+		C2609D3A22A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsRepeatDailyViewController.xib; sourceTree = "<group>"; };
+		C2609D3B22A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsRepeatWeeklyViewController.xib; sourceTree = "<group>"; };
+		C2609D3C22A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsRepeatMonthlyViewController.xib; sourceTree = "<group>"; };
+		C2609D3D22A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventDetailsRepeatYearlyViewController.xib; sourceTree = "<group>"; };
+		C2609D3E22A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVGenericReminderViewController.xib; sourceTree = "<group>"; };
+		C2609D3F22A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVJumpToDateViewController.xib; sourceTree = "<group>"; };
+		C2609D4022A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVManageCalendarsViewController.xib; sourceTree = "<group>"; };
+		C2609D4122A379100019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVAlarmPickerViewController.xib; sourceTree = "<group>"; };
+		C2609D4222A379110019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVAllDayAlarmPickerViewController.xib; sourceTree = "<group>"; };
+		C2609D4322A379110019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventSnoozeViewController.xib; sourceTree = "<group>"; };
+		C2609D4422A379110019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVSubHourPickerViewController.xib; sourceTree = "<group>"; };
+		C2609D4522A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVViewOptionsPopoverViewController.xib; sourceTree = "<group>"; };
+		C2609D4622A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVWelcomeViewController.xib; sourceTree = "<group>"; };
+		C2609D4722A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVQuickAddViewController.xib; sourceTree = "<group>"; };
+		C2609D4822A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVSearchViewController.xib; sourceTree = "<group>"; };
+		C2609D4922A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVSearchScopePopoverController.xib; sourceTree = "<group>"; };
+		C2609D4A22A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventCell.xib; sourceTree = "<group>"; };
+		C2609D4B22A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVInputAccessory.xib; sourceTree = "<group>"; };
 		C263419113D9D80500F3B57D /* CVLandscapeWeekView_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVLandscapeWeekView_iPhone.h; sourceTree = "<group>"; };
 		C263419213D9D80500F3B57D /* CVLandscapeWeekView_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLandscapeWeekView_iPhone.m; sourceTree = "<group>"; };
 		C266F00213D8FE7E002CD8F1 /* CVWeekdayTableViewCell_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekdayTableViewCell_iPad.h; sourceTree = "<group>"; };
@@ -729,24 +749,7 @@
 		C2BE7DD513CC979200925D53 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		C2BE7DD613CC979200925D53 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		C2C1903E181C375F0054125A /* CVSharedSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSharedSettingsTests.m; sourceTree = "<group>"; };
-		C2C33D7513AD182D00D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventCell.xib; sourceTree = "<group>"; };
-		C2C33D7B13AD197200D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVGenericReminderViewController.xib; sourceTree = "<group>"; };
-		C2C33D8113AD1B8800D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVManageCalendarsViewController.xib; sourceTree = "<group>"; };
-		C2C33D8413AD1B9800D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVJumpToDateViewController.xib; sourceTree = "<group>"; };
-		C2C33D8713AD1DF000D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventViewController.xib; sourceTree = "<group>"; };
-		C2C33D8D13AD21EA00D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsNotesViewController.xib; sourceTree = "<group>"; };
-		C2C33D9013AD220400D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventHourViewController.xib; sourceTree = "<group>"; };
-		C2C33D9913AD222700D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsLocationViewController.xib; sourceTree = "<group>"; };
-		C2C33D9C13AD224400D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsRepeatDailyViewController.xib; sourceTree = "<group>"; };
-		C2C33D9F13AD236F00D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsRepeatWeeklyViewController.xib; sourceTree = "<group>"; };
-		C2C33DA213AD238700D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsRepeatMonthlyViewController.xib; sourceTree = "<group>"; };
-		C2C33DA513AD23AE00D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventDetailsRepeatYearlyViewController.xib; sourceTree = "<group>"; };
-		C2C33DAE13AD244800D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVSearchViewController.xib; sourceTree = "<group>"; };
-		C2C33DB113AD245500D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVEventSnoozeViewController.xib; sourceTree = "<group>"; };
-		C2C33DB413AD245E00D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVAlarmPickerViewController.xib; sourceTree = "<group>"; };
-		C2C33DB713AD246700D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVInputAccessory.xib; sourceTree = "<group>"; };
 		C2C33DBF13AD2B4A00D62D27 /* CVEventDayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CVEventDayViewController.xib; sourceTree = "<group>"; };
-		C2C33DD013AD2CF100D62D27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVViewOptionsPopoverViewController.xib; sourceTree = "<group>"; };
 		C2C9944A13731929005A4EB1 /* CVEventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsViewController.h; sourceTree = "<group>"; };
 		C2C9944B13731929005A4EB1 /* CVEventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsViewController.m; sourceTree = "<group>"; };
 		C2C9945313737C63005A4EB1 /* CVNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVNavigationController.h; sourceTree = "<group>"; };
@@ -824,10 +827,6 @@
 		C2EF1C9B1386F68E00AA7384 /* dictionarykeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionarykeys.h; sourceTree = "<group>"; };
 		C2F2A84915DF4A1700FE9033 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		C2F2A84A15DF4A1700FE9033 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
-		C2F7CD7F13D6273900FBB45E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVSearchScopePopoverController.xib; sourceTree = "<group>"; };
-		C2F7CDA213D627E300FBB45E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVAllDayAlarmPickerViewController.xib; sourceTree = "<group>"; };
-		C2F7CDC413D6280400FBB45E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVSubHourPickerViewController.xib; sourceTree = "<group>"; };
-		C2F7CDD813D6281900FBB45E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVWelcomeViewController.xib; sourceTree = "<group>"; };
 		C2FCCA4F13A0386800214648 /* CVRoundedToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRoundedToggleButton.h; sourceTree = "<group>"; };
 		C2FCCA5013A0386800214648 /* CVRoundedToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRoundedToggleButton.m; sourceTree = "<group>"; };
 		C2FCCA5213A03EC500214648 /* CVToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVToggleButton.h; sourceTree = "<group>"; };
@@ -857,7 +856,6 @@
 				C2A211901D46B5D400503F8E /* Security.framework in Frameworks */,
 				9BEFC7CE13BB80B1001CB080 /* AVFoundation.framework in Frameworks */,
 				C2D388B513B8F56E002527A7 /* libxml2.dylib in Frameworks */,
-				C2A2118C1D46B4F600503F8E /* Security.framework in Frameworks */,
 				C2D388B313B8F560002527A7 /* libicucore.dylib in Frameworks */,
 				C2D388B113B8F550002527A7 /* SystemConfiguration.framework in Frameworks */,
 				9B12A0E113A7DFDE00BF1D7F /* AddressBook.framework in Frameworks */,
@@ -2618,7 +2616,6 @@
 				C2E2971F133419A900FA7638 /* Resources */,
 				C2E51AFF17F3C6560058BB32 /* Bump Build Number */,
 				C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */,
-				90B35967C4010FEE0B2F239B /* [CP] Embed Pods Frameworks */,
 				42473320FDE4615B6CDB2DA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -2655,7 +2652,7 @@
 		C2E29718133419A900FA7638 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 1020;
 				TargetAttributes = {
 					C2E29720133419A900FA7638 = {
 						DevelopmentTeam = JXK78JN25R;
@@ -2672,7 +2669,7 @@
 			};
 			buildConfigurationList = C2E2971B133419A900FA7638 /* Build configuration list for PBXProject "calvetica" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -2694,6 +2691,7 @@
 				ro,
 				"zh-Hant",
 				fi,
+				Base,
 			);
 			mainGroup = C2E29716133419A900FA7638;
 			productRefGroup = C2E29722133419A900FA7638 /* Products */;
@@ -2826,7 +2824,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2849,21 +2847,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90B35967C4010FEE0B2F239B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-calvetica/Pods-calvetica-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */ = {
@@ -3125,7 +3108,7 @@
 		6A6183A313BCC04C005BFFCC /* CVEventDetailsViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6A6183A413BCC04C005BFFCC /* en */,
+				C2609D3722A379100019427B /* Base */,
 			);
 			name = CVEventDetailsViewController.xib;
 			sourceTree = "<group>";
@@ -3133,7 +3116,7 @@
 		9B8BBFF013D00D7200C8A0A2 /* CVQuickAddViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9B8BBFF113D00D7200C8A0A2 /* en */,
+				C2609D4722A379120019427B /* Base */,
 			);
 			name = CVQuickAddViewController.xib;
 			sourceTree = "<group>";
@@ -3141,7 +3124,7 @@
 		C2C33D7613AD182D00D62D27 /* CVEventCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D7513AD182D00D62D27 /* en */,
+				C2609D4A22A379120019427B /* Base */,
 			);
 			name = CVEventCell.xib;
 			sourceTree = "<group>";
@@ -3149,7 +3132,7 @@
 		C2C33D7C13AD197200D62D27 /* CVGenericReminderViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D7B13AD197200D62D27 /* en */,
+				C2609D3E22A379100019427B /* Base */,
 			);
 			name = CVGenericReminderViewController.xib;
 			sourceTree = "<group>";
@@ -3157,7 +3140,7 @@
 		C2C33D8213AD1B8800D62D27 /* CVManageCalendarsViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D8113AD1B8800D62D27 /* en */,
+				C2609D4022A379100019427B /* Base */,
 			);
 			name = CVManageCalendarsViewController.xib;
 			sourceTree = "<group>";
@@ -3165,7 +3148,7 @@
 		C2C33D8513AD1B9800D62D27 /* CVJumpToDateViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D8413AD1B9800D62D27 /* en */,
+				C2609D3F22A379100019427B /* Base */,
 			);
 			name = CVJumpToDateViewController.xib;
 			sourceTree = "<group>";
@@ -3173,7 +3156,7 @@
 		C2C33D8813AD1DF000D62D27 /* CVEventViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D8713AD1DF000D62D27 /* en */,
+				C2609D3522A3790F0019427B /* Base */,
 			);
 			name = CVEventViewController.xib;
 			sourceTree = "<group>";
@@ -3181,7 +3164,7 @@
 		C2C33D8E13AD21EA00D62D27 /* CVEventDetailsNotesViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D8D13AD21EA00D62D27 /* en */,
+				C2609D3822A379100019427B /* Base */,
 			);
 			name = CVEventDetailsNotesViewController.xib;
 			sourceTree = "<group>";
@@ -3189,7 +3172,7 @@
 		C2C33D9113AD220400D62D27 /* CVEventHourViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D9013AD220400D62D27 /* en */,
+				C2609D3622A379100019427B /* Base */,
 			);
 			name = CVEventHourViewController.xib;
 			sourceTree = "<group>";
@@ -3197,7 +3180,7 @@
 		C2C33D9A13AD222700D62D27 /* CVEventDetailsLocationViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D9913AD222700D62D27 /* en */,
+				C2609D3922A379100019427B /* Base */,
 			);
 			name = CVEventDetailsLocationViewController.xib;
 			sourceTree = "<group>";
@@ -3205,7 +3188,7 @@
 		C2C33D9D13AD224400D62D27 /* CVEventDetailsRepeatDailyViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D9C13AD224400D62D27 /* en */,
+				C2609D3A22A379100019427B /* Base */,
 			);
 			name = CVEventDetailsRepeatDailyViewController.xib;
 			sourceTree = "<group>";
@@ -3213,7 +3196,7 @@
 		C2C33DA013AD236F00D62D27 /* CVEventDetailsRepeatWeeklyViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33D9F13AD236F00D62D27 /* en */,
+				C2609D3B22A379100019427B /* Base */,
 			);
 			name = CVEventDetailsRepeatWeeklyViewController.xib;
 			sourceTree = "<group>";
@@ -3221,7 +3204,7 @@
 		C2C33DA313AD238700D62D27 /* CVEventDetailsRepeatMonthlyViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DA213AD238700D62D27 /* en */,
+				C2609D3C22A379100019427B /* Base */,
 			);
 			name = CVEventDetailsRepeatMonthlyViewController.xib;
 			sourceTree = "<group>";
@@ -3229,7 +3212,7 @@
 		C2C33DA613AD23AE00D62D27 /* CVEventDetailsRepeatYearlyViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DA513AD23AE00D62D27 /* en */,
+				C2609D3D22A379100019427B /* Base */,
 			);
 			name = CVEventDetailsRepeatYearlyViewController.xib;
 			sourceTree = "<group>";
@@ -3237,7 +3220,7 @@
 		C2C33DAF13AD244800D62D27 /* CVSearchViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DAE13AD244800D62D27 /* en */,
+				C2609D4822A379120019427B /* Base */,
 			);
 			name = CVSearchViewController.xib;
 			sourceTree = "<group>";
@@ -3245,7 +3228,7 @@
 		C2C33DB213AD245500D62D27 /* CVEventSnoozeViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DB113AD245500D62D27 /* en */,
+				C2609D4322A379110019427B /* Base */,
 			);
 			name = CVEventSnoozeViewController.xib;
 			sourceTree = "<group>";
@@ -3253,7 +3236,7 @@
 		C2C33DB513AD245E00D62D27 /* CVAlarmPickerViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DB413AD245E00D62D27 /* en */,
+				C2609D4122A379100019427B /* Base */,
 			);
 			name = CVAlarmPickerViewController.xib;
 			sourceTree = "<group>";
@@ -3261,7 +3244,7 @@
 		C2C33DB813AD246700D62D27 /* CVInputAccessory.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DB713AD246700D62D27 /* en */,
+				C2609D4B22A379120019427B /* Base */,
 			);
 			name = CVInputAccessory.xib;
 			sourceTree = "<group>";
@@ -3269,7 +3252,7 @@
 		C2C33DD113AD2CF100D62D27 /* CVViewOptionsPopoverViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2C33DD013AD2CF100D62D27 /* en */,
+				C2609D4522A379120019427B /* Base */,
 			);
 			name = CVViewOptionsPopoverViewController.xib;
 			sourceTree = "<group>";
@@ -3293,7 +3276,7 @@
 		C2F7CD8013D6273900FBB45E /* CVSearchScopePopoverController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2F7CD7F13D6273900FBB45E /* en */,
+				C2609D4922A379120019427B /* Base */,
 			);
 			name = CVSearchScopePopoverController.xib;
 			sourceTree = "<group>";
@@ -3301,7 +3284,7 @@
 		C2F7CDA313D627E300FBB45E /* CVAllDayAlarmPickerViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2F7CDA213D627E300FBB45E /* en */,
+				C2609D4222A379110019427B /* Base */,
 			);
 			name = CVAllDayAlarmPickerViewController.xib;
 			sourceTree = "<group>";
@@ -3309,7 +3292,7 @@
 		C2F7CDC513D6280400FBB45E /* CVSubHourPickerViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2F7CDC413D6280400FBB45E /* en */,
+				C2609D4422A379110019427B /* Base */,
 			);
 			name = CVSubHourPickerViewController.xib;
 			sourceTree = "<group>";
@@ -3317,7 +3300,7 @@
 		C2F7CDD913D6281900FBB45E /* CVWelcomeViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C2F7CDD813D6281900FBB45E /* en */,
+				C2609D4622A379120019427B /* Base */,
 			);
 			name = CVWelcomeViewController.xib;
 			sourceTree = "<group>";
@@ -3328,20 +3311,44 @@
 		C2C9945F1374EC24005A4EB1 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "ADHOC=1";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "1F92029E-4023-42B9-9FBF-8B0A582C6EDA";
 				SDKROOT = iphoneos;
@@ -3409,21 +3416,45 @@
 		C2E2975B133419A900FA7638 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -3436,19 +3467,43 @@
 		C2E2975C133419A900FA7638 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "273ac607-e4b6-4f94-a0d5-5c36ae1034f0";
 				SDKROOT = iphoneos;

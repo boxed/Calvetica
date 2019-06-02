@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CVStrikethroughLabel : UILabel
-- (void)toggleStrikeThroughWithCompletion:(void (^)())completion;
+- (void)toggleStrikeThroughWithCompletion:(void (^)(void))completion;
 @end

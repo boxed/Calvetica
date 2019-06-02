@@ -129,18 +129,9 @@
     }
 }
 
-- (void)viewDidUnload 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-	[self setDayOfTheWeekButtons:nil];
-	[super viewDidUnload];
+    return UIInterfaceOrientationMaskPortrait;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
 
 @end

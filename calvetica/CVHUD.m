@@ -37,13 +37,13 @@
 
     [UIView mt_animateWithDuration:0.5
                     timingFunction:kMTEaseOutBack
-                           options:UIViewAnimationOptionBeginFromCurrentState
+                           options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                         animations:^{
                             [self setBezelPosition];
                         } completion:^{
                             [UIView mt_animateWithDuration:0.75
                                             timingFunction:kMTEaseInExpo
-                                                   options:UIViewAnimationOptionBeginFromCurrentState
+                                                   options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                                                 animations:^{
                                                     self.x = [UIScreen mainScreen].bounds.size.height;
                                                 } completion:^{

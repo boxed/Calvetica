@@ -111,10 +111,8 @@
     [self.delegate eventSnoozeViewController:self didFinishWithResult:CVEventSnoozeResultCancelled];
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
-
 @end

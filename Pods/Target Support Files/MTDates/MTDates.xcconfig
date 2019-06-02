@@ -1,8 +1,8 @@
-CONFIGURATION_BUILD_DIR = $PODS_CONFIGURATION_BUILD_DIR/MTDates
+CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/MTDates
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/MTDates" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FrameAccessor" "${PODS_ROOT}/Headers/Public/MTAnimation" "${PODS_ROOT}/Headers/Public/MTColorDistance" "${PODS_ROOT}/Headers/Public/MTDates" "${PODS_ROOT}/Headers/Public/MTGeometry" "${PODS_ROOT}/Headers/Public/MTMigration" "${PODS_ROOT}/Headers/Public/MTPencil" "${PODS_ROOT}/Headers/Public/MTQueue" "${PODS_ROOT}/Headers/Public/MYSCategoryProperties" "${PODS_ROOT}/Headers/Public/MYSRuntime" "${PODS_ROOT}/Headers/Public/MYSSharedSettings" "${PODS_ROOT}/Headers/Public/PSAlertView" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
-PODS_BUILD_DIR = $BUILD_DIR
-PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/MTDates" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/MTDates"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}
 PODS_TARGET_SRCROOT = ${PODS_ROOT}/../libs/MTDates
 PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}

@@ -132,18 +132,6 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidUnload 
-{
-    [self setDayButtonsContainer:nil];
-    [self setYearTableView:nil];
-    [self setMonthButtonsContainer:nil];
-    [self setWeekButtonsContainer:nil];
-    [self setWeekdayLabelContainer:nil];
-    self.scrollView = nil;
-    self.containerView = nil;
-    [super viewDidUnload];
-}
-
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
@@ -308,12 +296,9 @@
     self.date = [self.date dateForCalendarSquare:[self.dayButtons indexOfObject:sender.view] shiftedToBottom:NO];    
 }
 
-
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

@@ -15,7 +15,7 @@
     self.y -= 10;
     [UIView mt_animateWithDuration:0.3
                     timingFunction:kMTEaseOutElastic
-                           options:UIViewAnimationOptionBeginFromCurrentState
+                           options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                         animations:^
      {
          self.y += 10;

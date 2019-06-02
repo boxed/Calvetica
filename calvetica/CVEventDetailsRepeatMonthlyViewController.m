@@ -245,21 +245,9 @@
     }
 }
 
-- (void)viewDidUnload 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    self.dayOfWeekButton = nil;
-    self.eachDayButton = nil;
-    self.repeatOnButton = nil;
-    self.weekNumberButton = nil;
-	[super viewDidUnload];
+    return UIInterfaceOrientationMaskPortrait;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
 
 @end

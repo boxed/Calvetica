@@ -370,27 +370,9 @@
     [self updateSelectedDayWithAnimation:YES];
 }
 
-- (void)viewDidUnload 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-	[self setDateDayTableView:nil];
-	[self setDateMonth:nil];
-	[self setDateYear:nil];
-	[self setDateView:nil];
-	[self setEndAfterLabel:nil];
-	[self setEndAfterView:nil];
-	[self setEndTypeButton:nil];
-	[self setRepeatTimesLabel:nil];
-	[self setFrequencyButton:nil];
-	[self setEndCountButton:nil];
-	[super viewDidUnload];
+    return UIInterfaceOrientationMaskPortrait;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
 
 @end

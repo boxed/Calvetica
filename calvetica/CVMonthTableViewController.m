@@ -41,12 +41,6 @@
     }
 }
 
-- (void)viewDidUnload
-{
-    [self setSelectedDayView:nil];
-    [super viewDidUnload];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -62,9 +56,9 @@
 	self.selectedDate = [NSDate date];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-	return YES;
+    return UIInterfaceOrientationMaskAll;
 }
 
 

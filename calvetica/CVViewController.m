@@ -41,18 +41,10 @@
     }
 }
 
-- (void)viewDidUnload
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    [self setKeyboardAccessoryView:nil];
-    [super viewDidUnload];
+    return UIInterfaceOrientationMaskPortrait;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 
 
 #pragma mark - Public
@@ -145,7 +137,7 @@
             modalView.hidden = NO;
             [UIView mt_animateWithDuration:0.2
                             timingFunction:kMTEaseOutExpo
-                                   options:UIViewAnimationOptionBeginFromCurrentState
+                                   options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                                 animations:^
              {
                  modalView.frame = orignalRect;
@@ -176,7 +168,7 @@
     if (animated) {
         [UIView mt_animateWithDuration:0.2
                         timingFunction:kMTEaseInExpo
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
          {
              modalView.x = self.view.bounds.size.width;
@@ -219,7 +211,7 @@
 
         [UIView mt_animateWithDuration:0.2
                         timingFunction:kMTEaseOutExpo
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^{
                                 view.frame = self.view.bounds;
                             } completion:^{
@@ -244,7 +236,7 @@
     if (animated) {
         [UIView mt_animateWithDuration:0.2
                         timingFunction:kMTEaseInExpo
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^{
                                 view.x = view.width;
                             } completion:^{
@@ -278,7 +270,7 @@
 
         [UIView mt_animateWithDuration:0.2
                         timingFunction:kMTEaseOutBack
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
          {
              v.layer.transform = CATransform3DIdentity;
@@ -309,7 +301,7 @@
 
         [UIView mt_animateWithDuration:0.4
                         timingFunction:kMTEaseInBack
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
          {
              v.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);

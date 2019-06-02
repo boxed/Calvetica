@@ -46,7 +46,7 @@
         alertViewController.view.x -= 20;
         [UIView mt_animateWithDuration:0.5
                         timingFunction:kMTEaseOutElastic
-                               options:UIViewAnimationOptionBeginFromCurrentState
+                               options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
          {
              alertViewController.view.x += 20;

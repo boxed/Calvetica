@@ -39,9 +39,9 @@
     return self;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 
@@ -124,13 +124,6 @@
 {
     self.keypadValue.text = [self numberAsString];
     [super viewDidLoad];
-}
-
-- (void)viewDidUnload 
-{
-    self.keypadValue = nil;
-	self.keypadView = nil;
-    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated 

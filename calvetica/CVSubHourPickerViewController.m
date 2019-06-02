@@ -22,11 +22,10 @@
     return self;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
-
 - (void)modalBackdropWasTouched 
 {
     [self.delegate subHourPicker:self didFinishWithResult:CVSubHourPickerViewControllerResultCancelled];

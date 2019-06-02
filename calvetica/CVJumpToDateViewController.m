@@ -64,11 +64,9 @@
     [self.delegate jumpToDateViewController:self didFinishWithResult:CVJumpToDateResultCancelled];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
-
-
 
 @end

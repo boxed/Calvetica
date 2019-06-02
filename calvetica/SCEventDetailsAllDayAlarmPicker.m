@@ -17,20 +17,9 @@
     [self configureAlarmOptions];
 }
 
-- (void)viewDidUnload 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    self.button_0 = nil;
-    self.button_1 = nil;
-    self.button_2 = nil;
-    self.button_3 = nil;
-    self.button_4 = nil;
-    self.button_5 = nil;
-    [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 

@@ -71,11 +71,9 @@
     [_delegate genericReminderViewController:self didFinishWithResult:CVGenericReminderViewControllerResultCancelled];
 }
 
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

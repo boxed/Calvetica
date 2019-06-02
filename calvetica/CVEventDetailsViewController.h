@@ -24,7 +24,7 @@
 #import "CVRoundedToggleButton.h"
 #import "strings.h"
 #import "CVSlideLockControl.h"
-#import "UIView+nibs.h"
+#import "UIView+Nibs.h"
 #import "SCEventDetailsAllDayAlarmPicker.h"
 #import "SCEventDetailsAlarmPicker.h"
 #import "CVViewController.h"
