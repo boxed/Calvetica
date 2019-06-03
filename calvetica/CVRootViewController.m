@@ -158,35 +158,32 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 }
 
 // iPad
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     if (PAD) {
         self.monthTableViewController.selectedDayView.hidden = YES;
         for (CVPopoverModalViewController_iPad *controller in self.popoverModalViewControllers) {
             controller.view.hidden = YES;
         }
     }
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-
-    self.monthTableViewController.selectedDayView.hidden = NO;
-
-    [self updateWeekdayTitleLabels];
-	[self updateLayoutAnimated:NO];
-    [self reloadMonthTableView];
-    [self scrollMonthTableViewAnimated:NO];
-    [self updateSelectionSquare:NO];
-
-    if (PAD) {
-        for (CVPopoverModalViewController_iPad *popoverController in self.popoverModalViewControllers) {
-            popoverController.view.hidden = NO;
-            [popoverController layout];
+    
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        self.monthTableViewController.selectedDayView.hidden = NO;
+        
+        [self updateWeekdayTitleLabels];
+        [self updateLayoutAnimated:NO];
+        [self reloadMonthTableView];
+        [self scrollMonthTableViewAnimated:NO];
+        [self updateSelectionSquare:NO];
+        
+        if (PAD) {
+            for (CVPopoverModalViewController_iPad *popoverController in self.popoverModalViewControllers) {
+                popoverController.view.hidden = NO;
+                [popoverController layout];
+            }
         }
-    }
+    }];
 }
 
 
@@ -1006,7 +1003,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
          didFinishWithResult:(CVSearchViewControllerResult)result
 {
     if (!PAD) {
-        [self dismissViewControllerAnimated:YES completion:NO];
+        [self dismissViewControllerAnimated:YES completion:NULL];
     }
     else {
         [self dismissPopoverModalViewControllerAnimated:YES];

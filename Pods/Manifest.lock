@@ -14,7 +14,7 @@ PODS:
   - MYSSharedSettings (0.1.0):
     - MYSRuntime (~> 0.0.3)
   - PSAlertView (2.0.3)
-  - SVProgressHUD (2.0.3)
+  - SVProgressHUD (2.2.6)
 
 DEPENDENCIES:
   - FrameAccessor
@@ -65,7 +65,7 @@ CHECKOUT OPTIONS:
     :commit: 132f5436b5608c6f810330743abe13f29d5a71be
     :git: https://github.com/steipete/PSAlertView
   SVProgressHUD:
-    :commit: 6ca5946638ed5bbf8ae36e3c3191901f76bf173b
+    :commit: 4fdf3fdc8703fd9915dae33fc1363c604a06b24e
     :git: https://github.com/SVProgressHUD/SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -81,8 +81,8 @@ SPEC CHECKSUMS:
   MYSRuntime: 5303e2ab2f2a282fbdc560264d37f58639db9623
   MYSSharedSettings: 56bc86eb986bbde0fedfa1317cc3970f125a8286
   PSAlertView: 16d35f5dba549418492cf68a750d4f0dca21f4a2
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SVProgressHUD: 6ed134667e9ebb2f33679e8273cd48fd3fa349e5
 
-PODFILE CHECKSUM: ca37e867b95686d0e9269d85a62faa9cfb35c20f
+PODFILE CHECKSUM: 201396b2e096f03540b4385119f8bffc85f0cd67
 
 COCOAPODS: 1.5.3

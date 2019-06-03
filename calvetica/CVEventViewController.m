@@ -109,20 +109,20 @@
     __block CVEventHourViewController *hrv = hourViewController;
 
 	[hourViewController setStartDateUpdatedBlock:^(NSDate *date) {
-		NSDate *endDateBefore = [_event.endingDate copy];
-        _event.startingDate = date;
-		if (![endDateBefore isEqualToDate:_event.endingDate]) hrv.endDate = _event.endingDate;
+		NSDate *endDateBefore = [self->_event.endingDate copy];
+        self->_event.startingDate = date;
+		if (![endDateBefore isEqualToDate:self->_event.endingDate]) hrv.endDate = self->_event.endingDate;
 	}];
 
 	[hourViewController setEndDateUpdatedBlock:^(NSDate *date) {
-		NSDate *startDateBefore = [_event.startingDate copy];
-		_event.endingDate = date;
-		if (![startDateBefore isEqualToDate:_event.startingDate]) hrv.startDate = _event.startingDate;
+		NSDate *startDateBefore = [self->_event.startingDate copy];
+		self->_event.endingDate = date;
+		if (![startDateBefore isEqualToDate:self->_event.startingDate]) hrv.startDate = self->_event.startingDate;
 	}];
 
 	[hourViewController setAllDayUpdatedBlock:^(BOOL allDay) {
-        _event.allDay = NO;
-		[_event resetDurationToDefault];
+        self->_event.allDay = NO;
+		[self->_event resetDurationToDefault];
 
 		// if the event is saved right after it is no longer in all day mode (start time = 12:00am)
 		// it will be saved incorrectly on the calendar...(i.e. start time will be 6:00pm the previous day)
@@ -131,7 +131,7 @@
 		self.event.startingDate = [self.event.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];;
 		self.event.startingDate = [self.event.startingDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];;
 
-		_event.allDay = allDay;
+		self->_event.allDay = allDay;
 	}];
 
 	self.viewControllers = @[hourViewController];

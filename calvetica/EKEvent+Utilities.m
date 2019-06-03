@@ -231,21 +231,21 @@
 - (BOOL)willBeABar 
 {
     return YES;
-	BOOL isAnAllDayEvent            = [self spansEntireDayOfOnlyDate:self.startingDate] || self.allDay;
-	BOOL isGreaterThanThreshold     = [self eventDuration] >= MIN_EVENT_DURATION;
-	BOOL fitsWithinItsStartDay      = [self fitsWithinDayOfDate:self.startingDate];
-	BOOL isReadOnly                 = !self.calendar.allowsContentModifications;
-	BOOL settingAllowsBar           = PREFS.showDurationOnReadOnlyEvents;
-	BOOL isBirthday                 = self.calendar.type == EKCalendarTypeBirthday;
-	
-			// if its an all day event of only one day (because this is the one case that should pass, but all else will fail in the next test)
-    return (isAnAllDayEvent || 
-	
-			// if it is longer than the threshold duration and it does not completely fit inside the day in which it starts (we only show bars for events that span mutliple days)
-			(isGreaterThanThreshold && !fitsWithinItsStartDay)) && 
-
-			// and its either not read only or the setting allows read only events to be bars
-			(!isReadOnly || settingAllowsBar || isBirthday);
+//    BOOL isAnAllDayEvent            = [self spansEntireDayOfOnlyDate:self.startingDate] || self.allDay;
+//    BOOL isGreaterThanThreshold     = [self eventDuration] >= MIN_EVENT_DURATION;
+//    BOOL fitsWithinItsStartDay      = [self fitsWithinDayOfDate:self.startingDate];
+//    BOOL isReadOnly                 = !self.calendar.allowsContentModifications;
+//    BOOL settingAllowsBar           = PREFS.showDurationOnReadOnlyEvents;
+//    BOOL isBirthday                 = self.calendar.type == EKCalendarTypeBirthday;
+//
+//            // if its an all day event of only one day (because this is the one case that should pass, but all else will fail in the next test)
+//    return (isAnAllDayEvent ||
+//
+//            // if it is longer than the threshold duration and it does not completely fit inside the day in which it starts (we only show bars for events that span mutliple days)
+//            (isGreaterThanThreshold && !fitsWithinItsStartDay)) &&
+//
+//            // and its either not read only or the setting allows read only events to be bars
+//            (!isReadOnly || settingAllowsBar || isBirthday);
 }
 
 

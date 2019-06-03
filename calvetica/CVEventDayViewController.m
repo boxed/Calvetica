@@ -159,8 +159,8 @@
         
         NSInteger gridw = 7.0;
         NSInteger gridh = 6.0;
-        float containerw = _dayButtonsContainer.frame.size.width;
-        float containerh = _dayButtonsContainer.frame.size.height;
+        float containerw = self->_dayButtonsContainer.frame.size.width;
+        float containerh = self->_dayButtonsContainer.frame.size.height;
         float w = containerw / gridw;
         float h = containerh / gridh;
         
@@ -181,7 +181,7 @@
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(dayButtonWasTapped:)];
                 [b addGestureRecognizer:tapGesture];
                 
-                [_dayButtonsContainer addSubview:b];  
+                [self->_dayButtonsContainer addSubview:b];  
                 [self.dayButtons addObject:b];
            });
         }
@@ -192,8 +192,8 @@
         
         
         gridh = 6.0;
-        containerw = _weekButtonsContainer.frame.size.width;
-        containerh = _weekButtonsContainer.frame.size.height;
+        containerw = self->_weekButtonsContainer.frame.size.width;
+        containerh = self->_weekButtonsContainer.frame.size.height;
         w = containerw;
         h = containerh / gridh;
         
@@ -212,7 +212,7 @@
                 [b setFrame:CGRectMake(x,y,w,h)];
                 b.label.text = [NSString stringWithFormat:@"%d",i+1];
                 [self.weekButtons addObject:b];
-                [_weekButtonsContainer addSubview:b];
+                [self->_weekButtonsContainer addSubview:b];
             });
         }
         

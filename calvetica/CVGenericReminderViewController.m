@@ -56,7 +56,7 @@
     }
 
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
-		[_event saveForThisOccurrence];
+		[self->_event saveForThisOccurrence];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self.delegate genericReminderViewController:self didFinishWithResult:CVGenericReminderViewControllerResultAdded];
 		});

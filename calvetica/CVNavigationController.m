@@ -42,9 +42,9 @@
     
     // scroll animate that sucker back sucker
     [UIView animateWithDuration:0.2 animations:^{
-        CGRect r = _contentViewContainer.frame;
+        CGRect r = self->_contentViewContainer.frame;
         r.origin.x += lastViewController.view.frame.size.width;
-        [_contentViewContainer setFrame:r];
+        [self->_contentViewContainer setFrame:r];
     } completion:^(BOOL finished){
         //[visibleViewController viewDidAppear:YES];
     }];
@@ -81,9 +81,9 @@
     
     // scroll animate that sucker
     [UIView animateWithDuration:0.2 animations:^{
-        CGRect r = _contentViewContainer.frame;
+        CGRect r = self->_contentViewContainer.frame;
         r.origin.x -= viewController.view.frame.size.width;
-        [_contentViewContainer setFrame:r];
+        [self->_contentViewContainer setFrame:r];
     } completion:^(BOOL finished){
         //[visibleViewController viewDidAppear:YES];
     }];

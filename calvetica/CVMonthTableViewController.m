@@ -124,15 +124,15 @@
     if (self.tableView.window) {
 
         void (^animations)(void) = ^{
-            CGRect f = [self rectOfDayButtonInTableView:self.tableView forDate:_selectedDate];
+            CGRect f = [self rectOfDayButtonInTableView:self.tableView forDate:self->_selectedDate];
             f = CGRectInset(f, -TODAY_BOX_INNER_OFFSET_IPAD, -TODAY_BOX_INNER_OFFSET_IPAD);
-            [_selectedDayView setSuperFrame:f];
+            [self->_selectedDayView setSuperFrame:f];
         };
 
         void (^complete)(void) = ^{
-            [_selectedDayView.superview bringSubviewToFront:_selectedDayView];
-            [_selectedDayView setNeedsDisplay];
-            _selectedDayView.userInteractionEnabled = NO;
+            [self->_selectedDayView.superview bringSubviewToFront:self->_selectedDayView];
+            [self->_selectedDayView setNeedsDisplay];
+            self->_selectedDayView.userInteractionEnabled = NO;
         };
 
         if (animated) {

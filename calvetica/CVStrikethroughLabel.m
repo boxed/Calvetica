@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)toggleStrikeThroughWithCompletion:(void (^)())completion
+- (void)toggleStrikeThroughWithCompletion:(void (^)(void))completion
 {
     if (self.isDrawing) {
         return;
@@ -63,7 +63,7 @@
         if (!striked) {
             [[_pencil config] easingFunction:kMTEaseOutExpo];
             [_pencil drawWithCompletion:^(MTPencil *pencil) {
-                [_pencil reset];
+                [self->_pencil reset];
                 attributes[NSStrikethroughStyleAttributeName] = @(YES);
                 self.attributedText = [[NSAttributedString alloc] initWithString:self.text attributes:attributes];
                 self.isDrawing = NO;
@@ -76,7 +76,7 @@
             [[_pencil config] easingFunction:kMTEaseInExpo];
 //            [_pencil finish];
             [_pencil eraseWithCompletion:^(MTPencil *pencil) {
-                [_pencil reset];
+                [self->_pencil reset];
                 self.isDrawing = NO;
                 if (completion) completion();
             }];

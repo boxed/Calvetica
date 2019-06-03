@@ -109,28 +109,28 @@
         
         // start spinner
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_activityIndicator startAnimating];
+            [self->_activityIndicator startAnimating];
         });
 		
 		// set the start and end dates
 		NSDate *startDate;
 		NSDate *endDate;
-		if (_searchScope == CVSearchScopePopoverOption3Months) {
+		if (self->_searchScope == CVSearchScopePopoverOption3Months) {
 			startDate = [[NSDate date] mt_dateMonthsBefore:3];
 			endDate = [[NSDate date] mt_dateMonthsAfter:3];
 		}
 		
-		else if (_searchScope == CVSearchScopePopoverOption6Months) {
+		else if (self->_searchScope == CVSearchScopePopoverOption6Months) {
 			startDate = [[NSDate date] mt_dateMonthsBefore:6];
 			endDate = [[NSDate date] mt_dateMonthsAfter:6];
 		}
 		
-		else if (_searchScope == CVSearchScopePopoverOption1Year) {
+		else if (self->_searchScope == CVSearchScopePopoverOption1Year) {
 			startDate = [[NSDate date] mt_dateYearsBefore:1];
 			endDate = [[NSDate date] mt_dateYearsAfter:1];
 		}
 		
-		else if (_searchScope == CVSearchScopePopoverOption5Years) {
+		else if (self->_searchScope == CVSearchScopePopoverOption5Years) {
 			startDate = [[NSDate date] mt_dateYearsBefore:5];
 			endDate = [[NSDate date] mt_dateYearsAfter:5];
 		}
@@ -166,7 +166,7 @@
             
             [self.tableView reloadData];
             
-            [_activityIndicator stopAnimating];
+            [self->_activityIndicator stopAnimating];
         });
     });
 }

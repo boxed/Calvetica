@@ -133,8 +133,8 @@ typedef struct {
                                options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^
          {
-             self.modalViewContainer.y = keyboardAppearedModalSavedYCoord;
-             self.popoverBackdropView.arrowDirection = keyboardAppearedArrowSavedDirection;
+             self.modalViewContainer.y = self->keyboardAppearedModalSavedYCoord;
+             self.popoverBackdropView.arrowDirection = self->keyboardAppearedArrowSavedDirection;
          } completion:nil];
 	}
 }
@@ -197,7 +197,7 @@ typedef struct {
 			p.arrowDirection = CVPopoverArrowDirectionRightMiddle;
 			p.point = CGPointMake(2, 2);
 		}
-		else if (i == 12) {
+        else {
 			p.arrowDirection = CVPopoverArrowDirectionRightBottom;
 			p.point = CGPointMake(2, 3);
 		}

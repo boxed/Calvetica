@@ -191,8 +191,8 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            _allDaySquaresView.squares = allDayEventSquares;
-            _squaresView.squares = eventSquares;
+            self->_allDaySquaresView.squares = allDayEventSquares;
+            self->_squaresView.squares = eventSquares;
         });
     }];
 }

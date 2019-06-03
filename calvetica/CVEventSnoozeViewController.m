@@ -70,12 +70,12 @@
 	dispatch_async([CVOperationQueue backgroundQueue], ^{
 		// figure out what alarms have already gone off
 		NSMutableArray *alarmsToRemove = [NSMutableArray array];
-		for (EKAlarm *alarm in _event.alarms) {
+		for (EKAlarm *alarm in self->_event.alarms) {
 
 			// get the date of the alarm
 			NSDate *timeOfAlarm = alarm.absoluteDate;
 			if (!timeOfAlarm) {
-				timeOfAlarm = [_event.startingDate dateByAddingTimeInterval:alarm.relativeOffset];
+				timeOfAlarm = [self->_event.startingDate dateByAddingTimeInterval:alarm.relativeOffset];
 			}
 
 			// see if the alarm time has already passed
@@ -90,14 +90,14 @@
 
 		// remove the past alarms
 		for (EKAlarm *alarm in alarmsToRemove) {
-			[_event removeAlarm:alarm];
+			[self->_event removeAlarm:alarm];
 		}
 
 		// add the snoozed alarm
-		[_event addSnoozeAlarmWithTimeInterval:interval];
+		[self->_event addSnoozeAlarmWithTimeInterval:interval];
 
 		// save this occurrence of the event
-		[_event saveForThisOccurrence];
+		[self->_event saveForThisOccurrence];
 
 		// tell the delegate
 		dispatch_async(dispatch_get_main_queue(), ^{

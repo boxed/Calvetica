@@ -292,9 +292,9 @@
 	
 	// create the background task
 	_setLocalNotifsBackgroundTask = [app beginBackgroundTaskWithExpirationHandler:^{
-		if (_setLocalNotifsBackgroundTask != UIBackgroundTaskInvalid) {
-			[app endBackgroundTask:_setLocalNotifsBackgroundTask];
-			_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
+        if (self->_setLocalNotifsBackgroundTask != UIBackgroundTaskInvalid) {
+            [app endBackgroundTask:self->_setLocalNotifsBackgroundTask];
+            self->_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 		}
 	}];
 	
@@ -346,8 +346,8 @@
         /**********************/
 		
 		// signify the end of the to the OS
-		[app endBackgroundTask:_setLocalNotifsBackgroundTask];
-		_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
+		[app endBackgroundTask:self->_setLocalNotifsBackgroundTask];
+		self->_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 
     });
 }

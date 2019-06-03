@@ -181,11 +181,11 @@
 
 	if ([_calendarItem isKindOfClass:[EKEvent class]]) {
 		[(EKEvent *)_calendarItem saveThenDoActionBlock:^(void) {
-			[_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultChanged];
+            [self->_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultChanged];
 		} cancelBlock:^(void) {
-			[(EKEvent *)_calendarItem reset];
-            [self setAlarms:_calendarItem.alarms];
-			[_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultCancelled];
+			[(EKEvent *)self->_calendarItem reset];
+            [self setAlarms:self->_calendarItem.alarms];
+			[self->_delegate alarmPicker:self didFinishWithResult:CVAlarmPickerResultCancelled];
 		}];
 	}
 }

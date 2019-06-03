@@ -186,8 +186,8 @@
     }
     
     [UIView animateWithDuration:0.2 animations:^(void) {
-        _titleView.frame = CGRectMake(viewX, viewY, viewWidth, viewHeight);
-        _shadow.frame = CGRectMake(0, viewHeight, 320, 5);
+        self->_titleView.frame = CGRectMake(viewX, viewY, viewWidth, viewHeight);
+        self->_shadow.frame = CGRectMake(0, viewHeight, 320, 5);
     }];
 }
 

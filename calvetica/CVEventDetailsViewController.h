@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 
 - (EKRecurrenceFrequency)recurrenceFrequencyFromRepeatButtons;
 - (NSString *)recurrenceString;
-- (void)doneViewingPerson;
+//- (void)doneViewingPerson;
 - (void)setAvailability:(EKEventAvailability)availability;
 - (void)showEditRuleConfirmationThenDoAction:(void (^)(void))action cancel:(void (^)(void))cancel;
 

@@ -55,7 +55,7 @@
 {
     [_pencil drawWithCompletion:^(MTPencil *pencil) {
         if (completion) completion();
-        [_pencil erase];
+        [self->_pencil erase];
         self.isDoneDrawing = YES;
         [self setNeedsDisplay];
     }];

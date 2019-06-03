@@ -26,10 +26,10 @@
 {
     userHasBegunInteracting = NO;
     
-    UISwipeGestureRecognizer *slideInLandscapeWeekGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleThreeFingerSwipeOnWeekView:)];
-    slideInLandscapeWeekGesture.numberOfTouchesRequired = 3;
-    slideInLandscapeWeekGesture.direction = UISwipeGestureRecognizerDirectionDown;
-    [_weeksTable addGestureRecognizer:slideInLandscapeWeekGesture];
+//    UISwipeGestureRecognizer *slideInLandscapeWeekGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleThreeFingerSwipeOnWeekView:)];
+//    slideInLandscapeWeekGesture.numberOfTouchesRequired = 3;
+//    slideInLandscapeWeekGesture.direction = UISwipeGestureRecognizerDirectionDown;
+//    [_weeksTable addGestureRecognizer:slideInLandscapeWeekGesture];
 
     self.weeksTable.scrollsToTop = NO;
     currentMonthOfYear = 0;

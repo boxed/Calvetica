@@ -48,15 +48,15 @@
                            options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                         animations:^
      {
-         _cellAccessoryButton.x += _cellAccessoryButton.width;
+         self->_cellAccessoryButton.x += self->_cellAccessoryButton.width;
      } completion:^{
-         [_cellAccessoryButton toggleMode];
+         [self->_cellAccessoryButton toggleMode];
          [UIView mt_animateWithDuration:0.20
                          timingFunction:kMTEaseOutBack
                                 options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                              animations:^
           {
-              _cellAccessoryButton.x -= _cellAccessoryButton.width;
+              self->_cellAccessoryButton.x -= self->_cellAccessoryButton.width;
           } completion:^{
           }];
     }];

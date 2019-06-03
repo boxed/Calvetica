@@ -31,18 +31,18 @@
 - (void)animateTextViewUp 
 {
     [UIView animateWithDuration:0.3 animations:^{
-        CGRect r = _notesTextView.frame;
+        CGRect r = self->_notesTextView.frame;
         r.size.height = 135.0;
-        [_notesTextView setFrame:r];
+        [self->_notesTextView setFrame:r];
     }];
 }
 
 - (void)animateTextViewDown 
 {
     [UIView animateWithDuration:0.3 animations:^{
-        CGRect r = _notesTextView.frame;
+        CGRect r = self->_notesTextView.frame;
         r.size.height = 300.0;
-        [_notesTextView setFrame:r];
+        [self->_notesTextView setFrame:r];
     }];    
 }
 
