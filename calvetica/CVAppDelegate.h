@@ -19,5 +19,5 @@
 - (void)setLocalNotifs;
 - (void)scheduleBadgeNotifications:(NSInteger)count;
 - (void)setCalveticaAlarms:(NSInteger)count;
-
++ (BOOL)hasNotch;
 @end
