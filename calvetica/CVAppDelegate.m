@@ -63,10 +63,9 @@
         // get the notification that was fired
         UILocalNotification *firedNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];    
         if (firedNotification) {
-			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				[self handleSnoozeActionBecauseOfNotification:firedNotification];
-			});
-            
+            [MTq main:^{
+                [self handleSnoozeActionBecauseOfNotification:firedNotification];
+            }];
         }
     }
 
@@ -217,21 +216,21 @@
     NSDate *rightBeforeEvent	= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:-1];
     NSDate *rightAfterEvent		= [eventStartDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:1];
 
-	dispatch_async([CVOperationQueue backgroundQueue], ^{
-		NSArray *events = [EKEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
-		dispatch_async(dispatch_get_main_queue(), ^{
-			for (EKEvent *event in events) {
-				if ([event hasIdentifier:identifier]) {
+    [MTq def:^{
+        NSArray *events = [EKEventStore eventsFromDate:rightBeforeEvent toDate:rightAfterEvent forActiveCalendars:NO];
+        [MTq main:^{
+            for (EKEvent *event in events) {
+                if ([event hasIdentifier:identifier]) {
 
-					// show the snooze dialogue for this event
-					CVRootViewController *rvc = (CVRootViewController *)self.window.rootViewController;
-					[rvc showSnoozeDialogForEvent:event];
+                    // show the snooze dialogue for this event
+                    CVRootViewController *rvc = (CVRootViewController *)self.window.rootViewController;
+                    [rvc showSnoozeDialogForEvent:event];
 
-					break;
-				}
-			}
-		});
-	});
+                    break;
+                }
+            }
+        }];
+    }];
 }
 
 
@@ -302,23 +301,23 @@
 	if (_setLocalNotifsBackgroundTask == UIBackgroundTaskInvalid) return;
 	
 
-    dispatch_async([CVOperationQueue localNotifQueue], ^(void) {
-		
-		// wait for a bit before doing this to make sure the app has been in the background for a long enough time
-		//[NSThread sleepForTimeInterval:30];
-		
-		// if the application becomes active, just forget setting alarms until the next time it goes inactive
-		if (app.applicationState == UIApplicationStateActive) return;
+    // using this queue will make sure two of these dont run at the same time
+    [MTq file:^{
+        // wait for a bit before doing this to make sure the app has been in the background for a long enough time
+        //[NSThread sleepForTimeInterval:30];
+        
+        // if the application becomes active, just forget setting alarms until the next time it goes inactive
+        if (app.applicationState == UIApplicationStateActive) return;
 
         /**** START TIMING ****/
-		NSDate *methodStart = [NSDate date];
+        NSDate *methodStart = [NSDate date];
         CVLog(@"STARTED LOCAL NOTIFS");
         /**********************/
 
 
         NSInteger availableNotifsCount = 64;
-		
-		[[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         // Day of Month Badge Only
         if (badgeOrAlerts == 1) {
@@ -333,8 +332,8 @@
         
         // Badge and Alerts
         else if (badgeOrAlerts == 3) {
-            NSInteger alertsCount	= 50;
-            NSInteger badgeCount	= availableNotifsCount - alertsCount;
+            NSInteger alertsCount    = 50;
+            NSInteger badgeCount    = availableNotifsCount - alertsCount;
             [self scheduleBadgeNotifications:badgeCount];
             [self setCalveticaAlarms:alertsCount];
         }
@@ -344,12 +343,12 @@
         NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
         CVLog(@"STOPPED LOCAL NOTIFS - TIME: %f", executionTime);
         /**********************/
-		
-		// signify the end of the to the OS
-		[app endBackgroundTask:self->_setLocalNotifsBackgroundTask];
-		self->_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
+        
+        // signify the end of the to the OS
+        [app endBackgroundTask:self->_setLocalNotifsBackgroundTask];
+        self->_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 
-    });
+    }];
 }
 
 - (void)scheduleBadgeNotifications:(NSInteger)count 

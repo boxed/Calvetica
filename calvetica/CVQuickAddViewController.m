@@ -403,9 +403,9 @@
     else {
         // save
         [(EKEvent *)self.calendarItem saveThenDoActionBlock:^(void) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [MTq main:^{
                 [self.delegate quickAddViewController:self didCompleteWithAction:CVQuickAddResultSaved];
-            });
+            }];
         } cancelBlock:^(void) {}];
     }
 }

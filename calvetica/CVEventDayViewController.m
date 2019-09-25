@@ -153,7 +153,7 @@
         return;
     }
 
-    dispatch_async([CVOperationQueue backgroundQueue], ^{
+    [MTq def:^{
         // layout day buttons
         self.dayButtons = [NSMutableArray array];
         
@@ -168,8 +168,7 @@
             float x = round((i % gridw) * w);
             float y = round(floor((float)i / (float)gridw) * h);
             
-           dispatch_async(dispatch_get_main_queue(), ^{
-                
+            [MTq main:^{
                 CVJumpToDayButton *b = [CVJumpToDayButton fromNibOfSameName];
                 
                 // hide the gray today background
@@ -183,7 +182,7 @@
                 
                 [self->_dayButtonsContainer addSubview:b];  
                 [self.dayButtons addObject:b];
-           });
+           }];
         }
         
         
@@ -201,8 +200,7 @@
             float x = 0;
             float y = round((float)i * h);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
+            [MTq main:^{
                 CVJumpToDayButton *b = [CVJumpToDayButton fromNibOfSameName];
                 
                 // hide the gray today background
@@ -213,14 +211,14 @@
                 b.label.text = [NSString stringWithFormat:@"%d",i+1];
                 [self.weekButtons addObject:b];
                 [self->_weekButtonsContainer addSubview:b];
-            });
+            }];
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [MTq main:^{
             // update view with date
             self.date = self.initialDate;
-        });
-    });
+        }];
+    }];
 
     self.containerView.height = MAX(self.containerView.height, 362);
     self.scrollView.contentSize = CGSizeMake(self.containerView.width, self.containerView.height);

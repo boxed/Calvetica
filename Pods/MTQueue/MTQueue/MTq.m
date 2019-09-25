@@ -61,23 +61,23 @@
 
 + (void)coreData:(MTQueueBlock)operation
 {
-    [[MTq coreDataQueue] addOperationWithBlock:^{
+//    [[MTq coreDataQueue] addOperationWithBlock:^{
         if (operation) operation();
-    }];
+//    }];
 }
 
 + (void)network:(MTQueueBlock)operation
 {
-    [[MTq networkQueue] addOperationWithBlock:^{
+//    [[MTq networkQueue] addOperationWithBlock:^{
         if (operation) operation();
-    }];
+//    }];
 }
 
 + (void)file:(MTQueueBlock)operation
 {
-    [[MTq fileSystemQueue] addOperationWithBlock:^{
+//    [[MTq fileSystemQueue] addOperationWithBlock:^{
         if (operation) operation();
-    }];
+//    }];
 }
 
 
@@ -86,38 +86,38 @@
 
 + (void)background:(MTQueueBlock)block
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         if (block) block();
-    });
+//    });
 }
 
 + (void)def:(MTQueueBlock)block
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if (block) block();
-    });
+//    });
 }
 
 + (void)high:(MTQueueBlock)block
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         if (block) block();
-    });
+//    });
 }
 
 + (void)low:(MTQueueBlock)block
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         if (block) block();
-    });
+//    });
 }
 
 
 + (void)after:(NSTimeInterval)delay block:(MTQueueBlock)block
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (block) block();
-    });
+//    });
 }
 
 

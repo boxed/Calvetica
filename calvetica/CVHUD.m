@@ -50,23 +50,6 @@
                                                     [self removeFromSuperview];
                                                 }];
                         }];
-
-//	dispatch_queue_t animationQueue = dispatch_queue_create("com.mysterioustrousers.animationqueue", NULL);
-//	dispatch_async(animationQueue, ^(void) {
-//		
-//		[NSThread sleepForTimeInterval:0.5];
-//		
-//		for (NSInteger i = 10; i >= 0; i -= 1) {
-//			[NSThread sleepForTimeInterval:0.05];
-//			dispatch_async(dispatch_get_main_queue(), ^(void) {
-//				self.alpha = ( i / 10.0f );
-//			});
-//		}
-//		
-//		dispatch_async(dispatch_get_main_queue(), ^(void) {
-//			[self removeFromSuperview];
-//		});
-//	});
 }
 
 - (void)setBezelPosition 
