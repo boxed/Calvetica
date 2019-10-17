@@ -98,8 +98,7 @@
         return;
     }
     
-    dispatch_async([CVOperationQueue backgroundQueue], ^{
-        
+    [MTq def:^{
         // pause to see if the user is done typing
         [NSThread sleepForTimeInterval:0.5];
         
@@ -108,9 +107,9 @@
         }
         
         // start spinner
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [MTq main:^{
             [self->_activityIndicator startAnimating];
-        });
+        }];
 		
 		// set the start and end dates
 		NSDate *startDate;
@@ -154,8 +153,7 @@
         
         
         // update the table with our new event or cell
-        dispatch_async(dispatch_get_main_queue(), ^{
-			
+        [MTq main:^{
 			// don't try to display the data if the search string has changed by the time this finished loading
 			if (![self.currentSearchText isEqualToString:text]) {
 				return;
@@ -167,8 +165,8 @@
             [self.tableView reloadData];
             
             [self->_activityIndicator stopAnimating];
-        });
-    });
+        }];
+    }];
 }
 
 

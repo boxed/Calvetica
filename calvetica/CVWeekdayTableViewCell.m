@@ -190,10 +190,10 @@
             }
         }
 
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [MTq main:^{
             self->_allDaySquaresView.squares = allDayEventSquares;
             self->_squaresView.squares = eventSquares;
-        });
+        }];
     }];
 }
 

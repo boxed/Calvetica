@@ -55,12 +55,12 @@
         _event.title = _eventTitleTextField.text;
     }
 
-	dispatch_async([CVOperationQueue backgroundQueue], ^{
+    [MTq def:^{
 		[self->_event saveForThisOccurrence];
-		dispatch_async(dispatch_get_main_queue(), ^{
+        [MTq main:^{
 			[self.delegate genericReminderViewController:self didFinishWithResult:CVGenericReminderViewControllerResultAdded];
-		});
-	});    
+        }];
+	}];    
 }
 
 

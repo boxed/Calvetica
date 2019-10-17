@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 Mysterious Trousers. All rights reserved.
 //
 
-
-
-
 #import "CVWeekTableViewCellDrawing.h"
 #import "CVCalendarItemShape.h"
 #import "UIColor+Calvetica.h"
@@ -16,7 +13,6 @@
 #import "geometry.h"
 #import "times.h"
 #import "colors.h"
-
 
 @implementation CVWeekTableViewCellDrawing
 
@@ -187,8 +183,8 @@
 
 - (void)draw
 {
+    if (!self.window) return;
     [MTq def:^{
-        if (!self.window) return;
         [self prepareCalendarItemsWithCompletion:^(NSArray *models) {
             self.calendarItems = models;
             [MTq main:^{

@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self setupRootTableViewController];
     
     if (NOTCH) {
-        _monthTableViewContainer.y = 43;
+        _monthTableViewContainer.y = 45;
     }
 }
 
@@ -1368,7 +1368,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)updateLayoutAnimated:(BOOL)animated
 {
     if (NOTCH) {
-        self.weekdayTitleBar.height = 43;
+        self.weekdayTitleBar.height = 45;
     }
     if (PAD) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -1399,7 +1399,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height) + 1;
             r.size.height = self.view.height - self.rootTableView.y - 1;// - self.bottomToolbar.height;
             if (NOTCH) {
-                r.origin.y += 10;
+                r.origin.y += 12;
             }
             self.rootTableView.frame = r;
         };
@@ -1546,7 +1546,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
         l.text = weekDayAbbr;
         if (NOTCH) {
-            l.y = 29;
+            l.y = 32;
             l.x -= 2;
         }
     }

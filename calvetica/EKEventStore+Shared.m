@@ -14,14 +14,22 @@
 @implementation EKEventStore (Shared)
 
 static BOOL __permissionGranted     = NO;
-static EKEventStore *__sharedStore  = nil;
+static NSMutableDictionary *__stores = nil;
+//static EKEventStore *__sharedStore  = nil;
 
 
 #pragma mark - Public
 
 + (EKEventStore *)sharedStore
 {
-    return __sharedStore;
+    NSString *name = [NSString stringWithUTF8String:dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)];
+//    NSString *name = [NSOperationQueue mainQueue].name;
+    
+    if (!__stores[name]) {
+        __stores[name] = [EKEventStore new];
+    }
+    
+    return __stores[name];
 }
 
 
@@ -41,9 +49,10 @@ static EKEventStore *__sharedStore  = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedStore = [EKEventStore new];
+        __stores = [NSMutableDictionary new]; //[EKEventStore new];
     });
-    return __sharedStore;
+    
+    return [EKEventStore sharedStore];
 }
 
 @end

@@ -67,7 +67,7 @@
 
 //	EKEvent *event = [EKEventStore eventWithIdentifier:_event.identifier];
 
-	dispatch_async([CVOperationQueue backgroundQueue], ^{
+    [MTq def:^{
 		// figure out what alarms have already gone off
 		NSMutableArray *alarmsToRemove = [NSMutableArray array];
 		for (EKAlarm *alarm in self->_event.alarms) {
@@ -100,10 +100,10 @@
 		[self->_event saveForThisOccurrence];
 
 		// tell the delegate
-		dispatch_async(dispatch_get_main_queue(), ^{
+        [MTq main:^{
 			[self.delegate eventSnoozeViewController:self didFinishWithResult:CVEventSnoozeResultSnoozed];
-		});
-	});
+        }];
+	}];
 }
 
 - (void)cancelButtonWasTapped:(id)sender 
