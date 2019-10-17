@@ -9,6 +9,7 @@
 #endif
 
 #define PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define NOTCH ([[UIScreen mainScreen] nativeBounds].size.height == 2436 || [[UIScreen mainScreen] nativeBounds].size.height == 2688 || [[UIScreen mainScreen] nativeBounds].size.height == 1792)
 
 #ifndef DEBUG
 #undef NSLog

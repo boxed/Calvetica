@@ -482,7 +482,7 @@
             v.y -= 20;
         }
     }
-    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+    if (NOTCH) {
         for (UIView *v in self.view.subviews) {
             v.y += 20;
         }

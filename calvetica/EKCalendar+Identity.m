@@ -29,14 +29,16 @@
 
 - (NSString *)calendarExternalIdentifier
 {
-    return [NSString stringWithFormat:@"%d-%@-%d-%d-%@-%d-%d",
-            (int)self.allowsContentModifications,
-            self.title,
-            (int)self.type,
-            (int)self.allowedEntityTypes,
-            self.source.title,
-            (int)self.subscribed,
-            (int)self.supportedEventAvailabilities];
+    return self.calendarIdentifier;
+    // freaking caused i tot crash on ios 13
+//    return [NSString stringWithFormat:@"%d-%@-%d-%d-%@-%d-%d",
+//            (int)self.allowsContentModifications,
+//            self.title,
+//            (int)self.type,
+//            (int)self.allowedEntityTypes,
+//            self.source.title,
+//            (int)self.subscribed,
+//            (int)self.supportedEventAvailabilities];
 }
 
 - (NSString *)accountName

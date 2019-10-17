@@ -35,8 +35,8 @@
     }
     _contentViewController.view.y       = (self.view.height / 2) - (_contentViewController.view.height / 2);
     _contentViewController.view.x       = (self.view.width / 2) - (_contentViewController.view.width / 2);
-    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
-        _contentViewController.view.y = 13.5;
+    if (NOTCH) {
+        _contentViewController.view.y = -13.5;
         _contentViewController.view.height = 640;
     }
 

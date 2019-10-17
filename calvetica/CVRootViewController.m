@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self setUpMonthTableViewController];
     [self setupRootTableViewController];
     
-    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+    if (NOTCH) {
         _monthTableViewContainer.y = 43;
     }
 }
@@ -1162,7 +1162,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             // if a modal view controller is already being displayed, return
             if (self.presentedViewController) return;
 
-            if ([[UIScreen mainScreen] nativeBounds].size.height != 2436) {
+            if (NOTCH) {
                 [self performSegueWithIdentifier:@"WeekViewSegue" sender:self];
             }
             
@@ -1367,7 +1367,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)updateLayoutAnimated:(BOOL)animated
 {
-    if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+    if (NOTCH) {
         self.weekdayTitleBar.height = 43;
     }
     if (PAD) {
@@ -1398,7 +1398,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             CGRect r = self.rootTableView.frame;
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height) + 1;
             r.size.height = self.view.height - self.rootTableView.y - 1;// - self.bottomToolbar.height;
-            if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+            if (NOTCH) {
                 r.origin.y += 10;
             }
             self.rootTableView.frame = r;
@@ -1545,7 +1545,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                      self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
         NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
         l.text = weekDayAbbr;
-        if ([[UIScreen mainScreen] nativeBounds].size.height == 2436) {
+        if (NOTCH) {
             l.y = 29;
             l.x -= 2;
         }
