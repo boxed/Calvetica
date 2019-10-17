@@ -25,6 +25,7 @@
 
     // this turned on produces weird jumpy scrolling
     self.tableView.scrollsToTop = NO;
+//    [self.tableView setContentInset:UIEdgeInsetsMake(-50, 0, 0, 0)];
 
     [self resetStartDate];
 
@@ -244,7 +245,7 @@
     CGFloat boxWidth = tableView.frame.size.width / 7.0;
 
     rect.origin.x       = floorf([self columnOfDate:date] * boxWidth);
-    rect.origin.y       = floorf(row * boxHeight);
+    rect.origin.y       = floorf(row * boxHeight) + 86;
     rect.size.width     = floorf(boxWidth);
     rect.size.height    = floorf(boxHeight);
 
