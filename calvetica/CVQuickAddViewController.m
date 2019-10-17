@@ -482,7 +482,7 @@
             v.y -= 20;
         }
     }
-    if (NOTCH) {
+    if ([CVAppDelegate hasNotch]) {
         for (UIView *v in self.view.subviews) {
             v.y += 20;
         }

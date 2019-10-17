@@ -29,7 +29,7 @@
 #import "CVPopoverModalViewController_iPad.h"
 #import "CVLandscapeWeekView_iPad.h"
 #import "UILabel+Utilities.h"
-
+#import "CVAppDelegate.h"
 
 
 typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self setUpMonthTableViewController];
     [self setupRootTableViewController];
     
-    if (NOTCH) {
+    if ([CVAppDelegate hasNotch]) {
         _monthTableViewContainer.y = 45;
     }
 }
@@ -1162,7 +1162,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             // if a modal view controller is already being displayed, return
             if (self.presentedViewController) return;
 
-            if (NOTCH) {
+            if ([CVAppDelegate hasNotch]) {
                 [self performSegueWithIdentifier:@"WeekViewSegue" sender:self];
             }
             
@@ -1367,7 +1367,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)updateLayoutAnimated:(BOOL)animated
 {
-    if (NOTCH) {
+    if ([CVAppDelegate hasNotch]) {
         self.weekdayTitleBar.height = 45;
     }
     if (PAD) {
@@ -1398,7 +1398,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             CGRect r = self.rootTableView.frame;
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height) + 1;
             r.size.height = self.view.height - self.rootTableView.y - 1;// - self.bottomToolbar.height;
-            if (NOTCH) {
+            if ([CVAppDelegate hasNotch]) {
                 r.origin.y += 12;
             }
             self.rootTableView.frame = r;
@@ -1545,7 +1545,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                      self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
         NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
         l.text = weekDayAbbr;
-        if (NOTCH) {
+        if ([CVAppDelegate hasNotch]) {
             l.y = 32;
             l.x -= 2;
         }

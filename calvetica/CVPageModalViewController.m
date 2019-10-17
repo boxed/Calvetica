@@ -7,7 +7,7 @@
 //
 
 #import "CVPageModalViewController.h"
-
+#import "CVAppDelegate.h"
 
 @implementation CVPageModalViewController
 
@@ -35,7 +35,7 @@
     }
     _contentViewController.view.y       = (self.view.height / 2) - (_contentViewController.view.height / 2);
     _contentViewController.view.x       = (self.view.width / 2) - (_contentViewController.view.width / 2);
-    if (NOTCH) {
+    if ([CVAppDelegate hasNotch]) {
         _contentViewController.view.y = -13.5;
         _contentViewController.view.height = 640;
     }
