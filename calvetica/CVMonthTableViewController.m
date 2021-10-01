@@ -245,7 +245,11 @@
     CGFloat boxWidth = tableView.frame.size.width / 7.0;
 
     rect.origin.x       = floorf([self columnOfDate:date] * boxWidth);
-    rect.origin.y       = floorf(row * boxHeight) + 86;
+    if (PAD) {
+        rect.origin.y       = floorf(row * boxHeight) + 86;
+    } else {
+        rect.origin.y       = floorf(row * boxHeight);
+    }
     rect.size.width     = floorf(boxWidth);
     rect.size.height    = floorf(boxHeight);
 
