@@ -22,7 +22,7 @@
 	if (self.hasRecurrenceRules && [self hadRecurrenceRuleOnPreviousSave]) {
 		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change only this one", @"Button text for a repeating event, it will only edit the selected event")  andActionBlock:^(void) {
 			NSError *error = nil;
-            BOOL success = [self saveWithSpan:EKSpanThisEvent error:&error];
+            BOOL success = [self saveWithSpan2:EKSpanThisEvent error:&error];
 
 			if (!success) {
 
@@ -42,7 +42,7 @@
 
 		CVActionBlockButton *b2 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change all future events", @"Button text that will edit the repeating event's future details") andActionBlock:^(void) {
 			NSError *error = nil;
-            BOOL success = [self saveWithSpan:EKSpanFutureEvents error:&error];
+            BOOL success = [self saveWithSpan2:EKSpanFutureEvents error:&error];
 
 			if (!success) {
 
@@ -73,7 +73,7 @@
 	}
 	else {
         NSError *error = nil;
-        BOOL success = [self saveWithSpan:EKSpanFutureEvents error:&error];
+        BOOL success = [self saveWithSpan2:EKSpanFutureEvents error:&error];
 
 		if (!success) {
 
@@ -97,7 +97,7 @@
 - (void)saveForThisOccurrence
 {
     NSError *error = nil;
-    BOOL success = [self saveWithSpan:EKSpanThisEvent error:&error];
+    BOOL success = [self saveWithSpan2:EKSpanThisEvent error:&error];
 
 	if (!success) {
 
@@ -119,7 +119,7 @@
 	if (self.hasRecurrenceRules) {
 		CVActionBlockButton *b1 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change only this one", @"Button text for a repeating event, it will only edit the selected event")  andActionBlock:^(void) {
             NSError *error = nil;
-            BOOL success = [self deleteWithSpan:EKSpanThisEvent error:&error];
+            BOOL success = [self deleteWithSpan2:EKSpanThisEvent error:&error];
 
 			if (!success) {
 
@@ -139,7 +139,7 @@
 
 		CVActionBlockButton *b2 = [CVActionBlockButton buttonWithTitle:NSLocalizedString(@"Change all future events", @"Button text that will edit the repeating event's future details") andActionBlock:^(void) {
             NSError *error = nil;
-            BOOL success = [self deleteWithSpan:EKSpanFutureEvents error:&error];
+            BOOL success = [self deleteWithSpan2:EKSpanFutureEvents error:&error];
 
 			if (!success) {
 
@@ -170,7 +170,7 @@
 	}
 	else {
         NSError *error = nil;
-        BOOL success = [self deleteWithSpan:EKSpanFutureEvents error:&error];
+        BOOL success = [self deleteWithSpan2:EKSpanFutureEvents error:&error];
 
 		if (!success) {
 
@@ -194,7 +194,7 @@
 
 #pragma mark - Private
 
-- (BOOL)saveWithSpan:(EKSpan)span error:(NSError **)error
+- (BOOL)saveWithSpan2:(EKSpan)span error:(NSError **)error
 {
     CVNotificationChangeType type = self.isNew ? CVNotificationChangeTypeCreate : CVNotificationChangeTypeUpdate;
     [[CVEventStoreNotificationCenter sharedCenter] listenForNotificationAboutCalendarItem:self
@@ -202,7 +202,7 @@
     return [[EKEventStore sharedStore] saveEvent:self span:span commit:YES error:error];
 }
 
-- (BOOL)deleteWithSpan:(EKSpan)span error:(NSError **)error
+- (BOOL)deleteWithSpan2:(EKSpan)span error:(NSError **)error
 {
     CVNotificationChangeType type = self.isNew ? CVNotificationChangeTypeCreate : CVNotificationChangeTypeUpdate;
     [[CVEventStoreNotificationCenter sharedCenter] listenForNotificationAboutCalendarItem:self
