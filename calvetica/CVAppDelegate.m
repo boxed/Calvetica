@@ -442,20 +442,7 @@
 + (BOOL)hasNotch
 {
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        switch ((int)[[UIScreen mainScreen] nativeBounds].size.height) {
-            case 1136: // iPhone 5 or 5S or 5C
-            case 1334: // iPhone 6/6S/7/8
-                return false;
-                
-            case 2436: // iPhone X, XS
-            case 2208:
-            case 1920: // iPhone 6+/6S+/7+/8+
-            case 2688: // iPhone XS Max
-            case 1792: // iPhone XR
-                return true;
-            default:
-                return false;
-        }
+        return [[[UIApplication sharedApplication] delegate] window].safeAreaInsets.top > 20.0;
     }
     
     return false;
