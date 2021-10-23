@@ -25,6 +25,10 @@
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     [super reloadTableViewWithCompletion:completion];
+    
+    if (@available(iOS 15.0, *)) {
+        self.tableView.sectionHeaderTopPadding = 0;
+    }
 
     // date can't be null
     if (!self.selectedDate) return;
