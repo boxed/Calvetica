@@ -31,6 +31,8 @@
 #import "UILabel+Utilities.h"
 #import "CVAppDelegate.h"
 
+#define NOTCH_HEIGHT_OFFSET 50
+
 
 typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     CVRootMonthViewMoveDirectionDown,
@@ -98,7 +100,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self setupRootTableViewController];
     
     if ([CVAppDelegate hasNotch]) {
-        _monthTableViewContainer.y = 45;
+        _monthTableViewContainer.y = NOTCH_HEIGHT_OFFSET;
     }
 }
 
@@ -1361,14 +1363,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     [self.rootTableView reloadData];
 }
 
-
-
 #pragma mark (iphone)
 
 - (void)updateLayoutAnimated:(BOOL)animated
 {
     if ([CVAppDelegate hasNotch]) {
-        self.weekdayTitleBar.height = 45;
+        self.weekdayTitleBar.height = NOTCH_HEIGHT_OFFSET;
     }
     if (PAD) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
