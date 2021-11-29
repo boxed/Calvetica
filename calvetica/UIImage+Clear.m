@@ -14,7 +14,7 @@
 {
     UIGraphicsBeginImageContext(size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+    CGContextSetFillColorWithColor(context, [patentedClear CGColor]);
     CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
     UIImage *blankImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

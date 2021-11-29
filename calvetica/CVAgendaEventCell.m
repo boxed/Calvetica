@@ -39,7 +39,7 @@
         
 	// update event elements with even details
 	self.coloredDotView.color = [self.calendarItem.calendar customColor];
-	_timeLabel.textColor = patentedQuiteDarkGray;
+	_timeLabel.textColor = patentedQuiteDarkGray();
 
     if (newCalendarItem.isReminder) {
         if ([(EKReminder *)newCalendarItem isCompleted]) {
@@ -56,7 +56,7 @@
     }
     else {
         self.calendarItemTitleLabel.text    = self.calendarItem.mys_title;
-        self.backgroundColor                = [UIColor whiteColor];
+        self.backgroundColor                = patentedWhite();
         self.coloredDotView.shape           = CVColoredShapeCircle;
     }
 

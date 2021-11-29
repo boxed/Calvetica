@@ -115,8 +115,8 @@
     
     for (CVViewButton *button in [self.dayOfTheWeekButtons subviews]) {
         // Default colors don't mesh with this view.
-        button.textColorNormal = patentedBlack;
-        button.textColorSelected = patentedWhite;
+        button.textColorNormal = patentedBlack();
+        button.textColorSelected = patentedWhite();
         
         button.titleLabel.text = [shortWeekdaySymbols objectAtIndex:[self dayNumberForButtonTag:button.tag] - 1];
         

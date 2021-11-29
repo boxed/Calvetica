@@ -220,7 +220,7 @@
     
     for (CVButton *b in toggleButtons) {
         b.backgroundColorSelected = patentedRed;
-        b.textColorSelected = patentedWhite;
+        b.textColorSelected = patentedWhite();
     }
 }
 

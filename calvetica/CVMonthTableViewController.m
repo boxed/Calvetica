@@ -196,7 +196,7 @@
 {
     CVWeekTableViewCell *c = (CVWeekTableViewCell *)cell;
     [c redraw];
-    c.backgroundColor = [UIColor clearColor];
+    c.backgroundColor = patentedClear;
 }
 
 

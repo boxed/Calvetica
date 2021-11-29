@@ -48,26 +48,26 @@
 {
     [super viewWillAppear:animated];
 	
-	self.threeMonthsButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.threeMonthsButton.textColorHighlighted = patentedWhite;
-    self.threeMonthsButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.threeMonthsButton.textColorSelected = patentedWhite;
-    self.sixMonthsButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.sixMonthsButton.textColorHighlighted = patentedWhite;
-    self.sixMonthsButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.sixMonthsButton.textColorSelected = patentedWhite;
-    self.oneYearButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.oneYearButton.textColorHighlighted = patentedWhite;
-    self.oneYearButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.oneYearButton.textColorSelected = patentedWhite;
-    self.fiveYearButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.fiveYearButton.textColorHighlighted = patentedWhite;
-    self.fiveYearButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.fiveYearButton.textColorSelected = patentedWhite;
-    self.everythingButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.everythingButton.textColorHighlighted = patentedWhite;
-    self.everythingButton.backgroundColorSelected = patentedVeryDarkGray;
-    self.everythingButton.textColorSelected = patentedWhite;	
+	self.threeMonthsButton.backgroundColorHighlighted = patentedVeryDarkGray();
+    self.threeMonthsButton.textColorHighlighted = patentedWhite();
+    self.threeMonthsButton.backgroundColorSelected = patentedVeryDarkGray();
+    self.threeMonthsButton.textColorSelected = patentedWhite();
+    self.sixMonthsButton.backgroundColorHighlighted = patentedVeryDarkGray();
+    self.sixMonthsButton.textColorHighlighted = patentedWhite();
+    self.sixMonthsButton.backgroundColorSelected = patentedVeryDarkGray();
+    self.sixMonthsButton.textColorSelected = patentedWhite();
+    self.oneYearButton.backgroundColorHighlighted = patentedVeryDarkGray();
+    self.oneYearButton.textColorHighlighted = patentedWhite();
+    self.oneYearButton.backgroundColorSelected = patentedVeryDarkGray();
+    self.oneYearButton.textColorSelected = patentedWhite();
+    self.fiveYearButton.backgroundColorHighlighted = patentedVeryDarkGray();
+    self.fiveYearButton.textColorHighlighted = patentedWhite();
+    self.fiveYearButton.backgroundColorSelected = patentedVeryDarkGray();
+    self.fiveYearButton.textColorSelected = patentedWhite();
+    self.everythingButton.backgroundColorHighlighted = patentedVeryDarkGray();
+    self.everythingButton.textColorHighlighted = patentedWhite();
+    self.everythingButton.backgroundColorSelected = patentedVeryDarkGray();
+    self.everythingButton.textColorSelected = patentedWhite();	
     
     self.currentScope = _currentScope;
 }

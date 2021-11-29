@@ -38,7 +38,8 @@
     _tableView                  = newTableView;
     _tableView.delegate         = self;
     _tableView.dataSource       = self;
-    _tableView.separatorColor   = RGBHex(0xF0F0F0);
+    _tableView.separatorColor   = patentedWhite();
+    _tableView.backgroundColor  = patentedWhite();
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
 }
 

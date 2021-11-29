@@ -520,17 +520,17 @@
                                      roundf(e.height));
 
         CGContextSetFillColorWithColor(context, color);
-        CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray CGColor]);
+        CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray() CGColor]);
         CGContextSetLineWidth(context, 1.0f);
         
         CVContextFillRoundedRect(context, boxFrame, 6.0f);
         
         // event text color
         if([calendarColor shouldUseLightText]) {
-            CGContextSetFillColorWithColor(context, [patentedWhite CGColor]);
+            CGContextSetFillColorWithColor(context, [patentedWhite() CGColor]);
         }
         else {
-            CGContextSetFillColorWithColor(context, [patentedBlack CGColor]);
+            CGContextSetFillColorWithColor(context, [patentedBlack() CGColor]);
         }
 
         CGRect textFrame = boxFrame;
@@ -638,7 +638,7 @@
 
 
             // DRAW TEXT
-            CGContextSetFillColorWithColor(context, [patentedBlack CGColor]);
+            CGContextSetFillColorWithColor(context, [patentedBlack() CGColor]);
 
             CGRect textFrame = boxFrame;
             textFrame.origin.x += 10.0f;

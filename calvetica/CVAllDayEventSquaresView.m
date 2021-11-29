@@ -79,7 +79,7 @@
     // DRAW BACKGROUND LINES
 	
     // border line
-    CGContextSetStrokeColorWithColor(	context,	[patentedDarkGray CGColor]);
+    CGContextSetStrokeColorWithColor(	context,	[patentedDarkGray() CGColor]);
     CGContextMoveToPoint(				context,	0,						0);
     CGContextAddLineToPoint(			context,	0,						self.bounds.size.height);
 	CGContextMoveToPoint(				context,	0,						self.bounds.size.height);
@@ -135,10 +135,10 @@
         // event text
         // event text color
         if([calendarColor shouldUseLightText]) {
-            CGContextSetFillColorWithColor(context, [patentedWhite CGColor]);
+            CGContextSetFillColorWithColor(context, [patentedWhite() CGColor]);
         }
         else {
-            CGContextSetFillColorWithColor(context, [patentedBlack CGColor]);
+            CGContextSetFillColorWithColor(context, [patentedBlack() CGColor]);
         }
         
         CGRect textFrame = boxFrame;
@@ -176,7 +176,7 @@
             
             // create view to point to
             UIView *placeholder = [[UIView alloc] initWithFrame:rectOfEvent];
-            placeholder.backgroundColor = patentedBlack;
+            placeholder.backgroundColor = patentedBlack();
             placeholder.alpha = 0.3f;
             [self addSubview:placeholder];
             
@@ -198,7 +198,7 @@
 
     // create view to point to
     UIView *placeholder = [[UIView alloc] initWithFrame:self.bounds];
-    placeholder.backgroundColor = patentedBlack;
+    placeholder.backgroundColor = patentedBlack();
     placeholder.alpha = 0.3f;
     [self addSubview:placeholder];
     

@@ -33,8 +33,8 @@
     _allDaySquaresView.date = newDate;
     
     if ([_date mt_isWithinSameDay:[NSDate date]]) {
-        _allDaySquaresView.backgroundColor = patentedWhite;
-        _squaresView.backgroundColor = patentedWhite;
+        _allDaySquaresView.backgroundColor = patentedWhite();
+        _squaresView.backgroundColor = patentedWhite();
         _redBarView.alpha = 0.7f;
     }
 }

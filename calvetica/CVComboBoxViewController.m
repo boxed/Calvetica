@@ -111,7 +111,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
-        cell.textLabel.textColor = patentedWhite;
+        cell.textLabel.textColor = patentedWhite();
     }
     
     NSObject *item = [self.items objectAtIndex:indexPath.row];
@@ -147,7 +147,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = patentedBlack;
+    cell.backgroundColor = patentedBlack();
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -161,7 +161,7 @@
     if (item == self.selectedItem) {
         cell.backgroundColor = patentedRed;
     } else {
-        cell.backgroundColor = patentedBlack;
+        cell.backgroundColor = patentedBlack();
     }
 }
 

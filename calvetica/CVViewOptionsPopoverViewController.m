@@ -55,22 +55,22 @@
 {
     [super viewWillAppear:animated];
     
-    self.fullDayButton.backgroundColorHighlighted   = patentedVeryDarkGray;
-    self.fullDayButton.textColorHighlighted         = patentedWhite;
-    self.fullDayButton.backgroundColorSelected      = patentedVeryDarkGray;
-    self.fullDayButton.textColorSelected            = patentedWhite;
-    self.agendaDayButton.backgroundColorHighlighted = patentedVeryDarkGray;
-    self.agendaDayButton.textColorHighlighted       = patentedWhite;
-    self.agendaDayButton.backgroundColorSelected    = patentedVeryDarkGray;
-    self.agendaDayButton.textColorSelected          = patentedWhite;
-    self.weekButton.backgroundColorHighlighted      = patentedVeryDarkGray;
-    self.weekButton.textColorHighlighted            = patentedWhite;
-    self.weekButton.backgroundColorSelected         = patentedVeryDarkGray;
-    self.weekButton.textColorSelected               = patentedWhite;
-    self.detailedWeekButton.backgroundColorHighlighted      = patentedVeryDarkGray;
-    self.detailedWeekButton.textColorHighlighted            = patentedWhite;
-    self.detailedWeekButton.backgroundColorSelected         = patentedVeryDarkGray;
-    self.detailedWeekButton.textColorSelected               = patentedWhite;
+    self.fullDayButton.backgroundColorHighlighted   = patentedVeryDarkGray();
+    self.fullDayButton.textColorHighlighted         = patentedWhite();
+    self.fullDayButton.backgroundColorSelected      = patentedVeryDarkGray();
+    self.fullDayButton.textColorSelected            = patentedWhite();
+    self.agendaDayButton.backgroundColorHighlighted = patentedVeryDarkGray();
+    self.agendaDayButton.textColorHighlighted       = patentedWhite();
+    self.agendaDayButton.backgroundColorSelected    = patentedVeryDarkGray();
+    self.agendaDayButton.textColorSelected          = patentedWhite();
+    self.weekButton.backgroundColorHighlighted      = patentedVeryDarkGray();
+    self.weekButton.textColorHighlighted            = patentedWhite();
+    self.weekButton.backgroundColorSelected         = patentedVeryDarkGray();
+    self.weekButton.textColorSelected               = patentedWhite();
+    self.detailedWeekButton.backgroundColorHighlighted      = patentedVeryDarkGray();
+    self.detailedWeekButton.textColorHighlighted            = patentedWhite();
+    self.detailedWeekButton.backgroundColorSelected         = patentedVeryDarkGray();
+    self.detailedWeekButton.textColorSelected               = patentedWhite();
 
     self.currentViewMode = _currentViewMode;
 }

@@ -361,10 +361,10 @@
 
     // if its just an hour
     if (isEligibleCell && (isOutsideWorkingHours || isAllDay)) {
-        cell.backgroundColor = RGBHex(0xF6F6F6);
+        cell.backgroundColor = patentedLightGray();
     }
     else if (isEligibleCell) {
-        cell.backgroundColor = RGBHex(0xFFFFFF);
+        cell.backgroundColor = patentedWhite();
     }
 }
 
@@ -375,8 +375,8 @@
 
 - (void)calculateDurationBars
 {
-	UIColor *primaryBarColor = [UIColor clearColor];
-	UIColor *secondaryBarColor = [UIColor clearColor];
+	UIColor *primaryBarColor = patentedClear;
+	UIColor *secondaryBarColor = patentedClear;
 
 	NSInteger primarySecondsLeft = 0;
 	NSInteger secondarySecondsLeft = 0;

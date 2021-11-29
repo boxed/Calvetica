@@ -33,6 +33,7 @@
     if (cell == nil) {
         cell = [self fromNibOfSameName];
     }
+    cell.contentView.backgroundColor = patentedWhite();
     return cell;
 }
 

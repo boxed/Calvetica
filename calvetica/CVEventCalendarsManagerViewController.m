@@ -109,7 +109,7 @@
 
     else {
 		cell.textLabel.text = @"Add Calendar...";
-        cell.imageView.backgroundColor = [UIColor clearColor];
+        cell.imageView.backgroundColor = patentedClear;
     }
 
     return cell;

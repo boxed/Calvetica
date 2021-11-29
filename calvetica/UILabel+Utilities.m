@@ -38,47 +38,47 @@
 
 - (void)setWhiteWithLightShadow 
 {
-    self.textColor = patentedWhite;
+    self.textColor = patentedWhite();
 }
 
 - (void)setWhiteWithDarkShadow 
 {
-    self.textColor = patentedWhite;
+    self.textColor = patentedWhite();
 }
 
 - (void)setBlackWithLightShadow 
 {
-    self.textColor = patentedBlack;
+    self.textColor = patentedBlack();
 }
 
 - (void)setBlackWithDarkShadow 
 {
-    self.textColor = patentedBlack;
+    self.textColor = patentedBlack();
 }
 
 - (void)setDarkGrayWithLightShadow 
 {
-    self.textColor = patentedQuiteDarkGray;
+    self.textColor = patentedQuiteDarkGray();
 }
 
 - (void)setDarkGrayWithDarkShadow 
 {
-    self.textColor = patentedQuiteDarkGray;
+    self.textColor = patentedQuiteDarkGray();
 }
 
 - (void)setWhiteNoShadow 
 {
-    self.textColor = patentedWhite;
+    self.textColor = patentedWhite();
 }
 
 - (void)setBlackNoShadow 
 {
-    self.textColor = patentedBlack;
+    self.textColor = patentedBlack();
 }
 
 - (void)setDarkGrayNoShadow 
 {
-    self.textColor = patentedQuiteDarkGray;
+    self.textColor = patentedQuiteDarkGray();
 }
 
 @end

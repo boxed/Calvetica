@@ -31,7 +31,7 @@
 #import "UILabel+Utilities.h"
 #import "CVAppDelegate.h"
 
-#define NOTCH_HEIGHT_OFFSET 50
+#define NOTCH_HEIGHT_OFFSET 55
 
 
 typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
@@ -316,16 +316,14 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     CVViewOptionsPopoverViewController *viewOptionsPopover = [[CVViewOptionsPopoverViewController alloc] init];
     viewOptionsPopover.delegate = self;
     viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.rootTableMode;
+    viewOptionsPopover.popoverBackdropColor = patentedDarkGray();
     if (PAD) {
-        viewOptionsPopover.popoverBackdropColor = patentedDarkGray;
         viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
-        [self presentPopoverModalViewController:viewOptionsPopover forView:sender animated:YES];
     }
     else {
-        viewOptionsPopover.popoverBackdropColor     = patentedDarkGray;
         viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideRight;
-        [self presentPopoverModalViewController:viewOptionsPopover forView:sender animated:YES];
     }
+    [self presentPopoverModalViewController:viewOptionsPopover forView:sender animated:YES];
 }
 
 - (IBAction)redBarPlusButtonWasTapped:(UITapGestureRecognizer *)gesture
@@ -1340,7 +1338,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupUI
 {
-    self.view.window.backgroundColor = [UIColor colorWithWhite:0.941 alpha:1];
     if (!PAD) {
         // rotate month button
         CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-90.0f));
@@ -1358,7 +1355,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupRootTableViewController
 {
-    [[self.rootTableView.subviews firstObject] setBackgroundColor:[UIColor colorWithWhite:0.941 alpha:1]];
     self.rootTableMode = PREFS.localRootTableViewMode ?: CVRootTableViewModeAgenda;
     [self.rootTableView reloadData];
 }
@@ -1450,8 +1446,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     void (^completion)(void) = ^{
         [self updateSelectionSquare:NO];
-        self.rootTableView.backgroundColor = [UIColor colorWithWhite:0.941 alpha:1];
-        self.view.backgroundColor = [UIColor colorWithWhite:0.941 alpha:1];
     };
 
     if (animated) {
@@ -1546,8 +1540,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
         l.text = weekDayAbbr;
         if ([CVAppDelegate hasNotch]) {
-            l.y = 32;
-            l.x -= 2;
+            l.y = 41;
         }
     }
 }

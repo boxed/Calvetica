@@ -155,8 +155,8 @@
             cell.isAllDay                   = model.isAllDay;
 
             cell.durationBarPercent         = 0;
-            cell.durationBarColor           = [UIColor clearColor];
-            cell.secondaryDurationBarColor  = [UIColor clearColor];
+            cell.durationBarColor           = patentedClear;
+            cell.secondaryDurationBarColor  = patentedClear;
             cell.delegate                   = self;
 
             [cell resetAccessoryButton];

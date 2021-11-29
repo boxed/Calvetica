@@ -7,7 +7,6 @@
 //
 
 #include "geometry.h"
-#include "colors.h"
 
 
 CGFloat CVPointDistance(CGPoint p1, CGPoint p2) {

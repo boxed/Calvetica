@@ -14,11 +14,11 @@
 
 - (void)setup 
 {
-    self.textColorNormal = patentedQuiteDarkGray;
-    self.textColorHighlighted = patentedWhite;
-    self.textColorSelected = patentedWhite;
+    self.textColorNormal = patentedQuiteDarkGray();
+    self.textColorHighlighted = patentedWhite();
+    self.textColorSelected = patentedWhite();
     self.backgroundColorSelected = patentedRed;
-    self.backgroundColorHighlighted = patentedBlack;
+    self.backgroundColorHighlighted = patentedBlack();
     self.backgroundColorNormal = patentedClear;
     self.selectable = NO;
 }

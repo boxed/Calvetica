@@ -49,7 +49,7 @@
         CVToggleButton *button = (CVToggleButton *)[self.view viewWithTag:(i+1)];
         button.enabled = _calendarItem.calendar.allowsContentModifications;
         button.backgroundColorSelected = patentedDarkRed;
-        button.textColorSelected = patentedWhite;
+        button.textColorSelected = patentedWhite();
     }
 
     [super viewDidLoad];

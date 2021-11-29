@@ -216,8 +216,8 @@
         cell.date                       = model.date;
         cell.isAllDay                   = model.isAllDay;
         cell.durationBarPercent         = 0;
-        cell.durationBarColor           = [UIColor clearColor];
-        cell.secondaryDurationBarColor  = [UIColor clearColor];
+        cell.durationBarColor           = patentedClear;
+        cell.secondaryDurationBarColor  = patentedClear;
         cell.delegate                   = self;
         [cell resetAccessoryButton];
         [cell drawDurationBarAnimated:NO];
@@ -324,7 +324,7 @@
     CVTableSectionHeaderView *sectionView   = [CVTableSectionHeaderView fromNibOfSameName];
     NSString *title                         = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
     sectionView.weekdayLabel.text           = title;
-    sectionView.backgroundColor             = [day mt_isWithinSameDay:[NSDate date]] ? patentedRed : RGB(70, 70, 70);
+    sectionView.backgroundColor             = [day mt_isWithinSameDay:[NSDate date]] ? patentedRed : patentedDarkGrayWeekdayHeader();
 
     return sectionView;
 }

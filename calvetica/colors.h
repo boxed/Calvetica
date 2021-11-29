@@ -6,19 +6,26 @@
 //  Copyright 2010 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#define patentedBlack [UIColor blackColor]
-#define patentedWhite [UIColor whiteColor]
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+UIColor* patentedWhite(void);
+UIColor* patentedBlack(void);
+
+UIColor* backgroundColorVeryWhite(void);
+
 #define patentedClear [UIColor clearColor]
 
 #pragma mark - Greys
 
-#define patentedVeryLightGray [UIColor colorWithWhite:0.933 alpha:1]
-#define patentedPrettyLightGray [UIColor colorWithWhite:0.90 alpha:1]
-#define patentedLightGray [UIColor colorWithWhite:0.80 alpha:1]
-#define patentedGray [UIColor colorWithWhite:0.61 alpha:1]
-#define patentedDarkGray [UIColor colorWithWhite:0.53 alpha:1]
-#define patentedQuiteDarkGray [UIColor colorWithWhite:0.40 alpha:1]
-#define patentedVeryDarkGray [UIColor colorWithWhite:0.24 alpha:1]
+UIColor* patentedVeryLightGray(void);
+UIColor* patentedPrettyLightGray(void);
+UIColor* patentedLightGray(void);
+UIColor* patentedGray(void);
+UIColor* patentedDarkGray(void);
+UIColor* patentedQuiteDarkGray(void);
+UIColor* patentedVeryDarkGray(void);
+UIColor* patentedDarkGrayWeekdayHeader(void);
 
 #pragma mark - Colors
 
