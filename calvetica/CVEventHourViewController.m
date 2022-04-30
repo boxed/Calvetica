@@ -234,12 +234,14 @@
 {
     self.allDay = NO;
     self.mode = CVEventHourViewControllerModeStartTime;
+    if (_allDayUpdatedBlock) _allDayUpdatedBlock(NO);
 }
 
 - (IBAction)endTimeButtonWasTapped:(id)sender 
 {
     self.allDay = NO;
     self.mode = CVEventHourViewControllerModeEndTime;
+    if (_allDayUpdatedBlock) _allDayUpdatedBlock(NO);
 }
 
 - (IBAction)allDayButtonWasTapped:(id)sender 
