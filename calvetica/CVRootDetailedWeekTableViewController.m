@@ -42,6 +42,7 @@
         frame.size.width -= 4;
         self.weekdayView = [[UILabel alloc] initWithFrame:frame];
         self.weekdayView.textAlignment = NSTextAlignmentRight;
+        self.weekdayView.textColor = UIColor.whiteColor;
         [self.tableView.superview addSubview:self.weekdayView];
     }
     
