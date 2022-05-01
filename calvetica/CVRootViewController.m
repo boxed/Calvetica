@@ -1505,6 +1505,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     _rootTableMode = newTableMode;
     PREFS.localRootTableViewMode = self.rootTableMode;
+    
+    if (self.rootTableViewController != nil) {
+        [self.rootTableViewController viewDidDisappear:NO];
+    }
 
     if (self.rootTableMode == CVRootTableViewModeFull) {
         self.rootTableViewController = [CVRootFullDayTableViewController new];
