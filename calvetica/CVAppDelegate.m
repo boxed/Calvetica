@@ -12,7 +12,6 @@
 #import "dictionarykeys.h"
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
-#import <Fabric/Fabric.h>
 
 
 @interface CVAppDelegate () 

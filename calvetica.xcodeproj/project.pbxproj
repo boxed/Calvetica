@@ -295,8 +295,6 @@
 		C2E29768133419E900FA7638 /* EKCalendar+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29765133419E900FA7638 /* EKCalendar+Store.m */; };
 		C2E29769133419E900FA7638 /* EKEvent+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E29767133419E900FA7638 /* EKEvent+Utilities.m */; };
 		C2E2978813341B9500FA7638 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2978713341B9500FA7638 /* EventKit.framework */; };
-		C2E2C97B1D46B7FE002D17C7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C9791D46B7FE002D17C7 /* Fabric.framework */; };
-		C2E2C97C1D46B7FE002D17C7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C97A1D46B7FE002D17C7 /* Crashlytics.framework */; };
 		C2E2C97E1D46B891002D17C7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C97D1D46B891002D17C7 /* libc++.tbd */; };
 		C2E3A1A5160D488400F00FB8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A1A4160D488400F00FB8 /* Settings.storyboard */; };
 		C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */; };
@@ -803,8 +801,6 @@
 		C2E29766133419E900FA7638 /* EKEvent+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEvent+Utilities.h"; sourceTree = "<group>"; };
 		C2E29767133419E900FA7638 /* EKEvent+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEvent+Utilities.m"; sourceTree = "<group>"; };
 		C2E2978713341B9500FA7638 /* EventKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
-		C2E2C9791D46B7FE002D17C7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		C2E2C97A1D46B7FE002D17C7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C2E2C97D1D46B891002D17C7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		C2E3A1A4160D488400F00FB8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettingsViewController.h; sourceTree = "<group>"; };
@@ -861,9 +857,7 @@
 				C2D388B313B8F560002527A7 /* libicucore.dylib in Frameworks */,
 				C2D388B113B8F550002527A7 /* SystemConfiguration.framework in Frameworks */,
 				9B12A0E113A7DFDE00BF1D7F /* AddressBook.framework in Frameworks */,
-				C2E2C97B1D46B7FE002D17C7 /* Fabric.framework in Frameworks */,
 				9B12A0E213A7DFDE00BF1D7F /* AddressBookUI.framework in Frameworks */,
-				C2E2C97C1D46B7FE002D17C7 /* Crashlytics.framework in Frameworks */,
 				C2603917138168D300F8619C /* CoreData.framework in Frameworks */,
 				C2AC518313789529000A96CE /* MapKit.framework in Frameworks */,
 				C2E2978813341B9500FA7638 /* EventKit.framework in Frameworks */,
@@ -2300,8 +2294,6 @@
 			isa = PBXGroup;
 			children = (
 				C2E2C97D1D46B891002D17C7 /* libc++.tbd */,
-				C2E2C9791D46B7FE002D17C7 /* Fabric.framework */,
-				C2E2C97A1D46B7FE002D17C7 /* Crashlytics.framework */,
 				C2A2118E1D46B5D400503F8E /* Security.framework */,
 				C2468C2516F97ECD006F047F /* libz.dylib */,
 				C2AF809815E93A4E005B2A46 /* libPods.a */,
@@ -2618,7 +2610,6 @@
 				C2E2971E133419A900FA7638 /* Frameworks */,
 				C2E2971F133419A900FA7638 /* Resources */,
 				C2E51AFF17F3C6560058BB32 /* Bump Build Number */,
-				C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */,
 				42473320FDE4615B6CDB2DA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -2659,7 +2650,6 @@
 				TargetAttributes = {
 					C2E29720133419A900FA7638 = {
 						DevelopmentTeam = JXK78JN25R;
-						DevelopmentTeam = B6FVY827P9;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -2823,7 +2813,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -2832,7 +2822,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8B56164618FD53E8D9BE9495 /* [CP] Check Pods Manifest.lock */ = {
@@ -2852,20 +2842,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		C21FBDD516FBF43900A95634 /* Run Script (Crashlytics) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script (Crashlytics)";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 237b422d5ee51789eac82b82a6b214d838f1fd4e e2f68842cabaa23b945fde2c88600caf04c98376f6fe0b5ca96693f770bde247";
 		};
 		C2E29748133419A900FA7638 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3375,6 +3351,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JXK78JN25R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3386,7 +3363,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.8;
+				MARKETING_VERSION = 5.3.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3534,6 +3511,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JXK78JN25R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3546,7 +3524,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.8;
+				MARKETING_VERSION = 5.3.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3565,6 +3543,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JXK78JN25R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3576,7 +3555,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.8;
+				MARKETING_VERSION = 5.3.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
