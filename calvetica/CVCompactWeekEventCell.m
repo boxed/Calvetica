@@ -133,6 +133,17 @@ static CGFloat const kColoredDotSize = 8.0f;
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self
                                                                                                    action:@selector(cellWasLongPressed:)];
     [self.contentView addGestureRecognizer:longPressGesture];
+
+    // Add swipe gestures for delete
+    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(cellWasSwiped:)];
+    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:swipeLeftGesture];
+
+    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(cellWasSwiped:)];
+    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:swipeRightGesture];
 }
 
 - (void)layoutSubviews
@@ -323,6 +334,27 @@ static CGFloat const kColoredDotSize = 8.0f;
     self.cellAccessoryButton.mode = CVCellAccessoryButtonModeDefault;
 }
 
+- (void)toggleAccessoryButton
+{
+    [UIView mt_animateWithDuration:0.20
+                    timingFunction:kMTEaseInBack
+                           options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
+                        animations:^
+     {
+         self.cellAccessoryButton.x += self.cellAccessoryButton.width;
+     } completion:^{
+         [self.cellAccessoryButton toggleMode];
+         [UIView mt_animateWithDuration:0.20
+                         timingFunction:kMTEaseOutBack
+                                options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
+                             animations:^
+          {
+              self.cellAccessoryButton.x -= self.cellAccessoryButton.width;
+          } completion:^{
+          }];
+    }];
+}
+
 #pragma mark - Actions
 
 - (void)cellWasTapped:(UITapGestureRecognizer *)gesture
@@ -334,6 +366,13 @@ static CGFloat const kColoredDotSize = 8.0f;
 {
     if (gesture.state != UIGestureRecognizerStateBegan) return;
     [self.delegate calendarItemCell:self wasLongPressedForItem:self.event];
+}
+
+- (void)cellWasSwiped:(UISwipeGestureRecognizer *)gesture
+{
+    if (self.event) {
+        [self toggleAccessoryButton];
+    }
 }
 
 - (void)accessoryButtonWasTapped:(id)sender
