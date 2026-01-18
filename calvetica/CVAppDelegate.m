@@ -32,7 +32,7 @@
     return self;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
 #ifdef ADHOC
@@ -54,6 +54,12 @@
 //    [MTMigration reset];
 
     self.window.tintColor = RGB(215, 0, 0);
+
+    // Global dark mode appearance configuration for grouped table views
+    [[UITableView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]]
+     setBackgroundColor:UIColor.systemGroupedBackgroundColor];
+    [[UITableViewCell appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]]
+     setBackgroundColor:UIColor.secondarySystemGroupedBackgroundColor];
 
     // if launched with options (meaning, a user tapped the "Snooze" button on a local notification.
     if (launchOptions) {

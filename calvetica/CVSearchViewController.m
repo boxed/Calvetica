@@ -57,6 +57,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Enable dark mode support
+    self.view.backgroundColor = UIColor.systemBackgroundColor;
+    self.tableView.backgroundColor = UIColor.systemBackgroundColor;
+
+    // Configure search text field for dark mode
+    self.searchTextField.textColor = UIColor.labelColor;
+    self.searchTextField.backgroundColor = UIColor.secondarySystemBackgroundColor;
 }
 
 - (void)viewDidAppear:(BOOL)animated 
@@ -199,6 +207,19 @@
 
 
 #pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Enable dark mode support for cells
+    cell.backgroundColor = UIColor.systemBackgroundColor;
+    cell.contentView.backgroundColor = UIColor.systemBackgroundColor;
+
+    // Update label colors for dark mode
+    if ([cell isKindOfClass:[CVSearchEventCell class]]) {
+        CVSearchEventCell *searchCell = (CVSearchEventCell *)cell;
+        searchCell.redSubtitleLabel.textColor = UIColor.secondaryLabelColor;
+    }
+}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView 
 {

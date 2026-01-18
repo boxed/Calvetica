@@ -64,18 +64,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Make popup 50% taller on iPad
+    if (PAD) {
+        CGRect frame = self.view.frame;
+        frame.size.height *= 1.5;
+        self.view.frame = frame;
+    }
+
     if (_mode == CVEventModeDay) {
         [self dayBarButtonWasTapped:nil];
     }
-    
+
     else if (_mode == CVEventModeHour) {
         [self hourBarButtonWasTapped:nil];
     }
-    
+
     else if (_mode == CVEventModeDetails) {
-        [self detailsBarButtonWasTapped:nil];        
+        [self detailsBarButtonWasTapped:nil];
     }
-	
+
 	if (!self.event.calendar.allowsContentModifications) {
 		_saveButton.userInteractionEnabled = NO;
 		_saveButton.alpha = 0.5;

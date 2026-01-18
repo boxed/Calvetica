@@ -17,5 +17,7 @@
 @property (nonatomic, strong) UIColor        *durationBarColor;
 @property (nonatomic        ) CGFloat        secondaryDurationBarPercent;
 @property (nonatomic, strong) UIColor        *secondaryDurationBarColor;
+@property (nonatomic        ) BOOL           isFirstOfDay;
+@property (nonatomic, strong) NSDate         *dayDate;  // The day this item belongs to (for compact week view)
 
 @end

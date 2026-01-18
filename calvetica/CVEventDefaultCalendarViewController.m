@@ -13,9 +13,12 @@
 
 @implementation CVEventDefaultCalendarViewController
 
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Enable dark mode support
+    self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
 
 	//sort the calendars
 	NSSortDescriptor *sortDescriptor;
@@ -56,8 +59,10 @@
 {
     UITableViewCell *cell           = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
     cell.textLabel.font             = [UIFont systemFontOfSize:17];
+    cell.textLabel.textColor        = UIColor.labelColor;
     cell.detailTextLabel.font       = [UIFont systemFontOfSize:13];
-    cell.detailTextLabel.textColor  = [UIColor lightGrayColor];
+    cell.detailTextLabel.textColor  = UIColor.secondaryLabelColor;
+    cell.backgroundColor            = UIColor.secondarySystemGroupedBackgroundColor;
 
     EKCalendar *calendar = [self.availableCalendars objectAtIndex:indexPath.row];
     

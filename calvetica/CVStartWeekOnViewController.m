@@ -22,6 +22,9 @@
 {
     [super viewDidLoad];
 
+    // Enable dark mode support
+    self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
+
 	_weekdayTitles = [NSMutableArray array];
 	NSDateComponents *components = [[NSDateComponents alloc] init];
 	components.year		= 1970;
@@ -68,6 +71,13 @@
 
 
 #pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Enable dark mode support for cells
+    cell.backgroundColor = UIColor.secondarySystemGroupedBackgroundColor;
+    cell.textLabel.textColor = UIColor.labelColor;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

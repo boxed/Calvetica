@@ -182,7 +182,6 @@
         }
         
         self.redSubtitleLabel.text = subtitleText;
-        
 
         // place icons
         CGFloat currentX = self.redSubtitleLabel.frame.origin.x + [self.redSubtitleLabel sizeOfTextInLabel].width + 8.0f;
@@ -269,6 +268,19 @@
     [_secondaryDurationBarView setFrame:r];
     
     if (animated) [UIView commitAnimations];
+}
+
+- (void)centerTimeLabelsVertically
+{
+    CGRect hourFrame = _hourAndMinuteLabel.frame;
+    hourFrame.origin.y = 0;
+    hourFrame.size.height = self.contentView.bounds.size.height;
+    _hourAndMinuteLabel.frame = hourFrame;
+
+    CGRect ampmFrame = _AMPMLabel.frame;
+    ampmFrame.origin.y = 0;
+    ampmFrame.size.height = self.contentView.bounds.size.height;
+    _AMPMLabel.frame = ampmFrame;
 }
 
 

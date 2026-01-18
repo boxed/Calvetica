@@ -11,6 +11,7 @@
 #import "CVRootAgendaTableViewController.h"
 #import "CVRootWeekTableViewController.h"
 #import "CVRootDetailedWeekTableViewController.h"
+#import "CVRootCompactWeekTableViewController.h"
 #import "CVGenericReminderViewController.h"
 #import "CVWelcomeViewController.h"
 #import "CVManageCalendarsViewController.h"
@@ -398,7 +399,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 	if (sender.state != UIGestureRecognizerStateEnded) return;
 
     if (sender.scale < 1) {
-        if (self.rootTableMode < CVRootTableViewModeDetailedWeek) {
+        if (self.rootTableMode < CVRootTableViewModeCompactWeek) {
             self.rootTableMode += 1;
         }
     }
@@ -419,6 +420,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     }
     else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
         [UIApplication showBezelWithTitle:@"Detail Week"];
+    }
+    else if (self.rootTableMode == CVRootTableViewModeCompactWeek) {
+        [UIApplication showBezelWithTitle:@"Compact Week"];
     }
 
     [self reloadRootTableViewWithCompletion:nil];
@@ -1524,6 +1528,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
         self.rootTableViewController = [CVRootDetailedWeekTableViewController new];
+    }
+    else if (self.rootTableMode == CVRootTableViewModeCompactWeek) {
+        self.rootTableViewController = [CVRootCompactWeekTableViewController new];
     }
     else {
         self.rootTableViewController = [CVRootAgendaTableViewController new];

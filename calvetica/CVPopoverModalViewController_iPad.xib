@@ -33,9 +33,6 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <connections>
-                <action selector="backdropWasTapped:" destination="-1" eventType="touchUpInside" id="9"/>
-            </connections>
-        </view>
+                    </view>
     </objects>
 </document>

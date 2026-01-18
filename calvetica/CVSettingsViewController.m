@@ -29,6 +29,17 @@
 {
     [super viewDidLoad];
 
+    // Fix transparent navigation bar in iOS 15+
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        [appearance configureWithOpaqueBackground];
+        self.navigationController.navigationBar.standardAppearance = appearance;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    }
+
+    // Enable dark mode support
+    self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
+
     self.syncSettingsOveriCloudSwitch.on    = PREFS.syncSettingsWithiCloud;
     self.askForCalendarSwitch.on            = PREFS.alwaysAskForCalendar;
     self.showRemindersSwitch.on             = PREFS.remindersEnabled;
@@ -94,6 +105,22 @@
 
 
 #pragma mark - DELEGATE Table View
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Enable dark mode support for cells
+    cell.backgroundColor = UIColor.secondarySystemGroupedBackgroundColor;
+    cell.textLabel.textColor = UIColor.labelColor;
+    cell.detailTextLabel.textColor = UIColor.secondaryLabelColor;
+
+    // Fix custom label subviews in cell content
+    for (UIView *subview in cell.contentView.subviews) {
+        if ([subview isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)subview;
+            label.textColor = UIColor.labelColor;
+        }
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

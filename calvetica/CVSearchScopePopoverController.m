@@ -44,31 +44,31 @@
 	}
 }
 
-- (void)viewWillAppear:(BOOL)animated 
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	
-	self.threeMonthsButton.backgroundColorHighlighted = patentedVeryDarkGray();
-    self.threeMonthsButton.textColorHighlighted = patentedWhite();
-    self.threeMonthsButton.backgroundColorSelected = patentedVeryDarkGray();
-    self.threeMonthsButton.textColorSelected = patentedWhite();
-    self.sixMonthsButton.backgroundColorHighlighted = patentedVeryDarkGray();
-    self.sixMonthsButton.textColorHighlighted = patentedWhite();
-    self.sixMonthsButton.backgroundColorSelected = patentedVeryDarkGray();
-    self.sixMonthsButton.textColorSelected = patentedWhite();
-    self.oneYearButton.backgroundColorHighlighted = patentedVeryDarkGray();
-    self.oneYearButton.textColorHighlighted = patentedWhite();
-    self.oneYearButton.backgroundColorSelected = patentedVeryDarkGray();
-    self.oneYearButton.textColorSelected = patentedWhite();
-    self.fiveYearButton.backgroundColorHighlighted = patentedVeryDarkGray();
-    self.fiveYearButton.textColorHighlighted = patentedWhite();
-    self.fiveYearButton.backgroundColorSelected = patentedVeryDarkGray();
-    self.fiveYearButton.textColorSelected = patentedWhite();
-    self.everythingButton.backgroundColorHighlighted = patentedVeryDarkGray();
-    self.everythingButton.textColorHighlighted = patentedWhite();
-    self.everythingButton.backgroundColorSelected = patentedVeryDarkGray();
-    self.everythingButton.textColorSelected = patentedWhite();	
-    
+
+    // Configure buttons for dark mode support
+    NSArray *buttons = @[self.threeMonthsButton, self.sixMonthsButton, self.oneYearButton,
+                         self.fiveYearButton, self.everythingButton];
+
+    for (CVRoundedToggleButton *button in buttons) {
+        // Normal state - use system colors
+        button.backgroundColorNormal = UIColor.secondarySystemBackgroundColor;
+        button.textColorNormal = UIColor.labelColor;
+
+        // Highlighted/selected state
+        button.backgroundColorHighlighted = UIColor.systemGrayColor;
+        button.textColorHighlighted = UIColor.labelColor;
+        button.backgroundColorSelected = UIColor.systemGrayColor;
+        button.textColorSelected = UIColor.labelColor;
+
+        // Also set UIButton's title colors for all states
+        [button setTitleColor:UIColor.labelColor forState:UIControlStateNormal];
+        [button setTitleColor:UIColor.labelColor forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColor.labelColor forState:UIControlStateSelected];
+    }
+
     self.currentScope = _currentScope;
 }
 

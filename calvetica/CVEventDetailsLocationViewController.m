@@ -145,9 +145,20 @@
     }
 }
 
-- (void)showLocationButtonWasTapped:(id)sender 
+- (void)showLocationButtonWasTapped:(id)sender
 {
     [self showLocationDisplayAlerts:YES];
+}
+
+- (void)cancelButtonTapped:(id)sender
+{
+    [self.delegate eventDetailsLocationViewController:self didFinish:CVEventDetailsLocationResultCancelled];
+}
+
+- (void)doneButtonTapped:(id)sender
+{
+    self.event.location = self.locationTextView.text;
+    [self.delegate eventDetailsLocationViewController:self didFinish:CVEventDetailsLocationResultSaved];
 }
 
 #pragma mark MKMapViewDelegate
@@ -224,9 +235,14 @@
 
 #pragma mark UIView
 
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.title = @"Location";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonTapped:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
+
     _locationTextView.inputAccessoryView = self.keyboardAccessoryView;
     _locationTextView.text = _event.location;
     _mapView.showsUserLocation = YES;

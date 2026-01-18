@@ -498,14 +498,17 @@
         CVEventDetailsNotesViewController *notesViewController = [[CVEventDetailsNotesViewController alloc] init];
         notesViewController.delegate = self;
         notesViewController.event = self.event;
-        [self.modalNavigationController pushViewController:notesViewController animated:YES];
-        [self.delegate eventDetailsViewController:self didPushViewController:notesViewController animated:YES];
+        notesViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        UIViewController *presenter = self.closestSystemPresentedViewController ?: self;
+        [presenter presentViewController:notesViewController animated:YES completion:nil];
     } else if (textView == _eventLocationTextView) {
         CVEventDetailsLocationViewController *locationViewController = [[CVEventDetailsLocationViewController alloc] init];
         locationViewController.delegate = self;
         locationViewController.event = self.event;
-        [self.modalNavigationController pushViewController:locationViewController animated:YES];
-        [self.delegate eventDetailsViewController:self didPushViewController:locationViewController animated:YES];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:locationViewController];
+        navController.modalPresentationStyle = UIModalPresentationFullScreen;
+        UIViewController *presenter = self.closestSystemPresentedViewController ?: self;
+        [presenter presentViewController:navController animated:YES completion:nil];
     } else if (textView == _eventRepeatTextView) {
         if (![[self.event.recurrenceRules lastObject] isValidCalveticaRule]) {
             [self showEditRuleConfirmationThenDoAction:^(void) {
@@ -551,6 +554,7 @@
     if (result == CVEventDetailsNotesResultSaved) {
         _eventNotesTextView.text = self.event.notes;
     }
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -563,6 +567,7 @@
     if (result == CVEventDetailsLocationResultSaved) {
         _eventLocationTextView.text = self.event.location;
     }
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 

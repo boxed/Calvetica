@@ -27,5 +27,6 @@
 @property (nonatomic, strong) UIColor                        *secondaryDurationBarColor;
 
 - (void)drawDurationBarAnimated:(BOOL)animated;
+- (void)centerTimeLabelsVertically;
 
 @end

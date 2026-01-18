@@ -18,11 +18,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Enable dark mode support
+    self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
 	_duration = PREFS.defaultDuration;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Enable dark mode support for cells
+    cell.backgroundColor = UIColor.secondarySystemGroupedBackgroundColor;
+    cell.textLabel.textColor = UIColor.labelColor;
+    for (UIView *subview in cell.contentView.subviews) {
+        if ([subview isKindOfClass:[UILabel class]]) {
+            ((UILabel *)subview).textColor = UIColor.labelColor;
+        }
+    }
+
 	if (cell.tag == _duration) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	}

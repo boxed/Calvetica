@@ -22,6 +22,9 @@
 {
 	[super viewDidLoad];
 
+    // Enable dark mode support
+    self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
+
 	self.calendarSources = [EKEventStore sharedStore].sources;
 
     self.clearImage = [UIImage clearImageWithSize:CGSizeMake(30, 30)];
@@ -86,7 +89,8 @@
 
     UITableViewCell *cell       = [tableView dequeueReusableCellWithIdentifier:@"CalendarCell"];
     cell.imageView.image        = self.clearImage;
-    cell.textLabel.textColor    = [UIColor colorWithWhite:0.32 alpha:1];
+    cell.textLabel.textColor    = UIColor.labelColor;
+    cell.backgroundColor        = UIColor.secondarySystemGroupedBackgroundColor;
     cell.selectionStyle         = UITableViewCellSelectionStyleGray;
     cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
     cell.userInteractionEnabled = YES;
@@ -101,7 +105,7 @@
 		cell.imageView.backgroundColor = cal.customColor;
 
 		if (cal.isImmutable) {
-            cell.textLabel.textColor    = [UIColor grayColor];
+            cell.textLabel.textColor    = UIColor.secondaryLabelColor;
             cell.accessoryType          = UITableViewCellAccessoryNone;
             cell.userInteractionEnabled = NO;
 		}

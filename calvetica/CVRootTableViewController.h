@@ -13,7 +13,8 @@ typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     CVRootTableViewModeFull,
     CVRootTableViewModeAgenda,
     CVRootTableViewModeWeek,
-    CVRootTableViewModeDetailedWeek
+    CVRootTableViewModeDetailedWeek,
+    CVRootTableViewModeCompactWeek
 };
 
 

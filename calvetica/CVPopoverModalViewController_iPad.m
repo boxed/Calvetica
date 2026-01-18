@@ -55,6 +55,10 @@ typedef struct {
     // add content to view controller
     [self.modalViewContainer addSubview:_contentViewController.view];
 
+    // Use tap gesture recognizer instead of touchUpInside to avoid closing on scroll release
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backdropWasTapped:)];
+    [self.view addGestureRecognizer:tapGesture];
+
     // if the keyboard appears, we need our popover to scoot up to the top of the screen
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -506,7 +510,7 @@ typedef struct {
 
 #pragma mark - Actions
 
-- (IBAction)backdropWasTapped:(id)sender 
+- (IBAction)backdropWasTapped:(id)sender
 {
     // this is where the expected protocol method is called.  Any controller passed in much
     // conform to this protocol so that it will receive this message.

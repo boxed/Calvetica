@@ -24,6 +24,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Enable dark mode support
+    self.view.backgroundColor = UIColor.systemGroupedBackgroundColor;
+    _tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
+
     _availableTimeZones = [NSTimeZone knownTimeZoneNames];
     _filteredTimeZones  = [_availableTimeZones copy];
     _toggleSwitch.on    = self.selectedTimeZone != nil;
@@ -125,6 +130,14 @@
     }
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Enable dark mode support for cells
+    cell.backgroundColor = UIColor.secondarySystemGroupedBackgroundColor;
+    cell.textLabel.textColor = UIColor.labelColor;
+    cell.detailTextLabel.textColor = UIColor.secondaryLabelColor;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
