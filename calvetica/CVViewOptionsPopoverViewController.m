@@ -21,21 +21,26 @@
     self.agendaDayButton.selected       = NO;
     self.weekButton.selected            = NO;
     self.detailedWeekButton.selected    = NO;
+    self.compactWeekButton.selected     = NO;
 
     if (_currentViewMode == CVViewOptionsPopoverOptionFullDayView) {
         self.fullDayButton.selected = YES;
     }
-    
+
     else if (_currentViewMode == CVViewOptionsPopoverOptionAgendaView) {
         self.agendaDayButton.selected = YES;
     }
-    
+
     else if (_currentViewMode == CVViewOptionsPopoverOptionWeekView) {
         self.weekButton.selected = YES;
     }
 
     else if (_currentViewMode == CVViewOptionsPopoverOptionDetailedWeekView) {
         self.detailedWeekButton.selected = YES;
+    }
+
+    else if (_currentViewMode == CVViewOptionsPopoverOptionCompactWeekView) {
+        self.compactWeekButton.selected = YES;
     }
 }
 
@@ -71,6 +76,10 @@
     self.detailedWeekButton.textColorHighlighted            = patentedWhite();
     self.detailedWeekButton.backgroundColorSelected         = patentedVeryDarkGray();
     self.detailedWeekButton.textColorSelected               = patentedWhite();
+    self.compactWeekButton.backgroundColorHighlighted       = patentedVeryDarkGray();
+    self.compactWeekButton.textColorHighlighted             = patentedWhite();
+    self.compactWeekButton.backgroundColorSelected          = patentedVeryDarkGray();
+    self.compactWeekButton.textColorSelected                = patentedWhite();
 
     self.currentViewMode = _currentViewMode;
 }
@@ -108,6 +117,12 @@
 {
     [self setCurrentViewMode:CVViewOptionsPopoverOptionDetailedWeekView];
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionDetailedWeekView byPressingButton:sender];
+}
+
+- (IBAction)compactWeekButtonWasTapped:(id)sender
+{
+    [self setCurrentViewMode:CVViewOptionsPopoverOptionCompactWeekView];
+    [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionCompactWeekView byPressingButton:sender];
 }
 
 - (IBAction)searchButtonWasTapped:(id)sender 

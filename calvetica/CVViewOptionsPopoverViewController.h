@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, CVViewOptionsPopoverOption) {
     CVViewOptionsPopoverOptionAgendaView,
     CVViewOptionsPopoverOptionWeekView,
     CVViewOptionsPopoverOptionDetailedWeekView,
+    CVViewOptionsPopoverOptionCompactWeekView,
     CVViewOptionsPopoverOptionSearch,
     CVViewOptionsPopoverOptionSettings,
 };
@@ -31,6 +32,7 @@ typedef NS_ENUM(NSUInteger, CVViewOptionsPopoverOption) {
 @property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *agendaDayButton;
 @property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *weekButton;
 @property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *detailedWeekButton;
+@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *compactWeekButton;
 @property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *searchButton;
 @end
 

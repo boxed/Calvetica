@@ -962,6 +962,13 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
         }];
     }
 
+    else if (option == CVViewOptionsPopoverOptionCompactWeekView) {
+        self.rootTableMode = CVRootTableViewModeCompactWeek;
+        [self reloadRootTableViewWithCompletion:^{
+            [self scrollRootTableViewAnimated:NO];
+        }];
+    }
+
     else if (option == CVViewOptionsPopoverOptionSearch) {
         [self openSearch];
     }
