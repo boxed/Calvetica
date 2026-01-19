@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */; };
+		068383FF4E81B8A7191FEC86 /* CVRootCompactWeekTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159F7096619DD8B0BF2775BE /* CVRootCompactWeekTableViewController.m */; };
 		4B119DD5F492A085B4367C06 /* libPods-calvetica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */; };
 		6A0CD58E13983974009B6EFE /* CVMultiToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */; };
 		6A17301A138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A173018138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m */; };
@@ -26,6 +27,7 @@
 		6AD9B6FA13DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9B6F813DE309E00C6A062 /* CVMonthlyRecurrenceSelectionViewController.xib */; };
 		6AF3CE3F1403022D00A193E4 /* CVWeekNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */; };
 		6AF3CE411403026700A193E4 /* CVWeekNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */; };
+		818E6C65A9BC5FAB3554E865 /* CVCompactWeekReminderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D624A22CC9B32331946241 /* CVCompactWeekReminderCell.m */; };
 		9B0127A813CBA2B50006C2EA /* CVGestureHowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */; };
 		9B0AD8A913CF5AC300DF1F2F /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AD8A713CF5AC300DF1F2F /* slider.png */; };
 		9B0AD8AA13CF5AC300DF1F2F /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AD8A813CF5AC300DF1F2F /* slider@2x.png */; };
@@ -99,6 +101,7 @@
 		9BFE2CB013C6490D00360D5C /* CVNativeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */; };
 		9BFFA1C313A1F2BF0012112E /* UITableView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */; };
 		AEBD2DB52753B9A000E685FE /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBD2DB42753B9A000E685FE /* Colors.m */; };
+		B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */; };
 		C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2027EAE1360B4B6002E58BF /* CVRootViewController.m */; };
 		C206985A1396F657005C8192 /* geometry.c in Sources */ = {isa = PBXBuildFile; fileRef = C20698581396F656005C8192 /* geometry.c */; };
 		C20DAACB181080D500F0E7A2 /* NSObject+Null.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DAACA181080D500F0E7A2 /* NSObject+Null.m */; };
@@ -334,7 +337,10 @@
 		0432F09713CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVEventSubtitleTextPriorityViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventSubtitleTextPriorityViewController.m; sourceTree = "<group>"; };
 		04B155B80184D2B11B27DEF2 /* Pods-calvetica.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.adhoc.xcconfig"; sourceTree = "<group>"; };
+		159F7096619DD8B0BF2775BE /* CVRootCompactWeekTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVRootCompactWeekTableViewController.m; sourceTree = "<group>"; };
+		24D624A22CC9B32331946241 /* CVCompactWeekReminderCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVCompactWeekReminderCell.m; sourceTree = "<group>"; };
 		5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-calvetica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B94162FE3A91C64B7DBED4 /* CVRootCompactWeekTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVRootCompactWeekTableViewController.h; sourceTree = "<group>"; };
 		6A0CD58C13983974009B6EFE /* CVMultiToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMultiToggleButton.h; sourceTree = "<group>"; };
 		6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMultiToggleButton.m; sourceTree = "<group>"; };
 		6A173010138EA93000C2165B /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strings.h; sourceTree = "<group>"; };
@@ -837,8 +843,11 @@
 		C2FF4D3513D89DDD00E662FE /* CVLandscapeWeekView_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLandscapeWeekView_iPad.m; sourceTree = "<group>"; };
 		C2FF4D3913D8A6BC00E662FE /* CVLandscapeWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVLandscapeWeekView.h; sourceTree = "<group>"; };
 		C2FF4D3A13D8A6BC00E662FE /* CVLandscapeWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLandscapeWeekView.m; sourceTree = "<group>"; };
+		CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVCompactWeekEventCell.m; sourceTree = "<group>"; };
+		CD8EA101961F809B6BB7CD60 /* CVCompactWeekReminderCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVCompactWeekReminderCell.h; sourceTree = "<group>"; };
 		DF8C2823FBA37F035E5079CC /* Pods-calvetica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.debug.xcconfig"; sourceTree = "<group>"; };
 		EB4BF7472ED0C0018A8FF2AF /* Pods-calvetica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.release.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.release.xcconfig"; sourceTree = "<group>"; };
+		EF5BC6B2528EAD8E99A94E5C /* CVCompactWeekEventCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVCompactWeekEventCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2330,6 +2339,12 @@
 				C2E2973E133419A900FA7638 /* iPad */,
 				C280CFA517EA95A700D322F5 /* Images.xcassets */,
 				C2E2972C133419A900FA7638 /* Supporting Files */,
+				65B94162FE3A91C64B7DBED4 /* CVRootCompactWeekTableViewController.h */,
+				159F7096619DD8B0BF2775BE /* CVRootCompactWeekTableViewController.m */,
+				EF5BC6B2528EAD8E99A94E5C /* CVCompactWeekEventCell.h */,
+				CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */,
+				CD8EA101961F809B6BB7CD60 /* CVCompactWeekReminderCell.h */,
+				24D624A22CC9B32331946241 /* CVCompactWeekReminderCell.m */,
 			);
 			path = calvetica;
 			sourceTree = "<group>";
@@ -2649,7 +2664,7 @@
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					C2E29720133419A900FA7638 = {
-						DevelopmentTeam = JXK78JN25R;
+						DevelopmentTeam = B6FVY827P9;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -3063,6 +3078,9 @@
 				C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */,
 				C2D4D342162CC7F5002484A6 /* CVStartWeekOnViewController.m in Sources */,
 				C27EAA251630BD57008046CF /* EKEventStore+Shared.m in Sources */,
+				068383FF4E81B8A7191FEC86 /* CVRootCompactWeekTableViewController.m in Sources */,
+				B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */,
+				818E6C65A9BC5FAB3554E865 /* CVCompactWeekReminderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3351,7 +3369,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = JXK78JN25R;
+				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3364,7 +3382,7 @@
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 5.3.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kodare.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -3511,7 +3529,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = JXK78JN25R;
+				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3525,7 +3543,7 @@
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 5.3.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kodare.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -3543,7 +3561,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = JXK78JN25R;
+				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3556,7 +3574,7 @@
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 5.3.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kodare.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
