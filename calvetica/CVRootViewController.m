@@ -120,6 +120,17 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self updateSelectionSquare:NO];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+
+    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+        self.rootTableView.backgroundColor = patentedWhite();
+        self.rootTableView.separatorColor = patentedWhite();
+        [self.rootTableView reloadData];
+    }
+}
+
 - (void)viewDidAppearAfterLoad:(BOOL)animated
 {
     [super viewDidAppearAfterLoad:animated];

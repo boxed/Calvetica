@@ -27,6 +27,15 @@
     [self.weekNumberLabel removeFromSuperview];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+
+    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+        self.weekNumberLabel.textColor = patentedBlack();
+    }
+}
+
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     [super reloadTableViewWithCompletion:completion];
@@ -42,7 +51,7 @@
         frame.size.width -= 4;
         self.weekNumberLabel = [[UILabel alloc] initWithFrame:frame];
         self.weekNumberLabel.textAlignment = NSTextAlignmentRight;
-        self.weekNumberLabel.textColor = UIColor.whiteColor;
+        self.weekNumberLabel.textColor = patentedBlack();
         [self.tableView.superview addSubview:self.weekNumberLabel];
     }
 

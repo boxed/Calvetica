@@ -33,7 +33,7 @@
 
 #pragma mark - Public
 
-- (void)setTableView:(UITableView *)newTableView 
+- (void)setTableView:(UITableView *)newTableView
 {
     _tableView                  = newTableView;
     _tableView.delegate         = self;
@@ -41,6 +41,17 @@
     _tableView.separatorColor   = patentedWhite();
     _tableView.backgroundColor  = patentedWhite();
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+
+    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+        _tableView.separatorColor   = patentedWhite();
+        _tableView.backgroundColor  = patentedWhite();
+        [_tableView reloadData];
+    }
 }
 
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion

@@ -28,6 +28,15 @@
     [self.weekdayView removeFromSuperview];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+
+    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+        self.weekdayView.textColor = patentedBlack();
+    }
+}
+
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     [super reloadTableViewWithCompletion:completion];
@@ -42,7 +51,7 @@
         frame.size.width -= 4;
         self.weekdayView = [[UILabel alloc] initWithFrame:frame];
         self.weekdayView.textAlignment = NSTextAlignmentRight;
-        self.weekdayView.textColor = UIColor.whiteColor;
+        self.weekdayView.textColor = patentedBlack();
         [self.tableView.superview addSubview:self.weekdayView];
     }
     
