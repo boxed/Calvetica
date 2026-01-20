@@ -43,17 +43,6 @@
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
 }
 
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
-{
-    [super traitCollectionDidChange:previousTraitCollection];
-
-    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
-        _tableView.separatorColor   = patentedWhite();
-        _tableView.backgroundColor  = patentedWhite();
-        [_tableView reloadData];
-    }
-}
-
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     _tableView.delegate     = self;
@@ -73,6 +62,11 @@
 - (void)removeCalendarItem:(EKCalendarItem *)calendarItem
 {
 
+}
+
+- (void)updateAppearanceForTraitChange
+{
+    // Subclasses can override to update additional UI elements
 }
 
 

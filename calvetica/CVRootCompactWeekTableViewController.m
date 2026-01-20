@@ -27,13 +27,10 @@
     [self.weekNumberLabel removeFromSuperview];
 }
 
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+- (void)updateAppearanceForTraitChange
 {
-    [super traitCollectionDidChange:previousTraitCollection];
-
-    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
-        self.weekNumberLabel.textColor = patentedBlack();
-    }
+    [super updateAppearanceForTraitChange];
+    self.weekNumberLabel.textColor = patentedBlack();
 }
 
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion

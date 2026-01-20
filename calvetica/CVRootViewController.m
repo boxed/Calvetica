@@ -127,6 +127,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
         self.rootTableView.backgroundColor = patentedWhite();
         self.rootTableView.separatorColor = patentedWhite();
+        [self.rootTableViewController updateAppearanceForTraitChange];
         [self.rootTableView reloadData];
     }
 }

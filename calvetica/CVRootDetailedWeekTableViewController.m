@@ -28,13 +28,10 @@
     [self.weekdayView removeFromSuperview];
 }
 
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+- (void)updateAppearanceForTraitChange
 {
-    [super traitCollectionDidChange:previousTraitCollection];
-
-    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
-        self.weekdayView.textColor = patentedBlack();
-    }
+    [super updateAppearanceForTraitChange];
+    self.weekdayView.textColor = patentedBlack();
 }
 
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
