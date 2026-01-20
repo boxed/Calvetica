@@ -18,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *dotsOnlyMonthViewSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *scrollingMonthSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *durationBarReadOnlySwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *showWeekNumbersSwitch;
 @end
 
 
@@ -47,6 +48,7 @@
     self.dotsOnlyMonthViewSwitch.on         = PREFS.dotsOnlyMonthView;
     self.scrollingMonthSwitch.on            = PREFS.iPhoneScrollableMonthView;
     self.durationBarReadOnlySwitch.on       = PREFS.showDurationOnReadOnlyEvents;
+    self.showWeekNumbersSwitch.on           = PREFS.showWeekNumbers;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -100,6 +102,11 @@
 - (IBAction)durationBarReadOnlyFlipped:(UISwitch *)sender
 {
     PREFS.showDurationOnReadOnlyEvents = sender.isOn;
+}
+
+- (IBAction)showWeekNumbersFlipped:(UISwitch *)sender
+{
+    PREFS.showWeekNumbers = sender.isOn;
 }
 
 

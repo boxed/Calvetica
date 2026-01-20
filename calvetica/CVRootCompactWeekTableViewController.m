@@ -55,6 +55,8 @@
     self.weekNumberLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
                                                                               @"The week number of a selected date. %1$i: the week number."),
                                   (int)[self.selectedDate mt_weekOfYear]];
+    self.weekNumberLabel.hidden = !PREFS.showWeekNumbers;
+    self.tableView.contentInset = PREFS.showWeekNumbers ? UIEdgeInsetsMake(25, 0, 0, 0) : UIEdgeInsetsZero;
 
     if (!self.selectedDate) return;
 

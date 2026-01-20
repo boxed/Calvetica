@@ -21,6 +21,7 @@
 @dynamic dotsOnlyMonthView;
 @dynamic iPhoneScrollableMonthView;
 @dynamic showDurationOnReadOnlyEvents;
+@dynamic showWeekNumbers;
 @dynamic localRootTableViewMode;
 @dynamic hiddenEventCalendarIdentifiers;
 @dynamic defaultEventCalendarIdentifier;
@@ -49,6 +50,7 @@
              @"dotsOnlyMonthView"                   : @NO,
              @"iPhoneScrollableMonthView"           : @YES,
              @"showDurationOnReadOnlyEvents"        : @NO,
+             @"showWeekNumbers"                     : @NO,
              @"localRootTableViewMode"              : @(CVRootTableViewModeAgenda),
              @"hiddenEventCalendarIdentifiers"      : @[],
              @"customCalendarColors"                : @{},

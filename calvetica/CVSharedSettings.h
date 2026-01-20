@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
 @property (nonatomic, assign) BOOL dotsOnlyMonthView;
 @property (nonatomic, assign) BOOL iPhoneScrollableMonthView;
 @property (nonatomic, assign) BOOL showDurationOnReadOnlyEvents;
+@property (nonatomic, assign) BOOL showWeekNumbers;
 
 // calendars
 @property (nonatomic, strong) NSArray      *hiddenEventCalendarIdentifiers;

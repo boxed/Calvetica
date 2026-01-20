@@ -284,17 +284,26 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (!PREFS.showWeekNumbers) {
+        return nil;
+    }
     NSInteger weekOfYear        = [self.selectedDate mt_weekOfYear];
     CVWeekNumberCell *cell      = [CVWeekNumberCell cellForTableView:tableView];
-    cell.weekNumberLabel.text   = 
+    cell.weekNumberLabel.text   =
     [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
                                                  @"The week number of a selected date. %1$i: the week number."),
      weekOfYear];
+    cell.backgroundColor = patentedDarkGrayWeekdayHeader();
+    cell.contentView.backgroundColor = patentedDarkGrayWeekdayHeader();
+    cell.weekNumberLabel.textColor = UIColor.whiteColor;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (!PREFS.showWeekNumbers) {
+        return 0;
+    }
     return WEEK_NUM_CELL_HEIGHT;
 }
 

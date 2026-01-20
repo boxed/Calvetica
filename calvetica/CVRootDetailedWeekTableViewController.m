@@ -55,6 +55,7 @@
     self.weekdayView.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
                                                                          @"The week number of a selected date. %1$i: the week number."),
                              (int)[self.selectedDate mt_weekOfYear]];
+    self.weekdayView.hidden = !PREFS.showWeekNumbers;
 
 
     // date can't be null
