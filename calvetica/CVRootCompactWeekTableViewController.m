@@ -14,24 +14,12 @@
 
 @interface CVRootCompactWeekTableViewController ()
 @property (nonatomic, copy) NSArray *daysOfWeekArray;
-@property (nonatomic, strong) UILabel *weekNumberLabel;
 @end
 
 
 @implementation CVRootCompactWeekTableViewController
 
 #pragma mark - Public
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self.weekNumberLabel removeFromSuperview];
-}
-
-- (void)updateAppearanceForTraitChange
-{
-    [super updateAppearanceForTraitChange];
-    self.weekNumberLabel.textColor = patentedBlack();
-}
 
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
@@ -40,23 +28,6 @@
     if (@available(iOS 15.0, *)) {
         self.tableView.sectionHeaderTopPadding = 0;
     }
-
-    // Week number label at top right
-    if (self.weekNumberLabel == nil) {
-        CGRect frame = self.tableView.frame;
-        frame.size.height = 25;
-        frame.size.width -= 4;
-        self.weekNumberLabel = [[UILabel alloc] initWithFrame:frame];
-        self.weekNumberLabel.textAlignment = NSTextAlignmentRight;
-        self.weekNumberLabel.textColor = patentedBlack();
-        [self.tableView.superview addSubview:self.weekNumberLabel];
-    }
-
-    self.weekNumberLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
-                                                                              @"The week number of a selected date. %1$i: the week number."),
-                                  (int)[self.selectedDate mt_weekOfYear]];
-    self.weekNumberLabel.hidden = !PREFS.showWeekNumbers;
-    self.tableView.contentInset = PREFS.showWeekNumbers ? UIEdgeInsetsMake(25, 0, 0, 0) : UIEdgeInsetsZero;
 
     if (!self.selectedDate) return;
 

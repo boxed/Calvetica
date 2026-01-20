@@ -15,7 +15,6 @@
 
 @interface CVRootDetailedWeekTableViewController ()
 @property (nonatomic, copy) NSArray *daysOfWeekArray;
-@property (nonatomic, retain) UILabel *weekdayView;
 @end
 
 
@@ -23,40 +22,13 @@
 
 #pragma mark - Public
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self.weekdayView removeFromSuperview];
-}
-
-- (void)updateAppearanceForTraitChange
-{
-    [super updateAppearanceForTraitChange];
-    self.weekdayView.textColor = patentedBlack();
-}
-
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     [super reloadTableViewWithCompletion:completion];
-    
+
     if (@available(iOS 15.0, *)) {
         self.tableView.sectionHeaderTopPadding = 0;
     }
-    
-    if (self.weekdayView == nil) {
-        CGRect frame = self.tableView.frame;
-        frame.size.height = 25;
-        frame.size.width -= 4;
-        self.weekdayView = [[UILabel alloc] initWithFrame:frame];
-        self.weekdayView.textAlignment = NSTextAlignmentRight;
-        self.weekdayView.textColor = patentedBlack();
-        [self.tableView.superview addSubview:self.weekdayView];
-    }
-    
-    self.weekdayView.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
-                                                                         @"The week number of a selected date. %1$i: the week number."),
-                             (int)[self.selectedDate mt_weekOfYear]];
-    self.weekdayView.hidden = !PREFS.showWeekNumbers;
-
 
     // date can't be null
     if (!self.selectedDate) return;

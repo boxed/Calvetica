@@ -10,7 +10,6 @@
 #import "CVAgendaDateCell.h"
 #import "dimensions.h"
 #import "CVAgendaEventCell.h"
-#import "CVWeekNumberCell.h"
 #import "NSString+Utilities.h"
 #import "CVRootTableViewController_Protected.h"
 #import "EKCalendarItem+Common.h"
@@ -24,8 +23,12 @@
 - (void)reloadTableViewWithCompletion:(void (^)(void))completion
 {
     [super reloadTableViewWithCompletion:completion];
-    
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    if (@available(iOS 15.0, *)) {
+        self.tableView.sectionHeaderTopPadding = 0;
+    }
 
     // date can't be null
     if (!self.selectedDate) return;
@@ -284,31 +287,5 @@
         }
     }
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (!PREFS.showWeekNumbers) {
-        return nil;
-    }
-    NSInteger weekOfYear        = [self.selectedDate mt_weekOfYear];
-    CVWeekNumberCell *cell      = [CVWeekNumberCell cellForTableView:tableView];
-    cell.weekNumberLabel.text   =
-    [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
-                                                 @"The week number of a selected date. %1$i: the week number."),
-     weekOfYear];
-    cell.backgroundColor = patentedDarkGrayWeekdayHeader();
-    cell.contentView.backgroundColor = patentedDarkGrayWeekdayHeader();
-    cell.weekNumberLabel.textColor = UIColor.whiteColor;
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (!PREFS.showWeekNumbers) {
-        return 0;
-    }
-    return WEEK_NUM_CELL_HEIGHT;
-}
-
 
 @end

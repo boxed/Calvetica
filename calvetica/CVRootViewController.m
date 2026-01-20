@@ -84,6 +84,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 @property (nonatomic, weak  ) IBOutlet UILabel                      *redBarYearLabel;
 @property (nonatomic, weak  ) IBOutlet UILabel                      *grayBarWeekdayLabel;
 @property (nonatomic, weak  ) IBOutlet UILabel                      *grayBarDateLabel;
+
+// Week number (common to all views)
+@property (nonatomic, strong)          UILabel                      *weekNumberLabel;
 @end
 
 
@@ -129,6 +132,8 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
         self.rootTableView.separatorColor = patentedWhite();
         [self.rootTableViewController updateAppearanceForTraitChange];
         [self.rootTableView reloadData];
+        self.weekNumberLabel.textColor = patentedBlack();
+        self.weekNumberLabel.backgroundColor = patentedWhite();
     }
 }
 
@@ -529,6 +534,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     _selectedDate = selectedDate;
     self.monthTableViewController.selectedDate = selectedDate;
     self.rootTableViewController.selectedDate = selectedDate;
+    [self updateWeekNumberLabel];
 }
 
 - (void)showQuickAddWithTitle:(NSString *)title date:(NSDate *)date
@@ -563,6 +569,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     }];
     [self updateWeekdayTitleLabels];
     [self updateMonthAndDayLabels];
+    [self updateWeekNumberLabel];
 }
 
 
@@ -1371,6 +1378,46 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         self.monthLabelControl.transform = rotateTransform;
     }
     [self updateWeekdayTitleLabels];
+    [self setupWeekNumberLabel];
+}
+
+- (void)setupWeekNumberLabel
+{
+    self.weekNumberLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.weekNumberLabel.textAlignment = NSTextAlignmentRight;
+    self.weekNumberLabel.textColor = patentedBlack();
+    self.weekNumberLabel.backgroundColor = patentedWhite();
+    self.weekNumberLabel.opaque = YES;
+    self.weekNumberLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:self.weekNumberLabel];
+}
+
+- (void)updateWeekNumberLabel
+{
+    CGFloat labelHeight = 20;
+    CGFloat rightPadding = 8;
+
+    if (!PREFS.showWeekNumbers) {
+        self.weekNumberLabel.hidden = YES;
+        self.rootTableView.contentInset = UIEdgeInsetsZero;
+        return;
+    }
+
+    self.weekNumberLabel.hidden = NO;
+    NSInteger weekOfYear = [self.selectedDate mt_weekOfYear];
+    self.weekNumberLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
+                                                                              @"The week number of a selected date. %1$i: the week number."),
+                                  (int)weekOfYear];
+
+    // Position at top of root table view area, right-aligned
+    CGRect frame = CGRectMake(0,
+                              self.rootTableView.frame.origin.y,
+                              self.view.bounds.size.width - rightPadding,
+                              labelHeight);
+    self.weekNumberLabel.frame = frame;
+
+    // Add content inset so table content doesn't go behind the label
+    self.rootTableView.contentInset = UIEdgeInsetsMake(labelHeight, 0, 0, 0);
 }
 
 - (void)setUpMonthTableViewController
@@ -1429,6 +1476,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
         void (^completion)(void) = ^{
             [self moveMonthView:self.monthViewPushedUpDirection animated:animated];
+            [self updateWeekNumberLabel];
         };
 
         if (animated) {
@@ -1443,6 +1491,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             completion();
         }
     }
+    [self updateWeekNumberLabel];
 }
 
 - (void)moveMonthView:(CVRootMonthViewMoveDirection)direction animated:(BOOL)animated
@@ -1473,6 +1522,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     void (^completion)(void) = ^{
         [self updateSelectionSquare:NO];
+        [self updateWeekNumberLabel];
     };
 
     if (animated) {
@@ -1482,6 +1532,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
                             animations:^{
                                 animations();
+                                [self updateWeekNumberLabel];
                             } completion:^{
                                 completion();
                             }];
@@ -1702,6 +1753,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     if ([changedSettings containsObject:@"eventDetailsSubtitleTextPriority"]) {
         [self reloadRootTableViewWithCompletion:nil];
+    }
+
+    if ([changedSettings containsObject:@"showWeekNumbers"]) {
+        [self updateWeekNumberLabel];
     }
 }
 
