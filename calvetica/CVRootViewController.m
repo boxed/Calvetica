@@ -741,6 +741,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
                       tappedCell:(CVWeekTableViewCell *)cell
                           onDate:(NSDate *)date
 {
+    BOOL monthChanged = ![date mt_isWithinSameMonth:self.selectedDate];
     self.selectedDate = date;
     [self updateSelectionSquare:YES];
     [self updateMonthAndDayLabels];
@@ -748,6 +749,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
         [self scrollRootTableViewAnimated:YES];
     }];
     if (!PAD) {
+        if (monthChanged) {
+            [self updateLayoutAnimated:YES];
+        }
         [self scrollMonthTableViewAnimated:YES];
     }
 }
