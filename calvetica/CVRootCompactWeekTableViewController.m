@@ -136,6 +136,9 @@
         }
 
         [MTq main:^{
+            // Only update if we're still the active controller for this tableView
+            if (self.tableView.dataSource != self) return;
+
             self.cellModelArray = flatItems;
             [self.tableView reloadData];
             if (completion) completion();

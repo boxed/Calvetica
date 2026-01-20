@@ -75,6 +75,9 @@
          }];
 
         [MTq main:^{
+            // Only update if we're still the active controller for this tableView
+            if (self.tableView.dataSource != self) return;
+
             // replace the old data holder array with the one we just generated
             self.cellModelArray = [tempArray mutableCopy];
             // add a "No Events" placeholder

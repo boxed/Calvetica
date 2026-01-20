@@ -152,6 +152,9 @@
         
         // update the table with our new event or cell
         [MTq main:^{
+            // Only update if we're still the active controller for this tableView
+            if (self.tableView.dataSource != self) return;
+
             // replace the old data holder array with the one we just generated
             self.cellModelArray = [tempArray mutableCopy];
             [self.tableView reloadData];
