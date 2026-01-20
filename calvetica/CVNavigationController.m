@@ -109,20 +109,11 @@
     // if there is a last view controller, add it to the scroll view
     if (lastController) {
         _topViewController = [_viewControllers objectAtIndex:0];
-        
-        // set frame of last view controller
-        CGRect cr = _contentViewContainer.frame;
-        cr.size.width = lastController.view.frame.size.width;
-        cr.origin.y = 0;
-        cr.origin.x = 0;
+
+        // set frame of last view controller to fill content container
+        CGRect cr = _contentViewContainer.bounds;
         [lastController.view setFrame:cr];
 
-        // reset the frame of the content container
-        CGRect r = _contentViewContainer.frame;
-        r.origin.x = 0;
-        r.size.width = lastController.view.frame.size.width;
-        [_contentViewContainer setFrame:r];
-        
         // add it to the content view container
         _visibleViewController = lastController;
         lastController.modalNavigationController = self;

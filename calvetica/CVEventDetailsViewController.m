@@ -118,7 +118,9 @@
 
     // delete lock slider
     self.deleteSlideLock = [CVSlideLockControl fromNibOfSameName];
-    self.deleteSlideLock.frame = CGRectMake(15, 35, self.deleteSlideLock.bounds.size.width, self.deleteSlideLock.bounds.size.height);
+    CGFloat sliderWidth = self.eventDeleteBlock.bounds.size.width - 30; // 15pt padding on each side
+    self.deleteSlideLock.frame = CGRectMake(15, 35, sliderWidth, self.deleteSlideLock.bounds.size.height);
+    self.deleteSlideLock.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.deleteSlideLock.titleLabel.text = @"Slide to delete";
     self.deleteSlideLock.thumbImage = [UIImage imageNamed:@"slider"];
     [self.deleteSlideLock addTarget:self action:@selector(deleteSliderWasToggled:) forControlEvents:UIControlEventTouchUpInside];

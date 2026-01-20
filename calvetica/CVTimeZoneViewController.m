@@ -25,6 +25,14 @@
 {
     [super viewDidLoad];
 
+    // Fix transparent navigation bar in iOS 15+
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        [appearance configureWithOpaqueBackground];
+        self.navigationController.navigationBar.standardAppearance = appearance;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    }
+
     // Enable dark mode support
     self.view.backgroundColor = UIColor.systemGroupedBackgroundColor;
     _tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
