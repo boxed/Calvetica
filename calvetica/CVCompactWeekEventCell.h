@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic) BOOL isAllDay;
+@property (nonatomic) BOOL isToday;
 @property (nonatomic, copy) NSString *dayLabelText;
 
 + (instancetype)cellForTableView:(UITableView *)tableView;

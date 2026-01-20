@@ -96,11 +96,13 @@
                  return [model1.calendarItem compareWithCalendarItem:model2.calendarItem];
              }];
 
-            // Mark first item of each day
+            // Mark first item of each day and check if today
             BOOL isFirstOfDay = YES;
+            BOOL isDayToday = [weekDay mt_isWithinSameDay:today];
             for (CVCalendarItemCellModel *model in dayItems) {
                 model.isFirstOfDay = isFirstOfDay;
                 model.dayDate = weekDay;  // Store the day for this item
+                model.isToday = isDayToday;
                 isFirstOfDay = NO;
                 [flatItems addObject:model];
             }
@@ -203,6 +205,7 @@
         cell.event      = (EKEvent *)model.calendarItem;
         cell.date       = model.date;
         cell.isAllDay   = model.isAllDay;
+        cell.isToday    = model.isToday;
         cell.delegate   = self;
         cell.dayLabelText = dayText;
         [cell resetAccessoryButton];
@@ -223,6 +226,7 @@
         }
 
         cell.dayLabelText = dayText;
+        cell.isToday = model.isToday;
 
         // Set time display based on model
         if (model.isAllDay) {
@@ -262,10 +266,9 @@
             }
         }
 
-        UIColor *calendarColor      = reminder.calendar.customColor;
-        cell.coloredDotView.color   = calendarColor;
+        cell.coloredDotView.color   = reminder.calendar.customColor;
         cell.coloredDotView.shape   = CVColoredShapeCheck;
-        cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];
+        [cell updateBackgroundColor];
 
         return cell;
     }

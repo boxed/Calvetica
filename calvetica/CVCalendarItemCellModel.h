@@ -19,5 +19,6 @@
 @property (nonatomic, strong) UIColor        *secondaryDurationBarColor;
 @property (nonatomic        ) BOOL           isFirstOfDay;
 @property (nonatomic, strong) NSDate         *dayDate;  // The day this item belongs to (for compact week view)
+@property (nonatomic        ) BOOL           isToday;   // Whether this item is on today's date
 
 @end

@@ -215,6 +215,7 @@ static CGFloat const kColoredDotSize = 8.0f;
     self.cellAccessoryButton.defaultImage = nil;
     _event = nil;
     _date = nil;
+    _isToday = NO;
 }
 
 #pragma mark - Properties
@@ -262,8 +263,8 @@ static CGFloat const kColoredDotSize = 8.0f;
             self.cellAccessoryButton.alpha = 1;
         }
 
-        // Set background color based on calendar color
-        self.backgroundColor = [[event.calendar customColor] colorWithAlphaComponent:0.1];
+        // Set background color (respects isToday)
+        [self updateBackgroundColor];
 
         // Set end time display (only if not all-day and end time differs from start)
         [self updateEndTimeDisplay];
@@ -327,6 +328,24 @@ static CGFloat const kColoredDotSize = 8.0f;
 
     self.endTimeLabel.text = [endDate stringWithHourAndMinute];
     self.endAMPMLabel.text = [endDate stringWithAMPM];
+}
+
+- (void)setIsToday:(BOOL)isToday
+{
+    _isToday = isToday;
+    [self updateBackgroundColor];
+}
+
+- (void)updateBackgroundColor
+{
+    if (_isToday) {
+        // Use a light gray in light mode, dark gray in dark mode
+        self.backgroundColor = patentedVeryLightGray();
+        self.contentView.backgroundColor = patentedVeryLightGray();
+    } else {
+        self.backgroundColor = patentedWhite();
+        self.contentView.backgroundColor = patentedWhite();
+    }
 }
 
 - (void)resetAccessoryButton

@@ -16,7 +16,9 @@
 @property (nonatomic, strong) UILabel *AMPMLabel;
 @property (nonatomic, strong) CVColoredDotView *coloredDotView;
 @property (nonatomic, copy) NSString *dayLabelText;
+@property (nonatomic) BOOL isToday;
 
 + (instancetype)cellForTableView:(UITableView *)tableView;
+- (void)updateBackgroundColor;
 
 @end

@@ -139,6 +139,7 @@ static CGFloat const kColoredDotSize = 14.0f;
     _coloredDotView.color = nil;
     self.daySeparatorLine.hidden = YES;
     self.backgroundColor = nil;
+    _isToday = NO;
 }
 
 #pragma mark - Properties
@@ -149,6 +150,23 @@ static CGFloat const kColoredDotSize = 14.0f;
     self.dayLabel.text = _dayLabelText;
     // Show separator line when this is the first item of a day (has day text)
     self.daySeparatorLine.hidden = (_dayLabelText.length == 0);
+}
+
+- (void)setIsToday:(BOOL)isToday
+{
+    _isToday = isToday;
+}
+
+- (void)updateBackgroundColor
+{
+    if (_isToday) {
+        // Use a light gray in light mode, dark gray in dark mode
+        self.backgroundColor = patentedVeryLightGray();
+        self.contentView.backgroundColor = patentedVeryLightGray();
+    } else {
+        self.backgroundColor = patentedWhite();
+        self.contentView.backgroundColor = patentedWhite();
+    }
 }
 
 @end
