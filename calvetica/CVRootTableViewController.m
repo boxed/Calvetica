@@ -15,8 +15,14 @@
 
 - (void)dealloc
 {
-    _tableView.delegate = nil;
-    _tableView.dataSource = nil;
+    // Only nil out if we're still the active delegate/dataSource
+    // to avoid clobbering the new controller's assignment
+    if (_tableView.delegate == self) {
+        _tableView.delegate = nil;
+    }
+    if (_tableView.dataSource == self) {
+        _tableView.dataSource = nil;
+    }
 }
 
 - (BOOL)shouldAutorotate
