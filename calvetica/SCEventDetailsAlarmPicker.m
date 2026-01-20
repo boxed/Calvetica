@@ -7,13 +7,15 @@
 
 #import "SCEventDetailsAlarmPicker.h"
 #import "times.h"
+#import "colors.h"
 
 
 @implementation SCEventDetailsAlarmPicker
 
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = alarmPickerBackgroundColor();
     [self configureAlarmOptions];
 }
 
@@ -64,6 +66,9 @@
         EKAlarm *alarm = [EKAlarm alarmWithRelativeOffset:[[self.alarmOptions objectAtIndex:i] intValue]];
         CVToggleButton *button = [self.alarmButtons objectAtIndex:i];
         button.enabled = self.event.calendar.allowsContentModifications;
+        button.backgroundColorNormal = alarmButtonBackgroundColor();
+        button.textColorNormal = alarmButtonTextColor();
+        [button setTitleColor:alarmButtonTextColor() forState:UIControlStateNormal];
         if ([self.event isACurrentAlarm:alarm]) {
             button.selected = YES;
         }

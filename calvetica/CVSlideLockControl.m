@@ -6,26 +6,29 @@
 //
 
 #import "CVSlideLockControl.h"
+#import "colors.h"
 
 
 
 
 @implementation CVSlideLockControl
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
     [super awakeFromNib];
-    
+
+    self.backgroundColor = slideToDeleteBackgroundColor();
+
     if (!self.thumbImage) {
         [self.slider setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
     }
-    
+
     // set the slider background images
     UIImage *image = [[UIImage imageNamed:@"slider_background"] stretchableImageWithLeftCapWidth:1.0 topCapHeight:0.0];
-    
+
     [self.slider setMinimumTrackImage:image forState:UIControlStateNormal];
     [self.slider setMaximumTrackImage:image forState:UIControlStateNormal];
-    
+
     // set up the rounded corners
     [self.layer setCornerRadius:6.0f];
     [self.layer setMasksToBounds:YES];

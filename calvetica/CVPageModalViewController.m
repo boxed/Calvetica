@@ -26,17 +26,22 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    _contentViewController.view.height  = self.view.height - 60;
-    _contentViewController.view.y       = (self.view.height / 2) - (_contentViewController.view.height / 2);
-    _contentViewController.view.x       = (self.view.width / 2) - (_contentViewController.view.width / 2);
+    CGFloat topMargin = 40;
+    CGFloat bottomMargin = 40;
+    CGFloat horizontalMargin = 16;
     if ([CVAppDelegate hasNotch]) {
-        _contentViewController.view.y += 100;
-        _contentViewController.view.height -= 150;
+        topMargin = 60;
+        bottomMargin = 50;
     }
+
+    _contentViewController.view.width   = self.view.width - (horizontalMargin * 2);
+    _contentViewController.view.height  = self.view.height - topMargin - bottomMargin;
+    _contentViewController.view.y       = topMargin;
+    _contentViewController.view.x       = horizontalMargin;
 
     // add content to view controller
     [self.view addSubview:_contentViewController.view];

@@ -23,11 +23,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4" customClass="CVToggleButton">
                     <rect key="frame" x="0.0" y="0.0" width="127" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <state key="normal" title="6pm the day before">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,11 +40,9 @@
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5" customClass="CVToggleButton">
                     <rect key="frame" x="129" y="0.0" width="127" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <state key="normal" title="10pm the day before">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -61,11 +57,9 @@
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6" customClass="CVToggleButton">
                     <rect key="frame" x="0.0" y="37" width="127" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <state key="normal" title="6am the day of">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,11 +74,9 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7" customClass="CVToggleButton">
                     <rect key="frame" x="129" y="37" width="127" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <state key="normal" title="7am the day of">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,11 +91,9 @@
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8" customClass="CVToggleButton">
                     <rect key="frame" x="0.0" y="74" width="127" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <state key="normal" title="8 am the day of">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,11 +108,9 @@
                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9" customClass="CVToggleButton">
                     <rect key="frame" x="129" y="74" width="127" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <state key="normal" title="9 am the day of">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

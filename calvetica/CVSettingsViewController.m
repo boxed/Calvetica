@@ -124,24 +124,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
-	if (cell.tag == 101) {
-		UIApplication *app = [UIApplication sharedApplication];
-		NSURL *url = [NSURL URLWithString:@"http://www.mysterioustrousers.com/"];
-		if ([app canOpenURL:url]) {
-			[app openURL:url];
-		}
-	}
-
-	else if (cell.tag == 102) {
-		UIApplication *app = [UIApplication sharedApplication];
-		NSURL *url = [NSURL URLWithString:@"http://www.firehosechat.com/"];
-		if ([app canOpenURL:url]) {
-			[app openURL:url];
-		}
-	}
-
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

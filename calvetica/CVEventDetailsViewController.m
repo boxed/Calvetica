@@ -257,17 +257,17 @@
     [_eventTitleTextView resignFirstResponder];
 }
 
-- (void)adjustLayoutOfBlocks 
-{    
-    
+- (void)adjustLayoutOfBlocks
+{
+
     // rearrange detail blocks to match user preferences
     NSArray *detailsOrderingArray = PREFS.eventDetailsOrdering;
-    
+
     // if there are no preferences set, just return
     if (!detailsOrderingArray) {
         return;
     }
-    
+
     CGFloat currentY = 0;
     NSInteger cellHeight = 42;
     

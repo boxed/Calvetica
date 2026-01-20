@@ -53,3 +53,10 @@ UIColor* patentedDarkGrayWeekdayHeader(void);
 
 #define OLD_EVENT_ALPHA 0.5f
 
+#pragma mark - Semantic Colors
+
+UIColor* alarmButtonBackgroundColor(void);
+UIColor* alarmButtonTextColor(void);
+UIColor* alarmPickerBackgroundColor(void);
+UIColor* slideToDeleteBackgroundColor(void);
+

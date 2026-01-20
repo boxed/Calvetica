@@ -100,3 +100,36 @@ UIColor* patentedDarkGrayWeekdayHeader(void) {
         return [UIColor colorWithWhite:1.0-0.7 alpha:1];
     }
 }
+
+#pragma mark - Semantic Colors
+
+UIColor* alarmButtonBackgroundColor(void) {
+    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+        return [UIColor whiteColor];
+    }
+    else {
+        return [UIColor colorWithWhite:0 alpha:1];
+    }
+}
+
+UIColor* alarmButtonTextColor(void) {
+    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+        return [UIColor blackColor];
+    }
+    else {
+        return [UIColor whiteColor];
+    }
+}
+
+UIColor* alarmPickerBackgroundColor(void) {
+    return [UIColor colorWithWhite:0 alpha:0];
+}
+
+UIColor* slideToDeleteBackgroundColor(void) {
+    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+        return [UIColor whiteColor];
+    }
+    else {
+        return [UIColor colorWithWhite:0.2 alpha:1];
+    }
+}
