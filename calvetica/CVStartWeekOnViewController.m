@@ -25,17 +25,7 @@
     // Enable dark mode support
     self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
 
-	_weekdayTitles = [NSMutableArray array];
-	NSDateComponents *components = [[NSDateComponents alloc] init];
-	components.year		= 1970;
-	components.month	= 1;
-	components.week		= 1;
-	components.weekday	= 1;
-	NSDate *startOfWeek = [NSDate mt_dateFromComponents:components];
-	for (NSInteger i = 0; i < 7; i++) {
-		NSDate *weekday = [startOfWeek mt_dateDaysAfter:i];
-		[_weekdayTitles addObject:[weekday mt_stringFromDateWithFullWeekdayTitle]];
-	}
+	_weekdayTitles = [[NSDate mt_weekdaySymbols] mutableCopy];
 
 	[self.tableView reloadData];
 }

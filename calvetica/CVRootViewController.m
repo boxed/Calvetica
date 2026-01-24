@@ -156,6 +156,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
                     [EKEventStore setPermissionGranted:granted];
                     self.selectedDate = self.todaysDate;
                     [self refreshUIAnimated:NO];
+                    [self showWelcomeScreen];
                 }];
             }];
         }];

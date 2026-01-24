@@ -70,7 +70,7 @@
     cell.textLabel.text = calendar.title;
     cell.detailTextLabel.text = calendar.accountName;
     
-    if (calendar == [[EKEventStore sharedStore] defaultEventCalendar]) {
+    if ([calendar.calendarExternalIdentifier isEqualToString:PREFS.defaultEventCalendarIdentifier]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {

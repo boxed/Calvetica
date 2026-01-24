@@ -2665,6 +2665,7 @@
 				TargetAttributes = {
 					C2E29720133419A900FA7638 = {
 						DevelopmentTeam = B6FVY827P9;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -3366,8 +3367,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3381,10 +3382,11 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.10;
-				PRODUCT_BUNDLE_IDENTIFIER = net.kodare.calvetica;
+				MARKETING_VERSION = 5.4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Adhoc;
@@ -3526,8 +3528,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3542,10 +3544,11 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.10;
-				PRODUCT_BUNDLE_IDENTIFIER = net.kodare.calvetica;
+				MARKETING_VERSION = 5.4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3558,8 +3561,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3573,10 +3576,11 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.3.10;
-				PRODUCT_BUNDLE_IDENTIFIER = net.kodare.calvetica;
+				MARKETING_VERSION = 5.4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

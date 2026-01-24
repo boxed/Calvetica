@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,13 +12,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CVWelcomeViewController">
             <connections>
                 <outlet property="_scrollView" destination="0TF-lb-L5w" id="wRS-2L-Cow"/>
-                <outlet property="_segmentedControl" destination="pMU-J2-Tyb" id="hva-yN-r7D"/>
                 <outlet property="view" destination="73" id="83"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view opaque="NO" contentMode="scaleToFill" id="73" userLabel="View">
-            <rect key="frame" x="0.0" y="0.0" width="285" height="440"/>
+            <rect key="frame" x="0.0" y="0.0" width="285" height="626"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75" userLabel="Header">
@@ -52,36 +51,23 @@
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76" userLabel="Container">
-                    <rect key="frame" x="0.0" y="35" width="285" height="370"/>
+                    <rect key="frame" x="0.0" y="35" width="285" height="556"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Calvetica 5" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="86">
-                            <rect key="frame" x="20" y="14" width="245" height="29"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Calvetica" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="86">
+                            <rect key="frame" x="20" y="14" width="245" height="34"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                             <color key="textColor" red="0.80000001190000003" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="1"/>
                         </label>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pMU-J2-Tyb">
-                            <rect key="frame" x="20" y="56" width="245" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Removed"/>
-                                <segment title="Added"/>
-                                <segment title="Resources"/>
-                            </segments>
-                            <color key="tintColor" red="0.84313725490000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="segmentControlChanged:" destination="-1" eventType="valueChanged" id="8EC-TA-WTn"/>
-                            </connections>
-                        </segmentedControl>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TF-lb-L5w">
-                            <rect key="frame" x="0.0" y="92" width="285" height="278"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <rect key="frame" x="0.0" y="56" width="285" height="500"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-JP-KXQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="855" height="283"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="855" height="505"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84" userLabel="Button - FAQ" customClass="CVRoundedButton">
@@ -156,10 +142,18 @@
                                             </connections>
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aez-5D-FaH">
-                                            <rect key="frame" x="20" y="0.0" width="245" height="263"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <string key="text">5.3
-- Bug where black background would appear after animations.</string>
+                                            <rect key="frame" x="20" y="8" width="245" height="810"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <mutableString key="text">5.4
+
+Due to change of ownership of Calvetica (more below), unfortunately you have to set up your settings again. I'm sorry about that.
+
+- A new more compact week view
+- Tons of bug fixes for dark/light mode
+- Fixed a bug where the detail view at the bottom could become blank when switching with pinch gestures
+- New setting to turn on week number display
+
+Calvetica is now owned and maintained by me, Anders Hovmöller. The code is also open sourced and can be found on github under my user ("boxed"). I hope to keep Calvetica up to date going forward.</mutableString>
                                             <color key="textColor" systemColor="labelColor"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -183,7 +177,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74" userLabel="Red Bar">
-                    <rect key="frame" x="0.0" y="405" width="285" height="35"/>
+                    <rect key="frame" x="0.0" y="591" width="285" height="35"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79" userLabel="Today Button" customClass="CVTextButton">
@@ -212,7 +206,7 @@
             <color key="backgroundColor" name="launch_screen_bg"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="133" y="45"/>
+            <point key="canvasLocation" x="132.60869565217394" y="-17.410714285714285"/>
         </view>
     </objects>
     <resources>
