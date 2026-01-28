@@ -45,7 +45,7 @@
 	[super awakeFromNib];
 	
 	self.backgroundColorSelected = patentedDarkRed;
-	self.textColorSelected = patentedWhite();
+	self.textColorSelected = calBackgroundColor();
 }
 
 

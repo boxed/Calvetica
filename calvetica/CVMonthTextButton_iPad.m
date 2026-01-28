@@ -19,13 +19,13 @@
     if (self.highlighted) {
         for (UILabel *label in self.subviews) {
             if ([label isKindOfClass:[UILabel class]]) {
-                label.textColor = patentedBlack();
+                label.textColor = calTextColor();
             }
         }
     } else {
         for (UILabel *label in self.subviews) {
             if ([label isKindOfClass:[UILabel class]]) {
-                label.textColor = patentedWhite();
+                label.textColor = calBackgroundColor();
             }
         }
     }

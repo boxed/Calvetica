@@ -364,10 +364,10 @@
 
     // if its just an hour
     if (isEligibleCell && (isOutsideWorkingHours || isAllDay)) {
-        cell.backgroundColor = patentedLightGray();
+        cell.backgroundColor = calGridLineColor();
     }
     else if (isEligibleCell) {
-        cell.backgroundColor = patentedWhite();
+        cell.backgroundColor = calBackgroundColor();
     }
 }
 

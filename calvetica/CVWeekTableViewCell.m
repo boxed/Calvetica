@@ -16,7 +16,7 @@
 
 - (void)awakeFromNib
 {
-    self.backgroundColor = patentedWhite();
+    self.backgroundColor = calBackgroundColor();
     [super awakeFromNib];
     _weekStartDate = nil;
     _selectedDate = nil;
@@ -79,7 +79,7 @@
             label.textColor = RGBHex(0x999999);
         }
         else {
-            label.textColor = patentedBlack();
+            label.textColor = calTextColor();
         }
 
         if (dayOfMonth == 1) {
@@ -166,14 +166,14 @@
         if ([date mt_monthOfYear] % 2 == 0) {
             // gray out every other month
             if (PAD) {
-                CGContextSetFillColorWithColor(context, [patentedVeryLightGray() CGColor]);
+                CGContextSetFillColorWithColor(context, [calBorderColorLight() CGColor]);
             }
             else {
-                CGContextSetFillColorWithColor(context, [patentedPrettyLightGray() CGColor]);
+                CGContextSetFillColorWithColor(context, [calSeparatorColor() CGColor]);
             }
         }
         else {
-            CGContextSetFillColorWithColor(context, [patentedWhite() CGColor]);
+            CGContextSetFillColorWithColor(context, [calBackgroundColor() CGColor]);
         }
         CGContextFillRect(context, grayRect);
     }
@@ -181,7 +181,7 @@
 
     // DRAW BACKGROUND LINES
     CGContextSetLineWidth(context, 0.5f);
-    CGContextSetStrokeColorWithColor(context, [patentedLightGray() CGColor]);
+    CGContextSetStrokeColorWithColor(context, [calGridLineColor() CGColor]);
 
     // horizontal line
     CGContextMoveToPoint(context, 0, 0.5);
@@ -231,7 +231,7 @@
     
     // create view to point to
     UIView *placeholder = [[UIView alloc] initWithFrame:rectOfPlaceHolder];
-    placeholder.backgroundColor = patentedBlack();
+    placeholder.backgroundColor = calTextColor();
     placeholder.alpha = 0.3f;
     [self addSubview:placeholder];
     

@@ -37,7 +37,7 @@
         CVToggleButton *button = (CVToggleButton *)[self.view viewWithTag:(i+1)];
         button.enabled = self.calendarItem.calendar.allowsContentModifications;
         button.backgroundColorSelected = patentedDarkRed;
-        button.textColorSelected = patentedWhite();
+        button.textColorSelected = calBackgroundColor();
 		
 		NSInteger offset = [[self.buttons objectAtIndex:i] intValue];
 		NSDate *scratchDate = [[[NSDate date] mt_startOfCurrentDay] dateByAddingTimeInterval:offset];

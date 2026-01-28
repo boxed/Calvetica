@@ -39,7 +39,7 @@ static CGFloat const kColoredDotSize = 8.0f;
         cell = [[CVCompactWeekEventCell alloc] initWithStyle:UITableViewCellStyleDefault
                                              reuseIdentifier:kCellIdentifier];
     }
-    cell.contentView.backgroundColor = patentedWhite();
+    cell.contentView.backgroundColor = calBackgroundColor();
     return cell;
 }
 
@@ -340,11 +340,11 @@ static CGFloat const kColoredDotSize = 8.0f;
 {
     if (_isToday) {
         // Use a light gray in light mode, dark gray in dark mode
-        self.backgroundColor = patentedVeryLightGray();
-        self.contentView.backgroundColor = patentedVeryLightGray();
+        self.backgroundColor = calBorderColorLight();
+        self.contentView.backgroundColor = calBorderColorLight();
     } else {
-        self.backgroundColor = patentedWhite();
-        self.contentView.backgroundColor = patentedWhite();
+        self.backgroundColor = calBackgroundColor();
+        self.contentView.backgroundColor = calBackgroundColor();
     }
 }
 

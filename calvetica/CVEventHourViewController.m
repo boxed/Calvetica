@@ -58,9 +58,9 @@
 
 	for (CVViewButton *button in @[ _startTimeButton, _endTimeButton, _allDayButton ]) {
 		button.backgroundColorSelected	= patentedRed;
-		button.textColorSelected		= patentedWhite();
-		button.backgroundColorNormal	= patentedGray();
-		button.textColorNormal			= patentedWhite();
+		button.textColorSelected		= calBackgroundColor();
+		button.backgroundColorNormal	= calSecondaryText();
+		button.textColorNormal			= calBackgroundColor();
 	}
 
 	for (UIView *view in self.view.subviews)
@@ -281,7 +281,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [rowDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES];
     cell.textLabel.font = [UIFont systemFontOfSize:13];
-    cell.textLabel.textColor = patentedQuiteDarkGray();
+    cell.textLabel.textColor = calQuaternaryText();
     
     return cell;
 }

@@ -30,7 +30,7 @@
 		CGContextSetFillColorWithColor(context, [self.backdropColor CGColor]);
 	}
 	else {
-		CGContextSetFillColorWithColor(context, [patentedBlack() CGColor]);		
+		CGContextSetFillColorWithColor(context, [calTextColor() CGColor]);		
 	}
     
     CGPoint currentPoint = CGPointMake(innerRect.origin.x, innerRect.origin.y);

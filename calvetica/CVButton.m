@@ -14,11 +14,11 @@
 
 - (void)setup 
 {
-    self.textColorNormal = patentedQuiteDarkGray();
-    self.textColorHighlighted = patentedWhite();
-    self.textColorSelected = patentedWhite();
+    self.textColorNormal = calQuaternaryText();
+    self.textColorHighlighted = calBackgroundColor();
+    self.textColorSelected = calBackgroundColor();
     self.backgroundColorSelected = patentedRed;
-    self.backgroundColorHighlighted = patentedBlack();
+    self.backgroundColorHighlighted = calTextColor();
     self.backgroundColorNormal = patentedClear;
     self.selectable = NO;
 }

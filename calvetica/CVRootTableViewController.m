@@ -44,8 +44,8 @@
     _tableView                  = newTableView;
     _tableView.delegate         = self;
     _tableView.dataSource       = self;
-    _tableView.separatorColor   = patentedWhite();
-    _tableView.backgroundColor  = patentedWhite();
+    _tableView.separatorColor   = calBackgroundColor();
+    _tableView.backgroundColor  = calBackgroundColor();
     _tableView.separatorStyle   = UITableViewCellSeparatorStyleSingleLine;
     _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     if (@available(iOS 15.0, *)) {

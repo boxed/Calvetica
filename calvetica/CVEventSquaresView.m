@@ -88,14 +88,14 @@
     
 	for (int i = 0; i < numLines; i++) {
         CGFloat y = floorf(distanceBetweenLines * i);
-        CGContextSetStrokeColorWithColor(context, [patentedLightGray() CGColor]);
+        CGContextSetStrokeColorWithColor(context, [calGridLineColor() CGColor]);
 		CGContextMoveToPoint(context, 0, y);
 		CGContextAddLineToPoint(context, self.bounds.size.width, y);
         CGContextStrokePath(context);
 	}
     
     // border line
-    CGContextSetStrokeColorWithColor(context, [patentedLightGray() CGColor]);
+    CGContextSetStrokeColorWithColor(context, [calGridLineColor() CGColor]);
     CGContextMoveToPoint(context, 0, 0);
     CGContextAddLineToPoint(context, 0, self.bounds.size.height);
     CGContextStrokePath(context);
@@ -167,7 +167,7 @@
         CGRect boxFrame = CGRectMake(e.x, e.y, e.width, e.height);
         
         CGContextSetFillColorWithColor(context, c);
-        CGContextSetStrokeColorWithColor(context, [patentedVeryLightGray() CGColor]);
+        CGContextSetStrokeColorWithColor(context, [calBorderColorLight() CGColor]);
         CGContextSetLineWidth(context, 2.0f);
         
         CGContextSaveGState(context);
@@ -184,10 +184,10 @@
         
         // event text color
         if([calendarColor shouldUseLightText]) {
-            CGContextSetFillColorWithColor(context, [patentedWhite() CGColor]);
+            CGContextSetFillColorWithColor(context, [calBackgroundColor() CGColor]);
         }
         else {
-            CGContextSetFillColorWithColor(context, [patentedBlack() CGColor]);
+            CGContextSetFillColorWithColor(context, [calTextColor() CGColor]);
         }
         
         CGRect textFrame = boxFrame;
@@ -225,7 +225,7 @@
             
             // create view to point to
             UIView *placeholder = [[UIView alloc] initWithFrame:rectOfEvent];
-            placeholder.backgroundColor = patentedBlack();
+            placeholder.backgroundColor = calTextColor();
             placeholder.alpha = 0.3f;
             [self addSubview:placeholder];
             
@@ -253,7 +253,7 @@
     
     // create view to point to
     UIView *placeholder = [[UIView alloc] initWithFrame:placeholderRect];
-    placeholder.backgroundColor = patentedBlack();
+    placeholder.backgroundColor = calTextColor();
     placeholder.alpha = 0.3f;
     [self addSubview:placeholder];
     

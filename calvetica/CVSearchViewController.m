@@ -268,7 +268,7 @@
 	CVSearchScopePopoverController *scopePopover = [[CVSearchScopePopoverController alloc] init];
     scopePopover.delegate = self;
     scopePopover.currentScope = _searchScope;
-    scopePopover.popoverBackdropColor = patentedDarkGray();
+    scopePopover.popoverBackdropColor = calTertiaryText();
     scopePopover.popoverArrowDirection = CVPopoverArrowDirectionTopLeft;
     [self presentPopoverModalViewController:scopePopover forView:sender animated:YES];
 }

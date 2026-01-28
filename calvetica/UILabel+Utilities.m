@@ -38,47 +38,47 @@
 
 - (void)setWhiteWithLightShadow 
 {
-    self.textColor = patentedWhite();
+    self.textColor = calBackgroundColor();
 }
 
 - (void)setWhiteWithDarkShadow 
 {
-    self.textColor = patentedWhite();
+    self.textColor = calBackgroundColor();
 }
 
 - (void)setBlackWithLightShadow 
 {
-    self.textColor = patentedBlack();
+    self.textColor = calTextColor();
 }
 
 - (void)setBlackWithDarkShadow 
 {
-    self.textColor = patentedBlack();
+    self.textColor = calTextColor();
 }
 
 - (void)setDarkGrayWithLightShadow 
 {
-    self.textColor = patentedQuiteDarkGray();
+    self.textColor = calQuaternaryText();
 }
 
 - (void)setDarkGrayWithDarkShadow 
 {
-    self.textColor = patentedQuiteDarkGray();
+    self.textColor = calQuaternaryText();
 }
 
 - (void)setWhiteNoShadow 
 {
-    self.textColor = patentedWhite();
+    self.textColor = calBackgroundColor();
 }
 
 - (void)setBlackNoShadow 
 {
-    self.textColor = patentedBlack();
+    self.textColor = calTextColor();
 }
 
 - (void)setDarkGrayNoShadow 
 {
-    self.textColor = patentedQuiteDarkGray();
+    self.textColor = calQuaternaryText();
 }
 
 @end

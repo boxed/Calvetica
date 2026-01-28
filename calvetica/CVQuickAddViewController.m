@@ -516,8 +516,8 @@
 
 - (IBAction)startTimeButtonWasHit:(id)sender 
 {
-    self.startLabel.textColor = patentedWhite();
-    self.startTimeLabel.textColor = patentedWhite();
+    self.startLabel.textColor = calBackgroundColor();
+    self.startTimeLabel.textColor = calBackgroundColor();
     
     self.endLabel.textColor = patentedDarkerRed;
     self.endTimeLabel.textColor = patentedDarkerRed;
@@ -530,8 +530,8 @@
     self.startLabel.textColor = patentedDarkerRed;
     self.startTimeLabel.textColor = patentedDarkerRed;
     
-    self.endLabel.textColor = patentedWhite();
-    self.endTimeLabel.textColor = patentedWhite();
+    self.endLabel.textColor = calBackgroundColor();
+    self.endTimeLabel.textColor = calBackgroundColor();
     
     self.durationTablesView.hidden = NO;
 }
@@ -668,7 +668,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.textLabel.textColor = patentedQuiteDarkGray();
+    cell.textLabel.textColor = calQuaternaryText();
     cell.isDarkRed = YES;
     
     if (tableView == self.hoursTableView) {

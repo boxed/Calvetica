@@ -24,7 +24,7 @@
 		self.weekdayLabel.textColor = patentedRed;
 	}
 	else {
-		self.weekdayLabel.textColor = patentedQuiteDarkGray();	
+		self.weekdayLabel.textColor = calQuaternaryText();	
 	}
 	
 	// move day label over

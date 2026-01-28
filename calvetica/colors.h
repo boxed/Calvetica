@@ -9,25 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-UIColor* patentedWhite(void);
-UIColor* patentedBlack(void);
+#pragma mark - Adaptive Colors (light/dark mode aware)
 
-UIColor* backgroundColorVeryWhite(void);
+UIColor* calBackgroundColor(void);
+UIColor* calTextColor(void);
+UIColor* calSecondaryBackground(void);
+UIColor* calBorderColorLight(void);
+UIColor* calSeparatorColor(void);
+UIColor* calGridLineColor(void);
+UIColor* calSecondaryText(void);
+UIColor* calTertiaryText(void);
+UIColor* calQuaternaryText(void);
+UIColor* calDimmedText(void);
+UIColor* calWeekdayHeaderText(void);
 
 #define patentedClear [UIColor clearColor]
 
-#pragma mark - Greys
-
-UIColor* patentedVeryLightGray(void);
-UIColor* patentedPrettyLightGray(void);
-UIColor* patentedLightGray(void);
-UIColor* patentedGray(void);
-UIColor* patentedDarkGray(void);
-UIColor* patentedQuiteDarkGray(void);
-UIColor* patentedVeryDarkGray(void);
-UIColor* patentedDarkGrayWeekdayHeader(void);
-
-#pragma mark - Colors
+#pragma mark - Fixed Colors (not mode aware)
 
 #define patentedRed [UIColor colorWithRed:215.0/255.0 green:0 blue:0 alpha:1]
 #define patentedDarkRed [UIColor colorWithRed:0.61 green:0 blue:0 alpha:1]
@@ -37,7 +35,7 @@ UIColor* patentedDarkGrayWeekdayHeader(void);
 #define patentedTodayBoxRedBottomLeft [UIColor colorWithRed:0.655 green:0.133 blue: 0.129 alpha:1]
 #define patentedTodayBoxRedTopRight [UIColor colorWithRed:0.776 green:0.169 blue: 0.161 alpha:1]
 
-#define patentedDarkGreen [UIColor colorWithRed:0.133 green:0.553 blue:0.349 alpha:1.000] 
+#define patentedDarkGreen [UIColor colorWithRed:0.133 green:0.553 blue:0.349 alpha:1.000]
 
 #pragma mark - Shadows
 

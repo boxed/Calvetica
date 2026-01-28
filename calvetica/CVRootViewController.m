@@ -140,12 +140,12 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [super traitCollectionDidChange:previousTraitCollection];
 
     if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
-        self.rootTableView.backgroundColor = patentedWhite();
-        self.rootTableView.separatorColor = patentedWhite();
+        self.rootTableView.backgroundColor = calBackgroundColor();
+        self.rootTableView.separatorColor = calBackgroundColor();
         [self.rootTableViewController updateAppearanceForTraitChange];
         [self.rootTableView reloadData];
-        self.weekNumberLabel.textColor = patentedBlack();
-        self.weekNumberLabel.backgroundColor = patentedWhite();
+        self.weekNumberLabel.textColor = calTextColor();
+        self.weekNumberLabel.backgroundColor = calBackgroundColor();
     }
 }
 
@@ -346,7 +346,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     CVViewOptionsPopoverViewController *viewOptionsPopover = [[CVViewOptionsPopoverViewController alloc] init];
     viewOptionsPopover.delegate = self;
     viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.rootTableMode;
-    viewOptionsPopover.popoverBackdropColor = patentedDarkGray();
+    viewOptionsPopover.popoverBackdropColor = calTertiaryText();
     if (PAD) {
         viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
     }
@@ -1407,8 +1407,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     self.weekNumberLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.weekNumberLabel.textAlignment = NSTextAlignmentRight;
-    self.weekNumberLabel.textColor = patentedBlack();
-    self.weekNumberLabel.backgroundColor = patentedWhite();
+    self.weekNumberLabel.textColor = calTextColor();
+    self.weekNumberLabel.backgroundColor = calBackgroundColor();
     self.weekNumberLabel.opaque = YES;
     self.weekNumberLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:self.weekNumberLabel];

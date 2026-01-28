@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "colors.h"
 
-UIColor* patentedWhite(void) {
+UIColor* calBackgroundColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor whiteColor];
     }
@@ -10,7 +10,7 @@ UIColor* patentedWhite(void) {
     }
 }
 
-UIColor* patentedBlack(void) {
+UIColor* calTextColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor blackColor];
     }
@@ -19,7 +19,7 @@ UIColor* patentedBlack(void) {
     }
 }
 
-UIColor* backgroundColorVeryWhite(void) {
+UIColor* calSecondaryBackground(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.941 alpha:1];
     }
@@ -28,7 +28,7 @@ UIColor* backgroundColorVeryWhite(void) {
     }
 }
 
-UIColor* patentedVeryLightGray(void) {
+UIColor* calBorderColorLight(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.933 alpha:1];
     }
@@ -37,7 +37,7 @@ UIColor* patentedVeryLightGray(void) {
     }
 }
 
-UIColor* patentedPrettyLightGray(void) {
+UIColor* calSeparatorColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.90 alpha:1];
     }
@@ -46,7 +46,7 @@ UIColor* patentedPrettyLightGray(void) {
     }
 }
 
-UIColor* patentedLightGray(void) {
+UIColor* calGridLineColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.80 alpha:1];
     }
@@ -55,7 +55,7 @@ UIColor* patentedLightGray(void) {
     }
 }
 
-UIColor* patentedGray(void) {
+UIColor* calSecondaryText(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.61 alpha:1];
     }
@@ -64,7 +64,7 @@ UIColor* patentedGray(void) {
     }
 }
 
-UIColor* patentedDarkGray(void) {
+UIColor* calTertiaryText(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.53 alpha:1];
     }
@@ -73,7 +73,7 @@ UIColor* patentedDarkGray(void) {
     }
 }
 
-UIColor* patentedQuiteDarkGray(void) {
+UIColor* calQuaternaryText(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.40 alpha:1];
     }
@@ -82,7 +82,7 @@ UIColor* patentedQuiteDarkGray(void) {
     }
 }
 
-UIColor* patentedVeryDarkGray(void) {
+UIColor* calDimmedText(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.24 alpha:1];
     }
@@ -92,7 +92,7 @@ UIColor* patentedVeryDarkGray(void) {
 }
 
 
-UIColor* patentedDarkGrayWeekdayHeader(void) {
+UIColor* calWeekdayHeaderText(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor colorWithWhite:0.7 alpha:1];
     }

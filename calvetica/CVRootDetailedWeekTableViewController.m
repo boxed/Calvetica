@@ -327,7 +327,7 @@
     CVTableSectionHeaderView *sectionView   = [CVTableSectionHeaderView fromNibOfSameName];
     NSString *title                         = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
     sectionView.weekdayLabel.text           = title;
-    sectionView.backgroundColor             = [day mt_isWithinSameDay:[NSDate date]] ? patentedRed : patentedDarkGrayWeekdayHeader();
+    sectionView.backgroundColor             = [day mt_isWithinSameDay:[NSDate date]] ? patentedRed : calWeekdayHeaderText();
 
     return sectionView;
 }

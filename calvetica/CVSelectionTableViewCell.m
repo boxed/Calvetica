@@ -22,10 +22,10 @@
         else {
             self.backgroundColor = patentedRed;
         }
-        self.textLabel.textColor = patentedWhite();
+        self.textLabel.textColor = calBackgroundColor();
     } else {
         self.backgroundColor = patentedClear;
-        self.textLabel.textColor = patentedQuiteDarkGray();
+        self.textLabel.textColor = calQuaternaryText();
     }
 }
 

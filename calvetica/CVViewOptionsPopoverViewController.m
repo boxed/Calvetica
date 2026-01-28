@@ -60,26 +60,26 @@
 {
     [super viewWillAppear:animated];
     
-    self.fullDayButton.backgroundColorHighlighted   = patentedVeryDarkGray();
-    self.fullDayButton.textColorHighlighted         = patentedWhite();
-    self.fullDayButton.backgroundColorSelected      = patentedVeryDarkGray();
-    self.fullDayButton.textColorSelected            = patentedWhite();
-    self.agendaDayButton.backgroundColorHighlighted = patentedVeryDarkGray();
-    self.agendaDayButton.textColorHighlighted       = patentedWhite();
-    self.agendaDayButton.backgroundColorSelected    = patentedVeryDarkGray();
-    self.agendaDayButton.textColorSelected          = patentedWhite();
-    self.weekButton.backgroundColorHighlighted      = patentedVeryDarkGray();
-    self.weekButton.textColorHighlighted            = patentedWhite();
-    self.weekButton.backgroundColorSelected         = patentedVeryDarkGray();
-    self.weekButton.textColorSelected               = patentedWhite();
-    self.detailedWeekButton.backgroundColorHighlighted      = patentedVeryDarkGray();
-    self.detailedWeekButton.textColorHighlighted            = patentedWhite();
-    self.detailedWeekButton.backgroundColorSelected         = patentedVeryDarkGray();
-    self.detailedWeekButton.textColorSelected               = patentedWhite();
-    self.compactWeekButton.backgroundColorHighlighted       = patentedVeryDarkGray();
-    self.compactWeekButton.textColorHighlighted             = patentedWhite();
-    self.compactWeekButton.backgroundColorSelected          = patentedVeryDarkGray();
-    self.compactWeekButton.textColorSelected                = patentedWhite();
+    self.fullDayButton.backgroundColorHighlighted   = calDimmedText();
+    self.fullDayButton.textColorHighlighted         = calBackgroundColor();
+    self.fullDayButton.backgroundColorSelected      = calDimmedText();
+    self.fullDayButton.textColorSelected            = calBackgroundColor();
+    self.agendaDayButton.backgroundColorHighlighted = calDimmedText();
+    self.agendaDayButton.textColorHighlighted       = calBackgroundColor();
+    self.agendaDayButton.backgroundColorSelected    = calDimmedText();
+    self.agendaDayButton.textColorSelected          = calBackgroundColor();
+    self.weekButton.backgroundColorHighlighted      = calDimmedText();
+    self.weekButton.textColorHighlighted            = calBackgroundColor();
+    self.weekButton.backgroundColorSelected         = calDimmedText();
+    self.weekButton.textColorSelected               = calBackgroundColor();
+    self.detailedWeekButton.backgroundColorHighlighted      = calDimmedText();
+    self.detailedWeekButton.textColorHighlighted            = calBackgroundColor();
+    self.detailedWeekButton.backgroundColorSelected         = calDimmedText();
+    self.detailedWeekButton.textColorSelected               = calBackgroundColor();
+    self.compactWeekButton.backgroundColorHighlighted       = calDimmedText();
+    self.compactWeekButton.textColorHighlighted             = calBackgroundColor();
+    self.compactWeekButton.backgroundColorSelected          = calDimmedText();
+    self.compactWeekButton.textColorSelected                = calBackgroundColor();
 
     self.currentViewMode = _currentViewMode;
 }

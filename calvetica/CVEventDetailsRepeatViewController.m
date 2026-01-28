@@ -302,7 +302,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:17];
-    cell.textLabel.textColor = patentedQuiteDarkGray();
+    cell.textLabel.textColor = calQuaternaryText();
     
     if (tableView == self.dateDayTableView) {
         cell.textLabel.text = [NSString stringWithFormat:@"%li", (long)[self dayForIndexPath:indexPath]];

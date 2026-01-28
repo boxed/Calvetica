@@ -17,9 +17,9 @@
 {
     super.highlighted = highlighted;
     if (self.highlighted) {
-        self.titleLabel.textColor = patentedBlack();
+        self.titleLabel.textColor = calTextColor();
     } else {
-        self.titleLabel.textColor = patentedWhite();
+        self.titleLabel.textColor = calBackgroundColor();
     }
 }
 

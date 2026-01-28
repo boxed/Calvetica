@@ -10,6 +10,7 @@
 #import "UIApplication+Utilities.h"
 #import "geometry.h"
 #import "CVActionBlockButton.h"
+#import "colors.h"
 
 
 @implementation CVLandscapeWeekView_iPhone
@@ -35,24 +36,29 @@
     return _headerViews;
 }
 
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     // rotate table
     CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-90.0f));
     self.weeksTable.transform = rotateTransform;
-    
-    // flip the dimensions of table
-    CGRect r = self.weeksTable.frame;
-    CGFloat t = r.size.width;
-    r.size.width = r.size.height;
-    r.size.height = t;
-    r.origin.x = 0;
-    r.origin.y = 0;
-    self.weeksTable.frame = r;
-    
+
+    // Set proper background color for dark mode support
+    self.weeksTable.backgroundColor = calBackgroundColor();
+
     self.monthAndYearLabel.text = [[NSDate date] stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
-    
+
     [super viewDidLoad];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+
+    // Set table view bounds to match parent view (swapped for rotation)
+    // The table is rotated -90 degrees, so we swap width/height
+    CGRect viewBounds = self.view.bounds;
+    self.weeksTable.bounds = CGRectMake(0, 0, viewBounds.size.height, viewBounds.size.width);
+    self.weeksTable.center = CGPointMake(viewBounds.size.width / 2, viewBounds.size.height / 2);
 }
 
 - (void)viewDidAppear:(BOOL)animated
