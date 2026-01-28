@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, CVLandscapeWeekViewResult) {
 @protected
     NSInteger currentMonthOfYear;
     BOOL userHasBegunInteracting;
+    BOOL hasScrolledInitially;
 }
 
 

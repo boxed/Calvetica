@@ -238,14 +238,14 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     }
     else if ([segue.identifier isEqualToString:@"WeekViewSegue"]) {
         if (PAD) {
-            CVLandscapeWeekView_iPhone *landscapeWeekView   = [segue destinationViewController];
-            landscapeWeekView.delegate                      = self;
-            landscapeWeekView.startDate                     = [NSDate date];
-        }
-        else {
             CVLandscapeWeekView_iPad *landscapeWeekView = [segue destinationViewController];
             landscapeWeekView.delegate                  = self;
             landscapeWeekView.startDate                 = [NSDate date];
+        }
+        else {
+            CVLandscapeWeekView_iPhone *landscapeWeekView = [segue destinationViewController];
+            landscapeWeekView.delegate                    = self;
+            landscapeWeekView.startDate                   = [NSDate date];
         }
     }
     else if ([segue.identifier isEqualToString:@"SearchSegue"]) {

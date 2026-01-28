@@ -57,14 +57,25 @@
     // Set table view bounds to match parent view (swapped for rotation)
     // The table is rotated -90 degrees, so we swap width/height
     CGRect viewBounds = self.view.bounds;
-    self.weeksTable.bounds = CGRectMake(0, 0, viewBounds.size.height, viewBounds.size.width);
-    self.weeksTable.center = CGPointMake(viewBounds.size.width / 2, viewBounds.size.height / 2);
+    CGRect newBounds = CGRectMake(0, 0, viewBounds.size.height, viewBounds.size.width);
+
+    // Only update bounds if they actually changed, to avoid resetting scroll position
+    if (!CGRectEqualToRect(self.weeksTable.bounds, newBounds)) {
+        // Save scroll position before changing bounds
+        CGPoint savedOffset = self.weeksTable.contentOffset;
+
+        self.weeksTable.bounds = newBounds;
+        self.weeksTable.center = CGPointMake(viewBounds.size.width / 2, viewBounds.size.height / 2);
+
+        // Restore scroll position after bounds change
+        self.weeksTable.contentOffset = savedOffset;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self reloadVisibleRows];
     [super viewDidAppear:animated];
+    [self reloadVisibleRows];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations

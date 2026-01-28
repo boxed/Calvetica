@@ -53,18 +53,40 @@
 
 - (void)layoutSubviews
 {
-	CGFloat rowHeight = round((self.bounds.size.height - _redBarView.frame.size.height) / (float)NUM_LABELS);
+	[super layoutSubviews];
+
+	// Ensure contentView fills the cell bounds (needed when cell has rotation transform)
+	self.contentView.frame = self.bounds;
+
+	// In landscape (rotated) mode, width > height. The cell is rotated +90° so the
+	// y-axis in cell coordinates becomes the visual x-axis. Layout is always vertical
+	// in cell coordinates, the rotation handles making it appear horizontal.
+	BOOL isRotated = self.bounds.size.width > self.bounds.size.height;
+
+	CGFloat redBarHeight = _redBarView.frame.size.height;
+	CGFloat availableHeight = self.bounds.size.height - redBarHeight;
+
+	CGFloat allDayHeight;
+	if (isRotated) {
+		// In rotated mode, we have limited height (e.g., 65px - 24px = 41px)
+		// Give all-day a fixed reasonable size, rest goes to timed events
+		allDayHeight = MIN(ALL_DAY_EVENT_ROW_HEIGHT, availableHeight / 3.0f);
+	} else {
+		// In normal mode, divide space into rows
+		allDayHeight = round(availableHeight / (float)NUM_LABELS);
+	}
+
 	CGRect f = _allDaySquaresView.frame;
 	f.origin.x		= 0;
-	f.origin.y		= round(_redBarView.frame.size.height);
+	f.origin.y		= round(redBarHeight);
 	f.size.width	= self.bounds.size.width;
-	f.size.height	= rowHeight;
+	f.size.height	= allDayHeight;
 	_allDaySquaresView.frame = f;
 
 	f = _squaresView.frame;
 	f.origin.x		= 0;
-	f.origin.y		= round(_redBarView.frame.size.height + _allDaySquaresView.frame.size.height);
-	//	f.size.width	= self.bounds.size.width;
+	f.origin.y		= round(redBarHeight + allDayHeight);
+	f.size.width	= self.bounds.size.width;
 	f.size.height	= round(self.bounds.size.height - f.origin.y);
 	_squaresView.frame = f;
 }

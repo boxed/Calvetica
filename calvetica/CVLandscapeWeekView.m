@@ -37,10 +37,13 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidAppear:(BOOL)animated 
+- (void)viewDidAppear:(BOOL)animated
 {
-    NSDate *dateToScrollTo = [NSDate date];
-    [self scrollToDate:dateToScrollTo animated:NO];
+    // Initial scroll to today (once) so we don't start in 2024
+    if (!hasScrolledInitially) {
+        hasScrolledInitially = YES;
+        [self scrollToDate:[NSDate date] animated:NO];
+    }
     [super viewDidAppear:animated];
 }
 
@@ -128,9 +131,9 @@
 
 #pragma mark - Cell Delegate
 
-- (void)weekdayCellHeaderWasTapped:(CVWeekdayTableViewCell *)cell 
+- (void)weekdayCellHeaderWasTapped:(CVWeekdayTableViewCell *)cell
 {
-    [self scrollToDate:[NSDate date] animated:YES];
+    // Removed scroll-to-today for debugging
 }
 
 - (void)weekdayCell:(CVWeekdayTableViewCell *)cell wasLongPressedAtDate:(NSDate *)datePressed allDay:(BOOL)allDay withPlaceholder:(UIView *)placeholder 

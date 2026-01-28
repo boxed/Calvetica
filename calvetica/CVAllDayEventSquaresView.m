@@ -51,15 +51,15 @@
 
 #pragma mark - View lifecycle
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(handleTapGesture:)];
-    [self addGestureRecognizer:tapGesture];
-    
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressGesture:)];
-    [self addGestureRecognizer:longPressGesture];
-    
+    // Gestures temporarily disabled for debugging scrolling issues
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(handleTapGesture:)];
+//    [self addGestureRecognizer:tapGesture];
+//
+//    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressGesture:)];
+//    [self addGestureRecognizer:longPressGesture];
+
 	[super awakeFromNib];
 }
 
@@ -68,49 +68,68 @@
 
 #pragma mark - Methods
 
-- (void)drawRect:(CGRect)rect 
+- (void)drawRect:(CGRect)rect
 {
-    
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSetLineWidth(context, 0.5f);
-    
-    
+
+    // In rotated mode (height > width), squares stack vertically
+    // In normal mode (width > height), squares stack horizontally
+    BOOL isRotated = self.bounds.size.height > self.bounds.size.width;
+
     // DRAW BACKGROUND LINES
-	
+
     // border line
-    CGContextSetStrokeColorWithColor(	context,	[calTertiaryText() CGColor]);
-    CGContextMoveToPoint(				context,	0,						0);
-    CGContextAddLineToPoint(			context,	0,						self.bounds.size.height);
-	CGContextMoveToPoint(				context,	0,						self.bounds.size.height);
-    CGContextAddLineToPoint(			context,	self.bounds.size.width, self.bounds.size.height);
+    CGContextSetStrokeColorWithColor(context, [calTertiaryText() CGColor]);
+    CGContextMoveToPoint(context, 0, 0);
+    if (isRotated) {
+        CGContextAddLineToPoint(context, self.bounds.size.width, 0);
+        CGContextMoveToPoint(context, self.bounds.size.width, 0);
+        CGContextAddLineToPoint(context, self.bounds.size.width, self.bounds.size.height);
+    } else {
+        CGContextAddLineToPoint(context, 0, self.bounds.size.height);
+        CGContextMoveToPoint(context, 0, self.bounds.size.height);
+        CGContextAddLineToPoint(context, self.bounds.size.width, self.bounds.size.height);
+    }
     CGContextStrokePath(context);
-    
-    
-    
-    
+
+
     // DRAW SQAURES
 	CGFloat padding = 1.0f;
-    CGFloat squareWidth = self.bounds.size.width / _squares.count;
+    NSInteger squareCount = _squares.count > 0 ? _squares.count : 1;
     NSInteger offset = 0;
-    
+
     for (CVCalendarItemShape *e in _squares) {
-        
-        e.height = self.bounds.size.height;
-        e.y = 0;
-        e.width = squareWidth;
-        e.x = offset++ * e.width;
-        
+
+        if (isRotated) {
+            CGFloat squareHeight = self.bounds.size.height / squareCount;
+            e.width = self.bounds.size.width;
+            e.x = 0;
+            e.height = squareHeight;
+            e.y = offset++ * e.height;
+        } else {
+            CGFloat squareWidth = self.bounds.size.width / squareCount;
+            e.height = self.bounds.size.height;
+            e.y = 0;
+            e.width = squareWidth;
+            e.x = offset++ * e.width;
+        }
+
         // apply padding
         e.x += padding;
         e.y += padding;
         e.width -= (padding * 2.0f);
         e.height -= (padding * 2.0f);
-        
-        // if this is the far left or far right, bring it in from the edge
+
+        // if this is the first square, bring it in from the edge
         if (e.offset == 0) {
-            e.x += 1;
-            e.width -= 1;
+            if (isRotated) {
+                e.y += 1;
+                e.height -= 1;
+            } else {
+                e.x += 1;
+                e.width -= 1;
+            }
         }
 
         

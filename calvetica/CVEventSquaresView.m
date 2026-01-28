@@ -55,15 +55,15 @@
 
 #pragma mark - View lifecycle
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(handleTapGesture:)];
-    [self addGestureRecognizer:tapGesture];
-    
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressGesture:)];
-    [self addGestureRecognizer:longPressGesture];
-    
+    // Gestures temporarily disabled for debugging scrolling issues
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(handleTapGesture:)];
+//    [self addGestureRecognizer:tapGesture];
+//
+//    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(handleLongPressGesture:)];
+//    [self addGestureRecognizer:longPressGesture];
+
     [super awakeFromNib];
 }
 
@@ -72,93 +72,125 @@
 
 #pragma mark - Methods
 
-- (void)drawRect:(CGRect)rect 
+- (void)drawRect:(CGRect)rect
 {
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, NO);
 	CGContextSetLineWidth(context, 0.5f);
-    
-    
+
+    // In rotated mode, width is the time dimension; in normal mode, height is
+    BOOL isRotated = self.bounds.size.width > self.bounds.size.height;
+    CGFloat timeDimension = isRotated ? self.bounds.size.width : self.bounds.size.height;
+    CGFloat columnDimension = isRotated ? self.bounds.size.height : self.bounds.size.width;
+
     // DRAW BACKGROUND LINES
-    
+
     NSInteger numLines = 24;
-    CGFloat viewHeight = self.bounds.size.height;
-    CGFloat distanceBetweenLines = viewHeight / numLines;
-    
+    CGFloat distanceBetweenLines = timeDimension / numLines;
+
 	for (int i = 0; i < numLines; i++) {
-        CGFloat y = floorf(distanceBetweenLines * i);
+        CGFloat pos = floorf(distanceBetweenLines * i);
         CGContextSetStrokeColorWithColor(context, [calGridLineColor() CGColor]);
-		CGContextMoveToPoint(context, 0, y);
-		CGContextAddLineToPoint(context, self.bounds.size.width, y);
+        if (isRotated) {
+            CGContextMoveToPoint(context, pos, 0);
+            CGContextAddLineToPoint(context, pos, columnDimension);
+        } else {
+            CGContextMoveToPoint(context, 0, pos);
+            CGContextAddLineToPoint(context, columnDimension, pos);
+        }
         CGContextStrokePath(context);
 	}
-    
+
     // border line
     CGContextSetStrokeColorWithColor(context, [calGridLineColor() CGColor]);
     CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, 0, self.bounds.size.height);
+    if (isRotated) {
+        CGContextAddLineToPoint(context, 0, columnDimension);
+    } else {
+        CGContextAddLineToPoint(context, 0, timeDimension);
+    }
     CGContextStrokePath(context);
-    
+
     CGContextSetShouldAntialias(context, YES);
-    
-    
+
+
     // DRAW SQAURES
 	CGFloat padding = 1.0f;
-    
+
     for (CVCalendarItemShape *e in _squares) {
-        
+
         NSInteger startSecondsIntoDay;
         NSInteger endSecondsIntoDay;
-        
-        // set the Y COORD
-        
+        CGFloat eventTimePos;   // position along time axis (x in rotated, y in normal)
+        CGFloat eventTimeSize;  // size along time axis (width in rotated, height in normal)
+
+        // set the time position
+
         // if it starts before this day
         if (e.startSeconds <= 0) {
             startSecondsIntoDay = 0;
-            e.y = 0;
-            
+            eventTimePos = 0;
+
             // otherwise it starts on this day
         } else {
             startSecondsIntoDay = e.startSeconds % MTDateConstantSecondsInDay;
-            e.y = (startSecondsIntoDay / (float)MTDateConstantSecondsInDay) * self.frame.size.height;	
+            eventTimePos = (startSecondsIntoDay / (float)MTDateConstantSecondsInDay) * timeDimension;
         }
-        
-        
-        // set the height
-        
+
+
+        // set the time size
+
         // if it ends after the end of this day
         if (e.endSeconds >= MTDateConstantSecondsInDay) {
-            e.height = self.frame.size.height - e.y;
-        } 
-        
+            eventTimeSize = timeDimension - eventTimePos;
+        }
+
         // otherise, it ends within this day
         else {
             endSecondsIntoDay = e.endSeconds % MTDateConstantSecondsInDay;
-            e.height = ((endSecondsIntoDay - startSecondsIntoDay) / (float)MTDateConstantSecondsInDay) * self.frame.size.height;	
+            eventTimeSize = ((endSecondsIntoDay - startSecondsIntoDay) / (float)MTDateConstantSecondsInDay) * timeDimension;
         }
-        
-        e.width = (self.bounds.size.width / e.overlaps);
-        e.x = e.offset * e.width;
+
+        CGFloat eventColumnSize = (columnDimension / e.overlaps);
+        CGFloat eventColumnPos = e.offset * eventColumnSize;
+
+        if (isRotated) {
+            e.x = eventTimePos;
+            e.y = eventColumnPos;
+            e.width = eventTimeSize;
+            e.height = eventColumnSize;
+        } else {
+            e.x = eventColumnPos;
+            e.y = eventTimePos;
+            e.width = eventColumnSize;
+            e.height = eventTimeSize;
+        }
         
         e.x += padding;
         e.y += padding;
         e.width -= (padding * 2.0f);
         e.height -= (padding * 2.0f);
-        
-        //        // bring it up a pixel so the box fill color lines up with the horizontal line
-        //        e.y--;
-        //        e.height++;
-        
-        // if this is the far left or far right, bring it in from the edge
+
+        // if this is the first in the column, bring it in from the edge
         if (e.offset == 0) {
-            e.x += 1;
-            e.width -= 1;
+            if (isRotated) {
+                e.y += 1;
+                e.height -= 1;
+            } else {
+                e.x += 1;
+                e.width -= 1;
+            }
         }
-        
-        // make sure square is tall enough to contain its title text
-        if (e.height < EVENT_SQUARE_MIN_HEIGHT_IPHONE) {
-            e.height = EVENT_SQUARE_MIN_HEIGHT_IPHONE;
+
+        // make sure square is big enough to contain its title text
+        if (isRotated) {
+            if (e.width < EVENT_SQUARE_MIN_HEIGHT_IPHONE) {
+                e.width = EVENT_SQUARE_MIN_HEIGHT_IPHONE;
+            }
+        } else {
+            if (e.height < EVENT_SQUARE_MIN_HEIGHT_IPHONE) {
+                e.height = EVENT_SQUARE_MIN_HEIGHT_IPHONE;
+            }
         }
         
         UIColor *calendarColor = [e.calendarItem.calendar customColor];
@@ -235,28 +267,38 @@
     }
 }
 
-- (IBAction)handleLongPressGesture:(UILongPressGestureRecognizer *)gesture 
+- (IBAction)handleLongPressGesture:(UILongPressGestureRecognizer *)gesture
 {
 	if (gesture.state != UIGestureRecognizerStateBegan) return;
-    
+
+    BOOL isRotated = self.bounds.size.width > self.bounds.size.height;
+    CGFloat timeDimension = isRotated ? self.bounds.size.width : self.bounds.size.height;
+    CGFloat columnDimension = isRotated ? self.bounds.size.height : self.bounds.size.width;
+
     // figure the date
     CGPoint pointOfTouch = [gesture locationInView:self];
-    CGFloat percentThroughDay = pointOfTouch.y / self.bounds.size.height;
+    CGFloat touchTimePos = isRotated ? pointOfTouch.x : pointOfTouch.y;
+    CGFloat percentThroughDay = touchTimePos / timeDimension;
     CGFloat nearestHour = (percentThroughDay * MTDateConstantHoursInDay);
     NSDate *dateToReturn = [[self.date mt_startOfCurrentDay] mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:nearestHour minutes:0 seconds:0];
-    
-    // figure placholder rect
-    CGFloat hourHeight = self.bounds.size.height / MTDateConstantHoursInDay;
-    CGFloat bottomY = hourHeight * nearestHour;
-    CGFloat topY = hourHeight * (nearestHour + 1);
-    CGRect placeholderRect = CGRectMake(0, bottomY, self.bounds.size.width, (topY - bottomY));
-    
+
+    // figure placeholder rect
+    CGFloat hourSize = timeDimension / MTDateConstantHoursInDay;
+    CGFloat startPos = hourSize * nearestHour;
+    CGFloat endPos = hourSize * (nearestHour + 1);
+    CGRect placeholderRect;
+    if (isRotated) {
+        placeholderRect = CGRectMake(startPos, 0, (endPos - startPos), columnDimension);
+    } else {
+        placeholderRect = CGRectMake(0, startPos, columnDimension, (endPos - startPos));
+    }
+
     // create view to point to
     UIView *placeholder = [[UIView alloc] initWithFrame:placeholderRect];
     placeholder.backgroundColor = calTextColor();
     placeholder.alpha = 0.3f;
     [self addSubview:placeholder];
-    
+
     [_delegate squaresView:self wasLongPressedAtDate:dateToReturn allDay:NO withPlaceholder:placeholder];
 }
 
