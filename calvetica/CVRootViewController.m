@@ -33,6 +33,7 @@
 #import "CVAppDelegate.h"
 
 #define NOTCH_HEIGHT_OFFSET 55
+#define WEEKDAY_LABEL_BOTTOM_MARGIN 14
 
 
 typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
@@ -121,6 +122,17 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 {
     [super viewDidAppear:animated];
     [self updateSelectionSquare:NO];
+}
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    if ([CVAppDelegate hasNotch]) {
+        CGFloat topHeight = [self safeAreaTopHeight];
+        _monthTableViewContainer.y = topHeight;
+        [self updateWeekdayTitleLabels];
+        [self updateLayoutAnimated:NO];
+    }
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
@@ -1246,6 +1258,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 #pragma mark - Private
 
+- (CGFloat)safeAreaTopHeight
+{
+    CGFloat safeAreaTop = self.view.window.safeAreaInsets.top;
+    if (safeAreaTop > 20) {
+        // Device has notch or Dynamic Island - use safe area plus margin for weekday labels
+        return safeAreaTop + WEEKDAY_LABEL_BOTTOM_MARGIN;
+    }
+    return 0;
+}
+
 #pragma mark (setup)
 
 - (void)setupGestures
@@ -1437,8 +1459,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)updateLayoutAnimated:(BOOL)animated
 {
-    if ([CVAppDelegate hasNotch]) {
-        self.weekdayTitleBar.height = NOTCH_HEIGHT_OFFSET;
+    CGFloat safeAreaTop = [self safeAreaTopHeight];
+    if ([CVAppDelegate hasNotch] && safeAreaTop > 0) {
+        self.weekdayTitleBar.height = safeAreaTop;
     }
     if (PAD) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -1468,9 +1491,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             CGRect r = self.rootTableView.frame;
             r.origin.y = ((numberOfRows * h) + self.weekdayTitleBar.bounds.size.height) + 1;
             r.size.height = self.view.height - self.rootTableView.y - 1;// - self.bottomToolbar.height;
-            if ([CVAppDelegate hasNotch]) {
-                r.origin.y += 12;
-            }
             self.rootTableView.frame = r;
         };
 
@@ -1618,14 +1638,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)updateWeekdayTitleLabels
 {
     // set weekday labels
+    CGFloat safeAreaTop = self.view.window.safeAreaInsets.top;
     for (int i = 0; i < 7; i++) {
         UILabel *l = (UILabel *)[self.weekdayTitleBar viewWithTag:WEEKDAY_TITLES_OFFSET + i];
         BOOL abbr = (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
                      self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
         NSString *weekDayAbbr = [[NSDate stringWithWeekDayAbbreviated:abbr forWeekdayIndex:i+1] uppercaseString];
         l.text = weekDayAbbr;
-        if ([CVAppDelegate hasNotch]) {
-            l.y = 41;
+        if ([CVAppDelegate hasNotch] && safeAreaTop > 20) {
+            // Position labels just below the safe area (notch/Dynamic Island)
+            l.y = safeAreaTop;
         }
     }
 }
