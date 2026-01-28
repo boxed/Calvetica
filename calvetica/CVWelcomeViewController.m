@@ -8,7 +8,7 @@
 #import "CVWelcomeViewController.h"
 
 
-@interface CVWelcomeViewController () <UIScrollViewDelegate>
+@interface CVWelcomeViewController ()
 
 @end
 
@@ -21,7 +21,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _scrollView.contentSize = CGSizeMake(_scrollView.width * 3, _scrollView.height);
+    // Only show the first page
+    _scrollView.contentSize = CGSizeMake(_scrollView.width, _scrollView.height);
+    _scrollView.scrollEnabled = NO;
+    _segmentedControl.hidden = YES;
 }
 
 - (BOOL)shouldAutorotate
@@ -41,16 +44,6 @@
 
 
 #pragma mark - Actions
-
-- (IBAction)segmentControlChanged:(UISegmentedControl *)segmentedControl
-{
-    [_scrollView scrollRectToVisible:CGRectMake(segmentedControl.selectedSegmentIndex * _scrollView.width,
-                                                0,
-                                                _scrollView.width,
-                                                _scrollView.height)
-                            animated:YES];
-}
-
 
 - (IBAction)closeButtonWasTapped:(id)sender 
 {
@@ -82,14 +75,6 @@
 	[_delegate welcomeController:self didFinishWithResult:CVWelcomeViewControllerResultDontShowMe];
 }
 
-
-
-#pragma mark - DELEGATE scroll view
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    _segmentedControl.selectedSegmentIndex = (NSInteger)(_scrollView.contentOffset.x / _scrollView.width);
-}
 
 
 @end
