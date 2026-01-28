@@ -8,6 +8,7 @@
 
 #import "CVMonthTableViewController.h"
 #import "colors.h"
+#import "dimensions.h"
 #import "NSDate+ViewHelpers.h"
 #import "UIViewController+Utilities.h"
 #import "CVWeekTableViewCell.h"
@@ -30,12 +31,14 @@
     [self resetStartDate];
 
     if (PAD) {
-		if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-			self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
-		}
-		else {
-			self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-		}
+        // Use view bounds to reliably detect orientation on initial launch
+        CGSize size = self.view.bounds.size;
+        if (size.width > size.height) {
+            self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
+        }
+        else {
+            self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+        }
     }
     else {
         self.tableView.rowHeight = IPHONE_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
@@ -49,6 +52,10 @@
     // center the current day
     if (PAD) {
         [self scrollToRowForDate:_selectedDate animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+        // Update selection square after layout is fully complete
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reframeRedSelectedDaySquareAnimated:NO];
+        });
     }
     else {
         [self scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth] animated:NO scrollPosition:UITableViewScrollPositionTop];
@@ -62,6 +69,20 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (PAD) {
+        // Ensure row height is correct after layout is complete
+        CGSize size = self.view.bounds.size;
+        CGFloat expectedRowHeight = (size.width > size.height)
+            ? IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE
+            : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+        if (self.tableView.rowHeight != expectedRowHeight) {
+            self.tableView.rowHeight = expectedRowHeight;
+        }
+    }
+}
 
 
 
@@ -237,21 +258,20 @@
 
 - (CGRect)rectOfDayButtonInTableView:(UITableView *)tableView forDate:(NSDate *)date
 {
-    CGRect rect = CGRectZero;
-
     NSInteger row = [self rowOfDate:date];
-    CGFloat boxHeight = tableView.rowHeight;
+    NSInteger column = [self columnOfDate:date];
+
+    // Get the actual rect for this row from the table view
+    CGRect rowRect = [tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
 
     CGFloat boxWidth = tableView.frame.size.width / 7.0;
+    CGFloat boxHeight = rowRect.size.height;
 
-    rect.origin.x       = floorf([self columnOfDate:date] * boxWidth);
-    if (PAD) {
-        rect.origin.y       = floorf(row * boxHeight) + 86;
-    } else {
-        rect.origin.y       = floorf(row * boxHeight);
-    }
-    rect.size.width     = floorf(boxWidth);
-    rect.size.height    = floorf(boxHeight);
+    CGRect rect;
+    rect.origin.x = floorf(column * boxWidth);
+    rect.origin.y = rowRect.origin.y;
+    rect.size.width = floorf(boxWidth);
+    rect.size.height = floorf(boxHeight);
 
     return rect;
 }

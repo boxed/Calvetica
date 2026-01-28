@@ -88,6 +88,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
 // Week number (common to all views)
 @property (nonatomic, strong)          UILabel                      *weekNumberLabel;
+
+// Track if initial layout has been done (for iPad landscape launch fix)
+@property (nonatomic, assign)          BOOL                         hasCompletedInitialLayout;
 @end
 
 
@@ -122,6 +125,27 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 {
     [super viewDidAppear:animated];
     [self updateSelectionSquare:NO];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (PAD) {
+        // Check if row height matches current orientation, update if not
+        CGSize size = self.view.bounds.size;
+        BOOL isLandscape = size.width > size.height;
+        CGFloat expectedRowHeight = isLandscape
+            ? IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE
+            : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+
+        if (self.monthTableViewController.tableView.rowHeight != expectedRowHeight) {
+            self.monthTableViewController.tableView.rowHeight = expectedRowHeight;
+            [self.monthTableViewController.tableView layoutIfNeeded];
+            [self reloadMonthTableView];
+            [self scrollMonthTableViewAnimated:NO];
+            [self updateSelectionSquare:NO];
+        }
+    }
 }
 
 - (void)viewSafeAreaInsetsDidChange
@@ -1464,17 +1488,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         self.weekdayTitleBar.height = safeAreaTop;
     }
     if (PAD) {
-        UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-
-        if (deviceOrientation == UIInterfaceOrientationPortrait ||
-            deviceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-        {
-            self.monthTableViewController.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-        }
-        else if (deviceOrientation == UIInterfaceOrientationLandscapeLeft ||
-                 deviceOrientation == UIInterfaceOrientationLandscapeRight)
-        {
+        // Use view bounds to reliably detect orientation (device orientation can be unknown on launch)
+        CGSize size = self.view.bounds.size;
+        if (size.width > size.height) {
             self.monthTableViewController.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
+        }
+        else {
+            self.monthTableViewController.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
         }
     }
     else {
