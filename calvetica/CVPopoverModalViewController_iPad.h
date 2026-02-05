@@ -14,7 +14,7 @@
 #import "CVModalProtocol.h"
 #import "geometry.h"
 
-@interface CVPopoverModalViewController_iPad : CVViewController {
+@interface CVPopoverModalViewController_iPad : CVViewController <UIGestureRecognizerDelegate> {
     CGFloat                 keyboardAppearedModalSavedYCoord;
     CVPopoverArrowDirection keyboardAppearedArrowSavedDirection;
 }

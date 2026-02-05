@@ -57,6 +57,7 @@ typedef struct {
 
     // Use tap gesture recognizer instead of touchUpInside to avoid closing on scroll release
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backdropWasTapped:)];
+    tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
 
     // if the keyboard appears, we need our popover to scoot up to the top of the screen
@@ -506,6 +507,15 @@ typedef struct {
 
 
 
+
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    CGPoint point = [touch locationInView:self.modalViewContainer];
+    return ![self.modalViewContainer pointInside:point withEvent:nil];
+}
 
 
 #pragma mark - Actions
