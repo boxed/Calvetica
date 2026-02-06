@@ -52,33 +52,39 @@
     return lastViewController;
 }
 
-- (void)pushViewController:(CVViewController *)viewController animated:(BOOL)animated 
+- (void)pushViewController:(CVViewController *)viewController animated:(BOOL)animated
 {
-    
+
     // add the view controller to the view controllers array
     NSMutableArray *newViewControllerArray = [NSMutableArray arrayWithArray:_viewControllers];
     [newViewControllerArray addObject:viewController];
     viewController.containingViewController = self;
-    
+
     _viewControllers = [[NSArray alloc] initWithArray:newViewControllerArray];
-    
+
+    // resize pushed view to match the visible container width so it fills the area completely
+    CGFloat visibleWidth = _topViewController.view.frame.size.width;
+    CGRect vf = viewController.view.frame;
+    vf.size.width = visibleWidth;
+    viewController.view.frame = vf;
+
     // enbiggen the scroll views content size
     CGRect cr = _contentViewContainer.frame;
     cr.size.width += viewController.view.frame.size.width;
     [_contentViewContainer setFrame:cr];
-	
+
 	// set frame of last view controller
 	CGRect r = _contentViewContainer.frame;
 	r.size.width = viewController.view.frame.size.width;
     r.origin.x = cr.size.width - viewController.view.frame.size.width;
 	r.origin.y = 0;
 	[viewController.view setFrame:r];
-    
+
     // add the new view controllers view to the far right of the scroll view
     _visibleViewController = viewController;
     viewController.modalNavigationController = self;
     [_contentViewContainer addSubview:viewController.view];
-    
+
     // scroll animate that sucker
     [UIView animateWithDuration:0.2 animations:^{
         CGRect r = self->_contentViewContainer.frame;
