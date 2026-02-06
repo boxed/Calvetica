@@ -85,11 +85,6 @@
     self.navigationItem.title = NSLocalizedString(@"Default Event Alarms", @"Navigation item to Default Alarms");
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 

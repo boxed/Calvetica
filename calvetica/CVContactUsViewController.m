@@ -19,11 +19,6 @@
     self.navigationItem.title = @"Contact Us";
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 #pragma mark - Methods

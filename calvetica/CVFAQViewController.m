@@ -37,11 +37,6 @@
     self.helpScreen.delegate = self;
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 #pragma mark - UIWebViewDelegate Methods

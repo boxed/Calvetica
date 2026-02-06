@@ -47,10 +47,6 @@
     self.navigationItem.title = @"Alert Audio";
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
 
 - (void)viewWillDisappear:(BOOL)animated
 {

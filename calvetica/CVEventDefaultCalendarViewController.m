@@ -35,11 +35,6 @@
     self.navigationItem.title = NSLocalizedString(@"Event Default Calendar", @"Navigation item to select from a list of calendars");
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 

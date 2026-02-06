@@ -73,11 +73,6 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 

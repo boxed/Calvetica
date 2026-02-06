@@ -128,10 +128,6 @@
     self.navigationItem.title = @"Gestures How To";
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {

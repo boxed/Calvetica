@@ -37,11 +37,6 @@
 	self.title = @"Calendars";
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 

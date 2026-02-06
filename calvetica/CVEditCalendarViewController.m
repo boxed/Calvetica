@@ -55,10 +55,6 @@
     _calendarTitleTextField.delegate = nil;
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {

@@ -1456,9 +1456,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                   (int)weekOfYear];
 
     // Position at top of root table view area, right-aligned
-    CGRect frame = CGRectMake(0,
+    CGRect frame = CGRectMake(self.rootTableView.frame.origin.x,
                               self.rootTableView.frame.origin.y,
-                              self.view.bounds.size.width - rightPadding,
+                              self.rootTableView.frame.size.width - rightPadding,
                               labelHeight);
     self.weekNumberLabel.frame = frame;
 
@@ -1872,7 +1872,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 	if (PAD) {
 		navController.modalPresentationStyle = UIModalPresentationFormSheet;
-		navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+		navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 		[self presentViewController:navController animated:YES completion:^{
 			if (handler) handler(navController);
 		}];

@@ -61,10 +61,6 @@
     }
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
 
 #pragma mark (rotation)
 

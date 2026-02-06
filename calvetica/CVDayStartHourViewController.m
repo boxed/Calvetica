@@ -33,11 +33,6 @@
     self.navigationItem.title = @"Day Start Hour";
 }
 
-- (CGSize)preferredContentSize
-{
-    return CGSizeMake(320, 416);
-}
-
 
 
 
