@@ -70,6 +70,16 @@
         // Restore scroll position after bounds change
         self.weeksTable.contentOffset = savedOffset;
     }
+
+    // Adjust month/year label position for safe area insets (rounded corners on modern phones)
+    UIView *monthLabelContainer = self.monthAndYearLabel.superview;
+    if (monthLabelContainer) {
+        UIEdgeInsets safeArea = self.view.safeAreaInsets;
+        CGRect frame = monthLabelContainer.frame;
+        frame.origin.x = viewBounds.size.width - frame.size.width - safeArea.bottom - 4;
+        frame.origin.y = viewBounds.size.height - frame.size.height - safeArea.right - 4;
+        monthLabelContainer.frame = frame;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
