@@ -93,6 +93,13 @@
     [self.tableView reloadData];
 }
 
+- (void)redrawVisibleCells
+{
+    for (CVWeekTableViewCell *cell in [self.tableView visibleCells]) {
+        [cell redraw];
+    }
+}
+
 - (void)resetStartDate
 {
     self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];

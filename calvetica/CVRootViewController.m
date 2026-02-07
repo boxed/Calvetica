@@ -596,7 +596,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
 - (void)refreshUIAnimated:(BOOL)animated
 {
-    [self reloadMonthTableView];
+    [self redrawMonthTableView];
     [self scrollMonthTableViewAnimated:animated];
     [self updateSelectionSquare:animated];
     [self updateLayoutAnimated:animated];
@@ -1247,7 +1247,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     if (notification.source == CVNotificationSourceExternal) {
         [[EKEventStore sharedStore] clearRemindersCacheAndReloadWithCompletion:^{
             [MTq main:^{
-                [self reloadMonthTableView];
+                [self redrawMonthTableView];
                 [self reloadRootTableViewWithCompletion:nil];
             }];
         }];
@@ -1264,7 +1264,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         else if (notification.changeType != CVNotificationChangeTypeUpdate) {
             [[EKEventStore sharedStore] clearRemindersCacheAndReloadWithCompletion:^{
                 [MTq main:^{
-                    [self reloadMonthTableView];
+                    [self redrawMonthTableView];
                     [self reloadRootTableViewWithCompletion:nil];
                 }];
             }];
@@ -1691,6 +1691,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     [self.monthTableViewController reloadTableView];
 }
 
+- (void)redrawMonthTableView
+{
+    [self.monthTableViewController redrawVisibleCells];
+}
+
 - (void)scrollMonthTableViewAnimated:(BOOL)animated
 {
     if (PAD) {
@@ -1730,7 +1735,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     NSArray *changedSettings = [[CVSharedSettings sharedSettings] changedPropertyNames];
 
     if ([changedSettings containsObject:@"remindersEnabled"]) {
-        [self reloadMonthTableView];
+        [self redrawMonthTableView];
         [self reloadRootTableViewWithCompletion:nil];
     }
 
@@ -1747,7 +1752,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 
     if ([changedSettings containsObject:@"dotsOnlyMonthView"]) {
-        [self reloadMonthTableView];
+        [self redrawMonthTableView];
     }
 
     if ([changedSettings containsObject:@"iPhoneScrollableMonthView"]) {
@@ -1760,22 +1765,22 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 
     if ([changedSettings containsObject:@"showDurationOnReadOnlyEvents"]) {
-        [self reloadMonthTableView];
+        [self redrawMonthTableView];
         [self reloadRootTableViewWithCompletion:nil];
     }
 
     if ([changedSettings containsObject:@"hiddenEventCalendarIdentifiers"]) {
-        [self reloadMonthTableView];
+        [self redrawMonthTableView];
         [self reloadRootTableViewWithCompletion:nil];
     }
 
     if ([changedSettings containsObject:@"customCalendarColors"]) {
-        [self reloadMonthTableView];
+        [self redrawMonthTableView];
         [self reloadRootTableViewWithCompletion:nil];
     }
 
     if ([changedSettings containsObject:@"customCalendarColors"]) {
-        [self reloadMonthTableView];
+        [self redrawMonthTableView];
         [self reloadRootTableViewWithCompletion:nil];
     }
 
