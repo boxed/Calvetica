@@ -65,7 +65,7 @@
     cell.textLabel.text = calendar.title;
     cell.detailTextLabel.text = calendar.accountName;
     
-    if ([calendar.calendarExternalIdentifier isEqualToString:PREFS.defaultEventCalendarIdentifier]) {
+    if ([calendar.title isEqualToString:PREFS.defaultEventCalendarIdentifier]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -93,7 +93,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     EKCalendar *calendar = [_availableCalendars objectAtIndex: indexPath.row];
-    PREFS.defaultEventCalendarIdentifier = calendar.calendarExternalIdentifier;
+    PREFS.defaultEventCalendarIdentifier = calendar.title;
     [tableView reloadData];
 }
 

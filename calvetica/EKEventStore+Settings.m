@@ -38,7 +38,7 @@
 {
     if (![EKEventStore isPermissionGranted]) return nil;
     for (EKCalendar *calendar in [self activeEventCalendars]) {
-        if ([calendar.calendarExternalIdentifier isEqualToString:PREFS.defaultEventCalendarIdentifier]) {
+        if ([calendar.title isEqualToString:PREFS.defaultEventCalendarIdentifier]) {
             return calendar;
         }
     }
