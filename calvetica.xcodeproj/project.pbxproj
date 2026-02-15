@@ -301,6 +301,7 @@
 		C2E2C97E1D46B891002D17C7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C97D1D46B891002D17C7 /* libc++.tbd */; };
 		C2E3A1A5160D488400F00FB8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A1A4160D488400F00FB8 /* Settings.storyboard */; };
 		C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */; };
+		AA0000011INBOX000000000001 /* CVInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000011INBOX000000000003 /* CVInboxViewController.m */; };
 		C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */; };
 		C2E3A1C1161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1C0161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m */; };
 		C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6A5B517EE1DE4006D035A /* CVAddButton.m */; };
@@ -811,6 +812,8 @@
 		C2E3A1A4160D488400F00FB8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettingsViewController.h; sourceTree = "<group>"; };
 		C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSettingsViewController.m; sourceTree = "<group>"; };
+		AA0000011INBOX000000000002 /* CVInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVInboxViewController.h; sourceTree = "<group>"; };
+		AA0000011INBOX000000000003 /* CVInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVInboxViewController.m; sourceTree = "<group>"; };
 		C2E3A1BB16113EF700F00FB8 /* EventDefaultDurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDefaultDurationViewController.h; sourceTree = "<group>"; };
 		C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDefaultDurationViewController.m; sourceTree = "<group>"; };
 		C2E3A1BF161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVBadgeAndAlertsSettingViewController.h; sourceTree = "<group>"; };
@@ -2083,6 +2086,8 @@
 				C2E3A1A4160D488400F00FB8 /* Settings.storyboard */,
 				C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */,
 				C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */,
+				AA0000011INBOX000000000002 /* CVInboxViewController.h */,
+				AA0000011INBOX000000000003 /* CVInboxViewController.m */,
 				9B5CFA1D141E6E6A00EDB2FA /* Manage Event Calendars */,
 				9B12A0E913A8241000BF1D7F /* Default Event Calendar */,
 				9B12A0E713A823C300BF1D7F /* Default Event Alarms */,
@@ -3073,6 +3078,7 @@
 				C2174D911605043D00F3778D /* EKCalendarItem+Identity.m in Sources */,
 				C2997F22180F972F0030D944 /* EKReminder+Store.m in Sources */,
 				C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */,
+				AA0000011INBOX000000000001 /* CVInboxViewController.m in Sources */,
 				C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */,
 				C240D96C180E05680089E963 /* CVReminderCell.m in Sources */,
 				C2E3A1C1161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m in Sources */,

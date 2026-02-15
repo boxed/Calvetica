@@ -20,6 +20,7 @@
 #import "CVSubHourPickerViewController.h"
 #import "CVLandscapeWeekView.h"
 #import "CVSearchViewController.h"
+#import "CVInboxViewController.h"
 #import "CVCalendarItemCellModel.h"
 #import "CVEventStoreNotificationCenter.h"
 #import "CVLineButton.h"
@@ -91,6 +92,10 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
 // Track if initial layout has been done (for iPad landscape launch fix)
 @property (nonatomic, assign)          BOOL                         hasCompletedInitialLayout;
+
+// Inbox badge
+@property (nonatomic, strong)          UIView                       *inboxBadge;
+@property (nonatomic, assign)          NSInteger                    pendingInboxCount;
 @end
 
 
@@ -110,6 +115,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     if ([CVAppDelegate hasNotch]) {
         _monthTableViewContainer.y = NOTCH_HEIGHT_OFFSET;
     }
+
+    [self setupInboxBadge];
+    [self updateInboxBadge];
 }
 
 - (void)dealloc
@@ -125,6 +133,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 {
     [super viewDidAppear:animated];
     [self updateSelectionSquare:NO];
+    [self updateInboxBadge];
 }
 
 - (void)viewDidLayoutSubviews
@@ -192,6 +201,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
                     [EKEventStore setPermissionGranted:granted];
                     self.selectedDate = self.todaysDate;
                     [self refreshUIAnimated:NO];
+                    [self updateInboxBadge];
                     //[self showWelcomeScreen];
                 }];
             }];
@@ -370,6 +380,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     CVViewOptionsPopoverViewController *viewOptionsPopover = [[CVViewOptionsPopoverViewController alloc] init];
     viewOptionsPopover.delegate = self;
     viewOptionsPopover.currentViewMode = (CVViewOptionsPopoverOption)self.rootTableMode;
+    viewOptionsPopover.pendingInboxCount = self.pendingInboxCount;
     viewOptionsPopover.popoverBackdropColor = calTertiaryText();
     if (PAD) {
         viewOptionsPopover.attachPopoverArrowToSide = CVPopoverModalAttachToSideBottom;
@@ -1032,6 +1043,10 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
         [self openSearch];
     }
 
+    else if (option == CVViewOptionsPopoverOptionInbox) {
+        [self openInbox];
+    }
+
 	else if (option == CVViewOptionsPopoverOptionSettings) {
 		[self openSettingsWithCompletionHandler:nil];
 	}
@@ -1242,6 +1257,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)eventStoreChanged:(NSNotification *)notif
 {
+    [self updateInboxBadge];
+
     CVEventStoreNotification *notification = [notif object];
 
     if (notification.source == CVNotificationSourceExternal) {
@@ -1913,6 +1930,84 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         }];
         launched = YES;
     }
+}
+
+- (void)updateInboxBadge
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSInteger count = 0;
+        if ([EKEventStore isPermissionGranted]) {
+            NSDate *now = [NSDate date];
+            NSDate *oneYearFromNow = [now mt_dateYearsAfter:1];
+            NSArray *events = [EKEventStore eventsFromDate:now toDate:oneYearFromNow forActiveCalendars:NO];
+            NSDate *lastViewed = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastInboxViewedDate"];
+
+            NSMutableSet *pendingIdentifiers = [NSMutableSet set];
+
+            // Pending invitations always count (need a response)
+            for (EKEvent *event in events) {
+                for (EKParticipant *attendee in event.attendees) {
+                    if (attendee.isCurrentUser && attendee.participantStatus == EKParticipantStatusPending) {
+                        count++;
+                        if (event.eventIdentifier) [pendingIdentifiers addObject:event.eventIdentifier];
+                        break;
+                    }
+                }
+            }
+
+            // Recently added events only count if unseen
+            NSDate *recentCutoff = [now mt_dateDaysBefore:14];
+            for (EKEvent *event in events) {
+                if (event.eventIdentifier && [pendingIdentifiers containsObject:event.eventIdentifier]) continue;
+                if (!event.creationDate || [event.creationDate compare:recentCutoff] == NSOrderedAscending) continue;
+                if (event.organizer.isCurrentUser) continue;
+                if (lastViewed && [event.creationDate compare:lastViewed] != NSOrderedDescending) continue;
+                count++;
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.pendingInboxCount = count;
+            self.inboxBadge.hidden = (count == 0);
+        });
+    });
+}
+
+- (void)setupInboxBadge
+{
+    CGFloat badgeSize = 8;
+    CGRect buttonFrame = self.showViewOptionsButton.frame;
+    CGRect badgeFrame = CGRectMake(CGRectGetMaxX(buttonFrame) - badgeSize - 2,
+                                   buttonFrame.origin.y + 2,
+                                   badgeSize, badgeSize);
+    UIView *badge = [[UIView alloc] initWithFrame:badgeFrame];
+    badge.backgroundColor = [UIColor systemRedColor];
+    badge.layer.cornerRadius = badgeSize / 2;
+    badge.hidden = YES;
+    badge.userInteractionEnabled = NO;
+    [self.showViewOptionsButton.superview addSubview:badge];
+    self.inboxBadge = badge;
+}
+
+- (void)openInbox
+{
+    CVInboxViewController *inboxVC = [[CVInboxViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:inboxVC];
+
+    if (PAD) {
+        navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+
+    inboxVC.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                            target:self
+                                                                                            action:@selector(dismissInbox)];
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)dismissInbox
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self updateInboxBadge];
+    }];
 }
 
 - (void)openSearch

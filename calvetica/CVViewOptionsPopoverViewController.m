@@ -45,15 +45,28 @@
 }
 
 
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.searchButton.alpha = 1.0;
     self.searchButton.userInteractionEnabled = YES;
 
     self.fullDayButton.alpha = 1.0;
     self.fullDayButton.userInteractionEnabled = YES;
+
+    if (self.pendingInboxCount > 0) {
+        CGFloat badgeSize = 8;
+        CGRect btnFrame = self.inboxButton.frame;
+        CGRect badgeFrame = CGRectMake(CGRectGetMaxX(btnFrame) - badgeSize - 6,
+                                       btnFrame.origin.y + (btnFrame.size.height - badgeSize) / 2,
+                                       badgeSize, badgeSize);
+        UIView *badge = [[UIView alloc] initWithFrame:badgeFrame];
+        badge.backgroundColor = [UIColor systemRedColor];
+        badge.layer.cornerRadius = badgeSize / 2;
+        badge.userInteractionEnabled = NO;
+        [self.inboxButton.superview addSubview:badge];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -130,7 +143,12 @@
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionSearch byPressingButton:sender];
 }
 
-- (IBAction)settingsButtonWasTapped:(id)sender 
+- (IBAction)inboxButtonWasTapped:(id)sender
+{
+    [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionInbox byPressingButton:sender];
+}
+
+- (IBAction)settingsButtonWasTapped:(id)sender
 {
     [self.delegate viewOptionsViewController:self didSelectOption:CVViewOptionsPopoverOptionSettings byPressingButton:sender];
 }
