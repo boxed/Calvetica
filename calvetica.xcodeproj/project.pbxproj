@@ -100,6 +100,7 @@
 		9BEFC80013BC317D001CB080 /* piano_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9BEFC7FF13BC317D001CB080 /* piano_1.caf */; };
 		9BFE2CB013C6490D00360D5C /* CVNativeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */; };
 		9BFFA1C313A1F2BF0012112E /* UITableView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */; };
+		AA0000011INBOX000000000001 /* CVInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000011INBOX000000000003 /* CVInboxViewController.m */; };
 		AEBD2DB52753B9A000E685FE /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBD2DB42753B9A000E685FE /* Colors.m */; };
 		B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */; };
 		C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2027EAE1360B4B6002E58BF /* CVRootViewController.m */; };
@@ -301,7 +302,6 @@
 		C2E2C97E1D46B891002D17C7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E2C97D1D46B891002D17C7 /* libc++.tbd */; };
 		C2E3A1A5160D488400F00FB8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A1A4160D488400F00FB8 /* Settings.storyboard */; };
 		C2E3A1B7160E6B5F00F00FB8 /* CVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */; };
-		AA0000011INBOX000000000001 /* CVInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000011INBOX000000000003 /* CVInboxViewController.m */; };
 		C2E3A1BD16113EF700F00FB8 /* EventDefaultDurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */; };
 		C2E3A1C1161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A1C0161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m */; };
 		C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6A5B517EE1DE4006D035A /* CVAddButton.m */; };
@@ -471,6 +471,8 @@
 		9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVNativeAlertView.m; sourceTree = "<group>"; };
 		9BFFA1C113A1F2BF0012112E /* UITableView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Utilities.h"; sourceTree = "<group>"; };
 		9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Utilities.m"; sourceTree = "<group>"; };
+		AA0000011INBOX000000000002 /* CVInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVInboxViewController.h; sourceTree = "<group>"; };
+		AA0000011INBOX000000000003 /* CVInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVInboxViewController.m; sourceTree = "<group>"; };
 		AEBD2DB42753B9A000E685FE /* Colors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
 		C2027EAD1360B4B6002E58BF /* CVRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRootViewController.h; sourceTree = "<group>"; };
 		C2027EAE1360B4B6002E58BF /* CVRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootViewController.m; sourceTree = "<group>"; };
@@ -812,8 +814,6 @@
 		C2E3A1A4160D488400F00FB8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C2E3A1B5160E6B5F00F00FB8 /* CVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSettingsViewController.h; sourceTree = "<group>"; };
 		C2E3A1B6160E6B5F00F00FB8 /* CVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSettingsViewController.m; sourceTree = "<group>"; };
-		AA0000011INBOX000000000002 /* CVInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVInboxViewController.h; sourceTree = "<group>"; };
-		AA0000011INBOX000000000003 /* CVInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVInboxViewController.m; sourceTree = "<group>"; };
 		C2E3A1BB16113EF700F00FB8 /* EventDefaultDurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDefaultDurationViewController.h; sourceTree = "<group>"; };
 		C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDefaultDurationViewController.m; sourceTree = "<group>"; };
 		C2E3A1BF161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVBadgeAndAlertsSettingViewController.h; sourceTree = "<group>"; };
@@ -3388,7 +3388,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.4.2;
+				MARKETING_VERSION = 5.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3550,7 +3550,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.4.2;
+				MARKETING_VERSION = 5.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3582,7 +3582,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 5.4.2;
+				MARKETING_VERSION = 5.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
