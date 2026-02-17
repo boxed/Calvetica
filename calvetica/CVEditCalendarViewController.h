@@ -12,11 +12,14 @@ typedef NS_ENUM(NSUInteger, CVCalendarDetailsControllerResult) {
 };
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CVCalendarDetailsViewControllerDelegate;
 
 
 @interface CVEditCalendarViewController : UITableViewController <UITextFieldDelegate>
-@property (nonatomic, weak  ) id <CVCalendarDetailsViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id <CVCalendarDetailsViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKCalendar                                   *calendar;
 @end
 
@@ -25,3 +28,5 @@ typedef NS_ENUM(NSUInteger, CVCalendarDetailsControllerResult) {
 - (void)calendarDetailsController:(CVEditCalendarViewController *)controller
               didFinishWithResult:(CVCalendarDetailsControllerResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

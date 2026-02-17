@@ -7,6 +7,11 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (Nibs)
 + (instancetype)fromNibOfSameName;
 @end
+
+NS_ASSUME_NONNULL_END

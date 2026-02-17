@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface UIColor (Serialization)
 
 - (NSData *)archivedColor;
@@ -19,3 +22,5 @@
 + (UIColor *)colorFromString:(NSString *)string;
 
 @end
+
+NS_ASSUME_NONNULL_END

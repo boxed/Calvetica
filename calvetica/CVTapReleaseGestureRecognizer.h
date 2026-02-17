@@ -9,6 +9,9 @@
 #import <UIKit/UIGestureRecognizerSubclass.h>
 #import "CVTapGestureRecognizer.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 /*!
     @class      CVTapReleaseGestureRecognizer
@@ -27,3 +30,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

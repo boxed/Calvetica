@@ -10,6 +10,9 @@
 #import "CVTodayBoxView.h"
 #import "CVColoredDotView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVJumpToDayButton : UIView
 
 #pragma mark - Properties
@@ -20,14 +23,16 @@
 @property (nonatomic, strong) CVTodayBoxView *todayBoxView;
 
 #pragma mark - IBOutlets
-@property (nonatomic, weak) IBOutlet UILabel     *label;
-@property (nonatomic, weak) IBOutlet UILabel     *monthTitleLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
-@property (nonatomic, weak) IBOutlet UIView      *barViewContainer;
-@property (nonatomic, weak) IBOutlet UIView      *dotViewContainer;
+@property (nonatomic, nullable, weak) IBOutlet UILabel     *label;
+@property (nonatomic, nullable, weak) IBOutlet UILabel     *monthTitleLabel;
+@property (nonatomic, nullable, weak) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic, nullable, weak) IBOutlet UIView      *barViewContainer;
+@property (nonatomic, nullable, weak) IBOutlet UIView      *dotViewContainer;
 
 #pragma mark - Methods
 - (void)drawDotWithOffset:(NSUInteger)offset shape:(CVColoredShape)shape rect:(CGRect)rect color:(UIColor *)color;
 - (void)clearDots;
 
 @end
+
+NS_ASSUME_NONNULL_END

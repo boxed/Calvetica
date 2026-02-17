@@ -8,6 +8,11 @@
 
 #import "CVLineButton.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVMoreButton : CVLineButton
 
 @end
+
+NS_ASSUME_NONNULL_END

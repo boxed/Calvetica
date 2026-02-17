@@ -7,6 +7,11 @@
 
 #import "CVWeekdayTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVWeekdayTableViewCell_iPhone : CVWeekdayTableViewCell
 @end
+
+NS_ASSUME_NONNULL_END

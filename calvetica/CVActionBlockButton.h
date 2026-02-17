@@ -8,14 +8,19 @@
 
 #import "CVRoundedButton.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @class CVAlertViewController;
 
 @interface CVActionBlockButton : CVRoundedButton
 
 @property (nonatomic, strong) void (^actionBlock)(void);
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) CVAlertViewController *alertViewController;
 
 + (CVActionBlockButton *)buttonWithTitle:(NSString *)title andActionBlock:(void (^)(void))tapActionBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

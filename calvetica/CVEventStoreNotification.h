@@ -21,8 +21,13 @@ typedef NS_ENUM(NSUInteger, CVNotificationChangeType) {
 };
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CVEventStoreNotification : NSObject
 @property (nonatomic, strong) EKCalendarItem           *calendarObject;
 @property (nonatomic, assign) CVNotificationSource     source;
 @property (nonatomic, assign) CVNotificationChangeType changeType;
 @end
+
+NS_ASSUME_NONNULL_END

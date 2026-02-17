@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 #define DEFAULT_MAX 31.0f
 #define DEFAULT_MIN 31.0f
@@ -33,3 +36,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

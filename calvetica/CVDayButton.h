@@ -11,6 +11,9 @@
 #import "EKEvent+Utilities.h"
 #import "CVColoredDotView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVDayButton : UIControl {
 }
@@ -26,3 +29,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,6 +10,9 @@
 #import "colors.h"
 #import "geometry.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 typedef NS_OPTIONS(NSUInteger, CVPopoverArrowDirection) {
 	CVPopoverArrowDirectionNone			= 0,
     CVPopoverArrowDirectionTopLeft		= 1UL << 0,
@@ -49,3 +52,5 @@ typedef NS_ENUM(NSUInteger, CVPopoverModalAttachToSide) {
 @property (nonatomic, strong) UIColor                 *backdropColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

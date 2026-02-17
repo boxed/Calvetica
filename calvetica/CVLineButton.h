@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 static CGFloat const CVStackedBarButtonSpacing  = 4;
 static CGFloat const CVStackedBarButtonDuration = 0.2;
@@ -21,3 +24,5 @@ static CGFloat const CVStackedBarButtonDuration = 0.2;
 - (void)setupPencil;
 - (void)redrawWithCompletion:(void (^)(void))completion;
 @end
+
+NS_ASSUME_NONNULL_END

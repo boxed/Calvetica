@@ -7,6 +7,9 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface EKEventStore (Shared)
 
 + (EKEventStore *)sharedStore;
@@ -16,3 +19,5 @@
 + (BOOL)isPermissionGranted;
 
 @end
+
+NS_ASSUME_NONNULL_END

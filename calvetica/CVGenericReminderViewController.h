@@ -8,6 +8,9 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVGenericReminderViewControllerResult) {
     CVGenericReminderViewControllerResultCancelled,
@@ -20,7 +23,7 @@ typedef NS_ENUM(NSUInteger, CVGenericReminderViewControllerResult) {
 
 @interface CVGenericReminderViewController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, weak) id<CVGenericReminderViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak) id<CVGenericReminderViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent *event;
 
 @end
@@ -31,3 +34,5 @@ typedef NS_ENUM(NSUInteger, CVGenericReminderViewControllerResult) {
 @required
 - (void)genericReminderViewController:(CVGenericReminderViewController *)controller didFinishWithResult:(CVGenericReminderViewControllerResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

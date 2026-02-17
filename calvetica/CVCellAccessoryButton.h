@@ -8,6 +8,9 @@
 
 #import "geometry.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 typedef NS_ENUM(NSUInteger, CVCellAccessoryButtonMode) {
     CVCellAccessoryButtonModeDefault,
     CVCellAccessoryButtonModeDelete
@@ -21,3 +24,5 @@ typedef NS_ENUM(NSUInteger, CVCellAccessoryButtonMode) {
 - (void)toggleMode;
 
 @end
+
+NS_ASSUME_NONNULL_END

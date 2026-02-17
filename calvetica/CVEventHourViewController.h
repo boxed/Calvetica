@@ -12,6 +12,9 @@
 #import "viewtagoffsets.h"
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVEventHourViewControllerMode) {
     CVEventHourViewControllerModeStartTime,
@@ -35,3 +38,5 @@ typedef NS_ENUM(NSUInteger, CVEventHourViewControllerMode) {
 - (instancetype)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military;
 
 @end
+
+NS_ASSUME_NONNULL_END

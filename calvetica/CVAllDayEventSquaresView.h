@@ -6,6 +6,10 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class CVCalendarItemShape;
 @protocol CVAllDayEventSquaresViewDelegate;
 
 
@@ -14,9 +18,9 @@
 
 
 #pragma mark - Properties
-@property (nonatomic, weak  ) id<CVAllDayEventSquaresViewDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVAllDayEventSquaresViewDelegate> delegate;
 @property (nonatomic, strong) NSDate                               *date;
-@property (nonatomic, copy  ) NSArray                              *squares;
+@property (nonatomic, copy  ) NSArray<CVCalendarItemShape *>                              *squares;
 
 
 #pragma mark - Methods
@@ -37,3 +41,5 @@
 - (void)allDaySquaresView:(CVAllDayEventSquaresView *)view wasLongPressedAtDate:(NSDate *)datePressed allDay:(BOOL)allDay withPlaceholder:(UIView *)placeholder;
 - (void)allDaySquaresView:(CVAllDayEventSquaresView *)view wasPressedOnEvent:(EKEvent *)event withPlaceholder:(UIView *)placeholder;
 @end
+
+NS_ASSUME_NONNULL_END

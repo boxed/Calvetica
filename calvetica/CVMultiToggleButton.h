@@ -10,11 +10,14 @@
 
 #import "CVViewButton.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVMultiToggleButton : CVViewButton
 
 @property (nonatomic, assign) NSInteger currentState;
-@property (nonatomic, copy  ) NSArray   *states;
+@property (nonatomic, copy  ) NSArray<NSString *>   *states;
 
 // Returns the button's currently displayed state.
 - (NSString *)currentStateAsString;
@@ -23,3 +26,5 @@
 - (NSInteger)nextState;
 
 @end
+
+NS_ASSUME_NONNULL_END

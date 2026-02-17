@@ -8,17 +8,20 @@
 
 #import "UITableViewCell+Nibs.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @protocol CVPeopleTableViewCellDelegate;
 
 
 @interface CVPeopleTableViewCell : UITableViewCell
-@property (nonatomic, weak)          id <CVPeopleTableViewCellDelegate> delegate;
-@property (nonatomic, weak) IBOutlet UILabel                            *personTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel                            *personStatusLabel;
-@property (nonatomic, weak) IBOutlet UIView                             *gestureHitArea;
-@property (nonatomic, weak) IBOutlet UIButton                           *chatButton;
-@property (nonatomic, weak) IBOutlet UIButton                           *emailButton;
+@property (nonatomic, nullable, weak)          id <CVPeopleTableViewCellDelegate> delegate;
+@property (nonatomic, nullable, weak) IBOutlet UILabel                            *personTitleLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel                            *personStatusLabel;
+@property (nonatomic, nullable, weak) IBOutlet UIView                             *gestureHitArea;
+@property (nonatomic, nullable, weak) IBOutlet UIButton                           *chatButton;
+@property (nonatomic, nullable, weak) IBOutlet UIButton                           *emailButton;
 @end
 
 
@@ -27,3 +30,5 @@
 - (void)cellChatButtonWasPressed:(id)button;
 - (void)cellEmailButtonWasPressed:(id)button;
 @end
+
+NS_ASSUME_NONNULL_END

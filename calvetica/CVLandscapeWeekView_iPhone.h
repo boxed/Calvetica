@@ -10,6 +10,9 @@
 
 #import "CVLandscapeWeekView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVLandscapeWeekView_iPhone : CVLandscapeWeekView
 
@@ -17,3 +20,5 @@
 - (void)openJumpToDateWithDate:(NSDate *)date;
 
 @end
+
+NS_ASSUME_NONNULL_END

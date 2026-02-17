@@ -8,6 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface EKEvent (RelativeToDay)
 - (NSDate *)startDateRelativeToDate:(NSDate *)date;
 - (BOOL)allDayRelativeToDate:(NSDate *)date;
@@ -18,3 +21,5 @@
 - (BOOL)startsOnSameDayAsDate:(NSDate *)dayDate;
 - (CGFloat)durationForDate:(NSDate *)date;
 @end
+
+NS_ASSUME_NONNULL_END

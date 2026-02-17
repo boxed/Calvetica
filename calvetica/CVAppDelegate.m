@@ -12,25 +12,15 @@
 #import "dictionarykeys.h"
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
+#import "CVSceneDelegate.h"
 
 
 @interface CVAppDelegate ()
 @property (nonatomic, assign) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
-@property (nonatomic, assign) BOOL isLaunching;
-@property (nonatomic, strong) NSTimer *refreshTimer;
 @end
 
 
 @implementation CVAppDelegate
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _isLaunching = YES;
-    }
-    return self;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -43,8 +33,6 @@
     }
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
-
-    self.window.tintColor = RGB(215, 0, 0);
 
     // Global dark mode appearance configuration for grouped table views
     [[UITableView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]]
@@ -63,6 +51,20 @@
     }];
 
     return YES;
+}
+
+#pragma mark - Scene Configuration
+
+- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options
+{
+    UISceneConfiguration *config = [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+    config.delegateClass = [CVSceneDelegate class];
+    if (PAD) {
+        config.storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    } else {
+        config.storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    }
+    return config;
 }
 
 #pragma mark - UNUserNotificationCenterDelegate
@@ -88,83 +90,6 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     [self handleSnoozeActionForNotification:userInfo];
 
     completionHandler();
-}
-
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options_
-{
-    NSString *action = [url host];
-
-    NSString *queryString           = [url query];
-    NSMutableDictionary *options    = [NSMutableDictionary new];
-    if ([queryString length] > 0) {
-        NSArray *pairs = [queryString componentsSeparatedByString:@"&"];
-        for (NSString *pair in pairs) {
-            NSArray *components = [pair componentsSeparatedByString:@"="];
-            if ([components count] == 2) {
-                NSString *key   = components[0];
-                NSString *value = [components[1] stringByRemovingPercentEncoding];
-                [options setObject:value forKey:key];
-            }
-        }
-        NSLog(@"%@", options);
-    }
-
-    if ([action isEqualToString:@"add"]) {
-        // get title
-        NSString *title         = options[@"title"];
-
-        // get date
-        NSString *dateString    = options[@"date"];
-        NSDate *date            = [NSDate date];
-        if ([dateString length] > 0) {
-            date = [NSDate mt_dateFromISOString:dateString];
-        }
-
-        CVRootViewController *rootViewController = (CVRootViewController *)_window.rootViewController;
-        [rootViewController showQuickAddWithTitle:title date:date];
-    }
-
-    return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    [self.refreshTimer invalidate];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [self setLocalNotifs];
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    if (!self.isLaunching) {
-        self.isLaunching = YES;
-
-        CVRootViewController *rvc = (CVRootViewController *)_window.rootViewController;
-
-        // check whether it's a new day, if so update the month buttons to reflect today
-        if (![rvc.todaysDate mt_isWithinSameDay:[NSDate date]]) {
-            rvc.todaysDate		= [NSDate date];
-            rvc.selectedDate	= [NSDate date];
-        }
-        [rvc refreshUIAnimated:YES];
-    }
-
-    // trigger a pull request for remote sources
-    [self refreshSources];
-    [self scheduleRefreshTimer];
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
 }
 
 
@@ -197,7 +122,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
             [CVNativeAlertView showWithTitle:title message:message soundName:soundName cancelButtonTitle:cancelTitle cancelButtonBlock:nil otherButtonTitle:otherTitle otherButtonBlock:^(void) {
 
                 // show the snooze dialogue for this event
-                CVRootViewController *rvc = (CVRootViewController *)self.window.rootViewController;
+                CVRootViewController *rvc = (CVRootViewController *)[CVAppDelegate mainWindow].rootViewController;
                 [rvc showSnoozeDialogForEvent:event];
 
             }];
@@ -226,7 +151,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
                 if ([event hasIdentifier:identifier]) {
 
                     // show the snooze dialogue for this event
-                    CVRootViewController *rvc = (CVRootViewController *)self.window.rootViewController;
+                    CVRootViewController *rvc = (CVRootViewController *)[CVAppDelegate mainWindow].rootViewController;
                     [rvc showSnoozeDialogForEvent:event];
 
                     break;
@@ -456,13 +381,25 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     }
 }
 
++ (UIWindow *)mainWindow
+{
+    for (UIScene *scene in [UIApplication sharedApplication].connectedScenes) {
+        if ([scene isKindOfClass:[UIWindowScene class]]) {
+            UIWindowScene *windowScene = (UIWindowScene *)scene;
+            for (UIWindow *window in windowScene.windows) {
+                if (window.isKeyWindow) return window;
+            }
+        }
+    }
+    return nil;
+}
+
 + (BOOL)hasNotch
 {
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return [[[UIApplication sharedApplication] delegate] window].safeAreaInsets.top > 20.0;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return [CVAppDelegate mainWindow].safeAreaInsets.top > 20.0;
     }
-
-    return false;
+    return NO;
 }
 
 @end

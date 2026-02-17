@@ -8,6 +8,9 @@
 
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVWelcomeViewControllerResult) {
     CVWelcomeViewControllerResultFAQ,
@@ -22,10 +25,12 @@ typedef NS_ENUM(NSUInteger, CVWelcomeViewControllerResult) {
 
 
 @interface CVWelcomeViewController : CVViewController
-@property (nonatomic, weak) id<CVWelcomeViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak) id<CVWelcomeViewControllerDelegate> delegate;
 @end
 
 
 @protocol CVWelcomeViewControllerDelegate <NSObject>
 - (void)welcomeController:(CVWelcomeViewController *)controller didFinishWithResult:(CVWelcomeViewControllerResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

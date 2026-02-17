@@ -13,6 +13,9 @@
 #import "CVQuickAddViewController.h"
 #import "CVJumpToDateViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVLandscapeWeekViewResult) {
     CVLandscapeWeekViewResultFinished,
@@ -32,11 +35,11 @@ typedef NS_ENUM(NSUInteger, CVLandscapeWeekViewResult) {
 
 
 #pragma mark - Properties
-@property (nonatomic, weak  )          id<CVLandscapeWeekViewDelegate> delegate;
-@property (nonatomic, weak  ) IBOutlet UITableView                     *weeksTable;
-@property (nonatomic, copy  )          NSArray                         *headerViews;
+@property (nonatomic, nullable, weak  )          id<CVLandscapeWeekViewDelegate> delegate;
+@property (nonatomic, nullable, weak  ) IBOutlet UITableView                     *weeksTable;
+@property (nonatomic, copy  )          NSArray<CVWeekdayTableHeaderView *>                         *headerViews;
 @property (nonatomic, strong)          NSDate                          *startDate;
-@property (nonatomic, weak  ) IBOutlet UILabel                         *monthAndYearLabel;
+@property (nonatomic, nullable, weak  ) IBOutlet UILabel                         *monthAndYearLabel;
 
 
 #pragma mark - Methods
@@ -58,3 +61,5 @@ typedef NS_ENUM(NSUInteger, CVLandscapeWeekViewResult) {
 @required
 - (void)landscapeWeekViewController:(CVLandscapeWeekView *)controller didFinishWithResult:(CVLandscapeWeekViewResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

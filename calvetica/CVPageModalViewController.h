@@ -8,12 +8,17 @@
 
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVPageModalViewController : CVViewController
 
-@property (nonatomic, weak  ) IBOutlet UIView           *modalViewContainer;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView           *modalViewContainer;
 @property (nonatomic, strong)          CVViewController *contentViewController;
 
 - (instancetype)initWithContentViewController:(CVViewController *)initContentViewController;
 
 @end
+
+NS_ASSUME_NONNULL_END

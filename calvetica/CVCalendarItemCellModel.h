@@ -7,6 +7,9 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CVCalendarItemCellModel : NSObject
 
 @property (nonatomic, strong) NSDate         *date;
@@ -22,3 +25,5 @@
 @property (nonatomic        ) BOOL           isToday;   // Whether this item is on today's date
 
 @end
+
+NS_ASSUME_NONNULL_END

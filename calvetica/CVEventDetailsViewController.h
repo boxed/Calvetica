@@ -30,6 +30,9 @@
 #import "CVViewController.h"
 #import "CVEventDetailsPeopleTableViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
     CVEventDetailsResultDeleted
@@ -41,7 +44,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 
 @interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate, CVEventDetailsPeopleTableViewControllerDelegate>
 
-@property (nonatomic, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
+@property (nonatomic, nullable, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
 @property (nonatomic, strong) UIViewController                               *rootController;
 @property (nonatomic, strong) EKEvent                                        *event;
 @property (nonatomic, strong) CVCalendarPickerTableViewController            *calendarTableViewController;
@@ -72,3 +75,5 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 - (void)eventDetailsViewController:(CVEventDetailsViewController *)controller didPushViewController:(CVViewController *)pushedController animated:(BOOL)animated;
 - (void)eventDetailsViewController:(CVEventDetailsViewController *)controller didFinishWithResult:(CVEventDetailsResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

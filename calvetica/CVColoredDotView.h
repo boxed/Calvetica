@@ -14,6 +14,9 @@ typedef NS_ENUM(NSUInteger, CVColoredShape) {
 };
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CVColoredDotViewDelegate;
 
 
@@ -21,3 +24,5 @@ typedef NS_ENUM(NSUInteger, CVColoredShape) {
 @property (nonatomic, strong) UIColor        *color;
 @property (nonatomic, assign) CVColoredShape shape;
 @end
+
+NS_ASSUME_NONNULL_END

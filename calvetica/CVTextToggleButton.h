@@ -8,6 +8,11 @@
 
 #import "CVViewButton.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVTextToggleButton : CVViewButton {}
 
 @end
+
+NS_ASSUME_NONNULL_END

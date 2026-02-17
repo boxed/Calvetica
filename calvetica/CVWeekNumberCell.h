@@ -6,9 +6,14 @@
 //
 #import "CVCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 #define WEEK_NUM_CELL_HEIGHT 30.0f
 
 
 @interface CVWeekNumberCell : CVCell
-@property (nonatomic, weak) IBOutlet UILabel *weekNumberLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *weekNumberLabel;
 @end
+
+NS_ASSUME_NONNULL_END

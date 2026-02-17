@@ -15,6 +15,9 @@
 #import "geometry.h"
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM (NSUInteger, CVAlarmPickerResult) {
     CVAlarmPickerResultCancelled,
@@ -27,7 +30,7 @@ typedef NS_ENUM (NSUInteger, CVAlarmPickerResult) {
 
 @interface CVAlarmPickerViewController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, weak  ) id<CVAlarmPickerViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVAlarmPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKCalendarItem                          *calendarItem;
 
 - (NSArray *)alarms;
@@ -49,5 +52,7 @@ typedef NS_ENUM (NSUInteger, CVAlarmPickerResult) {
 @interface CVAlarmPickerViewController ()
 @property (nonatomic, strong) NSMutableArray *buttons;
 @end
+
+NS_ASSUME_NONNULL_END
 
 

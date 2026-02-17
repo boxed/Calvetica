@@ -10,13 +10,18 @@
 #import "UITableViewCell+Nibs.h"
 #import "CVCheckButton.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVCalendarTableViewCell : UITableViewCell
 
 #pragma mark - IBOutlets
-@property (nonatomic, weak) IBOutlet CVColoredDotView *coloredDotView;
-@property (nonatomic, weak) IBOutlet UILabel *calendarTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *calendarTypeLabel;
-@property (nonatomic, weak) IBOutlet CVCheckButton *checkmarkImageButton;
+@property (nonatomic, nullable, weak) IBOutlet CVColoredDotView *coloredDotView;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *calendarTitleLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *calendarTypeLabel;
+@property (nonatomic, nullable, weak) IBOutlet CVCheckButton *checkmarkImageButton;
 @property (nonatomic, assign) BOOL disabled;
 
 @end
+
+NS_ASSUME_NONNULL_END

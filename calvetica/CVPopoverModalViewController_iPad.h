@@ -14,6 +14,9 @@
 #import "CVModalProtocol.h"
 #import "geometry.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVPopoverModalViewController_iPad : CVViewController <UIGestureRecognizerDelegate> {
     CGFloat                 keyboardAppearedModalSavedYCoord;
     CVPopoverArrowDirection keyboardAppearedArrowSavedDirection;
@@ -30,3 +33,5 @@
 - (void)keyboardWillHide;
 
 @end
+
+NS_ASSUME_NONNULL_END

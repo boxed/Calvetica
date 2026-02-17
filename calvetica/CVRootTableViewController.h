@@ -8,6 +8,9 @@
 #import "CVViewController.h"
 #import "CVEventCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVRootTableViewMode) {
     CVRootTableViewModeFull,
@@ -29,7 +32,7 @@ static CGFloat const CVRootTableViewReminderRowHeight   = 20;
                                                          UITableViewDelegate,
                                                          UITableViewDataSource>
 
-@property (nonatomic, weak  ) NSObject <CVRootTableViewControllerDelegate> *delegate;
+@property (nonatomic, nullable, weak  ) NSObject <CVRootTableViewControllerDelegate> *delegate;
 @property (nonatomic, strong) NSDate                                       *selectedDate;
 @property (nonatomic, strong) UITableView                                  *tableView;
 
@@ -80,3 +83,5 @@ static CGFloat const CVRootTableViewReminderRowHeight   = 20;
              tappedDeleteOnCell:(UITableViewCell *)cell
                    calendarItem:(EKCalendarItem *)calendarItem;
 @end
+
+NS_ASSUME_NONNULL_END

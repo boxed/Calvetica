@@ -8,6 +8,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @class CVTextView;
 
 @protocol CVTextViewDelegate <NSObject, UITextViewDelegate>
@@ -16,6 +19,8 @@
 @end
 
 @interface CVTextView : UITextView
-@property (nonatomic, weak) IBOutlet id<CVTextViewDelegate> cv_delegate;
+@property (nonatomic, nullable, weak) IBOutlet id<CVTextViewDelegate> cv_delegate;
 @end
+
+NS_ASSUME_NONNULL_END
 

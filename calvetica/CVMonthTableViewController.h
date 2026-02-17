@@ -9,17 +9,20 @@
 #import "CVTodayBoxView.h"
 #import "CVWeekTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @protocol CVMonthTableViewControllerDelegate;
 
 
 @interface CVMonthTableViewController : UITableViewController {}
 
-@property (nonatomic, weak  )          id<CVMonthTableViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVMonthTableViewControllerDelegate> delegate;
 @property (nonatomic, strong)          NSDate                                 *startDate;
 @property (nonatomic, strong)          NSDate                                 *selectedDate;
 @property (nonatomic, strong)          NSMutableArray                         *loadedCells;
-@property (nonatomic, weak  ) IBOutlet CVTodayBoxView                         *selectedDayView;
+@property (nonatomic, nullable, weak  ) IBOutlet CVTodayBoxView                         *selectedDayView;
 
 - (void)reloadTableView;
 - (void)redrawVisibleCells;
@@ -44,3 +47,5 @@
                           onDate:(NSDate *)date
                  placeholderView:(UIView *)placeholder;
 @end
+
+NS_ASSUME_NONNULL_END

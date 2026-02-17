@@ -10,6 +10,9 @@
 #import "CVViewButton.h"
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @protocol CVNumericKeyPadDelegate;
 
@@ -20,13 +23,13 @@
 // Inits the keypad with the view it should be located at.
 - (instancetype)initWithTargetView:(UIView *)view;
 
-@property (nonatomic, weak  )          id<CVNumericKeyPadDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVNumericKeyPadDelegate> delegate;
 @property (nonatomic, assign)          NSInteger                         maxValue;
 @property (nonatomic, assign)          NSInteger                         minValue;
 @property (nonatomic, strong)          UIView                      *targetView;
 
-@property (nonatomic, weak  ) IBOutlet UILabel                     *keypadValue;
-@property (nonatomic, weak  ) IBOutlet UIView                      *keypadView;
+@property (nonatomic, nullable, weak  ) IBOutlet UILabel                     *keypadValue;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView                      *keypadView;
 
 // Returns the inputted number as an integer.
 - (int)numberAsInteger;
@@ -68,3 +71,5 @@
 - (void)keyPadWillClose:(CVNumericKeyPadViewController *)keyPad;
 
 @end
+
+NS_ASSUME_NONNULL_END

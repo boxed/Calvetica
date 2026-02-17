@@ -8,6 +8,9 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVSubHourPickerViewControllerResult) {
     CVSubHourPickerViewControllerResultCancelled
@@ -18,7 +21,7 @@ typedef NS_ENUM(NSUInteger, CVSubHourPickerViewControllerResult) {
 
 
 @interface CVSubHourPickerViewController : CVViewController <CVModalProtocol>
-@property (nonatomic, weak  ) id<CVSubHourPickerViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVSubHourPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSDate                                    *evenHourDate;
 - (instancetype)initWithDate:(NSDate *)date;
 - (IBAction)subHourButtonWasTapped:(id)sender;
@@ -29,3 +32,5 @@ typedef NS_ENUM(NSUInteger, CVSubHourPickerViewControllerResult) {
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker didFinishWithResult:(CVSubHourPickerViewControllerResult)result;
 - (void)subHourPicker:(CVSubHourPickerViewController *)subHourPicker didPickDate:(NSDate *)date;
 @end
+
+NS_ASSUME_NONNULL_END

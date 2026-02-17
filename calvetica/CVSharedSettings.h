@@ -9,6 +9,9 @@
 #import "MYSSharedSettings.h"
 #import "CVRootTableViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
     CVLocalNotificationTypeNone,
@@ -34,14 +37,14 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
 @property (nonatomic, assign) BOOL showWeekNumbers;
 
 // calendars
-@property (nonatomic, strong) NSArray      *hiddenEventCalendarIdentifiers;
+@property (nonatomic, strong) NSArray<NSString *>      *hiddenEventCalendarIdentifiers;
 @property (nonatomic, strong) NSString     *defaultEventCalendarIdentifier;
-@property (nonatomic, strong) NSDictionary *customCalendarColors;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *customCalendarColors;
 
-@property (nonatomic, strong) NSArray *defaultEventAlarms;
-@property (nonatomic, strong) NSArray *defaultAllDayEventAlarms;
-@property (nonatomic, strong) NSArray *defaultReminderAlarms;
-@property (nonatomic, strong) NSArray *defaultAllDayReminderAlarms;
+@property (nonatomic, strong) NSArray<NSNumber *> *defaultEventAlarms;
+@property (nonatomic, strong) NSArray<NSNumber *> *defaultAllDayEventAlarms;
+@property (nonatomic, strong) NSArray<NSNumber *> *defaultReminderAlarms;
+@property (nonatomic, strong) NSArray<NSNumber *> *defaultAllDayReminderAlarms;
 
 // international
 @property (nonatomic, strong) NSString *timeZoneName;
@@ -50,8 +53,8 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
 // appearance
 @property (nonatomic, assign) int     dayStartHour;
 @property (nonatomic, assign) int     dayEndHour;
-@property (nonatomic, strong) NSArray *eventDetailsSubtitleTextPriority;
-@property (nonatomic, strong) NSArray *eventDetailsOrdering;
+@property (nonatomic, strong) NSArray<NSDictionary *> *eventDetailsSubtitleTextPriority;
+@property (nonatomic, strong) NSArray<NSDictionary *> *eventDetailsOrdering;
 
 
 // misc
@@ -64,3 +67,5 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
 @property (nonatomic, assign) CVRootTableViewMode localRootTableViewMode;
 
 @end
+
+NS_ASSUME_NONNULL_END

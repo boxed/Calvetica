@@ -6,9 +6,14 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CVWeekdayTableHeaderView : UIView
 
 @property (nonatomic, strong)          NSDate  *date;
-@property (nonatomic, weak  ) IBOutlet UILabel *weekNumberLabel;
+@property (nonatomic, nullable, weak  ) IBOutlet UILabel *weekNumberLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

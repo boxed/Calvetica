@@ -7,16 +7,19 @@
 
 #import "CVCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @protocol CVSearchEventCellDelegate;
 
 @interface CVSearchEventCell : CVCell
 
 
 #pragma mark - Properties
-@property (nonatomic, weak  )          id<CVSearchEventCellDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVSearchEventCellDelegate> delegate;
 @property (nonatomic, strong)          EKEvent                       *event;
-@property (nonatomic, weak  ) IBOutlet UIImageView                   *tinyIcon;
-@property (nonatomic, weak  ) IBOutlet UILabel                       *foundTextLabel;
+@property (nonatomic, nullable, weak  ) IBOutlet UIImageView                   *tinyIcon;
+@property (nonatomic, nullable, weak  ) IBOutlet UILabel                       *foundTextLabel;
 
 
 #pragma mark - Methods
@@ -32,3 +35,5 @@
 @optional
 - (void)searchCellWasTapped:(CVSearchEventCell *)cell;
 @end
+
+NS_ASSUME_NONNULL_END

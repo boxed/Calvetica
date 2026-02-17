@@ -8,6 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface EKCalendarItem (Identity)
 @property (nonatomic, strong, readonly) NSString *identifier;
 @property (nonatomic, assign, readonly) BOOL isEvent;
@@ -16,3 +19,5 @@
 - (BOOL)isEqualToCalendarItem:(EKCalendarItem *)calendarItem;
 - (BOOL)hasIdentifier:(NSString *)identifier;
 @end
+
+NS_ASSUME_NONNULL_END

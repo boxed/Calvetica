@@ -8,6 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface EKEventStore (Calendars)
 
 - (NSArray *)mt_allCalendars;
@@ -17,3 +20,5 @@
 - (NSArray *)editableCalendarsForEntityType:(EKEntityType)entityType;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -11,14 +11,17 @@
 #import "animations.h"
 #import "UITableViewCell+Nibs.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *redSubtitleLabel;
-@property (nonatomic, weak) IBOutlet CVCellAccessoryButton *cellAccessoryButton;
-@property (nonatomic, weak) IBOutlet CVColoredDotView *coloredDotView;
-@property (nonatomic, weak) IBOutlet UIView *gestureHitArea;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *redSubtitleLabel;
+@property (nonatomic, nullable, weak) IBOutlet CVCellAccessoryButton *cellAccessoryButton;
+@property (nonatomic, nullable, weak) IBOutlet CVColoredDotView *coloredDotView;
+@property (nonatomic, nullable, weak) IBOutlet UIView *gestureHitArea;
 @property (nonatomic, assign) BOOL isEmpty;
 
 - (void)resetAccessoryButton;
@@ -31,3 +34,5 @@
 - (IBAction)accessoryButtonWasTapped:(id)sender;
 
 @end
+
+NS_ASSUME_NONNULL_END

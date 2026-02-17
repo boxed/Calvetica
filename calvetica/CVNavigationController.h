@@ -8,13 +8,16 @@
 
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVNavigationController : CVViewController
 
 #pragma mark - UINavigationController "like" properties
-@property (nonatomic, weak            ) IBOutlet UIView           *contentViewContainer;
+@property (nonatomic, nullable, weak            ) IBOutlet UIView           *contentViewContainer;
 @property (nonatomic, strong, readonly)          CVViewController *topViewController;
-@property (nonatomic, copy            )          NSArray          *viewControllers;
+@property (nonatomic, copy            )          NSArray<CVViewController *>          *viewControllers;
 @property (nonatomic, strong, readonly)          CVViewController *visibleViewController;
 
 
@@ -23,3 +26,5 @@
 - (void)pushViewController:(CVViewController *)viewController animated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END

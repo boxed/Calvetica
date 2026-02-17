@@ -12,6 +12,9 @@ typedef NS_ENUM(NSUInteger, CVCalendarItemCellSwipedDirection) {
 };
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CVCalendarItemCellDelegate <NSObject>
 
 - (void)calendarItemCell:(UITableViewCell *)cell
@@ -36,3 +39,5 @@ typedef NS_ENUM(NSUInteger, CVCalendarItemCellSwipedDirection) {
      tappedDeleteForItem:(EKCalendarItem *)calendarItem;
 
 @end
+
+NS_ASSUME_NONNULL_END

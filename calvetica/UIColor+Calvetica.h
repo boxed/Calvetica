@@ -7,6 +7,9 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIColor (Calvetica)
 
 @property (nonatomic, strong) NSString *mys_title;
@@ -20,3 +23,5 @@
 - (UIColor *)closestColorInCalveticaPalette;
 
 @end
+
+NS_ASSUME_NONNULL_END

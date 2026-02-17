@@ -9,6 +9,9 @@
 #import "CVCell.h"
 #import "CVCalendarItemCellDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 
 
@@ -17,7 +20,7 @@
 
 @interface CVEventCell : CVCell
 
-@property (nonatomic, weak  ) id<CVCalendarItemCellDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVCalendarItemCellDelegate> delegate;
 @property (nonatomic, strong) NSDate                         *date;
 @property (nonatomic, strong) EKEvent                        *event;
 @property (nonatomic        ) BOOL                           isAllDay;
@@ -30,3 +33,5 @@
 - (void)centerTimeLabelsVertically;
 
 @end
+
+NS_ASSUME_NONNULL_END

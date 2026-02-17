@@ -8,6 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_OPTIONS(NSUInteger, MYSEKEventStoreReminderFetchOptions) {
     MYSEKEventStoreReminderFetchOptionsNone                = 0,
@@ -35,3 +38,5 @@ typedef NS_OPTIONS(NSUInteger, MYSEKEventStoreReminderFetchOptions) {
 - (void)clearRemindersCacheAndReloadWithCompletion:(void (^)(void))completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

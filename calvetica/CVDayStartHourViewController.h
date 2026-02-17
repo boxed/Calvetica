@@ -6,6 +6,9 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CVDayStartEndHoursViewControllerDelegate;
 
 
@@ -16,8 +19,8 @@
 
 
 #pragma mark - Public Properties
-@property (nonatomic, weak) id<CVDayStartEndHoursViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray                               *hoursArray;
+@property (nonatomic, nullable, weak) id<CVDayStartEndHoursViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray<NSNumber *>                               *hoursArray;
 
 
 #pragma mark - Public Methods
@@ -27,3 +30,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,9 @@
 
 #import "times.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface NSDate (ViewHelpers)
 
 - (NSUInteger)numberOfCalendarRowsInCurrentMonth;
@@ -23,3 +26,5 @@
 - (NSDate *)dateForLastVisibleCalendarSquare;
 
 @end
+
+NS_ASSUME_NONNULL_END

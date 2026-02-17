@@ -8,6 +8,12 @@
 
 #import "CVRootTableViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@class CVCalendarItemCellModel;
+
 @interface CVRootTableViewController ()
-@property (nonatomic, strong) NSMutableArray *cellModelArray;
+@property (nonatomic, strong) NSMutableArray<CVCalendarItemCellModel *> *cellModelArray;
 @end
+
+NS_ASSUME_NONNULL_END

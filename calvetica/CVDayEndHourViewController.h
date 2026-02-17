@@ -5,6 +5,9 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CVDayEndHourViewControllerDelegate;
 
 
@@ -15,8 +18,8 @@
 
 
 #pragma mark - Public Properties
-@property (nonatomic, weak) id<CVDayEndHourViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray                         *hoursArray;
+@property (nonatomic, nullable, weak) id<CVDayEndHourViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray<NSNumber *>                         *hoursArray;
 
 
 #pragma mark - Public Methods
@@ -26,3 +29,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

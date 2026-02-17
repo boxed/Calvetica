@@ -9,6 +9,9 @@
 #import "CVRoundedToggleButton.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVSearchScopePopoverOption) {
     CVSearchScopePopoverOption3Months,
@@ -24,14 +27,14 @@ typedef NS_ENUM(NSUInteger, CVSearchScopePopoverOption) {
 
 @interface CVSearchScopePopoverController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, weak  )          id<CVSearchScopePopoverControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVSearchScopePopoverControllerDelegate> delegate;
 @property (nonatomic, assign)          CVSearchScopePopoverOption                 currentScope;
 @property (nonatomic, strong)          UIView                                     *targetView;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                      *threeMonthsButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                      *sixMonthsButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                      *oneYearButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                      *fiveYearButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                      *everythingButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                      *threeMonthsButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                      *sixMonthsButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                      *oneYearButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                      *fiveYearButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                      *everythingButton;
 
 - (IBAction)threeMonthButtonWasTapped:(id)sender;
 - (IBAction)sixMonthButtonWasTapped:(id)sender;
@@ -49,3 +52,5 @@ typedef NS_ENUM(NSUInteger, CVSearchScopePopoverOption) {
 - (void)searchScopeController:(CVSearchScopePopoverController *)controller didSelectOption:(CVSearchScopePopoverOption)option;
 - (void)searchScopeControllerDidRequestToClose:(CVSearchScopePopoverController *)controller;
 @end
+
+NS_ASSUME_NONNULL_END

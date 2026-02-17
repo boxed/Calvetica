@@ -7,8 +7,13 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CVTableSectionHeaderView : UIView
 
-@property (nonatomic, weak) IBOutlet UILabel *weekdayLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *weekdayLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

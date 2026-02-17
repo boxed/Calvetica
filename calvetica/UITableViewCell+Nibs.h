@@ -7,7 +7,12 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UITableViewCell (Nibs)
 + (id)cellWithStyle:(UITableViewCellStyle)style forTableView:(UITableView *)tableView;
 + (id)cellForTableView:(UITableView *)tableView;
 @end
+
+NS_ASSUME_NONNULL_END

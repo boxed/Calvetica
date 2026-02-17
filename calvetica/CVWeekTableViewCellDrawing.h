@@ -7,13 +7,17 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class CVCalendarItemShape;
 @protocol CVWeekTableViewCellDrawingDataSource;
 
 
 @interface CVWeekTableViewCellDrawing : UIView
 
-@property (nonatomic, weak) id<CVWeekTableViewCellDrawingDataSource> delegate;
-@property (nonatomic, copy) NSArray                                  *calendarItems;
+@property (nonatomic, nullable, weak) id<CVWeekTableViewCellDrawingDataSource> delegate;
+@property (nonatomic, copy) NSArray<CVCalendarItemShape *>                                  *calendarItems;
 
 - (void)draw;
 
@@ -23,3 +27,5 @@
 @protocol CVWeekTableViewCellDrawingDataSource <NSObject>
 - (NSDate *)startDateForDrawingView:(CVWeekTableViewCellDrawing *)view;
 @end
+
+NS_ASSUME_NONNULL_END

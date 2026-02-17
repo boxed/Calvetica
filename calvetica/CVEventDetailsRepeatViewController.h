@@ -12,6 +12,9 @@
 #import "CVViewController.h"
 #import "strings.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 
 
@@ -46,25 +49,25 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsRepeatResult) {
 
 
 #pragma mark - Properties
-@property (nonatomic, weak            ) NSObject<CVEventDetailsRecurrenceDelegate> *delegate;
+@property (nonatomic, nullable, weak            ) NSObject<CVEventDetailsRecurrenceDelegate> *delegate;
 @property (nonatomic, strong          ) NSDate                                     *startDate;
 @property (nonatomic, copy            ) EKRecurrenceRule                           *initialRecurrenceRule;
-@property (nonatomic, copy            ) NSArray                                    *daySymbols;
-@property (nonatomic, copy            ) NSArray                                    *monthSymbols;
+@property (nonatomic, copy            ) NSArray<NSString *>                                    *daySymbols;
+@property (nonatomic, copy            ) NSArray<NSString *>                                    *monthSymbols;
 @property (nonatomic,         readonly) NSInteger                                  yearCount;
 
 
 #pragma mark IBOutlets
-@property (nonatomic, weak) IBOutlet UITableView         *dateDayTableView;
-@property (nonatomic, weak) IBOutlet UITableView         *dateMonth;
-@property (nonatomic, weak) IBOutlet UITableView         *dateYear;
-@property (nonatomic, weak) IBOutlet UIView              *dateView;
-@property (nonatomic, weak) IBOutlet UILabel             *endAfterLabel;
-@property (nonatomic, weak) IBOutlet UIView              *endAfterView;
-@property (nonatomic, weak) IBOutlet CVMultiToggleButton *endTypeButton;
-@property (nonatomic, weak) IBOutlet UILabel             *repeatTimesLabel;
-@property (nonatomic, weak) IBOutlet CVViewButton        *frequencyButton;
-@property (nonatomic, weak) IBOutlet CVViewButton        *endCountButton;
+@property (nonatomic, nullable, weak) IBOutlet UITableView         *dateDayTableView;
+@property (nonatomic, nullable, weak) IBOutlet UITableView         *dateMonth;
+@property (nonatomic, nullable, weak) IBOutlet UITableView         *dateYear;
+@property (nonatomic, nullable, weak) IBOutlet UIView              *dateView;
+@property (nonatomic, nullable, weak) IBOutlet UILabel             *endAfterLabel;
+@property (nonatomic, nullable, weak) IBOutlet UIView              *endAfterView;
+@property (nonatomic, nullable, weak) IBOutlet CVMultiToggleButton *endTypeButton;
+@property (nonatomic, nullable, weak) IBOutlet UILabel             *repeatTimesLabel;
+@property (nonatomic, nullable, weak) IBOutlet CVViewButton        *frequencyButton;
+@property (nonatomic, nullable, weak) IBOutlet CVViewButton        *endCountButton;
 
 
 #pragma mark - Methods
@@ -133,3 +136,5 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsRepeatResult) {
 - (void)eventDetailsRepeatViewController:(CVEventDetailsRepeatViewController *)controller didFinish:(CVEventDetailsRepeatResult)result;
 
 @end
+
+NS_ASSUME_NONNULL_END

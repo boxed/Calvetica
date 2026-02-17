@@ -8,6 +8,11 @@
 
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@class CVJumpToDayButton;
+
+
 
 
 @protocol CVEventDayViewControllerProtocol <NSObject>
@@ -22,19 +27,19 @@
 
 @interface CVEventDayViewController : CVViewController
 
-@property (nonatomic, weak  ) id<CVEventDayViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVEventDayViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSDate                               *initialDate;
 @property (nonatomic, strong) NSDate                               *date;
-@property (nonatomic, strong) NSMutableArray                       *dayButtons;
-@property (nonatomic, strong) NSMutableArray                       *weekButtons;
+@property (nonatomic, strong) NSMutableArray<CVJumpToDayButton *>                       *dayButtons;
+@property (nonatomic, strong) NSMutableArray<CVJumpToDayButton *>                       *weekButtons;
 
-@property (nonatomic, weak  ) IBOutlet UITableView  *yearTableView;
-@property (nonatomic, weak  ) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak  ) IBOutlet UIView       *containerView;
-@property (nonatomic, weak  ) IBOutlet UIView       *dayButtonsContainer;
-@property (nonatomic, weak  ) IBOutlet UIView       *monthButtonsContainer;
-@property (nonatomic, weak  ) IBOutlet UIView       *weekButtonsContainer;
-@property (nonatomic, weak  ) IBOutlet UIView       *weekdayLabelContainer;
+@property (nonatomic, nullable, weak  ) IBOutlet UITableView  *yearTableView;
+@property (nonatomic, nullable, weak  ) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView       *containerView;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView       *dayButtonsContainer;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView       *monthButtonsContainer;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView       *weekButtonsContainer;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView       *weekdayLabelContainer;
 
 - (void)containerWasSwiped:(UISwipeGestureRecognizer *)gesture;
 - (NSInteger)yearFromTableIndex:(NSInteger)index;
@@ -51,3 +56,5 @@
 @required
 - (void)eventDayViewController:(CVEventDayViewController *)controller didUpdateDate:(NSDate *)date;
 @end
+
+NS_ASSUME_NONNULL_END

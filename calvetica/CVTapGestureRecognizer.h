@@ -7,6 +7,9 @@
 
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 #define DEFAULT_MAX_TAP_DURATION 0.10f
 
 /*!
@@ -36,3 +39,5 @@
 - (void)tapOccurred;
 
 @end
+
+NS_ASSUME_NONNULL_END

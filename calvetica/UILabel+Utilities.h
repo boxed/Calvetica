@@ -9,6 +9,9 @@
 #import "colors.h"
 #import "CVDebug.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface UILabel (Utilities)
 
 
@@ -31,3 +34,5 @@
 - (void)setDarkGrayNoShadow;
 
 @end
+
+NS_ASSUME_NONNULL_END

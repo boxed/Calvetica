@@ -9,6 +9,9 @@
 #import <MessageUI/MessageUI.h>
 #import "CVDebug.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @protocol CVContactUsViewControllerDelegate;
 
 
@@ -19,3 +22,5 @@
 - (void)appStoreButtonWasPressed;
 
 @end
+
+NS_ASSUME_NONNULL_END

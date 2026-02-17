@@ -1,5 +1,8 @@
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CVCalendarItemShape : NSObject
 
 @property (nonatomic, strong) EKCalendarItem *calendarItem;
@@ -14,6 +17,8 @@
 @property (nonatomic, assign) CGFloat        width;
 @property (nonatomic, assign) CGFloat        height;
 @property (nonatomic, assign) NSUInteger     *days;
-@property (nonatomic, strong) NSMutableArray *sharedEvents;
+@property (nonatomic, strong) NSMutableArray<CVCalendarItemShape *> *sharedEvents;
 
 @end
+
+NS_ASSUME_NONNULL_END

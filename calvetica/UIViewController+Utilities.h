@@ -7,8 +7,13 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController (UIViewController)
 
 - (CGRect)fullScreenRectBasedOnOrientation;
 
 @end
+
+NS_ASSUME_NONNULL_END

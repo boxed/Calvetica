@@ -11,6 +11,9 @@
 #import "CVViewController.h"
 #import "CVNativeAlertView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 typedef NS_ENUM(NSUInteger, CVEventDetailsLocationResult) {
     CVEventDetailsLocationResultDone,
     CVEventDetailsLocationResultSaved,
@@ -23,13 +26,13 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsLocationResult) {
     BOOL showAlerts;
 }
 
-@property (nonatomic, weak  )          id<CVEventDetailsLocationViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVEventDetailsLocationViewControllerDelegate> delegate;
 @property (nonatomic, strong)          EKEvent                                          *event;
 @property (nonatomic, strong)          CLGeocoder                                       *geocoder;
 
-@property (nonatomic, weak  ) IBOutlet UITextView                                       *locationTextView;
-@property (nonatomic, weak  ) IBOutlet MKMapView                                        *mapView;
-@property (nonatomic, weak  ) IBOutlet UIActivityIndicatorView                          *activityIndicator;
+@property (nonatomic, nullable, weak  ) IBOutlet UITextView                                       *locationTextView;
+@property (nonatomic, nullable, weak  ) IBOutlet MKMapView                                        *mapView;
+@property (nonatomic, nullable, weak  ) IBOutlet UIActivityIndicatorView                          *activityIndicator;
 
 
 #pragma mark - Methods
@@ -47,3 +50,5 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsLocationResult) {
 @required
 - (void)eventDetailsLocationViewController:(CVEventDetailsLocationViewController *)controller didFinish:(CVEventDetailsLocationResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface NSMutableArray (Stack)
 - (void)push:(id)obj;
@@ -15,3 +18,5 @@
 - (id)shift;
 - (void)unshift:(id)obj;
 @end
+
+NS_ASSUME_NONNULL_END

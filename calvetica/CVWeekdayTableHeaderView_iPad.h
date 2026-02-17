@@ -7,5 +7,10 @@
 
 #import "CVWeekdayTableHeaderView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVWeekdayTableHeaderView_iPad : CVWeekdayTableHeaderView
 @end
+
+NS_ASSUME_NONNULL_END

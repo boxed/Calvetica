@@ -12,6 +12,9 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 typedef NS_ENUM(NSUInteger, CVQuickAddResult) {
     CVQuickAddResultCancelled,
     CVQuickAddResultSaved,
@@ -24,7 +27,7 @@ typedef NS_ENUM(NSUInteger, CVQuickAddResult) {
 
 @interface CVQuickAddViewController : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UITextFieldDelegate, CVCalendarPickerViewControllerDelegate>
 
-@property (nonatomic, weak  ) id<CVQuickAddViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVQuickAddViewControllerDelegate> delegate;
 @property (nonatomic, copy  ) NSString                             *defaultTitle;
 @property (nonatomic, strong) NSDate                               *startDate;
 @property (nonatomic, strong) NSDate                               *endDate;
@@ -47,3 +50,5 @@ typedef NS_ENUM(NSUInteger, CVQuickAddResult) {
 @protocol CVQuickAddViewControllerDelegate <NSObject>
 - (void)quickAddViewController:(CVQuickAddViewController *)controller didCompleteWithAction:(CVQuickAddResult)action;
 @end
+
+NS_ASSUME_NONNULL_END

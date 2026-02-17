@@ -12,6 +12,9 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVSearchViewControllerResult) {
     CVSearchViewControllerResultFinished
@@ -27,7 +30,7 @@ typedef NS_ENUM(NSUInteger, CVSearchViewControllerResult) {
                                                                 UITextFieldDelegate,
                                                                 CVSearchEventCellDelegate,
                                                                 CVSearchScopePopoverControllerDelegate>
-@property (nonatomic, weak) id<CVSearchViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak) id<CVSearchViewControllerDelegate> delegate;
 - (void)searchForText:(NSString *)text;
 @end
 
@@ -38,3 +41,5 @@ typedef NS_ENUM(NSUInteger, CVSearchViewControllerResult) {
 - (void)searchViewController:(CVSearchViewController *)controller didFinishWithResult:(CVSearchViewControllerResult)result;
 - (void)searchViewController:(CVSearchViewController *)controller tappedCell:(CVSearchEventCell *)cell;
 @end
+
+NS_ASSUME_NONNULL_END

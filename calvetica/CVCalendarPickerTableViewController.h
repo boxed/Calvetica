@@ -8,15 +8,18 @@
 
 #import "CVCalendarTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @protocol CVCalendarPickerTableViewControllerDelegate;
 
 
 @interface CVCalendarPickerTableViewController : UITableViewController
 
-@property (nonatomic, weak) id<CVCalendarPickerTableViewControllerDelegate> delegate;
-@property (nonatomic, copy) NSArray *editableCalendars;
-@property (nonatomic, copy) NSArray *allCalendars;
+@property (nonatomic, nullable, weak) id<CVCalendarPickerTableViewControllerDelegate> delegate;
+@property (nonatomic, copy) NSArray<EKCalendar *> *editableCalendars;
+@property (nonatomic, copy) NSArray<EKCalendar *> *allCalendars;
 @property (nonatomic, assign) BOOL showUneditableCalendars;
 
 - (NSArray *)calendars;
@@ -31,3 +34,5 @@
 @optional
 - (void)calendarPicker:(CVCalendarPickerTableViewController *)calendarPicker didPickCalendar:(EKCalendar *)calendar;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,8 +8,13 @@
 
 #import "times.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVEventDefaultAlarmsViewController : UITableViewController
-@property (nonatomic, strong) NSMutableArray *selectedAlarms;
-@property (nonatomic, strong) NSMutableArray *alarms;
+@property (nonatomic, strong) NSMutableArray<NSNumber *> *selectedAlarms;
+@property (nonatomic, strong) NSMutableArray<NSDictionary *> *alarms;
 @end
+
+NS_ASSUME_NONNULL_END

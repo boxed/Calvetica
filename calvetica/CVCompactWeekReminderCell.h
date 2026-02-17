@@ -8,6 +8,9 @@
 #import "CVColoredDotView.h"
 #import "CVStrikethroughLabel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVCompactWeekReminderCell : UITableViewCell
 
 @property (nonatomic, strong) CVStrikethroughLabel *titleLabel;
@@ -22,3 +25,5 @@
 - (void)updateBackgroundColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

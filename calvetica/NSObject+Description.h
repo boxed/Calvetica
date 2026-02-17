@@ -1,3 +1,6 @@
+
+NS_ASSUME_NONNULL_BEGIN
+
 //
 //  NSObject+Description.h
 //  calvetica
@@ -39,3 +42,5 @@
 //@end
 
 #endif
+
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,9 @@
 #import "UITableViewCell+Nibs.h"
 #import "sounds.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVCustomAlertSoundsViewController : UITableViewController <AVAudioPlayerDelegate> {
 @private
@@ -18,7 +21,7 @@
 
 #pragma mark - Public Properties
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) NSMutableArray *audioFileNamesArray;
+@property (nonatomic, strong) NSMutableArray<NSDictionary *> *audioFileNamesArray;
 
 
 #pragma mark - Public Methods
@@ -31,3 +34,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

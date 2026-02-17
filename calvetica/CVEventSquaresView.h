@@ -6,14 +6,17 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CVEventSquaresViewDelegate;
 
 
 @interface CVEventSquaresView : UIView
 
-@property (nonatomic, weak  ) id<CVEventSquaresViewDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVEventSquaresViewDelegate> delegate;
 @property (nonatomic, strong) NSDate                         *date;
-@property (nonatomic, copy  ) NSArray                        *squares;
+@property (nonatomic, copy  ) NSArray<CVCalendarItemShape *>                        *squares;
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer *)gesture;
 - (IBAction)handleLongPressGesture:(UILongPressGestureRecognizer *)gesture;
@@ -25,3 +28,5 @@
 - (void)squaresView:(CVEventSquaresView *)view wasLongPressedAtDate:(NSDate *)datePressed allDay:(BOOL)allDay withPlaceholder:(UIView *)placeholder;
 - (void)squaresView:(CVEventSquaresView *)view wasPressedOnEvent:(EKEvent *)event withPlaceholder:(UIView *)placeholder;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -13,6 +13,9 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVManageCalendarsResult) {
     CVManageCalendarsResultClosed,
@@ -21,17 +24,18 @@ typedef NS_ENUM(NSUInteger, CVManageCalendarsResult) {
 };
 
 
+@class CVCalendarCellModel;
 @protocol CVManageCalendarsViewControllerDelegate;
 
 
 @interface CVManageCalendarsViewController : CVViewController <CVModalProtocol, UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak  )          id<CVManageCalendarsViewControllerDelegate> delegate;
-@property (nonatomic, strong)          NSMutableArray                              *cellDataHolderArray;
+@property (nonatomic, nullable, weak  )          id<CVManageCalendarsViewControllerDelegate> delegate;
+@property (nonatomic, strong)          NSMutableArray<CVCalendarCellModel *>                              *cellDataHolderArray;
 @property (nonatomic, assign)          BOOL                                        modified;
 
-@property (nonatomic, weak  ) IBOutlet UITableView                                 *tableView;
-@property (nonatomic, weak  ) IBOutlet UILabel                                     *controllerTitle;
+@property (nonatomic, nullable, weak  ) IBOutlet UITableView                                 *tableView;
+@property (nonatomic, nullable, weak  ) IBOutlet UILabel                                     *controllerTitle;
 
 - (IBAction)cancelButtonWasTapped:(id)sender;
 
@@ -43,3 +47,5 @@ typedef NS_ENUM(NSUInteger, CVManageCalendarsResult) {
 @protocol CVManageCalendarsViewControllerDelegate <NSObject>
 - (void)manageCalendarsViewController:(CVManageCalendarsViewController *)controller didFinishWithResult:(CVManageCalendarsResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

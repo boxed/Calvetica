@@ -8,6 +8,9 @@
 
 #import <EventKit/EventKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface EKCalendar (Identity)
 @property (nonatomic, strong, readonly) NSString *calendarExternalIdentifier;
 @property (nonatomic, strong, readonly) NSString *accountName;
@@ -15,3 +18,5 @@
 
 + (instancetype)calendarWithExternalIdentifier:(NSString *)externalIdentifier;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,9 @@
 #import "UITableViewCell+Nibs.h"
 #import "CVSettings.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @protocol CVBadgeOrAlertsViewControllerDelegate;
 
 
@@ -29,3 +32,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

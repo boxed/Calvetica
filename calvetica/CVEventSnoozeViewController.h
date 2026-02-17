@@ -9,6 +9,9 @@
 #import "times.h"
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVEventSnoozeResult) {
     CVEventSnoozeResultCancelled,
@@ -21,7 +24,7 @@ typedef NS_ENUM(NSUInteger, CVEventSnoozeResult) {
 
 
 @interface CVEventSnoozeViewController : CVViewController
-@property (nonatomic, weak  ) id<CVEventSnoozeViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  ) id<CVEventSnoozeViewControllerDelegate> delegate;
 @property (nonatomic, strong) EKEvent                                 *event;
 @end
 
@@ -31,3 +34,5 @@ typedef NS_ENUM(NSUInteger, CVEventSnoozeResult) {
 @required
 - (void)eventSnoozeViewController:(CVEventSnoozeViewController *)controller didFinishWithResult:(CVEventSnoozeResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,9 @@
 #import "CVRoundedToggleButton.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVViewOptionsPopoverOption) {
     CVViewOptionsPopoverOptionFullDayView,
@@ -26,16 +29,16 @@ typedef NS_ENUM(NSUInteger, CVViewOptionsPopoverOption) {
 
 
 @interface CVViewOptionsPopoverViewController : CVViewController <CVModalProtocol>
-@property (nonatomic, weak  )          id<CVViewOptionsPopoverViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVViewOptionsPopoverViewControllerDelegate> delegate;
 @property (nonatomic, assign)          CVViewOptionsPopoverOption                     currentViewMode;
 @property (nonatomic, strong)          UIView                                         *targetView;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *fullDayButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *agendaDayButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *weekButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *detailedWeekButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedToggleButton                          *compactWeekButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *searchButton;
-@property (nonatomic, weak  ) IBOutlet CVRoundedButton                                *inboxButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                          *fullDayButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                          *agendaDayButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                          *weekButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                          *detailedWeekButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedToggleButton                          *compactWeekButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedButton                                *searchButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVRoundedButton                                *inboxButton;
 @property (nonatomic, assign)          NSInteger                                       pendingInboxCount;
 @end
 
@@ -46,3 +49,5 @@ typedef NS_ENUM(NSUInteger, CVViewOptionsPopoverOption) {
                  byPressingButton:(CVRoundedToggleButton *)button;
 - (void)viewOptionsViewControllerDidRequestToClose:(CVViewOptionsPopoverViewController *)viewOptionsViewController;
 @end
+
+NS_ASSUME_NONNULL_END

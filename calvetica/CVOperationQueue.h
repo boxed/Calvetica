@@ -7,6 +7,9 @@
 //
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CVOperationQueue : NSObject
 
 @property dispatch_queue_t backgroundQueue;
@@ -16,3 +19,5 @@
 + (dispatch_queue_t)localNotifQueue;
 
 @end
+
+NS_ASSUME_NONNULL_END

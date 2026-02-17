@@ -17,6 +17,9 @@
 #import "CVNavigationController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 typedef NS_ENUM(NSUInteger, CVEventResult) {
     CVEventResultCancelled,
     CVEventResultSaved,
@@ -36,18 +39,18 @@ typedef NS_ENUM(NSUInteger, CVEventMode) {
 
 @interface CVEventViewController : CVNavigationController <CVEventDayViewControllerDelegate, CVEventDetailsViewControllerDelegate, CVModalProtocol>
 
-@property (nonatomic, weak  )          id<CVEventViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id<CVEventViewControllerDelegate> delegate;
 @property (nonatomic, strong)          EKEvent                           *event;
 @property (nonatomic, assign)          CVEventMode                       mode;
 
-@property (nonatomic, weak  ) IBOutlet CVTextToggleButton                *dayBarButton;
-@property (nonatomic, weak  ) IBOutlet CVTextToggleButton                *hourBarButton;
-@property (nonatomic, weak  ) IBOutlet CVTextToggleButton                *detailsBarButton;
-@property (nonatomic, weak  ) IBOutlet UIControl                         *cancelButton;
-@property (nonatomic, weak  ) IBOutlet UIControl                         *saveButton;
-@property (nonatomic, weak  ) IBOutlet UIControl                         *closeButton;
-@property (nonatomic, weak  ) IBOutlet UILabel                           *subDetailHeaderTitle;
-@property (nonatomic, weak  ) IBOutlet UIControl                         *applyButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVTextToggleButton                *dayBarButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVTextToggleButton                *hourBarButton;
+@property (nonatomic, nullable, weak  ) IBOutlet CVTextToggleButton                *detailsBarButton;
+@property (nonatomic, nullable, weak  ) IBOutlet UIControl                         *cancelButton;
+@property (nonatomic, nullable, weak  ) IBOutlet UIControl                         *saveButton;
+@property (nonatomic, nullable, weak  ) IBOutlet UIControl                         *closeButton;
+@property (nonatomic, nullable, weak  ) IBOutlet UILabel                           *subDetailHeaderTitle;
+@property (nonatomic, nullable, weak  ) IBOutlet UIControl                         *applyButton;
 
 - (instancetype)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode;
 
@@ -61,3 +64,5 @@ typedef NS_ENUM(NSUInteger, CVEventMode) {
 @required
 - (void)eventViewController:(CVEventViewController *)controller didFinishWithResult:(CVEventResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

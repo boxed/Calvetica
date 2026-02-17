@@ -8,17 +8,20 @@
 #import "CVCalendarPickerTableViewController.h"
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @protocol CVCalendarPickerViewControllerDelegate;
 
 
 @interface CVCalendarPickerViewController : CVViewController <CVCalendarPickerTableViewControllerDelegate, CVModalProtocol>
 
-@property (nonatomic, weak  )          id <CVCalendarPickerViewControllerDelegate> delegate;
+@property (nonatomic, nullable, weak  )          id <CVCalendarPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong)          CVCalendarPickerTableViewController                *calendarPickerController;
-@property (nonatomic, weak  ) IBOutlet UIView                                             *eventCalendarBlock;
-@property (nonatomic, weak  ) IBOutlet UITableView                                        *calendarsTableView;
-@property (nonatomic, weak  ) IBOutlet UIScrollView                                       *scrollView;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView                                             *eventCalendarBlock;
+@property (nonatomic, nullable, weak  ) IBOutlet UITableView                                        *calendarsTableView;
+@property (nonatomic, nullable, weak  ) IBOutlet UIScrollView                                       *scrollView;
 
 - (void)adjustLayoutOfTableView;
 
@@ -31,3 +34,5 @@
 @required
 - (void)calendarPickerController:(CVCalendarPickerViewController *)controller didPickCalendar:(EKCalendar *)calendar;
 @end
+
+NS_ASSUME_NONNULL_END

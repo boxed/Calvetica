@@ -7,6 +7,9 @@
 
 #import "CVViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface UIApplication (Utilities)
 
 + (void)showAlertWithTitle:(NSString *)title
@@ -19,6 +22,8 @@
 - (CVViewController *)topmostSystemPresentedViewController;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 
 

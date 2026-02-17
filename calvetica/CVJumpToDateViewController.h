@@ -10,6 +10,9 @@
 #import "CVViewController.h"
 #import "CVModalProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 typedef NS_ENUM(NSUInteger, CVJumpToDateResult) {
     CVJumpToDateResultCancelled,
@@ -22,9 +25,9 @@ typedef NS_ENUM(NSUInteger, CVJumpToDateResult) {
 
 @interface CVJumpToDateViewController : CVViewController <CVModalProtocol>
 
-@property (nonatomic, weak  )          id<CVJumpToDateViewControllerDelegate>             delegate;
+@property (nonatomic, nullable, weak  )          id<CVJumpToDateViewControllerDelegate>             delegate;
 @property (nonatomic, strong)          CVViewController<CVEventDayViewControllerProtocol> *contentViewController;
-@property (nonatomic, weak  ) IBOutlet UIView                                             *contentControllerContainer;
+@property (nonatomic, nullable, weak  ) IBOutlet UIView                                             *contentControllerContainer;
 @property (nonatomic, strong)          NSDate                                             *chosenDate;
 
 - (instancetype)initWithContentViewController:(CVViewController *)contentViewController;
@@ -36,3 +39,5 @@ typedef NS_ENUM(NSUInteger, CVJumpToDateResult) {
 @protocol CVJumpToDateViewControllerDelegate <NSObject>
 - (void)jumpToDateViewController:(CVJumpToDateViewController *)controller didFinishWithResult:(CVJumpToDateResult)result;
 @end
+
+NS_ASSUME_NONNULL_END

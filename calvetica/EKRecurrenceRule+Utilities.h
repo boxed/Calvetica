@@ -9,6 +9,9 @@
 
 #import "strings.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface EKRecurrenceRule (Utilities)
 
@@ -21,3 +24,5 @@
 - (NSString *)recurrenceEndNaturalDescription;
 
 @end
+
+NS_ASSUME_NONNULL_END

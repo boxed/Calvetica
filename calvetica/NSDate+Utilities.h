@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface NSDate (Utilities)
 
 #pragma mark - STRINGS
@@ -32,3 +35,5 @@
 - (NSString *)stringWithWeekDateSpanDotWeekNumber;
 
 @end
+
+NS_ASSUME_NONNULL_END

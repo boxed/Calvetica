@@ -49,11 +49,6 @@
 		9B29FE7D1401A95C009926FB /* SCEventDetailsAllDayAlarmPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B29FE781401A95C009926FB /* SCEventDetailsAllDayAlarmPicker.xib */; };
 		9B29FE7F1401A95C009926FB /* SCEventDetailsAlarmPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B29FE7B1401A95C009926FB /* SCEventDetailsAlarmPicker.xib */; };
 		9B34709513A918D400B08F00 /* CVParticipantCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B34709413A918D400B08F00 /* CVParticipantCellModel.m */; };
-		AA0000010000000000000003 /* CVEventDetailsPeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000002 /* CVEventDetailsPeopleTableViewController.m */; };
-		AA0000010000000000000006 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000004 /* Contacts.framework */; };
-		AA0000010000000000000007 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000005 /* ContactsUI.framework */; };
-		BB0000010000000000000003 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000001 /* WebKit.framework */; };
-		BB0000010000000000000004 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000002 /* UserNotifications.framework */; };
 		9B562EEA1385C6DF001E5EA5 /* CVPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */; };
 		9B562EED1385C788001E5EA5 /* CVPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B562EEC1385C788001E5EA5 /* CVPeopleTableViewCell.m */; };
 		9B5CFA21141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CFA20141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m */; };
@@ -103,9 +98,17 @@
 		9BEFC80013BC317D001CB080 /* piano_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9BEFC7FF13BC317D001CB080 /* piano_1.caf */; };
 		9BFE2CB013C6490D00360D5C /* CVNativeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */; };
 		9BFFA1C313A1F2BF0012112E /* UITableView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */; };
+		AA0000010000000000000003 /* CVEventDetailsPeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000002 /* CVEventDetailsPeopleTableViewController.m */; };
+		AA0000010000000000000006 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000004 /* Contacts.framework */; };
+		AA0000010000000000000007 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000005 /* ContactsUI.framework */; };
 		AA0000011INBOX000000000001 /* CVInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000011INBOX000000000003 /* CVInboxViewController.m */; };
+		AEB164362F45023E0064A3FB /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000004 /* Contacts.framework */; };
+		AEB164372F45023E0064A3FB /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000005 /* ContactsUI.framework */; };
 		AEBD2DB52753B9A000E685FE /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBD2DB42753B9A000E685FE /* Colors.m */; };
 		B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */; };
+		BB0000010000000000000003 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000001 /* WebKit.framework */; };
+		BB0000010000000000000004 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000002 /* UserNotifications.framework */; };
+		BB0000020000000000000001 /* CVSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000003 /* CVSceneDelegate.m */; };
 		C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2027EAE1360B4B6002E58BF /* CVRootViewController.m */; };
 		C206985A1396F657005C8192 /* geometry.c in Sources */ = {isa = PBXBuildFile; fileRef = C20698581396F656005C8192 /* geometry.c */; };
 		C20DAACB181080D500F0E7A2 /* NSObject+Null.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DAACA181080D500F0E7A2 /* NSObject+Null.m */; };
@@ -409,12 +412,6 @@
 		9B29FE7B1401A95C009926FB /* SCEventDetailsAlarmPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCEventDetailsAlarmPicker.xib; sourceTree = "<group>"; };
 		9B34709313A918D400B08F00 /* CVParticipantCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVParticipantCellModel.h; sourceTree = "<group>"; };
 		9B34709413A918D400B08F00 /* CVParticipantCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVParticipantCellModel.m; sourceTree = "<group>"; };
-		AA0000010000000000000001 /* CVEventDetailsPeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsPeopleTableViewController.h; sourceTree = "<group>"; };
-		AA0000010000000000000002 /* CVEventDetailsPeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsPeopleTableViewController.m; sourceTree = "<group>"; };
-		AA0000010000000000000004 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
-		AA0000010000000000000005 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
-		BB0000010000000000000001 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		BB0000010000000000000002 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVPeopleTableViewCell.xib; sourceTree = "<group>"; };
 		9B562EEB1385C788001E5EA5 /* CVPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPeopleTableViewCell.h; sourceTree = "<group>"; };
 		9B562EEC1385C788001E5EA5 /* CVPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVPeopleTableViewCell.m; sourceTree = "<group>"; };
@@ -478,9 +475,17 @@
 		9BFE2CAF13C6490C00360D5C /* CVNativeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVNativeAlertView.m; sourceTree = "<group>"; };
 		9BFFA1C113A1F2BF0012112E /* UITableView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Utilities.h"; sourceTree = "<group>"; };
 		9BFFA1C213A1F2BF0012112E /* UITableView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Utilities.m"; sourceTree = "<group>"; };
+		AA0000010000000000000001 /* CVEventDetailsPeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventDetailsPeopleTableViewController.h; sourceTree = "<group>"; };
+		AA0000010000000000000002 /* CVEventDetailsPeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsPeopleTableViewController.m; sourceTree = "<group>"; };
+		AA0000010000000000000004 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		AA0000010000000000000005 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		AA0000011INBOX000000000002 /* CVInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVInboxViewController.h; sourceTree = "<group>"; };
 		AA0000011INBOX000000000003 /* CVInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVInboxViewController.m; sourceTree = "<group>"; };
 		AEBD2DB42753B9A000E685FE /* Colors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
+		BB0000010000000000000001 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		BB0000010000000000000002 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		BB0000020000000000000002 /* CVSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVSceneDelegate.h; sourceTree = "<group>"; };
+		BB0000020000000000000003 /* CVSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVSceneDelegate.m; sourceTree = "<group>"; };
 		C2027EAD1360B4B6002E58BF /* CVRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRootViewController.h; sourceTree = "<group>"; };
 		C2027EAE1360B4B6002E58BF /* CVRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootViewController.m; sourceTree = "<group>"; };
 		C2027EB11360C405002E58BF /* EKEventStore+Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+Shared.h"; sourceTree = "<group>"; };
@@ -899,8 +904,8 @@
 				C2E2974C133419A900FA7638 /* Foundation.framework in Frameworks */,
 				C24113BA135E4ED000A51A78 /* EventKit.framework in Frameworks */,
 				C2E2974D133419A900FA7638 /* CoreGraphics.framework in Frameworks */,
-				AA0000010000000000000006 /* Contacts.framework in Frameworks */,
-				AA0000010000000000000007 /* ContactsUI.framework in Frameworks */,
+				AEB164362F45023E0064A3FB /* Contacts.framework in Frameworks */,
+				AEB164372F45023E0064A3FB /* ContactsUI.framework in Frameworks */,
 				C22B0C4213BB85F700455F47 /* libxml2.dylib in Frameworks */,
 				C22B0C4313BB85F700455F47 /* libicucore.dylib in Frameworks */,
 				C22B0C4613BB867500455F47 /* CoreData.framework in Frameworks */,
@@ -1993,6 +1998,8 @@
 			children = (
 				C2E29734133419A900FA7638 /* CVAppDelegate.h */,
 				C2E29735133419A900FA7638 /* CVAppDelegate.m */,
+				BB0000020000000000000002 /* CVSceneDelegate.h */,
+				BB0000020000000000000003 /* CVSceneDelegate.m */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -2645,7 +2652,6 @@
 				C2E2971E133419A900FA7638 /* Frameworks */,
 				C2E2971F133419A900FA7638 /* Resources */,
 				C2E51AFF17F3C6560058BB32 /* Bump Build Number */,
-				42473320FDE4615B6CDB2DA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2843,24 +2849,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		42473320FDE4615B6CDB2DA8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh",
-				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-calvetica/Pods-calvetica-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8B56164618FD53E8D9BE9495 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2916,6 +2904,7 @@
 				C21AD4761810B2F70061B7C7 /* CVEventStoreNotification.m in Sources */,
 				C2E29733133419A900FA7638 /* main.m in Sources */,
 				C2E29736133419A900FA7638 /* CVAppDelegate.m in Sources */,
+				BB0000020000000000000001 /* CVSceneDelegate.m in Sources */,
 				C2E29768133419E900FA7638 /* EKCalendar+Store.m in Sources */,
 				C2E29769133419E900FA7638 /* EKEvent+Utilities.m in Sources */,
 				C2027EAF1360B4B6002E58BF /* CVRootViewController.m in Sources */,

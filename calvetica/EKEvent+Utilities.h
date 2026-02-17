@@ -3,6 +3,9 @@
 #define MIN_EVENT_DURATION 36000 // 10 hours
 
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface EKEvent (Utilities)
 
 @property (nonatomic, strong) NSDate *startingDate;
@@ -43,3 +46,5 @@
 - (NSString *)iCalString;
 
 @end
+
+NS_ASSUME_NONNULL_END

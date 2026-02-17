@@ -8,6 +8,9 @@
 
 #import "CVEventStoreNotification.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 // notification key
 extern NSString *const CVEventStoreChangedNotification;
 
@@ -17,3 +20,5 @@ extern NSString *const CVEventStoreChangedNotification;
 - (void)listenForNotificationAboutCalendarItem:(EKCalendarItem *)calendarItem
                                     changeType:(CVNotificationChangeType)type;
 @end
+
+NS_ASSUME_NONNULL_END

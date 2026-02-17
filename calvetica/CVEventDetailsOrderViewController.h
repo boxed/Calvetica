@@ -8,12 +8,17 @@
 
 #import "UITableViewCell+Nibs.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVEventDetailsOrderViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *detailsOrderArray;
+@property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *detailsOrderArray;
 
 
 + (NSMutableArray *)standardDetailsOrderingArray;
 
 @end
+
+NS_ASSUME_NONNULL_END

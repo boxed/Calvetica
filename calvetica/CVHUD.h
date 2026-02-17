@@ -13,10 +13,15 @@
 #import "UILabel+Utilities.h"
 #import "CVDebug.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface CVHUD : UIView
 
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, nullable, weak) IBOutlet UILabel *titleLabel;
 
 - (void)presentBezel;
 
 @end
+
+NS_ASSUME_NONNULL_END

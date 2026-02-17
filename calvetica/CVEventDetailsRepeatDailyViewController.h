@@ -8,6 +8,11 @@
 
 #import "CVEventDetailsRepeatViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface CVEventDetailsRepeatDailyViewController : CVEventDetailsRepeatViewController
 @end
+
+NS_ASSUME_NONNULL_END
