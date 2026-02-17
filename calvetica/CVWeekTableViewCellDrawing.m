@@ -419,14 +419,16 @@
     
     
     // DIMENSIONS
-    
+
+    BOOL mac = IS_MAC;
     CGFloat boxWidth                = floorf(self.frame.size.width / (float)MTDateConstantDaysInWeek);
     CGFloat topPadding              = 3.0f;
-    
+
     CGFloat barSidePadding          = 2.0f;
     CGFloat barSpacing              = 1.0f;
-    CGFloat barHeight               = 12;
+    CGFloat barHeight               = mac ? MAC_MONTH_VIEW_BAR_HEIGHT : 12;
     CGFloat barHeightWithSpacing    = barHeight + barSpacing;
+    CGFloat eventFontSize           = mac ? MAC_MONTH_VIEW_EVENT_FONT_SIZE : 9.0f;
     
     
     
@@ -538,8 +540,8 @@
         textFrame.size.width -= 10.0f;
 
 		NSString *title = [e.calendarItem mys_title];
-        [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
-        
+        [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize] lineBreakMode:NSLineBreakByTruncatingTail];
+
         for (NSUInteger day = 0; day < 7; day++) {
             if (e.days[day] == 1) {
                 eventsDrawnPerDay[day]++;
@@ -550,8 +552,8 @@
     
 
     CGFloat dotSidePadding          = 5.0f;
-    CGFloat dotSpacing              = 5.0f;
-    CGFloat dotRadius               = 6.0f;
+    CGFloat dotSpacing              = mac ? 7.0f : 5.0f;
+    CGFloat dotRadius               = mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6.0f;
     CGFloat paddingBelowBars        = 3.0f;
     CGFloat dotHeightWithSpacing    = dotRadius + dotSpacing;
     
@@ -565,9 +567,9 @@
     memset(fullDays, 0, MTDateConstantDaysInWeek * sizeof(NSUInteger));
     
     for (CVCalendarItemShape *e in dots) {
-        
-        e.width = 6;
-        e.height = 6;
+
+        e.width = mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6;
+        e.height = mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6;
         
         for (NSUInteger day = 0; day < 7; day++) {
 
@@ -600,7 +602,7 @@
                 NSUInteger eventsLeftToday = totalEventsPerDay[day] - eventsDrawnPerDay[day];
                 if (eventsLeftToday > 0) {
                     NSString *title = [NSString stringWithFormat:@"%lu more...", (unsigned long)eventsLeftToday];
-                    [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];                    
+                    [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize]];
                 }
                 
                 fullDays[day] = 1;
@@ -646,11 +648,11 @@
             textFrame.size.width = boxWidth - boxFrame.size.width - (barSpacing * 2.0f);
 
             NSString *title = [e.calendarItem mys_title];
-            [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f] lineBreakMode:NSLineBreakByTruncatingTail];
+            [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize] lineBreakMode:NSLineBreakByTruncatingTail];
 
             CGRect textRect = [title boundingRectWithSize:CGSizeMake(textFrame.size.width, 1000)
                                                   options:0
-                                               attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:9.0] }
+                                               attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:eventFontSize] }
                                                   context:nil];
 
             CGContextSetShouldAntialias(context, NO);

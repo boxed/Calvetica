@@ -47,6 +47,8 @@
                               detailsDictionary:@"Location" hidden:NO],
                              [CVEventSubtitleTextPriorityViewController
                               detailsDictionary:@"People" hidden:NO],
+                             [CVEventSubtitleTextPriorityViewController
+                              detailsDictionary:@"Video Link" hidden:NO],
                              nil];
     return array;
 }
@@ -60,9 +62,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     if (PREFS.eventDetailsSubtitleTextPriority) {
-        self.subtitleTextPriorityArray = [PREFS.eventDetailsSubtitleTextPriority mutableCopy];
+        self.subtitleTextPriorityArray = [[self reconciledSubtitleTextPriorityArray] mutableCopy];
     }
     else {
         self.subtitleTextPriorityArray = [CVEventSubtitleTextPriorityViewController standardSubtitleTextPriorityArray];
@@ -215,6 +217,57 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
+}
+
+
+#pragma mark - Private
+
+- (BOOL)isASubtitleDetail:(NSDictionary *)detail
+{
+    NSArray *standardArray = [CVEventSubtitleTextPriorityViewController standardSubtitleTextPriorityArray];
+    for (NSDictionary *dict in standardArray) {
+        if ([[detail objectForKey:@"TitleKey"] isEqualToString:[dict objectForKey:@"TitleKey"]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)subtitleDetailIsSaved:(NSDictionary *)detail
+{
+    NSArray *savedArray = PREFS.eventDetailsSubtitleTextPriority;
+    for (NSDictionary *dict in savedArray) {
+        if ([[detail objectForKey:@"TitleKey"] isEqualToString:[dict objectForKey:@"TitleKey"]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSArray *)reconciledSubtitleTextPriorityArray
+{
+    NSMutableArray *savedArray  = [PREFS.eventDetailsSubtitleTextPriority mutableCopy];
+    NSArray *standardArray      = [CVEventSubtitleTextPriorityViewController standardSubtitleTextPriorityArray];
+
+    if (savedArray) {
+        for (NSDictionary *dict in standardArray) {
+            if (![self subtitleDetailIsSaved:dict]) {
+                [savedArray addObject:dict];
+            }
+        }
+
+        for (NSDictionary *dict in [savedArray copy]) {
+            if (![self isASubtitleDetail:dict]) {
+                [savedArray removeObject:dict];
+            }
+        }
+    }
+    else {
+        savedArray = [standardArray mutableCopy];
+        PREFS.eventDetailsSubtitleTextPriority = standardArray;
+    }
+
+    return savedArray;
 }
 
 

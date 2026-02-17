@@ -7,8 +7,8 @@
 //
 
 #import <MessageUI/MessageUI.h>
-#import <AddressBook/AddressBook.h>
-#import <AddressBookUI/AddressBookUI.h>
+#import <Contacts/Contacts.h>
+#import <ContactsUI/ContactsUI.h>
 #import <EventKitUI/EventKitUI.h>
 #import "CVTextView.h"
 #import "CVButton.h"
@@ -28,6 +28,7 @@
 #import "SCEventDetailsAllDayAlarmPicker.h"
 #import "SCEventDetailsAlarmPicker.h"
 #import "CVViewController.h"
+#import "CVEventDetailsPeopleTableViewController.h"
 
 
 typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
@@ -38,7 +39,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 @protocol CVEventDetailsViewControllerDelegate;
 
 
-@interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate>
+@interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate, CVEventDetailsPeopleTableViewControllerDelegate>
 
 @property (nonatomic, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
 @property (nonatomic, strong) UIViewController                               *rootController;
@@ -47,6 +48,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 @property (nonatomic, strong) CVSlideLockControl                             *deleteSlideLock;
 @property (nonatomic, strong) SCEventDetailsAlarmPicker                      *alarmPicker;
 @property (nonatomic, strong) SCEventDetailsAllDayAlarmPicker                *allDayAlarmPicker;
+@property (nonatomic, strong) CVEventDetailsPeopleTableViewController        *peopleTableViewController;
 
 - (id)initWithEvent:(EKEvent *)initEvent;
 

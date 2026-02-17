@@ -40,9 +40,11 @@
                                detailsDictionary:@"Repeat" hidden:NO],
                              [CVEventDetailsOrderViewController 
                                detailsDictionary:@"People" hidden:NO],
-                             [CVEventDetailsOrderViewController 
+                             [CVEventDetailsOrderViewController
                                detailsDictionary:@"Location" hidden:NO],
-                             [CVEventDetailsOrderViewController 
+                             [CVEventDetailsOrderViewController
+                               detailsDictionary:@"Video Link" hidden:NO],
+                             [CVEventDetailsOrderViewController
                                detailsDictionary:@"Share" hidden:NO],
                              [CVEventDetailsOrderViewController 
                                detailsDictionary:@"Delete" hidden:NO],

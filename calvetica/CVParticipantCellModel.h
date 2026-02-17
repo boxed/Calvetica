@@ -12,6 +12,6 @@
 @property (nonatomic, copy  ) NSString      *email;
 @property (nonatomic, copy  ) NSArray       *telephoneNumbers;
 @property (nonatomic, strong) EKParticipant *participant;
-@property (nonatomic, strong) NSNumber      *recordID;
+@property (nonatomic, copy  ) NSString      *contactIdentifier;
 
 @end

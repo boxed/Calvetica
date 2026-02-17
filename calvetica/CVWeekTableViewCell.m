@@ -112,17 +112,20 @@
 {
     // Update font sizes
     if (PAD) {
+        BOOL mac = IS_MAC;
         for (NSInteger i = 0; i < 7; i++) {
             NSInteger num = i + 100;
             UILabel *label = (UILabel *)[self viewWithTag:num];
             UIInterfaceOrientation orientation = self.window.rootViewController.interfaceOrientation;
             if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                label.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
-                _monthLabel.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT];
+                CGFloat fontSize = mac ? MAC_MONTH_VIEW_FONT_SIZE_PORTRAIT : IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT;
+                label.font = [UIFont systemFontOfSize:fontSize];
+                _monthLabel.font = [UIFont systemFontOfSize:fontSize];
             }
             else {
-                label.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
-                _monthLabel.font = [UIFont systemFontOfSize:IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE];
+                CGFloat fontSize = mac ? MAC_MONTH_VIEW_FONT_SIZE_LANDSCAPE : IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE;
+                label.font = [UIFont systemFontOfSize:fontSize];
+                _monthLabel.font = [UIFont systemFontOfSize:fontSize];
             }
         }
     }

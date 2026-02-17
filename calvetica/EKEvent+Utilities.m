@@ -405,13 +405,18 @@
     return self.notes;
 }
 
-- (NSString *)stringWithPeople 
+- (NSString *)stringWithPeople
 {
     NSMutableString *peopleString = [NSMutableString string];
     for(EKParticipant *attendee in self.attendees){
         [peopleString appendFormat:@"%@, ", attendee.name];
     }
     return [peopleString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+}
+
+- (NSString *)stringWithVideoLink
+{
+    return [self.URL absoluteString];
 }
 
 - (NSString *)naturalDescription 

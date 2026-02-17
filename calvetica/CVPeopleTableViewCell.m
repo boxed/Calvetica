@@ -11,13 +11,21 @@
 
 @implementation CVPeopleTableViewCell
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
+    [super awakeFromNib];
+
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(cellWasSwiped:)];
     swipeGesture.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     [_gestureHitArea addGestureRecognizer:swipeGesture];
 
-    [super awakeFromNib];
+    _personTitleLabel.textColor = calTextColor();
+    _personStatusLabel.textColor = calSecondaryText();
+
+    [_chatButton setImage:[[_chatButton imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [_emailButton setImage:[[_emailButton imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    _chatButton.tintColor = calSecondaryText();
+    _emailButton.tintColor = calSecondaryText();
 }
 
 - (IBAction)cellWasSwiped:(id)sender 

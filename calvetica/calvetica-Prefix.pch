@@ -19,6 +19,17 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+static inline BOOL isMacApp(void) {
+    if (@available(iOS 14.0, *)) {
+        if ([[NSProcessInfo processInfo] isiOSAppOnMac]) return YES;
+    }
+    if (@available(iOS 13.0, *)) {
+        if ([[NSProcessInfo processInfo] isMacCatalystApp]) return YES;
+    }
+    return NO;
+}
+#define IS_MAC (isMacApp())
 	#import <EventKit/EventKit.h>
 	#import <CoreData/CoreData.h>
 

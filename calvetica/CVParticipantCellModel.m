@@ -18,7 +18,7 @@
         _participant = nil;
         _email = nil;
         _telephoneNumbers = nil;
-        _recordID = nil;
+        _contactIdentifier = nil;
     }
     return self;
 }

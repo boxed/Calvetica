@@ -178,6 +178,14 @@
                         break;
                     }
                 }
+
+                else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Video Link"]) {
+                    BOOL hidden = [[dict objectForKey:@"HiddenKey"] boolValue];
+                    if (!hidden && _event.URL != nil) {
+                        subtitleText = [_event stringWithVideoLink];
+                        break;
+                    }
+                }
             }
         }
         

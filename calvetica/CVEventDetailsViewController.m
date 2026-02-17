@@ -15,7 +15,7 @@
 
 
 
-@interface CVEventDetailsViewController () <CVTimeZoneViewControllerDelegate>
+@interface CVEventDetailsViewController () <CVTimeZoneViewControllerDelegate, CNContactViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIView                *eventTitleBlock;
 @property (nonatomic, weak) IBOutlet UIView                *eventCalendarBlock;
@@ -52,6 +52,11 @@
 @property (nonatomic, weak) IBOutlet CVRoundedButton       *shareButtonSMS;
 
 @property (nonatomic, weak) IBOutlet CVRoundedButton       *timeZoneButton;
+
+@property (nonatomic, strong) UITableView                  *eventPeopleTableView;
+
+@property (nonatomic, strong) UIView                       *eventVideoLinkBlock;
+@property (nonatomic, strong) CVRoundedButton              *videoLinkButton;
 @end
 
 
@@ -80,6 +85,8 @@
     self.eventNotesTextView.delegate        = nil;
     self.eventRepeatTextView.delegate       = nil;
     self.eventLocationTextView.delegate     = nil;
+    self.eventPeopleTableView.delegate      = nil;
+    self.eventPeopleTableView.dataSource    = nil;
 }
 
 #pragma mark - View lifecycle
@@ -99,6 +106,19 @@
         [_addAttendeesButton setTitle:@"Does not support attendees" forState:UIControlStateDisabled];
     }
 
+
+    // people block
+    self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController alloc] initWithEvent:self.event];
+    self.peopleTableViewController.delegate = self;
+    self.eventPeopleTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.eventPeopleTableView.scrollEnabled = NO;
+    self.eventPeopleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.eventPeopleTableView.rowHeight = 42;
+    self.eventPeopleTableView.backgroundColor = [UIColor clearColor];
+    self.peopleTableViewController.tableView = self.eventPeopleTableView;
+    self.eventPeopleTableView.delegate = self.peopleTableViewController;
+    self.eventPeopleTableView.dataSource = self.peopleTableViewController;
+    [self.eventPeopleBlock addSubview:self.eventPeopleTableView];
 
     // set up table view delegate objects
 
@@ -153,6 +173,33 @@
     [self setAvailability:self.event.availability];
 
 	self.shareButtonSMS.hidden = ![MFMessageComposeViewController canSendText];
+
+    // video link block
+    {
+        CGFloat blockWidth = self.contentScrollView.bounds.size.width;
+        self.eventVideoLinkBlock = [[UIView alloc] initWithFrame:CGRectMake(0, 0, blockWidth, 73)];
+        self.eventVideoLinkBlock.hidden = YES;
+
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, blockWidth - 30, 20)];
+        headerLabel.text = @"VIDEO LINK";
+        headerLabel.font = [UIFont boldSystemFontOfSize:12];
+        headerLabel.textColor = calSecondaryText();
+        [self.eventVideoLinkBlock addSubview:headerLabel];
+
+        self.videoLinkButton = [[CVRoundedButton alloc] initWithFrame:CGRectMake(15, 35, blockWidth - 30, 30)];
+        NSString *urlString = [self.event.URL absoluteString];
+        if (urlString.length > 0) {
+            [self.videoLinkButton setTitle:urlString forState:UIControlStateNormal];
+            self.videoLinkButton.enabled = YES;
+        } else {
+            [self.videoLinkButton setTitle:@"No video link" forState:UIControlStateNormal];
+            self.videoLinkButton.enabled = NO;
+        }
+        [self.videoLinkButton addTarget:self action:@selector(videoLinkButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.eventVideoLinkBlock addSubview:self.videoLinkButton];
+
+        [self.contentScrollView addSubview:self.eventVideoLinkBlock];
+    }
 
 	[self adjustLayoutOfBlocks];
 }
@@ -337,7 +384,39 @@
         }
         
         else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"People"]) {
-            _eventPeopleBlock.hidden = YES;
+            BOOL hide = [[dict objectForKey:@"HiddenKey"] boolValue];
+            if (hide) {
+                _eventPeopleBlock.hidden = YES;
+            }
+            else {
+                CGRect f = _eventPeopleBlock.frame;
+                f.origin.y = currentY;
+
+                // Size the people table based on attendee count
+                NSInteger attendeeCount = self.peopleTableViewController.participantDataHolderArray.count;
+                CGFloat tableHeight = attendeeCount * cellHeight;
+                CGFloat buttonHeight = 38; // button (30) + padding (8)
+
+                if (self.peopleTableViewController.hasAttendees) {
+                    self.eventPeopleTableView.frame = CGRectMake(15, 0, self.eventPeopleBlock.bounds.size.width - 30, tableHeight);
+                    self.eventPeopleTableView.hidden = NO;
+                    // Move button below the table
+                    CGRect buttonFrame = _addAttendeesButton.frame;
+                    buttonFrame.origin.y = tableHeight + 8;
+                    _addAttendeesButton.frame = buttonFrame;
+                    f.size.height = tableHeight + buttonHeight + 8;
+                }
+                else {
+                    self.eventPeopleTableView.hidden = YES;
+                    CGRect buttonFrame = _addAttendeesButton.frame;
+                    buttonFrame.origin.y = 8;
+                    _addAttendeesButton.frame = buttonFrame;
+                    f.size.height = buttonHeight + 8;
+                }
+
+                currentY += f.size.height;
+                [_eventPeopleBlock setFrame:f];
+            }
         }
         
         else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Availability"]) {
@@ -363,6 +442,20 @@
                 f.origin.y = currentY;
                 currentY += f.size.height;
                 [_eventLocationBlock setFrame:f];
+            }
+        }
+
+        else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Video Link"]) {
+            BOOL hide = [[dict objectForKey:@"HiddenKey"] boolValue] || self.event.URL == nil;
+            if (hide) {
+                _eventVideoLinkBlock.hidden = YES;
+            }
+            else {
+                _eventVideoLinkBlock.hidden = NO;
+                CGRect f = _eventVideoLinkBlock.frame;
+                f.origin.y = currentY;
+                currentY += f.size.height;
+                [_eventVideoLinkBlock setFrame:f];
             }
         }
 
@@ -612,10 +705,9 @@
 {
 	[self.closestSystemPresentedViewController dismissViewControllerAnimated:YES completion:nil];
     if (action == EKEventEditViewActionSaved) {
-        // These methods are not needed. initWithEvent in VEventDetailsPeopleTableViewController_iPhone.m 
-        // calls loadAttendees and also reloads the tableView data.
-        //[self.peopleTableViewController loadAttendees];           
-        //[self.peopleTableViewController.tableView reloadData];    
+        [self.peopleTableViewController loadAttendees];
+        [self.peopleTableViewController.tableView reloadData];
+        [self adjustLayoutOfBlocks];
     }
     else if (action == EKEventEditViewActionDeleted) {
         [self.delegate eventDetailsViewController:self didFinishWithResult:CVEventDetailsResultDeleted];
@@ -646,6 +738,58 @@
     [self.timeZoneButton setTitle:timeZone.name forState:UIControlStateNormal];
 }
 
+
+
+#pragma mark - CVEventDetailsPeopleTableViewControllerDelegate
+
+- (void)personWasSwiped:(NSString *)contactIdentifier
+{
+    CNContactStore *contactStore = [[CNContactStore alloc] init];
+    NSArray *keysToFetch = @[CNContactViewController.descriptorForRequiredKeys];
+    CNContact *contact = [contactStore unifiedContactWithIdentifier:contactIdentifier keysToFetch:keysToFetch error:nil];
+    if (contact) {
+        CNContactViewController *contactVC = [CNContactViewController viewControllerForContact:contact];
+        contactVC.delegate = self;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:contactVC];
+        navController.modalPresentationStyle = UIModalPresentationPageSheet;
+        [self.closestSystemPresentedViewController presentViewController:navController animated:YES completion:nil];
+    }
+}
+
+- (void)chatButtonWasPressedWithTelephoneNumbers:(NSArray *)telephoneNumbers
+{
+    if (![MFMessageComposeViewController canSendText] || telephoneNumbers.count == 0) return;
+
+    NSDictionary *firstNumber = [telephoneNumbers firstObject];
+    NSString *telephone = [firstNumber objectForKey:@"telephone"];
+
+    MFMessageComposeViewController *smsComposer = [[MFMessageComposeViewController alloc] init];
+    smsComposer.messageComposeDelegate = self;
+    smsComposer.recipients = @[telephone];
+    smsComposer.modalPresentationStyle = UIModalPresentationPageSheet;
+    self.rootController = self.closestSystemPresentedViewController;
+    [self.rootController presentViewController:smsComposer animated:YES completion:nil];
+}
+
+- (void)emailButtonWasPressedForParticipants:(NSArray *)participantEmails
+{
+    if (![MFMailComposeViewController canSendMail] || participantEmails.count == 0) return;
+
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    mailComposer.modalPresentationStyle = UIModalPresentationPageSheet;
+    [mailComposer setToRecipients:participantEmails];
+    self.rootController = self.closestSystemPresentedViewController;
+    [self.rootController presentViewController:mailComposer animated:YES completion:nil];
+}
+
+
+#pragma mark - CNContactViewControllerDelegate
+
+- (void)contactViewController:(CNContactViewController *)viewController didCompleteWithContact:(CNContact *)contact
+{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 #pragma mark - Actions
@@ -732,6 +876,14 @@
     eventEditViewController.editViewDelegate = self;
     eventEditViewController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self.closestSystemPresentedViewController presentViewController:eventEditViewController animated:YES completion:nil];
+}
+
+- (void)videoLinkButtonWasTapped:(id)sender
+{
+    NSURL *url = self.event.URL;
+    if (url) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
 
 - (IBAction)timeZoneButtonTapped:(id)sender

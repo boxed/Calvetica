@@ -7,7 +7,7 @@
 //
 
 #import "CVEventDetailsLocationViewController.h"
-#import <AddressBookUI/AddressBookUI.h>
+#import <Contacts/Contacts.h>
 
 
 @implementation CVEventDetailsLocationViewController {
@@ -58,10 +58,12 @@
                     for (CLPlacemark *placemark in placemarks) {
                         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                         annotation.coordinate = placemark.location.coordinate;
-                        annotation.title = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+                        CNPostalAddressFormatter *formatter = [[CNPostalAddressFormatter alloc] init];
+                        NSString *addressString = placemark.postalAddress ? [formatter stringFromPostalAddress:placemark.postalAddress] : placemark.name;
+                        annotation.title = [addressString stringByReplacingOccurrencesOfString:@"\n" withString:@", "];
                         annotation.subtitle = placemark.country;
                         [self.mapView addAnnotation:annotation];
-                        self.locationTextView.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, YES);
+                        self.locationTextView.text = addressString;
                     }
                 }
             }
@@ -97,7 +99,8 @@
                         for (CLPlacemark *placemark in placemarks) {
                             MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                             annotation.coordinate = placemark.location.coordinate;
-                            annotation.title = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+                            CNPostalAddressFormatter *formatter = [[CNPostalAddressFormatter alloc] init];
+                            annotation.title = placemark.postalAddress ? [[formatter stringFromPostalAddress:placemark.postalAddress] stringByReplacingOccurrencesOfString:@"\n" withString:@", "] : placemark.name;
                             annotation.subtitle = placemark.country;
                             [self.mapView addAnnotation:annotation];
                             MKCoordinateSpan span = MKCoordinateSpanMake(0.2f, 0.2f);

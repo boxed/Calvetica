@@ -36,6 +36,7 @@
 - (NSString *)stringWithLocation;
 - (NSString *)stringWithNotes;
 - (NSString *)stringWithPeople;
+- (NSString *)stringWithVideoLink;
 
 - (NSString *)naturalDescription;
 - (NSString *)naturalDescriptionSMS;

@@ -34,10 +34,10 @@
         // Use view bounds to reliably detect orientation on initial launch
         CGSize size = self.view.bounds.size;
         if (size.width > size.height) {
-            self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
+            self.tableView.rowHeight = IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE : IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
         }
         else {
-            self.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+            self.tableView.rowHeight = IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_PORTRAIT : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
         }
     }
     else {
@@ -76,8 +76,8 @@
         // Ensure row height is correct after layout is complete
         CGSize size = self.view.bounds.size;
         CGFloat expectedRowHeight = (size.width > size.height)
-            ? IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE
-            : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+            ? (IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE : IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE)
+            : (IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_PORTRAIT : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT);
         if (self.tableView.rowHeight != expectedRowHeight) {
             self.tableView.rowHeight = expectedRowHeight;
         }
