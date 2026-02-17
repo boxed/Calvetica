@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UIView                            *targetView;
 @property (nonatomic, assign) BOOL                              ignoreKeyboard;
 
-- (id)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView;
+- (instancetype)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView;
 - (CVPopoverArrowDirection)bestEnumMatch:(CVPopoverArrowDirection)direction inMask:(CVPopoverArrowDirection)directionMask;
 - (void)layout;
 - (void)keyboardWillShow:(NSNotification *)aNotification;

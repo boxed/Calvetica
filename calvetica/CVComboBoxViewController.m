@@ -36,7 +36,7 @@
 
 #pragma mark - Constructor
 
-- (id)init 
+- (instancetype)init 
 {
     self = [super init];
     if (self) {
@@ -46,7 +46,7 @@
     return self;
 }
 
-- (id)initWithTargetView:(UIView *)view itemsToSelect:(NSArray *)itemsToSelect selectedItemIndex:(NSInteger)selItem 
+- (instancetype)initWithTargetView:(UIView *)view itemsToSelect:(NSArray *)itemsToSelect selectedItemIndex:(NSInteger)selItem 
 {
     self = [self init];
     if (self) {

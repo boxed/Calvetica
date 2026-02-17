@@ -9,25 +9,25 @@
 
 typedef void(^CVNativeAlertBlock)(void);
 
-@interface CVNativeAlertView : UIAlertView <AVAudioPlayerDelegate>
+@interface CVNativeAlertView : NSObject
 
 + (void)showWithTitle:(NSString *)title
               message:(NSString *)message
     cancelButtonTitle:(NSString *)cancelTitle;
 
 + (void)showWithTitle:(NSString *)title
-              message:(NSString *)message 
-    cancelButtonTitle:(NSString *)cancelTitle 
+              message:(NSString *)message
+    cancelButtonTitle:(NSString *)cancelTitle
     cancelButtonBlock:(CVNativeAlertBlock)cancelBlock
-           otherButtonTitle:(NSString *)otherTitle
+     otherButtonTitle:(NSString *)otherTitle
      otherButtonBlock:(CVNativeAlertBlock)otherBlock;
 
-+ (void)showWithTitle:(NSString *)title 
-              message:(NSString *)message 
-            soundName:(NSString *)soundName 
-    cancelButtonTitle:(NSString *)cancelTitle 
-    cancelButtonBlock:(CVNativeAlertBlock)cancelBlock 
-     otherButtonTitle:(NSString *)otherTitle 
++ (void)showWithTitle:(NSString *)title
+              message:(NSString *)message
+            soundName:(NSString *)soundName
+    cancelButtonTitle:(NSString *)cancelTitle
+    cancelButtonBlock:(CVNativeAlertBlock)cancelBlock
+     otherButtonTitle:(NSString *)otherTitle
      otherButtonBlock:(CVNativeAlertBlock)otherBlock;
 
 @end

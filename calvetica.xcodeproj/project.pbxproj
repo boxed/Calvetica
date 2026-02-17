@@ -52,6 +52,8 @@
 		AA0000010000000000000003 /* CVEventDetailsPeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000002 /* CVEventDetailsPeopleTableViewController.m */; };
 		AA0000010000000000000006 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000004 /* Contacts.framework */; };
 		AA0000010000000000000007 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000005 /* ContactsUI.framework */; };
+		BB0000010000000000000003 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000001 /* WebKit.framework */; };
+		BB0000010000000000000004 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000002 /* UserNotifications.framework */; };
 		9B562EEA1385C6DF001E5EA5 /* CVPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */; };
 		9B562EED1385C788001E5EA5 /* CVPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B562EEC1385C788001E5EA5 /* CVPeopleTableViewCell.m */; };
 		9B5CFA21141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CFA20141E6F2800EDB2FA /* CVEventCalendarsManagerViewController.m */; };
@@ -411,6 +413,8 @@
 		AA0000010000000000000002 /* CVEventDetailsPeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventDetailsPeopleTableViewController.m; sourceTree = "<group>"; };
 		AA0000010000000000000004 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		AA0000010000000000000005 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		BB0000010000000000000001 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		BB0000010000000000000002 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		9B562EE91385C6DF001E5EA5 /* CVPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVPeopleTableViewCell.xib; sourceTree = "<group>"; };
 		9B562EEB1385C788001E5EA5 /* CVPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPeopleTableViewCell.h; sourceTree = "<group>"; };
 		9B562EEC1385C788001E5EA5 /* CVPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVPeopleTableViewCell.m; sourceTree = "<group>"; };
@@ -873,6 +877,8 @@
 				C2D388B113B8F550002527A7 /* SystemConfiguration.framework in Frameworks */,
 				AA0000010000000000000006 /* Contacts.framework in Frameworks */,
 				AA0000010000000000000007 /* ContactsUI.framework in Frameworks */,
+				BB0000010000000000000003 /* WebKit.framework in Frameworks */,
+				BB0000010000000000000004 /* UserNotifications.framework in Frameworks */,
 				C2603917138168D300F8619C /* CoreData.framework in Frameworks */,
 				C2AC518313789529000A96CE /* MapKit.framework in Frameworks */,
 				C2E2978813341B9500FA7638 /* EventKit.framework in Frameworks */,
@@ -2334,6 +2340,8 @@
 				C2E29727133419A900FA7638 /* Foundation.framework */,
 				C2E29729133419A900FA7638 /* CoreGraphics.framework */,
 				C22B0C5213BB8A5800455F47 /* Other Frameworks */,
+				BB0000010000000000000001 /* WebKit.framework */,
+				BB0000010000000000000002 /* UserNotifications.framework */,
 				5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */,
 			);
 			name = Frameworks;
@@ -3350,7 +3358,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "ADHOC=1";
@@ -3460,7 +3468,7 @@
 				CURRENT_PROJECT_VERSION = 271;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -3511,7 +3519,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 271;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";

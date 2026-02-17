@@ -32,7 +32,7 @@
     return [components lastObject];
 }
 
-- (id)initWithEvent:(EKEvent *)newEvent
+- (instancetype)initWithEvent:(EKEvent *)newEvent
 {
     self = [super init];
     if (self) {

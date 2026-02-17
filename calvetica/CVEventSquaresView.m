@@ -36,7 +36,7 @@
 
 #pragma mark - Constructor
 
-- (id)initWithFrame:(CGRect)frame 
+- (instancetype)initWithFrame:(CGRect)frame 
 {
     self = [super initWithFrame:frame];
     if (self) {

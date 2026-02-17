@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, CVEventMode) {
 @property (nonatomic, weak  ) IBOutlet UILabel                           *subDetailHeaderTitle;
 @property (nonatomic, weak  ) IBOutlet UIControl                         *applyButton;
 
-- (id)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode;
+- (instancetype)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode;
 
 @end
 

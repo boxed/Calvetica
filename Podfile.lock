@@ -13,8 +13,6 @@ PODS:
   - MYSRuntime (0.0.5)
   - MYSSharedSettings (0.1.0):
     - MYSRuntime (~> 0.0.3)
-  - PSAlertView (2.0.3)
-  - SVProgressHUD (2.2.6)
 
 DEPENDENCIES:
   - FrameAccessor
@@ -28,8 +26,6 @@ DEPENDENCIES:
   - MYSCategoryProperties (from `libs/MYSCategoryProperties`)
   - MYSRuntime (from `libs/MYSRuntime`)
   - MYSSharedSettings (from `libs/MYSSharedSettings`)
-  - PSAlertView (from `https://github.com/steipete/PSAlertView`)
-  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD`)
 
 SPEC REPOS:
   trunk:
@@ -55,18 +51,6 @@ EXTERNAL SOURCES:
     :path: libs/MYSRuntime
   MYSSharedSettings:
     :path: libs/MYSSharedSettings
-  PSAlertView:
-    :git: https://github.com/steipete/PSAlertView
-  SVProgressHUD:
-    :git: https://github.com/SVProgressHUD/SVProgressHUD
-
-CHECKOUT OPTIONS:
-  PSAlertView:
-    :commit: 132f5436b5608c6f810330743abe13f29d5a71be
-    :git: https://github.com/steipete/PSAlertView
-  SVProgressHUD:
-    :commit: 4fdf3fdc8703fd9915dae33fc1363c604a06b24e
-    :git: https://github.com/SVProgressHUD/SVProgressHUD
 
 SPEC CHECKSUMS:
   FrameAccessor: 443a13e58e23a10ff22180da0897b28c3f6abf66
@@ -80,9 +64,7 @@ SPEC CHECKSUMS:
   MYSCategoryProperties: e57fad96248880186fe68d1f7e14cbe491f396d1
   MYSRuntime: e87a3cfbb4a378ebcd2d2194aec37a3f904a5caf
   MYSSharedSettings: 023f35635b28315078567b4d1854e9fa4b8c791b
-  PSAlertView: 16d35f5dba549418492cf68a750d4f0dca21f4a2
-  SVProgressHUD: 6ed134667e9ebb2f33679e8273cd48fd3fa349e5
 
-PODFILE CHECKSUM: 201396b2e096f03540b4385119f8bffc85f0cd67
+PODFILE CHECKSUM: 5d1b2cb77289f2c7e8ea1d0a7a7de4f0f113e30b
 
 COCOAPODS: 1.12.1

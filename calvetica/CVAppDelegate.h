@@ -6,14 +6,15 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
+#import <UserNotifications/UserNotifications.h>
 
-@interface CVAppDelegate : NSObject <UIApplicationDelegate>
+@interface CVAppDelegate : NSObject <UIApplicationDelegate, UNUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 
 #pragma mark - Handle Local Notif Received
-- (void)handleSnoozeActionBecauseOfNotificationWhileOpen:(UILocalNotification *)notif;
-- (void)handleSnoozeActionBecauseOfNotification:(UILocalNotification *)notif;
+- (void)handleSnoozeActionForNotificationWhileOpen:(NSDictionary *)userInfo soundName:(NSString *)soundName;
+- (void)handleSnoozeActionForNotification:(NSDictionary *)userInfo;
 
 #pragma mark - Local Notifs
 - (void)setLocalNotifs;

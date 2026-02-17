@@ -4,11 +4,7 @@
 
 #import <Availability.h>
 
-#ifndef __IPHONE_3_0
-#warning "This project uses features only available in iPhone SDK 3.0 and later."
-#endif
-
-#define PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define PAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
 #ifndef DEBUG
 #undef NSLog
@@ -31,7 +27,6 @@ static inline BOOL isMacApp(void) {
 }
 #define IS_MAC (isMacApp())
 	#import <EventKit/EventKit.h>
-	#import <CoreData/CoreData.h>
 
 	#import "NSDate+Utilities.h"
     #import "NSObject+Null.h"
@@ -48,7 +43,4 @@ static inline BOOL isMacApp(void) {
     #import <MTMigration.h>
 
     #import <FrameAccessor.h>
-    #import <PSPDFActionSheet.h>
-    #import <PSPDFAlertView.h>
 #endif
-

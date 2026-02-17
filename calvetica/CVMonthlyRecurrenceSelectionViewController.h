@@ -24,7 +24,7 @@
 @property (nonatomic, strong)          UIView                                   *targetView;
 
 + (NSString *)daysOfTheMonthString:(NSArray *)daysOfTheMonth;
-- (id)initWithTargetView:(UIView *)view selectedDays:(NSArray *)days;
+- (instancetype)initWithTargetView:(UIView *)view selectedDays:(NSArray *)days;
 
 @end
 

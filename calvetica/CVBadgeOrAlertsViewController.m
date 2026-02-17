@@ -22,7 +22,7 @@
 
 #pragma mark - Constructor
 
-- (id)init {
+- (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
     }

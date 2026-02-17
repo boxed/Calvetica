@@ -213,26 +213,31 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control 
 {
-    NSString *title = [view.annotation.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    float latitude = view.annotation.coordinate.latitude;
-//    float longitude = view.annotation.coordinate.longitude;
+    NSString *title = [view.annotation.title stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
-    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Open in…"];
-    [actionSheet addButtonWithTitle:@"Apple Maps" block:^(NSInteger index) {
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Open in\u2026"
+                                                                         message:nil
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Apple Maps" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSString *stringURL = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", title];
         NSURL *url = [NSURL URLWithString:stringURL];
-        [[UIApplication sharedApplication] openURL:url];
-    }];
-    [actionSheet addButtonWithTitle:@"Google Maps" block:^(NSInteger index) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }]];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Google Maps" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", title];
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
             stringURL = [NSString stringWithFormat:@"comgooglemaps://?q=%@", title];
         }
         NSURL *url = [NSURL URLWithString:stringURL];
-        [[UIApplication sharedApplication] openURL:url];
-    }];
-    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
-    [actionSheet showFromRect:view.frame inView:view.superview animated:YES];
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }]];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+
+    // For iPad, set the popover source
+    actionSheet.popoverPresentationController.sourceView = view.superview;
+    actionSheet.popoverPresentationController.sourceRect = view.frame;
+
+    [self presentViewController:actionSheet animated:YES completion:nil];
 
 }
 

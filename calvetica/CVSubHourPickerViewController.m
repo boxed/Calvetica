@@ -13,7 +13,7 @@
 
 @implementation CVSubHourPickerViewController
 
-- (id)initWithDate:(NSDate *)date 
+- (instancetype)initWithDate:(NSDate *)date 
 {
     self = [super init];
     if (self) {

@@ -1907,12 +1907,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)notifyOfNeededPermission
 {
-    PSPDFAlertView *alertView = [[PSPDFAlertView alloc] initWithTitle:@"We need permission!"
-                                                              message:(@"This app can't function unless you give it permission "
-                                                                       @"to access your calendars: Go to Settings.app > "
-                                                                       @"Privacy > Calendars/Reminders and make sure Calvetica is ON")];
-    [alertView addButtonWithTitle:@"OK" block:nil];
-    [alertView show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"We need permission!"
+                                                                    message:(@"This app can't function unless you give it permission "
+                                                                             @"to access your calendars: Go to Settings.app > "
+                                                                             @"Privacy > Calendars/Reminders and make sure Calvetica is ON")
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)showWelcomeScreen

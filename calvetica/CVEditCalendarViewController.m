@@ -7,7 +7,6 @@
 //
 
 #import "CVEditCalendarViewController.h"
-#import "CVNativeAlertView.h"
 #import "UIColor+Calvetica.h"
 #import "UIImage+Clear.h"
 #import "UIColor+Compare.h"

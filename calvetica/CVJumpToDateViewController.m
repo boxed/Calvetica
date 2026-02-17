@@ -12,7 +12,7 @@
 @implementation CVJumpToDateViewController
 
 
-- (id)initWithContentViewController:(CVViewController<CVEventDayViewControllerProtocol> *)viewController
+- (instancetype)initWithContentViewController:(CVViewController<CVEventDayViewControllerProtocol> *)viewController
 {
     self = [super init];
     if (self) {

@@ -14,7 +14,7 @@
 @property (nonatomic, strong) EKEvent                                                    *event;
 @property (nonatomic, strong) NSMutableArray                                              *participantDataHolderArray;
 @property (nonatomic        ) BOOL                                                        hasAttendees;
-- (id)initWithEvent:(EKEvent *)newEvent;
+- (instancetype)initWithEvent:(EKEvent *)newEvent;
 - (void)loadAttendees;
 @end
 

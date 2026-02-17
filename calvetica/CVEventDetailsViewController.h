@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 @property (nonatomic, strong) SCEventDetailsAllDayAlarmPicker                *allDayAlarmPicker;
 @property (nonatomic, strong) CVEventDetailsPeopleTableViewController        *peopleTableViewController;
 
-- (id)initWithEvent:(EKEvent *)initEvent;
+- (instancetype)initWithEvent:(EKEvent *)initEvent;
 
 - (void)adjustLayoutOfBlocks;
 - (void)configureAvailabilityButtons;

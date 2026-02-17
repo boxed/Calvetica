@@ -6,7 +6,7 @@
 //
 
 #import "CVViewController.h"
+#import <WebKit/WebKit.h>
 
-
-@interface CVFAQViewController : CVViewController 
+@interface CVFAQViewController : CVViewController
 @end

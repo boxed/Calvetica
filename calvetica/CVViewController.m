@@ -21,7 +21,7 @@
 @implementation CVViewController
 
 
-- (id)init 
+- (instancetype)init 
 {
     self = [super init];
     if (self) {
@@ -92,13 +92,13 @@
     if (self.parentViewController) {
         return self;
     }
-    else if ([UIApplication sharedApplication].keyWindow.rootViewController == self) {
+    else if ([UIApplication sharedApplication].windows.firstObject.rootViewController == self) {
         return self;
     }
     else if (self.containingViewController) {
         return [self.containingViewController closestSystemPresentedViewController];
     }
-    return (CVViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    return (CVViewController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
 }
 
 

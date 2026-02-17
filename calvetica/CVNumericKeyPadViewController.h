@@ -18,7 +18,7 @@
 @interface CVNumericKeyPadViewController : CVViewController
 
 // Inits the keypad with the view it should be located at.
-- (id)initWithTargetView:(UIView *)view;
+- (instancetype)initWithTargetView:(UIView *)view;
 
 @property (nonatomic, weak  )          id<CVNumericKeyPadDelegate> delegate;
 @property (nonatomic, assign)          NSInteger                         maxValue;

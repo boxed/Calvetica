@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, CVJumpToDateResult) {
 @property (nonatomic, weak  ) IBOutlet UIView                                             *contentControllerContainer;
 @property (nonatomic, strong)          NSDate                                             *chosenDate;
 
-- (id)initWithContentViewController:(CVViewController *)contentViewController;
+- (instancetype)initWithContentViewController:(CVViewController *)contentViewController;
 
 @end
 

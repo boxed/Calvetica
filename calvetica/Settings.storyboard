@@ -1044,11 +1044,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qq0-XD-2a7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="k6c-Tj-KGf">
                                 <rect key="frame" x="151" y="314" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1059,7 +1054,6 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="dhu-dL-cDK"/>
                     <connections>
-                        <outlet property="helpScreen" destination="qq0-XD-2a7" id="s7x-et-2tq"/>
                         <outlet property="indicator" destination="k6c-Tj-KGf" id="PvI-Wm-pXW"/>
                         <outlet property="view" destination="3rN-Bw-2d2" id="ei7-h4-kLV"/>
                     </connections>

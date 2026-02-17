@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, CVSubHourPickerViewControllerResult) {
 @interface CVSubHourPickerViewController : CVViewController <CVModalProtocol>
 @property (nonatomic, weak  ) id<CVSubHourPickerViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSDate                                    *evenHourDate;
-- (id)initWithDate:(NSDate *)date;
+- (instancetype)initWithDate:(NSDate *)date;
 - (IBAction)subHourButtonWasTapped:(id)sender;
 @end
 

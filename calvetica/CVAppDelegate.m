@@ -14,7 +14,7 @@
 #import "CVDebug.h"
 
 
-@interface CVAppDelegate () 
+@interface CVAppDelegate ()
 @property (nonatomic, assign) UIBackgroundTaskIdentifier setLocalNotifsBackgroundTask;
 @property (nonatomic, assign) BOOL isLaunching;
 @property (nonatomic, strong) NSTimer *refreshTimer;
@@ -23,7 +23,7 @@
 
 @implementation CVAppDelegate
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -34,13 +34,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-#ifdef ADHOC
-    [TestFlight takeOff:@"781a1420-e37c-4042-bfc7-48e2ed98b6fb"];
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice].identifierForVendor UUIDString]];
-#else
-#endif
-
 	[NSDate mt_setFirstDayOfWeek:PREFS.weekStartsOnWeekday];
 	[NSDate mt_setWeekNumberingSystem:MTDateWeekNumberingSystemISO];
 
@@ -51,8 +44,6 @@
 
 	_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 
-//    [MTMigration reset];
-
     self.window.tintColor = RGB(215, 0, 0);
 
     // Global dark mode appearance configuration for grouped table views
@@ -61,35 +52,47 @@
     [[UITableViewCell appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]]
      setBackgroundColor:UIColor.secondarySystemGroupedBackgroundColor];
 
-    // if launched with options (meaning, a user tapped the "Snooze" button on a local notification.
-    if (launchOptions) {
-        // get the notification that was fired
-        UILocalNotification *firedNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];    
-        if (firedNotification) {
-            [MTq main:^{
-                [self handleSnoozeActionBecauseOfNotification:firedNotification];
-            }];
+    // Set up UNUserNotificationCenter
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
+                          completionHandler:^(BOOL granted, NSError *error) {
+        if (error) {
+            NSLog(@"Notification authorization error: %@", error);
         }
-    }
+    }];
 
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+#pragma mark - UNUserNotificationCenterDelegate
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
-    // check whether the notification was received while active or while in background
-    if (application.applicationState == UIApplicationStateActive) {
-        [self handleSnoozeActionBecauseOfNotificationWhileOpen:notification];
-    }
-    else {
-        [self handleSnoozeActionBecauseOfNotification:notification];
-    }
+    // App is in foreground — show the snooze dialog inline
+    NSDictionary *userInfo = notification.request.content.userInfo;
+    NSString *soundName = notification.request.content.sound ? notification.request.content.userInfo[@"soundFileName"] : nil;
+    [self handleSnoozeActionForNotificationWhileOpen:userInfo soundName:soundName];
+
+    completionHandler(UNNotificationPresentationOptionNone);
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void (^)(void))completionHandler
+{
+    // User tapped the notification (from background/killed)
+    NSDictionary *userInfo = response.notification.request.content.userInfo;
+    [self handleSnoozeActionForNotification:userInfo];
+
+    completionHandler();
 }
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options_
 {
     NSString *action = [url host];
 
@@ -126,21 +129,21 @@
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application 
+- (void)applicationWillResignActive:(UIApplication *)application
 {
     [self.refreshTimer invalidate];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application 
+- (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [self setLocalNotifs];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application 
+- (void)applicationWillEnterForeground:(UIApplication *)application
 {
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application 
+- (void)applicationDidBecomeActive:(UIApplication *)application
 {
     if (!self.isLaunching) {
         self.isLaunching = YES;
@@ -160,7 +163,7 @@
     [self scheduleRefreshTimer];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application 
+- (void)applicationWillTerminate:(UIApplication *)application
 {
 }
 
@@ -169,12 +172,11 @@
 
 #pragma mark - Handle Local Notif Received
 
-- (void)handleSnoozeActionBecauseOfNotificationWhileOpen:(UILocalNotification *)notif 
+- (void)handleSnoozeActionForNotificationWhileOpen:(NSDictionary *)userInfo soundName:(NSString *)soundName
 {
     // gather the info from the notification
-    NSDictionary *userInfo		= notif.userInfo;
-    NSDate *eventStartDate		= [userInfo objectForKey:NOTIFICATION_EVENT_START_DATE_KEY] ?: [NSDate date];
-    NSString *identifier		= [userInfo objectForKey:NOTIFICATION_EVENT_IDENTIFIER_KEY];
+    NSDate *eventStartDate		= userInfo[NOTIFICATION_EVENT_START_DATE_KEY] ?: [NSDate date];
+    NSString *identifier		= userInfo[NOTIFICATION_EVENT_IDENTIFIER_KEY];
     // set up a start and end date that will grab a minimum amount of events, but that will include the event.
     // NOTE: using identifier WILL NOT WORK because it could be a repeating event and pulling the event by the ei will give
     // you the first occurrence.
@@ -184,35 +186,33 @@
 
     for (EKEvent *event in events) {
         if ([event hasIdentifier:identifier]) {
-            
-            // get infor for the alert
+
+            // get info for the alert
             NSString *title			= @"Calvetica";
             NSString *message		= [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinute]];
-            NSString *sound			= notif.soundName;
             NSString *cancelTitle	= @"Cancel";
             NSString *otherTitle	= @"Snooze";
-            
+
             // present a standard style alert view to see if the user wants to snooze
-            [CVNativeAlertView showWithTitle:title message:message soundName:sound cancelButtonTitle:cancelTitle cancelButtonBlock:nil otherButtonTitle:otherTitle otherButtonBlock:^(void) {
-                
+            [CVNativeAlertView showWithTitle:title message:message soundName:soundName cancelButtonTitle:cancelTitle cancelButtonBlock:nil otherButtonTitle:otherTitle otherButtonBlock:^(void) {
+
                 // show the snooze dialogue for this event
                 CVRootViewController *rvc = (CVRootViewController *)self.window.rootViewController;
                 [rvc showSnoozeDialogForEvent:event];
-                
+
             }];
-            
+
             break;
         }
     }
 }
 
-- (void)handleSnoozeActionBecauseOfNotification:(UILocalNotification *)notif 
+- (void)handleSnoozeActionForNotification:(NSDictionary *)userInfo
 {
     // gather the info from the notification
-    NSDictionary *userInfo	= notif.userInfo;
-    NSDate *eventStartDate	= [userInfo objectForKey:NOTIFICATION_EVENT_START_DATE_KEY];
-    NSString *identifier	= [userInfo objectForKey:NOTIFICATION_EVENT_IDENTIFIER_KEY];
-    
+    NSDate *eventStartDate	= userInfo[NOTIFICATION_EVENT_START_DATE_KEY];
+    NSString *identifier	= userInfo[NOTIFICATION_EVENT_IDENTIFIER_KEY];
+
     // set up a start and end date that will grab a minimum amount of events, but that will include the event.
     // NOTE: using calendarItemIdentifier WILL NOT WORK because it could be a repeating event and pulling the event by the ei will give
     // you the first occurrence.
@@ -265,33 +265,36 @@
 - (void)setLocalNotifs
 {
 	UIApplication *app = [UIApplication sharedApplication];
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     NSInteger badgeOrAlerts = PREFS.badgeOrAlerts;
-    
+
     // immediately set the icon badge, notifs are set below
     if (badgeOrAlerts == CVLocalNotificationTypeBadge || badgeOrAlerts == CVLocalNotificationTypeBadgeAndAlerts) {
         app.applicationIconBadgeNumber = [[[NSDate date] mt_startOfCurrentDay] mt_dayOfMonth];
     }
     if (badgeOrAlerts == CVLocalNotificationTypeNone || badgeOrAlerts == CVLocalNotificationTypeAlerts) {
         app.applicationIconBadgeNumber = 0;
-        
-        // remove badge notifs immediately so that if the app is killed the 
+
+        // remove badge notifs immediately so that if the app is killed the
         // badge won't keep updating
-        NSArray *alerts = app.scheduledLocalNotifications;
-        for (UILocalNotification *notif in alerts) {
-            if (notif.applicationIconBadgeNumber) {
-                [app cancelLocalNotification:notif];
+        [center getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> *requests) {
+            NSMutableArray<NSString *> *badgeIdentifiers = [NSMutableArray array];
+            for (UNNotificationRequest *request in requests) {
+                if (request.content.badge != nil) {
+                    [badgeIdentifiers addObject:request.identifier];
+                }
             }
-        }
+            if (badgeIdentifiers.count > 0) {
+                [center removePendingNotificationRequestsWithIdentifiers:badgeIdentifiers];
+            }
+        }];
 
 		if (badgeOrAlerts == CVLocalNotificationTypeNone) return;
     }
-	
-	// if the device cant do background tasks, don't try
-	if (![[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) return;
-	
+
 	// if a background task is already going, ignore a request to create a new one
 	if (_setLocalNotifsBackgroundTask != UIBackgroundTaskInvalid) return;
-	
+
 	// create the background task
 	_setLocalNotifsBackgroundTask = [app beginBackgroundTaskWithExpirationHandler:^{
         if (self->_setLocalNotifsBackgroundTask != UIBackgroundTaskInvalid) {
@@ -299,16 +302,13 @@
             self->_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
 		}
 	}];
-	
+
 	// if for some reason the task can't run, forget it
 	if (_setLocalNotifsBackgroundTask == UIBackgroundTaskInvalid) return;
-	
+
 
     // using this queue will make sure two of these dont run at the same time
     [MTq file:^{
-        // wait for a bit before doing this to make sure the app has been in the background for a long enough time
-        //[NSThread sleepForTimeInterval:30];
-        
         // if the application becomes active, just forget setting alarms until the next time it goes inactive
         if (app.applicationState == UIApplicationStateActive) return;
 
@@ -317,11 +317,10 @@
         CVLog(@"STARTED LOCAL NOTIFS");
         /**********************/
 
+        [center removeAllPendingNotificationRequests];
 
         NSInteger availableNotifsCount = 64;
-        
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        
+
         // Day of Month Badge Only
         if (badgeOrAlerts == 1) {
             [self scheduleBadgeNotifications:availableNotifsCount];
@@ -329,10 +328,9 @@
 
         // Custom Alerts Only
         else if (badgeOrAlerts == 2) {
-            //[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
             [self setCalveticaAlarms:availableNotifsCount];
         }
-        
+
         // Badge and Alerts
         else if (badgeOrAlerts == 3) {
             NSInteger alertsCount    = 50;
@@ -340,13 +338,13 @@
             [self scheduleBadgeNotifications:badgeCount];
             [self setCalveticaAlarms:alertsCount];
         }
-        
+
         /**** END TIMING ****/
         NSDate *methodFinish = [NSDate date];
         NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
         CVLog(@"STOPPED LOCAL NOTIFS - TIME: %f", executionTime);
         /**********************/
-        
+
         // signify the end of the to the OS
         [app endBackgroundTask:self->_setLocalNotifsBackgroundTask];
         self->_setLocalNotifsBackgroundTask = UIBackgroundTaskInvalid;
@@ -354,91 +352,107 @@
     }];
 }
 
-- (void)scheduleBadgeNotifications:(NSInteger)count 
+- (void)scheduleBadgeNotifications:(NSInteger)count
 {
-	UIApplication *app = [UIApplication sharedApplication];
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
 	NSTimeZone *tz = PREFS.timeZoneName ? [NSTimeZone timeZoneWithName:PREFS.timeZoneName] : nil;
-    
+
     NSDate *today = [[NSDate date] mt_startOfCurrentDay];
-    
+
     // schedule the next count badges
     for (int i = 1; i < count; i++) {
-        
+
         NSDate *fireDate = [today mt_dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
-        
-        // schedule the notif
-        UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-        localNotif.fireDate = fireDate;
-        localNotif.timeZone = tz;
-        localNotif.applicationIconBadgeNumber = [localNotif.fireDate mt_dayOfMonth];
-        
-		[app scheduleLocalNotification:localNotif];
+
+        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+        content.badge = @([fireDate mt_dayOfMonth]);
+
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        if (tz) calendar.timeZone = tz;
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:fireDate];
+        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+
+        NSString *identifier = [NSString stringWithFormat:@"badge-%d", i];
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier content:content trigger:trigger];
+        [center addNotificationRequest:request withCompletionHandler:nil];
     }
 }
 
-- (void)setCalveticaAlarms:(NSInteger)count 
+- (void)setCalveticaAlarms:(NSInteger)count
 {
     NSDate *rightNow		= [NSDate date];
 	NSDate *startDate		= [rightNow mt_dateDaysBefore:3];
 	NSDate *endDate			= [startDate mt_dateWeeksAfter:5];
 	UIApplication *app		= [UIApplication sharedApplication];
 	NSTimeZone *tz			= PREFS.timeZoneName ? [NSTimeZone timeZoneWithName:PREFS.timeZoneName] : nil;
-	NSString *soundToPlay	= (PREFS.customAlertSoundFileName ?
-                               PREFS.customAlertSoundFileName :
-                               UILocalNotificationDefaultSoundName);
-    
+	NSString *soundToPlay	= PREFS.customAlertSoundFileName;
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+
     // fetch month events
     NSMutableArray *monthEvents = [NSMutableArray arrayWithArray:[EKEventStore eventsFromDate:startDate
                                                                                        toDate:endDate
                                                                            forActiveCalendars:NO]];
-    
-    NSMutableArray *notifArray = [NSMutableArray array];
-        
+
+    NSMutableArray *notifDicts = [NSMutableArray array];
+
     for (EKEvent *event in monthEvents) {
-		
+
 		// if the application becomes active, just forget setting alarms until the next time it goes inactive
 		if (app.applicationState == UIApplicationStateActive) return;
-        
+
         for (EKAlarm *alarm in event.alarms) {
-            
+
             NSDate *fireDate = nil;
             if (alarm.absoluteDate)
                 fireDate = alarm.absoluteDate;
             else
                 fireDate = [event.startingDate dateByAddingTimeInterval:alarm.relativeOffset];
-            
+
 			// if the alarm fire date has already past, ignore it
             if ([fireDate mt_isBefore:rightNow]) continue;
-            
-            // create the notification
-            UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-            localNotif.fireDate		= [fireDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:10];
-            localNotif.timeZone		= tz;
-            
-            // compose the alert
-            localNotif.alertBody	= [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:fireDate]];
-            localNotif.alertAction	= @"Snooze";
-            
-            // we need the start date because repeating events could have the same ei, 
-            // so its insufficient to grab the specific event
-            localNotif.userInfo		= @{
-											NOTIFICATION_EVENT_START_DATE_KEY: event.startingDate,
-											NOTIFICATION_EVENT_IDENTIFIER_KEY: event.identifier
-										};
-            
-			localNotif.soundName	= soundToPlay;
 
-            [notifArray addObject:localNotif];
+            // add 10 seconds offset like before
+            NSDate *adjustedFireDate = [fireDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:10];
+
+            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+            content.body = [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:fireDate]];
+            content.categoryIdentifier = @"SNOOZE_CATEGORY";
+
+            if (soundToPlay) {
+                content.sound = [UNNotificationSound soundNamed:soundToPlay];
+            } else {
+                content.sound = [UNNotificationSound defaultSound];
+            }
+
+            // we need the start date because repeating events could have the same ei,
+            // so its insufficient to grab the specific event
+            content.userInfo = @{
+                NOTIFICATION_EVENT_START_DATE_KEY: event.startingDate,
+                NOTIFICATION_EVENT_IDENTIFIER_KEY: event.identifier,
+                @"soundFileName": soundToPlay ?: @""
+            };
+
+            [notifDicts addObject:@{@"fireDate": adjustedFireDate, @"content": content}];
         }
     }
-    
+
     NSSortDescriptor *notifSort = [NSSortDescriptor sortDescriptorWithKey:@"fireDate" ascending:YES];
-    NSArray *sortDesciptors		= @[notifSort];
-    NSArray *sortedArray		= [notifArray sortedArrayUsingDescriptors:sortDesciptors];
-    
+    NSArray *sortedArray = [notifDicts sortedArrayUsingDescriptors:@[notifSort]];
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    if (tz) calendar.timeZone = tz;
+
     for (NSInteger i = 0; i < sortedArray.count && i < count; i++) {
-        UILocalNotification *notif = [sortedArray objectAtIndex:i];
-        [app scheduleLocalNotification:notif];
+        NSDictionary *dict = sortedArray[i];
+        NSDate *fireDate = dict[@"fireDate"];
+        UNMutableNotificationContent *content = dict[@"content"];
+
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:fireDate];
+        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+
+        NSString *identifier = [NSString stringWithFormat:@"alarm-%ld", (long)i];
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier content:content trigger:trigger];
+        [center addNotificationRequest:request withCompletionHandler:nil];
     }
 }
 
@@ -447,9 +461,8 @@
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return [[[UIApplication sharedApplication] delegate] window].safeAreaInsets.top > 20.0;
     }
-    
+
     return false;
 }
 
 @end
-

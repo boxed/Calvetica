@@ -32,6 +32,6 @@ typedef NS_ENUM(NSUInteger, CVEventHourViewControllerMode) {
 @property (copy, nonatomic)	void (^endDateUpdatedBlock)(NSDate *date);
 @property (copy, nonatomic)	void (^allDayUpdatedBlock)(BOOL allDay);
 
-- (id)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military;
+- (instancetype)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military;
 
 @end

@@ -20,7 +20,7 @@
 
 @implementation CVNumericKeyPadViewController
 
-- (id)init 
+- (instancetype)init 
 {
     self = [super init];
     if (self) {
@@ -30,7 +30,7 @@
     return self;
 }
 
-- (id)initWithTargetView:(UIView *)view 
+- (instancetype)initWithTargetView:(UIView *)view 
 {
     self = [self init];
     if (self) {

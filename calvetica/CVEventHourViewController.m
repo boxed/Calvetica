@@ -35,7 +35,7 @@
     self.endDateTableView.dataSource    = nil;
 }
 
-- (id)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military
+- (instancetype)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate allDay:(BOOL)allDay useMilitaryTime:(BOOL)military
 {
     self = [super init];
     if (self) {

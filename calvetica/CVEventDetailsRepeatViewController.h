@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsRepeatResult) {
 #pragma mark - Constructor
 
 // Initializes the view controller with the given start date and recurrence rule.
-- (id)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule;
+- (instancetype)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule;
 
 
 #pragma mark - Properties

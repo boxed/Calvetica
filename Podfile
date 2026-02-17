@@ -1,4 +1,4 @@
-platform :ios, '8.3'
+platform :ios, '13.0'
 
 target "calvetica" do
   # Our libs
@@ -14,7 +14,5 @@ target "calvetica" do
   pod 'MTQueue'
 
   # Third Party
-  pod 'PSAlertView',              git: "https://github.com/steipete/PSAlertView"
-  pod 'SVProgressHUD',            git: "https://github.com/SVProgressHUD/SVProgressHUD"
   pod 'FrameAccessor'
 end

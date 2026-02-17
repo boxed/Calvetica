@@ -67,7 +67,7 @@
 }
 
 
-- (id)initWithEvent:(EKEvent *)initEvent
+- (instancetype)initWithEvent:(EKEvent *)initEvent
 {
     self = [super init];
     if (self) {

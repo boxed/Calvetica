@@ -6,7 +6,7 @@
 @implementation CVCalendarItemShape
 
 
-- (id)init 
+- (instancetype)init 
 {
     if ((self = [super init])) {
         _consideredAllDay   = NO;

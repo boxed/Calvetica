@@ -18,7 +18,7 @@
     self.tableView.dataSource   = nil;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {

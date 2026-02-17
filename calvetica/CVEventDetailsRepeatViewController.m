@@ -19,12 +19,12 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)init
+- (instancetype)init
 {
     return nil;
 }
 
-- (id)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule 
+- (instancetype)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule 
 {
     self = [super init];
     if (self) {

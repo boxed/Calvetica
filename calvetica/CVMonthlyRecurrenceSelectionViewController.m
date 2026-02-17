@@ -10,7 +10,7 @@
 
 @implementation CVMonthlyRecurrenceSelectionViewController
 
-- (id)initWithTargetView:(UIView *)view selectedDays:(NSArray *)days 
+- (instancetype)initWithTargetView:(UIView *)view selectedDays:(NSArray *)days 
 {
     self = [self init];
     if (self) {

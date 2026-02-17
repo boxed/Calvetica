@@ -6,9 +6,6 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVNativeAlertView.h"
-
-
 @interface CVEventDefaultCalendarViewController : UITableViewController
 @property (nonatomic, copy) NSArray *availableCalendars;
 @end

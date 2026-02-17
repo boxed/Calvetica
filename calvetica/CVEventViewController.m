@@ -13,7 +13,7 @@
 @implementation CVEventViewController
 
 
-- (id)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode
+- (instancetype)initWithEvent:(EKEvent *)initEvent andMode:(CVEventMode)initMode
 {
     self = [super init];
     if (self) {

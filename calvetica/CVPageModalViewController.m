@@ -11,7 +11,7 @@
 
 @implementation CVPageModalViewController
 
-- (id)initWithContentViewController:(CVViewController *)initContentViewController 
+- (instancetype)initWithContentViewController:(CVViewController *)initContentViewController 
 {
     self = [super init];
     if (self) {

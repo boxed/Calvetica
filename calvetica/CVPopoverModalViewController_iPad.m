@@ -27,7 +27,7 @@ typedef struct {
 
 #pragma mark - Methods
 
-- (id)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView 
+- (instancetype)initWithContentViewController:(CVViewController<CVModalProtocol> *)initContentViewController targetView:(UIView *)initTargetView 
 {
     self = [super init];
     if (self) {
@@ -104,7 +104,7 @@ typedef struct {
 - (void)keyboardWillShow:(NSNotification *)aNotification 
 {
 	CGRect f = _modalViewContainer.frame;
-	UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+	UIView *rootView = [UIApplication sharedApplication].windows.firstObject.rootViewController.view;
 	keyboardAppearedModalSavedYCoord = -1;
 	
 	NSDictionary* info = [aNotification userInfo];

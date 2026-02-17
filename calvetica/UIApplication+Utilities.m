@@ -16,7 +16,7 @@
 
 - (CVViewController *)topmostSystemPresentedViewController 
 {
-    CVViewController *topmost = (CVViewController *)self.keyWindow.rootViewController;
+    CVViewController *topmost = (CVViewController *)self.windows.firstObject.rootViewController;
     
     // climb down the presented view controller chain until we get the top most presented view controller
     while (topmost.presentedViewController) {

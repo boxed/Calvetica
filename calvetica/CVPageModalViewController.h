@@ -14,6 +14,6 @@
 @property (nonatomic, weak  ) IBOutlet UIView           *modalViewContainer;
 @property (nonatomic, strong)          CVViewController *contentViewController;
 
-- (id)initWithContentViewController:(CVViewController *)initContentViewController;
+- (instancetype)initWithContentViewController:(CVViewController *)initContentViewController;
 
 @end

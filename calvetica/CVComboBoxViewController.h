@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, CVComboBoxResult) {
 @property (nonatomic, weak) IBOutlet UILabel     *selectedItemLabel;
 
 #pragma mark - Methods
-- (id)initWithTargetView:(UIView *)view itemsToSelect:(NSArray *)itemsToSelect selectedItemIndex:(NSInteger)selItem;
+- (instancetype)initWithTargetView:(UIView *)view itemsToSelect:(NSArray *)itemsToSelect selectedItemIndex:(NSInteger)selItem;
 
 #pragma mark - IBActions
 - (IBAction)backgroundTapped:(id)sender;

@@ -22,7 +22,7 @@
 
 #pragma mark - Constructor
 
-- (id)init 
+- (instancetype)init 
 {
     self = [super init];
     if (self) {
@@ -31,7 +31,7 @@
     return self;
 }
 
-- (id)initWithTarget:(id)target action:(SEL)action 
+- (instancetype)initWithTarget:(id)target action:(SEL)action 
 {
     self = [super initWithTarget:target action:action];
     if (self) {

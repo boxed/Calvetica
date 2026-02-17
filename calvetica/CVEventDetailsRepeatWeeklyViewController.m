@@ -27,7 +27,7 @@
 
 #pragma mark - Constructor
 
-- (id)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule 
+- (instancetype)initWithStartDate:(NSDate *)date recurrenceRule:(EKRecurrenceRule *)rule 
 {
     self = [super initWithStartDate:date recurrenceRule:rule];
     if (self) {

@@ -9,67 +9,64 @@
 #import "CVNativeAlertView.h"
 
 
-@interface CVFAQViewController () <UIWebViewDelegate>
-@property (nonatomic, weak) IBOutlet UIWebView               *helpScreen;
+@interface CVFAQViewController () <WKNavigationDelegate>
+@property (nonatomic, strong) WKWebView *helpScreen;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicator;
 @end
 
 
 @implementation CVFAQViewController
 
-- (void)dealloc
-{
-    self.helpScreen.delegate = nil;
-}
-
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.navigationItem.title = @"FAQ";
-    
+
+    // Create WKWebView programmatically (replaces storyboard UIWebView)
+    self.helpScreen = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    self.helpScreen.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.helpScreen.navigationDelegate = self;
+    [self.view insertSubview:self.helpScreen atIndex:0];
+
     NSError *error;
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    NSURL *baseURL = [NSURL fileURLWithPath:bundlePath];    
+    NSURL *baseURL = [NSURL fileURLWithPath:bundlePath];
     NSString *HTMLpath = [[NSBundle mainBundle] pathForResource:@"help" ofType:@"html"];
     NSString *HTML = [NSString stringWithContentsOfFile:HTMLpath encoding:NSUTF8StringEncoding error:&error];
     [self.helpScreen loadHTMLString:HTML baseURL:baseURL];
-    self.helpScreen.delegate = self;
 }
 
 
+#pragma mark - WKNavigationDelegate
 
-#pragma mark - UIWebViewDelegate Methods
-
-- (void)webViewDidStartLoad:(UIWebView *)webView 
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     [self.indicator startAnimating];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     [self.indicator stopAnimating];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType 
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	if(navigationType == UIWebViewNavigationTypeLinkClicked && ![request.URL isFileURL]) {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated && ![navigationAction.request.URL isFileURL]) {
+        NSURL *url = navigationAction.request.URL;
         [CVNativeAlertView showWithTitle:@"External Link" message:@"This link will be opened with Safari" cancelButtonTitle:@"cancel" cancelButtonBlock:nil otherButtonTitle:@"open" otherButtonBlock:^(void) {
-            if ([[UIApplication sharedApplication] canOpenURL:request.URL]) {
-                [[UIApplication sharedApplication] openURL:request.URL];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
             }
             else {
                 [CVNativeAlertView showWithTitle:@"Safari can not be opened" message:@"please verify network connection & parental settings" cancelButtonTitle:@"OK"];
             }
-        }]; 
-        return NO;
+        }];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
-	else {
-		return YES;
-    }
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
-
-
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
