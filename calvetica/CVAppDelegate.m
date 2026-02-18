@@ -383,15 +383,17 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 + (UIWindow *)mainWindow
 {
+    UIWindow *fallback = nil;
     for (UIScene *scene in [UIApplication sharedApplication].connectedScenes) {
         if ([scene isKindOfClass:[UIWindowScene class]]) {
             UIWindowScene *windowScene = (UIWindowScene *)scene;
             for (UIWindow *window in windowScene.windows) {
                 if (window.isKeyWindow) return window;
+                if (!fallback) fallback = window;
             }
         }
     }
-    return nil;
+    return fallback;
 }
 
 + (BOOL)hasNotch
