@@ -9,7 +9,6 @@
 #import <MessageUI/MessageUI.h>
 #import <Contacts/Contacts.h>
 #import <ContactsUI/ContactsUI.h>
-#import <EventKitUI/EventKitUI.h>
 #import "CVTextView.h"
 #import "CVButton.h"
 #import "CVNavigationController.h"
@@ -42,7 +41,7 @@ typedef NS_ENUM(NSUInteger, CVEventDetailsResult) {
 @protocol CVEventDetailsViewControllerDelegate;
 
 
-@interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate, CVEventDetailsPeopleTableViewControllerDelegate>
+@interface CVEventDetailsViewController : CVViewController <UITextViewDelegate, CVTextViewDelegate, CVEventDetailsNotesViewControllerDelegate, CVEventDetailsLocationViewControllerDelegate, CVCalendarPickerTableViewControllerDelegate, CVEventDetailsRecurrenceDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, CVEventDetailsPeopleTableViewControllerDelegate>
 
 @property (nonatomic, nullable, weak  ) id<CVEventDetailsViewControllerDelegate>       delegate;
 @property (nonatomic, strong) UIViewController                               *rootController;

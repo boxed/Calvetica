@@ -7,7 +7,6 @@
 //
 
 #import "CVEventDetailsViewController.h"
-#import "CVEventEditViewController.h"
 #import "UIApplication+Utilities.h"
 #import "CVActionBlockButton.h"
 #import "CVTimeZoneViewController.h"
@@ -45,8 +44,6 @@
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatWeeklyButton;
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatMonthlyButton;
 @property (nonatomic, weak) IBOutlet CVRoundedToggleButton *repeatYearlyButton;
-
-@property (nonatomic, weak) IBOutlet CVRoundedButton       *addAttendeesButton;
 
 @property (nonatomic, weak) IBOutlet CVRoundedButton       *shareButtonEmail;
 @property (nonatomic, weak) IBOutlet CVRoundedButton       *shareButtonSMS;
@@ -100,12 +97,6 @@
     _eventLocationTextView.text = self.event.location;
 
     _eventTitleTextView.inputAccessoryView = self.keyboardAccessoryView;
-
-    if (!self.event.calendar.allowsContentModifications) {
-        _addAttendeesButton.enabled = NO;
-        [_addAttendeesButton setTitle:@"Does not support attendees" forState:UIControlStateDisabled];
-    }
-
 
     // people block
     self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController alloc] initWithEvent:self.event];
@@ -395,23 +386,15 @@
                 // Size the people table based on attendee count
                 NSInteger attendeeCount = self.peopleTableViewController.participantDataHolderArray.count;
                 CGFloat tableHeight = attendeeCount * cellHeight;
-                CGFloat buttonHeight = 38; // button (30) + padding (8)
 
                 if (self.peopleTableViewController.hasAttendees) {
                     self.eventPeopleTableView.frame = CGRectMake(15, 0, self.eventPeopleBlock.bounds.size.width - 30, tableHeight);
                     self.eventPeopleTableView.hidden = NO;
-                    // Move button below the table
-                    CGRect buttonFrame = _addAttendeesButton.frame;
-                    buttonFrame.origin.y = tableHeight + 8;
-                    _addAttendeesButton.frame = buttonFrame;
-                    f.size.height = tableHeight + buttonHeight + 8;
+                    f.size.height = tableHeight;
                 }
                 else {
                     self.eventPeopleTableView.hidden = YES;
-                    CGRect buttonFrame = _addAttendeesButton.frame;
-                    buttonFrame.origin.y = 8;
-                    _addAttendeesButton.frame = buttonFrame;
-                    f.size.height = buttonHeight + 8;
+                    f.size.height = 0;
                 }
 
                 currentY += f.size.height;
@@ -699,22 +682,6 @@
 
 
 
-#pragma mark - EKEventEditViewDelegate
-
-- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action 
-{
-	[self.closestSystemPresentedViewController dismissViewControllerAnimated:YES completion:nil];
-    if (action == EKEventEditViewActionSaved) {
-        [self.peopleTableViewController loadAttendees];
-        [self.peopleTableViewController.tableView reloadData];
-        [self adjustLayoutOfBlocks];
-    }
-    else if (action == EKEventEditViewActionDeleted) {
-        [self.delegate eventDetailsViewController:self didFinishWithResult:CVEventDetailsResultDeleted];
-    }
-    //[self adjustLayoutOfBlocks];
-}
-
 
 
 
@@ -865,17 +832,6 @@
 - (void)deleteSliderWasToggled:(id)sender 
 {
     [self.delegate eventDetailsViewController:self didFinishWithResult:CVEventDetailsResultDeleted];
-}
-
-- (IBAction)addAttendeesButtonWasTapped:(id)sender 
-{
-    // had to subclass the built in EK VC cause the dumb thing wouldn't rotate upside down.
-    CVEventEditViewController *eventEditViewController = [[CVEventEditViewController alloc] init];
-    eventEditViewController.event = self.event;
-    eventEditViewController.eventStore = [EKEventStore sharedStore];
-    eventEditViewController.editViewDelegate = self;
-    eventEditViewController.modalPresentationStyle = UIModalPresentationPageSheet;
-    [self.closestSystemPresentedViewController presentViewController:eventEditViewController animated:YES completion:nil];
 }
 
 - (void)videoLinkButtonWasTapped:(id)sender
