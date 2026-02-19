@@ -8,7 +8,7 @@ target "calvetica" do
   pod 'MTPencil',                 path: "libs/MTPencil/"
   pod 'MTMigration',              path: "libs/MTMigration"
   pod 'MYSCategoryProperties',    path: "libs/MYSCategoryProperties"
-  pod 'MTColorDistance',          path: "libs/MTColorDistance"
+  pod 'MTColorDistance',           path: "libs/MTColorDistance"
   pod 'MYSRuntime',               path: "libs/MYSRuntime"
   pod 'MYSSharedSettings',        path: "libs/MYSSharedSettings"
   pod 'MTQueue'
