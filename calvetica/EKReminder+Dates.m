@@ -40,7 +40,7 @@
         components.minute   = NSDateComponentUndefined;
         components.second   = NSDateComponentUndefined;
     }
-    self.startDateComponents = components;
+    self.dueDateComponents = components;
 }
 
 - (BOOL)isAllDay
