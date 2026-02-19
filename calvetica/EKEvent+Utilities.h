@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)stringWithNotes;
 - (NSString *)stringWithPeople;
 - (NSString *)stringWithVideoLink;
+- (NSURL *)videoConferenceURL;
 
 - (NSString *)naturalDescription;
 - (NSString *)naturalDescriptionSMS;

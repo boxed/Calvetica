@@ -99,6 +99,12 @@
     _eventTitleTextView.inputAccessoryView = self.keyboardAccessoryView;
 
     // people block
+    {
+        UILabel *peopleHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.eventPeopleBlock.bounds.size.width - 30, 35)];
+        peopleHeaderLabel.text = @"PEOPLE";
+        peopleHeaderLabel.font = [UIFont systemFontOfSize:15];
+        [self.eventPeopleBlock addSubview:peopleHeaderLabel];
+    }
     self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController alloc] initWithEvent:self.event];
     self.peopleTableViewController.delegate = self;
     self.eventPeopleTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -171,16 +177,21 @@
         self.eventVideoLinkBlock = [[UIView alloc] initWithFrame:CGRectMake(0, 0, blockWidth, 73)];
         self.eventVideoLinkBlock.hidden = YES;
 
-        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, blockWidth - 30, 20)];
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, blockWidth - 30, 35)];
         headerLabel.text = @"VIDEO LINK";
-        headerLabel.font = [UIFont boldSystemFontOfSize:12];
-        headerLabel.textColor = calSecondaryText();
+        headerLabel.font = [UIFont systemFontOfSize:15];
         [self.eventVideoLinkBlock addSubview:headerLabel];
 
         self.videoLinkButton = [[CVRoundedButton alloc] initWithFrame:CGRectMake(15, 35, blockWidth - 30, 30)];
-        NSString *urlString = [self.event.URL absoluteString];
+        NSString *urlString = [[self.event videoConferenceURL] absoluteString];
         if (urlString.length > 0) {
-            [self.videoLinkButton setTitle:urlString forState:UIControlStateNormal];
+            NSDictionary *attrs = @{
+                NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+                NSForegroundColorAttributeName: patentedRed,
+                NSFontAttributeName: self.videoLinkButton.titleLabel.font
+            };
+            NSAttributedString *linkTitle = [[NSAttributedString alloc] initWithString:urlString attributes:attrs];
+            [self.videoLinkButton setAttributedTitle:linkTitle forState:UIControlStateNormal];
             self.videoLinkButton.enabled = YES;
         } else {
             [self.videoLinkButton setTitle:@"No video link" forState:UIControlStateNormal];
@@ -388,9 +399,9 @@
                 CGFloat tableHeight = attendeeCount * cellHeight;
 
                 if (self.peopleTableViewController.hasAttendees) {
-                    self.eventPeopleTableView.frame = CGRectMake(15, 0, self.eventPeopleBlock.bounds.size.width - 30, tableHeight);
+                    self.eventPeopleTableView.frame = CGRectMake(15, 35, self.eventPeopleBlock.bounds.size.width - 30, tableHeight);
                     self.eventPeopleTableView.hidden = NO;
-                    f.size.height = tableHeight;
+                    f.size.height = 35 + tableHeight;
                 }
                 else {
                     self.eventPeopleTableView.hidden = YES;
@@ -429,7 +440,7 @@
         }
 
         else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Video Link"]) {
-            BOOL hide = [[dict objectForKey:@"HiddenKey"] boolValue] || self.event.URL == nil;
+            BOOL hide = [[dict objectForKey:@"HiddenKey"] boolValue] || [self.event videoConferenceURL] == nil;
             if (hide) {
                 _eventVideoLinkBlock.hidden = YES;
             }
@@ -836,7 +847,7 @@
 
 - (void)videoLinkButtonWasTapped:(id)sender
 {
-    NSURL *url = self.event.URL;
+    NSURL *url = [self.event videoConferenceURL];
     if (url) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     }

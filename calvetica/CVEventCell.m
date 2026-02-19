@@ -181,7 +181,7 @@
 
                 else if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Video Link"]) {
                     BOOL hidden = [[dict objectForKey:@"HiddenKey"] boolValue];
-                    if (!hidden && _event.URL != nil) {
+                    if (!hidden && [_event videoConferenceURL] != nil) {
                         subtitleText = [_event stringWithVideoLink];
                         break;
                     }

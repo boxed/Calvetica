@@ -393,7 +393,66 @@
 
 - (NSString *)stringWithVideoLink
 {
-    return [self.URL absoluteString];
+    return [[self videoConferenceURL] absoluteString];
+}
+
+- (NSURL *)videoConferenceURL
+{
+    NSArray *videoConferenceDomains = @[
+        @"zoom.us", @"zoom.com",
+        @"teams.microsoft.com", @"teams.live.com",
+        @"meet.google.com",
+        @"webex.com",
+        @"gotomeeting.com",
+        @"whereby.com",
+        @"around.co",
+        @"facetime.apple.com"
+    ];
+
+    BOOL (^isVideoURL)(NSURL *) = ^BOOL(NSURL *url) {
+        NSString *host = [url.host lowercaseString];
+        if (!host) return NO;
+        for (NSString *domain in videoConferenceDomains) {
+            if ([host isEqualToString:domain] || [host hasSuffix:[@"." stringByAppendingString:domain]]) {
+                return YES;
+            }
+        }
+        return NO;
+    };
+
+    // 1. Check self.URL for a known video conference domain
+    if (self.URL && isVideoURL(self.URL)) {
+        return self.URL;
+    }
+
+    // Helper: scan text for URLs matching known video conference domains
+    NSURL *(^findVideoURLInText)(NSString *) = ^NSURL *(NSString *text) {
+        if (!text || text.length == 0) return nil;
+        NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+        if (!detector) return nil;
+        NSArray *matches = [detector matchesInString:text options:0 range:NSMakeRange(0, text.length)];
+        for (NSTextCheckingResult *match in matches) {
+            NSURL *url = match.URL;
+            if (url && isVideoURL(url)) {
+                return url;
+            }
+        }
+        return nil;
+    };
+
+    // 2. Scan notes
+    NSURL *found = findVideoURLInText(self.notes);
+    if (found) return found;
+
+    // 3. Scan location
+    found = findVideoURLInText(self.location);
+    if (found) return found;
+
+    // 4. Fall back to self.URL even if not a known domain
+    if (self.URL) return self.URL;
+
+    // 5. Nothing found
+    return nil;
 }
 
 - (NSString *)naturalDescription 
