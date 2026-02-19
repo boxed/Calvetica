@@ -146,7 +146,7 @@
             if (daysOfTheWeek) {
                 [EKRecurrenceRule appendNewLine:recurrenceString];
                 
-                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on: %1$@", @"The days of the week an event repeats on. %1$@: the days of the week as a comma seperated list."), daysOfTheWeek];
+                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on: %1$@", @"The days of the week an event repeats on. %1$@: the days of the week as a comma separated list."), daysOfTheWeek];
             }
                                                             
             // Days of the Month
@@ -162,7 +162,7 @@
                     }
                 }
                 
-                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on the following day(s) of the month: %1$@", @"The days of the month an event repeats on. %1$@: the days of the month as a comma seperated list."), daysOfTheMonth]; 
+                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on the following day(s) of the month: %1$@", @"The days of the month an event repeats on. %1$@: the days of the month as a comma separated list."), daysOfTheMonth]; 
             }
         } else if (self.frequency == EKRecurrenceFrequencyYearly) {
             // Frequency
@@ -172,7 +172,7 @@
             if (daysOfTheWeek) {
                 [EKRecurrenceRule appendNewLine:recurrenceString];
                 
-                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on: %1$@", @"The days of the week an event repeats on. %1$@: the days of the week as a comma seperated list."), daysOfTheWeek];
+                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on: %1$@", @"The days of the week an event repeats on. %1$@: the days of the week as a comma separated list."), daysOfTheWeek];
             }
             
             // Months of the Year
@@ -188,7 +188,7 @@
                     }
                 }
                 
-                [recurrenceString appendFormat:NSLocalizedString(@"Repeats during the following month(s): %1$@", @"The months of the year an event repeats on. %1$@: the months of the year as a comma seperated list."), monthsOfTheYear]; 
+                [recurrenceString appendFormat:NSLocalizedString(@"Repeats during the following month(s): %1$@", @"The months of the year an event repeats on. %1$@: the months of the year as a comma separated list."), monthsOfTheYear]; 
             }
             
             // Days of the Year
@@ -204,7 +204,7 @@
                     }
                 }
                 
-                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on the following day(s) of the year: %1$@", @"The days of the year an event repeats on. %1$@: the days of the year as a comma seperated list."), daysOfTheYear]; 
+                [recurrenceString appendFormat:NSLocalizedString(@"Repeats on the following day(s) of the year: %1$@", @"The days of the year an event repeats on. %1$@: the days of the year as a comma separated list."), daysOfTheYear]; 
             }
             
             // Weeks of the Year
@@ -221,7 +221,7 @@
                     }
                 }
                 
-                [recurrenceString appendFormat:NSLocalizedString(@"Repeats during the following week(s) of the year: %1$@", @"The weeks of the year an event repeats on. %1$@: the weeks of the year as a comma seperated list."), weeksOfTheYear]; 
+                [recurrenceString appendFormat:NSLocalizedString(@"Repeats during the following week(s) of the year: %1$@", @"The weeks of the year an event repeats on. %1$@: the weeks of the year as a comma separated list."), weeksOfTheYear]; 
             }
         } else {
             return EVENT_UNKNOWN;
@@ -242,11 +242,11 @@
             }
         } else if (self.frequency == EKRecurrenceFrequencyWeekly) {
             if (self.interval == 1 && daysOfTheWeek) {
-                [recurrenceString appendFormat:NSLocalizedString(@"Every week on %1$@.", @"Frequency when an event repeats every week. %1$@: the days of the week the event repeats on as a comma seperated list."), daysOfTheWeek];
+                [recurrenceString appendFormat:NSLocalizedString(@"Every week on %1$@.", @"Frequency when an event repeats every week. %1$@: the days of the week the event repeats on as a comma separated list."), daysOfTheWeek];
             } else if (self.interval == 1 && !daysOfTheWeek) {
                 [recurrenceString appendString:NSLocalizedString(@"Every week.", @"Frequency when an event repeats every week.")];
             } else if (self.interval > 1 && daysOfTheWeek) {
-                [recurrenceString appendFormat:NSLocalizedString(@"Every %1$i weeks on %2$@.", @"Frequency when an event repeats weekly. %1$i: the interval the event repeats on. %2$@: the days of the week the event repeats on as a comma seperated list."), self.interval, daysOfTheWeek];
+                [recurrenceString appendFormat:NSLocalizedString(@"Every %1$i weeks on %2$@.", @"Frequency when an event repeats weekly. %1$i: the interval the event repeats on. %2$@: the days of the week the event repeats on as a comma separated list."), self.interval, daysOfTheWeek];
             } else if (self.interval > 1 && !daysOfTheWeek) {
                 [recurrenceString appendFormat:NSLocalizedString(@"Every %1$i weeks.", @"Frequency when an event repeats weekly. %1$i: the interval the event repeats on."), self.interval];
             }

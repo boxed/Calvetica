@@ -26,7 +26,7 @@
 
 #define EDIT NSLocalizedString(@"Edit", @"Button text for an alert message.")
 
-#define END_AFTER NSLocalizedString(@"After", @"Button text displayed when an event ends after a spcific number of occurences.")
+#define END_AFTER NSLocalizedString(@"After", @"Button text displayed when an event ends after a specific number of occurrences.")
 
 #define END_NEVER NSLocalizedString(@"Never", @"Button text displayed when an event never ends.")
 
@@ -58,7 +58,7 @@
 
 #define FRIENDLY_TEXT_9 NSLocalizedString(@"Let's make beautiful agendas.", @"Let's make beautiful agendas.")
 
-#define FRIENDLY_TEXT_10 NSLocalizedString(@"I live to serve you.", @" live to serve you.")
+#define FRIENDLY_TEXT_10 NSLocalizedString(@"I live to serve you.", @"I live to serve you.")
 
 #define FRIENDLY_TEXT_11 NSLocalizedString(@"Can you fit me into your schedule?", @"Can you fit me into your schedule?")
 

@@ -59,7 +59,7 @@
                 [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
             }
             else {
-                [CVNativeAlertView showWithTitle:@"Safari can not be opened" message:@"please verify network connection & parental settings" cancelButtonTitle:@"OK"];
+                [CVNativeAlertView showWithTitle:@"Safari cannot be opened" message:@"Please verify network connection & parental settings" cancelButtonTitle:@"OK"];
             }
         }];
         decisionHandler(WKNavigationActionPolicyCancel);

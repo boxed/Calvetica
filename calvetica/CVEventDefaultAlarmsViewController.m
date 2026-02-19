@@ -48,7 +48,7 @@
                                             NSLocalizedString(@"2 days before", @"2d"),
                                             NSLocalizedString(@"3 days before", @"3d"),
                                             NSLocalizedString(@"5 days before", @"5d"),
-                                            NSLocalizedString(@"1 weeks before", @"1w"),
+                                            NSLocalizedString(@"1 week before", @"1w"),
                                             NSLocalizedString(@"2 weeks before", @"2w"),
                                             NSLocalizedString(@"1 month before", @"1mo")];
     
