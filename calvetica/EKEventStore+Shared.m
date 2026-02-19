@@ -37,7 +37,7 @@ static NSMutableDictionary *__stores = nil;
 
 + (void)setPermissionGranted:(BOOL)granted
 {
-    __permissionGranted = YES;
+    __permissionGranted = granted;
 }
 
 + (BOOL)isPermissionGranted
