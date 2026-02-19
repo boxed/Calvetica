@@ -11,7 +11,6 @@
 #import "UIColor+Calvetica.h"
 #import "UIColor+Compare.h"
 #import "geometry.h"
-#import "times.h"
 #import "colors.h"
 
 @implementation CVWeekTableViewCellDrawing

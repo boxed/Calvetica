@@ -13,7 +13,6 @@
 #import "CVRootDetailedWeekTableViewController.h"
 #import "CVRootCompactWeekTableViewController.h"
 #import "CVGenericReminderViewController.h"
-#import "CVWelcomeViewController.h"
 #import "CVManageCalendarsViewController.h"
 #import "CVAllDayAlarmPickerViewController.h"
 #import "CVViewOptionsPopoverViewController.h"
@@ -54,7 +53,6 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
                                     CVSubHourPickerViewControllerDelegate,
                                     CVGenericReminderViewControllerDelegate,
                                     CVRootTableViewControllerDelegate,
-                                    CVWelcomeViewControllerDelegate,
                                     CVSearchViewControllerDelegate,
                                     CVLandscapeWeekViewDelegate>
 
@@ -202,7 +200,6 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
                     self.selectedDate = self.todaysDate;
                     [self refreshUIAnimated:NO];
                     [self updateInboxBadge];
-                    //[self showWelcomeScreen];
                 }];
             }];
         }];
@@ -1152,39 +1149,6 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
 
 
-#pragma mark - DELEGATE welcome view controller
-
-- (void)welcomeController:(CVWelcomeViewController *)controller didFinishWithResult:(CVWelcomeViewControllerResult)result 
-{
-	if (result != CVWelcomeViewControllerResultDontShowMe) {
-        [MTMigration reset];
-	}
-
-	if (result == CVWelcomeViewControllerResultFAQ) {
-		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
-			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"FAQSegue"
-                                                                                         sender:nil];
-		}];
-	}
-	else if (result == CVWelcomeViewControllerResultGestures) {
-		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
-			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"GesturesSegue"
-                                                                                         sender:nil];
-		}];
-	}
-	else if (result == CVWelcomeViewControllerResultContactUs) {
-		[self openSettingsWithCompletionHandler:^(UINavigationController *settingsNavController) {
-			[[settingsNavController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"ContactUsSegue"
-                                                                                         sender:nil];
-		}];
-	}
-
-    if (result == CVWelcomeViewControllerResultDontShowMe || result == CVWelcomeViewControllerResultCancel) {
-		[self dismissPageModalViewControllerAnimated:YES completion:nil];
-	}
-}
-
-
 
 
 #pragma mark - DELEGATE landscape week view
@@ -1914,23 +1878,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)showWelcomeScreen
-{
-    // if this is the first time they've ever opened the app, or if the welcome screen
-    // was updated, show them the welcome screen
-    static BOOL launched = NO;
-    if (!launched) {
-        [MTMigration applicationUpdateBlock:^{
-            CVWelcomeViewController *welcomeController = [[CVWelcomeViewController alloc] init];
-            welcomeController.delegate = self;
-            [self presentPageModalViewController:welcomeController
-                                        animated:YES
-                                      completion:nil];
-        }];
-        launched = YES;
-    }
 }
 
 - (void)updateInboxBadge

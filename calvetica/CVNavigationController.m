@@ -27,9 +27,7 @@
     [_contentViewContainer setFrame:cr];
     
     // remove from scroll view
-    //[lastViewController viewWillDisappear:YES];
     [lastViewController.view removeFromSuperview];
-    //[lastViewController viewDidDisappear:YES];
     
     // remove the last view controller from the stack
     NSMutableArray *newViewControllerArray = [NSMutableArray arrayWithArray:_viewControllers];
@@ -45,9 +43,7 @@
         CGRect r = self->_contentViewContainer.frame;
         r.origin.x += lastViewController.view.frame.size.width;
         [self->_contentViewContainer setFrame:r];
-    } completion:^(BOOL finished){
-        //[visibleViewController viewDidAppear:YES];
-    }];
+    } completion:nil];
 
     return lastViewController;
 }
@@ -90,9 +86,7 @@
         CGRect r = self->_contentViewContainer.frame;
         r.origin.x -= viewController.view.frame.size.width;
         [self->_contentViewContainer setFrame:r];
-    } completion:^(BOOL finished){
-        //[visibleViewController viewDidAppear:YES];
-    }];
+    } completion:nil];
 }
 
 - (void)setViewControllers:(NSArray *)controllers 
@@ -125,7 +119,6 @@
         lastController.modalNavigationController = self;
         [_contentViewContainer addSubview:lastController.view];
     }
-    //[lastController viewDidAppear:YES];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations

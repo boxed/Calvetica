@@ -11,7 +11,6 @@
 #import "UIView+Utilities.h"
 #import "CVRoundedButton.h"
 #import "CVSelectionTableViewCell.h"
-#import "times.h"
 #import "UITableViewCell+Nibs.h"
 #import "NSMutableArray+Stack.h"
 #import "CVAppDelegate.h"

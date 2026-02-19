@@ -1,14 +1,7 @@
-// Table Section Header Height
-#define TABLE_SECTION_HEADER_HEIGHT 27.0
-
 // Week agenda row heights
 
 #define TABLE_ROW_EVENT_HEIGHT 17.0
 #define TABLE_ROW_DAY_TITLE_HEIGHT 60.0
-
-//week agenda row widths
-#define TABLE_ROW_EVENT_WIDTH_IPHONE 250
-#define TABLE_ROW_EVENT_WIDTH_IPAD 226
 
 // month view dots
 #define DOT_RADIUS 4

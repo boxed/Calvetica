@@ -6,7 +6,6 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "times.h"
 #import "CVViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN

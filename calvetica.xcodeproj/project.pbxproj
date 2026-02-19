@@ -198,7 +198,6 @@
 		C26D4EF117F3A2910041BB50 /* CVDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C26D4EF017F3A2910041BB50 /* CVDeleteButton.m */; };
 		C2708778137AD51800810BF1 /* CVCalendarPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2708777137AD51800810BF1 /* CVCalendarPickerTableViewController.m */; };
 		C2708782137AF38200810BF1 /* CVColoredDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2708781137AF38200810BF1 /* CVColoredDotView.m */; };
-		C270878B137B3A1100810BF1 /* CVOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C270878A137B3A1100810BF1 /* CVOperationQueue.m */; };
 		C274C16613A83FC200E64AE9 /* CVSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C274C16413A83FC200E64AE9 /* CVSearchViewController.m */; };
 		C277E4CD13DF8FD200794F53 /* CVEventSquaresView.m in Sources */ = {isa = PBXBuildFile; fileRef = C277E4CC13DF8FD200794F53 /* CVEventSquaresView.m */; };
 		C277E4D613DF95B900794F53 /* CVAllDayEventSquaresView.m in Sources */ = {isa = PBXBuildFile; fileRef = C277E4D513DF95B900794F53 /* CVAllDayEventSquaresView.m */; };
@@ -279,7 +278,6 @@
 		C2D107EC1522184B002802EC /* CVJumpToDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D759DA152210F100B04B4D /* CVJumpToDayButton.m */; };
 		C2D107EE15221851002802EC /* CVJumpToDayButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D759DB152210F100B04B4D /* CVJumpToDayButton.xib */; };
 		C2D1709D13CB7CA70092F0C1 /* CVRoundedTextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1709C13CB7CA70092F0C1 /* CVRoundedTextButton.m */; };
-		C2D170AD13CBFDA20092F0C1 /* CVWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D170AB13CBFDA20092F0C1 /* CVWelcomeViewController.m */; };
 		C2D3888013B8D075002527A7 /* UIView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D3887F13B8D075002527A7 /* UIView+Utilities.m */; };
 		C2D388B113B8F550002527A7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D388B013B8F54E002527A7 /* SystemConfiguration.framework */; };
 		C2D388B313B8F560002527A7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D388B213B8F55E002527A7 /* libicucore.dylib */; };
@@ -319,7 +317,6 @@
 		C2F7CD7E13D6273900FBB45E /* CVSearchScopePopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F7CD8013D6273900FBB45E /* CVSearchScopePopoverController.xib */; };
 		C2F7CDA113D627E300FBB45E /* CVAllDayAlarmPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F7CDA313D627E300FBB45E /* CVAllDayAlarmPickerViewController.xib */; };
 		C2F7CDC313D6280400FBB45E /* CVSubHourPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F7CDC513D6280400FBB45E /* CVSubHourPickerViewController.xib */; };
-		C2F7CDD713D6281900FBB45E /* CVWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F7CDD913D6281900FBB45E /* CVWelcomeViewController.xib */; };
 		C2FCCA5113A0386800214648 /* CVRoundedToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FCCA5013A0386800214648 /* CVRoundedToggleButton.m */; };
 		C2FCCA5413A03EC600214648 /* CVToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FCCA5313A03EC600214648 /* CVToggleButton.m */; };
 		C2FCCA5913A04E1000214648 /* CVTextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FCCA5813A04E1000214648 /* CVTextButton.m */; };
@@ -524,7 +521,6 @@
 		C220478913AA5DFC0079FC81 /* CVGenericReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGenericReminderViewController.h; sourceTree = "<group>"; };
 		C220478A13AA5DFC0079FC81 /* CVGenericReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVGenericReminderViewController.m; sourceTree = "<group>"; };
 		C223646F1619B631004D72BF /* CVEventCalendarsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVEventCalendarsManagerViewController.h; sourceTree = "<group>"; };
-		C22A881D1810736200EF58C9 /* EventKitAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventKitAdditions.h; sourceTree = "<group>"; };
 		C22B0C5413BB8A5800455F47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C22B0C5513BB8A5800455F47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C22EA29718298C96004F2589 /* EKCalendar+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKCalendar+Settings.h"; sourceTree = "<group>"; };
@@ -569,7 +565,6 @@
 		C240D96A180E05680089E963 /* CVReminderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVReminderCell.h; sourceTree = "<group>"; };
 		C240D96B180E05680089E963 /* CVReminderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVReminderCell.m; sourceTree = "<group>"; };
 		C240D96D180E05870089E963 /* CVReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVReminderCell.xib; sourceTree = "<group>"; };
-		C242B182137D8661005BC735 /* times.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = times.h; sourceTree = "<group>"; };
 		C242B18A137DB63B005BC735 /* dimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dimensions.h; sourceTree = "<group>"; };
 		C2468C2516F97ECD006F047F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C24BAB9B13948C7500ED298B /* CVPageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPageModalViewController.h; sourceTree = "<group>"; };
@@ -627,7 +622,6 @@
 		C2609D4322A379110019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVEventSnoozeViewController.xib; sourceTree = "<group>"; };
 		C2609D4422A379110019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVSubHourPickerViewController.xib; sourceTree = "<group>"; };
 		C2609D4522A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVViewOptionsPopoverViewController.xib; sourceTree = "<group>"; };
-		C2609D4622A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVWelcomeViewController.xib; sourceTree = "<group>"; };
 		C2609D4722A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVQuickAddViewController.xib; sourceTree = "<group>"; };
 		C2609D4822A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVSearchViewController.xib; sourceTree = "<group>"; };
 		C2609D4922A379120019427B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CVSearchScopePopoverController.xib; sourceTree = "<group>"; };
@@ -671,8 +665,6 @@
 		C2708777137AD51800810BF1 /* CVCalendarPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVCalendarPickerTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2708780137AF38200810BF1 /* CVColoredDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVColoredDotView.h; sourceTree = "<group>"; };
 		C2708781137AF38200810BF1 /* CVColoredDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVColoredDotView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		C2708789137B3A1100810BF1 /* CVOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVOperationQueue.h; sourceTree = "<group>"; };
-		C270878A137B3A1100810BF1 /* CVOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVOperationQueue.m; sourceTree = "<group>"; };
 		C273D7AD181B4248004A8144 /* calvetica.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = calvetica.entitlements; sourceTree = "<group>"; };
 		C274C16313A83FC200E64AE9 /* CVSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSearchViewController.h; sourceTree = "<group>"; };
 		C274C16413A83FC200E64AE9 /* CVSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVSearchViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -784,8 +776,6 @@
 		C2CE1AD3180C67510026C797 /* UITableViewCell+Nibs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Nibs.m"; sourceTree = "<group>"; };
 		C2D1709B13CB7CA70092F0C1 /* CVRoundedTextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVRoundedTextButton.h; sourceTree = "<group>"; };
 		C2D1709C13CB7CA70092F0C1 /* CVRoundedTextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRoundedTextButton.m; sourceTree = "<group>"; };
-		C2D170AA13CBFDA20092F0C1 /* CVWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWelcomeViewController.h; sourceTree = "<group>"; };
-		C2D170AB13CBFDA20092F0C1 /* CVWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWelcomeViewController.m; sourceTree = "<group>"; };
 		C2D284BB1385712800F240D4 /* viewtagoffsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewtagoffsets.h; sourceTree = "<group>"; };
 		C2D3887E13B8D075002527A7 /* UIView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utilities.h"; sourceTree = "<group>"; };
 		C2D3887F13B8D075002527A7 /* UIView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utilities.m"; sourceTree = "<group>"; };
@@ -1065,8 +1055,6 @@
 				9B125C37136786960065B9B2 /* CVButton.m */,
 				C2B2174B138899A9006878DC /* CVTextField.h */,
 				C2B2174C138899A9006878DC /* CVTextField.m */,
-				C2708789137B3A1100810BF1 /* CVOperationQueue.h */,
-				C270878A137B3A1100810BF1 /* CVOperationQueue.m */,
 				6A85E13713D09C3200DF959B /* CVTapGestureRecognizer.h */,
 				6A85E13813D09C3200DF959B /* CVTapGestureRecognizer.m */,
 				6A8C3D1313E48B1200D8AB76 /* CVTapReleaseGestureRecognizer.h */,
@@ -1269,7 +1257,6 @@
 		C20DDDA3161D019B00CC9D47 /* EventKit */ = {
 			isa = PBXGroup;
 			children = (
-				C22A881D1810736200EF58C9 /* EventKitAdditions.h */,
 				C22A881A1810726200EF58C9 /* EKCalendar */,
 				C22A8816181071FC00EF58C9 /* EKCalendarItem */,
 				C22A88171810721200EF58C9 /* EKEvent */,
@@ -1728,7 +1715,6 @@
 				C290198617EBB2C00033476F /* color.h */,
 				C26914D6136B13DB002053C5 /* colors.h */,
 				AEBD2DB42753B9A000E685FE /* Colors.m */,
-				C242B182137D8661005BC735 /* times.h */,
 				C242B18A137DB63B005BC735 /* dimensions.h */,
 				C2A4C97213844CD600442AFF /* animations.h */,
 				C2D284BB1385712800F240D4 /* viewtagoffsets.h */,
@@ -2255,9 +2241,6 @@
 		C2D170A813CBFD6E0092F0C1 /* Welcome View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C2D170AA13CBFDA20092F0C1 /* CVWelcomeViewController.h */,
-				C2D170AB13CBFDA20092F0C1 /* CVWelcomeViewController.m */,
-				C2F7CDD913D6281900FBB45E /* CVWelcomeViewController.xib */,
 			);
 			name = "Welcome View Controller";
 			sourceTree = "<group>";
@@ -2807,7 +2790,6 @@
 				9BE2F2EB13CC017100F46F37 /* longpressmonth_iphone.png in Resources */,
 				9BE2F2EC13CC017100F46F37 /* longpressmonth_iphone@2x.png in Resources */,
 				C290198817EBEDD70033476F /* CVQuickAddViewController-Landscape.xib in Resources */,
-				C2F7CDD713D6281900FBB45E /* CVWelcomeViewController.xib in Resources */,
 				9BB278C613CE2BA600CC411C /* CVSlideLockControl.xib in Resources */,
 				9B0AD8A913CF5AC300DF1F2F /* slider.png in Resources */,
 				9B0AD8AA13CF5AC300DF1F2F /* slider@2x.png in Resources */,
@@ -2934,7 +2916,6 @@
 				C21AD4791810B39A0061B7C7 /* CVEventStoreNotificationCenter.m in Sources */,
 				C2708778137AD51800810BF1 /* CVCalendarPickerTableViewController.m in Sources */,
 				C2708782137AF38200810BF1 /* CVColoredDotView.m in Sources */,
-				C270878B137B3A1100810BF1 /* CVOperationQueue.m in Sources */,
 				9BC0758E137F930600449B78 /* CVManageCalendarsViewController.m in Sources */,
 				9BC07596137F950E00449B78 /* CVManageCalendarTableViewCell.m in Sources */,
 				C21C53AA182979630064D2AD /* EKEventStore+Settings.m in Sources */,
@@ -3021,7 +3002,6 @@
 				9B72B38013C95E180068C715 /* CVFAQViewController.m in Sources */,
 				C2D1709D13CB7CA70092F0C1 /* CVRoundedTextButton.m in Sources */,
 				9B0127A813CBA2B50006C2EA /* CVGestureHowToViewController.m in Sources */,
-				C2D170AD13CBFDA20092F0C1 /* CVWelcomeViewController.m in Sources */,
 				C2A0C7CA17FD04EA005D17B5 /* CVTimeZoneViewController.m in Sources */,
 				C21AD4731810A7B30061B7C7 /* EKEvent+Store.m in Sources */,
 				C2BE7DD713CC979200925D53 /* NSString+Utilities.m in Sources */,
@@ -3306,14 +3286,6 @@
 				C2609D4422A379110019427B /* Base */,
 			);
 			name = CVSubHourPickerViewController.xib;
-			sourceTree = "<group>";
-		};
-		C2F7CDD913D6281900FBB45E /* CVWelcomeViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C2609D4622A379120019427B /* Base */,
-			);
-			name = CVWelcomeViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

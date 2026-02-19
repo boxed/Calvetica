@@ -1,9 +1,3 @@
-
-
-#define MIN_EVENT_DURATION 36000 // 10 hours
-
-
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EKEvent (Utilities)
@@ -26,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (EKCalendar *)readCalendar;
 - (NSTimeInterval)eventDuration;
 - (BOOL)fitsWithinWeekOfDate:(NSDate *)date;
-- (BOOL)willBeABar;
-
 #pragma mark - STRINGS
 - (NSString *)availabilityAsString;
 - (NSString *)stringForParticipantStatus: (EKParticipantStatus)status;

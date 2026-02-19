@@ -11,7 +11,6 @@
 #import "CVToggleButton.h"
 #import "CVModalProtocol.h"
 #import "CVEventCell.h"
-#import "times.h"
 #import "geometry.h"
 #import "CVViewController.h"
 

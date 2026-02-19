@@ -6,7 +6,6 @@
 //
 
 #import "SCEventDetailsAllDayAlarmPicker.h"
-#import "times.h"
 #import "colors.h"
 
 

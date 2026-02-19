@@ -7,7 +7,6 @@
 
 #import "CVWeekdayTableHeaderView.h"
 #import "colors.h"
-#import "times.h"
 
 #define NUM_LABELS 25
 #define TAG_OFFSET 99

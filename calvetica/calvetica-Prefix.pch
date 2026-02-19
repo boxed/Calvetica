@@ -31,7 +31,6 @@ static inline BOOL isMacApp(void) {
 	#import "NSDate+Utilities.h"
     #import "NSObject+Null.h"
     #import "EventKitAdditions.h"
-	#import "CVOperationQueue.h"
     #import "CVSharedSettings.h"
     #import "color.h"
 
@@ -41,6 +40,6 @@ static inline BOOL isMacApp(void) {
 	#import <NSDate+MTDates.h>
     #import <MTQueue/MTq.h>
     #import <MTMigration.h>
-
     #import <FrameAccessor.h>
+
 #endif

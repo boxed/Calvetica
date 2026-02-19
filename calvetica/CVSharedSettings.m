@@ -7,7 +7,6 @@
 //
 
 #import "CVSharedSettings.h"
-#import "times.h"
 #import "CVEventSubtitleTextPriorityViewController.h"
 #import "CVEventDetailsOrderViewController.h"
 

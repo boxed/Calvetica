@@ -6,7 +6,6 @@
 //
 
 #import "SCEventDetailsAlarmPicker.h"
-#import "times.h"
 #import "colors.h"
 
 
