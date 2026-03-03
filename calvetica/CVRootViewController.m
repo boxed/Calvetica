@@ -7,11 +7,11 @@
 //
 
 #import "CVRootViewController.h"
-#import "CVRootFullDayTableViewController.h"
-#import "CVRootAgendaTableViewController.h"
-#import "CVRootWeekTableViewController.h"
-#import "CVRootDetailedWeekTableViewController.h"
-#import "CVRootCompactWeekTableViewController.h"
+#import "CVFullDay.h"
+#import "CVWeekAgenda.h"
+#import "CVWeek.h"
+#import "CVDetailedWeek.h"
+#import "CVCompactWeek.h"
 #import "CVGenericReminderViewController.h"
 #import "CVManageCalendarsViewController.h"
 #import "CVAllDayAlarmPickerViewController.h"
@@ -1597,25 +1597,25 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 
     if (self.rootTableMode == CVRootTableViewModeFull) {
-        self.rootTableViewController = [CVRootFullDayTableViewController new];
+        self.rootTableViewController = [CVFullDay new];
     }
 
     else if (self.rootTableMode == CVRootTableViewModeAgenda) {
-        self.rootTableViewController = [CVRootAgendaTableViewController new];
+        self.rootTableViewController = [CVWeekAgenda new];
     }
 
     else if (self.rootTableMode == CVRootTableViewModeWeek) {
-        self.rootTableViewController = [CVRootWeekTableViewController new];
+        self.rootTableViewController = [CVWeek new];
     }
 
     else if (self.rootTableMode == CVRootTableViewModeDetailedWeek) {
-        self.rootTableViewController = [CVRootDetailedWeekTableViewController new];
+        self.rootTableViewController = [CVDetailedWeek new];
     }
     else if (self.rootTableMode == CVRootTableViewModeCompactWeek) {
-        self.rootTableViewController = [CVRootCompactWeekTableViewController new];
+        self.rootTableViewController = [CVCompactWeek new];
     }
     else {
-        self.rootTableViewController = [CVRootAgendaTableViewController new];
+        self.rootTableViewController = [CVWeekAgenda new];
     }
 
     self.rootTableViewController.delegate       = self;

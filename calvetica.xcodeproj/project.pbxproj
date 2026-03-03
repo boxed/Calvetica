@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0432F09913CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */; };
-		068383FF4E81B8A7191FEC86 /* CVRootCompactWeekTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159F7096619DD8B0BF2775BE /* CVRootCompactWeekTableViewController.m */; };
+		068383FF4E81B8A7191FEC86 /* CVCompactWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 159F7096619DD8B0BF2775BE /* CVCompactWeek.m */; };
 		4B119DD5F492A085B4367C06 /* libPods-calvetica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */; };
 		6A0CD58E13983974009B6EFE /* CVMultiToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */; };
 		6A17301A138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A173018138EDC2C00C2165B /* CVEventDetailsRepeatWeeklyViewController.m */; };
@@ -39,7 +39,7 @@
 		9B125C38136786970065B9B2 /* CVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B125C37136786960065B9B2 /* CVButton.m */; };
 		9B13F66913E5437F0009D37A /* CVTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13F66713E5437F0009D37A /* CVTableSectionHeaderView.m */; };
 		9B13F66A13E5437F0009D37A /* CVTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B13F66813E5437F0009D37A /* CVTableSectionHeaderView.xib */; };
-		9B13F66F13E545030009D37A /* CVRootDetailedWeekTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13F66E13E545030009D37A /* CVRootDetailedWeekTableViewController.m */; };
+		9B13F66F13E545030009D37A /* CVDetailedWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13F66E13E545030009D37A /* CVDetailedWeek.m */; };
 		9B16EE8813AFB32300368AF7 /* CVAllDayEventDefaultAlarmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B16EE8713AFB32300368AF7 /* CVAllDayEventDefaultAlarmsViewController.m */; };
 		9B1A7A9213E145040028A960 /* CVContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1A7A9113E145040028A960 /* CVContactUsViewController.m */; };
 		9B1C2135144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1C2134144DF60300447661 /* SCEventDetailsAllDayAlarmPicker.m */; };
@@ -115,8 +115,8 @@
 		C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DDDA7161D020200CC9D47 /* EKSource+Identity.m */; };
 		C20DF2F91ADC595600C87F82 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20DF2F81ADC595600C87F82 /* Launch Screen.xib */; };
 		C212260F151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = C212260E151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m */; };
-		C213C75F13A6712C00A20E17 /* CVRootFullDayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C75E13A6712C00A20E17 /* CVRootFullDayTableViewController.m */; };
-		C213C76313A6783B00A20E17 /* CVRootAgendaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C76213A6783B00A20E17 /* CVRootAgendaTableViewController.m */; };
+		C213C75F13A6712C00A20E17 /* CVFullDay.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C75E13A6712C00A20E17 /* CVFullDay.m */; };
+		C213C76313A6783B00A20E17 /* CVWeekAgenda.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C76213A6783B00A20E17 /* CVWeekAgenda.m */; };
 		C21401D813B2B68400211277 /* CVAllDayAlarmPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21401D613B2B68400211277 /* CVAllDayAlarmPickerViewController.m */; };
 		C2167C2513AAD6610034A6A7 /* UIActivityIndicatorView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2167C2413AAD6600034A6A7 /* UIActivityIndicatorView+Utilities.m */; };
 		C2174D911605043D00F3778D /* EKCalendarItem+Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = C2174D901605043C00F3778D /* EKCalendarItem+Identity.m */; };
@@ -246,7 +246,7 @@
 		C2AED96713A3DBAA0012ADE1 /* CVViewOptionsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AED96513A3DBAA0012ADE1 /* CVViewOptionsPopoverViewController.m */; };
 		C2AED97113A3F4200012ADE1 /* CVSubHourPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AED96F13A3F4200012ADE1 /* CVSubHourPickerViewController.m */; };
 		C2B2174D138899A9006878DC /* CVTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2174C138899A9006878DC /* CVTextField.m */; };
-		C2B3C47613C5226D0055018A /* CVRootWeekTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47513C5226D0055018A /* CVRootWeekTableViewController.m */; };
+		C2B3C47613C5226D0055018A /* CVWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47513C5226D0055018A /* CVWeek.m */; };
 		C2B3C47A13C52A450055018A /* CVAgendaDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B3C47913C52A450055018A /* CVAgendaDateCell.m */; };
 		C2B3C47C13C52A5B0055018A /* CVAgendaDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3C47B13C52A5B0055018A /* CVAgendaDateCell.xib */; };
 		C2BE7DD713CC979200925D53 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE7DD613CC979200925D53 /* NSString+Utilities.m */; };
@@ -339,10 +339,10 @@
 		0432F09713CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVEventSubtitleTextPriorityViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0432F09813CF4C4100DE91A2 /* CVEventSubtitleTextPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVEventSubtitleTextPriorityViewController.m; sourceTree = "<group>"; };
 		04B155B80184D2B11B27DEF2 /* Pods-calvetica.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.adhoc.xcconfig"; sourceTree = "<group>"; };
-		159F7096619DD8B0BF2775BE /* CVRootCompactWeekTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVRootCompactWeekTableViewController.m; sourceTree = "<group>"; };
+		159F7096619DD8B0BF2775BE /* CVCompactWeek.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVCompactWeek.m; sourceTree = "<group>"; };
 		24D624A22CC9B32331946241 /* CVCompactWeekReminderCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVCompactWeekReminderCell.m; sourceTree = "<group>"; };
 		5C113FFEBE54B0A689DE5B3F /* libPods-calvetica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-calvetica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65B94162FE3A91C64B7DBED4 /* CVRootCompactWeekTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVRootCompactWeekTableViewController.h; sourceTree = "<group>"; };
+		65B94162FE3A91C64B7DBED4 /* CVCompactWeek.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVCompactWeek.h; sourceTree = "<group>"; };
 		6A0CD58C13983974009B6EFE /* CVMultiToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMultiToggleButton.h; sourceTree = "<group>"; };
 		6A0CD58D13983974009B6EFE /* CVMultiToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMultiToggleButton.m; sourceTree = "<group>"; };
 		6A173010138EA93000C2165B /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strings.h; sourceTree = "<group>"; };
@@ -391,8 +391,8 @@
 		9B13F66613E5437F0009D37A /* CVTableSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTableSectionHeaderView.h; sourceTree = "<group>"; };
 		9B13F66713E5437F0009D37A /* CVTableSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTableSectionHeaderView.m; sourceTree = "<group>"; };
 		9B13F66813E5437F0009D37A /* CVTableSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVTableSectionHeaderView.xib; sourceTree = "<group>"; };
-		9B13F66D13E545030009D37A /* CVRootDetailedWeekTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVRootDetailedWeekTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		9B13F66E13E545030009D37A /* CVRootDetailedWeekTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootDetailedWeekTableViewController.m; sourceTree = "<group>"; };
+		9B13F66D13E545030009D37A /* CVDetailedWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVDetailedWeek.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9B13F66E13E545030009D37A /* CVDetailedWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDetailedWeek.m; sourceTree = "<group>"; };
 		9B16EE8613AFB32300368AF7 /* CVAllDayEventDefaultAlarmsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVAllDayEventDefaultAlarmsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B16EE8713AFB32300368AF7 /* CVAllDayEventDefaultAlarmsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAllDayEventDefaultAlarmsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B1A7A9013E145040028A960 /* CVContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVContactUsViewController.h; sourceTree = "<group>"; };
@@ -496,10 +496,10 @@
 		C20DF2F81ADC595600C87F82 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		C212260D151CD8C70055F6AE /* CVWeekTableViewCellDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekTableViewCellDrawing.h; sourceTree = "<group>"; };
 		C212260E151CD8C70055F6AE /* CVWeekTableViewCellDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekTableViewCellDrawing.m; sourceTree = "<group>"; };
-		C213C75D13A6712C00A20E17 /* CVRootFullDayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVRootFullDayTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C213C75E13A6712C00A20E17 /* CVRootFullDayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootFullDayTableViewController.m; sourceTree = "<group>"; };
-		C213C76113A6783B00A20E17 /* CVRootAgendaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVRootAgendaTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C213C76213A6783B00A20E17 /* CVRootAgendaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootAgendaTableViewController.m; sourceTree = "<group>"; };
+		C213C75D13A6712C00A20E17 /* CVFullDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVFullDay.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		C213C75E13A6712C00A20E17 /* CVFullDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVFullDay.m; sourceTree = "<group>"; };
+		C213C76113A6783B00A20E17 /* CVWeekAgenda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVWeekAgenda.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		C213C76213A6783B00A20E17 /* CVWeekAgenda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekAgenda.m; sourceTree = "<group>"; };
 		C21401D513B2B68400211277 /* CVAllDayAlarmPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAllDayAlarmPickerViewController.h; sourceTree = "<group>"; };
 		C21401D613B2B68400211277 /* CVAllDayAlarmPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAllDayAlarmPickerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2167C2313AAD6600034A6A7 /* UIActivityIndicatorView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+Utilities.h"; sourceTree = "<group>"; };
@@ -754,8 +754,8 @@
 		C2AF809815E93A4E005B2A46 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C2B2174B138899A9006878DC /* CVTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVTextField.h; sourceTree = "<group>"; };
 		C2B2174C138899A9006878DC /* CVTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVTextField.m; sourceTree = "<group>"; };
-		C2B3C47413C5226D0055018A /* CVRootWeekTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVRootWeekTableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C2B3C47513C5226D0055018A /* CVRootWeekTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVRootWeekTableViewController.m; sourceTree = "<group>"; };
+		C2B3C47413C5226D0055018A /* CVWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CVWeek.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		C2B3C47513C5226D0055018A /* CVWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeek.m; sourceTree = "<group>"; };
 		C2B3C47813C52A450055018A /* CVAgendaDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAgendaDateCell.h; sourceTree = "<group>"; };
 		C2B3C47913C52A450055018A /* CVAgendaDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVAgendaDateCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C2B3C47B13C52A5B0055018A /* CVAgendaDateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVAgendaDateCell.xib; sourceTree = "<group>"; };
@@ -1097,8 +1097,8 @@
 		9B13F66C13E544130009D37A /* Table View - Events - Week Std Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				9B13F66D13E545030009D37A /* CVRootDetailedWeekTableViewController.h */,
-				9B13F66E13E545030009D37A /* CVRootDetailedWeekTableViewController.m */,
+				9B13F66D13E545030009D37A /* CVDetailedWeek.h */,
+				9B13F66E13E545030009D37A /* CVDetailedWeek.m */,
 			);
 			name = "Table View - Events - Week Std Agenda";
 			sourceTree = "<group>";
@@ -1316,8 +1316,8 @@
 		C213C75C13A670DF00A20E17 /* Table View - Events - Full Day */ = {
 			isa = PBXGroup;
 			children = (
-				C213C75D13A6712C00A20E17 /* CVRootFullDayTableViewController.h */,
-				C213C75E13A6712C00A20E17 /* CVRootFullDayTableViewController.m */,
+				C213C75D13A6712C00A20E17 /* CVFullDay.h */,
+				C213C75E13A6712C00A20E17 /* CVFullDay.m */,
 			);
 			name = "Table View - Events - Full Day";
 			sourceTree = "<group>";
@@ -1325,8 +1325,8 @@
 		C213C76013A6780900A20E17 /* Table View - Events - Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				C213C76113A6783B00A20E17 /* CVRootAgendaTableViewController.h */,
-				C213C76213A6783B00A20E17 /* CVRootAgendaTableViewController.m */,
+				C213C76113A6783B00A20E17 /* CVWeekAgenda.h */,
+				C213C76213A6783B00A20E17 /* CVWeekAgenda.m */,
 			);
 			name = "Table View - Events - Agenda";
 			sourceTree = "<group>";
@@ -2190,8 +2190,8 @@
 		C2B3C47313C522450055018A /* Table View - Events - Week Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				C2B3C47413C5226D0055018A /* CVRootWeekTableViewController.h */,
-				C2B3C47513C5226D0055018A /* CVRootWeekTableViewController.m */,
+				C2B3C47413C5226D0055018A /* CVWeek.h */,
+				C2B3C47513C5226D0055018A /* CVWeek.m */,
 			);
 			name = "Table View - Events - Week Agenda";
 			sourceTree = "<group>";
@@ -2347,8 +2347,8 @@
 				C2E2973E133419A900FA7638 /* iPad */,
 				C280CFA517EA95A700D322F5 /* Images.xcassets */,
 				C2E2972C133419A900FA7638 /* Supporting Files */,
-				65B94162FE3A91C64B7DBED4 /* CVRootCompactWeekTableViewController.h */,
-				159F7096619DD8B0BF2775BE /* CVRootCompactWeekTableViewController.m */,
+				65B94162FE3A91C64B7DBED4 /* CVCompactWeek.h */,
+				159F7096619DD8B0BF2775BE /* CVCompactWeek.m */,
 				EF5BC6B2528EAD8E99A94E5C /* CVCompactWeekEventCell.h */,
 				CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */,
 				CD8EA101961F809B6BB7CD60 /* CVCompactWeekReminderCell.h */,
@@ -2969,9 +2969,9 @@
 				C2AED95413A3B8870012ADE1 /* CVNumericKeyPadViewController.m in Sources */,
 				C2AED96713A3DBAA0012ADE1 /* CVViewOptionsPopoverViewController.m in Sources */,
 				C2AED97113A3F4200012ADE1 /* CVSubHourPickerViewController.m in Sources */,
-				C213C75F13A6712C00A20E17 /* CVRootFullDayTableViewController.m in Sources */,
+				C213C75F13A6712C00A20E17 /* CVFullDay.m in Sources */,
 				C20DAACB181080D500F0E7A2 /* NSObject+Null.m in Sources */,
-				C213C76313A6783B00A20E17 /* CVRootAgendaTableViewController.m in Sources */,
+				C213C76313A6783B00A20E17 /* CVWeekAgenda.m in Sources */,
 				C21A2C3813A69CA800FAC7C9 /* CVRootTableViewController.m in Sources */,
 				6A8483CC13A7081600CB7047 /* EKRecurrenceRule+Utilities.m in Sources */,
 				C274C16613A83FC200E64AE9 /* CVSearchViewController.m in Sources */,
@@ -2995,7 +2995,7 @@
 				9B0FF97F13BD0E6500B316A9 /* CVHUD.m in Sources */,
 				C23041F613BE898800EC3CB0 /* CVSearchScopePopoverController.m in Sources */,
 				C22EA3C813C519E900CFFCC2 /* CVAgendaEventCell.m in Sources */,
-				C2B3C47613C5226D0055018A /* CVRootWeekTableViewController.m in Sources */,
+				C2B3C47613C5226D0055018A /* CVWeek.m in Sources */,
 				C2B3C47A13C52A450055018A /* CVAgendaDateCell.m in Sources */,
 				9BFE2CB013C6490D00360D5C /* CVNativeAlertView.m in Sources */,
 				C22F152B13C68E10005A6488 /* CVExtraAlarmButton.m in Sources */,
@@ -3035,7 +3035,7 @@
 				C23AB1FB181B370200056F14 /* NSMutableArray+Stack.m in Sources */,
 				C2997F19180F6A070030D944 /* EKEvent+RelativeToDay.m in Sources */,
 				C22EA29918298C96004F2589 /* EKCalendar+Settings.m in Sources */,
-				9B13F66F13E545030009D37A /* CVRootDetailedWeekTableViewController.m in Sources */,
+				9B13F66F13E545030009D37A /* CVDetailedWeek.m in Sources */,
 				C251350A13EDBC7100936CC0 /* UIApplication+Utilities.m in Sources */,
 				C251351F13EDEC7900936CC0 /* CVEventEditViewController.m in Sources */,
 				C2E6A5B617EE1DE4006D035A /* CVAddButton.m in Sources */,
@@ -3070,7 +3070,7 @@
 				C20DDDA8161D020200CC9D47 /* EKSource+Identity.m in Sources */,
 				C2D4D342162CC7F5002484A6 /* CVStartWeekOnViewController.m in Sources */,
 				C27EAA251630BD57008046CF /* EKEventStore+Shared.m in Sources */,
-				068383FF4E81B8A7191FEC86 /* CVRootCompactWeekTableViewController.m in Sources */,
+				068383FF4E81B8A7191FEC86 /* CVCompactWeek.m in Sources */,
 				B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */,
 				818E6C65A9BC5FAB3554E865 /* CVCompactWeekReminderCell.m in Sources */,
 			);

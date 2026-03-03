@@ -1,23 +1,24 @@
 //
-//  CVRootCompactWeekTableViewController.m
+//  CVEventsWeekStdAgendaTableViewController.m
 //  calvetica
 //
-//  Compact week view with date/weekday column, showing week at a glance.
+//  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVRootCompactWeekTableViewController.h"
+#import "CVDetailedWeek.h"
 #import "CVCalendarItemCellModel.h"
+#import "UIView+Nibs.h"
+#import "CVTableSectionHeaderView.h"
 #import "CVRootTableViewController_Protected.h"
-#import "CVCompactWeekEventCell.h"
-#import "CVCompactWeekReminderCell.h"
+#import "CVReminderCell.h"
 
 
-@interface CVRootCompactWeekTableViewController ()
+@interface CVDetailedWeek ()
 @property (nonatomic, copy) NSArray *daysOfWeekArray;
 @end
 
 
-@implementation CVRootCompactWeekTableViewController
+@implementation CVDetailedWeek
 
 #pragma mark - Public
 
@@ -29,23 +30,31 @@
         self.tableView.sectionHeaderTopPadding = 0;
     }
 
+    // date can't be null
     if (!self.selectedDate) return;
-
+    
+    // copy the date so that its copied into the operation and not tied to the ivar
     NSDate *dateCopy = [self.selectedDate copy];
 
     void (^processCalendarItems)(NSMutableArray *, NSDate *, NSDate *) = ^(NSMutableArray *calendarItems,
-                                                                            NSDate *startDate,
-                                                                            NSDate *endDate)
+                                                                           NSDate *startDate,
+                                                                           NSDate *endDate)
     {
+        // get the days of the current week
         self.daysOfWeekArray = [NSDate mt_datesCollectionFromDate:startDate
                                                         untilDate:[endDate mt_oneDayNext]];
 
         NSDate *today = [NSDate date];
-        NSMutableArray *flatItems = [NSMutableArray array];
 
+        NSMutableArray *tempDaysArray = [NSMutableArray array];
+
+        // fetch events for each day of the daysOfWeekArray
         for (NSDate *weekDay in self.daysOfWeekArray) {
-            NSMutableArray *dayItems = [NSMutableArray array];
 
+            // create cell data holders
+            NSMutableArray *tempArray = [NSMutableArray array];
+
+            // get todays events
             NSArray *todaysItems = [calendarItems filteredArrayUsingPredicate:
                                     [NSPredicate predicateWithBlock:^BOOL(EKCalendarItem *calendarItem,
                                                                           NSDictionary *bindings)
@@ -62,71 +71,78 @@
                                      }]];
 
             for (EKCalendarItem *calendarItem in todaysItems) {
+
+                // create data holder
                 CVCalendarItemCellModel *cellModel = [CVCalendarItemCellModel new];
 
+                // if the event is all day
                 if (calendarItem.mys_isAllDay) {
                     cellModel.calendarItem = calendarItem;
                     cellModel.date         = calendarItem.mys_date;
                     cellModel.isAllDay     = YES;
-                    [dayItems addObject:cellModel];
+                    [tempArray addObject:cellModel];
                 }
+
+                // if it spans the whole day, make it an all day event
                 else if (calendarItem.isEvent && [(EKEvent *)calendarItem spansEntireDayOfDate:weekDay]) {
                     cellModel.calendarItem = calendarItem;
                     cellModel.date         = calendarItem.mys_date;
                     cellModel.isAllDay     = YES;
-                    [dayItems addObject:cellModel];
+                    [tempArray addObject:cellModel];
                 }
+
+                // if event started before date (but obviously cant end after it) show it at the beginning
+                // with a start time of "..."
                 else if (![calendarItem.mys_date mt_isWithinSameDay:weekDay]) {
                     cellModel.calendarItem = calendarItem;
                     cellModel.date         = nil;
                     cellModel.isAllDay     = NO;
-                    [dayItems addObject:cellModel];
+                    [tempArray addObject:cellModel];
                 }
+
                 else {
                     cellModel.calendarItem = calendarItem;
                     cellModel.date         = calendarItem.mys_date;
                     cellModel.isAllDay     = NO;
-                    [dayItems addObject:cellModel];
+                    [tempArray addObject:cellModel];
                 }
             }
 
-            [dayItems sortUsingComparator:^NSComparisonResult(CVCalendarItemCellModel *model1,
-                                                              CVCalendarItemCellModel *model2)
+            // sort the data holders so that all day events are first, then events that started
+            // previously, then events that start today
+            [tempArray sortUsingComparator:^NSComparisonResult(CVCalendarItemCellModel *model1,
+                                                               CVCalendarItemCellModel *model2)
              {
                  return [model1.calendarItem compareWithCalendarItem:model2.calendarItem];
              }];
 
-            // Mark first item of each day and check if today
-            BOOL isFirstOfDay = YES;
-            BOOL isDayToday = [weekDay mt_isWithinSameDay:today];
-            for (CVCalendarItemCellModel *model in dayItems) {
-                model.isFirstOfDay = isFirstOfDay;
-                model.dayDate = weekDay;  // Store the day for this item
-                model.isToday = isDayToday;
-                isFirstOfDay = NO;
-                [flatItems addObject:model];
-            }
+            [tempDaysArray addObject:tempArray];
         }
 
+        // update the table with our new event or cell
         [MTq main:^{
             // Only update if we're still the active controller for this tableView
             if (self.tableView.dataSource != self) return;
 
-            self.cellModelArray = flatItems;
+            self.cellModelArray = [tempDaysArray mutableCopy];
             [self.tableView reloadData];
             if (completion) completion();
         }];
     };
 
     [MTq def:^{
+
         NSDate *startDate   = [dateCopy mt_startOfCurrentWeek];
         NSDate *endDate     = [dateCopy mt_endOfCurrentWeek];
 
+        // fetch the events
         NSMutableArray *calendarItems = [[EKEventStore eventsFromDate:startDate
                                                                toDate:[endDate mt_endOfCurrentDay]
                                                    forActiveCalendars:YES] mutableCopy];
 
         if (PREFS.remindersEnabled) {
+            // if reminders are cached, just do one completion call. Otherwise do two, one when events are done
+            // and another when remindrs are done.
             [[EKEventStore sharedStore] remindersFromDate:startDate
                                                    toDate:endDate
                                                 calendars:nil
@@ -141,17 +157,22 @@
             processCalendarItems(calendarItems, startDate, endDate);
         }
     }];
+    
 }
 
 - (void)scrollToDate:(NSDate *)date animated:(BOOL)animated
 {
-    for (NSInteger i = 0; i < self.cellModelArray.count; i++) {
-        CVCalendarItemCellModel *model = self.cellModelArray[i];
-        if (model.isFirstOfDay && [model.dayDate mt_isWithinSameDay:date]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indexPath
-                                  atScrollPosition:UITableViewScrollPositionTop
-                                          animated:animated];
+    for (NSInteger i = 0; i < self.daysOfWeekArray.count; i++) {
+        NSDate *d = [self.daysOfWeekArray objectAtIndex:i];
+        if ([d mt_isWithinSameDay:date]) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:i];
+            if ([self.tableView numberOfSections] > indexPath.section &&
+                [self.tableView numberOfRowsInSection:indexPath.section] > indexPath.row)
+            {
+                [self.tableView scrollToRowAtIndexPath:indexPath
+                                      atScrollPosition:UITableViewScrollPositionTop
+                                              animated:animated];
+            }
             break;
         }
     }
@@ -159,62 +180,56 @@
 
 - (void)removeCalendarItem:(EKCalendarItem *)calendarItem
 {
-    NSMutableArray *mutableArray = [self.cellModelArray mutableCopy];
-    for (CVCalendarItemCellModel *model in [mutableArray copy]) {
-        if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
-            [mutableArray removeObject:model];
-            break;
+    for (NSMutableArray *models in self.cellModelArray) {
+        for (CVCalendarItemCellModel *model in [models copy]) {
+            if ([model.calendarItem isEqualToCalendarItem:calendarItem]) {
+                [models removeObject:model];
+                break;
+            }
         }
     }
-    self.cellModelArray = mutableArray;
 }
 
 
-#pragma mark - Helper
 
-- (NSString *)dayLabelTextForDate:(NSDate *)date
+
+#pragma mark - DELEGATE table view
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    if (!date) return nil;
-    NSString *weekday = [[date stringWithTitleOfCurrentWeekDayAbbreviated:YES] uppercaseString];
-    return [NSString stringWithFormat:@"%@ %lu", weekday, (unsigned long)[date mt_dayOfMonth]];
+    return self.daysOfWeekArray.count;
 }
 
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    return 1;
+    NSArray *calendarItems = [self.cellModelArray objectAtIndex:section];
+    return [calendarItems count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    return self.cellModelArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
-    EKCalendarItem *calendarItem = model.calendarItem;
-
-    // Always set dayText (empty string for non-first rows) to ensure column alignment
-    NSString *dayText = model.isFirstOfDay ? [self dayLabelTextForDate:model.dayDate] : @"";
+    NSArray *models                 = self.cellModelArray[indexPath.section];
+    CVCalendarItemCellModel *model  = models[indexPath.row];
+    EKCalendarItem *calendarItem    = model.calendarItem;
 
     if (calendarItem.isEvent) {
-        CVCompactWeekEventCell *cell = [CVCompactWeekEventCell cellForTableView:tableView];
-        cell.event      = (EKEvent *)model.calendarItem;
-        cell.date       = model.date;
-        cell.isAllDay   = model.isAllDay;
-        cell.isToday    = model.isToday;
-        cell.delegate   = self;
-        cell.dayLabelText = dayText;
+        CVEventCell *cell               = [CVEventCell cellForTableView:tableView];
+        cell.isEmpty                    = NO;
+        cell.event                      = (EKEvent *)model.calendarItem;
+        cell.date                       = model.date;
+        cell.isAllDay                   = model.isAllDay;
+        cell.durationBarPercent         = 0;
+        cell.durationBarColor           = patentedClear;
+        cell.secondaryDurationBarColor  = patentedClear;
+        cell.delegate                   = self;
         [cell resetAccessoryButton];
+        [cell drawDurationBarAnimated:NO];
         return cell;
     }
     else if (calendarItem.isReminder) {
         EKReminder *reminder = (EKReminder *)calendarItem;
 
-        CVCompactWeekReminderCell *cell = [CVCompactWeekReminderCell cellForTableView:tableView];
+        CVReminderCell *cell = [CVReminderCell cellForTableView:tableView];
         if (reminder.completed && reminder.title) {
             NSAttributedString *attributedTitle =
             [[NSAttributedString alloc] initWithString:reminder.title
@@ -225,10 +240,6 @@
             cell.titleLabel.text = reminder.title;
         }
 
-        cell.dayLabelText = dayText;
-        cell.isToday = model.isToday;
-
-        // Set time display based on model
         if (model.isAllDay) {
             cell.timeLabel.hidden   = YES;
             cell.AMPMLabel.hidden   = YES;
@@ -249,14 +260,14 @@
             }
 
             if (PREFS.twentyFourHourFormat) {
-                cell.AMPMLabel.hidden = YES;
+                cell.AMPMLabel.hidden   = YES;
             }
             else {
-                cell.AMPMLabel.hidden = NO;
-                cell.AMPMLabel.text   = [startDate mt_stringFromDateWithAMPMSymbol];
+                cell.AMPMLabel.hidden   = NO;
+                cell.AMPMLabel.text     = [startDate mt_stringFromDateWithAMPMSymbol];
             }
 
-            if (startDate && ![startDate mt_isStartOfAnHour]) {
+            if (![startDate mt_isStartOfAnHour]) {
                 cell.AMPMLabel.alpha    = 0.8f;
                 cell.titleLabel.alpha   = 0.8f;
             }
@@ -266,9 +277,10 @@
             }
         }
 
-        cell.coloredDotView.color   = reminder.calendar.customColor;
+        UIColor *calendarColor      = reminder.calendar.customColor;
+        cell.coloredDotView.color   = calendarColor;
         cell.coloredDotView.shape   = CVColoredShapeCheck;
-        [cell updateBackgroundColor];
+        cell.backgroundColor        = [calendarColor colorWithAlphaComponent:0.1];
 
         return cell;
     }
@@ -278,26 +290,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
-    CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
-    EKCalendarItem *calendarItem = model.calendarItem;
+    NSArray *models                 = self.cellModelArray[indexPath.section];
+    CVCalendarItemCellModel *model  = models[indexPath.row];
+    EKCalendarItem *calendarItem    = model.calendarItem;
 
+    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
     if (calendarItem.isReminder) {
         return CVRootTableViewReminderRowHeight * scale;
     }
-
-    return 36 * scale;
+    return CVRootTableViewEventRowHeight * scale;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
-    EKCalendarItem *calendarItem = model.calendarItem;
+    NSArray *models                 = self.cellModelArray[indexPath.section];
+    CVCalendarItemCellModel *model  = models[indexPath.row];
+    EKCalendarItem *calendarItem    = model.calendarItem;
     if (calendarItem.isReminder) {
         EKReminder *reminder = (EKReminder *)model.calendarItem;
         reminder.completed = !reminder.completed;
         [reminder saveWithError:nil];
-        CVCompactWeekReminderCell *cell = (CVCompactWeekReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
+        CVReminderCell *cell = (CVReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
         [cell.titleLabel toggleStrikeThroughWithCompletion:^{
             [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
         }];
@@ -306,7 +319,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 27;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
+{
+    NSDate *day                             = [self.daysOfWeekArray objectAtIndex:section];
+    CVTableSectionHeaderView *sectionView   = [CVTableSectionHeaderView fromNibOfSameName];
+    NSString *title                         = [[day stringWithTitleOfCurrentWeekDayAndMonthDayAbbreviated:NO] lowercaseString];
+    sectionView.weekdayLabel.text           = title;
+    sectionView.backgroundColor             = [day mt_isWithinSameDay:[NSDate date]] ? patentedRed : calWeekdayHeaderText();
+
+    return sectionView;
+}
+
 
 @end

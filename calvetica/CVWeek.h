@@ -1,5 +1,5 @@
 //
-//  CVEventsFullDayTableViewController.h
+//  CVEventsWeekAgendaTableViewController.h
 //  calvetica
 //
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface CVRootFullDayTableViewController : CVRootTableViewController
+@interface CVWeek : CVRootTableViewController
 @end
 
 NS_ASSUME_NONNULL_END

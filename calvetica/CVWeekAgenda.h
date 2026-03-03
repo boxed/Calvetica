@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface CVRootAgendaTableViewController : CVRootTableViewController
+@interface CVWeekAgenda : CVRootTableViewController
 @end
 
 NS_ASSUME_NONNULL_END

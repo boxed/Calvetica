@@ -5,13 +5,13 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVRootFullDayTableViewController.h"
+#import "CVFullDay.h"
 #import "CVCalendarItemCellModel.h"
 #import "CVRootTableViewController_Protected.h"
 #import "CVReminderCell.h"
 
 
-@implementation CVRootFullDayTableViewController
+@implementation CVFullDay
 
 #pragma mark - Public
 

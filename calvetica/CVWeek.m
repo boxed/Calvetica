@@ -5,7 +5,7 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVRootWeekTableViewController.h"
+#import "CVWeek.h"
 #import "CVCalendarItemCellModel.h"
 #import "CVAgendaDateCell.h"
 #import "dimensions.h"
@@ -15,7 +15,7 @@
 #import "EKCalendarItem+Common.h"
 
 
-@implementation CVRootWeekTableViewController
+@implementation CVWeek
 
 
 #pragma mark - Public

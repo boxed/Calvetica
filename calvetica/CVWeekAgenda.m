@@ -5,14 +5,14 @@
 //  Copyright 2011 Mysterious Trousers, LLC. All rights reserved.
 //
 
-#import "CVRootAgendaTableViewController.h"
+#import "CVWeekAgenda.h"
 #import "CVReminderCell.h"
 #import "CVCalendarItemCellModel.h"
 #import "EKCalendarItem+Common.h"
 #import "CVRootTableViewController_Protected.h"
 
 
-@implementation CVRootAgendaTableViewController
+@implementation CVWeekAgenda
 
 
 #pragma mark - Public
