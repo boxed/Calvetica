@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *scrollingMonthSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *durationBarReadOnlySwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *showWeekNumbersSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *showInboxBadgeSwitch;
 @end
 
 
@@ -49,6 +50,7 @@
     self.scrollingMonthSwitch.on            = PREFS.iPhoneScrollableMonthView;
     self.durationBarReadOnlySwitch.on       = PREFS.showDurationOnReadOnlyEvents;
     self.showWeekNumbersSwitch.on           = PREFS.showWeekNumbers;
+    self.showInboxBadgeSwitch.on            = PREFS.showInboxBadge;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -107,6 +109,11 @@
 - (IBAction)showWeekNumbersFlipped:(UISwitch *)sender
 {
     PREFS.showWeekNumbers = sender.isOn;
+}
+
+- (IBAction)showInboxBadgeFlipped:(UISwitch *)sender
+{
+    PREFS.showInboxBadge = sender.isOn;
 }
 
 

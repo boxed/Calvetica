@@ -21,6 +21,7 @@
 @dynamic iPhoneScrollableMonthView;
 @dynamic showDurationOnReadOnlyEvents;
 @dynamic showWeekNumbers;
+@dynamic showInboxBadge;
 @dynamic localRootTableViewMode;
 @dynamic hiddenEventCalendarIdentifiers;
 @dynamic defaultEventCalendarIdentifier;
@@ -50,6 +51,7 @@
              @"iPhoneScrollableMonthView"           : @YES,
              @"showDurationOnReadOnlyEvents"        : @NO,
              @"showWeekNumbers"                     : @NO,
+             @"showInboxBadge"                      : @YES,
              @"localRootTableViewMode"              : @(CVRootTableViewModeAgenda),
              @"hiddenEventCalendarIdentifiers"      : @[],
              @"customCalendarColors"                : @{},

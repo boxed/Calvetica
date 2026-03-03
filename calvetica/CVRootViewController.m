@@ -1881,6 +1881,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
             // Pending invitations always count (need a response)
             for (EKEvent *event in events) {
+                if (event.organizer.isCurrentUser) continue;
                 for (EKParticipant *attendee in event.attendees) {
                     if (attendee.isCurrentUser && attendee.participantStatus == EKParticipantStatusPending) {
                         count++;
@@ -1902,7 +1903,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             self.pendingInboxCount = count;
-            self.inboxBadge.hidden = (count == 0);
+            self.inboxBadge.hidden = (count == 0 || !PREFS.showInboxBadge);
         });
     });
 }

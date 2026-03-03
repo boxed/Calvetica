@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger, CVInboxSection) {
     // Pending invitations
     NSMutableArray *pending = [NSMutableArray array];
     for (EKEvent *event in events) {
+        if (event.organizer.isCurrentUser) continue;
         for (EKParticipant *attendee in event.attendees) {
             if (attendee.isCurrentUser && attendee.participantStatus == EKParticipantStatusPending) {
                 [pending addObject:event];
