@@ -18,6 +18,7 @@ static CGFloat const kAccessoryButtonWidth = 44.0f;
 static CGFloat const kColoredDotSize = 8.0f;
 
 @interface CVCompactWeekEventCell ()
+@property (nonatomic, assign) float appliedFontScale;
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UILabel *hourAndMinuteLabel;
 @property (nonatomic, strong) UILabel *AMPMLabel;
@@ -146,38 +147,63 @@ static CGFloat const kColoredDotSize = 8.0f;
     [self addGestureRecognizer:swipeRightGesture];
 }
 
+- (void)applyFontScaleIfNeeded
+{
+    if (!IS_MAC) return;
+    float scale = PREFS.macFontScale;
+    if (self.appliedFontScale == scale) return;
+    self.appliedFontScale = scale;
+    self.dayLabel.font          = [UIFont systemFontOfSize:10 * scale weight:UIFontWeightMedium];
+    self.hourAndMinuteLabel.font = [UIFont systemFontOfSize:12 * scale weight:UIFontWeightRegular];
+    self.AMPMLabel.font         = [UIFont systemFontOfSize:8 * scale weight:UIFontWeightRegular];
+    self.endTimeLabel.font      = [UIFont systemFontOfSize:10 * scale weight:UIFontWeightRegular];
+    self.endAMPMLabel.font      = [UIFont systemFontOfSize:7 * scale weight:UIFontWeightRegular];
+    self.allDayLabel.font       = [UIFont systemFontOfSize:9 * scale weight:UIFontWeightMedium];
+    self.titleLabel.font        = [UIFont systemFontOfSize:14 * scale weight:UIFontWeightRegular];
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    [self applyFontScaleIfNeeded];
 
     CGFloat contentHeight = self.contentView.bounds.size.height;
     CGFloat contentWidth = self.contentView.bounds.size.width;
+    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
 
     // Day separator line at top (spans full width)
     self.daySeparatorLine.frame = CGRectMake(0, 0, contentWidth, 1.0 / UIScreen.mainScreen.scale);
 
+    // Scaled column positions
+    CGFloat dayLabelX = kDayLabelX;
+    CGFloat dayLabelW = kDayLabelWidth * scale;
+    CGFloat timeColumnX = dayLabelX + dayLabelW + 7;
+    CGFloat timeHourW = 38 * scale;
+    CGFloat timeAmpmW = 16 * scale;
+    CGFloat timeColumnW = timeHourW + timeAmpmW;
+    CGFloat dotSize = kColoredDotSize * scale;
+
     // Day label
-    self.dayLabel.frame = CGRectMake(kDayLabelX, 0, kDayLabelWidth, contentHeight);
+    self.dayLabel.frame = CGRectMake(dayLabelX, 0, dayLabelW, contentHeight);
 
     // Time column - center vertically if no end time, otherwise position in upper half
+    CGFloat timeH = 15 * scale;
     CGFloat timeY;
     if (self.endTimeLabel.hidden) {
-        // Center start time vertically when end time is hidden
-        timeY = (contentHeight - 15) / 2;
+        timeY = (contentHeight - timeH) / 2;
     } else {
-        // Position in upper half when end time is shown
         timeY = 2;
     }
-    self.hourAndMinuteLabel.frame = CGRectMake(kTimeColumnX, timeY, 38, 15);
-    self.AMPMLabel.frame = CGRectMake(kTimeColumnX + 38, timeY + 2, 16, 11);
+    self.hourAndMinuteLabel.frame = CGRectMake(timeColumnX, timeY, timeHourW, timeH);
+    self.AMPMLabel.frame = CGRectMake(timeColumnX + timeHourW, timeY + 2, timeAmpmW, 11 * scale);
 
     // End time labels (below start time)
-    CGFloat endTimeY = timeY + 15;
-    self.endTimeLabel.frame = CGRectMake(kTimeColumnX, endTimeY, 38, 13);
-    self.endAMPMLabel.frame = CGRectMake(kTimeColumnX + 38, endTimeY + 1, 16, 11);
+    CGFloat endTimeY = timeY + timeH;
+    self.endTimeLabel.frame = CGRectMake(timeColumnX, endTimeY, timeHourW, 13 * scale);
+    self.endAMPMLabel.frame = CGRectMake(timeColumnX + timeHourW, endTimeY + 1, timeAmpmW, 11 * scale);
 
     // All day label (right-aligned in time column area)
-    self.allDayLabel.frame = CGRectMake(kTimeColumnX - 15, (contentHeight - 14) / 2, kTimeColumnWidth, 14);
+    self.allDayLabel.frame = CGRectMake(timeColumnX - 15, (contentHeight - 14 * scale) / 2, timeColumnW, 14 * scale);
 
     // Accessory button (right side, flush to cell edge)
     CGFloat accessoryWidth = 44;
@@ -185,15 +211,15 @@ static CGFloat const kColoredDotSize = 8.0f;
     CGFloat cellHeight = self.bounds.size.height;
     CGFloat accessoryX = cellWidth - accessoryWidth;
     self.cellAccessoryButton.frame = CGRectMake(accessoryX, 0, accessoryWidth, cellHeight);
-    // Re-trigger mode to recalculate image centering with correct frame size
     self.cellAccessoryButton.mode = self.cellAccessoryButton.mode;
 
     // Colored dot and title
-    CGFloat titleX = kTimeColumnX + kTimeColumnWidth + 1;
+    CGFloat titleX = timeColumnX + timeColumnW + 1;
     CGFloat titleWidth = accessoryX - titleX - 8;
 
-    self.coloredDotView.frame = CGRectMake(titleX, (contentHeight - kColoredDotSize) / 2, kColoredDotSize, kColoredDotSize);
-    self.titleLabel.frame = CGRectMake(titleX + kColoredDotSize + 6, (contentHeight - 20) / 2, titleWidth - kColoredDotSize - 6, 20);
+    self.coloredDotView.frame = CGRectMake(titleX, (contentHeight - dotSize) / 2, dotSize, dotSize);
+    CGFloat titleLabelX = titleX + dotSize + 4 * scale;
+    self.titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth - dotSize - 4 * scale, 20 * scale);
 }
 
 - (void)prepareForReuse

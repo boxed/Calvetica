@@ -22,12 +22,76 @@
 @property (nonatomic, weak) IBOutlet UIImageView *notesTinyIcon;
 @property (nonatomic, weak) IBOutlet UIImageView *locationTinyIcon;
 @property (nonatomic, weak) IBOutlet UIImageView *attendeesTinyIcon;
+@property (nonatomic, assign) float appliedFontScale;
+@property (nonatomic, strong) NSDictionary *baseFonts;
 @end
 
 
 @implementation CVEventCell
 
-- (void)setIsEmpty:(BOOL)empty 
+- (void)applyFontScaleIfNeeded
+{
+    if (!IS_MAC) return;
+    float scale = PREFS.macFontScale;
+    if (self.appliedFontScale == scale) return;
+    self.appliedFontScale = scale;
+    if (!self.baseFonts) {
+        self.baseFonts = @{
+            @"title": self.titleLabel.font ?: [UIFont systemFontOfSize:14],
+            @"subtitle": self.redSubtitleLabel.font ?: [UIFont systemFontOfSize:10],
+            @"hour": _hourAndMinuteLabel.font ?: [UIFont systemFontOfSize:14],
+            @"ampm": _AMPMLabel.font ?: [UIFont systemFontOfSize:10],
+            @"allDay": _allDayLabel.font ?: [UIFont systemFontOfSize:10],
+            @"noEvent": _noEventLabel.font ?: [UIFont systemFontOfSize:14],
+        };
+    }
+    for (NSString *key in self.baseFonts) {
+        UIFont *base = self.baseFonts[key];
+        UIFont *scaled = [base fontWithSize:base.pointSize * scale];
+        if ([key isEqualToString:@"title"]) self.titleLabel.font = scaled;
+        else if ([key isEqualToString:@"subtitle"]) self.redSubtitleLabel.font = scaled;
+        else if ([key isEqualToString:@"hour"]) _hourAndMinuteLabel.font = scaled;
+        else if ([key isEqualToString:@"ampm"]) _AMPMLabel.font = scaled;
+        else if ([key isEqualToString:@"allDay"]) _allDayLabel.font = scaled;
+        else if ([key isEqualToString:@"noEvent"]) _noEventLabel.font = scaled;
+    }
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self applyFontScaleIfNeeded];
+
+    if (IS_MAC) {
+        CGFloat scale = PREFS.macFontScale;
+        CGFloat h = self.contentView.frame.size.height;
+        CGFloat w = self.contentView.frame.size.width;
+
+        // Nib base positions: hour x=5 w=36, ampm x=43 w=27, allDay x=9 w=50, dot x=76 w=10, title x=91, subtitle x=91
+        CGFloat hourX = 5;
+        CGFloat hourW = 36 * scale;
+        CGFloat ampmX = hourX + hourW + 2;
+        CGFloat ampmW = 27 * scale;
+        CGFloat allDayW = (ampmX + ampmW) - 9;
+        CGFloat dotX = ampmX + ampmW + 1;
+        CGFloat dotSize = 10 * scale;
+        CGFloat titleX = dotX + dotSize + 5 * scale;
+
+        _hourAndMinuteLabel.frame = CGRectMake(hourX, 0, hourW, h);
+        _AMPMLabel.frame = CGRectMake(ampmX, 0, ampmW, h);
+        _allDayLabel.frame = CGRectMake(9, 1, allDayW, h - 1);
+        self.coloredDotView.frame = CGRectMake(dotX, (h - dotSize) / 2, dotSize, dotSize);
+
+        CGFloat accessoryW = self.cellAccessoryButton.frame.size.width;
+        CGFloat titleW = w - titleX - accessoryW;
+        self.titleLabel.frame = CGRectMake(titleX, 5 * scale, titleW, 18 * scale);
+        self.redSubtitleLabel.frame = CGRectMake(titleX, 5 * scale + 18 * scale, titleW, 16 * scale);
+
+        _timeTextHitArea.frame = CGRectMake(0, 0, dotX, h);
+    }
+}
+
+- (void)setIsEmpty:(BOOL)empty
 {
     super.isEmpty = empty;
     if (empty) {

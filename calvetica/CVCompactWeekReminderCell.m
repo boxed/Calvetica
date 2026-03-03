@@ -15,6 +15,7 @@ static CGFloat const kTimeColumnWidth = 50.0f;
 static CGFloat const kColoredDotSize = 14.0f;
 
 @interface CVCompactWeekReminderCell ()
+@property (nonatomic, assign) float appliedFontScale;
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UIView *daySeparatorLine;
 @end
@@ -94,33 +95,58 @@ static CGFloat const kColoredDotSize = 14.0f;
     [self.contentView addSubview:_titleLabel];
 }
 
+- (void)applyFontScaleIfNeeded
+{
+    if (!IS_MAC) return;
+    float scale = PREFS.macFontScale;
+    if (self.appliedFontScale == scale) return;
+    self.appliedFontScale = scale;
+    self.dayLabel.font   = [UIFont systemFontOfSize:10 * scale weight:UIFontWeightMedium];
+    _timeLabel.font      = [UIFont systemFontOfSize:14 * scale weight:UIFontWeightRegular];
+    _AMPMLabel.font      = [UIFont systemFontOfSize:9 * scale weight:UIFontWeightRegular];
+    _allDayLabel.font    = [UIFont systemFontOfSize:9 * scale weight:UIFontWeightMedium];
+    _titleLabel.font     = [UIFont systemFontOfSize:14 * scale weight:UIFontWeightRegular];
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    [self applyFontScaleIfNeeded];
 
     CGFloat contentHeight = self.contentView.bounds.size.height;
     CGFloat contentWidth = self.contentView.bounds.size.width;
+    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
 
     // Day separator line at top (spans full width)
     self.daySeparatorLine.frame = CGRectMake(0, 0, contentWidth, 1.0 / UIScreen.mainScreen.scale);
 
+    // Scaled column positions
+    CGFloat dayLabelW = kDayLabelWidth * scale;
+    CGFloat timeColumnX = kDayLabelX + dayLabelW + 7;
+    CGFloat timeHourW = 35 * scale;
+    CGFloat timeAmpmW = 20 * scale;
+    CGFloat timeColumnW = timeHourW + timeAmpmW;
+    CGFloat dotSize = kColoredDotSize * scale;
+
     // Day label (left column)
-    self.dayLabel.frame = CGRectMake(kDayLabelX, 0, kDayLabelWidth, contentHeight);
+    self.dayLabel.frame = CGRectMake(kDayLabelX, 0, dayLabelW, contentHeight);
 
     // Time column
-    CGFloat timeY = (contentHeight - 18) / 2;
-    _timeLabel.frame = CGRectMake(kTimeColumnX, timeY, 35, 18);
-    _AMPMLabel.frame = CGRectMake(kTimeColumnX + 36, timeY + 3, 20, 14);
+    CGFloat timeH = 18 * scale;
+    CGFloat timeY = (contentHeight - timeH) / 2;
+    _timeLabel.frame = CGRectMake(timeColumnX, timeY, timeHourW, timeH);
+    _AMPMLabel.frame = CGRectMake(timeColumnX + timeHourW + 1, timeY + 3, timeAmpmW, 14 * scale);
 
     // All day label (centered in time column area)
-    _allDayLabel.frame = CGRectMake(kTimeColumnX, (contentHeight - 14) / 2, kTimeColumnWidth, 14);
+    _allDayLabel.frame = CGRectMake(timeColumnX, (contentHeight - 14 * scale) / 2, timeColumnW, 14 * scale);
 
     // Colored dot and title
-    CGFloat titleX = kTimeColumnX + kTimeColumnWidth + 12;
+    CGFloat titleX = timeColumnX + timeColumnW + 4;
     CGFloat titleWidth = contentWidth - titleX - 16;
 
-    _coloredDotView.frame = CGRectMake(titleX, (contentHeight - kColoredDotSize) / 2, kColoredDotSize, kColoredDotSize);
-    _titleLabel.frame = CGRectMake(titleX + kColoredDotSize + 6, (contentHeight - 20) / 2, titleWidth - kColoredDotSize - 6, 20);
+    _coloredDotView.frame = CGRectMake(titleX, (contentHeight - dotSize) / 2, dotSize, dotSize);
+    CGFloat titleLabelX = titleX + dotSize + 4 * scale;
+    _titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth - dotSize - 4 * scale, 20 * scale);
 }
 
 - (void)prepareForReuse

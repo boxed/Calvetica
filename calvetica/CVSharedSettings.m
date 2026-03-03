@@ -23,6 +23,7 @@
 @dynamic showWeekNumbers;
 @dynamic showInboxBadge;
 @dynamic localRootTableViewMode;
+@dynamic macFontScale;
 @dynamic hiddenEventCalendarIdentifiers;
 @dynamic defaultEventCalendarIdentifier;
 @dynamic customCalendarColors;
@@ -53,6 +54,7 @@
              @"showWeekNumbers"                     : @NO,
              @"showInboxBadge"                      : @YES,
              @"localRootTableViewMode"              : @(CVRootTableViewModeAgenda),
+             @"macFontScale"                        : @(1.0f),
              @"hiddenEventCalendarIdentifiers"      : @[],
              @"customCalendarColors"                : @{},
              @"defaultEventAlarms"                  : @[@(MTDateConstantSecondsInMinute * 15)],

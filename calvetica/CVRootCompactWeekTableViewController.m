@@ -278,14 +278,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
     CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
     EKCalendarItem *calendarItem = model.calendarItem;
 
     if (calendarItem.isReminder) {
-        return CVRootTableViewReminderRowHeight;
+        return CVRootTableViewReminderRowHeight * scale;
     }
 
-    return 36;
+    return 36 * scale;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -294,13 +294,14 @@
     CVCalendarItemCellModel *model  = models[indexPath.row];
     EKCalendarItem *calendarItem    = model.calendarItem;
 
+    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
     if (calendarItem.isReminder) {
-        return CVRootTableViewReminderRowHeight;
+        return CVRootTableViewReminderRowHeight * scale;
     }
-    return CVRootTableViewEventRowHeight;
+    return CVRootTableViewEventRowHeight * scale;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *models                 = self.cellModelArray[indexPath.section];
     CVCalendarItemCellModel *model  = models[indexPath.row];

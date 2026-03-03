@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, weak  ) IBOutlet CVStrikethroughLabel           *calendarItemTitleLabel;
 
 - (void)setCalendarItem:(EKCalendarItem *)newCalendarItem continued:(BOOL)continued allDay:(BOOL)isAllDay;
+- (void)applyFontScale;
 
 @end
 

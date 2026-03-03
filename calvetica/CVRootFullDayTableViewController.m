@@ -339,11 +339,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
     CVCalendarItemCellModel *model = [self.cellModelArray objectAtIndex:indexPath.row];
     if (model.calendarItem.isReminder) {
-        return CVRootTableViewReminderRowHeight;
+        return CVRootTableViewReminderRowHeight * scale;
     }
-    return CVRootTableViewEventRowHeight;
+    return CVRootTableViewEventRowHeight * scale;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

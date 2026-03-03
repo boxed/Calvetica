@@ -66,6 +66,7 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
 
 // local
 @property (nonatomic, assign) CVRootTableViewMode localRootTableViewMode;
+@property (nonatomic, assign) float macFontScale;
 
 @end
 

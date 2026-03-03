@@ -420,14 +420,15 @@
     // DIMENSIONS
 
     BOOL mac = IS_MAC;
+    CGFloat fontScale               = mac ? PREFS.macFontScale : 1.0f;
     CGFloat boxWidth                = floorf(self.frame.size.width / (float)MTDateConstantDaysInWeek);
     CGFloat topPadding              = 3.0f;
 
     CGFloat barSidePadding          = 2.0f;
     CGFloat barSpacing              = 1.0f;
-    CGFloat barHeight               = mac ? MAC_MONTH_VIEW_BAR_HEIGHT : 12;
+    CGFloat barHeight               = (mac ? MAC_MONTH_VIEW_BAR_HEIGHT : 12) * fontScale;
     CGFloat barHeightWithSpacing    = barHeight + barSpacing;
-    CGFloat eventFontSize           = mac ? MAC_MONTH_VIEW_EVENT_FONT_SIZE : 9.0f;
+    CGFloat eventFontSize           = (mac ? MAC_MONTH_VIEW_EVENT_FONT_SIZE : 9.0f) * fontScale;
     
     
     
@@ -535,8 +536,8 @@
         }
 
         CGRect textFrame = boxFrame;
-        textFrame.origin.x += 5.0f;
-        textFrame.size.width -= 10.0f;
+        textFrame.origin.x += 5.0f * fontScale;
+        textFrame.size.width -= 10.0f * fontScale;
 
 		NSString *title = [e.calendarItem mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize] lineBreakMode:NSLineBreakByTruncatingTail];
@@ -551,8 +552,8 @@
     
 
     CGFloat dotSidePadding          = 5.0f;
-    CGFloat dotSpacing              = mac ? 7.0f : 5.0f;
-    CGFloat dotRadius               = mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6.0f;
+    CGFloat dotSpacing              = (mac ? 7.0f : 5.0f) * fontScale;
+    CGFloat dotRadius               = (mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6.0f) * fontScale;
     CGFloat paddingBelowBars        = 3.0f;
     CGFloat dotHeightWithSpacing    = dotRadius + dotSpacing;
     
@@ -567,8 +568,8 @@
     
     for (CVCalendarItemShape *e in dots) {
 
-        e.width = mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6;
-        e.height = mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6;
+        e.width = (mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6) * fontScale;
+        e.height = (mac ? MAC_MONTH_VIEW_DOT_RADIUS : 6) * fontScale;
         
         for (NSUInteger day = 0; day < 7; day++) {
 
@@ -642,9 +643,9 @@
             CGContextSetFillColorWithColor(context, [calTextColor() CGColor]);
 
             CGRect textFrame = boxFrame;
-            textFrame.origin.x += 10.0f;
-            textFrame.origin.y -= 3.0f;
-            textFrame.size.width = boxWidth - boxFrame.size.width - (barSpacing * 2.0f);
+            textFrame.origin.x += boxFrame.size.width + (4.0f * fontScale);
+            textFrame.origin.y -= 3.0f * fontScale;
+            textFrame.size.width = boxWidth - boxFrame.size.width - (dotSidePadding * 2.0f);
 
             NSString *title = [e.calendarItem mys_title];
             [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize] lineBreakMode:NSLineBreakByTruncatingTail];

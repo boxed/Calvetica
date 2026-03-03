@@ -1961,4 +1961,38 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 }
 
 
+#pragma mark - Key Commands (Mac)
+
+- (NSArray<UIKeyCommand *> *)keyCommands
+{
+    if (!IS_MAC) return @[];
+    return @[
+        [UIKeyCommand keyCommandWithInput:@"+" modifierFlags:UIKeyModifierCommand action:@selector(increaseFontScale:) discoverabilityTitle:@"Increase Font Size"],
+        [UIKeyCommand keyCommandWithInput:@"=" modifierFlags:UIKeyModifierCommand action:@selector(increaseFontScale:) discoverabilityTitle:@"Increase Font Size"],
+        [UIKeyCommand keyCommandWithInput:@"-" modifierFlags:UIKeyModifierCommand action:@selector(decreaseFontScale:) discoverabilityTitle:@"Decrease Font Size"],
+    ];
+}
+
+- (void)increaseFontScale:(UIKeyCommand *)sender
+{
+    float scale = PREFS.macFontScale;
+    scale = fminf(scale + 0.1f, 3.0f);
+    PREFS.macFontScale = scale;
+    [self reloadAfterFontScaleChange];
+}
+
+- (void)decreaseFontScale:(UIKeyCommand *)sender
+{
+    float scale = PREFS.macFontScale;
+    scale = fmaxf(scale - 0.1f, 0.5f);
+    PREFS.macFontScale = scale;
+    [self reloadAfterFontScaleChange];
+}
+
+- (void)reloadAfterFontScaleChange
+{
+    [self.monthTableViewController reloadTableView];
+    [self.rootTableView reloadData];
+}
+
 @end

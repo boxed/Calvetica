@@ -13,6 +13,8 @@
 @property (nonatomic, weak  ) IBOutlet UILabel              *timeLabel;
 @property (nonatomic, assign)          BOOL                 isAllDay;
 @property (nonatomic, assign)          BOOL                 continuedFromPreviousDay;
+@property (nonatomic, strong)          UIFont               *baseTitleFont;
+@property (nonatomic, strong)          UIFont               *baseTimeFont;
 @end
 
 
@@ -78,6 +80,35 @@
     [super layoutSubviews];
     self.titleLabel.height  = self.height - 6;
     self.titleLabel.y       = 3;
+
+    if (IS_MAC) {
+        CGFloat scale = PREFS.macFontScale;
+        CGFloat h = self.contentView.frame.size.height;
+        CGFloat w = self.contentView.frame.size.width;
+
+        // Scale time label
+        CGFloat timeX = 2;
+        CGFloat timeW = 70 * scale;
+        _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
+
+        // Scale dot
+        CGFloat dotSize = 7.0f * scale;
+        CGFloat dotX = timeX + timeW + 2;
+        self.coloredDotView.frame = CGRectMake(dotX, (h - dotSize) / 2.0f, dotSize, dotSize);
+
+        // Reposition title after dot
+        CGFloat titleX = dotX + dotSize + 3 * scale;
+        self.calendarItemTitleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
+    }
+}
+
+- (void)applyFontScale
+{
+    if (!self.baseTitleFont) self.baseTitleFont = self.calendarItemTitleLabel.font;
+    if (!self.baseTimeFont) self.baseTimeFont = _timeLabel.font;
+    CGFloat scale = PREFS.macFontScale;
+    self.calendarItemTitleLabel.font = [self.baseTitleFont fontWithSize:self.baseTitleFont.pointSize * scale];
+    _timeLabel.font = [self.baseTimeFont fontWithSize:self.baseTimeFont.pointSize * scale];
 }
 
 #pragma mark - Actions
