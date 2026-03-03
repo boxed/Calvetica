@@ -15,6 +15,21 @@
     if (self.window) {
         self.window.tintColor = RGB(215, 0, 0);
     }
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(significantTimeChanged:)
+                                                 name:UIApplicationSignificantTimeChangeNotification
+                                               object:nil];
+}
+
+- (void)significantTimeChanged:(NSNotification *)notification
+{
+    CVRootViewController *rvc = (CVRootViewController *)self.window.rootViewController;
+    if (rvc && ![rvc.todaysDate mt_isWithinSameDay:[NSDate date]]) {
+        rvc.todaysDate = [NSDate date];
+        rvc.selectedDate = [NSDate date];
+        [rvc refreshUIAnimated:YES];
+    }
 }
 
 - (void)sceneDidBecomeActive:(UIScene *)scene

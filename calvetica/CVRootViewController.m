@@ -138,15 +138,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 {
     [super viewDidLayoutSubviews];
     if (PAD) {
-        // Check if row height matches current orientation, update if not
-        CGSize size = self.view.bounds.size;
-        BOOL isLandscape = size.width > size.height;
-        CGFloat expectedRowHeight = isLandscape
-            ? IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE
-            : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-
-        if (self.monthTableViewController.tableView.rowHeight != expectedRowHeight) {
-            self.monthTableViewController.tableView.rowHeight = expectedRowHeight;
+        CGFloat oldRowHeight = self.monthTableViewController.tableView.rowHeight;
+        [self.monthTableViewController updateRowHeight];
+        if (self.monthTableViewController.tableView.rowHeight != oldRowHeight) {
             [self.monthTableViewController.tableView layoutIfNeeded];
             [self reloadMonthTableView];
             [self scrollMonthTableViewAnimated:NO];
@@ -1469,14 +1463,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         self.weekdayTitleBar.height = safeAreaTop;
     }
     if (PAD) {
-        // Use view bounds to reliably detect orientation (device orientation can be unknown on launch)
-        CGSize size = self.view.bounds.size;
-        if (size.width > size.height) {
-            self.monthTableViewController.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
-        }
-        else {
-            self.monthTableViewController.tableView.rowHeight = IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-        }
+        [self.monthTableViewController updateRowHeight];
     }
     else {
         // adjust layout

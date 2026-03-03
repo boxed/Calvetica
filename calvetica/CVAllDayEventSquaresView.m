@@ -153,10 +153,10 @@
         // event text
         // event text color
         if([calendarColor shouldUseLightText]) {
-            CGContextSetFillColorWithColor(context, [calBackgroundColor() CGColor]);
+            CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
         }
         else {
-            CGContextSetFillColorWithColor(context, [calTextColor() CGColor]);
+            CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
         }
         
         CGRect textFrame = boxFrame;

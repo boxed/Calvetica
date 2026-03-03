@@ -29,20 +29,7 @@
 //    [self.tableView setContentInset:UIEdgeInsetsMake(-50, 0, 0, 0)];
 
     [self resetStartDate];
-
-    if (PAD) {
-        // Use view bounds to reliably detect orientation on initial launch
-        CGSize size = self.view.bounds.size;
-        if (size.width > size.height) {
-            self.tableView.rowHeight = IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE : IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE;
-        }
-        else {
-            self.tableView.rowHeight = IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_PORTRAIT : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-        }
-    }
-    else {
-        self.tableView.rowHeight = IPHONE_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
-    }
+    [self updateRowHeight];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,16 +59,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    if (PAD) {
-        // Ensure row height is correct after layout is complete
-        CGSize size = self.view.bounds.size;
-        CGFloat expectedRowHeight = (size.width > size.height)
-            ? (IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE : IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE)
-            : (IS_MAC ? MAC_MONTH_VIEW_ROW_HEIGHT_PORTRAIT : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT);
-        if (self.tableView.rowHeight != expectedRowHeight) {
-            self.tableView.rowHeight = expectedRowHeight;
-        }
-    }
+    [self updateRowHeight];
 }
 
 
@@ -245,6 +223,31 @@
 
 
 #pragma mark - Private
+
+- (void)updateRowHeight
+{
+    CGFloat newHeight;
+    if (IS_MAC) {
+        // On Mac, dynamically fill the visible area with 6 weeks
+        newHeight = floor(self.tableView.bounds.size.height / 6.0);
+        if (newHeight < MAC_MONTH_VIEW_ROW_HEIGHT_PORTRAIT) {
+            newHeight = MAC_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+        }
+    }
+    else if (PAD) {
+        CGSize size = self.view.bounds.size;
+        newHeight = (size.width > size.height)
+            ? IPAD_MONTH_VIEW_ROW_HEIGHT_LANDSCAPE
+            : IPAD_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+    }
+    else {
+        newHeight = IPHONE_MONTH_VIEW_ROW_HEIGHT_PORTRAIT;
+    }
+    if (self.tableView.rowHeight != newHeight) {
+        self.tableView.rowHeight = newHeight;
+        [self reframeRedSelectedDaySquareAnimated:NO];
+    }
+}
 
 - (NSDate *)dateOfFirstDayOnRow:(NSUInteger)row
 {
