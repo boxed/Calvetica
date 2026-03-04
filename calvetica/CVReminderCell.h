@@ -14,11 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface CVReminderCell : UITableViewCell
-@property (nonatomic, nullable, weak) IBOutlet CVStrikethroughLabel *titleLabel;
-@property (nonatomic, nullable, weak) IBOutlet UILabel              *timeLabel;
-@property (nonatomic, nullable, weak) IBOutlet UILabel              *allDayLabel;
-@property (nonatomic, nullable, weak) IBOutlet UILabel              *AMPMLabel;
-@property (nonatomic, nullable, weak) IBOutlet CVColoredDotView     *coloredDotView;
+@property (nonatomic, nullable, strong) CVStrikethroughLabel *titleLabel;
+@property (nonatomic, nullable, strong) UILabel              *timeLabel;
+@property (nonatomic, nullable, strong) UILabel              *allDayLabel;
+@property (nonatomic, nullable, strong) UILabel              *AMPMLabel;
+@property (nonatomic, nullable, strong) CVColoredDotView     *coloredDotView;
+
++ (instancetype)cellForTableView:(UITableView *)tableView;
 @end
 
 NS_ASSUME_NONNULL_END

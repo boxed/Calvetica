@@ -13,8 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CVAgendaDateCell : CVCell
 @property (nonatomic, strong)          NSDate  *date;
-@property (nonatomic, nullable, weak  ) IBOutlet UILabel *weekdayLabel;
-@property (nonatomic, nullable, weak  ) IBOutlet UILabel *dateLabel;
+@property (nonatomic, nullable, strong) UILabel *weekdayLabel;
+@property (nonatomic, nullable, strong) UILabel *dateLabel;
+
++ (instancetype)cellForTableView:(UITableView *)tableView;
 @end
 
 NS_ASSUME_NONNULL_END

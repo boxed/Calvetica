@@ -17,13 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CVCell : UITableViewCell
 
-@property (nonatomic, nullable, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, nullable, weak) IBOutlet UILabel *redSubtitleLabel;
-@property (nonatomic, nullable, weak) IBOutlet CVCellAccessoryButton *cellAccessoryButton;
-@property (nonatomic, nullable, weak) IBOutlet CVColoredDotView *coloredDotView;
-@property (nonatomic, nullable, weak) IBOutlet UIView *gestureHitArea;
+@property (nonatomic, nullable, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, nullable, strong) IBOutlet UILabel *redSubtitleLabel;
+@property (nonatomic, nullable, strong) IBOutlet CVCellAccessoryButton *cellAccessoryButton;
+@property (nonatomic, nullable, strong) IBOutlet CVColoredDotView *coloredDotView;
+@property (nonatomic, nullable, strong) IBOutlet UIView *gestureHitArea;
 @property (nonatomic, assign) BOOL isEmpty;
 
+- (void)setupGestures;
 - (void)resetAccessoryButton;
 - (void)toggleAccessoryButton;
 

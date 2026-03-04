@@ -13,27 +13,29 @@
 
 @implementation CVCell
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(cellWasTapped:)];
-    [self.gestureHitArea addGestureRecognizer:tapGesture];
-    
-    UILongPressGestureRecognizer *cellLongPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self  action:@selector(cellWasLongPressed:)];
-    [self.gestureHitArea addGestureRecognizer:cellLongPressGesture];
-
-    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(cellWasSwiped:)];
-    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self addGestureRecognizer:swipeLeftGesture];
-	
-    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(cellWasSwiped:)];
-    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self addGestureRecognizer:swipeRightGesture];
-    
+    [super awakeFromNib];
+    [self setupGestures];
     _titleLabel.text = @"";
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
-//    self.selectionStyle = UITableViewCellSelectionStyleGray;
+}
 
-    [super awakeFromNib];
+- (void)setupGestures
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellWasTapped:)];
+    [self.gestureHitArea addGestureRecognizer:tapGesture];
+
+    UILongPressGestureRecognizer *cellLongPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(cellWasLongPressed:)];
+    [self.gestureHitArea addGestureRecognizer:cellLongPressGesture];
+
+    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellWasSwiped:)];
+    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:swipeLeftGesture];
+
+    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellWasSwiped:)];
+    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:swipeRightGesture];
 }
 
 - (void)resetAccessoryButton 

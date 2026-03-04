@@ -8,42 +8,101 @@
 
 #import "CVReminderCell.h"
 
+static NSString * const kCellIdentifier = @"CVReminderCell";
 
 @interface CVReminderCell ()
-@property (nonatomic, assign) float appliedFontScale;
-@property (nonatomic, strong) NSDictionary *baseFonts;
 @end
 
 @implementation CVReminderCell
 
-- (void)awakeFromNib
++ (instancetype)cellForTableView:(UITableView *)tableView
 {
-    [super awakeFromNib];
+    CVReminderCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    if (!cell) {
+        cell = [[CVReminderCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                     reuseIdentifier:kCellIdentifier];
+    }
+    cell.contentView.backgroundColor = calBackgroundColor();
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setupSubviews];
+    }
+    return self;
+}
+
+- (void)setupSubviews
+{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
+
+    // Time label
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 41, 20)];
+    self.timeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.timeLabel.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1.0];
+    self.timeLabel.textAlignment = NSTextAlignmentRight;
+    self.timeLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:self.timeLabel];
+
+    // AM/PM label
+    self.AMPMLabel = [[UILabel alloc] initWithFrame:CGRectMake(43, 0, 27, 20)];
+    self.AMPMLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.AMPMLabel.textColor = [UIColor colorWithRed:0.549 green:0.549 blue:0.549 alpha:1.0];
+    self.AMPMLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:self.AMPMLabel];
+
+    // All day label (hidden by default)
+    self.allDayLabel = [[UILabel alloc] initWithFrame:CGRectMake(9, 0, 50, 20)];
+    self.allDayLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.allDayLabel.textColor = [UIColor colorWithRed:0.549 green:0.549 blue:0.549 alpha:1.0];
+    self.allDayLabel.textAlignment = NSTextAlignmentCenter;
+    self.allDayLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.allDayLabel.numberOfLines = 2;
+    self.allDayLabel.text = @"ALL DAY";
+    self.allDayLabel.hidden = YES;
+    self.allDayLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:self.allDayLabel];
+
+    // Colored dot
+    self.coloredDotView = [[CVColoredDotView alloc] initWithFrame:CGRectMake(67, 5, 12, 10)];
+    self.coloredDotView.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:self.coloredDotView];
+
+    // Title label
+    self.titleLabel = [[CVStrikethroughLabel alloc] initWithFrame:CGRectMake(82, 0, 240, 20)];
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:self.titleLabel];
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.titleLabel.text = nil;
+    self.titleLabel.attributedText = nil;
+    self.timeLabel.text = nil;
+    self.timeLabel.hidden = NO;
+    self.AMPMLabel.text = nil;
+    self.AMPMLabel.hidden = NO;
+    self.allDayLabel.hidden = YES;
+    self.coloredDotView.color = nil;
 }
 
 - (void)applyFontScaleIfNeeded
 {
     if (!IS_MAC) return;
     float scale = PREFS.macFontScale;
-    if (self.appliedFontScale == scale) return;
-    self.appliedFontScale = scale;
-    if (!self.baseFonts) {
-        self.baseFonts = @{
-            @"title": self.titleLabel.font ?: [UIFont systemFontOfSize:14],
-            @"time": self.timeLabel.font ?: [UIFont systemFontOfSize:14],
-            @"ampm": self.AMPMLabel.font ?: [UIFont systemFontOfSize:10],
-            @"allDay": self.allDayLabel.font ?: [UIFont systemFontOfSize:10],
-        };
-    }
-    for (NSString *key in self.baseFonts) {
-        UIFont *base = self.baseFonts[key];
-        UIFont *scaled = [base fontWithSize:base.pointSize * scale];
-        if ([key isEqualToString:@"title"]) self.titleLabel.font = scaled;
-        else if ([key isEqualToString:@"time"]) self.timeLabel.font = scaled;
-        else if ([key isEqualToString:@"ampm"]) self.AMPMLabel.font = scaled;
-        else if ([key isEqualToString:@"allDay"]) self.allDayLabel.font = scaled;
-    }
+    CGFloat baseSize = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote].pointSize;
+    CGFloat scaledSize = baseSize * scale;
+    self.titleLabel.font  = [self.titleLabel.font fontWithSize:scaledSize];
+    self.timeLabel.font   = [self.timeLabel.font fontWithSize:scaledSize];
+    self.AMPMLabel.font   = [self.AMPMLabel.font fontWithSize:scaledSize];
+    self.allDayLabel.font = [self.allDayLabel.font fontWithSize:scaledSize];
 }
 
 - (void)layoutSubviews
@@ -56,7 +115,6 @@
         CGFloat h = self.contentView.frame.size.height;
         CGFloat w = self.contentView.frame.size.width;
 
-        // Nib base: time x=0 w=41, ampm x=43 w=27, allDay x=9 w=50, dot x=67 w=12, title x=82
         CGFloat timeX = 0;
         CGFloat timeW = 41 * scale;
         CGFloat ampmX = timeX + timeW + 2;

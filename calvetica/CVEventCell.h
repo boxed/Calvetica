@@ -13,11 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
-
-@class CVSearchViewController;
-
-
 @interface CVEventCell : CVCell
 
 @property (nonatomic, nullable, weak  ) id<CVCalendarItemCellDelegate> delegate;
@@ -29,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor                        *durationBarColor;
 @property (nonatomic, strong) UIColor                        *secondaryDurationBarColor;
 
++ (instancetype)cellForTableView:(UITableView *)tableView;
 - (void)drawDurationBarAnimated:(BOOL)animated;
 - (void)centerTimeLabelsVertically;
 
