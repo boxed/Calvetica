@@ -23,7 +23,7 @@
 
 - (BOOL)occursAtAllBetweenDate:(NSDate *)startDate andDate:(NSDate *)endDate
 {
-    return [self.endingDate mt_isOnOrAfter:startDate] && [self.startingDate mt_isOnOrBefore:endDate];
+    return [self.endingDate mt_isAfter:startDate] && [self.startingDate mt_isBefore:endDate];
 }
 
 - (BOOL)spansEntireDayOfDate:(NSDate *)date
