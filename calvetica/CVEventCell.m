@@ -15,9 +15,7 @@ static NSString * const kCellIdentifier = @"CVEventCell";
 @property (nonatomic, strong) UILabel     *noEventLabel;
 @property (nonatomic, strong) UIView      *durationBarView;
 @property (nonatomic, strong) UIView      *secondaryDurationBarView;
-@property (nonatomic, strong) UILabel     *hourAndMinuteLabel;
-@property (nonatomic, strong) UILabel     *AMPMLabel;
-@property (nonatomic, strong) UILabel     *allDayLabel;
+@property (nonatomic, strong) UILabel     *timeLabel;
 @property (nonatomic, strong) UIControl   *timeTextHitArea;
 @property (nonatomic, strong) UIImageView *repeatTinyIcon;
 @property (nonatomic, strong) UIImageView *notesTinyIcon;
@@ -53,17 +51,32 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
 
+    // Layout constants
+    CGFloat cellH          = 42;
+    CGFloat barW           = 4;
+    CGFloat timeX          = 8;
+    CGFloat timeW          = 51;
+    CGFloat timeColumnEnd  = timeX + timeW;
+    CGFloat contentY       = 5;
+    CGFloat contentH       = 18;
+    CGFloat dotMargin      = 8;
+    CGFloat dotSize        = 10;
+    CGFloat dotX           = timeColumnEnd + dotMargin;
+    CGFloat titleMargin    = 8;
+    CGFloat titleX         = dotX + dotSize + titleMargin;
+    CGFloat accessoryW     = 49;
+
     // Duration bars (left edge)
-    self.durationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 42)];
+    self.durationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, barW, cellH)];
     self.durationBarView.opaque = NO;
     [self.contentView addSubview:self.durationBarView];
 
-    self.secondaryDurationBarView = [[UIView alloc] initWithFrame:CGRectMake(4, 0, 4, 42)];
+    self.secondaryDurationBarView = [[UIView alloc] initWithFrame:CGRectMake(barW, 0, barW, cellH)];
     self.secondaryDurationBarView.opaque = NO;
     [self.contentView addSubview:self.secondaryDurationBarView];
 
     // No event label (hidden by default)
-    self.noEventLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
+    self.noEventLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, cellH)];
     self.noEventLabel.font = [UIFont systemFontOfSize:17];
     self.noEventLabel.textColor = [UIColor colorWithRed:0.549 green:0.549 blue:0.549 alpha:1.0];
     self.noEventLabel.textAlignment = NSTextAlignmentCenter;
@@ -72,76 +85,57 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     self.noEventLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:self.noEventLabel];
 
-    // Hour and minute label
-    self.hourAndMinuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 0, 22, 42)];
-    self.hourAndMinuteLabel.font = [UIFont systemFontOfSize:12];
-    self.hourAndMinuteLabel.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1.0];
-    self.hourAndMinuteLabel.textAlignment = NSTextAlignmentRight;
-    self.hourAndMinuteLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:self.hourAndMinuteLabel];
-
-    // AM/PM label
-    self.AMPMLabel = [[UILabel alloc] initWithFrame:CGRectMake(26, 0, 18, 42)];
-    self.AMPMLabel.font = [UIFont systemFontOfSize:12];
-    self.AMPMLabel.textColor = [UIColor colorWithRed:0.549 green:0.549 blue:0.549 alpha:1.0];
-    self.AMPMLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:self.AMPMLabel];
-
-    // All day label (hidden by default)
-    self.allDayLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 1, 42, 41)];
-    self.allDayLabel.font = [UIFont systemFontOfSize:12];
-    self.allDayLabel.textColor = [UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0];
-    self.allDayLabel.textAlignment = NSTextAlignmentCenter;
-    self.allDayLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.allDayLabel.numberOfLines = 2;
-    self.allDayLabel.text = @"ALL DAY";
-    self.allDayLabel.hidden = YES;
-    self.allDayLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:self.allDayLabel];
+    // Time label
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeX, contentY, timeW, contentH)];
+    self.timeLabel.font = [UIFont systemFontOfSize:12];
+    self.timeLabel.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1.0];
+    self.timeLabel.textAlignment = NSTextAlignmentRight;
+    self.timeLabel.lineBreakMode = NSLineBreakByClipping;
+    [self.contentView addSubview:self.timeLabel];
 
     // Colored dot
-    self.coloredDotView = [[CVColoredDotView alloc] initWithFrame:CGRectMake(48, 9, 10, 10)];
+    self.coloredDotView = [[CVColoredDotView alloc] initWithFrame:CGRectMake(dotX, contentY + (contentH - dotSize) / 2, dotSize, dotSize)];
     self.coloredDotView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.coloredDotView];
 
     // Title label
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(66, 5, 214, 18)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleX, contentY, 320 - titleX - accessoryW, contentH)];
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:self.titleLabel];
 
     // Subtitle label
-    self.redSubtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(66, 22, 172, 16)];
+    self.redSubtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleX, 22, 320 - titleX - accessoryW, 16)];
     self.redSubtitleLabel.font = [UIFont systemFontOfSize:11];
     self.redSubtitleLabel.textColor = [UIColor colorWithRed:0.549 green:0.549 blue:0.549 alpha:1.0];
     self.redSubtitleLabel.lineBreakMode = NSLineBreakByClipping;
     self.redSubtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:self.redSubtitleLabel];
 
-    // Tiny icons
-    self.repeatTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(241, 25, 10, 10)];
+    // Tiny icons (repositioned in layoutTinyIcons)
+    self.repeatTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 25, 10, 10)];
     self.repeatTinyIcon.image = [UIImage imageNamed:@"tinyicon_repeat"];
     self.repeatTinyIcon.hidden = YES;
     [self.contentView addSubview:self.repeatTinyIcon];
 
-    self.notesTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(253, 25, 10, 10)];
+    self.notesTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 25, 10, 10)];
     self.notesTinyIcon.image = [UIImage imageNamed:@"tinyicon_note"];
     self.notesTinyIcon.hidden = YES;
     [self.contentView addSubview:self.notesTinyIcon];
 
-    self.locationTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(265, 25, 10, 10)];
+    self.locationTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 25, 10, 10)];
     self.locationTinyIcon.image = [UIImage imageNamed:@"tinyicon_location"];
     self.locationTinyIcon.hidden = YES;
     [self.contentView addSubview:self.locationTinyIcon];
 
-    self.attendeesTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(277, 25, 10, 10)];
+    self.attendeesTinyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 25, 10, 10)];
     self.attendeesTinyIcon.image = [UIImage imageNamed:@"tinyicon_person"];
     self.attendeesTinyIcon.hidden = YES;
     [self.contentView addSubview:self.attendeesTinyIcon];
 
     // Accessory button (alarm/delete)
-    self.cellAccessoryButton = [[CVCellAccessoryButton alloc] initWithFrame:CGRectMake(273, 0, 49, 42)];
+    self.cellAccessoryButton = [[CVCellAccessoryButton alloc] initWithFrame:CGRectMake(320 - accessoryW, 0, accessoryW, cellH)];
     self.cellAccessoryButton.backgroundColor = [UIColor clearColor];
     self.cellAccessoryButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.cellAccessoryButton addTarget:self
@@ -150,13 +144,13 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     [self.contentView addSubview:self.cellAccessoryButton];
 
     // Gesture hit area (between time column and accessory button)
-    self.gestureHitArea = [[UIView alloc] initWithFrame:CGRectMake(39, -2, 233, 41)];
+    self.gestureHitArea = [[UIView alloc] initWithFrame:CGRectMake(timeColumnEnd - 5, -2, 320 - timeColumnEnd + 5, cellH - 1)];
     self.gestureHitArea.backgroundColor = [UIColor clearColor];
     self.gestureHitArea.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentView addSubview:self.gestureHitArea];
 
     // Hour time hit area
-    self.timeTextHitArea = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, 42, 41)];
+    self.timeTextHitArea = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, timeColumnEnd, cellH - 1)];
     self.timeTextHitArea.backgroundColor = [UIColor clearColor];
     self.timeTextHitArea.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.timeTextHitArea addTarget:self
@@ -173,11 +167,9 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     [super prepareForReuse];
     self.titleLabel.text = nil;
     self.redSubtitleLabel.text = nil;
-    self.hourAndMinuteLabel.text = nil;
-    self.AMPMLabel.text = nil;
-    self.allDayLabel.hidden = YES;
-    self.hourAndMinuteLabel.hidden = NO;
-    self.AMPMLabel.hidden = NO;
+    self.timeLabel.text = nil;
+    self.timeLabel.hidden = NO;
+    self.timeLabel.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1.0];
     self.noEventLabel.hidden = YES;
     self.repeatTinyIcon.hidden = YES;
     self.notesTinyIcon.hidden = YES;
@@ -199,9 +191,7 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     float scale = PREFS.macFontScale;
     self.titleLabel.font        = [UIFont systemFontOfSize:14 * scale];
     self.redSubtitleLabel.font  = [UIFont systemFontOfSize:11 * scale];
-    _hourAndMinuteLabel.font    = [UIFont systemFontOfSize:12 * scale];
-    _AMPMLabel.font             = [UIFont systemFontOfSize:12 * scale];
-    _allDayLabel.font           = [UIFont systemFontOfSize:12 * scale];
+    _timeLabel.font             = [UIFont systemFontOfSize:12 * scale];
     _noEventLabel.font          = [UIFont systemFontOfSize:17 * scale];
 }
 
@@ -215,18 +205,13 @@ static NSString * const kCellIdentifier = @"CVEventCell";
         CGFloat h = self.contentView.frame.size.height;
         CGFloat w = self.contentView.frame.size.width;
 
-        CGFloat hourX = 5;
-        CGFloat hourW = 36 * scale;
-        CGFloat ampmX = hourX + hourW + 2;
-        CGFloat ampmW = 20 * scale;
-        CGFloat allDayW = (ampmX + ampmW) - 9;
-        CGFloat dotX = ampmX + ampmW + 1;
+        CGFloat timeX = 5;
+        CGFloat timeW = 58 * scale;
+        CGFloat dotX = timeX + timeW + 1;
         CGFloat dotSize = 10 * scale;
         CGFloat titleX = dotX + dotSize + 5 * scale;
 
-        _hourAndMinuteLabel.frame = CGRectMake(hourX, 0, hourW, h);
-        _AMPMLabel.frame = CGRectMake(ampmX, 0, ampmW, h);
-        _allDayLabel.frame = CGRectMake(9, 1, allDayW, h - 1);
+        _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
         CGFloat accessoryW = self.cellAccessoryButton.frame.size.width;
         CGFloat titleW = w - titleX - accessoryW;
         CGFloat titleY = 5 * scale;
@@ -269,9 +254,7 @@ static NSString * const kCellIdentifier = @"CVEventCell";
         self.titleLabel.hidden          = YES;
         self.coloredDotView.hidden      = YES;
         self.redSubtitleLabel.hidden    = YES;
-        self.hourAndMinuteLabel.hidden  = YES;
-        self.AMPMLabel.hidden           = YES;
-        self.allDayLabel.hidden         = YES;
+        self.timeLabel.hidden           = YES;
         self.cellAccessoryButton.hidden = YES;
         self.repeatTinyIcon.hidden      = YES;
         self.notesTinyIcon.hidden       = YES;
@@ -293,21 +276,12 @@ static NSString * const kCellIdentifier = @"CVEventCell";
 {
     _date = newDate;
 
-    // set cell time labels
+    // set cell time label
     if (_date != nil) {
-        if (![_date mt_isStartOfAnHour]) {
-            _hourAndMinuteLabel.alpha   = 0.8f;
-            _AMPMLabel.alpha            = 0.8f;
-        }
-        else {
-            _hourAndMinuteLabel.alpha   = 1;
-            _AMPMLabel.alpha            = 1;
-        }
-        _hourAndMinuteLabel.text = [_date stringWithHourAndMinute];
-        _AMPMLabel.text = [_date stringWithAMPM];
+        _timeLabel.alpha = [_date mt_isStartOfAnHour] ? 1.0f : 0.8f;
+        _timeLabel.text = [_date stringWithHourMinuteAndLowercaseAMPM];
     } else {
-        _hourAndMinuteLabel.text = @"...";
-        _AMPMLabel.text = @"";
+        _timeLabel.text = @"...";
     }
 }
 
@@ -450,13 +424,10 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     _isAllDay = isAllDayBool;
 
     if (_isAllDay) {
-        _allDayLabel.hidden = NO;
-        _AMPMLabel.hidden = YES;
-        _hourAndMinuteLabel.hidden = YES;
+        _timeLabel.text = @"ALL DAY";
+        _timeLabel.textColor = [UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0];
     } else {
-        _allDayLabel.hidden = YES;
-        _AMPMLabel.hidden = NO;
-        _hourAndMinuteLabel.hidden = NO;
+        _timeLabel.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1.0];
     }
 }
 
@@ -485,15 +456,10 @@ static NSString * const kCellIdentifier = @"CVEventCell";
 
 - (void)centerTimeLabelsVertically
 {
-    CGRect hourFrame = _hourAndMinuteLabel.frame;
-    hourFrame.origin.y = 0;
-    hourFrame.size.height = self.contentView.bounds.size.height;
-    _hourAndMinuteLabel.frame = hourFrame;
-
-    CGRect ampmFrame = _AMPMLabel.frame;
-    ampmFrame.origin.y = 0;
-    ampmFrame.size.height = self.contentView.bounds.size.height;
-    _AMPMLabel.frame = ampmFrame;
+    CGRect timeFrame = _timeLabel.frame;
+    timeFrame.origin.y = 0;
+    timeFrame.size.height = self.contentView.bounds.size.height;
+    _timeLabel.frame = timeFrame;
 }
 
 

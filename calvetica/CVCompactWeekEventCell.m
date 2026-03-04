@@ -214,12 +214,13 @@ static CGFloat const kColoredDotSize = 8.0f;
     self.cellAccessoryButton.mode = self.cellAccessoryButton.mode;
 
     // Colored dot and title
-    CGFloat titleX = timeColumnX + timeColumnW + 1;
-    CGFloat titleWidth = accessoryX - titleX - 8;
+    CGFloat dotGap = 5 * scale;
+    CGFloat dotX = timeColumnX + timeColumnW - dotGap;
+    CGFloat titleLabelX = dotX + dotSize + dotGap;
+    CGFloat titleWidth = accessoryX - titleLabelX - 8;
 
-    self.coloredDotView.frame = CGRectMake(titleX, (contentHeight - dotSize) / 2, dotSize, dotSize);
-    CGFloat titleLabelX = titleX + dotSize + 4 * scale;
-    self.titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth - dotSize - 4 * scale, 20 * scale);
+    self.coloredDotView.frame = CGRectMake(dotX, (contentHeight - dotSize) / 2, dotSize, dotSize);
+    self.titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth, 20 * scale);
 }
 
 - (void)prepareForReuse

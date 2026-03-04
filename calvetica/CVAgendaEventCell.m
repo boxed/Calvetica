@@ -44,34 +44,44 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
     self.selectionStyle = UITableViewCellSelectionStyleGray;
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
 
+    // Layout constants
+    CGFloat cellH       = 19;
+    CGFloat timeX       = 14;
+    CGFloat timeW       = 80;
+    CGFloat dotMargin   = 6;
+    CGFloat dotSize     = 7;
+    CGFloat dotX        = timeX + timeW + dotMargin;
+    CGFloat titleMargin = 5;
+    CGFloat titleX      = dotX + dotSize + titleMargin;
+
     // Time label
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 2, 56, 15)];
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeX, 2, timeW, cellH - 4)];
     self.timeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.timeLabel.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1.0];
     self.timeLabel.textAlignment = NSTextAlignmentRight;
+    self.timeLabel.lineBreakMode = NSLineBreakByClipping;
     [self.contentView addSubview:self.timeLabel];
 
     // Colored dot
-    self.coloredDotView = [[CVColoredDotView alloc] initWithFrame:CGRectMake(76, 6, 7, 7)];
+    self.coloredDotView = [[CVColoredDotView alloc] initWithFrame:CGRectMake(dotX, 6, dotSize, dotSize)];
     self.coloredDotView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.coloredDotView];
 
     // Title label
-    self.calendarItemTitleLabel = [[CVStrikethroughLabel alloc] initWithFrame:CGRectMake(88, 0, 212, 19)];
+    self.calendarItemTitleLabel = [[CVStrikethroughLabel alloc] initWithFrame:CGRectMake(titleX, 0, 320 - titleX, cellH)];
     self.calendarItemTitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.calendarItemTitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.calendarItemTitleLabel.numberOfLines = 0;
-    self.calendarItemTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self.contentView addSubview:self.calendarItemTitleLabel];
 
     // Gesture hit area
-    self.gestureHitArea = [[UIView alloc] initWithFrame:CGRectMake(70, 0, 250, 20)];
+    self.gestureHitArea = [[UIView alloc] initWithFrame:CGRectMake(dotX - 6, 0, 320 - dotX + 6, cellH)];
     self.gestureHitArea.backgroundColor = [UIColor clearColor];
     self.gestureHitArea.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentView addSubview:self.gestureHitArea];
 
     // Hour time hit area (tapping time area triggers accessoryButtonWasTapped:)
-    UIControl *hourHitArea = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, 68, 19)];
+    UIControl *hourHitArea = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, timeX + timeW - 2, cellH)];
     hourHitArea.backgroundColor = [UIColor clearColor];
     [hourHitArea addTarget:self
                     action:@selector(accessoryButtonWasTapped:)
@@ -155,28 +165,33 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.titleLabel.height  = self.height - 6;
-    self.titleLabel.y       = 3;
+
+    CGFloat h = self.contentView.frame.size.height;
+    CGFloat w = self.contentView.frame.size.width;
+
+    CGFloat timeX, timeW, dotMargin, dotSize, titleMargin;
 
     if (IS_MAC) {
         CGFloat scale = PREFS.macFontScale;
-        CGFloat h = self.contentView.frame.size.height;
-        CGFloat w = self.contentView.frame.size.width;
-
-        // Scale time label
-        CGFloat timeX = 2;
-        CGFloat timeW = 70 * scale;
-        _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
-
-        // Scale dot
-        CGFloat dotSize = 7.0f * scale;
-        CGFloat dotX = timeX + timeW + 2;
-        self.coloredDotView.frame = CGRectMake(dotX, (h - dotSize) / 2.0f, dotSize, dotSize);
-
-        // Reposition title after dot
-        CGFloat titleX = dotX + dotSize + 3 * scale;
-        self.calendarItemTitleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
+        timeX       = 2;
+        timeW       = 70 * scale;
+        dotMargin   = 2;
+        dotSize     = 7 * scale;
+        titleMargin = 3 * scale;
+    } else {
+        timeX       = 14;
+        timeW       = 80;
+        dotMargin   = 6;
+        dotSize     = 7;
+        titleMargin = 5;
     }
+
+    CGFloat dotX   = timeX + timeW + dotMargin;
+    CGFloat titleX = dotX + dotSize + titleMargin;
+
+    _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
+    self.coloredDotView.frame = CGRectMake(dotX, (h - dotSize) / 2, dotSize, dotSize);
+    self.calendarItemTitleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
 }
 
 - (void)applyFontScale

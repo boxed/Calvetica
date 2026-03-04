@@ -141,12 +141,13 @@ static CGFloat const kColoredDotSize = 14.0f;
     _allDayLabel.frame = CGRectMake(timeColumnX, (contentHeight - 14 * scale) / 2, timeColumnW, 14 * scale);
 
     // Colored dot and title
-    CGFloat titleX = timeColumnX + timeColumnW + 4;
-    CGFloat titleWidth = contentWidth - titleX - 16;
+    CGFloat dotGap = 5 * scale;
+    CGFloat dotX = timeColumnX + timeColumnW - dotGap;
+    CGFloat titleLabelX = dotX + dotSize + dotGap;
+    CGFloat titleWidth = contentWidth - titleLabelX - 8;
 
-    _coloredDotView.frame = CGRectMake(titleX, (contentHeight - dotSize) / 2, dotSize, dotSize);
-    CGFloat titleLabelX = titleX + dotSize + 4 * scale;
-    _titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth - dotSize - 4 * scale, 20 * scale);
+    _coloredDotView.frame = CGRectMake(dotX, (contentHeight - dotSize) / 2, dotSize, dotSize);
+    _titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth, 20 * scale);
 }
 
 - (void)prepareForReuse
