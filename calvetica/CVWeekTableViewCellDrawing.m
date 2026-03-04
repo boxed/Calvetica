@@ -33,6 +33,10 @@
         EKEvent *e1 = obj1;
         EKEvent *e2 = obj2;
         if (e1.isAllDay && e2.isAllDay) {
+            NSComparisonResult dateResult = [e1 compareStartDateWithEvent:e2];
+            if (dateResult != NSOrderedSame) {
+                return dateResult;
+            }
             return [e1.title localizedCaseInsensitiveCompare:e2.title];
         }
         return [e1 compareStartDateWithEvent:e2];
