@@ -126,26 +126,28 @@ static NSString * const kCellIdentifier = @"CVReminderCell";
     [super layoutSubviews];
     [self applyFontScaleIfNeeded];
 
-    if (IS_MAC) {
-        CGFloat scale = PREFS.macFontScale;
-        CGFloat h = self.contentView.frame.size.height;
-        CGFloat w = self.contentView.frame.size.width;
+    CGFloat h = self.contentView.frame.size.height;
+    CGFloat w = self.contentView.frame.size.width;
+    CGFloat s = IS_MAC ? PREFS.macFontScale : 1.0f;
 
-        CGFloat timeX = 0;
-        CGFloat timeW = 41 * scale;
-        CGFloat ampmX = timeX + timeW + 2;
-        CGFloat ampmW = 27 * scale;
-        CGFloat allDayW = (ampmX + ampmW) - 9;
-        CGFloat dotX = ampmX + ampmW + 1;
-        CGFloat dotSize = 12 * scale;
-        CGFloat titleX = dotX + dotSize + 5 * scale;
+    CGFloat timeX          = 8;
+    CGFloat timeW          = 59 * s;
+    CGFloat ampmGap        = 2;
+    CGFloat ampmW          = 27 * s;
+    CGFloat ampmX          = timeX + timeW + ampmGap;
+    CGFloat timeColumnEnd  = ampmX + ampmW;
+    CGFloat dotMargin      = -3;
+    CGFloat dotW           = 12 * s;
+    CGFloat dotH           = 10 * s;
+    CGFloat dotX           = timeColumnEnd + dotMargin;
+    CGFloat titleMargin    = 3;
+    CGFloat titleX         = dotX + dotW + titleMargin;
 
-        self.timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
-        self.AMPMLabel.frame = CGRectMake(ampmX, 0, ampmW, h);
-        self.allDayLabel.frame = CGRectMake(9, 0, allDayW, h);
-        self.coloredDotView.frame = CGRectMake(dotX, (h - dotSize) / 2, dotSize, dotSize);
-        self.titleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
-    }
+    self.timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
+    self.AMPMLabel.frame = CGRectMake(ampmX, 0, ampmW, h);
+    self.allDayLabel.frame = CGRectMake(9, 0, timeColumnEnd - 9, h);
+    self.coloredDotView.frame = CGRectMake(dotX, (h - dotH) / 2, dotW, dotH);
+    self.titleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
 }
 
 @end

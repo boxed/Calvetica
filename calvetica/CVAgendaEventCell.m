@@ -168,29 +168,23 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
 
     CGFloat h = self.contentView.frame.size.height;
     CGFloat w = self.contentView.frame.size.width;
+    CGFloat s = IS_MAC ? PREFS.macFontScale : 1.0f;
 
-    CGFloat timeX, timeW, dotMargin, dotSize, titleMargin;
-
-    if (IS_MAC) {
-        CGFloat scale = PREFS.macFontScale;
-        timeX       = 2;
-        timeW       = 70 * scale;
-        dotMargin   = 2;
-        dotSize     = 7 * scale;
-        titleMargin = 3 * scale;
-    } else {
-        timeX       = 14;
-        timeW       = 80;
-        dotMargin   = 6;
-        dotSize     = 7;
-        titleMargin = 5;
-    }
+    CGFloat timeX       = 14;
+    CGFloat timeW       = 80 * s;
+    CGFloat dotMargin   = 6;
+    CGFloat dotSize     = 7 * s;
+    CGFloat titleMargin = 5;
 
     CGFloat dotX   = timeX + timeW + dotMargin;
     CGFloat titleX = dotX + dotSize + titleMargin;
 
-    _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
-    self.coloredDotView.frame = CGRectMake(dotX, (h - dotSize) / 2, dotSize, dotSize);
+    // Align time label and dot with the first line of the title
+    CGFloat lineH = self.calendarItemTitleLabel.font.lineHeight;
+    CGFloat firstLineCenter = lineH / 2 + 3; // 3pt top padding from cell height calc
+
+    _timeLabel.frame = CGRectMake(timeX, firstLineCenter - lineH / 2, timeW, lineH);
+    self.coloredDotView.frame = CGRectMake(dotX, firstLineCenter - dotSize / 2, dotSize, dotSize);
     self.calendarItemTitleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
 }
 

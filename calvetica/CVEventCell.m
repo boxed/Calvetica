@@ -200,28 +200,31 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     [super layoutSubviews];
     [self applyFontScaleIfNeeded];
 
-    if (IS_MAC) {
-        CGFloat scale = PREFS.macFontScale;
-        CGFloat h = self.contentView.frame.size.height;
-        CGFloat w = self.contentView.frame.size.width;
+    CGFloat h = self.contentView.frame.size.height;
+    CGFloat w = self.contentView.frame.size.width;
+    CGFloat s = h / 42.0; // scale relative to base cell height
 
-        CGFloat timeX = 5;
-        CGFloat timeW = 58 * scale;
-        CGFloat dotX = timeX + timeW + 1;
-        CGFloat dotSize = 10 * scale;
-        CGFloat titleX = dotX + dotSize + 5 * scale;
+    CGFloat timeX          = 8;
+    CGFloat timeW          = 51 * s;
+    CGFloat timeColumnEnd  = timeX + timeW;
+    CGFloat contentY       = 5 * s;
+    CGFloat contentH       = 18 * s;
+    CGFloat dotMargin      = 8;
+    CGFloat dotSize        = 10 * s;
+    CGFloat dotX           = timeColumnEnd + dotMargin;
+    CGFloat titleMargin    = 8;
+    CGFloat titleX         = dotX + dotSize + titleMargin;
+    CGFloat accessoryW     = 49;
 
-        _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
-        CGFloat accessoryW = self.cellAccessoryButton.frame.size.width;
-        CGFloat titleW = w - titleX - accessoryW;
-        CGFloat titleY = 5 * scale;
-        CGFloat titleH = 18 * scale;
-        self.titleLabel.frame = CGRectMake(titleX, titleY, titleW, titleH);
-        self.coloredDotView.frame = CGRectMake(dotX, titleY + (titleH - dotSize) / 2, dotSize, dotSize);
-        self.redSubtitleLabel.frame = CGRectMake(titleX, 5 * scale + 18 * scale, titleW, 16 * scale);
+    _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
+    self.coloredDotView.frame = CGRectMake(dotX, contentY + (contentH - dotSize) / 2, dotSize, dotSize);
 
-        _timeTextHitArea.frame = CGRectMake(0, 0, dotX, h);
-    }
+    CGFloat titleW = w - titleX - accessoryW;
+    self.titleLabel.frame = CGRectMake(titleX, contentY, titleW, contentH);
+    self.redSubtitleLabel.frame = CGRectMake(titleX, contentY + contentH, titleW, 16 * s);
+
+    self.cellAccessoryButton.frame = CGRectMake(w - accessoryW, 0, accessoryW, h);
+    _timeTextHitArea.frame = CGRectMake(0, 0, timeColumnEnd, h);
 
     [self layoutTinyIcons];
 }
