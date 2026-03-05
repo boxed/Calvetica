@@ -108,11 +108,24 @@
                                   animated:animated];
 }
 
-- (void)scrollToSelectedDay 
+- (void)scrollToSelectedDay
 {
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self rowOfDate:_selectedDate] inSection:0]
                           atScrollPosition:UITableViewScrollPositionMiddle
                                   animated:YES];
+}
+
+- (void)ensureSelectedDayVisible
+{
+    if (!_selectedDate) return;
+    NSInteger row = [self rowOfDate:_selectedDate];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    CGRect rowRect = [self.tableView rectForRowAtIndexPath:indexPath];
+    if (CGRectIntersectsRect(rowRect, self.tableView.bounds)) {
+        [self.tableView scrollToRowAtIndexPath:indexPath
+                              atScrollPosition:UITableViewScrollPositionNone
+                                      animated:NO];
+    }
 }
 
 - (NSInteger)rowInMiddleOfVisibleRegion 
@@ -245,6 +258,7 @@
     }
     if (self.tableView.rowHeight != newHeight) {
         self.tableView.rowHeight = newHeight;
+        [self ensureSelectedDayVisible];
         [self reframeRedSelectedDaySquareAnimated:NO];
     }
 }

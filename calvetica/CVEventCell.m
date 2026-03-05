@@ -216,7 +216,7 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     CGFloat titleX         = dotX + dotSize + titleMargin;
     CGFloat accessoryW     = 49;
 
-    _timeLabel.frame = CGRectMake(timeX, 0, timeW, h);
+    _timeLabel.frame = CGRectMake(timeX, contentY, timeW, contentH);
     self.coloredDotView.frame = CGRectMake(dotX, contentY + (contentH - dotSize) / 2, dotSize, dotSize);
 
     CGFloat titleW = w - titleX - accessoryW;
@@ -459,10 +459,8 @@ static NSString * const kCellIdentifier = @"CVEventCell";
 
 - (void)centerTimeLabelsVertically
 {
-    CGRect timeFrame = _timeLabel.frame;
-    timeFrame.origin.y = 0;
-    timeFrame.size.height = self.contentView.bounds.size.height;
-    _timeLabel.frame = timeFrame;
+    // Time label is already aligned with dot/title in layoutSubviews
+    [self setNeedsLayout];
 }
 
 

@@ -1426,14 +1426,19 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     self.weekNumberLabel.hidden = NO;
     NSInteger weekOfYear = [self.selectedDate mt_weekOfYear];
-    self.weekNumberLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
-                                                                              @"The week number of a selected date. %1$i: the week number."),
-                                  (int)weekOfYear];
+    NSString *weekText = [NSString stringWithFormat:NSLocalizedString(@"Week %1$i",
+                                                                      @"The week number of a selected date. %1$i: the week number."),
+                          (int)weekOfYear];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.alignment = NSTextAlignmentRight;
+    style.tailIndent = -rightPadding;
+    self.weekNumberLabel.attributedText = [[NSAttributedString alloc] initWithString:weekText
+                                                                          attributes:@{NSParagraphStyleAttributeName: style}];
 
-    // Position at top of root table view area, right-aligned
+    // Position at top of root table view area, full width so background covers scrolling content
     CGRect frame = CGRectMake(self.rootTableView.frame.origin.x,
                               self.rootTableView.frame.origin.y,
-                              self.rootTableView.frame.size.width - rightPadding,
+                              self.rootTableView.frame.size.width,
                               labelHeight);
     self.weekNumberLabel.frame = frame;
 
@@ -1993,6 +1998,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
     [self.monthTableViewController reloadTableView];
     [self.rootTableView reloadData];
+    [self.monthTableViewController ensureSelectedDayVisible];
+    [self updateSelectionSquare:NO];
 }
 
 @end

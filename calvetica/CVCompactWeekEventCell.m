@@ -186,20 +186,29 @@ static CGFloat const kColoredDotSize = 8.0f;
     // Day label
     self.dayLabel.frame = CGRectMake(dayLabelX, 0, dayLabelW, contentHeight);
 
-    // Time column - center vertically if no end time, otherwise position in upper half
+    // Time column
     CGFloat timeH = 15 * scale;
+    CGFloat endTimeH = 13 * scale;
     CGFloat timeY;
+    CGFloat verticalCenter;
+
     if (self.endTimeLabel.hidden) {
+        // No end time: center everything at cell midpoint
         timeY = (contentHeight - timeH) / 2;
+        verticalCenter = contentHeight / 2;
     } else {
-        timeY = 2;
+        // End time shown: center the time block, align dot/title with start time
+        CGFloat totalTimeH = timeH + endTimeH;
+        timeY = (contentHeight - totalTimeH) / 2;
+        verticalCenter = timeY + timeH / 2;
     }
+
     self.hourAndMinuteLabel.frame = CGRectMake(timeColumnX, timeY, timeHourW, timeH);
     self.AMPMLabel.frame = CGRectMake(timeColumnX + timeHourW, timeY + 2, timeAmpmW, 11 * scale);
 
     // End time labels (below start time)
     CGFloat endTimeY = timeY + timeH;
-    self.endTimeLabel.frame = CGRectMake(timeColumnX, endTimeY, timeHourW, 13 * scale);
+    self.endTimeLabel.frame = CGRectMake(timeColumnX, endTimeY, timeHourW, endTimeH);
     self.endAMPMLabel.frame = CGRectMake(timeColumnX + timeHourW, endTimeY + 1, timeAmpmW, 11 * scale);
 
     // All day label (right-aligned in time column area)
@@ -213,14 +222,15 @@ static CGFloat const kColoredDotSize = 8.0f;
     self.cellAccessoryButton.frame = CGRectMake(accessoryX, 0, accessoryWidth, cellHeight);
     self.cellAccessoryButton.mode = self.cellAccessoryButton.mode;
 
-    // Colored dot and title
+    // Colored dot and title — aligned with start time center
     CGFloat dotGap = 5 * scale;
     CGFloat dotX = timeColumnX + timeColumnW - dotGap;
     CGFloat titleLabelX = dotX + dotSize + dotGap;
     CGFloat titleWidth = accessoryX - titleLabelX - 8;
+    CGFloat titleH = 20 * scale;
 
-    self.coloredDotView.frame = CGRectMake(dotX, (contentHeight - dotSize) / 2, dotSize, dotSize);
-    self.titleLabel.frame = CGRectMake(titleLabelX, (contentHeight - 20 * scale) / 2, titleWidth, 20 * scale);
+    self.coloredDotView.frame = CGRectMake(dotX, verticalCenter - dotSize / 2, dotSize, dotSize);
+    self.titleLabel.frame = CGRectMake(titleLabelX, verticalCenter - titleH / 2, titleWidth, titleH);
 }
 
 - (void)prepareForReuse

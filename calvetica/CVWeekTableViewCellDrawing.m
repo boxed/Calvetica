@@ -187,15 +187,35 @@
 - (void)draw
 {
     if (!self.window) return;
-    [MTq def:^{
-        [self prepareCalendarItemsWithCompletion:^(NSArray *models) {
-            self.calendarItems = models;
-            [MTq main:^{
+
+    NSDate *startDate = [self.delegate startDateForDrawingView:self];
+
+    // Cache hit: already have data for this week, just ensure visible.
+    // UIViewContentModeRedraw handles setNeedsDisplay on bounds change automatically.
+    if (_lastFetchedStartDate && startDate && [startDate isEqualToDate:_lastFetchedStartDate]) {
+        self.hidden = NO;
+        return;
+    }
+
+    // Don't hide — showing stale content is better than a blank flash.
+    // MTq def: is synchronous (dispatch commented out), so for the non-reminders path
+    // this entire block completes synchronously on the main thread.
+    [self prepareCalendarItemsWithCompletion:^(NSArray *models) {
+        self.calendarItems = models;
+        if ([NSThread isMainThread]) {
+            // Synchronous path: apply immediately, no deferred dispatch
+            self.lastFetchedStartDate = startDate;
+            self.hidden = NO;
+            [self setNeedsDisplay];
+        } else {
+            // Async path (reminders callback from background thread)
+            dispatch_async(dispatch_get_main_queue(), ^{
                 if (!self.window) return;
+                self.lastFetchedStartDate = startDate;
                 self.hidden = NO;
                 [self setNeedsDisplay];
-            }];
-        }];
+            });
+        }
     }];
 }
 

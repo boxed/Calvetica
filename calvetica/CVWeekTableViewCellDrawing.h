@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nullable, weak) id<CVWeekTableViewCellDrawingDataSource> delegate;
 @property (nonatomic, copy) NSArray<CVCalendarItemShape *>                                  *calendarItems;
+@property (nonatomic, strong, nullable) NSDate                                              *lastFetchedStartDate;
 
 - (void)draw;
 

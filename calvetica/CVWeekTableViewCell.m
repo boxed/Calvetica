@@ -12,12 +12,15 @@
 #import "CVRootViewController.h"
 
 
-@implementation CVWeekTableViewCell
+@implementation CVWeekTableViewCell {
+    BOOL _dayIsEvenMonth[7];
+}
 
 - (void)awakeFromNib
 {
     self.backgroundColor = calBackgroundColor();
     [super awakeFromNib];
+    self.contentMode = UIViewContentModeRedraw;
     _weekStartDate = nil;
     _selectedDate = nil;
 
@@ -36,6 +39,7 @@
     self.drawingView = [[CVWeekTableViewCellDrawing alloc] initWithFrame:f];
 
     self.drawingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
+    self.drawingView.contentMode = UIViewContentModeRedraw;
     self.drawingView.opaque = NO;
     self.drawingView.delegate = self;
     [self insertSubview:self.drawingView atIndex:0];
@@ -44,11 +48,9 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    _weekStartDate = nil;
+    // Don't nil _weekStartDate — setWeekStartDate: will skip work if the date is unchanged (e.g., during resize)
     _selectedDate = nil;
     self.todayImage.hidden = YES;
-    self.drawingView.hidden = YES;
-    [self setNeedsDisplay];
 }
 
 
@@ -58,8 +60,9 @@
 
 - (void)setWeekStartDate:(NSDate *)newStartDate
 {
+    if (_weekStartDate && newStartDate && [_weekStartDate isEqualToDate:newStartDate]) return;
     _weekStartDate = newStartDate;
-    
+
     if (!newStartDate) return;
     
     _monthLabel.hidden = YES;
@@ -69,11 +72,12 @@
     for (NSInteger i = 0; i < 7; i++) {
         NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
         NSInteger dayOfMonth = [date mt_dayOfMonth];
-        
+        _dayIsEvenMonth[i] = ([date mt_monthOfYear] % 2 == 0);
+
         NSInteger num = i + 100;
         UILabel *label = (UILabel *)[self viewWithTag:num];
         label.text = [NSString stringWithFormat:@"%ld", (long)dayOfMonth];
-        
+
         // gray out day labels that have passed
         if ([date mt_isBefore:today]) {
             label.textColor = RGBHex(0x999999);
@@ -114,20 +118,24 @@
     if (PAD) {
         BOOL mac = IS_MAC;
         CGFloat scale = mac ? PREFS.macFontScale : 1.0f;
-        for (NSInteger i = 0; i < 7; i++) {
-            NSInteger num = i + 100;
-            UILabel *label = (UILabel *)[self viewWithTag:num];
-            UIInterfaceOrientation orientation = self.window.rootViewController.interfaceOrientation;
-            if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                CGFloat fontSize = mac ? MAC_MONTH_VIEW_FONT_SIZE_PORTRAIT : IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT;
-                label.font = [UIFont systemFontOfSize:fontSize * scale];
-                _monthLabel.font = [UIFont systemFontOfSize:fontSize * scale];
+        UIInterfaceOrientation orientation = self.window.rootViewController.interfaceOrientation;
+        CGFloat fontSize;
+        if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            fontSize = (mac ? MAC_MONTH_VIEW_FONT_SIZE_PORTRAIT : IPAD_MONTH_VIEW_FONT_SIZE_PORTRAIT) * scale;
+        }
+        else {
+            fontSize = (mac ? MAC_MONTH_VIEW_FONT_SIZE_LANDSCAPE : IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE) * scale;
+        }
+
+        // Only update fonts if the size actually changed
+        if ((NSInteger)_fontSize != (NSInteger)(fontSize * 100)) {
+            _fontSize = (NSInteger)(fontSize * 100);
+            UIFont *font = [UIFont systemFontOfSize:fontSize];
+            for (NSInteger i = 0; i < 7; i++) {
+                UILabel *label = (UILabel *)[self viewWithTag:i + 100];
+                label.font = font;
             }
-            else {
-                CGFloat fontSize = mac ? MAC_MONTH_VIEW_FONT_SIZE_LANDSCAPE : IPAD_MONTH_VIEW_FONT_SIZE_LANDSCAPE;
-                label.font = [UIFont systemFontOfSize:fontSize * scale];
-                _monthLabel.font = [UIFont systemFontOfSize:fontSize * scale];
-            }
+            _monthLabel.font = font;
         }
     }
 
@@ -160,25 +168,17 @@
     CGContextSetShouldAntialias(context, NO);
     CGFloat boxWidth = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
 
+    // Use cached month parity from setWeekStartDate: to avoid date calculations every frame
+    CGColorRef evenColor = PAD ? [calBorderColorLight() CGColor] : [calSeparatorColor() CGColor];
+    CGColorRef oddColor = [calBackgroundColor() CGColor];
+
     for (NSInteger i = 0; i < 7; i++) {
-        NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
         CGRect grayRect         = CGRectZero;
         grayRect.origin.y       = 0;
         grayRect.origin.x       = floorf(boxWidth * i);
         grayRect.size.height    = floorf(self.bounds.size.height);
         grayRect.size.width     = ceil(boxWidth);
-        if ([date mt_monthOfYear] % 2 == 0) {
-            // gray out every other month
-            if (PAD) {
-                CGContextSetFillColorWithColor(context, [calBorderColorLight() CGColor]);
-            }
-            else {
-                CGContextSetFillColorWithColor(context, [calSeparatorColor() CGColor]);
-            }
-        }
-        else {
-            CGContextSetFillColorWithColor(context, [calBackgroundColor() CGColor]);
-        }
+        CGContextSetFillColorWithColor(context, _dayIsEvenMonth[i] ? evenColor : oddColor);
         CGContextFillRect(context, grayRect);
     }
 

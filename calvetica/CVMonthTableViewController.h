@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)scrollToSelectedDay;
 - (NSInteger)rowInMiddleOfVisibleRegion;
 - (void)reframeRedSelectedDaySquareAnimated:(BOOL)animated;
+- (void)ensureSelectedDayVisible;
 - (void)updateRowHeight;
 
 @end
