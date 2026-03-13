@@ -300,6 +300,10 @@
                 [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
             }];
         }
+        else if (model.calendarItem.isEvent) {
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            [self.delegate rootTableViewController:self tappedCell:cell calendarItem:model.calendarItem];
+        }
     }
 }
 
