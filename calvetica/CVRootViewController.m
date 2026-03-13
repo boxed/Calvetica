@@ -94,6 +94,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 // Inbox badge
 @property (nonatomic, strong)          UIView                       *inboxBadge;
 @property (nonatomic, assign)          NSInteger                    pendingInboxCount;
+
+// Permission prompt
+@property (nonatomic, strong)          UIView                       *permissionPromptView;
 @end
 
 
@@ -116,6 +119,10 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 
     [self setupInboxBadge];
     [self updateInboxBadge];
+
+    if (![EKEventStore isPermissionGranted]) {
+        [self setupPermissionPromptView];
+    }
 }
 
 - (void)dealloc
@@ -191,6 +198,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
                         [self notifyOfNeededPermission];
                     }
                     [EKEventStore setPermissionGranted:granted];
+                    [self updatePermissionPromptVisibility];
                     self.selectedDate = self.todaysDate;
                     [self refreshUIAnimated:NO];
                     [self updateInboxBadge];
@@ -1418,6 +1426,70 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     [self.view addSubview:self.weekNumberLabel];
 }
 
+- (void)setupPermissionPromptView
+{
+    self.permissionPromptView = [[UIView alloc] initWithFrame:self.rootTableView.frame];
+    self.permissionPromptView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.permissionPromptView.backgroundColor = calBackgroundColor();
+
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"Calvetica needs access to your calendars and reminders to display your events.";
+    label.textColor = calTextColor();
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 0;
+    label.font = [UIFont systemFontOfSize:17];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:@"Grant Access" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [button addTarget:self action:@selector(requestCalendarPermission) forControlEvents:UIControlEventTouchUpInside];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [self.permissionPromptView addSubview:label];
+    [self.permissionPromptView addSubview:button];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [label.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
+        [label.centerYAnchor constraintEqualToAnchor:self.permissionPromptView.centerYAnchor constant:-30],
+        [label.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.permissionPromptView.leadingAnchor constant:32],
+        [label.trailingAnchor constraintLessThanOrEqualToAnchor:self.permissionPromptView.trailingAnchor constant:-32],
+        [button.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
+        [button.topAnchor constraintEqualToAnchor:label.bottomAnchor constant:20],
+    ]];
+
+    [self.view addSubview:self.permissionPromptView];
+}
+
+- (void)requestCalendarPermission
+{
+    [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL reminderGranted, NSError *error) {
+            [MTq main:^{
+                BOOL allGranted = granted && reminderGranted;
+                [EKEventStore setPermissionGranted:allGranted];
+                if (allGranted) {
+                    [self.permissionPromptView removeFromSuperview];
+                    self.permissionPromptView = nil;
+                    self.selectedDate = self.todaysDate;
+                    [self refreshUIAnimated:NO];
+                    [self updateInboxBadge];
+                } else {
+                    [self notifyOfNeededPermission];
+                }
+            }];
+        }];
+    }];
+}
+
+- (void)updatePermissionPromptVisibility
+{
+    if ([EKEventStore isPermissionGranted]) {
+        [self.permissionPromptView removeFromSuperview];
+        self.permissionPromptView = nil;
+    }
+}
+
 - (void)updateWeekNumberLabel
 {
     CGFloat labelHeight = 20;
@@ -1926,7 +1998,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                    buttonFrame.origin.y + 2,
                                    badgeSize, badgeSize);
     UIView *badge = [[UIView alloc] initWithFrame:badgeFrame];
-    badge.backgroundColor = [UIColor systemRedColor];
+    badge.backgroundColor = [UIColor whiteColor];
     badge.layer.cornerRadius = badgeSize / 2;
     badge.hidden = YES;
     badge.userInteractionEnabled = NO;
