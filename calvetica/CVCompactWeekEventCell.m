@@ -17,7 +17,7 @@ static CGFloat const kTimeColumnWidth = 54.0f;
 static CGFloat const kAccessoryButtonWidth = 44.0f;
 static CGFloat const kColoredDotSize = 8.0f;
 
-@interface CVCompactWeekEventCell ()
+@interface CVCompactWeekEventCell () <UIGestureRecognizerDelegate>
 @property (nonatomic, assign) float appliedFontScale;
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UILabel *hourAndMinuteLabel;
@@ -128,11 +128,13 @@ static CGFloat const kColoredDotSize = 8.0f;
     // Add tap gesture
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(cellWasTapped:)];
+    tapGesture.delegate = self;
     [self.contentView addGestureRecognizer:tapGesture];
 
     // Add long press gesture
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self
                                                                                                    action:@selector(cellWasLongPressed:)];
+    longPressGesture.delegate = self;
     [self.contentView addGestureRecognizer:longPressGesture];
 
     // Add swipe gestures for delete
@@ -409,6 +411,17 @@ static CGFloat const kColoredDotSize = 8.0f;
           } completion:^{
           }];
     }];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    CGPoint point = [touch locationInView:self];
+    if (CGRectContainsPoint(self.cellAccessoryButton.frame, point)) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Actions

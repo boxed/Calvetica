@@ -140,6 +140,7 @@
     }
 
     [self.drawingView draw];
+    [self setNeedsLayout];
 }
 
 - (void)layoutSubviews

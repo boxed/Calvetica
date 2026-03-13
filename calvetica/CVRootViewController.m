@@ -1397,6 +1397,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         // rotate month button
         CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-90.0f));
         self.monthLabelControl.transform = rotateTransform;
+
+        if (IS_MAC) {
+            self.monthLabelControl.titleLabel.font = [UIFont systemFontOfSize:26];
+            self.monthLabelControl.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
+        }
     }
     [self updateWeekdayTitleLabels];
     [self setupWeekNumberLabel];

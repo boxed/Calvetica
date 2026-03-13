@@ -134,7 +134,13 @@ static NSString * const kCellIdentifier = @"CVEventCell";
     self.attendeesTinyIcon.hidden = YES;
     [self.contentView addSubview:self.attendeesTinyIcon];
 
-    // Accessory button (alarm/delete)
+    // Gesture hit area (between time column and accessory button)
+    self.gestureHitArea = [[UIView alloc] initWithFrame:CGRectMake(timeColumnEnd - 5, -2, 320 - timeColumnEnd + 5, cellH - 1)];
+    self.gestureHitArea.backgroundColor = [UIColor clearColor];
+    self.gestureHitArea.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:self.gestureHitArea];
+
+    // Accessory button (alarm/delete) - added after gestureHitArea so it's on top for touch handling
     self.cellAccessoryButton = [[CVCellAccessoryButton alloc] initWithFrame:CGRectMake(320 - accessoryW, 0, accessoryW, cellH)];
     self.cellAccessoryButton.backgroundColor = [UIColor clearColor];
     self.cellAccessoryButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -142,12 +148,6 @@ static NSString * const kCellIdentifier = @"CVEventCell";
                                  action:@selector(accessoryButtonWasTapped:)
                        forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.cellAccessoryButton];
-
-    // Gesture hit area (between time column and accessory button)
-    self.gestureHitArea = [[UIView alloc] initWithFrame:CGRectMake(timeColumnEnd - 5, -2, 320 - timeColumnEnd + 5, cellH - 1)];
-    self.gestureHitArea.backgroundColor = [UIColor clearColor];
-    self.gestureHitArea.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:self.gestureHitArea];
 
     // Hour time hit area
     self.timeTextHitArea = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, timeColumnEnd, cellH - 1)];
