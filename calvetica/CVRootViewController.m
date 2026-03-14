@@ -186,18 +186,18 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [super viewDidAppearAfterLoad:animated];
 
     if (![EKEventStore isPermissionGranted]) {
-        [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if (!granted) {
+        [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL eventGranted, NSError *error) {
+            if (!eventGranted) {
                 [MTq main:^{
                     [self notifyOfNeededPermission];
                 }];
             }
-            [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+            [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL reminderGranted, NSError *error) {
                 [MTq main:^{
-                    if (!granted) {
+                    if (!reminderGranted) {
                         [self notifyOfNeededPermission];
                     }
-                    [EKEventStore setPermissionGranted:granted];
+                    [EKEventStore setPermissionGranted:eventGranted];
                     [self updatePermissionPromptVisibility];
                     self.selectedDate = self.todaysDate;
                     [self refreshUIAnimated:NO];

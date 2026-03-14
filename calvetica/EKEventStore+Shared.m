@@ -42,6 +42,9 @@ static NSMutableDictionary *__stores = nil;
 
 + (BOOL)isPermissionGranted
 {
+    if (!__permissionGranted) {
+        __permissionGranted = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized;
+    }
     return __permissionGranted;
 }
 
