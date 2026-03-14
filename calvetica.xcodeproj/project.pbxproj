@@ -3327,7 +3327,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 5.6.0;
+				MARKETING_VERSION = 5.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3489,7 +3489,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 5.6.0;
+				MARKETING_VERSION = 5.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3521,7 +3521,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 5.6.0;
+				MARKETING_VERSION = 5.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
