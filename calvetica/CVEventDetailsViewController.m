@@ -405,6 +405,7 @@
                 }
                 else {
                     self.eventPeopleTableView.hidden = YES;
+                    _eventPeopleBlock.hidden = YES;
                     f.size.height = 0;
                 }
 

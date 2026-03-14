@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (EKEventStore *)permissionStore;
 + (void)setPermissionGranted:(BOOL)granted;
 + (BOOL)isPermissionGranted;
++ (BOOL)isCalendarPermissionGranted;
++ (BOOL)isReminderPermissionGranted;
 
 @end
 

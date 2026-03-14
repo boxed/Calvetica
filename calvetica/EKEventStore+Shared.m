@@ -43,9 +43,21 @@ static NSMutableDictionary *__stores = nil;
 + (BOOL)isPermissionGranted
 {
     if (!__permissionGranted) {
-        __permissionGranted = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized;
+        __permissionGranted = [self isCalendarPermissionGranted];
     }
     return __permissionGranted;
+}
+
++ (BOOL)isCalendarPermissionGranted
+{
+    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+    return status == EKAuthorizationStatusFullAccess || status == EKAuthorizationStatusAuthorized;
+}
+
++ (BOOL)isReminderPermissionGranted
+{
+    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
+    return status == EKAuthorizationStatusFullAccess || status == EKAuthorizationStatusAuthorized;
 }
 
 + (EKEventStore *)permissionStore

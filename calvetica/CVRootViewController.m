@@ -120,7 +120,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self setupInboxBadge];
     [self updateInboxBadge];
 
-    if (![EKEventStore isPermissionGranted]) {
+    if (![EKEventStore isCalendarPermissionGranted] || ![EKEventStore isReminderPermissionGranted]) {
         [self setupPermissionPromptView];
     }
 }
@@ -184,24 +184,17 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 - (void)viewDidAppearAfterLoad:(BOOL)animated
 {
     [super viewDidAppearAfterLoad:animated];
+    
+    self.selectedDate = self.todaysDate;
+    [self refreshUIAnimated:NO];
+    [self updateInboxBadge];
 
-    if (![EKEventStore isPermissionGranted]) {
+    if (![EKEventStore isCalendarPermissionGranted] || ![EKEventStore isReminderPermissionGranted]) {
         [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL eventGranted, NSError *error) {
-            if (!eventGranted) {
-                [MTq main:^{
-                    [self notifyOfNeededPermission];
-                }];
-            }
             [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL reminderGranted, NSError *error) {
                 [MTq main:^{
-                    if (!reminderGranted) {
-                        [self notifyOfNeededPermission];
-                    }
                     [EKEventStore setPermissionGranted:eventGranted];
-                    [self updatePermissionPromptVisibility];
-                    self.selectedDate = self.todaysDate;
-                    [self refreshUIAnimated:NO];
-                    [self updateInboxBadge];
+                    [self rebuildPermissionPromptIfNeeded];
                 }];
             }];
         }];
@@ -1439,23 +1432,42 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     label.numberOfLines = 0;
     label.font = [UIFont systemFontOfSize:17];
     label.translatesAutoresizingMaskIntoConstraints = NO;
-
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button setTitle:@"Grant Access" forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    [button addTarget:self action:@selector(requestCalendarPermission) forControlEvents:UIControlEventTouchUpInside];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-
     [self.permissionPromptView addSubview:label];
-    [self.permissionPromptView addSubview:button];
+
+    UIView *lastView = label;
+
+    if (![EKEventStore isCalendarPermissionGranted]) {
+        UIButton *calButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [calButton setTitle:@"Grant Calendar Access" forState:UIControlStateNormal];
+        calButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        [calButton addTarget:self action:@selector(requestCalendarPermission) forControlEvents:UIControlEventTouchUpInside];
+        calButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.permissionPromptView addSubview:calButton];
+        [NSLayoutConstraint activateConstraints:@[
+            [calButton.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
+            [calButton.topAnchor constraintEqualToAnchor:lastView.bottomAnchor constant:20],
+        ]];
+        lastView = calButton;
+    }
+
+    if (![EKEventStore isReminderPermissionGranted]) {
+        UIButton *remButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [remButton setTitle:@"Grant Reminders Access" forState:UIControlStateNormal];
+        remButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        [remButton addTarget:self action:@selector(requestReminderPermission) forControlEvents:UIControlEventTouchUpInside];
+        remButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.permissionPromptView addSubview:remButton];
+        [NSLayoutConstraint activateConstraints:@[
+            [remButton.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
+            [remButton.topAnchor constraintEqualToAnchor:lastView.bottomAnchor constant:20],
+        ]];
+    }
 
     [NSLayoutConstraint activateConstraints:@[
         [label.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
-        [label.centerYAnchor constraintEqualToAnchor:self.permissionPromptView.centerYAnchor constant:-30],
+        [label.centerYAnchor constraintEqualToAnchor:self.permissionPromptView.centerYAnchor constant:-50],
         [label.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.permissionPromptView.leadingAnchor constant:32],
         [label.trailingAnchor constraintLessThanOrEqualToAnchor:self.permissionPromptView.trailingAnchor constant:-32],
-        [button.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
-        [button.topAnchor constraintEqualToAnchor:label.bottomAnchor constant:20],
     ]];
 
     [self.view addSubview:self.permissionPromptView];
@@ -1464,27 +1476,47 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)requestCalendarPermission
 {
     [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL reminderGranted, NSError *error) {
-            [MTq main:^{
-                BOOL allGranted = granted && reminderGranted;
-                [EKEventStore setPermissionGranted:allGranted];
-                if (allGranted) {
-                    [self.permissionPromptView removeFromSuperview];
-                    self.permissionPromptView = nil;
-                    self.selectedDate = self.todaysDate;
-                    [self refreshUIAnimated:NO];
-                    [self updateInboxBadge];
-                } else {
-                    [self notifyOfNeededPermission];
-                }
-            }];
+        [MTq main:^{
+            if (granted) {
+                [EKEventStore setPermissionGranted:YES];
+                [self rebuildPermissionPromptIfNeeded];
+            } else {
+                [self notifyOfNeededPermission];
+            }
         }];
     }];
 }
 
+- (void)requestReminderPermission
+{
+    [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+        [MTq main:^{
+            if (granted) {
+                [self rebuildPermissionPromptIfNeeded];
+            } else {
+                [self notifyOfNeededPermission];
+            }
+        }];
+    }];
+}
+
+- (void)rebuildPermissionPromptIfNeeded
+{
+    [self.permissionPromptView removeFromSuperview];
+    self.permissionPromptView = nil;
+
+    if (![EKEventStore isCalendarPermissionGranted] || ![EKEventStore isReminderPermissionGranted]) {
+        [self setupPermissionPromptView];
+    } else {
+        self.selectedDate = self.todaysDate;
+        [self refreshUIAnimated:NO];
+        [self updateInboxBadge];
+    }
+}
+
 - (void)updatePermissionPromptVisibility
 {
-    if ([EKEventStore isPermissionGranted]) {
+    if ([EKEventStore isCalendarPermissionGranted] && [EKEventStore isReminderPermissionGranted]) {
         [self.permissionPromptView removeFromSuperview];
         self.permissionPromptView = nil;
     }
