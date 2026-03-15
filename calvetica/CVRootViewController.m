@@ -145,12 +145,17 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 {
     [super viewDidLayoutSubviews];
     if (PAD) {
-        CGFloat oldRowHeight = self.monthTableViewController.tableView.rowHeight;
+        UITableView *tableView = self.monthTableViewController.tableView;
+        CGFloat oldRowHeight = tableView.rowHeight;
+        CGFloat savedOffsetY = tableView.contentOffset.y;
         [self.monthTableViewController updateRowHeight];
-        if (self.monthTableViewController.tableView.rowHeight != oldRowHeight) {
-            [self.monthTableViewController.tableView layoutIfNeeded];
+        if (tableView.rowHeight != oldRowHeight) {
+            [tableView layoutIfNeeded];
             [self reloadMonthTableView];
-            [self scrollMonthTableViewAnimated:NO];
+            CGFloat scale = (oldRowHeight > 0) ? (tableView.rowHeight / oldRowHeight) : 1.0;
+            CGFloat newOffsetY = savedOffsetY * scale;
+            newOffsetY = MAX(0, MIN(newOffsetY, tableView.contentSize.height - tableView.bounds.size.height));
+            [tableView setContentOffset:CGPointMake(0, newOffsetY) animated:NO];
             [self updateSelectionSquare:NO];
         }
     }
@@ -226,13 +231,26 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
         }
     }
     
+    // Capture scroll position relative to visible area before transition
+    UITableView *tableView = self.monthTableViewController.tableView;
+    CGFloat savedContentOffsetY = tableView.contentOffset.y;
+    CGFloat savedRowHeight = tableView.rowHeight;
+
     [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         self.monthTableViewController.selectedDayView.hidden = NO;
-        
+
         [self updateWeekdayTitleLabels];
         [self updateLayoutAnimated:NO];
         [self reloadMonthTableView];
-        [self scrollMonthTableViewAnimated:NO];
+
+        // Restore scroll position proportionally based on row height change
+        UITableView *tv = self.monthTableViewController.tableView;
+        CGFloat newRowHeight = tv.rowHeight;
+        CGFloat scale = (savedRowHeight > 0) ? (newRowHeight / savedRowHeight) : 1.0;
+        CGFloat newOffsetY = savedContentOffsetY * scale;
+        newOffsetY = MAX(0, MIN(newOffsetY, tv.contentSize.height - tv.bounds.size.height));
+        [tv setContentOffset:CGPointMake(0, newOffsetY) animated:NO];
+
         [self updateSelectionSquare:NO];
         
         if (PAD) {

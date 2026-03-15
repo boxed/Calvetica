@@ -16,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CVMonthTableViewControllerDelegate;
 
 
-@interface CVMonthTableViewController : UITableViewController {}
+@interface CVMonthTableViewController : UITableViewController {
+    BOOL _hasAppeared;
+}
 
 @property (nonatomic, nullable, weak  )          id<CVMonthTableViewControllerDelegate> delegate;
 @property (nonatomic, strong)          NSDate                                 *startDate;

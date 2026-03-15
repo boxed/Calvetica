@@ -36,6 +36,11 @@
 {
     [super viewDidAppear:animated];
 
+    if (!_hasAppeared) {
+        _hasAppeared = YES;
+        self.selectedDate = [NSDate date];
+    }
+
     // center the current day
     if (PAD) {
         [self scrollToRowForDate:_selectedDate animated:NO scrollPosition:UITableViewScrollPositionMiddle];
@@ -47,8 +52,6 @@
     else {
         [self scrollToRowForDate:[self.selectedDate mt_startOfCurrentMonth] animated:NO scrollPosition:UITableViewScrollPositionTop];
     }
-
-	self.selectedDate = [NSDate date];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
