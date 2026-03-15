@@ -72,8 +72,7 @@
     for (NSInteger i = 0; i < 7; i++) {
         NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
         NSInteger dayOfMonth = [date mt_dayOfMonth];
-        _dayIsEvenMonth[i] = ([date mt_monthOfYear] % 2 == 0);
-
+        _dayIsEvenMonth[i] = [date mt_monthOfYear] % 2 == 0;
         NSInteger num = i + 100;
         UILabel *label = (UILabel *)[self viewWithTag:num];
         label.text = [NSString stringWithFormat:@"%ld", (long)dayOfMonth];
@@ -140,6 +139,7 @@
     }
 
     [self.drawingView draw];
+    [self setNeedsDisplay];
     [self setNeedsLayout];
 }
 
@@ -169,7 +169,6 @@
     CGContextSetShouldAntialias(context, NO);
     CGFloat boxWidth = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
 
-    // Use cached month parity from setWeekStartDate: to avoid date calculations every frame
     CGColorRef evenColor = PAD ? [calBorderColorLight() CGColor] : [calSeparatorColor() CGColor];
     CGColorRef oddColor = [calBackgroundColor() CGColor];
 
