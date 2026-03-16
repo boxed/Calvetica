@@ -444,6 +444,7 @@
     // DIMENSIONS
 
     BOOL mac = IS_MAC;
+    BOOL showTimes = self.window.frame.size.width >= 1600.0f;
     CGFloat fontScale               = mac ? PREFS.macFontScale : 1.0f;
     CGFloat boxWidth                = floorf(self.frame.size.width / (float)MTDateConstantDaysInWeek);
     CGFloat topPadding              = 3.0f;
@@ -563,6 +564,41 @@
         textFrame.origin.x += 5.0f * fontScale;
         textFrame.size.width -= 10.0f * fontScale;
 
+        // Draw start time right-aligned for non-all-day events on iPad/Mac
+        if (![e.calendarItem mys_isAllDay] && showTimes) {
+            NSDate *startDate = [e.calendarItem mys_date];
+            if (startDate) {
+                static NSDateFormatter *timeFormatter = nil;
+                static dispatch_once_t onceToken;
+                dispatch_once(&onceToken, ^{
+                    timeFormatter = [[NSDateFormatter alloc] init];
+                    [timeFormatter setDateStyle:NSDateFormatterNoStyle];
+                    [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+                });
+                NSString *timeString = [timeFormatter stringFromDate:startDate];
+                CGFloat timeFontSize = eventFontSize * 0.9f;
+                UIFont *timeFont = [UIFont systemFontOfSize:timeFontSize];
+                CGSize timeSize = [timeString sizeWithAttributes:@{NSFontAttributeName: timeFont}];
+                CGFloat timePadding = 4.0f * fontScale;
+
+                // Shrink title frame so it doesn't overlap the time
+                textFrame.size.width -= timeSize.width + timePadding * 2.0f;
+
+                CGRect timeFrame = boxFrame;
+                timeFrame.origin.x = CGRectGetMaxX(boxFrame) - timeSize.width - timePadding;
+                timeFrame.size.width = timeSize.width;
+
+                UIColor *timeColor;
+                if ([calendarColor shouldUseLightText]) {
+                    timeColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+                } else {
+                    timeColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+                }
+                CGContextSetFillColorWithColor(context, [timeColor CGColor]);
+                [timeString drawInRect:timeFrame withFont:timeFont lineBreakMode:NSLineBreakByClipping];
+            }
+        }
+
 		NSString *title = [e.calendarItem mys_title];
         [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize] lineBreakMode:NSLineBreakByTruncatingTail];
 
@@ -672,6 +708,41 @@
             textFrame.size.width = boxWidth - boxFrame.size.width - (dotSidePadding * 2.0f);
 
             NSString *title = [e.calendarItem mys_title];
+
+            // Draw start time right-aligned for non-all-day events
+            if (![e.calendarItem mys_isAllDay] && showTimes) {
+                NSDate *startDate = [e.calendarItem mys_date];
+                if (startDate) {
+                    static NSDateFormatter *dotTimeFormatter = nil;
+                    static dispatch_once_t dotOnceToken;
+                    dispatch_once(&dotOnceToken, ^{
+                        dotTimeFormatter = [[NSDateFormatter alloc] init];
+                        [dotTimeFormatter setDateStyle:NSDateFormatterNoStyle];
+                        [dotTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+                    });
+                    NSString *timeString = [dotTimeFormatter stringFromDate:startDate];
+                    CGFloat timeFontSize = eventFontSize * 0.9f;
+                    UIFont *timeFont = [UIFont systemFontOfSize:timeFontSize];
+                    CGSize timeSize = [timeString sizeWithAttributes:@{NSFontAttributeName: timeFont}];
+                    CGFloat timePadding = 2.0f * fontScale;
+
+                    CGFloat dayRight = (boxWidth * (day + 1)) - barSidePadding;
+                    CGRect timeFrame = textFrame;
+                    timeFrame.origin.x = dayRight - timeSize.width - timePadding;
+                    timeFrame.size.width = timeSize.width;
+
+                    // Shrink title frame so it doesn't overlap the time
+                    textFrame.size.width = timeFrame.origin.x - textFrame.origin.x - timePadding;
+
+                    UIColor *timeColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.8];
+                    CGContextSetFillColorWithColor(context, [timeColor CGColor]);
+                    [timeString drawInRect:timeFrame withFont:timeFont lineBreakMode:NSLineBreakByClipping];
+
+                    // Restore text color for title
+                    CGContextSetFillColorWithColor(context, [calTextColor() CGColor]);
+                }
+            }
+
             [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:eventFontSize] lineBreakMode:NSLineBreakByTruncatingTail];
 
             CGRect textRect = [title boundingRectWithSize:CGSizeMake(textFrame.size.width, 1000)
