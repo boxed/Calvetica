@@ -450,7 +450,7 @@
     CGFloat topPadding              = 3.0f;
 
     CGFloat barSidePadding          = 2.0f;
-    CGFloat barSpacing              = 1.0f;
+    CGFloat barSpacing              = (PAD || mac) ? 2.0f : 1.0f;
     CGFloat barHeight               = (mac ? MAC_MONTH_VIEW_BAR_HEIGHT : 12) * fontScale;
     CGFloat barHeightWithSpacing    = barHeight + barSpacing;
     CGFloat eventFontSize           = (mac ? MAC_MONTH_VIEW_EVENT_FONT_SIZE : 9.0f) * fontScale;
