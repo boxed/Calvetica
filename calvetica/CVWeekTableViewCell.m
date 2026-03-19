@@ -143,6 +143,18 @@
     [self setNeedsLayout];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+    if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+        self.backgroundColor = calBackgroundColor();
+        NSDate *date = _weekStartDate;
+        _weekStartDate = nil;
+        self.weekStartDate = date;
+        [self redraw];
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
