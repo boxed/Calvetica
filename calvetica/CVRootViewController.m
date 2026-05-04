@@ -195,8 +195,8 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self updateInboxBadge];
 
     if (![EKEventStore isCalendarPermissionGranted] || ![EKEventStore isReminderPermissionGranted]) {
-        [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL eventGranted, NSError *error) {
-            [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL reminderGranted, NSError *error) {
+        [[EKEventStore permissionStore] requestFullAccessToEventsWithCompletion:^(BOOL eventGranted, NSError *error) {
+            [[EKEventStore permissionStore] requestFullAccessToRemindersWithCompletion:^(BOOL reminderGranted, NSError *error) {
                 [MTq main:^{
                     [EKEventStore setPermissionGranted:eventGranted];
                     [self rebuildPermissionPromptIfNeeded];
@@ -1493,7 +1493,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)requestCalendarPermission
 {
-    [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+    [[EKEventStore permissionStore] requestFullAccessToEventsWithCompletion:^(BOOL granted, NSError *error) {
         [MTq main:^{
             if (granted) {
                 [EKEventStore setPermissionGranted:YES];
@@ -1507,7 +1507,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)requestReminderPermission
 {
-    [[EKEventStore permissionStore] requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+    [[EKEventStore permissionStore] requestFullAccessToRemindersWithCompletion:^(BOOL granted, NSError *error) {
         [MTq main:^{
             if (granted) {
                 [self rebuildPermissionPromptIfNeeded];
