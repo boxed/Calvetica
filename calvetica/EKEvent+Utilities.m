@@ -1,5 +1,6 @@
 
 #import "EKEvent+Utilities.h"
+#import "EKEvent+Store.h"
 #import "NSString+Utilities.h"
 #import "strings.h"
 
@@ -420,9 +421,13 @@
         return NO;
     };
 
-    // 1. Check self.URL for a known video conference domain
-    if (self.URL && isVideoURL(self.URL)) {
-        return self.URL;
+    // Ignore calvetica's own creator tag — it lives in the url field but is not
+    // a real link the user should see.
+    NSURL *eventURL = [EKEvent isCreatorTagURL:self.URL] ? nil : self.URL;
+
+    // 1. Check the url for a known video conference domain
+    if (eventURL && isVideoURL(eventURL)) {
+        return eventURL;
     }
 
     // Helper: scan text for URLs matching known video conference domains
@@ -448,8 +453,8 @@
     found = findVideoURLInText(self.location);
     if (found) return found;
 
-    // 4. Fall back to self.URL even if not a known domain
-    if (self.URL) return self.URL;
+    // 4. Fall back to the url even if not a known domain
+    if (eventURL) return eventURL;
 
     // 5. Nothing found
     return nil;

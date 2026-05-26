@@ -192,11 +192,70 @@
 
 
 
+#pragma mark - Self-created tracking
+
+// Custom url scheme used to tag events created in calvetica. The value after the
+// scheme is the creating user's token, so a tag created by one person on a shared
+// calendar is not mistaken for "mine" by another person who shares that calendar.
+static NSString * const kCreatorTagScheme = @"x-calvetica-creator";
+static NSString * const kCreatorTokenKey  = @"calveticaCreatorToken";
+
+// A stable, per-user token. It lives in the iCloud key-value store so it is the
+// same across the user's own devices but private from anyone they share calendars
+// with. Mirrored to NSUserDefaults so we still have a value before iCloud syncs.
++ (NSString *)currentUserCreatorToken
+{
+    NSUbiquitousKeyValueStore *cloud = [NSUbiquitousKeyValueStore defaultStore];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *token = [cloud stringForKey:kCreatorTokenKey];
+    if (token.length == 0) {
+        token = [defaults stringForKey:kCreatorTokenKey];
+    }
+    if (token.length == 0) {
+        token = [[NSUUID UUID] UUIDString];
+        [cloud setString:token forKey:kCreatorTokenKey];
+        [cloud synchronize];
+    }
+    // Keep the local mirror in step with whichever value won.
+    if (![[defaults stringForKey:kCreatorTokenKey] isEqualToString:token]) {
+        [defaults setObject:token forKey:kCreatorTokenKey];
+    }
+    return token;
+}
+
++ (BOOL)isCreatorTagURL:(NSURL *)url
+{
+    return [[url.scheme lowercaseString] isEqualToString:kCreatorTagScheme];
+}
+
++ (BOOL)isSelfCreatedEvent:(EKEvent *)event
+{
+    NSURL *url = event.URL;
+    if (![self isCreatorTagURL:url]) return NO;
+    NSString *token = url.resourceSpecifier;
+    return token.length > 0 && [token isEqualToString:[self currentUserCreatorToken]];
+}
+
+// Tags a brand-new event so it is recognised as self-created later. Only applied
+// when the user hasn't set their own url, so we never clobber real data.
+- (void)tagAsSelfCreatedIfNeeded
+{
+    if (self.URL != nil) return;
+    NSString *token = [EKEvent currentUserCreatorToken];
+    self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", kCreatorTagScheme, token]];
+}
+
+
 #pragma mark - Private
 
 - (BOOL)saveWithSpan2:(EKSpan)span error:(NSError **)error
 {
-    CVNotificationChangeType type = self.isNew ? CVNotificationChangeTypeCreate : CVNotificationChangeTypeUpdate;
+    BOOL wasNew = self.isNew;
+    if (wasNew) {
+        [self tagAsSelfCreatedIfNeeded];
+    }
+    CVNotificationChangeType type = wasNew ? CVNotificationChangeTypeCreate : CVNotificationChangeTypeUpdate;
     [[CVEventStoreNotificationCenter sharedCenter] listenForNotificationAboutCalendarItem:self
                                                                                changeType:type];
     return [[EKEventStore sharedStore] saveEvent:self span:span commit:YES error:error];

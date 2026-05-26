@@ -22,6 +22,7 @@
 #import "CVInboxViewController.h"
 #import "CVCalendarItemCellModel.h"
 #import "CVEventStoreNotificationCenter.h"
+#import "EKEvent+Store.h"
 #import "CVLineButton.h"
 #import "UITableView+Utilities.h"
 // iPhone
@@ -2029,6 +2030,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                 if (event.eventIdentifier && [pendingIdentifiers containsObject:event.eventIdentifier]) continue;
                 if (!event.creationDate || [event.creationDate compare:recentCutoff] == NSOrderedAscending) continue;
                 if (event.organizer.isCurrentUser) continue;
+                if ([EKEvent isSelfCreatedEvent:event]) continue;
                 if (lastViewed && [event.creationDate compare:lastViewed] != NSOrderedDescending) continue;
                 count++;
             }

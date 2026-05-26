@@ -7,6 +7,7 @@
 #import <EventKitUI/EventKitUI.h>
 #import "EKEventStore+Shared.h"
 #import "EKEventStore+Events.h"
+#import "EKEvent+Store.h"
 
 static const NSInteger kRecentDays = 14;
 
@@ -108,6 +109,9 @@ typedef NS_ENUM(NSInteger, CVInboxSection) {
 
         // Skip events organized by the current user
         if (event.organizer.isCurrentUser) continue;
+
+        // Skip events the user created within the app
+        if ([EKEvent isSelfCreatedEvent:event]) continue;
 
         [recent addObject:event];
     }
