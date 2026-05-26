@@ -396,6 +396,18 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     return fallback;
 }
 
++ (void)applyThemeStyle
+{
+    UIUserInterfaceStyle style = (UIUserInterfaceStyle)PREFS.themeStyle;
+    for (UIScene *scene in [UIApplication sharedApplication].connectedScenes) {
+        if ([scene isKindOfClass:[UIWindowScene class]]) {
+            for (UIWindow *window in ((UIWindowScene *)scene).windows) {
+                window.overrideUserInterfaceStyle = style;
+            }
+        }
+    }
+}
+
 + (BOOL)hasNotch
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

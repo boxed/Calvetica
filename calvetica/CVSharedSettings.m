@@ -35,6 +35,7 @@
 @dynamic timeZoneName;
 @dynamic weekStartsOnWeekday;
 @dynamic badgeOrAlerts;
+@dynamic themeStyle;
 @dynamic dayStartHour;
 @dynamic dayEndHour;
 @dynamic customAlertSoundFileName;
@@ -64,6 +65,7 @@
              @"defaultDuration"                     : @(MTDateConstantSecondsInHour),
              @"weekStartsOnWeekday"                 : @(1),
              @"badgeOrAlerts"                       : @(CVLocalNotificationTypeBadgeAndAlerts),
+             @"themeStyle"                          : @(CVThemeStyleAuto),
              @"dayStartHour"                        : @(9),
              @"dayEndHour"                          : @(5),
              @"eventDetailsSubtitleTextPriority"    : [CVEventSubtitleTextPriorityViewController standardSubtitleTextPriorityArray],

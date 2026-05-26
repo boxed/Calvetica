@@ -319,6 +319,7 @@
 		C2FE8BA51396BB1200641937 /* UIColor+Calvetica.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE8BA41396BB1200641937 /* UIColor+Calvetica.m */; };
 		C2FF4D3713D89DDD00E662FE /* CVLandscapeWeekView_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FF4D3513D89DDD00E662FE /* CVLandscapeWeekView_iPad.m */; };
 		C2FF4D3B13D8A6BC00E662FE /* CVLandscapeWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FF4D3A13D8A6BC00E662FE /* CVLandscapeWeekView.m */; };
+		E5A5963E051046B43D904BA1 /* CVThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1CA2B940315E7E9226C5CB /* CVThemeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -369,6 +370,7 @@
 		6AF3CE3D1403022D00A193E4 /* CVWeekNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWeekNumberCell.h; sourceTree = "<group>"; };
 		6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekNumberCell.m; sourceTree = "<group>"; };
 		6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVWeekNumberCell.xib; sourceTree = "<group>"; };
+		84B52EF023501C96C00CC853 /* CVThemeViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVThemeViewController.h; sourceTree = "<group>"; };
 		9B0127A513CBA2B50006C2EA /* CVGestureHowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGestureHowToViewController.h; sourceTree = "<group>"; };
 		9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVGestureHowToViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B0AD8A713CF5AC300DF1F2F /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 		C2FF4D3A13D8A6BC00E662FE /* CVLandscapeWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVLandscapeWeekView.m; sourceTree = "<group>"; };
 		CCE841EB4CDA7497305F2B06 /* CVCompactWeekEventCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVCompactWeekEventCell.m; sourceTree = "<group>"; };
 		CD8EA101961F809B6BB7CD60 /* CVCompactWeekReminderCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVCompactWeekReminderCell.h; sourceTree = "<group>"; };
+		CE1CA2B940315E7E9226C5CB /* CVThemeViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVThemeViewController.m; sourceTree = "<group>"; };
 		DF8C2823FBA37F035E5079CC /* Pods-calvetica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.debug.xcconfig"; sourceTree = "<group>"; };
 		EB4BF7472ED0C0018A8FF2AF /* Pods-calvetica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-calvetica.release.xcconfig"; path = "Pods/Target Support Files/Pods-calvetica/Pods-calvetica.release.xcconfig"; sourceTree = "<group>"; };
 		EF5BC6B2528EAD8E99A94E5C /* CVCompactWeekEventCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVCompactWeekEventCell.h; sourceTree = "<group>"; };
@@ -2094,6 +2097,8 @@
 				9B72B37C13C95D7C0068C715 /* FAQ */,
 				9B1A7A8B13E144210028A960 /* Contact us */,
 				9B0127A413CBA25B0006C2EA /* Gestures */,
+				84B52EF023501C96C00CC853 /* CVThemeViewController.h */,
+				CE1CA2B940315E7E9226C5CB /* CVThemeViewController.m */,
 			);
 			name = "Settings View Controllers";
 			sourceTree = "<group>";
@@ -3043,6 +3048,7 @@
 				068383FF4E81B8A7191FEC86 /* CVCompactWeek.m in Sources */,
 				B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */,
 				818E6C65A9BC5FAB3554E865 /* CVCompactWeekReminderCell.m in Sources */,
+				E5A5963E051046B43D904BA1 /* CVThemeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

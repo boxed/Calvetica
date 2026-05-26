@@ -20,6 +20,14 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
     CVLocalNotificationTypeBadgeAndAlerts
 };
 
+// Raw values match UIUserInterfaceStyle (Unspecified/Light/Dark) so the setting
+// can be applied directly to a window's overrideUserInterfaceStyle.
+typedef NS_ENUM(NSUInteger, CVThemeStyle) {
+    CVThemeStyleAuto  = 0,
+    CVThemeStyleLight = 1,
+    CVThemeStyleDark  = 2
+};
+
 
 #define PREFS [CVSharedSettings sharedSettings]
 
@@ -52,6 +60,7 @@ typedef NS_ENUM(NSUInteger, CVLocalNotificationType) {
 @property (nonatomic, assign) int      weekStartsOnWeekday;
 
 // appearance
+@property (nonatomic, assign) CVThemeStyle themeStyle;
 @property (nonatomic, assign) int     dayStartHour;
 @property (nonatomic, assign) int     dayEndHour;
 @property (nonatomic, strong) NSArray<NSDictionary *> *eventDetailsSubtitleTextPriority;

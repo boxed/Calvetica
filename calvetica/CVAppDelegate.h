@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable UIWindow *)mainWindow;
 + (BOOL)hasNotch;
+
+// Applies the user's chosen theme (Auto/Light/Dark) to every open window.
++ (void)applyThemeStyle;
 @end
 
 NS_ASSUME_NONNULL_END

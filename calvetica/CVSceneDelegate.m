@@ -6,6 +6,7 @@
 #import "CVSceneDelegate.h"
 #import "CVAppDelegate.h"
 #import "CVRootViewController.h"
+#import "CVSharedSettings.h"
 
 @implementation CVSceneDelegate
 
@@ -14,6 +15,7 @@
     // The storyboard is configured in the scene manifest, so the window and root VC are set up automatically.
     if (self.window) {
         self.window.tintColor = RGB(215, 0, 0);
+        self.window.overrideUserInterfaceStyle = (UIUserInterfaceStyle)PREFS.themeStyle;
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self
