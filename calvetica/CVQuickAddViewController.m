@@ -482,8 +482,12 @@
         }
     }
     if ([CVAppDelegate hasNotch]) {
+        // The XIB frames assume a legacy 20pt status bar. Shift content down by
+        // however much the safe area exceeds that baseline so it clears the notch
+        // or Dynamic Island (which has a taller ~59pt inset than the notch's ~44pt).
+        CGFloat offset = [CVAppDelegate mainWindow].safeAreaInsets.top - 20;
         for (UIView *v in self.view.subviews) {
-            v.y += 20;
+            v.y += offset;
         }
     }
 }
