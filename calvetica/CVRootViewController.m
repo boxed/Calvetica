@@ -1453,34 +1453,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     label.translatesAutoresizingMaskIntoConstraints = NO;
     [self.permissionPromptView addSubview:label];
 
-    UIView *lastView = label;
-
-    if (![EKEventStore isCalendarPermissionGranted]) {
-        UIButton *calButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [calButton setTitle:@"Grant Calendar Access" forState:UIControlStateNormal];
-        calButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        [calButton addTarget:self action:@selector(requestCalendarPermission) forControlEvents:UIControlEventTouchUpInside];
-        calButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.permissionPromptView addSubview:calButton];
-        [NSLayoutConstraint activateConstraints:@[
-            [calButton.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
-            [calButton.topAnchor constraintEqualToAnchor:lastView.bottomAnchor constant:20],
-        ]];
-        lastView = calButton;
-    }
-
-    if (![EKEventStore isReminderPermissionGranted]) {
-        UIButton *remButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [remButton setTitle:@"Grant Reminders Access" forState:UIControlStateNormal];
-        remButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        [remButton addTarget:self action:@selector(requestReminderPermission) forControlEvents:UIControlEventTouchUpInside];
-        remButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.permissionPromptView addSubview:remButton];
-        [NSLayoutConstraint activateConstraints:@[
-            [remButton.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
-            [remButton.topAnchor constraintEqualToAnchor:lastView.bottomAnchor constant:20],
-        ]];
-    }
+    UIButton *grantButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [grantButton setTitle:@"Grant Access" forState:UIControlStateNormal];
+    grantButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [grantButton addTarget:self action:@selector(requestFullAccess) forControlEvents:UIControlEventTouchUpInside];
+    grantButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.permissionPromptView addSubview:grantButton];
+    [NSLayoutConstraint activateConstraints:@[
+        [grantButton.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
+        [grantButton.topAnchor constraintEqualToAnchor:label.bottomAnchor constant:20],
+    ]];
 
     [NSLayoutConstraint activateConstraints:@[
         [label.centerXAnchor constraintEqualToAnchor:self.permissionPromptView.centerXAnchor],
@@ -1492,31 +1474,40 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     [self.view addSubview:self.permissionPromptView];
 }
 
-- (void)requestCalendarPermission
+- (void)requestFullAccess
 {
-    [[EKEventStore permissionStore] requestFullAccessToEventsWithCompletion:^(BOOL granted, NSError *error) {
-        [MTq main:^{
-            if (granted) {
-                [EKEventStore setPermissionGranted:YES];
-                [self rebuildPermissionPromptIfNeeded];
-            } else {
-                [self notifyOfNeededPermission];
-            }
+    EKAuthorizationStatus eventStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+    EKAuthorizationStatus reminderStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
+
+    // iOS only shows the system permission dialog while the status is "not determined".
+    // Once the user has denied (or restricted) access, requesting again returns immediately
+    // without any UI, so the only way to grant access "again" is via Settings.app.
+    BOOL canPrompt = (eventStatus == EKAuthorizationStatusNotDetermined) || (reminderStatus == EKAuthorizationStatusNotDetermined);
+    if (!canPrompt) {
+        [self openAppSettings];
+        return;
+    }
+
+    [[EKEventStore permissionStore] requestFullAccessToEventsWithCompletion:^(BOOL eventGranted, NSError *error) {
+        [[EKEventStore permissionStore] requestFullAccessToRemindersWithCompletion:^(BOOL reminderGranted, NSError *error) {
+            [MTq main:^{
+                [EKEventStore setPermissionGranted:eventGranted];
+                if ([EKEventStore isCalendarPermissionGranted] && [EKEventStore isReminderPermissionGranted]) {
+                    [self rebuildPermissionPromptIfNeeded];
+                } else {
+                    [self notifyOfNeededPermission];
+                }
+            }];
         }];
     }];
 }
 
-- (void)requestReminderPermission
+- (void)openAppSettings
 {
-    [[EKEventStore permissionStore] requestFullAccessToRemindersWithCompletion:^(BOOL granted, NSError *error) {
-        [MTq main:^{
-            if (granted) {
-                [self rebuildPermissionPromptIfNeeded];
-            } else {
-                [self notifyOfNeededPermission];
-            }
-        }];
-    }];
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
 
 - (void)rebuildPermissionPromptIfNeeded
@@ -1996,7 +1987,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                                                              @"to access your calendars: Go to Settings.app > "
                                                                              @"Privacy > Calendars/Reminders and make sure Calvetica is ON")
                                                              preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Open Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self openAppSettings];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
