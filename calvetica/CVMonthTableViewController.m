@@ -71,13 +71,19 @@
 
 - (void)reloadTableView
 {
+    // Drop cached events on the visible (reusable) cells so they refetch when
+    // the table reloads — otherwise a recycled cell reused for the same week
+    // would keep showing stale data after an event was added or deleted.
+    for (CVWeekTableViewCell *cell in [self.tableView visibleCells]) {
+        cell.drawingView.lastFetchedStartDate = nil;
+    }
     [self.tableView reloadData];
 }
 
 - (void)redrawVisibleCells
 {
     for (CVWeekTableViewCell *cell in [self.tableView visibleCells]) {
-        [cell redraw];
+        [cell reloadData];
     }
 }
 
@@ -92,7 +98,7 @@
     
     NSInteger row = [self rowOfDate:date];
     CVWeekTableViewCell *cell = (CVWeekTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-    [cell redraw];
+    [cell reloadData];
 }
 
 - (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position 

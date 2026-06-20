@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, weak  ) IBOutlet UIImageView                     *todayImage;
 
 - (void)redraw;
+- (void)reloadData;
 
 @end
 

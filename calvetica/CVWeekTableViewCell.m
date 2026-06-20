@@ -111,6 +111,14 @@
     if (!newSelectedDate) return;
 }
 
+- (void)reloadData
+{
+    // Invalidate the drawing layer's cached events so it refetches from the
+    // event store, then redraw. Use this whenever events may have changed.
+    self.drawingView.lastFetchedStartDate = nil;
+    [self redraw];
+}
+
 - (void)redraw
 {
     // Update font sizes
