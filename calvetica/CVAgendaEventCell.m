@@ -168,7 +168,7 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
 
     CGFloat h = self.contentView.frame.size.height;
     CGFloat w = self.contentView.frame.size.width;
-    CGFloat s = IS_MAC ? PREFS.macFontScale : 1.0f;
+    CGFloat s = CVFontScale();
 
     CGFloat timeX       = 14;
     CGFloat timeW       = 80 * s;
@@ -190,8 +190,7 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
 
 - (void)applyFontScale
 {
-    CGFloat baseSize = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote].pointSize;
-    CGFloat scaledSize = baseSize * PREFS.macFontScale;
+    CGFloat scaledSize = CVScaledFontSize(UIFontTextStyleFootnote);
     self.calendarItemTitleLabel.font = [self.calendarItemTitleLabel.font fontWithSize:scaledSize];
     _timeLabel.font = [_timeLabel.font fontWithSize:scaledSize];
 }

@@ -43,7 +43,8 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThemeCell"];
 
-    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
     cell.textLabel.text = self.titles[indexPath.row];
 
     if (indexPath.row == (NSInteger)PREFS.themeStyle)

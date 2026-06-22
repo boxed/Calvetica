@@ -301,7 +301,8 @@
     CVSelectionTableViewCell *cell = [CVSelectionTableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
     cell.textLabel.textColor = calQuaternaryText();
     
     if (tableView == self.dateDayTableView) {

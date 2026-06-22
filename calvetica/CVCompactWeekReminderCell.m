@@ -97,8 +97,7 @@ static CGFloat const kColoredDotSize = 14.0f;
 
 - (void)applyFontScaleIfNeeded
 {
-    if (!IS_MAC) return;
-    float scale = PREFS.macFontScale;
+    CGFloat scale = CVFontScale();
     if (self.appliedFontScale == scale) return;
     self.appliedFontScale = scale;
     self.dayLabel.font   = [UIFont systemFontOfSize:10 * scale weight:UIFontWeightMedium];
@@ -115,7 +114,7 @@ static CGFloat const kColoredDotSize = 14.0f;
 
     CGFloat contentHeight = self.contentView.bounds.size.height;
     CGFloat contentWidth = self.contentView.bounds.size.width;
-    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
+    CGFloat scale = CVFontScale();
 
     // Day separator line at top (spans full width)
     self.daySeparatorLine.frame = CGRectMake(0, 0, contentWidth, 1.0 / UIScreen.mainScreen.scale);

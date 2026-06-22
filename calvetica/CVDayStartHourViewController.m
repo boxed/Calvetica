@@ -54,8 +54,10 @@
     NSNumber *time = [self.hoursArray objectAtIndex:indexPath.row];
 
     cell.selectionStyle         = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font         = [UIFont systemFontOfSize:17];
-    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
+    cell.textLabel.font         = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
+    cell.detailTextLabel.font   = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
 
     if (PREFS.twentyFourHourFormat) {
         cell.textLabel.text = [NSString stringWithFormat:@"%d", [time intValue]];

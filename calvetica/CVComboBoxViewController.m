@@ -110,7 +110,8 @@
     if (!cell) {        
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+        cell.textLabel.adjustsFontForContentSizeCategory = YES;
         cell.textLabel.textColor = calBackgroundColor();
     }
     

@@ -173,7 +173,7 @@
 //        }
         
         NSString *title = [e.calendarItem mys_title];
-        [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f]];
+        [title drawInRect:textFrame withFont:[UIFont systemFontOfSize:9.0f * CVGridFontScale()]];
     }
 }
 

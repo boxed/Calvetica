@@ -11,6 +11,34 @@
 #import "CVEventDetailsOrderViewController.h"
 
 
+CGFloat CVFontScale(void)
+{
+    if (IS_MAC) {
+        return PREFS.fontScale;
+    }
+    UITraitCollection *baseTraits = [UITraitCollection traitCollectionWithPreferredContentSizeCategory:UIContentSizeCategoryLarge];
+    CGFloat baseSize    = [UIFont preferredFontForTextStyle:UIFontTextStyleBody compatibleWithTraitCollection:baseTraits].pointSize;
+    CGFloat currentSize = [UIFont preferredFontForTextStyle:UIFontTextStyleBody].pointSize;
+    if (baseSize <= 0) return 1.0f;
+    return currentSize / baseSize;
+}
+
+CGFloat CVGridFontScale(void)
+{
+    CGFloat scale = CVFontScale();
+    // Mac keeps its manual (uncapped) scale; cap only the iOS Dynamic Type scale
+    // so the dense month/week grid stays within its fixed cells.
+    return IS_MAC ? scale : MIN(scale, 2.0f);
+}
+
+CGFloat CVScaledFontSize(UIFontTextStyle textStyle)
+{
+    UITraitCollection *baseTraits = [UITraitCollection traitCollectionWithPreferredContentSizeCategory:UIContentSizeCategoryLarge];
+    CGFloat baseSize = [UIFont preferredFontForTextStyle:textStyle compatibleWithTraitCollection:baseTraits].pointSize;
+    return baseSize * CVFontScale();
+}
+
+
 @implementation CVSharedSettings
 
 @dynamic remindersEnabled;
@@ -23,7 +51,7 @@
 @dynamic showWeekNumbers;
 @dynamic showInboxBadge;
 @dynamic localRootTableViewMode;
-@dynamic macFontScale;
+@dynamic fontScale;
 @dynamic hiddenEventCalendarIdentifiers;
 @dynamic defaultEventCalendarIdentifier;
 @dynamic customCalendarColors;
@@ -55,7 +83,7 @@
              @"showWeekNumbers"                     : @NO,
              @"showInboxBadge"                      : @YES,
              @"localRootTableViewMode"              : @(CVRootTableViewModeAgenda),
-             @"macFontScale"                        : @(1.0f),
+             @"fontScale"                           : @(1.0f),
              @"hiddenEventCalendarIdentifiers"      : @[],
              @"customCalendarColors"                : @{},
              @"defaultEventAlarms"                  : @[@(MTDateConstantSecondsInMinute * 15)],

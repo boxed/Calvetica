@@ -1395,6 +1395,19 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                              selector:@selector(sharedSettingsChanged)
                                                  name:MYSSharedSettingsChangedNotification
                                                object:nil];
+
+    // register to know when the user changes the system Dynamic Type (text size)
+    // setting so we can re-render at the new scale without a relaunch.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(contentSizeCategoryDidChange:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+}
+
+- (void)contentSizeCategoryDidChange:(NSNotification *)note
+{
+    self.weekNumberLabel.font = [UIFont systemFontOfSize:14 * CVFontScale()];
+    [self reloadAfterFontScaleChange];
 }
 
 - (void)setupDefaults
@@ -1434,7 +1447,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     self.weekNumberLabel.textColor = calTextColor();
     self.weekNumberLabel.backgroundColor = calBackgroundColor();
     self.weekNumberLabel.opaque = YES;
-    self.weekNumberLabel.font = [UIFont systemFontOfSize:14];
+    self.weekNumberLabel.font = [UIFont systemFontOfSize:14 * CVFontScale()];
     [self.view addSubview:self.weekNumberLabel];
 }
 
@@ -1449,13 +1462,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     label.textColor = calTextColor();
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
-    label.font = [UIFont systemFontOfSize:17];
+    label.font = [UIFont systemFontOfSize:17 * CVFontScale()];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     [self.permissionPromptView addSubview:label];
 
     UIButton *grantButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [grantButton setTitle:@"Grant Access" forState:UIControlStateNormal];
-    grantButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    grantButton.titleLabel.font = [UIFont boldSystemFontOfSize:18 * CVFontScale()];
     [grantButton addTarget:self action:@selector(requestFullAccess) forControlEvents:UIControlEventTouchUpInside];
     grantButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.permissionPromptView addSubview:grantButton];
@@ -2103,17 +2116,17 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)increaseFontScale:(UIKeyCommand *)sender
 {
-    float scale = PREFS.macFontScale;
+    float scale = PREFS.fontScale;
     scale = fminf(scale + 0.1f, 3.0f);
-    PREFS.macFontScale = scale;
+    PREFS.fontScale = scale;
     [self reloadAfterFontScaleChange];
 }
 
 - (void)decreaseFontScale:(UIKeyCommand *)sender
 {
-    float scale = PREFS.macFontScale;
+    float scale = PREFS.fontScale;
     scale = fmaxf(scale - 0.1f, 0.5f);
-    PREFS.macFontScale = scale;
+    PREFS.fontScale = scale;
     [self reloadAfterFontScaleChange];
 }
 

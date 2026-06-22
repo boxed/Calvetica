@@ -187,8 +187,7 @@ static NSString * const kCellIdentifier = @"CVEventCell";
 
 - (void)applyFontScaleIfNeeded
 {
-    if (!IS_MAC) return;
-    float scale = PREFS.macFontScale;
+    CGFloat scale = CVFontScale();
     self.titleLabel.font        = [UIFont systemFontOfSize:14 * scale];
     self.redSubtitleLabel.font  = [UIFont systemFontOfSize:11 * scale];
     _timeLabel.font             = [UIFont systemFontOfSize:12 * scale];

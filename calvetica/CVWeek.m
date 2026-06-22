@@ -236,22 +236,13 @@
                        allDay:model.isAllDay];
         cell.delegate = self;
         cell.calendarItemTitleLabel.numberOfLines = 0;
-        if (IS_MAC) {
-            [cell applyFontScale];
-        }
+        [cell applyFontScale];
         return cell;
     }
 
     else if ([model isKindOfClass:[NSDate class]]) {
         CVAgendaDateCell *cell  = [CVAgendaDateCell cellForTableView:tableView];
         cell.date               = (NSDate *)model;
-        if (IS_MAC) {
-            CGFloat fontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote].pointSize * PREFS.macFontScale;
-            cell.weekdayLabel.font = [cell.weekdayLabel.font fontWithSize:fontSize * 2];
-            cell.dateLabel.font = [cell.dateLabel.font fontWithSize:fontSize * 2];
-            // Re-set date to recalculate dateLabel position with new font
-            cell.date = (NSDate *)model;
-        }
         return cell;
 	}
 
@@ -262,16 +253,13 @@
 {
     CVCalendarItemCellModel *model = [self.cellModelArray objectAtIndex:indexPath.row];
 
-    CGFloat fontScale = IS_MAC ? PREFS.macFontScale : 1.0f;
+    CGFloat fontScale = CVFontScale();
 
     if ([model isKindOfClass:[NSDate class]]) {
         return TABLE_ROW_DAY_TITLE_HEIGHT * fontScale;
     }
 
-    UIFont *footnoteFont = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    if (IS_MAC) {
-        footnoteFont = [footnoteFont fontWithSize:footnoteFont.pointSize * fontScale];
-    }
+    UIFont *footnoteFont = [UIFont systemFontOfSize:CVScaledFontSize(UIFontTextStyleFootnote)];
     CGFloat height = [model.calendarItem.mys_title boundingRectWithSize:CGSizeMake(212, FLT_MAX)
                                                                 options:NSStringDrawingUsesLineFragmentOrigin
                                                              attributes:@{ NSFontAttributeName : footnoteFont }

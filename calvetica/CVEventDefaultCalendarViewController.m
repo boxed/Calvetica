@@ -53,9 +53,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     UITableViewCell *cell           = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
-    cell.textLabel.font             = [UIFont systemFontOfSize:17];
+    cell.textLabel.font             = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
     cell.textLabel.textColor        = UIColor.labelColor;
-    cell.detailTextLabel.font       = [UIFont systemFontOfSize:13];
+    cell.detailTextLabel.font       = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
     cell.detailTextLabel.textColor  = UIColor.secondaryLabelColor;
     cell.backgroundColor            = UIColor.secondarySystemGroupedBackgroundColor;
 

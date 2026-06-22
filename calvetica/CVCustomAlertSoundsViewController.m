@@ -144,8 +144,10 @@
 {
     UITableViewCell *cell = [UITableViewCell cellWithStyle:UITableViewCellStyleSubtitle forTableView:tableView];
 
-    cell.textLabel.font             = [UIFont systemFontOfSize:17];
-    cell.detailTextLabel.font       = [UIFont systemFontOfSize:13];
+    cell.textLabel.font             = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
+    cell.detailTextLabel.font       = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
     cell.detailTextLabel.textColor  = [UIColor darkGrayColor];
 
     if (indexPath.section == 0) {

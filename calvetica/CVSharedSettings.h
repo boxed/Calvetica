@@ -32,6 +32,21 @@ typedef NS_ENUM(NSUInteger, CVThemeStyle) {
 #define PREFS [CVSharedSettings sharedSettings]
 
 
+/// Font scale factor to apply across the UI. On Mac Catalyst this is the user's
+/// manual ⌘+/⌘− scale; on iOS it is derived from the system Dynamic Type
+/// (accessibility text size) setting, with 1.0 at the default text size.
+CGFloat CVFontScale(void);
+
+/// Like CVFontScale() but capped so the dense month/week grid stays legible and
+/// within its fixed cells at the largest accessibility sizes.
+CGFloat CVGridFontScale(void);
+
+/// Point size for a text style at the default text size, multiplied by
+/// CVFontScale(). Gives a stable base that scales uniformly with our single
+/// scale source (instead of double-scaling against the OS-scaled preferred font).
+CGFloat CVScaledFontSize(UIFontTextStyle textStyle);
+
+
 @interface CVSharedSettings : MYSSharedSettings
 
 // toggles
@@ -75,7 +90,7 @@ typedef NS_ENUM(NSUInteger, CVThemeStyle) {
 
 // local
 @property (nonatomic, assign) CVRootTableViewMode localRootTableViewMode;
-@property (nonatomic, assign) float macFontScale;
+@property (nonatomic, assign) float fontScale;
 
 @end
 

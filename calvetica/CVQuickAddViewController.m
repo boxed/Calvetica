@@ -670,7 +670,8 @@
     CVSelectionTableViewCell *cell = [CVSelectionTableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
     cell.textLabel.textColor = calQuaternaryText();
     cell.isDarkRed = YES;
     

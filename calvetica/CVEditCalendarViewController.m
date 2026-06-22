@@ -31,7 +31,8 @@
     _calendarTitleTextField                         = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
     _calendarTitleTextField.delegate                = self;
     _calendarTitleTextField.returnKeyType           = UIReturnKeyDone;
-    _calendarTitleTextField.font                    = [UIFont systemFontOfSize:16];
+    _calendarTitleTextField.font                    = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _calendarTitleTextField.adjustsFontForContentSizeCategory = YES;
     _calendarTitleTextField.textColor               = [UIColor darkTextColor];
     _calendarTitleTextField.textAlignment           = NSTextAlignmentLeft;
     _calendarTitleTextField.autocapitalizationType  = UITextAutocapitalizationTypeSentences;
@@ -108,8 +109,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell       = [tableView dequeueReusableCellWithIdentifier:@"CalendarDetailCell"];
-    cell.textLabel.font         = [UIFont systemFontOfSize:17];
-    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
+    cell.textLabel.font         = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
+    cell.detailTextLabel.font   = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
 
     if (indexPath.section == 0) {
         cell.selectionStyle         = UITableViewCellSelectionStyleNone;

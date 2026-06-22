@@ -294,7 +294,7 @@
     CVCalendarItemCellModel *model  = models[indexPath.row];
     EKCalendarItem *calendarItem    = model.calendarItem;
 
-    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
+    CGFloat scale = CVFontScale();
     if (calendarItem.isReminder) {
         return CVRootTableViewReminderRowHeight * scale;
     }

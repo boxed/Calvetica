@@ -124,7 +124,7 @@
     // Update font sizes
     if (PAD) {
         BOOL mac = IS_MAC;
-        CGFloat scale = mac ? PREFS.macFontScale : 1.0f;
+        CGFloat scale = CVGridFontScale();
         UIInterfaceOrientation orientation = self.window.rootViewController.interfaceOrientation;
         CGFloat fontSize;
         if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
@@ -143,6 +143,31 @@
                 label.font = font;
             }
             _monthLabel.font = font;
+        }
+    }
+    else {
+        // iPhone: scale the day-of-month numbers with Dynamic Type, but more
+        // gently than the lists (85% of the excess), capped via CVGridFontScale()
+        // so they stay legible within the dense month grid.
+        CGFloat dayScale = 1.0f + (CVGridFontScale() - 1.0f) * 0.85f;
+        CGFloat fontSize = 12.0f * dayScale;
+        if ((NSInteger)_fontSize != (NSInteger)(fontSize * 100)) {
+            _fontSize = (NSInteger)(fontSize * 100);
+            UIFont *font = [UIFont systemFontOfSize:fontSize];
+            // Storyboard day labels are 14pt tall at y=26 (so their bottom sits at
+            // the 40pt row bottom). Grow the label upward from that bottom anchor so
+            // the bigger number moves up instead of overflowing off the cell bottom.
+            CGFloat baseBottom = 26.0f + 14.0f;
+            CGFloat newHeight  = 14.0f * dayScale;
+            for (NSInteger i = 0; i < 7; i++) {
+                UILabel *label = (UILabel *)[self viewWithTag:i + 100];
+                label.font = font;
+                label.clipsToBounds = NO; // don't clip the larger number in its fixed-height frame
+                CGRect f = label.frame;
+                f.size.height = newHeight;
+                f.origin.y    = baseBottom - newHeight;
+                label.frame   = f;
+            }
         }
     }
 

@@ -38,17 +38,19 @@ static NSString * const kCellIdentifier = @"CVAgendaDateCell";
     self.selectionStyle = UITableViewCellSelectionStyleGray;
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
 
+    CGFloat scale = CVFontScale();
+
     // Weekday label
-    self.weekdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 9, 222, 50)];
-    self.weekdayLabel.font = [UIFont systemFontOfSize:26];
+    self.weekdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 9 * scale, 222, 50 * scale)];
+    self.weekdayLabel.font = [UIFont systemFontOfSize:26 * scale];
     self.weekdayLabel.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     self.weekdayLabel.backgroundColor = [UIColor clearColor];
     self.weekdayLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     [self.contentView addSubview:self.weekdayLabel];
 
     // Date label
-    self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(119, 11, 201, 50)];
-    self.dateLabel.font = [UIFont systemFontOfSize:20];
+    self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(119, 11 * scale, 201, 50 * scale)];
+    self.dateLabel.font = [UIFont systemFontOfSize:20 * scale];
     self.dateLabel.textColor = [UIColor colorWithRed:0.549 green:0.549 blue:0.549 alpha:1.0];
     self.dateLabel.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.dateLabel];

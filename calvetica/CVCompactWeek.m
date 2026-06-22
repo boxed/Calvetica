@@ -278,7 +278,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat scale = IS_MAC ? PREFS.macFontScale : 1.0f;
+    CGFloat scale = CVFontScale();
     CVCalendarItemCellModel *model = self.cellModelArray[indexPath.row];
     EKCalendarItem *calendarItem = model.calendarItem;
 

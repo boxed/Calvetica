@@ -280,7 +280,8 @@
     NSDate *rowDate = [_startDate mt_dateDaysAfter:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [rowDate stringWithWeekdayAbbreviated:YES monthDayAbbreviated:YES];
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
     cell.textLabel.textColor = calQuaternaryText();
     
     return cell;

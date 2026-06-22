@@ -445,7 +445,7 @@
 
     BOOL mac = IS_MAC;
     BOOL showTimes = self.window.frame.size.width >= 1600.0f;
-    CGFloat fontScale               = mac ? PREFS.macFontScale : 1.0f;
+    CGFloat fontScale               = CVGridFontScale();
     CGFloat boxWidth                = floorf(self.frame.size.width / (float)MTDateConstantDaysInWeek);
     CGFloat topPadding              = 3.0f;
 

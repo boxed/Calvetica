@@ -111,10 +111,7 @@ static NSString * const kCellIdentifier = @"CVReminderCell";
 
 - (void)applyFontScaleIfNeeded
 {
-    if (!IS_MAC) return;
-    float scale = PREFS.macFontScale;
-    CGFloat baseSize = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote].pointSize;
-    CGFloat scaledSize = baseSize * scale;
+    CGFloat scaledSize = CVScaledFontSize(UIFontTextStyleFootnote);
     self.titleLabel.font  = [self.titleLabel.font fontWithSize:scaledSize];
     self.timeLabel.font   = [self.timeLabel.font fontWithSize:scaledSize];
     self.AMPMLabel.font   = [self.AMPMLabel.font fontWithSize:scaledSize];
@@ -128,7 +125,7 @@ static NSString * const kCellIdentifier = @"CVReminderCell";
 
     CGFloat h = self.contentView.frame.size.height;
     CGFloat w = self.contentView.frame.size.width;
-    CGFloat s = IS_MAC ? PREFS.macFontScale : 1.0f;
+    CGFloat s = CVFontScale();
 
     CGFloat timeX          = 8;
     CGFloat timeW          = 59 * s;

@@ -45,8 +45,10 @@
     static NSString *cellIdentifier = @"WeekDayCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-    cell.textLabel.font         = [UIFont systemFontOfSize:17];
-    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
+    cell.textLabel.font         = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
+    cell.detailTextLabel.font   = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
 
     cell.textLabel.text = _weekdayTitles[indexPath.row];
 	if (indexPath.row == PREFS.weekStartsOnWeekday - 1)

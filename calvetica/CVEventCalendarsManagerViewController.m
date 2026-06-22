@@ -89,8 +89,10 @@
     cell.selectionStyle         = UITableViewCellSelectionStyleGray;
     cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
     cell.userInteractionEnabled = YES;
-    cell.textLabel.font         = [UIFont systemFontOfSize:17];
-    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
+    cell.textLabel.font         = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
+    cell.detailTextLabel.font   = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
 
 
     if (indexPath.row != calendars.count) {

@@ -102,7 +102,8 @@
     {
         UILabel *peopleHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.eventPeopleBlock.bounds.size.width - 30, 35)];
         peopleHeaderLabel.text = @"PEOPLE";
-        peopleHeaderLabel.font = [UIFont systemFontOfSize:15];
+        peopleHeaderLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        peopleHeaderLabel.adjustsFontForContentSizeCategory = YES;
         [self.eventPeopleBlock addSubview:peopleHeaderLabel];
     }
     self.peopleTableViewController = [[CVEventDetailsPeopleTableViewController alloc] initWithEvent:self.event];
@@ -179,7 +180,8 @@
 
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, blockWidth - 30, 35)];
         headerLabel.text = @"VIDEO LINK";
-        headerLabel.font = [UIFont systemFontOfSize:15];
+        headerLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        headerLabel.adjustsFontForContentSizeCategory = YES;
         [self.eventVideoLinkBlock addSubview:headerLabel];
 
         self.videoLinkButton = [[CVRoundedButton alloc] initWithFrame:CGRectMake(15, 35, blockWidth - 30, 30)];

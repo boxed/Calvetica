@@ -246,7 +246,8 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)[self yearFromTableIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont systemFontOfSize:11];
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
     cell.textLabel.frame = cell.bounds;
     cell.textLabel.textColor = calQuaternaryText();
     

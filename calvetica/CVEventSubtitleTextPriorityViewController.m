@@ -98,8 +98,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     UITableViewCell *cell       = [UITableViewCell cellWithStyle:UITableViewCellStyleDefault forTableView:tableView];
-    cell.textLabel.font         = [UIFont systemFontOfSize:17];
-    cell.detailTextLabel.font   = [UIFont systemFontOfSize:15];
+    cell.textLabel.font         = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.adjustsFontForContentSizeCategory = YES;
+    cell.detailTextLabel.font   = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    cell.detailTextLabel.adjustsFontForContentSizeCategory = YES;
 
     if (indexPath.section == 0) {        
         NSMutableDictionary *dictionary = [_subtitleTextPriorityArray objectAtIndex:indexPath.row];
