@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign          )          CVPopoverModalAttachToSide attachPopoverArrowToSide;
 @property (nonatomic, strong          )          UIView                     *popoverTargetView;
 @property (nonatomic, assign          )          BOOL                       contentModified;
+// When YES, a page modal presenting this controller stretches it to (nearly) the full screen width
+// instead of the legacy fixed ~288pt width.
+@property (nonatomic, assign          )          BOOL                       modalMaximizesWidth;
+// When > 0, a page modal sizes this controller to this height (capped to the available space) and
+// centres it vertically, instead of filling the full available height.
+@property (nonatomic, assign          )          CGFloat                    modalPreferredHeight;
 @property (nonatomic, nullable, weak            ) IBOutlet UIView                     *keyboardAccessoryView;
 
 #pragma mark - Methods

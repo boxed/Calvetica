@@ -41,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, weak  ) IBOutlet UIView       *weekButtonsContainer;
 @property (nonatomic, nullable, weak  ) IBOutlet UIView       *weekdayLabelContainer;
 
+// Natural height of the calendar content (year table + months + weekday titles + day grid).
++ (CGFloat)preferredContentHeight;
+
 - (void)containerWasSwiped:(UISwipeGestureRecognizer *)gesture;
 - (NSInteger)yearFromTableIndex:(NSInteger)index;
 - (NSInteger)tableIndexFromYear:(NSInteger)year;

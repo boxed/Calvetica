@@ -17,12 +17,17 @@
     self = [super init];
     if (self) {
         self.contentViewController = viewController;
+        self.modalMaximizesWidth = YES;
+        // header (35) + red action bar (35) + the calendar content itself
+        self.modalPreferredHeight = 35 + 35 + [CVEventDayViewController preferredContentHeight];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    _contentViewController.view.frame = self.contentControllerContainer.bounds;
+    _contentViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentControllerContainer addSubview:_contentViewController.view];
     [super viewDidLoad];
 }

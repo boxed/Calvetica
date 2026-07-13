@@ -124,6 +124,10 @@
         containerView.alpha     = 0;
         [self.view addSubview:containerViewController.view];
 
+        // Force the modal (and its content) to lay out at its final size *before* we capture the
+        // rect the entrance animation settles on. Otherwise the content reflows after it appears.
+        [containerView layoutIfNeeded];
+
         UIView *modalView   = modalViewController.view;
         CGRect orignalRect  = modalView.frame;
         modalView.x         = -modalView.width;
