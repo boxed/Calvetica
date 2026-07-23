@@ -1438,6 +1438,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     [self updateWeekdayTitleLabels];
     [self setupWeekNumberLabel];
+    [self applyThemeColor];
+}
+
+- (void)applyThemeColor
+{
+    self.redBar.backgroundColor = calThemeColor();
 }
 
 - (void)setupWeekNumberLabel
@@ -1909,6 +1915,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
     if ([changedSettings containsObject:@"showWeekNumbers"]) {
         [self updateWeekNumberLabel];
+    }
+
+    if ([changedSettings containsObject:@"themeColorString"]) {
+        [self applyThemeColor];
+        [self redrawMonthTableView];
+        [self reloadRootTableViewWithCompletion:nil];
     }
 }
 

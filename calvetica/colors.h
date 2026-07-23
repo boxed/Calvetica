@@ -25,11 +25,22 @@ UIColor* calWeekdayHeaderText(void);
 
 #define patentedClear [UIColor clearColor]
 
-#pragma mark - Fixed Colors (not mode aware)
+#pragma mark - Theme Color (user configurable)
 
-#define patentedRed [UIColor colorWithRed:215.0/255.0 green:0 blue:0 alpha:1]
-#define patentedDarkRed [UIColor colorWithRed:0.61 green:0 blue:0 alpha:1]
-#define patentedDarkerRed [UIColor colorWithRed:0.4 green:0 blue:0 alpha:1]
+/// The user's chosen theme color. Defaults to the patented Calvetica red.
+UIColor* calThemeColor(void);
+/// A darker shade of the theme color (same hue), for pressed/selected states.
+UIColor* calThemeColorDark(void);
+/// An even darker shade of the theme color (same hue).
+UIColor* calThemeColorDarker(void);
+
+/// The factory default theme color (the patented Calvetica red).
+#define patentedDefaultRed [UIColor colorWithRed:215.0/255.0 green:0 blue:0 alpha:1]
+
+// Compatibility aliases: all existing call sites read the configurable theme color.
+#define patentedRed calThemeColor()
+#define patentedDarkRed calThemeColorDark()
+#define patentedDarkerRed calThemeColorDarker()
 
 #define OLD_EVENT_ALPHA 0.5f
 

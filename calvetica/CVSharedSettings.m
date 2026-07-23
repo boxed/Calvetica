@@ -64,6 +64,7 @@ CGFloat CVScaledFontSize(UIFontTextStyle textStyle)
 @dynamic weekStartsOnWeekday;
 @dynamic badgeOrAlerts;
 @dynamic themeStyle;
+@dynamic themeColorString;
 @dynamic dayStartHour;
 @dynamic dayEndHour;
 @dynamic customAlertSoundFileName;
@@ -94,6 +95,7 @@ CGFloat CVScaledFontSize(UIFontTextStyle textStyle)
              @"weekStartsOnWeekday"                 : @(1),
              @"badgeOrAlerts"                       : @(CVLocalNotificationTypeBadgeAndAlerts),
              @"themeStyle"                          : @(CVThemeStyleAuto),
+             @"themeColorString"                    : @"0.843137,0.000000,0.000000,1.000000",
              @"dayStartHour"                        : @(9),
              @"dayEndHour"                          : @(5),
              @"eventDetailsSubtitleTextPriority"    : [CVEventSubtitleTextPriorityViewController standardSubtitleTextPriorityArray],

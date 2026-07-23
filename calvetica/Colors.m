@@ -1,5 +1,33 @@
 #import <UIKit/UIKit.h>
 #import "colors.h"
+#import "CVSharedSettings.h"
+#import "UIColor+Serialization.h"
+
+#pragma mark - Theme Color
+
+UIColor* calThemeColor(void) {
+    NSString *string = PREFS.themeColorString;
+    if (string.length) {
+        return [UIColor colorFromString:string];
+    }
+    return patentedDefaultRed;
+}
+
+UIColor* calThemeColorDark(void) {
+    CGFloat h, s, b, a;
+    if ([calThemeColor() getHue:&h saturation:&s brightness:&b alpha:&a]) {
+        return [UIColor colorWithHue:h saturation:s brightness:b * 0.72 alpha:a];
+    }
+    return patentedDefaultRed;
+}
+
+UIColor* calThemeColorDarker(void) {
+    CGFloat h, s, b, a;
+    if ([calThemeColor() getHue:&h saturation:&s brightness:&b alpha:&a]) {
+        return [UIColor colorWithHue:h saturation:s brightness:b * 0.47 alpha:a];
+    }
+    return patentedDefaultRed;
+}
 
 UIColor* calBackgroundColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {

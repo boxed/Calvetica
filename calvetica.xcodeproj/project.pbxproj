@@ -320,6 +320,7 @@
 		C2FF4D3713D89DDD00E662FE /* CVLandscapeWeekView_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FF4D3513D89DDD00E662FE /* CVLandscapeWeekView_iPad.m */; };
 		C2FF4D3B13D8A6BC00E662FE /* CVLandscapeWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FF4D3A13D8A6BC00E662FE /* CVLandscapeWeekView.m */; };
 		E5A5963E051046B43D904BA1 /* CVThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1CA2B940315E7E9226C5CB /* CVThemeViewController.m */; };
+		AA10C0100000000000E00001 /* CVThemeColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10C0100000000000E00003 /* CVThemeColorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +372,8 @@
 		6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekNumberCell.m; sourceTree = "<group>"; };
 		6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVWeekNumberCell.xib; sourceTree = "<group>"; };
 		84B52EF023501C96C00CC853 /* CVThemeViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVThemeViewController.h; sourceTree = "<group>"; };
+		AA10C0100000000000E00002 /* CVThemeColorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVThemeColorViewController.h; sourceTree = "<group>"; };
+		AA10C0100000000000E00003 /* CVThemeColorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVThemeColorViewController.m; sourceTree = "<group>"; };
 		9B0127A513CBA2B50006C2EA /* CVGestureHowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGestureHowToViewController.h; sourceTree = "<group>"; };
 		9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVGestureHowToViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B0AD8A713CF5AC300DF1F2F /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
@@ -2099,6 +2102,8 @@
 				9B0127A413CBA25B0006C2EA /* Gestures */,
 				84B52EF023501C96C00CC853 /* CVThemeViewController.h */,
 				CE1CA2B940315E7E9226C5CB /* CVThemeViewController.m */,
+				AA10C0100000000000E00002 /* CVThemeColorViewController.h */,
+				AA10C0100000000000E00003 /* CVThemeColorViewController.m */,
 			);
 			name = "Settings View Controllers";
 			sourceTree = "<group>";
@@ -3049,6 +3054,7 @@
 				B1E949830CB1A3DAB1D47589 /* CVCompactWeekEventCell.m in Sources */,
 				818E6C65A9BC5FAB3554E865 /* CVCompactWeekReminderCell.m in Sources */,
 				E5A5963E051046B43D904BA1 /* CVThemeViewController.m in Sources */,
+				AA10C0100000000000E00001 /* CVThemeColorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

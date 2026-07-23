@@ -76,6 +76,8 @@ CGFloat CVScaledFontSize(UIFontTextStyle textStyle);
 
 // appearance
 @property (nonatomic, assign) CVThemeStyle themeStyle;
+/// Serialized theme (accent) color, stored as "r,g,b,a". Read via calThemeColor().
+@property (nonatomic, strong) NSString *themeColorString;
 @property (nonatomic, assign) int     dayStartHour;
 @property (nonatomic, assign) int     dayEndHour;
 @property (nonatomic, strong) NSArray<NSDictionary *> *eventDetailsSubtitleTextPriority;

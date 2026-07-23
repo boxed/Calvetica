@@ -87,6 +87,7 @@
 
         if (dayOfMonth == 1) {
             _monthLabel.hidden = NO;
+            _monthLabel.textColor = calThemeColor();
 
             CGFloat width       = self.frame.size.width;
             CGFloat widthEach   = width / 7.0f;
@@ -171,6 +172,8 @@
         }
     }
 
+    _monthLabel.textColor = calThemeColor();
+
     [self.drawingView draw];
     [self setNeedsDisplay];
     [self setNeedsLayout];
@@ -196,6 +199,7 @@
     _todayImage.hidden = YES;
     if ([today mt_isOnOrAfter:_weekStartDate] && [today mt_isBefore:[_weekStartDate mt_endOfCurrentWeek]]) {
         _todayImage.hidden  = NO;
+        _todayImage.backgroundColor = calThemeColor();
         CGFloat boxWidth    = self.bounds.size.width / (float)MTDateConstantDaysInWeek;
         CGRect f            = _todayImage.frame;
         f.origin.x          = floorf(boxWidth * ([today mt_weekdayOfWeek] - 1));
