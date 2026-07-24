@@ -117,7 +117,22 @@
     containerViewController.containingViewController = self;
     [containerViewController view];
     
-    if (animated) {
+    if (animated && UIAccessibilityIsReduceMotionEnabled()) {
+
+        // Reduce Motion: cross-fade in place, no slide.
+        UIView *containerView   = containerViewController.view;
+        containerView.frame     = self.view.bounds;
+        containerView.alpha     = 0;
+        [self.view addSubview:containerViewController.view];
+        [containerView layoutIfNeeded];
+
+        [UIView animateWithDuration:0.2 animations:^{
+            containerView.alpha = 1;
+        } completion:^(BOOL finished) {
+            if (completion) completion();
+        }];
+
+    } else if (animated) {
 
         UIView *containerView   = containerViewController.view;
         containerView.frame     = self.view.bounds;
@@ -169,7 +184,16 @@
     UIView *containerView   = containerViewController.view;
     UIView *modalView       = modalViewController.view;
 
-    if (animated) {
+    if (animated && UIAccessibilityIsReduceMotionEnabled()) {
+        // Reduce Motion: cross-fade out, no slide.
+        [UIView animateWithDuration:0.2 animations:^{
+            containerView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [containerView removeFromSuperview];
+            if (completion) completion();
+        }];
+
+    } else if (animated) {
         [UIView mt_animateWithDuration:0.2
                         timingFunction:kMTEaseInExpo
                                options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
@@ -191,7 +215,7 @@
         [containerView removeFromSuperview];
         if (completion) completion();
     }
-    
+
     [self.pageModalViewControllers removeObject:containerViewController];
 }
 
@@ -208,7 +232,15 @@
     UIView *view   = fullScreenViewController.view;
     view.frame     = self.view.bounds;
 
-	if (animated) {
+	if (animated && UIAccessibilityIsReduceMotionEnabled()) {
+        // Reduce Motion: cross-fade in place, no slide.
+        view.frame = self.view.bounds;
+        view.alpha = 0;
+        [self.view addSubview:fullScreenViewController.view];
+        [UIView animateWithDuration:0.2 animations:^{
+            view.alpha = 1;
+        }];
+    } else if (animated) {
 
         view.x = -view.width;
         [self.view addSubview:fullScreenViewController.view];
@@ -237,7 +269,15 @@
 
     UIView *view = fullScreenViewController.view;
     
-    if (animated) {
+    if (animated && UIAccessibilityIsReduceMotionEnabled()) {
+        // Reduce Motion: cross-fade out, no slide.
+        [UIView animateWithDuration:0.2 animations:^{
+            view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+            [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
+        }];
+    } else if (animated) {
         [UIView mt_animateWithDuration:0.2
                         timingFunction:kMTEaseInExpo
                                options:(MTViewAnimationOptions)UIViewAnimationOptionBeginFromCurrentState
@@ -248,7 +288,7 @@
                                 [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
                             }];
     } else {
-        [fullScreenViewController.view removeFromSuperview]; 
+        [fullScreenViewController.view removeFromSuperview];
         [self.fullScreenModalViewControllers removeObject:fullScreenViewController];
     }
 }
@@ -266,7 +306,15 @@
     [self.popoverModalViewControllers addObject:popover];
     [self.view addSubview:popover.view];
 
-    if (animated) {
+    if (animated && UIAccessibilityIsReduceMotionEnabled()) {
+        // Reduce Motion: cross-fade in, no 3D flip.
+        UIView *v = modalViewController.view.superview;
+        v.layer.transform = CATransform3DIdentity;
+        v.alpha = 0;
+        [UIView animateWithDuration:0.2 animations:^{
+            v.alpha = 1;
+        }];
+    } else if (animated) {
 
         UIView *v = modalViewController.view.superview;
         v.mt_animationPerspective = -1 / 1600.0;
@@ -296,7 +344,20 @@
     
     UIView *wrapper = viewControllerToDismiss.view.superview.superview;
 
-    if (animated) {
+    if (animated && UIAccessibilityIsReduceMotionEnabled()) {
+        // Reduce Motion: cross-fade out, no 3D flip.
+        popoverToDismiss.ignoreKeyboard = YES;
+        UIView *v = viewControllerToDismiss.view.superview;
+        v.layer.transform = CATransform3DIdentity;
+        [UIView animateWithDuration:0.2 animations:^{
+            v.alpha = 0;
+        } completion:^(BOOL finished) {
+            [wrapper removeFromSuperview];
+            [self.popoverModalViewControllers removeObject:popoverToDismiss];
+            popoverToDismiss.ignoreKeyboard = NO;
+        }];
+
+    } else if (animated) {
         popoverToDismiss.ignoreKeyboard = YES;
 
         UIView *v = viewControllerToDismiss.view.superview;
