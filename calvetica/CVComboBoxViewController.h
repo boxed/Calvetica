@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #define DEFAULT_MAX_WIDTH 100.0f
-#define ITEM_ROW_HEIGHT 29.0f;
+#define ITEM_ROW_HEIGHT 29.0f
 
 
 typedef NS_ENUM(NSUInteger, CVComboBoxResult) {

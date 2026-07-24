@@ -39,7 +39,8 @@
     _visibleViewController = [_viewControllers lastObject];
     
     // scroll animate that sucker back sucker
-    [UIView animateWithDuration:0.2 animations:^{
+    NSTimeInterval popDuration = UIAccessibilityIsReduceMotionEnabled() ? 0.0 : 0.2;
+    [UIView animateWithDuration:popDuration animations:^{
         CGRect r = self->_contentViewContainer.frame;
         r.origin.x += lastViewController.view.frame.size.width;
         [self->_contentViewContainer setFrame:r];
@@ -82,7 +83,8 @@
     [_contentViewContainer addSubview:viewController.view];
 
     // scroll animate that sucker
-    [UIView animateWithDuration:0.2 animations:^{
+    NSTimeInterval pushDuration = UIAccessibilityIsReduceMotionEnabled() ? 0.0 : 0.2;
+    [UIView animateWithDuration:pushDuration animations:^{
         CGRect r = self->_contentViewContainer.frame;
         r.origin.x -= viewController.view.frame.size.width;
         [self->_contentViewContainer setFrame:r];

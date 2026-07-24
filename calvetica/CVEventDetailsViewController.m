@@ -111,7 +111,7 @@
     self.eventPeopleTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.eventPeopleTableView.scrollEnabled = NO;
     self.eventPeopleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.eventPeopleTableView.rowHeight = 42;
+    self.eventPeopleTableView.rowHeight = 42 * CVFontScale();
     self.eventPeopleTableView.backgroundColor = [UIColor clearColor];
     self.peopleTableViewController.tableView = self.eventPeopleTableView;
     self.eventPeopleTableView.delegate = self.peopleTableViewController;
@@ -398,7 +398,7 @@
 
                 // Size the people table based on attendee count
                 NSInteger attendeeCount = self.peopleTableViewController.participantDataHolderArray.count;
-                CGFloat tableHeight = attendeeCount * cellHeight;
+                CGFloat tableHeight = attendeeCount * self.eventPeopleTableView.rowHeight;
 
                 if (self.peopleTableViewController.hasAttendees) {
                     self.eventPeopleTableView.frame = CGRectMake(15, 35, self.eventPeopleBlock.bounds.size.width - 30, tableHeight);

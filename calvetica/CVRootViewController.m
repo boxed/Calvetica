@@ -1439,11 +1439,29 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     [self updateWeekdayTitleLabels];
     [self setupWeekNumberLabel];
     [self applyThemeColor];
+    [self applyAccessibilityLabels];
 }
 
 - (void)applyThemeColor
 {
     self.redBar.backgroundColor = calThemeColor();
+}
+
+// The red-bar and view-switcher controls are drawn glyphs with no title text,
+// so VoiceOver would announce them only as "button". Give each a label.
+- (void)applyAccessibilityLabels
+{
+    self.redBarPlusButton.isAccessibilityElement = YES;
+    self.redBarPlusButton.accessibilityTraits    = UIAccessibilityTraitButton;
+    self.redBarPlusButton.accessibilityLabel     = NSLocalizedString(@"New event", @"Accessibility label for the add-event button");
+    self.openCalendarsButton.accessibilityLabel  = NSLocalizedString(@"Calendars", @"Accessibility label for the calendars button");
+    self.showViewOptionsButton.accessibilityLabel = NSLocalizedString(@"View options", @"Accessibility label for the view-options button");
+    self.twoBarButton.accessibilityLabel         = NSLocalizedString(@"Day view", @"Accessibility label for the day view button");
+    self.threeBarButton.accessibilityLabel       = NSLocalizedString(@"Agenda view", @"Accessibility label for the agenda view button");
+    self.fourBarButton.accessibilityLabel        = NSLocalizedString(@"Week view", @"Accessibility label for the week view button");
+    self.fiveBarButton.accessibilityLabel        = NSLocalizedString(@"Detailed week view", @"Accessibility label for the detailed week view button");
+    self.searchButton.accessibilityLabel         = NSLocalizedString(@"Search", @"Accessibility label for the search button");
+    self.settingsButton.accessibilityLabel       = NSLocalizedString(@"Settings", @"Accessibility label for the settings button");
 }
 
 - (void)setupWeekNumberLabel

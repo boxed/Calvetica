@@ -319,4 +319,85 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 
 
+#pragma mark - Accessibility
+
+// The week/month grid is drawn with CoreGraphics and is tapped by touch
+// coordinate, so it is invisible to VoiceOver. Vend one accessible element per
+// day: focusing a day reads its date + event count, double-tap selects it
+// (routed through the existing tap gesture via the element's activation point),
+// and a custom action creates an event (the long-press equivalent).
+- (NSArray *)accessibilityElements
+{
+    if (!_weekStartDate) return @[];
+
+    CGFloat boxWidth = self.bounds.size.width / (CGFloat)MTDateConstantDaysInWeek;
+    NSDate *today    = [[NSDate date] mt_startOfCurrentDay];
+
+    NSUInteger eventsPerDay[7] = {0};
+    for (CVCalendarItemShape *e in self.drawingView.calendarItems) {
+        if (e.days == NULL) continue;
+        for (NSInteger d = 0; d < MTDateConstantDaysInWeek; d++) {
+            if (e.days[d]) eventsPerDay[d]++;
+        }
+    }
+
+    NSMutableArray<UIAccessibilityElement *> *elements = [NSMutableArray arrayWithCapacity:MTDateConstantDaysInWeek];
+    for (NSInteger i = 0; i < MTDateConstantDaysInWeek; i++) {
+        NSDate *date = [_weekStartDate mt_dateDaysAfter:i];
+
+        UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+
+        CGRect dayRect        = CGRectMake(floorf(boxWidth * i), 0, ceilf(boxWidth), self.bounds.size.height);
+        element.accessibilityFrame = UIAccessibilityConvertFrameToScreenCoordinates(dayRect, self);
+
+        NSMutableArray<NSString *> *parts = [NSMutableArray array];
+        if ([date mt_isWithinSameDay:today]) {
+            [parts addObject:NSLocalizedString(@"Today", @"VoiceOver prefix for today's date in the calendar grid")];
+        }
+        [parts addObject:[NSDateFormatter localizedStringFromDate:date
+                                                        dateStyle:NSDateFormatterFullStyle
+                                                        timeStyle:NSDateFormatterNoStyle]];
+        NSUInteger count = eventsPerDay[i];
+        if (count == 1) {
+            [parts addObject:NSLocalizedString(@"1 event", @"VoiceOver: one event on a day")];
+        }
+        else if (count > 1) {
+            [parts addObject:[NSString stringWithFormat:NSLocalizedString(@"%lu events", @"VoiceOver: number of events on a day"), (unsigned long)count]];
+        }
+        element.accessibilityLabel = [parts componentsJoinedByString:@", "];
+
+        UIAccessibilityTraits traits = UIAccessibilityTraitButton;
+        if (_selectedDate && [date mt_isWithinSameDay:_selectedDate]) {
+            traits |= UIAccessibilityTraitSelected;
+        }
+        element.accessibilityTraits = traits;
+
+        __weak typeof(self) weakSelf = self;
+        UIAccessibilityCustomAction *newEvent =
+            [[UIAccessibilityCustomAction alloc] initWithName:NSLocalizedString(@"New event", @"VoiceOver action to create an event on a day")
+                                                actionHandler:^BOOL(UIAccessibilityCustomAction *action) {
+            [weakSelf accessibilityCreateEventOnDate:date dayIndex:i];
+            return YES;
+        }];
+        element.accessibilityCustomActions = @[newEvent];
+
+        [elements addObject:element];
+    }
+    return elements;
+}
+
+- (void)accessibilityCreateEventOnDate:(NSDate *)date dayIndex:(NSInteger)dayIndex
+{
+    CGFloat boxWidth     = self.bounds.size.width / (CGFloat)MTDateConstantDaysInWeek;
+    CGRect placeholderFrame = CGRectMake(dayIndex * boxWidth, 0, boxWidth, self.bounds.size.height);
+    UIView *placeholder  = [[UIView alloc] initWithFrame:placeholderFrame];
+    placeholder.backgroundColor = calTextColor();
+    placeholder.alpha    = 0.3f;
+    [self addSubview:placeholder];
+    [self.delegate weekTableViewCell:self wasLongPressedOnDate:date withPlaceholder:placeholder];
+}
+
+
+
+
 @end

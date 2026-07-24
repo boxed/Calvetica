@@ -53,6 +53,15 @@
 
 - (void)redrawWithCompletion:(void (^)(void))completion
 {
+    // Under Reduce Motion, skip the animated "drawing" of the glyph and render
+    // it immediately (drawRect: strokes the full pencil path once isDoneDrawing).
+    if (UIAccessibilityIsReduceMotionEnabled()) {
+        self.isDoneDrawing = YES;
+        [self setNeedsDisplay];
+        if (completion) completion();
+        return;
+    }
+
     [_pencil drawWithCompletion:^(MTPencil *pencil) {
         if (completion) completion();
         [self->_pencil erase];
