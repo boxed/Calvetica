@@ -27,9 +27,26 @@
     [self.layer setCornerRadius:6.0f];
 }
 
-- (void)presentBezel 
+- (void)presentBezel
 {
     [self setBezelPosition];
+
+    // Reduce Motion: fade in at the final position, hold, then fade out —
+    // no slide in/out.
+    if (UIAccessibilityIsReduceMotionEnabled()) {
+        self.alpha = 0;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.alpha = 1;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5 delay:0.6 options:0 animations:^{
+                self.alpha = 0;
+            } completion:^(BOOL done) {
+                [self removeFromSuperview];
+            }];
+        }];
+        return;
+    }
+
     self.x = -self.width;
     // animate the fade out and remove from view
     // in the future add cases here for various animation options

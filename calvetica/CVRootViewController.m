@@ -1673,7 +1673,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             [self updateWeekNumberLabel];
         };
 
-        if (animated) {
+        if (animated && !UIAccessibilityIsReduceMotionEnabled()) {
             [UIView animateWithDuration:0.25 animations:^{
                 animations();
             } completion:^(BOOL finished) {
@@ -1719,7 +1719,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [self updateWeekNumberLabel];
     };
 
-    if (animated) {
+    if (animated && !UIAccessibilityIsReduceMotionEnabled()) {
         BOOL isUp = direction == CVRootMonthViewMoveDirectionUp;
         [UIView mt_animateWithDuration:(isUp ? 0.3 : 0.5)
                         timingFunction:(isUp ? kMTEaseOutBack : kMTEaseOutBounce)
