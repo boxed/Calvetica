@@ -77,9 +77,10 @@
         UILabel *label = (UILabel *)[self viewWithTag:num];
         label.text = [NSString stringWithFormat:@"%ld", (long)dayOfMonth];
 
-        // gray out day labels that have passed
+        // gray out day labels that have passed (adaptive: inverts for dark mode
+        // and honors Increase Contrast, unlike the previous hardcoded gray)
         if ([date mt_isBefore:today]) {
-            label.textColor = RGBHex(0x999999);
+            label.textColor = calSecondaryText();
         }
         else {
             label.textColor = calTextColor();

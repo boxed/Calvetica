@@ -1444,7 +1444,32 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)applyThemeColor
 {
-    self.redBar.backgroundColor = calThemeColor();
+    UIColor *themeColor = calThemeColor();
+    self.redBar.backgroundColor = themeColor;
+
+    // The bar glyphs and month/year text are otherwise fixed white, which is
+    // unreadable if the user picks a light theme color. Pick black or white by
+    // the theme color's luminance so the bar content stays legible.
+    UIColor *foreground = [self legibleForegroundForColor:themeColor];
+    if ([self.redBarPlusButton isKindOfClass:[UIButton class]]) {
+        [(UIButton *)self.redBarPlusButton setTitleColor:foreground forState:UIControlStateNormal];
+    }
+    [self.openCalendarsButton   setTitleColor:foreground forState:UIControlStateNormal];
+    [self.showViewOptionsButton setTitleColor:foreground forState:UIControlStateNormal];
+    [self.monthLabelControl     setTitleColor:foreground forState:UIControlStateNormal];
+    self.redBarMonthLabel.textColor = foreground;
+    self.redBarYearLabel.textColor  = foreground;
+}
+
+// Returns black or white, whichever contrasts better with the given color.
+- (UIColor *)legibleForegroundForColor:(UIColor *)color
+{
+    CGFloat r, g, b, a;
+    if (![color getRed:&r green:&g blue:&b alpha:&a]) {
+        return [UIColor whiteColor];
+    }
+    CGFloat luminance = (0.299f * r) + (0.587f * g) + (0.114f * b);
+    return luminance > 0.6f ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
 // The red-bar and view-switcher controls are drawn glyphs with no title text,

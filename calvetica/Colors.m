@@ -38,6 +38,19 @@ UIColor* calBackgroundColor(void) {
     }
 }
 
+// Gray text color derived from a light-mode "white" value. Mirrors the value
+// for dark mode (as the app has always done); additionally, when the user has
+// enabled Increase Contrast, pushes the text further from its background for
+// better legibility. Default appearance (Increase Contrast off) is unchanged.
+static UIColor* calAdaptiveTextColor(CGFloat lightWhite) {
+    BOOL dark = UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
+    CGFloat value = dark ? (1.0 - lightWhite) : lightWhite;
+    if (UIAccessibilityDarkerSystemColorsEnabled()) {
+        value = dark ? MIN(1.0, value + 0.18) : MAX(0.0, value - 0.18);
+    }
+    return [UIColor colorWithWhite:value alpha:1.0];
+}
+
 UIColor* calTextColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor blackColor];
@@ -84,49 +97,24 @@ UIColor* calGridLineColor(void) {
 }
 
 UIColor* calSecondaryText(void) {
-    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
-        return [UIColor colorWithWhite:0.61 alpha:1];
-    }
-    else {
-        return [UIColor colorWithWhite:1.0-0.61 alpha:1];
-    }
+    return calAdaptiveTextColor(0.61);
 }
 
 UIColor* calTertiaryText(void) {
-    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
-        return [UIColor colorWithWhite:0.53 alpha:1];
-    }
-    else {
-        return [UIColor colorWithWhite:1.0-0.53 alpha:1];
-    }
+    return calAdaptiveTextColor(0.53);
 }
 
 UIColor* calQuaternaryText(void) {
-    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
-        return [UIColor colorWithWhite:0.40 alpha:1];
-    }
-    else {
-        return [UIColor colorWithWhite:1.0-0.40 alpha:1];
-    }
+    return calAdaptiveTextColor(0.40);
 }
 
 UIColor* calDimmedText(void) {
-    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
-        return [UIColor colorWithWhite:0.24 alpha:1];
-    }
-    else {
-        return [UIColor colorWithWhite:1.0-0.24 alpha:1];
-    }
+    return calAdaptiveTextColor(0.24);
 }
 
 
 UIColor* calWeekdayHeaderText(void) {
-    if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
-        return [UIColor colorWithWhite:0.7 alpha:1];
-    }
-    else {
-        return [UIColor colorWithWhite:1.0-0.7 alpha:1];
-    }
+    return calAdaptiveTextColor(0.7);
 }
 
 #pragma mark - Semantic Colors
