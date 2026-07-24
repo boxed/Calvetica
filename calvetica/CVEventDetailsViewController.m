@@ -322,7 +322,7 @@
     }
 
     CGFloat currentY = 0;
-    NSInteger cellHeight = 42;
+    CGFloat cellHeight = 42 * CVFontScale();
     
     for (NSDictionary *dict in detailsOrderingArray) {
         if ([[dict objectForKey:@"TitleKey"] isEqualToString:@"Title"]) {
@@ -347,6 +347,10 @@
                 CGRect f = _eventCalendarBlock.frame;
                 f.origin.y = currentY;
                 
+                // Keep the calendar picker's row height in step with the height
+                // used for its content-size math so larger Dynamic Type sizes
+                // don't clip the rows.
+                self.eventCalendarTableView.rowHeight = cellHeight;
                 CGFloat calendarTableContentSize = [self.calendarTableViewController calendars].count * cellHeight;
                 CGSize calendarTableFrameSize = self.eventCalendarTableView.frame.size;
                 
