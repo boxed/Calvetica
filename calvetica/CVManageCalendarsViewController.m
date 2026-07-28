@@ -8,6 +8,12 @@
 
 #import "CVManageCalendarsViewController.h"
 #import "CVCalendarCellModel.h"
+#import "colors.h"
+
+
+@interface CVManageCalendarsViewController ()
+@property (nonatomic, strong) UIButton *showAllFooterView;
+@end
 
 
 @implementation CVManageCalendarsViewController
@@ -31,6 +37,7 @@
 - (void)viewDidLoad
 {
     self.controllerTitle.text = @"SHOW EVENT CALENDARS";
+    self.tableView.tableFooterView = self.showAllFooterView;
 }
 
 
@@ -138,6 +145,38 @@
         cell.checkmarkImageView.image = [UIImage imageNamed:@"icon_calendar_on"];
     }
     self.modified = YES;
+}
+
+
+
+
+#pragma mark - Show All
+
+// A tappable footer below the calendar list that re-enables every calendar, so a
+// user who hides some (or all) of them always has a one-tap way back without
+// hunting for every closed-eye row.
+- (UIButton *)showAllFooterView
+{
+    if (!_showAllFooterView) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, 44);
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
+        button.titleLabel.adjustsFontForContentSizeCategory = YES;
+        [button setTitle:@"SHOW ALL CALENDARS" forState:UIControlStateNormal];
+        [button setTitleColor:calThemeColor() forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(showAllWasTapped:) forControlEvents:UIControlEventTouchUpInside];
+        _showAllFooterView = button;
+    }
+    return _showAllFooterView;
+}
+
+- (void)showAllWasTapped:(id)sender
+{
+    for (CVCalendarCellModel *holder in self.cellDataHolderArray) {
+        holder.isSelected = YES;
+    }
+    self.modified = YES;
+    [self.tableView reloadData];
 }
 
 
