@@ -12,9 +12,11 @@
 @implementation CVSearchEventCell
 
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
 	[super awakeFromNib];
+    // Red subtitle was hardcoded in the XIB; follow the theme color.
+    self.redSubtitleLabel.textColor = calThemeColor();
 }
 
 

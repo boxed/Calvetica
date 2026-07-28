@@ -48,7 +48,8 @@ BOOL calColorIsLegacyPatentedRed(UIColor *color) {
         return NO;
     }
     // The old baked reds are all strong red with essentially no green/blue.
-    return r > 0.7f && g < 0.18f && b < 0.18f && a > 0.9f;
+    // (Shades range from the dark ~0.61 keypad red up to the ~0.85 bar red.)
+    return r > 0.5f && g < 0.18f && b < 0.18f && a > 0.9f;
 }
 
 UIColor* calThemeForegroundColor(void) {
@@ -192,6 +193,21 @@ UIColor* slideToDeleteBackgroundColor(void) {
 {
     [super awakeFromNib];
     self.backgroundColor = calThemeColor();
+}
+
+@end
+
+// A label whose text is painted in the user's theme color. Used as the custom
+// class for labels that were previously a hardcoded red in a XIB.
+@interface CVThemeLabel : UILabel
+@end
+
+@implementation CVThemeLabel
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.textColor = calThemeColor();
 }
 
 @end

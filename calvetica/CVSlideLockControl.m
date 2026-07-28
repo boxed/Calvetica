@@ -18,6 +18,7 @@
     [super awakeFromNib];
 
     self.backgroundColor = slideToDeleteBackgroundColor();
+    self.titleLabel.textColor = calThemeColor();
 
     if (!self.thumbImage) {
         [self.slider setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];

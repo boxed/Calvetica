@@ -7,10 +7,12 @@
 //
 
 #import "CVLineButton.h"
+#import "colors.h"
 
 
 @interface CVLineButton ()
 @property (nonatomic, assign) BOOL isDoneDrawing;
+@property (nonatomic, strong) UIColor *glyphColor;
 @end
 
 
@@ -21,6 +23,24 @@
     _pencil = [MTPencil pencilWithView:self];
     _pencil.drawsAsynchronously = YES;
     _isDoneDrawing = NO;
+    _glyphColor = [UIColor whiteColor];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    // Glyph buttons that baked in the old "patented red" background (e.g. the
+    // quick-add ok/cancel/more/backspace keys) should follow the theme color,
+    // with a legible glyph drawn on top.
+    if (calColorIsLegacyPatentedRed(self.backgroundColor)) {
+        CGFloat r, g, b, a;
+        [self.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
+        UIColor *bg = (r < 0.72f) ? calThemeColorDark() : calThemeColor();
+        self.backgroundColor = bg;
+        self.glyphColor = calLegibleForegroundForColor(bg);
+        [self setTitleColor:self.glyphColor forState:UIControlStateNormal];
+    }
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -72,7 +92,7 @@
 
 - (void)setupPencil
 {
-    [[[[_pencil config] strokeColor:[UIColor whiteColor]] width:1] easingFunction:kMTPencilEaseOutSine];
+    [[[[_pencil config] strokeColor:self.glyphColor ?: [UIColor whiteColor]] width:1] easingFunction:kMTPencilEaseOutSine];
 }
 
 - (void)setHighlighted:(BOOL)highlighted

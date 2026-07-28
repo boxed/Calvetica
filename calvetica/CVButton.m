@@ -43,10 +43,22 @@
     // Buttons that baked in the old "patented red" now follow the configurable
     // theme color, with legible (black/white) text on light or dark themes.
     if (calColorIsLegacyPatentedRed(self.backgroundColorNormal)) {
-        self.backgroundColorNormal   = calThemeColor();
-        self.backgroundColorSelected = calThemeColorDark();
-        self.textColorNormal         = calThemeForegroundColor();
-        self.textColorSelected       = calLegibleForegroundForColor(calThemeColorDark());
+        // Preserve the old two-tone look (e.g. darker keypad keys on a lighter
+        // panel): map darker baked reds to a darker shade of the theme color.
+        CGFloat r, g, b, a;
+        [self.backgroundColorNormal getRed:&r green:&g blue:&b alpha:&a];
+        UIColor *normalBg   = (r < 0.72f) ? calThemeColorDark() : calThemeColor();
+        UIColor *selectedBg = calThemeColorDarker();
+
+        self.backgroundColorNormal   = normalBg;
+        self.backgroundColorSelected = selectedBg;
+        self.textColorNormal         = calLegibleForegroundForColor(normalBg);
+        self.textColorSelected       = calLegibleForegroundForColor(selectedBg);
+
+        // Native UIButton titles are driven by per-state colors, so update those
+        // too (view-based CVViewButtons don't use them, so this is harmless there).
+        [self setTitleColor:self.textColorNormal   forState:UIControlStateNormal];
+        [self setTitleColor:self.textColorSelected forState:UIControlStateSelected];
     }
 
     self.selected = NO;

@@ -7,6 +7,7 @@
 //
 
 #import "CVCalendarTableViewCell.h"
+#import "colors.h"
 
 
 @implementation CVCalendarTableViewCell
@@ -20,10 +21,12 @@
     return self;
 }
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
     [super awakeFromNib];
     self.disabled = NO;
+    // Checkmark glyph was a hardcoded red; follow the theme color.
+    [self.checkmarkImageButton setTitleColor:calThemeColor() forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated 
