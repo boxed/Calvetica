@@ -71,6 +71,41 @@
     return [color.stringValue isEqualToString:PREFS.themeColorString];
 }
 
+// The alternate app-icon set name for a color (nil = the primary red AppIcon).
+// Must match the AltIcon<HEX> sets in Images.xcassets.
+- (nullable NSString *)alternateIconNameForColor:(UIColor *)color
+{
+    CGFloat r, g, b, a;
+    if (![color getRed:&r green:&g blue:&b alpha:&a]) {
+        return nil;
+    }
+    int R = (int)lroundf(r * 255), G = (int)lroundf(g * 255), B = (int)lroundf(b * 255);
+    if (R == 215 && G == 0 && B == 0) {
+        return nil; // Calvetica red is the primary app icon
+    }
+    return [NSString stringWithFormat:@"AltIcon%02X%02X%02X", R, G, B];
+}
+
+// Switch the Home Screen app icon to match the chosen theme color.
+- (void)applyAppIconForColor:(UIColor *)color
+{
+    UIApplication *app = [UIApplication sharedApplication];
+    if (![app supportsAlternateIcons]) {
+        return;
+    }
+    NSString *name    = [self alternateIconNameForColor:color];
+    NSString *current = [app alternateIconName];
+    // Avoid a redundant call (and its system alert) if the icon already matches.
+    if ((name == nil && current == nil) || (name != nil && [name isEqualToString:current])) {
+        return;
+    }
+    [app setAlternateIconName:name completionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Failed to set app icon '%@': %@", name, error);
+        }
+    }];
+}
+
 
 #pragma mark - Table view data source
 
@@ -107,6 +142,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PREFS.themeColorString = self.colors[indexPath.row].stringValue;
+    [self applyAppIconForColor:self.colors[indexPath.row]];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView reloadData];
 }
