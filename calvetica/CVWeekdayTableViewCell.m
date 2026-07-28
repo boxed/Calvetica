@@ -43,6 +43,8 @@
 	[super awakeFromNib];
     _squaresView.delegate = self;
     _allDaySquaresView.delegate = self;
+    // The "today" indicator bar is a hardcoded red in the XIB; follow the theme.
+    _redBarView.backgroundColor = calThemeColor();
 }
 
 //- (void)didMoveToWindow

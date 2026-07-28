@@ -13,6 +13,7 @@
 #import "CVNativeAlertView.h"
 #import "CVDebug.h"
 #import "CVSceneDelegate.h"
+#import "colors.h"
 
 
 @interface CVAppDelegate ()
@@ -39,6 +40,9 @@
      setBackgroundColor:UIColor.systemGroupedBackgroundColor];
     [[UITableViewCell appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]]
      setBackgroundColor:UIColor.secondarySystemGroupedBackgroundColor];
+
+    // Settings toggles used a hardcoded red; tint every switch with the theme color.
+    [[UISwitch appearance] setOnTintColor:calThemeColor()];
 
     // Set up UNUserNotificationCenter
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];

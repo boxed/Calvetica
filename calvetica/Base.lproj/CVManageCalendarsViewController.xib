@@ -60,7 +60,7 @@
                         <outlet property="delegate" destination="-1" id="49"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72" userLabel="Red Bar">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72" userLabel="Red Bar" customClass="CVThemeBar">
                     <rect key="frame" x="0.0" y="395" width="285" height="35"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>

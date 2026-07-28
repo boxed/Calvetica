@@ -33,15 +33,24 @@
     return self;
 }
 
-- (void)awakeFromNib 
+- (void)awakeFromNib
 {
     [self setup];
-    
+
     self.textColorNormal = self.titleLabel.textColor;
     self.backgroundColorNormal = self.backgroundColor;
-    
+
+    // Buttons that baked in the old "patented red" now follow the configurable
+    // theme color, with legible (black/white) text on light or dark themes.
+    if (calColorIsLegacyPatentedRed(self.backgroundColorNormal)) {
+        self.backgroundColorNormal   = calThemeColor();
+        self.backgroundColorSelected = calThemeColorDark();
+        self.textColorNormal         = calThemeForegroundColor();
+        self.textColorSelected       = calLegibleForegroundForColor(calThemeColorDark());
+    }
+
     self.selected = NO;
-    
+
     [super awakeFromNib];
 }
 

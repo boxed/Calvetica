@@ -8,6 +8,7 @@
 
 #import "CVSettingsViewController.h"
 #import "CVTimeZoneViewController.h"
+#import "colors.h"
 
 
 @interface CVSettingsViewController () <CVTimeZoneViewControllerDelegate>
@@ -42,6 +43,9 @@
     // Enable dark mode support
     self.tableView.backgroundColor = UIColor.systemGroupedBackgroundColor;
 
+    // Tint the shared nav bar (Done button and pushed sub-screens) with the theme.
+    self.navigationController.navigationBar.tintColor = calThemeColor();
+
     self.syncSettingsOveriCloudSwitch.on    = PREFS.syncSettingsWithiCloud;
     self.askForCalendarSwitch.on            = PREFS.alwaysAskForCalendar;
     self.showRemindersSwitch.on             = PREFS.remindersEnabled;
@@ -51,6 +55,13 @@
     self.durationBarReadOnlySwitch.on       = PREFS.showDurationOnReadOnlyEvents;
     self.showWeekNumbersSwitch.on           = PREFS.showWeekNumbers;
     self.showInboxBadgeSwitch.on            = PREFS.showInboxBadge;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // Refresh after the user changes the theme in the Theme Color sub-screen.
+    self.navigationController.navigationBar.tintColor = calThemeColor();
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

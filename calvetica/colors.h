@@ -34,6 +34,17 @@ UIColor* calThemeColorDark(void);
 /// An even darker shade of the theme color (same hue).
 UIColor* calThemeColorDarker(void);
 
+/// YES if the color is light enough that black text reads better than white on it.
+BOOL calColorIsLight(UIColor *color);
+/// YES if the color is one of the old hardcoded "patented red" shades baked into
+/// XIBs (high red, near-zero green/blue). Used to migrate those to the theme color.
+BOOL calColorIsLegacyPatentedRed(UIColor *color);
+/// Black or white, whichever stays legible on top of the given color.
+UIColor* calLegibleForegroundForColor(UIColor *color);
+/// Legible foreground (black or white) for the current theme color. Use for text
+/// and glyphs drawn on a theme-colored bar so they stay readable on light themes.
+UIColor* calThemeForegroundColor(void);
+
 /// The factory default theme color (the patented Calvetica red).
 #define patentedDefaultRed [UIColor colorWithRed:215.0/255.0 green:0 blue:0 alpha:1]
 

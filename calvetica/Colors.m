@@ -29,6 +29,32 @@ UIColor* calThemeColorDarker(void) {
     return patentedDefaultRed;
 }
 
+BOOL calColorIsLight(UIColor *color) {
+    CGFloat r, g, b, a;
+    if (![color getRed:&r green:&g blue:&b alpha:&a]) {
+        return NO;
+    }
+    CGFloat luminance = (0.299f * r) + (0.587f * g) + (0.114f * b);
+    return luminance > 0.6f;
+}
+
+UIColor* calLegibleForegroundForColor(UIColor *color) {
+    return calColorIsLight(color) ? [UIColor blackColor] : [UIColor whiteColor];
+}
+
+BOOL calColorIsLegacyPatentedRed(UIColor *color) {
+    CGFloat r, g, b, a;
+    if (![color getRed:&r green:&g blue:&b alpha:&a]) {
+        return NO;
+    }
+    // The old baked reds are all strong red with essentially no green/blue.
+    return r > 0.7f && g < 0.18f && b < 0.18f && a > 0.9f;
+}
+
+UIColor* calThemeForegroundColor(void) {
+    return calLegibleForegroundForColor(calThemeColor());
+}
+
 UIColor* calBackgroundColor(void) {
     if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
         return [UIColor whiteColor];
@@ -149,3 +175,23 @@ UIColor* slideToDeleteBackgroundColor(void) {
         return [UIColor colorWithWhite:0.2 alpha:1];
     }
 }
+
+
+#pragma mark - Theme-colored view
+
+// A view that paints itself in the user's theme color. Used as the custom class
+// for bars/highlights that were previously a hardcoded red in a XIB, so they now
+// follow the configurable theme color. Re-tints on load (dialogs are recreated
+// each presentation, so awakeFromNib picks up the current theme).
+@interface CVThemeBar : UIView
+@end
+
+@implementation CVThemeBar
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.backgroundColor = calThemeColor();
+}
+
+@end
