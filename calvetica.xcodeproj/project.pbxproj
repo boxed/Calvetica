@@ -102,6 +102,7 @@
 		AA0000010000000000000006 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000004 /* Contacts.framework */; };
 		AA0000010000000000000007 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000005 /* ContactsUI.framework */; };
 		AA0000011INBOX000000000001 /* CVInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000011INBOX000000000003 /* CVInboxViewController.m */; };
+		AA10C0100000000000E00001 /* CVThemeColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10C0100000000000E00003 /* CVThemeColorViewController.m */; };
 		AEB164362F45023E0064A3FB /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000004 /* Contacts.framework */; };
 		AEB164372F45023E0064A3FB /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000005 /* ContactsUI.framework */; };
 		AEBD2DB52753B9A000E685FE /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBD2DB42753B9A000E685FE /* Colors.m */; };
@@ -320,7 +321,6 @@
 		C2FF4D3713D89DDD00E662FE /* CVLandscapeWeekView_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FF4D3513D89DDD00E662FE /* CVLandscapeWeekView_iPad.m */; };
 		C2FF4D3B13D8A6BC00E662FE /* CVLandscapeWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FF4D3A13D8A6BC00E662FE /* CVLandscapeWeekView.m */; };
 		E5A5963E051046B43D904BA1 /* CVThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1CA2B940315E7E9226C5CB /* CVThemeViewController.m */; };
-		AA10C0100000000000E00001 /* CVThemeColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10C0100000000000E00003 /* CVThemeColorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,8 +372,6 @@
 		6AF3CE3E1403022D00A193E4 /* CVWeekNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWeekNumberCell.m; sourceTree = "<group>"; };
 		6AF3CE401403026700A193E4 /* CVWeekNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVWeekNumberCell.xib; sourceTree = "<group>"; };
 		84B52EF023501C96C00CC853 /* CVThemeViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVThemeViewController.h; sourceTree = "<group>"; };
-		AA10C0100000000000E00002 /* CVThemeColorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVThemeColorViewController.h; sourceTree = "<group>"; };
-		AA10C0100000000000E00003 /* CVThemeColorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVThemeColorViewController.m; sourceTree = "<group>"; };
 		9B0127A513CBA2B50006C2EA /* CVGestureHowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVGestureHowToViewController.h; sourceTree = "<group>"; };
 		9B0127A613CBA2B50006C2EA /* CVGestureHowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CVGestureHowToViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B0AD8A713CF5AC300DF1F2F /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
@@ -479,6 +477,8 @@
 		AA0000010000000000000005 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		AA0000011INBOX000000000002 /* CVInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVInboxViewController.h; sourceTree = "<group>"; };
 		AA0000011INBOX000000000003 /* CVInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVInboxViewController.m; sourceTree = "<group>"; };
+		AA10C0100000000000E00002 /* CVThemeColorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CVThemeColorViewController.h; sourceTree = "<group>"; };
+		AA10C0100000000000E00003 /* CVThemeColorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CVThemeColorViewController.m; sourceTree = "<group>"; };
 		AEBD2DB42753B9A000E685FE /* Colors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
 		BB0000010000000000000001 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		BB0000010000000000000002 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -3321,15 +3321,15 @@
 			baseConfigurationReference = 04B155B80184D2B11B27DEF2 /* Pods-calvetica.adhoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AltIconEFA180 AltIconE5754F AltIconD51F00 AltIconA5D0DC AltIcon7AB5C7 AltIcon2787A4 AltIconB3B7CF AltIcon8C91B3 AltIcon444C84 AltIconA3D3BD AltIcon77B999 AltIcon228D59 AltIconC3D286 AltIconA1B755 AltIcon668A00 AltIconCAABD3 AltIconAC81B9 AltIcon78328D AltIconECCA82 AltIconE0AB51 AltIconCD7700 AltIconEF0000 AltIconF59800 AltIconFCE900 AltIcon8CFF00 AltIcon4DFF53 AltIcon4CFEFF AltIcon2E95FF AltIcon0D11FF AltIcon4E00FF AltIcon7B00FF AltIconCF00FF AltIconEF0065 AltIcon000000 AltIcon313131 AltIcon6D6D6D AltIconB2B2B2 AltIconB40000";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = (AltIconEFA180, AltIconE5754F, AltIconD51F00, AltIconA5D0DC, AltIcon7AB5C7, AltIcon2787A4, AltIconB3B7CF, AltIcon8C91B3, AltIcon444C84, AltIconA3D3BD, AltIcon77B999, AltIcon228D59, AltIconC3D286, AltIconA1B755, AltIcon668A00, AltIconCAABD3, AltIconAC81B9, AltIcon78328D, AltIconECCA82, AltIconE0AB51, AltIconCD7700, AltIconEF0000, AltIconF59800, AltIconFCE900, AltIcon8CFF00, AltIcon4DFF53, AltIcon4CFEFF, AltIcon2E95FF, AltIcon0D11FF, AltIcon4E00FF, AltIcon7B00FF, AltIconCF00FF, AltIconEF0065, AltIcon000000, AltIcon313131, AltIcon6D6D6D, AltIconB2B2B2, AltIconB40000);
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 272;
+				CURRENT_PROJECT_VERSION = 273;
 				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3342,7 +3342,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 5.7.0;
+				MARKETING_VERSION = 5.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3485,15 +3485,15 @@
 			baseConfigurationReference = DF8C2823FBA37F035E5079CC /* Pods-calvetica.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AltIconEFA180 AltIconE5754F AltIconD51F00 AltIconA5D0DC AltIcon7AB5C7 AltIcon2787A4 AltIconB3B7CF AltIcon8C91B3 AltIcon444C84 AltIconA3D3BD AltIcon77B999 AltIcon228D59 AltIconC3D286 AltIconA1B755 AltIcon668A00 AltIconCAABD3 AltIconAC81B9 AltIcon78328D AltIconECCA82 AltIconE0AB51 AltIconCD7700 AltIconEF0000 AltIconF59800 AltIconFCE900 AltIcon8CFF00 AltIcon4DFF53 AltIcon4CFEFF AltIcon2E95FF AltIcon0D11FF AltIcon4E00FF AltIcon7B00FF AltIconCF00FF AltIconEF0065 AltIcon000000 AltIcon313131 AltIcon6D6D6D AltIconB2B2B2 AltIconB40000";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = (AltIconEFA180, AltIconE5754F, AltIconD51F00, AltIconA5D0DC, AltIcon7AB5C7, AltIcon2787A4, AltIconB3B7CF, AltIcon8C91B3, AltIcon444C84, AltIconA3D3BD, AltIcon77B999, AltIcon228D59, AltIconC3D286, AltIconA1B755, AltIcon668A00, AltIconCAABD3, AltIconAC81B9, AltIcon78328D, AltIconECCA82, AltIconE0AB51, AltIconCD7700, AltIconEF0000, AltIconF59800, AltIconFCE900, AltIcon8CFF00, AltIcon4DFF53, AltIcon4CFEFF, AltIcon2E95FF, AltIcon0D11FF, AltIcon4E00FF, AltIcon7B00FF, AltIconCF00FF, AltIconEF0065, AltIcon000000, AltIcon313131, AltIcon6D6D6D, AltIconB2B2B2, AltIconB40000);
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 272;
+				CURRENT_PROJECT_VERSION = 273;
 				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3507,7 +3507,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 5.7.0;
+				MARKETING_VERSION = 5.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3521,15 +3521,15 @@
 			baseConfigurationReference = EB4BF7472ED0C0018A8FF2AF /* Pods-calvetica.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AltIconEFA180 AltIconE5754F AltIconD51F00 AltIconA5D0DC AltIcon7AB5C7 AltIcon2787A4 AltIconB3B7CF AltIcon8C91B3 AltIcon444C84 AltIconA3D3BD AltIcon77B999 AltIcon228D59 AltIconC3D286 AltIconA1B755 AltIcon668A00 AltIconCAABD3 AltIconAC81B9 AltIcon78328D AltIconECCA82 AltIconE0AB51 AltIconCD7700 AltIconEF0000 AltIconF59800 AltIconFCE900 AltIcon8CFF00 AltIcon4DFF53 AltIcon4CFEFF AltIcon2E95FF AltIcon0D11FF AltIcon4E00FF AltIcon7B00FF AltIconCF00FF AltIconEF0065 AltIcon000000 AltIcon313131 AltIcon6D6D6D AltIconB2B2B2 AltIconB40000";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = (AltIconEFA180, AltIconE5754F, AltIconD51F00, AltIconA5D0DC, AltIcon7AB5C7, AltIcon2787A4, AltIconB3B7CF, AltIcon8C91B3, AltIcon444C84, AltIconA3D3BD, AltIcon77B999, AltIcon228D59, AltIconC3D286, AltIconA1B755, AltIcon668A00, AltIconCAABD3, AltIconAC81B9, AltIcon78328D, AltIconECCA82, AltIconE0AB51, AltIconCD7700, AltIconEF0000, AltIconF59800, AltIconFCE900, AltIcon8CFF00, AltIcon4DFF53, AltIcon4CFEFF, AltIcon2E95FF, AltIcon0D11FF, AltIcon4E00FF, AltIcon7B00FF, AltIconCF00FF, AltIconEF0065, AltIcon000000, AltIcon313131, AltIcon6D6D6D, AltIconB2B2B2, AltIconB40000);
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = calvetica/calvetica.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 272;
+				CURRENT_PROJECT_VERSION = 273;
 				DEVELOPMENT_TEAM = B6FVY827P9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3542,7 +3542,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "calvetica/calvetica-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 5.7.0;
+				MARKETING_VERSION = 5.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.westaydesign.calvetica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
