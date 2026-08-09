@@ -45,6 +45,10 @@
     // Set proper background color for dark mode support
     self.weeksTable.backgroundColor = calBackgroundColor();
 
+    // The margins left by the safe area insets show through here; black lets them
+    // read as screen bezel instead of a border around the grid.
+    self.view.backgroundColor = [UIColor blackColor];
+
     self.monthAndYearLabel.text = [[NSDate date] stringWithTitleOfCurrentMonthAndYearAbbreviated:YES];
 
     [super viewDidLoad];
@@ -54,10 +58,12 @@
 {
     [super viewDidLayoutSubviews];
 
-    // Set table view bounds to match parent view (swapped for rotation)
-    // The table is rotated -90 degrees, so we swap width/height
-    CGRect viewBounds = self.view.bounds;
-    CGRect newBounds = CGRectMake(0, 0, viewBounds.size.height, viewBounds.size.width);
+    // Keep everything inside the safe area so the dynamic island/notch, the home
+    // indicator and the rounded screen corners never sit on top of the grid.
+    CGRect safeBounds = UIEdgeInsetsInsetRect(self.view.bounds, self.view.safeAreaInsets);
+
+    // The table is rotated -90 degrees, so its bounds are the safe rect with width/height swapped.
+    CGRect newBounds = CGRectMake(0, 0, safeBounds.size.height, safeBounds.size.width);
 
     // Only update bounds if they actually changed, to avoid resetting scroll position
     if (!CGRectEqualToRect(self.weeksTable.bounds, newBounds)) {
@@ -65,19 +71,18 @@
         CGPoint savedOffset = self.weeksTable.contentOffset;
 
         self.weeksTable.bounds = newBounds;
-        self.weeksTable.center = CGPointMake(viewBounds.size.width / 2, viewBounds.size.height / 2);
 
         // Restore scroll position after bounds change
         self.weeksTable.contentOffset = savedOffset;
     }
+    self.weeksTable.center = CGPointMake(CGRectGetMidX(safeBounds), CGRectGetMidY(safeBounds));
 
-    // Adjust month/year label position for safe area insets (rounded corners on modern phones)
+    // Month/year label sits in the bottom right corner of the safe area.
     UIView *monthLabelContainer = self.monthAndYearLabel.superview;
     if (monthLabelContainer) {
-        UIEdgeInsets safeArea = self.view.safeAreaInsets;
         CGRect frame = monthLabelContainer.frame;
-        frame.origin.x = viewBounds.size.width - frame.size.width - safeArea.bottom - 4;
-        frame.origin.y = viewBounds.size.height - frame.size.height - safeArea.right - 4;
+        frame.origin.x = CGRectGetMaxX(safeBounds) - frame.size.width;
+        frame.origin.y = CGRectGetMaxY(safeBounds) - frame.size.height;
         monthLabelContainer.frame = frame;
     }
 }

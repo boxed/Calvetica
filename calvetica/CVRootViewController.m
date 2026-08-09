@@ -291,6 +291,10 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
             CVLandscapeWeekView_iPhone *landscapeWeekView = [segue destinationViewController];
             landscapeWeekView.delegate                    = self;
             landscapeWeekView.startDate                   = [NSDate date];
+            // Must be full screen: a sheet presentation gets rounded corners and, more
+            // importantly, doesn't get to pick the interface orientation, so the week view
+            // would stay in portrait while the device is held in landscape.
+            landscapeWeekView.modalPresentationStyle      = UIModalPresentationFullScreen;
         }
     }
     else if ([segue.identifier isEqualToString:@"SearchSegue"]) {
