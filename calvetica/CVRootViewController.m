@@ -2073,7 +2073,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         if ([EKEventStore isPermissionGranted]) {
             NSDate *now = [NSDate date];
             NSDate *oneYearFromNow = [now mt_dateYearsAfter:1];
-            NSArray *events = [EKEventStore eventsFromDate:now toDate:oneYearFromNow forActiveCalendars:NO];
+            NSArray *events = [[EKEventStore eventsFromDate:now toDate:oneYearFromNow forActiveCalendars:NO]
+                               filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent *event, NSDictionary *bindings) {
+                // Birthdays, holidays and other subscribed feeds are system generated, never inbox items
+                return !event.calendar.isSystemGenerated;
+            }]];
             NSDate *lastViewed = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastInboxViewedDate"];
 
             NSMutableSet *pendingIdentifiers = [NSMutableSet set];

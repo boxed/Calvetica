@@ -63,6 +63,16 @@ typedef NS_ENUM(NSInteger, CVInboxSection) {
 
 #pragma mark - Data
 
+// Birthdays, holidays and other subscribed feeds are filled in by the system, not
+// by people, so they never belong in the inbox.
+- (NSArray<EKEvent *> *)inboxEventsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate
+{
+    NSArray *events = [EKEventStore eventsFromDate:startDate toDate:endDate forActiveCalendars:NO];
+    return [events filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent *event, NSDictionary *bindings) {
+        return !event.calendar.isSystemGenerated;
+    }]];
+}
+
 - (void)fetchEvents
 {
     if (![EKEventStore isPermissionGranted]) {
@@ -74,7 +84,7 @@ typedef NS_ENUM(NSInteger, CVInboxSection) {
 
     NSDate *now = [NSDate date];
     NSDate *oneYearFromNow = [now mt_dateYearsAfter:1];
-    NSArray *events = [EKEventStore eventsFromDate:now toDate:oneYearFromNow forActiveCalendars:NO];
+    NSArray *events = [self inboxEventsFromDate:now toDate:oneYearFromNow];
 
     // Pending invitations
     NSMutableArray *pending = [NSMutableArray array];

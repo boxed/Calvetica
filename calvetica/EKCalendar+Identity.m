@@ -41,6 +41,19 @@
 //            (int)self.supportedEventAvailabilities];
 }
 
+- (BOOL)isSystemGenerated
+{
+	if (self.type == EKCalendarTypeBirthday)						return YES;
+	if (self.type == EKCalendarTypeSubscription)					return YES;
+	if (self.subscribed)											return YES;
+	if (self.source.sourceType == EKSourceTypeBirthdays)			return YES;
+	if (self.source.sourceType == EKSourceTypeSubscribed)			return YES;
+	// A local calendar the user can't write to isn't one they made: this is how
+	// "Siri Found in Apps" and friends show up.
+	if (self.source.sourceType == EKSourceTypeLocal && !self.allowsContentModifications) return YES;
+	return NO;
+}
+
 - (NSString *)accountName
 {
 	return self.source.title;
