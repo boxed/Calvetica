@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (EKEventStore *)sharedStore;
 
+// Refreshes the store belonging to the calling queue. Each queue gets its own
+// store (see sharedStore), and refreshing one does nothing for any of the
+// others, so every queue that reads calendars has to ask for itself.
++ (void)refreshSourcesForCurrentQueue;
+
 + (EKEventStore *)permissionStore;
 + (void)setPermissionGranted:(BOOL)granted;
 + (BOOL)isPermissionGranted;

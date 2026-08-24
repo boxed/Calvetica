@@ -22,18 +22,28 @@ static NSMutableDictionary *__stores = nil;
 
 + (EKEventStore *)sharedStore
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __stores = [NSMutableDictionary new];
-    });
-
     NSString *name = [NSString stringWithUTF8String:dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)];
 
-    if (!__stores[name]) {
-        __stores[name] = [EKEventStore new];
+    // The lookup table is reached from the main queue and from background queues
+    // (the inbox badge), and NSMutableDictionary tolerates neither concurrent
+    // mutation nor being read while another thread mutates it.
+    @synchronized (self) {
+        if (!__stores) {
+            __stores = [NSMutableDictionary new];
+        }
+        EKEventStore *store = __stores[name];
+        if (!store) {
+            store = [EKEventStore new];
+            __stores[name] = store;
+        }
+        return store;
     }
+}
 
-    return __stores[name];
++ (void)refreshSourcesForCurrentQueue
+{
+    if (![self isPermissionGranted]) return;
+    [[self sharedStore] refreshSourcesIfNecessary];
 }
 
 

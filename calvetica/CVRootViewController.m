@@ -2071,6 +2071,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSInteger count = 0;
         if ([EKEventStore isPermissionGranted]) {
+            // This queue has a store of its own, and the refresh timer only ever
+            // reaches the main queue's, so the badge has to refresh it here or it
+            // counts against a calendar list that never updates.
+            [EKEventStore refreshSourcesForCurrentQueue];
+
             NSDate *now = [NSDate date];
             NSDate *oneYearFromNow = [now mt_dateYearsAfter:1];
             NSArray *events = [[EKEventStore eventsFromDate:now toDate:oneYearFromNow forActiveCalendars:NO]

@@ -185,7 +185,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 - (void)refreshSources
 {
     [MTq def:^{
-        [[EKEventStore sharedStore] refreshSourcesIfNecessary];
+        [EKEventStore refreshSourcesForCurrentQueue];
     }];
 }
 
