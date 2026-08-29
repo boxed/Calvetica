@@ -106,7 +106,7 @@
             reminder.completed = !reminder.completed;
             [reminder saveWithError:nil];
             CVReminderCell *cell = (CVReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
-            [cell.titleLabel toggleStrikeThroughWithCompletion:^{
+            [cell.titleLabel toggleStrikeThroughForText:reminder.title completion:^{
                 [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
             }];
         }

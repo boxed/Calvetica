@@ -298,7 +298,7 @@
         reminder.completed = !reminder.completed;
         [reminder saveWithError:nil];
         CVCompactWeekReminderCell *cell = (CVCompactWeekReminderCell *)[tableView cellForRowAtIndexPath:indexPath];
-        [cell.titleLabel toggleStrikeThroughWithCompletion:^{
+        [cell.titleLabel toggleStrikeThroughForText:reminder.title completion:^{
             [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
         }];
     }

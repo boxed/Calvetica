@@ -284,7 +284,7 @@
             reminder.completed = !reminder.completed;
             [reminder saveWithError:nil];
             CVAgendaEventCell *cell = (CVAgendaEventCell *)[tableView cellForRowAtIndexPath:indexPath];
-            [cell.calendarItemTitleLabel toggleStrikeThroughWithCompletion:^{
+            [cell.calendarItemTitleLabel toggleStrikeThroughForText:reminder.mys_title completion:^{
                 [self.delegate rootTableViewController:self cell:cell updatedItem:reminder];
             }];
         }
