@@ -41,6 +41,11 @@
 	<string>3759</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>om</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
@@ -51,6 +56,8 @@
 	<string>Accessing contacts lets us help you invite attendees to events.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>We will help you set the location of events.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to show it on the event location map and to start routes to event locations.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>This app lets you manage Reminders.</string>
 	<key>NSRemindersFullAccessUsageDescription</key>

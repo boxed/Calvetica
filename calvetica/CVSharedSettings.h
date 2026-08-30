@@ -28,6 +28,13 @@ typedef NS_ENUM(NSUInteger, CVThemeStyle) {
     CVThemeStyleDark  = 2
 };
 
+// Raw values are stored in preferences and used as cell tags in Settings.storyboard.
+typedef NS_ENUM(NSUInteger, CVMapApp) {
+    CVMapAppApple   = 0,
+    CVMapAppGoogle  = 1,
+    CVMapAppOrganic = 2
+};
+
 
 #define PREFS [CVSharedSettings sharedSettings]
 
@@ -85,6 +92,7 @@ CGFloat CVScaledFontSize(UIFontTextStyle textStyle);
 
 
 // misc
+@property (nonatomic, assign) CVMapApp                defaultMapApp;
 @property (nonatomic, assign) int                     defaultDuration;
 @property (nonatomic, assign) CVLocalNotificationType badgeOrAlerts;
 @property (nonatomic, strong) NSString                *customAlertSoundFileName;

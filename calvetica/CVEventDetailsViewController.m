@@ -10,6 +10,7 @@
 #import "UIApplication+Utilities.h"
 #import "CVActionBlockButton.h"
 #import "CVTimeZoneViewController.h"
+#import "CVMapLauncher.h"
 
 
 
@@ -54,6 +55,9 @@
 
 @property (nonatomic, strong) UIView                       *eventVideoLinkBlock;
 @property (nonatomic, strong) CVRoundedButton              *videoLinkButton;
+
+@property (nonatomic, strong) CVRoundedButton              *openInMapsButton;
+@property (nonatomic, strong) CVRoundedButton              *routeButton;
 @end
 
 
@@ -61,6 +65,7 @@
 
 @implementation CVEventDetailsViewController {
     CGFloat _savedScrollOffset;
+    CGFloat _locationBlockBaseHeight;
 }
 
 
@@ -203,6 +208,24 @@
         [self.eventVideoLinkBlock addSubview:self.videoLinkButton];
 
         [self.contentScrollView addSubview:self.eventVideoLinkBlock];
+    }
+
+    // map buttons in the location block
+    {
+        _locationBlockBaseHeight = self.eventLocationBlock.bounds.size.height;
+
+        CGFloat blockWidth = self.eventLocationBlock.bounds.size.width;
+        CGFloat buttonWidth = (blockWidth - 30 - 10) / 2; // 15pt outer padding, 10pt between
+
+        self.openInMapsButton = [[CVRoundedButton alloc] initWithFrame:CGRectMake(15, _locationBlockBaseHeight - 10, buttonWidth, 30)];
+        [self.openInMapsButton setTitle:NSLocalizedString(@"Open in Maps", @"Button that shows the event location in the default map app.") forState:UIControlStateNormal];
+        [self.openInMapsButton addTarget:self action:@selector(openInMapsButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.eventLocationBlock addSubview:self.openInMapsButton];
+
+        self.routeButton = [[CVRoundedButton alloc] initWithFrame:CGRectMake(15 + buttonWidth + 10, _locationBlockBaseHeight - 10, buttonWidth, 30)];
+        [self.routeButton setTitle:NSLocalizedString(@"Route", @"Button that starts directions to the event location in the default map app.") forState:UIControlStateNormal];
+        [self.routeButton addTarget:self action:@selector(routeButtonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.eventLocationBlock addSubview:self.routeButton];
     }
 
 	[self adjustLayoutOfBlocks];
@@ -439,8 +462,14 @@
                 _eventLocationBlock.hidden = YES;
             }
             else {
+                // The map buttons only show (and take up space) when the event has a location.
+                BOOL hasLocation = [self.event.location length] > 0;
+                self.openInMapsButton.hidden = !hasLocation;
+                self.routeButton.hidden = !hasLocation;
+
                 CGRect f = _eventLocationBlock.frame;
                 f.origin.y = currentY;
+                f.size.height = _locationBlockBaseHeight + (hasLocation ? 30 : 0);
                 currentY += f.size.height;
                 [_eventLocationBlock setFrame:f];
             }
@@ -662,6 +691,7 @@
 {
     if (result == CVEventDetailsLocationResultSaved) {
         _eventLocationTextView.text = self.event.location;
+        [self adjustLayoutOfBlocks];
     }
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
@@ -850,6 +880,20 @@
 - (void)deleteSliderWasToggled:(id)sender 
 {
     [self.delegate eventDetailsViewController:self didFinishWithResult:CVEventDetailsResultDeleted];
+}
+
+- (void)openInMapsButtonWasTapped:(id)sender
+{
+    if ([self.event.location length] > 0) {
+        [CVMapLauncher openLocation:self.event.location];
+    }
+}
+
+- (void)routeButtonWasTapped:(id)sender
+{
+    if ([self.event.location length] > 0) {
+        [CVMapLauncher routeToLocation:self.event.location];
+    }
 }
 
 - (void)videoLinkButtonWasTapped:(id)sender

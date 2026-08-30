@@ -59,6 +59,7 @@ CGFloat CVScaledFontSize(UIFontTextStyle textStyle)
 @dynamic defaultAllDayEventAlarms;
 @dynamic defaultReminderAlarms;
 @dynamic defaultAllDayReminderAlarms;
+@dynamic defaultMapApp;
 @dynamic defaultDuration;
 @dynamic timeZoneName;
 @dynamic weekStartsOnWeekday;
@@ -91,6 +92,7 @@ CGFloat CVScaledFontSize(UIFontTextStyle textStyle)
              @"defaultAllDayEventAlarms"            : @[@(MTDateConstantSecondsInHour * 6)],
              @"defaultEventReminder"                : @[@(MTDateConstantSecondsInMinute * 15)],
              @"defaultAllDayReminderAlarms"         : @[@(MTDateConstantSecondsInHour * 6)],
+             @"defaultMapApp"                       : @(CVMapAppApple),
              @"defaultDuration"                     : @(MTDateConstantSecondsInHour),
              @"weekStartsOnWeekday"                 : @(1),
              @"badgeOrAlerts"                       : @(CVLocalNotificationTypeBadgeAndAlerts),

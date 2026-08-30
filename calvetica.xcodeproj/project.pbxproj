@@ -271,6 +271,8 @@
 		C2C9945C1374AA36005A4EB1 /* CVTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C9945B1374AA35005A4EB1 /* CVTextView.m */; };
 		C2C9945E1374EBCF005A4EB1 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2C9945D1374EBCD005A4EB1 /* Entitlements.plist */; };
 		C2CA998518286BEB008866C6 /* CVSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA998418286BEB008866C6 /* CVSharedSettings.m */; };
+		AA0000012MAPS000000000003 /* CVMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000012MAPS000000000002 /* CVMapLauncher.m */; };
+		AA0000012MAPS000000000006 /* CVMapAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0000012MAPS000000000005 /* CVMapAppViewController.m */; };
 		C2CE1AD4180C67510026C797 /* UITableViewCell+Nibs.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CE1AD3180C67510026C797 /* UITableViewCell+Nibs.m */; };
 		C2D107EC1522184B002802EC /* CVJumpToDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D759DA152210F100B04B4D /* CVJumpToDayButton.m */; };
 		C2D107EE15221851002802EC /* CVJumpToDayButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D759DB152210F100B04B4D /* CVJumpToDayButton.xib */; };
@@ -817,6 +819,10 @@
 		C2E3A1BC16113EF700F00FB8 /* EventDefaultDurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDefaultDurationViewController.m; sourceTree = "<group>"; };
 		C2E3A1BF161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVBadgeAndAlertsSettingViewController.h; sourceTree = "<group>"; };
 		C2E3A1C0161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVBadgeAndAlertsSettingViewController.m; sourceTree = "<group>"; };
+		AA0000012MAPS000000000001 /* CVMapLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMapLauncher.h; sourceTree = "<group>"; };
+		AA0000012MAPS000000000002 /* CVMapLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMapLauncher.m; sourceTree = "<group>"; };
+		AA0000012MAPS000000000004 /* CVMapAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVMapAppViewController.h; sourceTree = "<group>"; };
+		AA0000012MAPS000000000005 /* CVMapAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVMapAppViewController.m; sourceTree = "<group>"; };
 		C2E6A5B417EE1DE4006D035A /* CVAddButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVAddButton.h; sourceTree = "<group>"; };
 		C2E6A5B517EE1DE4006D035A /* CVAddButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVAddButton.m; sourceTree = "<group>"; };
 		C2E6A5B717EE4DD0006D035A /* CVHamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVHamburgerButton.h; sourceTree = "<group>"; };
@@ -2091,6 +2097,7 @@
 				C2E3A1B81610EF8400F00FB8 /* Default All-day Event Alarms */,
 				C2E3A1BA16113EC800F00FB8 /* Default Duration */,
 				C2E3A1BE1611428E00F00FB8 /* Icon Badge and Alerts */,
+				AA0000012MAPS000000000007 /* Default Map App */,
 				9BEFC7CC13BB7EC8001CB080 /* Alert Sound */,
 				C2D4D33B162CC69C002484A6 /* Start Week On */,
 				9B27D79213AD58E70084104C /* Day Start Hour */,
@@ -2438,6 +2445,8 @@
 				C21AD4751810B2F70061B7C7 /* CVEventStoreNotification.m */,
 				C2CA998318286BEB008866C6 /* CVSharedSettings.h */,
 				C2CA998418286BEB008866C6 /* CVSharedSettings.m */,
+				AA0000012MAPS000000000001 /* CVMapLauncher.h */,
+				AA0000012MAPS000000000002 /* CVMapLauncher.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2495,6 +2504,15 @@
 				C2E3A1C0161142D400F00FB8 /* CVBadgeAndAlertsSettingViewController.m */,
 			);
 			name = "Icon Badge and Alerts";
+			sourceTree = "<group>";
+		};
+		AA0000012MAPS000000000007 /* Default Map App */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000012MAPS000000000004 /* CVMapAppViewController.h */,
+				AA0000012MAPS000000000005 /* CVMapAppViewController.m */,
+			);
+			name = "Default Map App";
 			sourceTree = "<group>";
 		};
 		C2E59EB91524F7310052E63F /* Week Table View Cell Drawing */ = {
@@ -2944,6 +2962,8 @@
 				C2FCCA5413A03EC600214648 /* CVToggleButton.m in Sources */,
 				C2DA059818242EFF00C08CBD /* NSObject+Description.m in Sources */,
 				C2CA998518286BEB008866C6 /* CVSharedSettings.m in Sources */,
+				AA0000012MAPS000000000003 /* CVMapLauncher.m in Sources */,
+				AA0000012MAPS000000000006 /* CVMapAppViewController.m in Sources */,
 				C2FCCA5913A04E1000214648 /* CVTextButton.m in Sources */,
 				9BFFA1C313A1F2BF0012112E /* UITableView+Utilities.m in Sources */,
 				C2AED95413A3B8870012ADE1 /* CVNumericKeyPadViewController.m in Sources */,
