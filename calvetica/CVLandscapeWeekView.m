@@ -57,13 +57,26 @@
 
 #pragma mark - Methods
 
-- (void)scrollToDate:(NSDate *)date animated:(BOOL)animated 
+- (void)scrollToDate:(NSDate *)date animated:(BOOL)animated
 {
-    NSDate *newDate = self.startDate;
-    NSInteger daysSinceStart = [date mt_daysSinceDate:newDate];
-    
+    if (!date) return;
+
+    NSInteger daysSinceStart = [date mt_daysSinceDate:self.startDate];
+    NSInteger totalDays = [self numberOfSectionsInTableView:self.weeksTable]
+                        * [self tableView:self.weeksTable numberOfRowsInSection:0];
+
+    // The table covers a fixed window of days after startDate. A date outside
+    // that window (jumping years away) would produce an invalid index path and
+    // crash, so slide the window to the date instead.
+    if (daysSinceStart < 0 || daysSinceStart >= totalDays) {
+        self.startDate = date; // the setter re-anchors 100 weeks earlier
+        [self.weeksTable reloadData];
+        daysSinceStart = [date mt_daysSinceDate:self.startDate];
+        if (daysSinceStart < 0 || daysSinceStart >= totalDays) return;
+    }
+
     NSInteger row = daysSinceStart % 7;
-    NSInteger section = floor(daysSinceStart / 7);
+    NSInteger section = daysSinceStart / 7;
     [self.weeksTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]
                            atScrollPosition:UITableViewScrollPositionTop
                                    animated:animated];
@@ -121,9 +134,49 @@
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     userHasBegunInteracting = YES;
+}
+
+// The table is a fixed window of weeks (one section per week), so on its own it
+// has hard edges a couple of years either side of startDate. To make scrolling
+// feel infinite, slide the window back to the middle whenever a user-driven
+// scroll approaches an edge: shifting startDate and contentOffset by the same
+// number of sections keeps every visible date at the same position on screen.
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // Only for user-driven scrolling — recentering during an animated
+    // scrollToDate: would change the date its target offset lands on.
+    if (scrollView == self.weeksTable && (scrollView.isDragging || scrollView.isDecelerating)) {
+        [self recenterWeeksTableIfNeeded];
+    }
+}
+
+- (void)recenterWeeksTableIfNeeded
+{
+    UITableView *tableView = self.weeksTable;
+    if (!self.startDate) return;
+    CGFloat sectionHeight = [tableView rectForSection:0].size.height;
+    if (sectionHeight <= 0) return;
+
+    NSInteger totalSections = [self numberOfSectionsInTableView:tableView];
+    NSInteger visibleSections = ceil(tableView.bounds.size.height / sectionHeight);
+    NSInteger topSection = floor(tableView.contentOffset.y / sectionHeight);
+    NSInteger margin = 20;
+    if (topSection >= margin && topSection + visibleSections + margin <= totalSections) return;
+
+    NSInteger centeredTopSection = (totalSections - visibleSections) / 2;
+    NSInteger shiftWeeks = topSection - centeredTopSection;
+    if (shiftWeeks == 0) return;
+
+    // Set the ivar directly — the setter re-anchors 100 weeks earlier. The
+    // contentOffset change below makes the table rebind the visible rows
+    // through cellForRowAtIndexPath: on its own.
+    _startDate = [[_startDate mt_dateWeeksAfter:shiftWeeks] mt_startOfCurrentWeek];
+    CGPoint offset = tableView.contentOffset;
+    offset.y -= shiftWeeks * sectionHeight;
+    tableView.contentOffset = offset;
 }
 
 

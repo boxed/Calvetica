@@ -92,26 +92,36 @@
     self.startDate = [[[NSDate date] mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
 }
 
-- (void)reloadRowForDate:(NSDate *)date 
+- (void)reloadRowForDate:(NSDate *)date
 {
     if (!date) return;
-    
+
     NSInteger row = [self rowOfDate:date];
+    if (![self rowIsInTable:row]) return;
     CVWeekTableViewCell *cell = (CVWeekTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [cell reloadData];
 }
 
-- (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position 
+- (void)scrollToRowForDate:(NSDate *)date animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)position
 {
     if (!date) return;
     NSInteger row = [self rowOfDate:date];
+    if (![self rowIsInTable:row]) {
+        // The table covers a fixed window of weeks after startDate. A date
+        // outside that window (jumping/paging years away) would produce an
+        // invalid index path and crash, so slide the window to the date instead.
+        self.startDate = [[date mt_dateWeeksBefore:100] mt_startOfCurrentWeek];
+        row = [self rowOfDate:date];
+        if (![self rowIsInTable:row]) return;
+    }
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
                           atScrollPosition:position
                                   animated:animated];
 }
 
-- (void)scrollToRow:(NSInteger)row animated:(BOOL)animated 
+- (void)scrollToRow:(NSInteger)row animated:(BOOL)animated
 {
+    if (![self rowIsInTable:row]) return;
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
                           atScrollPosition:UITableViewScrollPositionMiddle
                                   animated:animated];
@@ -119,15 +129,14 @@
 
 - (void)scrollToSelectedDay
 {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self rowOfDate:_selectedDate] inSection:0]
-                          atScrollPosition:UITableViewScrollPositionMiddle
-                                  animated:YES];
+    [self scrollToRowForDate:_selectedDate animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)ensureSelectedDayVisible
 {
     if (!_selectedDate) return;
     NSInteger row = [self rowOfDate:_selectedDate];
+    if (![self rowIsInTable:row]) return;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     CGRect rowRect = [self.tableView rectForRowAtIndexPath:indexPath];
     if (CGRectIntersectsRect(rowRect, self.tableView.bounds)) {
@@ -148,6 +157,7 @@
 - (void)reframeRedSelectedDaySquareAnimated:(BOOL)animated
 {
     if (!_selectedDate) return;
+    if (![self rowIsInTable:[self rowOfDate:_selectedDate]]) return;
 
     // only do this if the table view has been added to the screen
     if (self.tableView.window) {
@@ -218,9 +228,55 @@
 
 
 
+#pragma mark - DELEGATE scroll view
+
+// The table is a fixed window of weeks (numberOfRowsInSection:), so on its own
+// it has hard edges roughly two years back and seventeen years forward of
+// startDate. To make scrolling feel infinite, slide the window back to the
+// middle whenever a user-driven scroll approaches an edge: shifting startDate
+// and contentOffset by the same number of rows keeps every visible date at the
+// same position on screen, so the recenter is invisible.
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // Only for user-driven scrolling — recentering during an animated
+    // scrollToRow* would change the date its target offset lands on.
+    if (scrollView.isDragging || scrollView.isDecelerating) {
+        [self recenterIfNeeded];
+    }
+}
+
+- (void)recenterIfNeeded
+{
+    UITableView *tableView = self.tableView;
+    CGFloat rowHeight = tableView.rowHeight;
+    if (rowHeight <= 0 || !self.startDate) return;
+
+    NSInteger totalRows = [self tableView:tableView numberOfRowsInSection:0];
+    NSInteger visibleRows = ceil(tableView.bounds.size.height / rowHeight);
+    NSInteger topRow = floor(tableView.contentOffset.y / rowHeight);
+    NSInteger margin = 50;
+    if (topRow >= margin && topRow + visibleRows + margin <= totalRows) return;
+
+    NSInteger centeredTopRow = (totalRows - visibleRows) / 2;
+    NSInteger shiftWeeks = topRow - centeredTopRow;
+    if (shiftWeeks == 0) return;
+
+    // Set the ivar directly: the setter reloads the whole table, which would
+    // drop every cell's cached events. The contentOffset change below makes the
+    // table rebind the visible rows through cellForRowAtIndexPath: on its own.
+    _startDate = [[_startDate mt_dateWeeksAfter:shiftWeeks] mt_startOfCurrentWeek];
+    CGPoint offset = tableView.contentOffset;
+    offset.y -= shiftWeeks * rowHeight;
+    tableView.contentOffset = offset;
+    [self reframeRedSelectedDaySquareAnimated:NO];
+}
+
+
+
+
 #pragma mark - DELEGATE table view
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CVWeekTableViewCell *c = (CVWeekTableViewCell *)cell;
     [c redraw];
@@ -272,7 +328,7 @@
     }
 }
 
-- (NSDate *)dateOfFirstDayOnRow:(NSUInteger)row
+- (NSDate *)dateOfFirstDayOnRow:(NSInteger)row
 {
     return [[self.startDate mt_dateWeeksAfter:row] mt_startOfCurrentWeek];
 }
@@ -280,6 +336,11 @@
 - (NSInteger)rowOfDate:(NSDate *)date
 {
     return [date mt_weeksSinceDate:self.startDate];
+}
+
+- (BOOL)rowIsInTable:(NSInteger)row
+{
+    return row >= 0 && row < [self tableView:self.tableView numberOfRowsInSection:0];
 }
 
 - (NSInteger)columnOfDate:(NSDate *)date
@@ -292,6 +353,7 @@
 - (CGRect)rectOfDayButtonInTableView:(UITableView *)tableView forDate:(NSDate *)date
 {
     NSInteger row = [self rowOfDate:date];
+    if (![self rowIsInTable:row]) return CGRectZero;
     NSInteger column = [self columnOfDate:date];
 
     // Get the actual rect for this row from the table view

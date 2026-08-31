@@ -67,14 +67,14 @@ static const CGFloat kYearMonthGap = 10;
     _date = newDate;
     
 	NSInteger row = [self tableIndexFromYear:[self.date mt_year]];
-	
-	// check if row is valid
-    if ([_yearTableView numberOfRowsInSection:0] < row || row < 0) return;
-	
-    // select year row
-    [_yearTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
-                                animated:NO
-                          scrollPosition:UITableViewScrollPositionMiddle];
+
+    // select year row (skip when the year falls outside the table, but keep
+    // updating the rest of the dialog so the date and the UI stay in sync)
+    if (row >= 0 && row < [_yearTableView numberOfRowsInSection:0]) {
+        [_yearTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]
+                                    animated:NO
+                              scrollPosition:UITableViewScrollPositionMiddle];
+    }
     
     
     // select month button
