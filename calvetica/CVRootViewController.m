@@ -1640,7 +1640,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setupRootTableViewController
 {
-    self.rootTableMode = PREFS.localRootTableViewMode ?: CVRootTableViewModeAgenda;
+    self.rootTableMode = PREFS.localRootTableViewMode;
     [self.rootTableView reloadData];
 }
 
