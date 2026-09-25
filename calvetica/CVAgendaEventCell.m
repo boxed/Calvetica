@@ -162,6 +162,29 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
     }
 }
 
+static CGFloat const kTitleTopPadding = 3;
+
++ (CGFloat)titleXForFontScale:(CGFloat)s
+{
+    CGFloat timeX       = 14;
+    CGFloat timeW       = 80 * s;
+    CGFloat dotMargin   = 6;
+    CGFloat dotSize     = 7 * s;
+    CGFloat titleMargin = 5;
+    return timeX + timeW + dotMargin + dotSize + titleMargin;
+}
+
++ (CGFloat)heightForTitle:(NSString *)title width:(CGFloat)width
+{
+    UIFont *font = [[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote] fontWithSize:CVScaledFontSize(UIFontTextStyleFootnote)];
+    CGFloat titleW = width - [self titleXForFontScale:CVFontScale()];
+    CGFloat textH = [title ?: @"" boundingRectWithSize:CGSizeMake(titleW, CGFLOAT_MAX)
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{ NSFontAttributeName : font }
+                                               context:NULL].size.height;
+    return ceil(textH) + kTitleTopPadding * 2;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -174,18 +197,22 @@ static NSString * const kCellIdentifier = @"CVAgendaEventCell";
     CGFloat timeW       = 80 * s;
     CGFloat dotMargin   = 6;
     CGFloat dotSize     = 7 * s;
-    CGFloat titleMargin = 5;
 
     CGFloat dotX   = timeX + timeW + dotMargin;
-    CGFloat titleX = dotX + dotSize + titleMargin;
+    CGFloat titleX = [CVAgendaEventCell titleXForFontScale:s];
 
     // Align time label and dot with the first line of the title
     CGFloat lineH = self.calendarItemTitleLabel.font.lineHeight;
-    CGFloat firstLineCenter = lineH / 2 + 3; // 3pt top padding from cell height calc
+    CGFloat firstLineCenter = lineH / 2 + kTitleTopPadding;
 
     _timeLabel.frame = CGRectMake(timeX, firstLineCenter - lineH / 2, timeW, lineH);
     self.coloredDotView.frame = CGRectMake(dotX, firstLineCenter - dotSize / 2, dotSize, dotSize);
-    self.calendarItemTitleLabel.frame = CGRectMake(titleX, 0, w - titleX, h);
+
+    // Pin the title to the top so it stays aligned with the time even if the row is taller than the text
+    CGFloat titleW = w - titleX;
+    CGFloat titleH = [self.calendarItemTitleLabel sizeThatFits:CGSizeMake(titleW, CGFLOAT_MAX)].height;
+    titleH = MIN(titleH, MAX(h - kTitleTopPadding, 0));
+    self.calendarItemTitleLabel.frame = CGRectMake(titleX, kTitleTopPadding, titleW, titleH);
 }
 
 - (void)applyFontScale

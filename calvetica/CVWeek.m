@@ -259,13 +259,7 @@
         return TABLE_ROW_DAY_TITLE_HEIGHT * fontScale;
     }
 
-    UIFont *footnoteFont = [UIFont systemFontOfSize:CVScaledFontSize(UIFontTextStyleFootnote)];
-    CGFloat height = [model.calendarItem.mys_title boundingRectWithSize:CGSizeMake(212, FLT_MAX)
-                                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                             attributes:@{ NSFontAttributeName : footnoteFont }
-                                                                context:NULL].size.height + 6;
-
-	return height;
+    return [CVAgendaEventCell heightForTitle:model.calendarItem.mys_title width:tableView.bounds.size.width];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, strong) CVStrikethroughLabel           *calendarItemTitleLabel;
 
 + (instancetype)cellForTableView:(UITableView *)tableView;
++ (CGFloat)heightForTitle:(nullable NSString *)title width:(CGFloat)width;
 - (void)setCalendarItem:(EKCalendarItem *)newCalendarItem continued:(BOOL)continued allDay:(BOOL)isAllDay;
 - (void)applyFontScale;
 
