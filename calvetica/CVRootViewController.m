@@ -35,6 +35,9 @@
 
 #define NOTCH_HEIGHT_OFFSET 55
 #define WEEKDAY_LABEL_BOTTOM_MARGIN 14
+// iPhones at least this wide in portrait (e.g. an unfolded foldable like the iPhone Duo)
+// get a side-by-side layout: scrolling month view on the left, root table on the right
+#define SPLIT_LAYOUT_MIN_WIDTH 600
 
 
 typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
@@ -85,6 +88,9 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
 @property (nonatomic, weak  ) IBOutlet UILabel                      *redBarYearLabel;
 @property (nonatomic, weak  ) IBOutlet UILabel                      *grayBarWeekdayLabel;
 @property (nonatomic, weak  ) IBOutlet UILabel                      *grayBarDateLabel;
+
+// Split (wide iPhone)
+@property (nonatomic, assign)          BOOL                         weekdayLabelsRepositioned;
 
 // Week number (common to all views)
 @property (nonatomic, strong)          UILabel                      *weekNumberLabel;
@@ -159,6 +165,13 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
             [tableView setContentOffset:CGPointMake(0, newOffsetY) animated:NO];
             [self updateSelectionSquare:NO];
         }
+    }
+    else if ([self usesSplitLayout] != (self.rootTableView.x > 0)) {
+        // the view crossed the split layout width threshold (e.g. a foldable was folded/unfolded)
+        [self updateLayoutAnimated:NO];
+        [self updateMonthScrollEnabled];
+        [self scrollMonthTableViewAnimated:NO];
+        [self updateSelectionSquare:NO];
     }
 }
 
@@ -829,7 +842,7 @@ typedef NS_ENUM(NSUInteger, CVRootMonthViewMoveDirection) {
     [self reloadRootTableViewWithCompletion:^{
         [self scrollRootTableViewAnimated:YES];
     }];
-    if (!PAD) {
+    if (!PAD && ![self usesSplitLayout]) {
         if (monthChanged) {
             [self updateLayoutAnimated:YES];
         }
@@ -1417,9 +1430,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)setupDefaults
 {
     // if the view is not scrollable, lock it
-    if (!PAD && !PREFS.iPhoneScrollableMonthView) {
-        self.monthTableViewController.tableView.scrollEnabled = NO;
-    }
+    [self updateMonthScrollEnabled];
 
     // set todays day, used for reference when coming out of background
     self.todaysDate     = [[NSDate date] mt_startOfCurrentDay];;
@@ -1655,7 +1666,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     if (PAD) {
         [self.monthTableViewController updateRowHeight];
     }
+    else if ([self usesSplitLayout]) {
+        [self layoutSplitColumns];
+    }
     else {
+        [self layoutFullWidthColumns];
+
         // adjust layout
         NSInteger numberOfRows = [self.selectedDate numberOfCalendarRowsInCurrentMonth];
         CGFloat h = 40.0f;
@@ -1694,6 +1710,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)moveMonthView:(CVRootMonthViewMoveDirection)direction animated:(BOOL)animated
 {
+    // the month view always fills the left column in the split layout
+    if ([self usesSplitLayout]) return;
+
 	self.monthViewPushedUpDirection = direction;
 
 	NSInteger numberOfRows = [self.selectedDate numberOfCalendarRowsInCurrentMonth];
@@ -1743,6 +1762,67 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 
 
+
+#pragma mark (split, wide iPhone)
+
+- (BOOL)usesSplitLayout
+{
+    return !PAD && !IS_MAC && self.view.bounds.size.width >= SPLIT_LAYOUT_MIN_WIDTH;
+}
+
+- (void)updateMonthScrollEnabled
+{
+    self.monthTableViewController.tableView.scrollEnabled = (PAD ||
+                                                             PREFS.iPhoneScrollableMonthView ||
+                                                             [self usesSplitLayout]);
+}
+
+// Left column: weekday titles, red bar and a month view tall enough to show several months.
+// Right column: the root table (agenda/week/day).
+- (void)layoutSplitColumns
+{
+    CGFloat width       = self.view.bounds.size.width;
+    CGFloat height      = self.view.bounds.size.height;
+    CGFloat leftWidth   = floor(width / 2.0);
+    CGFloat top         = self.weekdayTitleBar.y + self.weekdayTitleBar.height;
+
+    self.monthViewPushedUpDirection = CVRootMonthViewMoveDirectionDown;
+
+    self.weekdayTitleBar.frame          = CGRectMake(0, self.weekdayTitleBar.y, width, self.weekdayTitleBar.height);
+    self.redBar.frame                   = CGRectMake(0, top, self.redBar.width, height - top);
+    self.monthTableViewContainer.frame  = CGRectMake(self.redBar.width - 1, top, leftWidth - self.redBar.width + 1, height - top);
+    self.rootTableView.frame            = CGRectMake(leftWidth + 1, top, width - leftWidth - 1, height - top);
+
+    [self positionWeekdayTitleLabels];
+    self.weekdayLabelsRepositioned = YES;
+}
+
+- (void)layoutFullWidthColumns
+{
+    CGFloat width = self.view.bounds.size.width;
+
+    self.weekdayTitleBar.frame          = CGRectMake(0, self.weekdayTitleBar.y, width, self.weekdayTitleBar.height);
+    self.redBar.x                       = 0;
+    self.monthTableViewContainer.x      = self.redBar.width - 1;
+    self.monthTableViewContainer.width  = width - self.monthTableViewContainer.x;
+    self.rootTableView.x                = 0;
+    self.rootTableView.width            = width;
+
+    // the storyboard positions are only valid until the split layout has moved them
+    if (self.weekdayLabelsRepositioned) {
+        [self positionWeekdayTitleLabels];
+    }
+}
+
+- (void)positionWeekdayTitleLabels
+{
+    CGRect month        = self.monthTableViewContainer.frame;
+    CGFloat columnWidth = month.size.width / 7.0;
+    for (int i = 0; i < 7; i++) {
+        UILabel *l = (UILabel *)[self.weekdayTitleBar viewWithTag:WEEKDAY_TITLES_OFFSET + i];
+        l.center = CGPointMake(month.origin.x + (i + 0.5) * columnWidth, l.center.y);
+    }
+}
 
 #pragma mark (iPad)
 
@@ -1862,7 +1942,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                            scrollPosition:UITableViewScrollPositionTop];
     }
     else {
-        if (self.monthViewPushedUpDirection == CVRootMonthViewMoveDirectionUp) {
+        if (self.monthViewPushedUpDirection == CVRootMonthViewMoveDirectionUp && ![self usesSplitLayout]) {
             [self.monthTableViewController scrollToRowForDate:self.selectedDate
                                                      animated:animated
                                                scrollPosition:UITableViewScrollPositionTop];
@@ -1914,12 +1994,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
 
     if ([changedSettings containsObject:@"iPhoneScrollableMonthView"]) {
-        if (PREFS.iPhoneScrollableMonthView && !PAD) {
-            self.monthTableViewController.tableView.scrollEnabled = YES;
-        }
-        else {
-            self.monthTableViewController.tableView.scrollEnabled = NO;
-        }
+        [self updateMonthScrollEnabled];
     }
 
     if ([changedSettings containsObject:@"showDurationOnReadOnlyEvents"]) {
