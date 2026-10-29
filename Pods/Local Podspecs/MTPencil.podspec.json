@@ -28,8 +28,6 @@
   "frameworks": "CoreGraphics",
   "requires_arc": true,
   "dependencies": {
-    "MTGeometry": [
-
-    ]
+    "MTGeometry": []
   }
 }

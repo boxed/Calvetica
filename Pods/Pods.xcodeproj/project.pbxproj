@@ -3,166 +3,166 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0291EE52DB1BBB45CB3039BB725C3DAB /* NSDate+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B520092CBC253ED0CB5D20B472B62E /* NSDate+MTDates.m */; };
-		02BE73BE17C7D02673752538689EE48C /* FrameAccessor-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 095440708D9099C7E45483D067B23AD2 /* FrameAccessor-dummy.m */; };
-		045893603DBA503419ED214977971499 /* MTq.h in Headers */ = {isa = PBXBuildFile; fileRef = 565DAFA7D57045302371EE57A5861A09 /* MTq.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		08F560D4ADCA95288D78E232E2F25F74 /* MYSClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 89229FBD9788B085227D312D528B869A /* MYSClass.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0B17A456E2996FCFE897F98AF8A7970D /* Pods-calvetica-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 942464A1F13C3819E4DCEF4F5A37285B /* Pods-calvetica-dummy.m */; };
-		0B63161DA5A21D5D24E220371C3D4E34 /* MTPencilStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 457C7CD124CED629D8B35B5C0E85E7F9 /* MTPencilStep.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0D048617DB81CD58A43BB009AB063EC8 /* MYSProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = DA3B5DE476006BD5EF7D4093E624A203 /* MYSProperty.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0D83DFCF9FDC63E76F104246033DABCD /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341B4A8BF3189C84DA88FF61A770C66 /* ScrollViewFrameAccessor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		0D8E85B52DBBDEDFA91EBD54CD251099 /* UIView+MTAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274EDCAC263A834250630BC16199C10 /* UIView+MTAnimation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		10D696C452BDECCB7E4C57560607F90D /* ScrollViewFrameAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF77A545ADC0A61F537F90E2A2635B3 /* ScrollViewFrameAccessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		11931B34D3D58D760EA3D97236B2CE14 /* MYSType.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DE54072AFA29C392A36F370A7CBA5 /* MYSType.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		12169507F478F429410808DEDD208CA1 /* FrameAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6916C0CA81117D3EC02482C11B55F3 /* FrameAccessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		151AF0189135EAB51A63C8D52931FD09 /* CTBlockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FAE69889ECF261D4BBAC653B4DF0A6 /* CTBlockDescription.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		19F1BBABDF2214146336E03AE74A7ED3 /* MTMigration.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED9C0B36F868FD49EC8011B247F3476 /* MTMigration.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2A68AE07750185D800707C35DA81E7D5 /* NSDate+MTDates.h in Headers */ = {isa = PBXBuildFile; fileRef = 7294922EAF4B1C5AA41537409A8A0901 /* NSDate+MTDates.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2D319687F7B328421F9CAB3BB4038757 /* MYSCategoryProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = D448501578C774B6D84F1F914BABDFF3 /* MYSCategoryProperties.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2FBF60775A0DC984A8CB6050B3A7C4AD /* MTGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A30EDCF700625D35175B1F838891F2E /* MTGeometry.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		355FDE5E51BBE154A318E6DC8BE5E1C5 /* ViewFrameAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 984677A8B73C1E994FBA629BE7BA043E /* ViewFrameAccessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3F1AA1044D434A67C5785E049932A7C0 /* MYSMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FE25E82C503A99709F32FCC15A422 /* MYSMethod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		430D07B17016CED4B0DC9A6E24232150 /* MYSSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F6D388CA421C8C95753329AB38BC8F /* MYSSharedSettings.m */; };
-		46544C7E8B5CDA18BBA234FF3CFB23B8 /* MYSCategoryProperties-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE687D17432B50CBA9F5A3C32C2A9D7 /* MYSCategoryProperties-dummy.m */; };
-		46C9D9CD08D8CD3D938C80BCC69F36AC /* MTMigration-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B978F86E92B052B31368DBABD3FC73 /* MTMigration-dummy.m */; };
-		52A7125DDE99F8E8C215D3D71555B32C /* MTDates-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8D4578144D7A497A4AC774990E174 /* MTDates-dummy.m */; };
-		530A6AC999CF34985F161C35B393B85E /* MYSType.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EF9871E49AB1F6E940DF9D7B20C2E68 /* MYSType.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		532A8D85F04F4A1AF1880E49D97122A6 /* MYSSharedSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = A8620DE55317DCE5B0B3657D9C619544 /* MYSSharedSettings.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		53A52E66CBC204BC76FB414408A719C2 /* MTColorDistance-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CC04849CA23044812FB96594CB25C /* MTColorDistance-dummy.m */; };
-		587EE7492A59D8B724550F2ED37B3225 /* MTq.m in Sources */ = {isa = PBXBuildFile; fileRef = B924881A7616E9D88B39269521EA1A21 /* MTq.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		5DC53A70FB33AEBA745024BB36B5B174 /* UIColor+Distance.h in Headers */ = {isa = PBXBuildFile; fileRef = EC137115A1696972F6580C41C66DB9FD /* UIColor+Distance.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5FF8C26F40534E2B2A54A2BE76CC80C8 /* MTPencilStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D5EDA5B6E5CE57620460F8BE142FD3 /* MTPencilStep.m */; };
-		6199E0EB10AE0A24DF69D3DBBE32F094 /* MTPencil.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF4AF9E2B440C754992DE06AF6EAC7 /* MTPencil.m */; };
-		6236750003B14E25B4A6144A1EDD25FB /* MYSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = B452443ABF3D3505DDCFC6FCACCDC7CB /* MYSTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6667E74C816DD0A64A17BA7FBE288E3A /* MTAnimationTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CB187ABA93591599222AE09721D9C74B /* MTAnimationTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		68AD38C0FF9FDBEC17F410E6F5E1A04B /* MTTimingFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 55C461C0E576AB8B0DEA2183986A160D /* MTTimingFunctions.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		69D7B5DFDDE240F53BF0A8A1A71FDE85 /* NSDateComponents+MTDates.h in Headers */ = {isa = PBXBuildFile; fileRef = 28136C91EEFFF2DA333196867BAC6CB2 /* NSDateComponents+MTDates.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		709B48A661A51C6BCFDF06D183342DE9 /* CTBlockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B586EAB79C4B8BDFA975F6F56596C8A /* CTBlockDescription.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		70D1EE9AFA4C89C52B83F203D447E133 /* MTAnimation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D260CF98BBB2099F1465818549D10127 /* MTAnimation-dummy.m */; };
-		79822FC4148A012FBD7DA40CD6E9F094 /* MYSProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EE946FE63988771E08C0F460D30E37E1 /* MYSProperty.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		818C26B7E182443C38E84F8E34292725 /* MTPencilStep_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 426EB11BD530AE71B8EA0098679FCA98 /* MTPencilStep_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		874FD9F6EE0C0782DF0B19B24FBD4191 /* MTPencilEasingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 262A185222330C6576C671A2A05524C3 /* MTPencilEasingFunctions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		88D677897D7F9E3F8A293293CCF81000 /* MYSRuntime-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 137585E9D68AA728A4FEBE545925EF43 /* MYSRuntime-dummy.m */; };
-		8BD93047E5D99F3A5904D26FACE86D7F /* MTTimingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5440ABF84B08DADC4085906E08798055 /* MTTimingFunctions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8CE893CA03E4815F43ABCDA5728AE18E /* MTPencil.h in Headers */ = {isa = PBXBuildFile; fileRef = 18264B612C64D6BFB51ABA5AC120C983 /* MTPencil.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8D631C0B5351990FC171C7B7DAE59E94 /* MTMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DA05A9C6D588D4B6271D59CCDCDFFB /* MTMigration.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8DB11693D2AF4CC396FB1A554C5178A9 /* MYSIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 825BD435DDE9B669E819AF7FF46C80B2 /* MYSIvar.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8FC120C0194DD1B3EE0D338188E3BB64 /* MTMatrixInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = F848B7F1FB425BF5B6B38DA758DBB777 /* MTMatrixInterpolation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		917292E7008F45F9D0107F8F876FC122 /* MYSSharedSettings-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 907CC12BFC29F6752D1A46743934E48A /* MYSSharedSettings-dummy.m */; };
-		A5B490CD8DB5AE60BC8A318326EA835E /* MTQueue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A81126214C4D4BE6452619C044F8DBAF /* MTQueue-dummy.m */; };
-		B90188B425FA4693AF4F162F133034C4 /* MTGeometry.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E901D7B0E2EBFA2F9263D367F6597A /* MTGeometry.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		BD73862FCC4250289129175BA0386301 /* MYSClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AFD94B7EA6F1F27687C0D4FFE6380A /* MYSClass.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C08902752DC4F2A408BA5519E1ABD310 /* MYSCategoryProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A69ED9AA57EB346D4CE0FB11B1EE0 /* MYSCategoryProperties.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C14AE320736EAA03212E52890CEFCD1C /* MTGeometry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A4A6FB3577524FA1A46B4FA2A548CE /* MTGeometry-dummy.m */; };
-		C1DA74895A464C6FAD7A19DF0F3A69EE /* MTPencilEasingFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = B61D1E3110E4C172870156578F1FE400 /* MTPencilEasingFunctions.c */; };
-		C99A4219D08E12FBD071E895EFD1F9D0 /* MYSIvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AE1F27F2DE04B798E5916AE5194F7F /* MYSIvar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D6A7477E2355E082A4FFC5B22F5795A1 /* MYSMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 841A5A13FB7EE2FC445A0A678A186ACB /* MYSMethod.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DB967D64D6F20B4DC3437F45D811433F /* MTMatrixInterpolation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DFD0CB63E8FD24ED8D801BADD58BB47 /* MTMatrixInterpolation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E193E002849999390553AA8634FDADD8 /* UIView+MTAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 58422F1145DEB80502DFD67E5C5A4C13 /* UIView+MTAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E6E0C16B8F413D21FC02C45B47AD05B9 /* NSDateComponents+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA21D7201443EE21C745A38793ABF3C /* NSDateComponents+MTDates.m */; };
-		ED7ED9C7203DF43BD22FD32C96693CFF /* MTPencil-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECDB63253748984E55261745ECEFB5E /* MTPencil-dummy.m */; };
-		FAF3E3E43F3A8C5882B263DFE360EB22 /* MYSRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 961375D68F0B9B7661AE52CEF5238636 /* MYSRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FC8A54C9C4CB2E7C069645B44B14EB9C /* UIColor+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F3FC5E472AA8D4C11535C923D161E /* UIColor+Distance.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		FD8FC701B5F2BF1E74C684A18881D60E /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9543704AD61FC3ADA945FECF3B93D073 /* ViewFrameAccessor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		016CE4F63A974257C8C904237AA08273 /* NSDate+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B520092CBC253ED0CB5D20B472B62E /* NSDate+MTDates.m */; };
+		0E622BCD3E0082FBC4F18D7E66AEA97C /* UIColor+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F3FC5E472AA8D4C11535C923D161E /* UIColor+Distance.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0F4487464139602EE151BB445212596E /* Pods-calvetica-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 942464A1F13C3819E4DCEF4F5A37285B /* Pods-calvetica-dummy.m */; };
+		140515548DDC87882A1199205CA7C1FC /* MTPencilStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 457C7CD124CED629D8B35B5C0E85E7F9 /* MTPencilStep.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2429A497AC2A3F36AFE6B7B5AC9E7401 /* MTDates-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8D4578144D7A497A4AC774990E174 /* MTDates-dummy.m */; };
+		253D14D72F8212E7D08341F47F6B5E52 /* MYSSharedSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = A8620DE55317DCE5B0B3657D9C619544 /* MYSSharedSettings.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2D8252DB72D0C321C91F8893905DB9EE /* MTGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A30EDCF700625D35175B1F838891F2E /* MTGeometry.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2ECF1ED80DA05C88BF1C86202DDE66C9 /* MTAnimationTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CB187ABA93591599222AE09721D9C74B /* MTAnimationTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		430AFDBECCAB75ABFD26D4B815044FBB /* ViewFrameAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 984677A8B73C1E994FBA629BE7BA043E /* ViewFrameAccessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4B8656AD068C2F4946E4129A365E83FD /* NSDateComponents+MTDates.h in Headers */ = {isa = PBXBuildFile; fileRef = 28136C91EEFFF2DA333196867BAC6CB2 /* NSDateComponents+MTDates.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4BA1BB9500C5A367CA9B40FCA8AF2957 /* MYSType.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EF9871E49AB1F6E940DF9D7B20C2E68 /* MYSType.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4C854826230FE6B90C146D31674C2CF3 /* MTPencilEasingFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = B61D1E3110E4C172870156578F1FE400 /* MTPencilEasingFunctions.c */; };
+		4F7ACCA99FB01F95B648DD707AB4B0F1 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341B4A8BF3189C84DA88FF61A770C66 /* ScrollViewFrameAccessor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		50875E44A8988944680F5E0D7D78E39E /* MTMigration.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED9C0B36F868FD49EC8011B247F3476 /* MTMigration.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		56B6508C5896032B9B6A0E01AC5F96E5 /* FrameAccessor-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 095440708D9099C7E45483D067B23AD2 /* FrameAccessor-dummy.m */; };
+		619701BBDE06DAA50B68688B5D30BB70 /* MYSClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 89229FBD9788B085227D312D528B869A /* MYSClass.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		64242362BDD56FF25EB691E15229926B /* MYSProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EE946FE63988771E08C0F460D30E37E1 /* MYSProperty.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		64D5F4B6EAD7173EC29F0F1AC67B9120 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9543704AD61FC3ADA945FECF3B93D073 /* ViewFrameAccessor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6F6ADCEEF49C5C0C22003B46EBE1A479 /* MYSCategoryProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A69ED9AA57EB346D4CE0FB11B1EE0 /* MYSCategoryProperties.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		74565B960BB4F13341AC65019B8FCEA2 /* FrameAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6916C0CA81117D3EC02482C11B55F3 /* FrameAccessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7AB86556A9FD793A54271F57B645CB8E /* MTGeometry.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E901D7B0E2EBFA2F9263D367F6597A /* MTGeometry.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7E1B7052C6169DFAA98301913FB05813 /* MTGeometry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A4A6FB3577524FA1A46B4FA2A548CE /* MTGeometry-dummy.m */; };
+		81C1C0B78F3F18D90AC3AF0A2050FCF6 /* MYSMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 841A5A13FB7EE2FC445A0A678A186ACB /* MYSMethod.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		83B2742597DAA32E9DA029B3A13E52D8 /* NSDateComponents+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA21D7201443EE21C745A38793ABF3C /* NSDateComponents+MTDates.m */; };
+		83E7B48EBAF55089CDD2B94EF304EC81 /* MYSIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 825BD435DDE9B669E819AF7FF46C80B2 /* MYSIvar.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		846DC6B6082F2457D5276D9969AF04AF /* CTBlockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FAE69889ECF261D4BBAC653B4DF0A6 /* CTBlockDescription.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		857907B4A8DD4E7A673787981F5BA7C7 /* UIColor+Distance.h in Headers */ = {isa = PBXBuildFile; fileRef = EC137115A1696972F6580C41C66DB9FD /* UIColor+Distance.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8E065A7DA10EA2E46FE70799F1B634FA /* CTBlockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B586EAB79C4B8BDFA975F6F56596C8A /* CTBlockDescription.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8EF07F5E20466734BE8FCF0B3B18730F /* UIView+MTAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274EDCAC263A834250630BC16199C10 /* UIView+MTAnimation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9218F69B858E8C3CB637A088147CF906 /* NSDate+MTDates.h in Headers */ = {isa = PBXBuildFile; fileRef = 7294922EAF4B1C5AA41537409A8A0901 /* NSDate+MTDates.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A5153E560E13E297277E8802C166F9E4 /* MYSClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AFD94B7EA6F1F27687C0D4FFE6380A /* MYSClass.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A66C57D206FFDA10B0A5493F7FDD9305 /* MTPencil.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF4AF9E2B440C754992DE06AF6EAC7 /* MTPencil.m */; };
+		A7F24CFDBD0D1D7E5763FFD992511F0B /* MTColorDistance-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CC04849CA23044812FB96594CB25C /* MTColorDistance-dummy.m */; };
+		AB650603EF23E80866E727C7CA99290F /* MTPencilStep_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 426EB11BD530AE71B8EA0098679FCA98 /* MTPencilStep_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B55EBC7FF6D3C2F7DDC4DBABA623552B /* MYSCategoryProperties-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE687D17432B50CBA9F5A3C32C2A9D7 /* MYSCategoryProperties-dummy.m */; };
+		B6B7B3BC0BEC8374BB851F8D31974CA5 /* MTTimingFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 55C461C0E576AB8B0DEA2183986A160D /* MTTimingFunctions.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B8C6F397FD26E4F34653300BDF6C2A95 /* MTMatrixInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = F848B7F1FB425BF5B6B38DA758DBB777 /* MTMatrixInterpolation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B9EEFE8647FFB012ED3C08424C12444B /* MTMatrixInterpolation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DFD0CB63E8FD24ED8D801BADD58BB47 /* MTMatrixInterpolation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B9FF1E1D5D2598EF5362D7D68CEBBE5A /* MYSCategoryProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = D448501578C774B6D84F1F914BABDFF3 /* MYSCategoryProperties.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BB0BA5E0D79DB9EDC82C3B062C1E3610 /* MYSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = B452443ABF3D3505DDCFC6FCACCDC7CB /* MYSTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BCA57DC0508CFED3AF7F1941016F2504 /* MTTimingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5440ABF84B08DADC4085906E08798055 /* MTTimingFunctions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BF247431822DAAC619D15B87E2DBC11B /* MYSIvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AE1F27F2DE04B798E5916AE5194F7F /* MYSIvar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C3CA3AEA8C4DE784F8FC9A6985E80FA2 /* MTPencil-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECDB63253748984E55261745ECEFB5E /* MTPencil-dummy.m */; };
+		CD1BD6A680C789CDC18511DB94264BB4 /* MYSProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = DA3B5DE476006BD5EF7D4093E624A203 /* MYSProperty.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CD203FE22F453FB93E79B6C58457B38D /* MYSMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FE25E82C503A99709F32FCC15A422 /* MYSMethod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CD27C46209E85E5383B1E1361E842730 /* MTPencilEasingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 262A185222330C6576C671A2A05524C3 /* MTPencilEasingFunctions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CE5C01F464BAEC1625455B9C276529A5 /* MYSRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 961375D68F0B9B7661AE52CEF5238636 /* MYSRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D248976C63C12755A9A86FAB65737FD5 /* MTPencilStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D5EDA5B6E5CE57620460F8BE142FD3 /* MTPencilStep.m */; };
+		D29F40458C7FF7D145FB37D8F3959A14 /* MTPencil.h in Headers */ = {isa = PBXBuildFile; fileRef = 18264B612C64D6BFB51ABA5AC120C983 /* MTPencil.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D87C2C780221E63C72D4E912B56DD607 /* MTMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DA05A9C6D588D4B6271D59CCDCDFFB /* MTMigration.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DA2EEAB9158C2D7026BBC642AD6F12B3 /* MYSType.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DE54072AFA29C392A36F370A7CBA5 /* MYSType.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E0AB341364D25797E178699FD33561EB /* UIView+MTAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 58422F1145DEB80502DFD67E5C5A4C13 /* UIView+MTAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E2BF5104263CD6EB38E86D8831C07527 /* MTq.m in Sources */ = {isa = PBXBuildFile; fileRef = B924881A7616E9D88B39269521EA1A21 /* MTq.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E68A4BF60964D7283F0EAA52903AAF10 /* MTMigration-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B978F86E92B052B31368DBABD3FC73 /* MTMigration-dummy.m */; };
+		EB4E2C6F229F0AA31A83235840BF83B5 /* MTq.h in Headers */ = {isa = PBXBuildFile; fileRef = 565DAFA7D57045302371EE57A5861A09 /* MTq.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EF71BAF6302C8F30F877C193FB82CDF0 /* MYSSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F6D388CA421C8C95753329AB38BC8F /* MYSSharedSettings.m */; };
+		EFDB3F732E1CB60C4441A1FBB6B18DE1 /* ScrollViewFrameAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF77A545ADC0A61F537F90E2A2635B3 /* ScrollViewFrameAccessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F34F96FC77B55F70D72B4E89FCA5F11F /* MYSRuntime-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 137585E9D68AA728A4FEBE545925EF43 /* MYSRuntime-dummy.m */; };
+		F9A83009A13F62D62F0881F21AD28FFF /* MYSSharedSettings-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 907CC12BFC29F6752D1A46743934E48A /* MYSSharedSettings-dummy.m */; };
+		F9ECD9EA12B8134F56795E9990BB5168 /* MTAnimation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D260CF98BBB2099F1465818549D10127 /* MTAnimation-dummy.m */; };
+		FE1CEABEB052E62E800AABE7F6E46F3F /* MTQueue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A81126214C4D4BE6452619C044F8DBAF /* MTQueue-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		03023055A8428C98131ED19B68002761 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B2C16C0FFEE17745DD8B76A6ED8CB44A;
-			remoteInfo = MTGeometry;
-		};
-		03ED551667A9EA83833443FB9E244B73 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFBBA5D17B2C4877EC0A386753317B5C;
-			remoteInfo = MTColorDistance;
-		};
-		060B027200CCB07A2A1FB479A83242E8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B2C16C0FFEE17745DD8B76A6ED8CB44A;
-			remoteInfo = MTGeometry;
-		};
-		2A60E421D47E38256615C7AAF35B43F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A54238D437A783E8B7D6105975DE6ED;
-			remoteInfo = FrameAccessor;
-		};
-		3AF4CFCE971D3064204D70FE0571B422 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A26E2C3F675C4EED20CB7509945AEAE3;
-			remoteInfo = MTMigration;
-		};
-		44470520249163475AEAFA5080BC5184 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1A687F5D6A2F7824165124273F36170F;
-			remoteInfo = MYSRuntime;
-		};
-		44754E0EA7E829D3C98BFB827C31B347 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1A687F5D6A2F7824165124273F36170F;
-			remoteInfo = MYSRuntime;
-		};
-		8B26639F261DB9A0C23FBE4D927A0A66 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7297DE3AD48B9B6B8C8293AC325E3F2B;
-			remoteInfo = MTAnimation;
-		};
-		8EE397AC36EF17EF6D02E5FB31593CF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6DA89656A44FA64E0C44F39316E2CA4B;
-			remoteInfo = MYSSharedSettings;
-		};
-		99DA9C9403D16569B0BFD011393F033F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 935D820D01451D1453C21659114F4389;
-			remoteInfo = MTQueue;
-		};
-		A0BAE006014189164F0B390C8450F7E3 /* PBXContainerItemProxy */ = {
+		06B51859A1FA8B40B8D9A436004875E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9449933C13F773C82CDD00B6F56EC316;
 			remoteInfo = MTDates;
 		};
-		D725B1674BF9710CB847F5DE2EDC0603 /* PBXContainerItemProxy */ = {
+		0FBF0B0567911CEDA374D15541DDEDE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A26E2C3F675C4EED20CB7509945AEAE3;
+			remoteInfo = MTMigration;
+		};
+		2D55282EE205B1DE1DD5EAB76C63D82F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A687F5D6A2F7824165124273F36170F;
 			remoteInfo = MYSRuntime;
 		};
-		E308A1A3710D9292AA003A0A7B4E3944 /* PBXContainerItemProxy */ = {
+		31CC4277E725A50FD9BA6F4E086EC509 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A54238D437A783E8B7D6105975DE6ED;
+			remoteInfo = FrameAccessor;
+		};
+		375C2DA452D954A6547237ADE815DDEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFBBA5D17B2C4877EC0A386753317B5C;
+			remoteInfo = MTColorDistance;
+		};
+		74CDB08C6785EDB1B051C4198EDA6BE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2C16C0FFEE17745DD8B76A6ED8CB44A;
+			remoteInfo = MTGeometry;
+		};
+		94D396C1C096EE84080C3CDF2699CB26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A687F5D6A2F7824165124273F36170F;
+			remoteInfo = MYSRuntime;
+		};
+		A0D8D7A711708C05ECFDAA5B60CC0B94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 935D820D01451D1453C21659114F4389;
+			remoteInfo = MTQueue;
+		};
+		B39908202682A1215BDD36C46786891D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DA89656A44FA64E0C44F39316E2CA4B;
+			remoteInfo = MYSSharedSettings;
+		};
+		C4FF0BC4B84346F97F2657EAB60A4850 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2C16C0FFEE17745DD8B76A6ED8CB44A;
+			remoteInfo = MTGeometry;
+		};
+		CC152750B81577F5EB1741CA1AB29BF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7297DE3AD48B9B6B8C8293AC325E3F2B;
+			remoteInfo = MTAnimation;
+		};
+		E87D14B0C72EF586F014E2DAAA0BB3BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A687F5D6A2F7824165124273F36170F;
+			remoteInfo = MYSRuntime;
+		};
+		F3A3F2CB88F4B8CF1BC38A70F03B38D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FD0CE434B76DDD6BA4E1A1939A2F4621;
 			remoteInfo = MYSCategoryProperties;
 		};
-		FC24BA5B5C2E07BD7F1D2929EBC224B6 /* PBXContainerItemProxy */ = {
+		F672F5A8E87A6D1825E93EEFBFB40985 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -312,84 +312,84 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		20A169879F5E64AFBDD2EB4BF4FCD03D /* Frameworks */ = {
+		12B8CCF5871D8BC999138C232BD7CE5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		442F64F65D8A8A4089822A938C85F0A3 /* Frameworks */ = {
+		2851263498C845679D9395B53E294E3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44E28BF30DF5A7E46A224D1C79D7D933 /* Frameworks */ = {
+		4CDB8C4232D91F47EA9FD8390F7EFB18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4DF5053C631A604DDB783B7469579FAC /* Frameworks */ = {
+		5ADED4DCF90B3F09E27F7370D53E80B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		73A3756FAA5EFEC787F74B642471DCA9 /* Frameworks */ = {
+		67370E58BFCB25546DBEC6B43EB9870A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78B4661541D31AC15C40C8B038E01598 /* Frameworks */ = {
+		6ECF3BD00BD92E9E25872411FB6FB66A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9704D7B42F6355BB331F33C2A55A46F6 /* Frameworks */ = {
+		8440D54B819D7338DD9FCF0801EBD9D0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8547BE727589AAD90295DFEC78AA2A9 /* Frameworks */ = {
+		ADB92F133E349DD9E2681E0986D8E6E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B19F4BA7DB229A2DBF1E3C982F491828 /* Frameworks */ = {
+		E221C35461AE6E7BB0BE190AB9EAEBF8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BF2E1C8AB73274E2EBAAFE0B4E347052 /* Frameworks */ = {
+		E2B9CA4CB14150F1734176B5FB6455ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F548AADF66F4B958E0FD8C5091D905EB /* Frameworks */ = {
+		E9E9ACF9F30C762CA56C9F887FF28535 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F9E7C3F23F5ABAB4569C4E07C59D6112 /* Frameworks */ = {
+		F274E1C45D46FC136A8BA959F24F8DCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -864,114 +864,114 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1CE754004B5CE3784730BCC235D89635 /* Headers */ = {
+		1311F0AC988F0CE7B27A0F7637BCABD8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				709B48A661A51C6BCFDF06D183342DE9 /* CTBlockDescription.h in Headers */,
-				08F560D4ADCA95288D78E232E2F25F74 /* MYSClass.h in Headers */,
-				C99A4219D08E12FBD071E895EFD1F9D0 /* MYSIvar.h in Headers */,
-				D6A7477E2355E082A4FFC5B22F5795A1 /* MYSMethod.h in Headers */,
-				0D048617DB81CD58A43BB009AB063EC8 /* MYSProperty.h in Headers */,
-				FAF3E3E43F3A8C5882B263DFE360EB22 /* MYSRuntime.h in Headers */,
-				530A6AC999CF34985F161C35B393B85E /* MYSType.h in Headers */,
-				6236750003B14E25B4A6144A1EDD25FB /* MYSTypes.h in Headers */,
+				50875E44A8988944680F5E0D7D78E39E /* MTMigration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5C5CC9BFF80789786AA252508DF5C03F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				12169507F478F429410808DEDD208CA1 /* FrameAccessor.h in Headers */,
-				10D696C452BDECCB7E4C57560607F90D /* ScrollViewFrameAccessor.h in Headers */,
-				355FDE5E51BBE154A318E6DC8BE5E1C5 /* ViewFrameAccessor.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5CB3F55F7EFEED1737EEACFD67640D58 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				19F1BBABDF2214146336E03AE74A7ED3 /* MTMigration.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		700FFB0B313ED4306F7653FE587229D2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2FBF60775A0DC984A8CB6050B3A7C4AD /* MTGeometry.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		75995F15AEDEAD758E37794B01D27FCA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6667E74C816DD0A64A17BA7FBE288E3A /* MTAnimationTypes.h in Headers */,
-				DB967D64D6F20B4DC3437F45D811433F /* MTMatrixInterpolation.h in Headers */,
-				8BD93047E5D99F3A5904D26FACE86D7F /* MTTimingFunctions.h in Headers */,
-				E193E002849999390553AA8634FDADD8 /* UIView+MTAnimation.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9E20E08ABDEFD0F6A8573725A83EEDB2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				532A8D85F04F4A1AF1880E49D97122A6 /* MYSSharedSettings.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B3785BC1CFBEF52F8572BFEB5463C1D6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D319687F7B328421F9CAB3BB4038757 /* MYSCategoryProperties.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B53A58A74AFA9FD7CB627794B494988F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CE893CA03E4815F43ABCDA5728AE18E /* MTPencil.h in Headers */,
-				874FD9F6EE0C0782DF0B19B24FBD4191 /* MTPencilEasingFunctions.h in Headers */,
-				0B63161DA5A21D5D24E220371C3D4E34 /* MTPencilStep.h in Headers */,
-				818C26B7E182443C38E84F8E34292725 /* MTPencilStep_Private.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6538CD285CA44B399C93C67B86FA56B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A68AE07750185D800707C35DA81E7D5 /* NSDate+MTDates.h in Headers */,
-				69D7B5DFDDE240F53BF0A8A1A71FDE85 /* NSDateComponents+MTDates.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5E1F4D4A406EA0B37B8A721732438C0 /* Headers */ = {
+		1B58FDA116BC565466D1E749FE59A2F2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E073D1F672BDF4E3DA901A496620FC99 /* Headers */ = {
+		1B6643763A56F110FADB18D6850BC960 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				045893603DBA503419ED214977971499 /* MTq.h in Headers */,
+				2ECF1ED80DA05C88BF1C86202DDE66C9 /* MTAnimationTypes.h in Headers */,
+				B9EEFE8647FFB012ED3C08424C12444B /* MTMatrixInterpolation.h in Headers */,
+				BCA57DC0508CFED3AF7F1941016F2504 /* MTTimingFunctions.h in Headers */,
+				E0AB341364D25797E178699FD33561EB /* UIView+MTAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FBCE0A311E986CAC12FBDEAAF1B43BA8 /* Headers */ = {
+		471504D648E3251FA160A07E8413CFB3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DC53A70FB33AEBA745024BB36B5B174 /* UIColor+Distance.h in Headers */,
+				B9FF1E1D5D2598EF5362D7D68CEBBE5A /* MYSCategoryProperties.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F2536E7D0AF1CF53AF22B5A584FC383 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D8252DB72D0C321C91F8893905DB9EE /* MTGeometry.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5947134F46D1FA419370C0853BC384B3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9218F69B858E8C3CB637A088147CF906 /* NSDate+MTDates.h in Headers */,
+				4B8656AD068C2F4946E4129A365E83FD /* NSDateComponents+MTDates.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EA30BF68D552B30989037EA7385A04C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				253D14D72F8212E7D08341F47F6B5E52 /* MYSSharedSettings.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70E073549B3E38CD735DCAF59F3135A8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB4E2C6F229F0AA31A83235840BF83B5 /* MTq.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A49D38AD0B62140CA5A0366A58E1677 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74565B960BB4F13341AC65019B8FCEA2 /* FrameAccessor.h in Headers */,
+				EFDB3F732E1CB60C4441A1FBB6B18DE1 /* ScrollViewFrameAccessor.h in Headers */,
+				430AFDBECCAB75ABFD26D4B815044FBB /* ViewFrameAccessor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		952A0C80605734198C4C711D8B277262 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E065A7DA10EA2E46FE70799F1B634FA /* CTBlockDescription.h in Headers */,
+				619701BBDE06DAA50B68688B5D30BB70 /* MYSClass.h in Headers */,
+				BF247431822DAAC619D15B87E2DBC11B /* MYSIvar.h in Headers */,
+				81C1C0B78F3F18D90AC3AF0A2050FCF6 /* MYSMethod.h in Headers */,
+				CD1BD6A680C789CDC18511DB94264BB4 /* MYSProperty.h in Headers */,
+				CE5C01F464BAEC1625455B9C276529A5 /* MYSRuntime.h in Headers */,
+				4BA1BB9500C5A367CA9B40FCA8AF2957 /* MYSType.h in Headers */,
+				BB0BA5E0D79DB9EDC82C3B062C1E3610 /* MYSTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7EA9DB4D7C84848D80A9AFB649671AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29F40458C7FF7D145FB37D8F3959A14 /* MTPencil.h in Headers */,
+				CD27C46209E85E5383B1E1361E842730 /* MTPencilEasingFunctions.h in Headers */,
+				140515548DDC87882A1199205CA7C1FC /* MTPencilStep.h in Headers */,
+				AB650603EF23E80866E727C7CA99290F /* MTPencilStep_Private.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA1A9841C20AB11C4B8B8BA67EED254F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				857907B4A8DD4E7A673787981F5BA7C7 /* UIColor+Distance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,16 +980,16 @@
 /* Begin PBXNativeTarget section */
 		04217692B23335E0E480748B05C753F5 /* MTPencil */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 206376F614A87B3F490D87697A19C00B /* Build configuration list for PBXNativeTarget "MTPencil" */;
+			buildConfigurationList = 9081272F9ED4C2EE87D8EA618D87D629 /* Build configuration list for PBXNativeTarget "MTPencil" */;
 			buildPhases = (
-				B53A58A74AFA9FD7CB627794B494988F /* Headers */,
-				C3821F220342102012B6DE6186E054D9 /* Sources */,
-				F9E7C3F23F5ABAB4569C4E07C59D6112 /* Frameworks */,
+				D7EA9DB4D7C84848D80A9AFB649671AA /* Headers */,
+				21ED86D6BAA239D705637BF317FF88A1 /* Sources */,
+				E2B9CA4CB14150F1734176B5FB6455ED /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4BCF58CF982299CDD3C690BA05061AFA /* PBXTargetDependency */,
+				61F2E5FA6EDA78B6BF9F9CBF205FB0EE /* PBXTargetDependency */,
 			);
 			name = MTPencil;
 			productName = MTPencil;
@@ -998,11 +998,11 @@
 		};
 		0A54238D437A783E8B7D6105975DE6ED /* FrameAccessor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0698EC3E83747E8917813269FFBB3971 /* Build configuration list for PBXNativeTarget "FrameAccessor" */;
+			buildConfigurationList = E8F38E52D3BE9A6F3398E7B71D68FFC9 /* Build configuration list for PBXNativeTarget "FrameAccessor" */;
 			buildPhases = (
-				5C5CC9BFF80789786AA252508DF5C03F /* Headers */,
-				847A62B908D1800C39631DBD958B3723 /* Sources */,
-				73A3756FAA5EFEC787F74B642471DCA9 /* Frameworks */,
+				7A49D38AD0B62140CA5A0366A58E1677 /* Headers */,
+				3880BD07C225DDCBCD182AC5261032DE /* Sources */,
+				F274E1C45D46FC136A8BA959F24F8DCE /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1015,11 +1015,11 @@
 		};
 		1A687F5D6A2F7824165124273F36170F /* MYSRuntime */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C12D47CAEAF62B49E6928CBA908EF1D /* Build configuration list for PBXNativeTarget "MYSRuntime" */;
+			buildConfigurationList = 0C894EA11B0C28614F2F092908472664 /* Build configuration list for PBXNativeTarget "MYSRuntime" */;
 			buildPhases = (
-				1CE754004B5CE3784730BCC235D89635 /* Headers */,
-				4054E5E65240BD5A199AE2360FEA4E2C /* Sources */,
-				44E28BF30DF5A7E46A224D1C79D7D933 /* Frameworks */,
+				952A0C80605734198C4C711D8B277262 /* Headers */,
+				BD2A863BABA3BCEC890407B020FA97F4 /* Sources */,
+				2851263498C845679D9395B53E294E3B /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1032,16 +1032,16 @@
 		};
 		6DA89656A44FA64E0C44F39316E2CA4B /* MYSSharedSettings */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2C1EB371BDA0986A8A8637198AA26DE /* Build configuration list for PBXNativeTarget "MYSSharedSettings" */;
+			buildConfigurationList = 5727197A695D900940CAC6442B68DA49 /* Build configuration list for PBXNativeTarget "MYSSharedSettings" */;
 			buildPhases = (
-				9E20E08ABDEFD0F6A8573725A83EEDB2 /* Headers */,
-				9A9AF7CC2779AAED9A08B2066161A7BC /* Sources */,
-				442F64F65D8A8A4089822A938C85F0A3 /* Frameworks */,
+				6EA30BF68D552B30989037EA7385A04C /* Headers */,
+				A2DA5156C8796A7A72FF50C321085B32 /* Sources */,
+				67370E58BFCB25546DBEC6B43EB9870A /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4FADDFB74C60E7BF1E667DA04F7A0AEC /* PBXTargetDependency */,
+				481DCB95388E45E30902BDC072834417 /* PBXTargetDependency */,
 			);
 			name = MYSSharedSettings;
 			productName = MYSSharedSettings;
@@ -1050,11 +1050,11 @@
 		};
 		7297DE3AD48B9B6B8C8293AC325E3F2B /* MTAnimation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1566BA4DAD93706D18312C92F74274B /* Build configuration list for PBXNativeTarget "MTAnimation" */;
+			buildConfigurationList = AE7DAD868F2ADC645A5294289669BD67 /* Build configuration list for PBXNativeTarget "MTAnimation" */;
 			buildPhases = (
-				75995F15AEDEAD758E37794B01D27FCA /* Headers */,
-				A0AB9AB47C3F3F59CEFCAECA1CB2811C /* Sources */,
-				B19F4BA7DB229A2DBF1E3C982F491828 /* Frameworks */,
+				1B6643763A56F110FADB18D6850BC960 /* Headers */,
+				D7CD0043400AFB08E4F3C4EE886F9505 /* Sources */,
+				ADB92F133E349DD9E2681E0986D8E6E8 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1067,11 +1067,11 @@
 		};
 		935D820D01451D1453C21659114F4389 /* MTQueue */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B038365EEC4E794BA735AF03CAF31A /* Build configuration list for PBXNativeTarget "MTQueue" */;
+			buildConfigurationList = 49F79D18190D31AEE2AC70D38040FEB6 /* Build configuration list for PBXNativeTarget "MTQueue" */;
 			buildPhases = (
-				E073D1F672BDF4E3DA901A496620FC99 /* Headers */,
-				2F5075AE2AF7D90F7EFE30248EC087BF /* Sources */,
-				20A169879F5E64AFBDD2EB4BF4FCD03D /* Frameworks */,
+				70E073549B3E38CD735DCAF59F3135A8 /* Headers */,
+				17FFB63626E44C709A1A705D58A5CE3B /* Sources */,
+				12B8CCF5871D8BC999138C232BD7CE5D /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1084,11 +1084,11 @@
 		};
 		9449933C13F773C82CDD00B6F56EC316 /* MTDates */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43FC361757E27AD6B8D7DD72D771C5E5 /* Build configuration list for PBXNativeTarget "MTDates" */;
+			buildConfigurationList = 5178E3C03D463F8A742A5A869A67633E /* Build configuration list for PBXNativeTarget "MTDates" */;
 			buildPhases = (
-				B6538CD285CA44B399C93C67B86FA56B /* Headers */,
-				F3B36F2F959C977A51CA24AAFA114FE3 /* Sources */,
-				A8547BE727589AAD90295DFEC78AA2A9 /* Frameworks */,
+				5947134F46D1FA419370C0853BC384B3 /* Headers */,
+				519599E08B2E554611862FAC4779BC31 /* Sources */,
+				4CDB8C4232D91F47EA9FD8390F7EFB18 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1101,11 +1101,11 @@
 		};
 		A26E2C3F675C4EED20CB7509945AEAE3 /* MTMigration */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F2DFBD3CA59F6258E97091499D6DD1C /* Build configuration list for PBXNativeTarget "MTMigration" */;
+			buildConfigurationList = C6845F374F58BCC2F867FEE02C66E34D /* Build configuration list for PBXNativeTarget "MTMigration" */;
 			buildPhases = (
-				5CB3F55F7EFEED1737EEACFD67640D58 /* Headers */,
-				C6B2D0AF134E767E4960B9C5A235B83C /* Sources */,
-				9704D7B42F6355BB331F33C2A55A46F6 /* Frameworks */,
+				1311F0AC988F0CE7B27A0F7637BCABD8 /* Headers */,
+				C5677636B774A763D88E78F437BCA9D5 /* Sources */,
+				6ECF3BD00BD92E9E25872411FB6FB66A /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1118,11 +1118,11 @@
 		};
 		B2C16C0FFEE17745DD8B76A6ED8CB44A /* MTGeometry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1405E0D0FAD7F95A7F1F27D9BEF182D9 /* Build configuration list for PBXNativeTarget "MTGeometry" */;
+			buildConfigurationList = B3CF83B29EB4068ADC328F1270B66696 /* Build configuration list for PBXNativeTarget "MTGeometry" */;
 			buildPhases = (
-				700FFB0B313ED4306F7653FE587229D2 /* Headers */,
-				3C588A05B6207B5263E4F07FCC739C61 /* Sources */,
-				F548AADF66F4B958E0FD8C5091D905EB /* Frameworks */,
+				4F2536E7D0AF1CF53AF22B5A584FC383 /* Headers */,
+				2F09EC79C607D652683D825832EB6478 /* Sources */,
+				E9E9ACF9F30C762CA56C9F887FF28535 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1135,26 +1135,26 @@
 		};
 		EF6EF49AE3A66EB4711960B59C4D77E6 /* Pods-calvetica */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F4A4DE97411D6B8010F785CD4DA9EBD /* Build configuration list for PBXNativeTarget "Pods-calvetica" */;
+			buildConfigurationList = 4D46D1163DB347520D2959FE17F09A33 /* Build configuration list for PBXNativeTarget "Pods-calvetica" */;
 			buildPhases = (
-				C5E1F4D4A406EA0B37B8A721732438C0 /* Headers */,
-				686B79A2D42F1090D35FC0FB03B6616B /* Sources */,
-				BF2E1C8AB73274E2EBAAFE0B4E347052 /* Frameworks */,
+				1B58FDA116BC565466D1E749FE59A2F2 /* Headers */,
+				9154A6FE1A544B310350F367ABD4B4F0 /* Sources */,
+				5ADED4DCF90B3F09E27F7370D53E80B2 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BF93D207D6DABE8AA71C97A978189576 /* PBXTargetDependency */,
-				4C16438357FEE738DA5AD3AEA520D60C /* PBXTargetDependency */,
-				97F0BA67C8535588E82BF46B15427489 /* PBXTargetDependency */,
-				F7190376AB50EB4C1F8A7AA9C28D9359 /* PBXTargetDependency */,
-				01CF8B8E20DC2011F36197820A9D194C /* PBXTargetDependency */,
-				99E21DEA3AC9828DD8A4A7E5BF7E9019 /* PBXTargetDependency */,
-				7E043D61377729511648327D4DF6DE49 /* PBXTargetDependency */,
-				25B9CC003BC0AEC5EB0F1F18F3E9279E /* PBXTargetDependency */,
-				E463A1380FAB36491CD4562737B9391A /* PBXTargetDependency */,
-				0C714E30A2E22304332D3F80720FA45B /* PBXTargetDependency */,
-				7B0E18DE55ADA16105CCDF9615830A1D /* PBXTargetDependency */,
+				0D1DADE11A63650E38E0B1F29CBFDA73 /* PBXTargetDependency */,
+				AFB06CE0F1C355EC2E35007E82138C7D /* PBXTargetDependency */,
+				CAFF3BB71B9A32CA6C2A0E127D0A8EB0 /* PBXTargetDependency */,
+				B460D3CED433F0DD62F58ED5BEC46E88 /* PBXTargetDependency */,
+				7C5E249F9DA61C66DBDFFEAC8BD94706 /* PBXTargetDependency */,
+				F2434BBE7C1298F9B441CB4BF0AA511A /* PBXTargetDependency */,
+				24A98D8CE2A1AFEC7708BB28B20B80FD /* PBXTargetDependency */,
+				84D5C940FD51374ECACE9CF967A10706 /* PBXTargetDependency */,
+				8FCC975ABEE1DC7D37EE841854F92F32 /* PBXTargetDependency */,
+				EE3B36C8822FA0191404DE2EB523E02C /* PBXTargetDependency */,
+				367B717A8094B93EE1CF7B758208A352 /* PBXTargetDependency */,
 			);
 			name = "Pods-calvetica";
 			productName = "Pods-calvetica";
@@ -1163,16 +1163,16 @@
 		};
 		FD0CE434B76DDD6BA4E1A1939A2F4621 /* MYSCategoryProperties */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32B1517512F47D5EBD43AA74EEDF74C3 /* Build configuration list for PBXNativeTarget "MYSCategoryProperties" */;
+			buildConfigurationList = C788B12DB43808680B51C351E6E1D8AE /* Build configuration list for PBXNativeTarget "MYSCategoryProperties" */;
 			buildPhases = (
-				B3785BC1CFBEF52F8572BFEB5463C1D6 /* Headers */,
-				F5B859B285CC87D23578486116458436 /* Sources */,
-				4DF5053C631A604DDB783B7469579FAC /* Frameworks */,
+				471504D648E3251FA160A07E8413CFB3 /* Headers */,
+				EB7080068769435C083FD817ECCD94C0 /* Sources */,
+				8440D54B819D7338DD9FCF0801EBD9D0 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0D72699D8B26FAA98B7DB292DDF38145 /* PBXTargetDependency */,
+				51256A32EB66E902029A98AA27CFBE25 /* PBXTargetDependency */,
 			);
 			name = MYSCategoryProperties;
 			productName = MYSCategoryProperties;
@@ -1181,11 +1181,11 @@
 		};
 		FFBBA5D17B2C4877EC0A386753317B5C /* MTColorDistance */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6EFECF0931308635DCF453FD4E6C83B0 /* Build configuration list for PBXNativeTarget "MTColorDistance" */;
+			buildConfigurationList = 0CBE62169A501EC7CA643049DE99BCBB /* Build configuration list for PBXNativeTarget "MTColorDistance" */;
 			buildPhases = (
-				FBCE0A311E986CAC12FBDEAAF1B43BA8 /* Headers */,
-				788F5C7A1CCC8080BB69A1A9E1E94A0B /* Sources */,
-				78B4661541D31AC15C40C8B038E01598 /* Frameworks */,
+				FA1A9841C20AB11C4B8B8BA67EED254F /* Headers */,
+				9032F89BAD342CCA2050997FE42444F2 /* Sources */,
+				E221C35461AE6E7BB0BE190AB9EAEBF8 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1202,11 +1202,11 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1214,6 +1214,8 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = 9BE7A8288D320D4AA45B39F0CBA13F25 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1235,527 +1237,227 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2F5075AE2AF7D90F7EFE30248EC087BF /* Sources */ = {
+		17FFB63626E44C709A1A705D58A5CE3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				587EE7492A59D8B724550F2ED37B3225 /* MTq.m in Sources */,
-				A5B490CD8DB5AE60BC8A318326EA835E /* MTQueue-dummy.m in Sources */,
+				E2BF5104263CD6EB38E86D8831C07527 /* MTq.m in Sources */,
+				FE1CEABEB052E62E800AABE7F6E46F3F /* MTQueue-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C588A05B6207B5263E4F07FCC739C61 /* Sources */ = {
+		21ED86D6BAA239D705637BF317FF88A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B90188B425FA4693AF4F162F133034C4 /* MTGeometry.c in Sources */,
-				C14AE320736EAA03212E52890CEFCD1C /* MTGeometry-dummy.m in Sources */,
+				A66C57D206FFDA10B0A5493F7FDD9305 /* MTPencil.m in Sources */,
+				C3CA3AEA8C4DE784F8FC9A6985E80FA2 /* MTPencil-dummy.m in Sources */,
+				4C854826230FE6B90C146D31674C2CF3 /* MTPencilEasingFunctions.c in Sources */,
+				D248976C63C12755A9A86FAB65737FD5 /* MTPencilStep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4054E5E65240BD5A199AE2360FEA4E2C /* Sources */ = {
+		2F09EC79C607D652683D825832EB6478 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				151AF0189135EAB51A63C8D52931FD09 /* CTBlockDescription.m in Sources */,
-				BD73862FCC4250289129175BA0386301 /* MYSClass.m in Sources */,
-				8DB11693D2AF4CC396FB1A554C5178A9 /* MYSIvar.m in Sources */,
-				3F1AA1044D434A67C5785E049932A7C0 /* MYSMethod.m in Sources */,
-				79822FC4148A012FBD7DA40CD6E9F094 /* MYSProperty.m in Sources */,
-				88D677897D7F9E3F8A293293CCF81000 /* MYSRuntime-dummy.m in Sources */,
-				11931B34D3D58D760EA3D97236B2CE14 /* MYSType.m in Sources */,
+				7AB86556A9FD793A54271F57B645CB8E /* MTGeometry.c in Sources */,
+				7E1B7052C6169DFAA98301913FB05813 /* MTGeometry-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		686B79A2D42F1090D35FC0FB03B6616B /* Sources */ = {
+		3880BD07C225DDCBCD182AC5261032DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B17A456E2996FCFE897F98AF8A7970D /* Pods-calvetica-dummy.m in Sources */,
+				56B6508C5896032B9B6A0E01AC5F96E5 /* FrameAccessor-dummy.m in Sources */,
+				4F7ACCA99FB01F95B648DD707AB4B0F1 /* ScrollViewFrameAccessor.m in Sources */,
+				64D5F4B6EAD7173EC29F0F1AC67B9120 /* ViewFrameAccessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		788F5C7A1CCC8080BB69A1A9E1E94A0B /* Sources */ = {
+		519599E08B2E554611862FAC4779BC31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53A52E66CBC204BC76FB414408A719C2 /* MTColorDistance-dummy.m in Sources */,
-				FC8A54C9C4CB2E7C069645B44B14EB9C /* UIColor+Distance.m in Sources */,
+				2429A497AC2A3F36AFE6B7B5AC9E7401 /* MTDates-dummy.m in Sources */,
+				016CE4F63A974257C8C904237AA08273 /* NSDate+MTDates.m in Sources */,
+				83B2742597DAA32E9DA029B3A13E52D8 /* NSDateComponents+MTDates.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		847A62B908D1800C39631DBD958B3723 /* Sources */ = {
+		9032F89BAD342CCA2050997FE42444F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02BE73BE17C7D02673752538689EE48C /* FrameAccessor-dummy.m in Sources */,
-				0D83DFCF9FDC63E76F104246033DABCD /* ScrollViewFrameAccessor.m in Sources */,
-				FD8FC701B5F2BF1E74C684A18881D60E /* ViewFrameAccessor.m in Sources */,
+				A7F24CFDBD0D1D7E5763FFD992511F0B /* MTColorDistance-dummy.m in Sources */,
+				0E622BCD3E0082FBC4F18D7E66AEA97C /* UIColor+Distance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A9AF7CC2779AAED9A08B2066161A7BC /* Sources */ = {
+		9154A6FE1A544B310350F367ABD4B4F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				430D07B17016CED4B0DC9A6E24232150 /* MYSSharedSettings.m in Sources */,
-				917292E7008F45F9D0107F8F876FC122 /* MYSSharedSettings-dummy.m in Sources */,
+				0F4487464139602EE151BB445212596E /* Pods-calvetica-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A0AB9AB47C3F3F59CEFCAECA1CB2811C /* Sources */ = {
+		A2DA5156C8796A7A72FF50C321085B32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70D1EE9AFA4C89C52B83F203D447E133 /* MTAnimation-dummy.m in Sources */,
-				8FC120C0194DD1B3EE0D338188E3BB64 /* MTMatrixInterpolation.m in Sources */,
-				68AD38C0FF9FDBEC17F410E6F5E1A04B /* MTTimingFunctions.c in Sources */,
-				0D8E85B52DBBDEDFA91EBD54CD251099 /* UIView+MTAnimation.m in Sources */,
+				EF71BAF6302C8F30F877C193FB82CDF0 /* MYSSharedSettings.m in Sources */,
+				F9A83009A13F62D62F0881F21AD28FFF /* MYSSharedSettings-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3821F220342102012B6DE6186E054D9 /* Sources */ = {
+		BD2A863BABA3BCEC890407B020FA97F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6199E0EB10AE0A24DF69D3DBBE32F094 /* MTPencil.m in Sources */,
-				ED7ED9C7203DF43BD22FD32C96693CFF /* MTPencil-dummy.m in Sources */,
-				C1DA74895A464C6FAD7A19DF0F3A69EE /* MTPencilEasingFunctions.c in Sources */,
-				5FF8C26F40534E2B2A54A2BE76CC80C8 /* MTPencilStep.m in Sources */,
+				846DC6B6082F2457D5276D9969AF04AF /* CTBlockDescription.m in Sources */,
+				A5153E560E13E297277E8802C166F9E4 /* MYSClass.m in Sources */,
+				83E7B48EBAF55089CDD2B94EF304EC81 /* MYSIvar.m in Sources */,
+				CD203FE22F453FB93E79B6C58457B38D /* MYSMethod.m in Sources */,
+				64242362BDD56FF25EB691E15229926B /* MYSProperty.m in Sources */,
+				F34F96FC77B55F70D72B4E89FCA5F11F /* MYSRuntime-dummy.m in Sources */,
+				DA2EEAB9158C2D7026BBC642AD6F12B3 /* MYSType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C6B2D0AF134E767E4960B9C5A235B83C /* Sources */ = {
+		C5677636B774A763D88E78F437BCA9D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D631C0B5351990FC171C7B7DAE59E94 /* MTMigration.m in Sources */,
-				46C9D9CD08D8CD3D938C80BCC69F36AC /* MTMigration-dummy.m in Sources */,
+				D87C2C780221E63C72D4E912B56DD607 /* MTMigration.m in Sources */,
+				E68A4BF60964D7283F0EAA52903AAF10 /* MTMigration-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F3B36F2F959C977A51CA24AAFA114FE3 /* Sources */ = {
+		D7CD0043400AFB08E4F3C4EE886F9505 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52A7125DDE99F8E8C215D3D71555B32C /* MTDates-dummy.m in Sources */,
-				0291EE52DB1BBB45CB3039BB725C3DAB /* NSDate+MTDates.m in Sources */,
-				E6E0C16B8F413D21FC02C45B47AD05B9 /* NSDateComponents+MTDates.m in Sources */,
+				F9ECD9EA12B8134F56795E9990BB5168 /* MTAnimation-dummy.m in Sources */,
+				B8C6F397FD26E4F34653300BDF6C2A95 /* MTMatrixInterpolation.m in Sources */,
+				B6B7B3BC0BEC8374BB851F8D31974CA5 /* MTTimingFunctions.c in Sources */,
+				8EF07F5E20466734BE8FCF0B3B18730F /* UIView+MTAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F5B859B285CC87D23578486116458436 /* Sources */ = {
+		EB7080068769435C083FD817ECCD94C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C08902752DC4F2A408BA5519E1ABD310 /* MYSCategoryProperties.m in Sources */,
-				46544C7E8B5CDA18BBA234FF3CFB23B8 /* MYSCategoryProperties-dummy.m in Sources */,
+				6F6ADCEEF49C5C0C22003B46EBE1A479 /* MYSCategoryProperties.m in Sources */,
+				B55EBC7FF6D3C2F7DDC4DBABA623552B /* MYSCategoryProperties-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		01CF8B8E20DC2011F36197820A9D194C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTGeometry;
-			target = B2C16C0FFEE17745DD8B76A6ED8CB44A /* MTGeometry */;
-			targetProxy = 03023055A8428C98131ED19B68002761 /* PBXContainerItemProxy */;
-		};
-		0C714E30A2E22304332D3F80720FA45B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MYSRuntime;
-			target = 1A687F5D6A2F7824165124273F36170F /* MYSRuntime */;
-			targetProxy = D725B1674BF9710CB847F5DE2EDC0603 /* PBXContainerItemProxy */;
-		};
-		0D72699D8B26FAA98B7DB292DDF38145 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MYSRuntime;
-			target = 1A687F5D6A2F7824165124273F36170F /* MYSRuntime */;
-			targetProxy = 44754E0EA7E829D3C98BFB827C31B347 /* PBXContainerItemProxy */;
-		};
-		25B9CC003BC0AEC5EB0F1F18F3E9279E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTQueue;
-			target = 935D820D01451D1453C21659114F4389 /* MTQueue */;
-			targetProxy = 99DA9C9403D16569B0BFD011393F033F /* PBXContainerItemProxy */;
-		};
-		4BCF58CF982299CDD3C690BA05061AFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTGeometry;
-			target = B2C16C0FFEE17745DD8B76A6ED8CB44A /* MTGeometry */;
-			targetProxy = 060B027200CCB07A2A1FB479A83242E8 /* PBXContainerItemProxy */;
-		};
-		4C16438357FEE738DA5AD3AEA520D60C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTAnimation;
-			target = 7297DE3AD48B9B6B8C8293AC325E3F2B /* MTAnimation */;
-			targetProxy = 8B26639F261DB9A0C23FBE4D927A0A66 /* PBXContainerItemProxy */;
-		};
-		4FADDFB74C60E7BF1E667DA04F7A0AEC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MYSRuntime;
-			target = 1A687F5D6A2F7824165124273F36170F /* MYSRuntime */;
-			targetProxy = 44470520249163475AEAFA5080BC5184 /* PBXContainerItemProxy */;
-		};
-		7B0E18DE55ADA16105CCDF9615830A1D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MYSSharedSettings;
-			target = 6DA89656A44FA64E0C44F39316E2CA4B /* MYSSharedSettings */;
-			targetProxy = 8EE397AC36EF17EF6D02E5FB31593CF4 /* PBXContainerItemProxy */;
-		};
-		7E043D61377729511648327D4DF6DE49 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTPencil;
-			target = 04217692B23335E0E480748B05C753F5 /* MTPencil */;
-			targetProxy = FC24BA5B5C2E07BD7F1D2929EBC224B6 /* PBXContainerItemProxy */;
-		};
-		97F0BA67C8535588E82BF46B15427489 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTColorDistance;
-			target = FFBBA5D17B2C4877EC0A386753317B5C /* MTColorDistance */;
-			targetProxy = 03ED551667A9EA83833443FB9E244B73 /* PBXContainerItemProxy */;
-		};
-		99E21DEA3AC9828DD8A4A7E5BF7E9019 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MTMigration;
-			target = A26E2C3F675C4EED20CB7509945AEAE3 /* MTMigration */;
-			targetProxy = 3AF4CFCE971D3064204D70FE0571B422 /* PBXContainerItemProxy */;
-		};
-		BF93D207D6DABE8AA71C97A978189576 /* PBXTargetDependency */ = {
+		0D1DADE11A63650E38E0B1F29CBFDA73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FrameAccessor;
 			target = 0A54238D437A783E8B7D6105975DE6ED /* FrameAccessor */;
-			targetProxy = 2A60E421D47E38256615C7AAF35B43F7 /* PBXContainerItemProxy */;
+			targetProxy = 31CC4277E725A50FD9BA6F4E086EC509 /* PBXContainerItemProxy */;
 		};
-		E463A1380FAB36491CD4562737B9391A /* PBXTargetDependency */ = {
+		24A98D8CE2A1AFEC7708BB28B20B80FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTPencil;
+			target = 04217692B23335E0E480748B05C753F5 /* MTPencil */;
+			targetProxy = F672F5A8E87A6D1825E93EEFBFB40985 /* PBXContainerItemProxy */;
+		};
+		367B717A8094B93EE1CF7B758208A352 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MYSSharedSettings;
+			target = 6DA89656A44FA64E0C44F39316E2CA4B /* MYSSharedSettings */;
+			targetProxy = B39908202682A1215BDD36C46786891D /* PBXContainerItemProxy */;
+		};
+		481DCB95388E45E30902BDC072834417 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MYSRuntime;
+			target = 1A687F5D6A2F7824165124273F36170F /* MYSRuntime */;
+			targetProxy = 94D396C1C096EE84080C3CDF2699CB26 /* PBXContainerItemProxy */;
+		};
+		51256A32EB66E902029A98AA27CFBE25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MYSRuntime;
+			target = 1A687F5D6A2F7824165124273F36170F /* MYSRuntime */;
+			targetProxy = E87D14B0C72EF586F014E2DAAA0BB3BE /* PBXContainerItemProxy */;
+		};
+		61F2E5FA6EDA78B6BF9F9CBF205FB0EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTGeometry;
+			target = B2C16C0FFEE17745DD8B76A6ED8CB44A /* MTGeometry */;
+			targetProxy = 74CDB08C6785EDB1B051C4198EDA6BE2 /* PBXContainerItemProxy */;
+		};
+		7C5E249F9DA61C66DBDFFEAC8BD94706 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTGeometry;
+			target = B2C16C0FFEE17745DD8B76A6ED8CB44A /* MTGeometry */;
+			targetProxy = C4FF0BC4B84346F97F2657EAB60A4850 /* PBXContainerItemProxy */;
+		};
+		84D5C940FD51374ECACE9CF967A10706 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTQueue;
+			target = 935D820D01451D1453C21659114F4389 /* MTQueue */;
+			targetProxy = A0D8D7A711708C05ECFDAA5B60CC0B94 /* PBXContainerItemProxy */;
+		};
+		8FCC975ABEE1DC7D37EE841854F92F32 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MYSCategoryProperties;
 			target = FD0CE434B76DDD6BA4E1A1939A2F4621 /* MYSCategoryProperties */;
-			targetProxy = E308A1A3710D9292AA003A0A7B4E3944 /* PBXContainerItemProxy */;
+			targetProxy = F3A3F2CB88F4B8CF1BC38A70F03B38D2 /* PBXContainerItemProxy */;
 		};
-		F7190376AB50EB4C1F8A7AA9C28D9359 /* PBXTargetDependency */ = {
+		AFB06CE0F1C355EC2E35007E82138C7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTAnimation;
+			target = 7297DE3AD48B9B6B8C8293AC325E3F2B /* MTAnimation */;
+			targetProxy = CC152750B81577F5EB1741CA1AB29BF9 /* PBXContainerItemProxy */;
+		};
+		B460D3CED433F0DD62F58ED5BEC46E88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MTDates;
 			target = 9449933C13F773C82CDD00B6F56EC316 /* MTDates */;
-			targetProxy = A0BAE006014189164F0B390C8450F7E3 /* PBXContainerItemProxy */;
+			targetProxy = 06B51859A1FA8B40B8D9A436004875E5 /* PBXContainerItemProxy */;
+		};
+		CAFF3BB71B9A32CA6C2A0E127D0A8EB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTColorDistance;
+			target = FFBBA5D17B2C4877EC0A386753317B5C /* MTColorDistance */;
+			targetProxy = 375C2DA452D954A6547237ADE815DDEA /* PBXContainerItemProxy */;
+		};
+		EE3B36C8822FA0191404DE2EB523E02C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MYSRuntime;
+			target = 1A687F5D6A2F7824165124273F36170F /* MYSRuntime */;
+			targetProxy = 2D55282EE205B1DE1DD5EAB76C63D82F /* PBXContainerItemProxy */;
+		};
+		F2434BBE7C1298F9B441CB4BF0AA511A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MTMigration;
+			target = A26E2C3F675C4EED20CB7509945AEAE3 /* MTMigration */;
+			targetProxy = 0FBF0B0567911CEDA374D15541DDEDE3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		01214CD5D6027293C9735801E7298AA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FBBAD7DB7D9D9C4B7A65BD221F566B7 /* MTAnimation.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTAnimation/MTAnimation-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTAnimation;
-				PRODUCT_NAME = MTAnimation;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		0FA2677F2C80B17918C47BE97D395521 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE6B78A27C345E54974BE019601E802F /* MTQueue.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTQueue/MTQueue-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTQueue;
-				PRODUCT_NAME = MTQueue;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		109F245FE25A1D83A134A5BBDA3557D1 /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45DEA16F12D67FB8F6D89B280DB00C93 /* MYSSharedSettings.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSSharedSettings/MYSSharedSettings-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSSharedSettings;
-				PRODUCT_NAME = MYSSharedSettings;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		1122FF081FDE419576E0157EC346ED70 /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FADA6E4F1731CC16F06DACD70E931254 /* FrameAccessor.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FrameAccessor/FrameAccessor-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FrameAccessor;
-				PRODUCT_NAME = FrameAccessor;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		11C8BD875C94CCCC97EDAD6382929E2F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 581021357E6FF0AE4CD5BA8C6D9F6EC5 /* MTColorDistance.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTColorDistance/MTColorDistance-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTColorDistance;
-				PRODUCT_NAME = MTColorDistance;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1788FD457EEB580004F5CC03F5203489 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5BA4875A312BF0C9DD843D0256C38C56 /* FrameAccessor.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FrameAccessor/FrameAccessor-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FrameAccessor;
-				PRODUCT_NAME = FrameAccessor;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1D28F16398A5DE92653D86E20128BA7A /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12309BE7AE350C317A4A524FD5666DB0 /* Pods-calvetica.adhoc.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		1D93A1E89FF5B0CECA312969914A861D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB36CF9C769652B9697A756BBA9D576E /* MTAnimation.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTAnimation/MTAnimation-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTAnimation;
-				PRODUCT_NAME = MTAnimation;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		2D8696175930B65B9061B6218E884857 /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_ADHOC=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Adhoc;
-		};
-		372FBBB3F40EE6A7B9E9A84389CDD0F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFEFAC8E57A3103890DEE7DB97C57C65 /* Pods-calvetica.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3FD8892568B87B00DA4DE96E4D28158B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82C50DBE099D5ED11BB83D5058E39601 /* MTGeometry.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTGeometry/MTGeometry-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTGeometry;
-				PRODUCT_NAME = MTGeometry;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4D3C79AA7FA78DAB12F10DC9B714E3E2 /* Adhoc */ = {
+		00F9A2AFE906C8FDBD3F37748B9DEE31 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F88E0EF091F924AEB253E0CC0635F28 /* MTColorDistance.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MTColorDistance/MTColorDistance-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -1765,46 +1467,51 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Adhoc;
 		};
-		53EE519BA47EAADC8D9A282E330BE59C /* Release */ = {
+		0A1140F9249F8DC1856F8B3A3D44E5DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FADA6E4F1731CC16F06DACD70E931254 /* FrameAccessor.release.xcconfig */;
+			baseConfigurationReference = 278326E5982115E8C2DB882D817A2200 /* MTPencil.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FrameAccessor/FrameAccessor-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTPencil/MTPencil-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FrameAccessor;
-				PRODUCT_NAME = FrameAccessor;
+				PRODUCT_MODULE_NAME = MTPencil;
+				PRODUCT_NAME = MTPencil;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		5E48E8403DB8788210E9CE7D5E9D3BA4 /* Adhoc */ = {
+		0E39A8E45C1FBE54DADED2B88B934A73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A7E954B8CC6B5BD3FB766BBCAD2EB01 /* MYSRuntime.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MYSRuntime/MYSRuntime-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -1814,21 +1521,294 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		13B619D8413004A4C4FE2D6BCF8EF423 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFEFAC8E57A3103890DEE7DB97C57C65 /* Pods-calvetica.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		16D1BFC70CBDEF34A39772B164FCBAB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82C50DBE099D5ED11BB83D5058E39601 /* MTGeometry.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTGeometry/MTGeometry-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTGeometry;
+				PRODUCT_NAME = MTGeometry;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20051CB01E5835A974078615B5CDFFF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0732D996FD0742B3308B312AB8E75F2A /* MTMigration.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTMigration/MTMigration-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTMigration;
+				PRODUCT_NAME = MTMigration;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24AE912504B447AB36202EAEBB7E2505 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FADA6E4F1731CC16F06DACD70E931254 /* FrameAccessor.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FrameAccessor/FrameAccessor-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FrameAccessor;
+				PRODUCT_NAME = FrameAccessor;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		278394EF7A6A4DA01300A8292587B9D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FBBAD7DB7D9D9C4B7A65BD221F566B7 /* MTAnimation.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTAnimation/MTAnimation-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTAnimation;
+				PRODUCT_NAME = MTAnimation;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A21BDDEC38D273875025B4935702375 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FADA6E4F1731CC16F06DACD70E931254 /* FrameAccessor.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FrameAccessor/FrameAccessor-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FrameAccessor;
+				PRODUCT_NAME = FrameAccessor;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Adhoc;
 		};
-		6404C48D123AC283AAE085FE4E4F599E /* Adhoc */ = {
+		2BB2C46E8B903D3926FF2CB0479DCF36 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2195D5A78FD059C99987A622106FCD84 /* MTDates.release.xcconfig */;
+			baseConfigurationReference = CC71FEAA0DDAE9CDA6A69A8F933D7785 /* MYSCategoryProperties.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSCategoryProperties/MYSCategoryProperties-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MYSCategoryProperties;
+				PRODUCT_NAME = MYSCategoryProperties;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3831E8A32937C94347A9849ED619DBD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F88E0EF091F924AEB253E0CC0635F28 /* MTColorDistance.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTColorDistance/MTColorDistance-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTColorDistance;
+				PRODUCT_NAME = MTColorDistance;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		467AECC9C5F9269FD52C4C3CBF1329D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 581021357E6FF0AE4CD5BA8C6D9F6EC5 /* MTColorDistance.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTColorDistance/MTColorDistance-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTColorDistance;
+				PRODUCT_NAME = MTColorDistance;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4D02E1F6C6A7D3B955D1F0ADE8234730 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7114B54BE6B972DD72D1E0641B045C3 /* MTMigration.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTMigration/MTMigration-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTMigration;
+				PRODUCT_NAME = MTMigration;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		5A83D42C4D7E47888C7DB32E4DC3B0D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2195D5A78FD059C99987A622106FCD84 /* MTDates.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MTDates/MTDates-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -1838,164 +1818,24 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		65086BAF916D5372DCE1EAEED89F0799 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7114B54BE6B972DD72D1E0641B045C3 /* MTMigration.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTMigration/MTMigration-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTMigration;
-				PRODUCT_NAME = MTMigration;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		65D0685C87924FD2745221B9C55071CD /* Debug */ = {
+		61A9A4DE2363AEA83C957B6E6BAEE09E /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A60EB67323A3A624B9C9ACBA86490673 /* MTGeometry.debug.xcconfig */;
+			baseConfigurationReference = 45DEA16F12D67FB8F6D89B280DB00C93 /* MYSSharedSettings.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTGeometry/MTGeometry-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTGeometry;
-				PRODUCT_NAME = MTGeometry;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		6B33A5DE03399598CFA0962F18095A1D /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7114B54BE6B972DD72D1E0641B045C3 /* MTMigration.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTMigration/MTMigration-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTMigration;
-				PRODUCT_NAME = MTMigration;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		77088CF4BD2E6F589B4801DCCA693DCB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DD340C28F1E730A81A09B69D67B040C /* Pods-calvetica.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		82B5943BF11478585664365666B377E8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A7E954B8CC6B5BD3FB766BBCAD2EB01 /* MYSRuntime.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSRuntime/MYSRuntime-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSRuntime;
-				PRODUCT_NAME = MYSRuntime;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		87A95D7018C64F324533040D953B20CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F88E0EF091F924AEB253E0CC0635F28 /* MTColorDistance.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTColorDistance/MTColorDistance-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTColorDistance;
-				PRODUCT_NAME = MTColorDistance;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8CBF3A83DE0FA221144C94EBC00A83B6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F63E26D844F1E54AE5259355A2706C03 /* MYSSharedSettings.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MYSSharedSettings/MYSSharedSettings-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2005,11 +1845,282 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		6229A16B6B1EF83817E1C20B310472FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D324FE792DE1EC072963CCD953639044 /* MYSCategoryProperties.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSCategoryProperties/MYSCategoryProperties-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MYSCategoryProperties;
+				PRODUCT_NAME = MYSCategoryProperties;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		8DE5143C03248BB6CD542DE3963D6F3A /* Debug */ = {
+		67E087C733919954F7DF03797AB2FFC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 308EBEE9161BD9205C20A286B26786C2 /* MTPencil.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTPencil/MTPencil-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTPencil;
+				PRODUCT_NAME = MTPencil;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6AFC32638DAFD87729846B457599AE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BA4875A312BF0C9DD843D0256C38C56 /* FrameAccessor.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FrameAccessor/FrameAccessor-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FrameAccessor;
+				PRODUCT_NAME = FrameAccessor;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6E23DCFC4DB4C2527488D6AAC161C81B /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE6B78A27C345E54974BE019601E802F /* MTQueue.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTQueue/MTQueue-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTQueue;
+				PRODUCT_NAME = MTQueue;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		74FCF1EE97D7D3F74AEEE79D6D917801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A60EB67323A3A624B9C9ACBA86490673 /* MTGeometry.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTGeometry/MTGeometry-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTGeometry;
+				PRODUCT_NAME = MTGeometry;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79414B07224DD1176B3C7DA0175C106A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7114B54BE6B972DD72D1E0641B045C3 /* MTMigration.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTMigration/MTMigration-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTMigration;
+				PRODUCT_NAME = MTMigration;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7BF1D5AB9EDE626FB310AB4973AEE5C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA4DB47D27DD9A6E9D9C77DE3CF700D /* MYSRuntime.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSRuntime/MYSRuntime-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MYSRuntime;
+				PRODUCT_NAME = MYSRuntime;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81E6B1A0B78079EDAC6251E2A2D19E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45DEA16F12D67FB8F6D89B280DB00C93 /* MYSSharedSettings.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSSharedSettings/MYSSharedSettings-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MYSSharedSettings;
+				PRODUCT_NAME = MYSSharedSettings;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8BDBBF2C7518A799FA85893ECA0550BD /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A7E954B8CC6B5BD3FB766BBCAD2EB01 /* MYSRuntime.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSRuntime/MYSRuntime-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MYSRuntime;
+				PRODUCT_NAME = MYSRuntime;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		8C88C9060B521128489F51FF8CC47CAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE6B78A27C345E54974BE019601E802F /* MTQueue.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTQueue/MTQueue-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTQueue;
+				PRODUCT_NAME = MTQueue;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2062,7 +2173,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2075,78 +2186,7 @@
 			};
 			name = Debug;
 		};
-		94645C0411727515B8C7162AAAAAC9AC /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC71FEAA0DDAE9CDA6A69A8F933D7785 /* MYSCategoryProperties.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSCategoryProperties/MYSCategoryProperties-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSCategoryProperties;
-				PRODUCT_NAME = MYSCategoryProperties;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		95B2294147A43627228A39DDFB18E8CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B2AB61EDFC0FEF0F687F529328370CC2 /* MTQueue.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTQueue/MTQueue-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTQueue;
-				PRODUCT_NAME = MTQueue;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		987C0B848A519BDB8FBE675CCD6B53BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0732D996FD0742B3308B312AB8E75F2A /* MTMigration.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTMigration/MTMigration-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTMigration;
-				PRODUCT_NAME = MTMigration;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9E406C6AAF85E580207CD97B0044DEAB /* Release */ = {
+		9553C89E183877A5CB2F3C6801BEC129 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2196,7 +2236,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2208,39 +2248,208 @@
 			};
 			name = Release;
 		};
-		B7D6EF18FD4E50126D95D58AC01C7DD1 /* Debug */ = {
+		95DB8A3D3C7FFF057B4339791479D9ED /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BA4DB47D27DD9A6E9D9C77DE3CF700D /* MYSRuntime.debug.xcconfig */;
+			baseConfigurationReference = CC71FEAA0DDAE9CDA6A69A8F933D7785 /* MYSCategoryProperties.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSRuntime/MYSRuntime-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSCategoryProperties/MYSCategoryProperties-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSRuntime;
-				PRODUCT_NAME = MYSRuntime;
+				PRODUCT_MODULE_NAME = MYSCategoryProperties;
+				PRODUCT_NAME = MYSCategoryProperties;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		966E866A0DFA6B2186E2CF28DD3CFB6E /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12309BE7AE350C317A4A524FD5666DB0 /* Pods-calvetica.adhoc.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		A32FC7511BDFAFEA97715C2321846BAE /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2195D5A78FD059C99987A622106FCD84 /* MTDates.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTDates/MTDates-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTDates;
+				PRODUCT_NAME = MTDates;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		A5DC62A2B363C10216A1870BCA3BD49C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DD340C28F1E730A81A09B69D67B040C /* Pods-calvetica.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		B9787E61F9E89688768721C5F7499832 /* Adhoc */ = {
+		A7EE8B1FDA01CF54876B8B03C7ED5985 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FBBAD7DB7D9D9C4B7A65BD221F566B7 /* MTAnimation.release.xcconfig */;
+			baseConfigurationReference = 278326E5982115E8C2DB882D817A2200 /* MTPencil.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTPencil/MTPencil-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTPencil;
+				PRODUCT_NAME = MTPencil;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		B231C28ADAB62F980D21ECF16F560772 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_ADHOC=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Adhoc;
+		};
+		B4225DE12C1281967C6492AB29DD47F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB36CF9C769652B9697A756BBA9D576E /* MTAnimation.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MTAnimation/MTAnimation-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2250,117 +2459,51 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C0A6C0247FA0602E289E8AB456CF7F13 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FBBAD7DB7D9D9C4B7A65BD221F566B7 /* MTAnimation.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTAnimation/MTAnimation-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTAnimation;
+				PRODUCT_NAME = MTAnimation;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Adhoc;
 		};
-		C21D7E8C37BD1F1E5B763E3E4EB06A2B /* Debug */ = {
+		CA38F4D3C6D84BDEA2481A06E10424B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C03A38FA6F33781C564077465055C22 /* MTDates.debug.xcconfig */;
+			baseConfigurationReference = B2AB61EDFC0FEF0F687F529328370CC2 /* MTQueue.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTDates/MTDates-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTDates;
-				PRODUCT_NAME = MTDates;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C442C0F4BE82F2ECCDC2FBBBE0FBEC57 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 308EBEE9161BD9205C20A286B26786C2 /* MTPencil.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTPencil/MTPencil-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTPencil;
-				PRODUCT_NAME = MTPencil;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C71E273E5E4EC945E1832FF8E9D1CEEA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 278326E5982115E8C2DB882D817A2200 /* MTPencil.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTPencil/MTPencil-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTPencil;
-				PRODUCT_NAME = MTPencil;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		CDA8A935E62FF317889B1F1416779E78 /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82C50DBE099D5ED11BB83D5058E39601 /* MTGeometry.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTGeometry/MTGeometry-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTGeometry;
-				PRODUCT_NAME = MTGeometry;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		D7DD1A5D33BEC920DD4DE20EC6F33419 /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE6B78A27C345E54974BE019601E802F /* MTQueue.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MTQueue/MTQueue-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2370,116 +2513,23 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		DBD217C2A32A0AAD64732BEB8EABE44D /* Adhoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 278326E5982115E8C2DB882D817A2200 /* MTPencil.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MTPencil/MTPencil-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MTPencil;
-				PRODUCT_NAME = MTPencil;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Adhoc;
-		};
-		E3636B8D03A81399A0CFC74285D50A98 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D324FE792DE1EC072963CCD953639044 /* MYSCategoryProperties.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSCategoryProperties/MYSCategoryProperties-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSCategoryProperties;
-				PRODUCT_NAME = MYSCategoryProperties;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		E3C3A38B3B47442A5D75DE9816889A3D /* Release */ = {
+		D56D703491BDFA42700C064FF5D31D4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45DEA16F12D67FB8F6D89B280DB00C93 /* MYSSharedSettings.release.xcconfig */;
+			baseConfigurationReference = 8C03A38FA6F33781C564077465055C22 /* MTDates.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSSharedSettings/MYSSharedSettings-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSSharedSettings;
-				PRODUCT_NAME = MYSSharedSettings;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E56B0A8751DFD9474DA310B41F7A257A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC71FEAA0DDAE9CDA6A69A8F933D7785 /* MYSCategoryProperties.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/MYSCategoryProperties/MYSCategoryProperties-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = MYSCategoryProperties;
-				PRODUCT_NAME = MYSCategoryProperties;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		F96BA9844391F64BF060DA57189DF089 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2195D5A78FD059C99987A622106FCD84 /* MTDates.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/MTDates/MTDates-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -2489,90 +2539,84 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FB915B021CC8377489E1AA17312F2BD0 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82C50DBE099D5ED11BB83D5058E39601 /* MTGeometry.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MTGeometry/MTGeometry-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MTGeometry;
+				PRODUCT_NAME = MTGeometry;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Adhoc;
+		};
+		FC8428ED1D5355D4CB30AD730505A06C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63E26D844F1E54AE5259355A2706C03 /* MYSSharedSettings.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/MYSSharedSettings/MYSSharedSettings-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MYSSharedSettings;
+				PRODUCT_NAME = MYSSharedSettings;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0698EC3E83747E8917813269FFBB3971 /* Build configuration list for PBXNativeTarget "FrameAccessor" */ = {
+		0C894EA11B0C28614F2F092908472664 /* Build configuration list for PBXNativeTarget "MYSRuntime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1122FF081FDE419576E0157EC346ED70 /* Adhoc */,
-				1788FD457EEB580004F5CC03F5203489 /* Debug */,
-				53EE519BA47EAADC8D9A282E330BE59C /* Release */,
+				8BDBBF2C7518A799FA85893ECA0550BD /* Adhoc */,
+				7BF1D5AB9EDE626FB310AB4973AEE5C0 /* Debug */,
+				0E39A8E45C1FBE54DADED2B88B934A73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07B038365EEC4E794BA735AF03CAF31A /* Build configuration list for PBXNativeTarget "MTQueue" */ = {
+		0CBE62169A501EC7CA643049DE99BCBB /* Build configuration list for PBXNativeTarget "MTColorDistance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D7DD1A5D33BEC920DD4DE20EC6F33419 /* Adhoc */,
-				95B2294147A43627228A39DDFB18E8CE /* Debug */,
-				0FA2677F2C80B17918C47BE97D395521 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1405E0D0FAD7F95A7F1F27D9BEF182D9 /* Build configuration list for PBXNativeTarget "MTGeometry" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CDA8A935E62FF317889B1F1416779E78 /* Adhoc */,
-				65D0685C87924FD2745221B9C55071CD /* Debug */,
-				3FD8892568B87B00DA4DE96E4D28158B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		206376F614A87B3F490D87697A19C00B /* Build configuration list for PBXNativeTarget "MTPencil" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBD217C2A32A0AAD64732BEB8EABE44D /* Adhoc */,
-				C442C0F4BE82F2ECCDC2FBBBE0FBEC57 /* Debug */,
-				C71E273E5E4EC945E1832FF8E9D1CEEA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		32B1517512F47D5EBD43AA74EEDF74C3 /* Build configuration list for PBXNativeTarget "MYSCategoryProperties" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				94645C0411727515B8C7162AAAAAC9AC /* Adhoc */,
-				E3636B8D03A81399A0CFC74285D50A98 /* Debug */,
-				E56B0A8751DFD9474DA310B41F7A257A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3F2DFBD3CA59F6258E97091499D6DD1C /* Build configuration list for PBXNativeTarget "MTMigration" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6B33A5DE03399598CFA0962F18095A1D /* Adhoc */,
-				987C0B848A519BDB8FBE675CCD6B53BD /* Debug */,
-				65086BAF916D5372DCE1EAEED89F0799 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3F4A4DE97411D6B8010F785CD4DA9EBD /* Build configuration list for PBXNativeTarget "Pods-calvetica" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1D28F16398A5DE92653D86E20128BA7A /* Adhoc */,
-				77088CF4BD2E6F589B4801DCCA693DCB /* Debug */,
-				372FBBB3F40EE6A7B9E9A84389CDD0F0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		43FC361757E27AD6B8D7DD72D771C5E5 /* Build configuration list for PBXNativeTarget "MTDates" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6404C48D123AC283AAE085FE4E4F599E /* Adhoc */,
-				C21D7E8C37BD1F1E5B763E3E4EB06A2B /* Debug */,
-				F96BA9844391F64BF060DA57189DF089 /* Release */,
+				00F9A2AFE906C8FDBD3F37748B9DEE31 /* Adhoc */,
+				467AECC9C5F9269FD52C4C3CBF1329D4 /* Debug */,
+				3831E8A32937C94347A9849ED619DBD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2580,49 +2624,109 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2D8696175930B65B9061B6218E884857 /* Adhoc */,
-				8DE5143C03248BB6CD542DE3963D6F3A /* Debug */,
-				9E406C6AAF85E580207CD97B0044DEAB /* Release */,
+				B231C28ADAB62F980D21ECF16F560772 /* Adhoc */,
+				90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */,
+				9553C89E183877A5CB2F3C6801BEC129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6EFECF0931308635DCF453FD4E6C83B0 /* Build configuration list for PBXNativeTarget "MTColorDistance" */ = {
+		49F79D18190D31AEE2AC70D38040FEB6 /* Build configuration list for PBXNativeTarget "MTQueue" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D3C79AA7FA78DAB12F10DC9B714E3E2 /* Adhoc */,
-				11C8BD875C94CCCC97EDAD6382929E2F /* Debug */,
-				87A95D7018C64F324533040D953B20CE /* Release */,
+				6E23DCFC4DB4C2527488D6AAC161C81B /* Adhoc */,
+				CA38F4D3C6D84BDEA2481A06E10424B2 /* Debug */,
+				8C88C9060B521128489F51FF8CC47CAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C12D47CAEAF62B49E6928CBA908EF1D /* Build configuration list for PBXNativeTarget "MYSRuntime" */ = {
+		4D46D1163DB347520D2959FE17F09A33 /* Build configuration list for PBXNativeTarget "Pods-calvetica" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5E48E8403DB8788210E9CE7D5E9D3BA4 /* Adhoc */,
-				B7D6EF18FD4E50126D95D58AC01C7DD1 /* Debug */,
-				82B5943BF11478585664365666B377E8 /* Release */,
+				966E866A0DFA6B2186E2CF28DD3CFB6E /* Adhoc */,
+				A5DC62A2B363C10216A1870BCA3BD49C /* Debug */,
+				13B619D8413004A4C4FE2D6BCF8EF423 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1566BA4DAD93706D18312C92F74274B /* Build configuration list for PBXNativeTarget "MTAnimation" */ = {
+		5178E3C03D463F8A742A5A869A67633E /* Build configuration list for PBXNativeTarget "MTDates" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B9787E61F9E89688768721C5F7499832 /* Adhoc */,
-				1D93A1E89FF5B0CECA312969914A861D /* Debug */,
-				01214CD5D6027293C9735801E7298AA6 /* Release */,
+				A32FC7511BDFAFEA97715C2321846BAE /* Adhoc */,
+				D56D703491BDFA42700C064FF5D31D4D /* Debug */,
+				5A83D42C4D7E47888C7DB32E4DC3B0D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2C1EB371BDA0986A8A8637198AA26DE /* Build configuration list for PBXNativeTarget "MYSSharedSettings" */ = {
+		5727197A695D900940CAC6442B68DA49 /* Build configuration list for PBXNativeTarget "MYSSharedSettings" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				109F245FE25A1D83A134A5BBDA3557D1 /* Adhoc */,
-				8CBF3A83DE0FA221144C94EBC00A83B6 /* Debug */,
-				E3C3A38B3B47442A5D75DE9816889A3D /* Release */,
+				61A9A4DE2363AEA83C957B6E6BAEE09E /* Adhoc */,
+				FC8428ED1D5355D4CB30AD730505A06C /* Debug */,
+				81E6B1A0B78079EDAC6251E2A2D19E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9081272F9ED4C2EE87D8EA618D87D629 /* Build configuration list for PBXNativeTarget "MTPencil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7EE8B1FDA01CF54876B8B03C7ED5985 /* Adhoc */,
+				67E087C733919954F7DF03797AB2FFC8 /* Debug */,
+				0A1140F9249F8DC1856F8B3A3D44E5DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE7DAD868F2ADC645A5294289669BD67 /* Build configuration list for PBXNativeTarget "MTAnimation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0A6C0247FA0602E289E8AB456CF7F13 /* Adhoc */,
+				B4225DE12C1281967C6492AB29DD47F2 /* Debug */,
+				278394EF7A6A4DA01300A8292587B9D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3CF83B29EB4068ADC328F1270B66696 /* Build configuration list for PBXNativeTarget "MTGeometry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB915B021CC8377489E1AA17312F2BD0 /* Adhoc */,
+				74FCF1EE97D7D3F74AEEE79D6D917801 /* Debug */,
+				16D1BFC70CBDEF34A39772B164FCBAB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6845F374F58BCC2F867FEE02C66E34D /* Build configuration list for PBXNativeTarget "MTMigration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D02E1F6C6A7D3B955D1F0ADE8234730 /* Adhoc */,
+				20051CB01E5835A974078615B5CDFFF7 /* Debug */,
+				79414B07224DD1176B3C7DA0175C106A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C788B12DB43808680B51C351E6E1D8AE /* Build configuration list for PBXNativeTarget "MYSCategoryProperties" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95DB8A3D3C7FFF057B4339791479D9ED /* Adhoc */,
+				6229A16B6B1EF83817E1C20B310472FC /* Debug */,
+				2BB2C46E8B903D3926FF2CB0479DCF36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F38E52D3BE9A6F3398E7B71D68FFC9 /* Build configuration list for PBXNativeTarget "FrameAccessor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A21BDDEC38D273875025B4935702375 /* Adhoc */,
+				6AFC32638DAFD87729846B457599AE77 /* Debug */,
+				24AE912504B447AB36202EAEBB7E2505 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
