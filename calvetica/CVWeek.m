@@ -45,11 +45,10 @@
         // for each day
         NSDate *startOfWeek = [dateCopy mt_startOfCurrentWeek];
 
-        for (int i = 6; i >= 0; i--) {
+        for (int i = 0; i < 7; i++) {
             NSDate *day =  [startOfWeek mt_dateByAddingYears:0 months:0 weeks:0 days:i hours:0 minutes:0 seconds:0];
 
-            // create a cell for the title of the day
-            [tempArray addObject:day];
+            NSMutableArray *dayItems = [NSMutableArray array];
 
             // get todays events
             NSArray *todaysItems = [calendarItems filteredArrayUsingPredicate:
@@ -109,49 +108,29 @@
                     cellModel.continuedFromPreviousDay  = NO;
                 }
 
-                [tempArray addObject:cellModel];
-            }
-        }
-
-        // sort the data holders so that all day events are first, then events that started
-        // previously, then events that start today
-        [tempArray sortUsingComparator:^NSComparisonResult(CVCalendarItemCellModel *h1, CVCalendarItemCellModel *h2) {
-
-            // The week number is first and the friendly phrase is last.
-            if ([h1 isKindOfClass:[NSDate class]] && [h2 isKindOfClass:[NSDate class]]) {
-                NSDate *d1 = (NSDate *)h1;
-                NSDate *d2 = (NSDate *)h2;
-                return [d1 compare:d2];
+                [dayItems addObject:cellModel];
             }
 
-            else if ([h1 isKindOfClass:[NSDate class]] && [h2 isKindOfClass:[CVCalendarItemCellModel class]]) {
-                NSDate *d1 = (NSDate *)h1;
-                NSDate *d2 = h2.date;
-                return [d1 compare:d2];
-            }
-
-            else if ([h2 isKindOfClass:[NSDate class]] && [h1 isKindOfClass:[CVCalendarItemCellModel class]]) {
-                NSDate *d1 = (NSDate *)h2;
-                NSDate *d2 = h1.date;
-                return [d2 compare:d1];
-            }
-
-            else if ([h1.calendarItem class] != [h2.calendarItem class]) {
-                return h1.calendarItem.isEvent ? NSOrderedAscending : NSOrderedDescending;
-            }
-
-            else if (h1.calendarItem.mys_date == nil && h2.calendarItem.mys_date == nil) {
-                return [h1.calendarItem.mys_title localizedCaseInsensitiveCompare:h2.calendarItem.mys_title];
-            }
-
-            else if (h1.calendarItem.mys_date == nil || h2.calendarItem.mys_date == nil) {
-                return h2.calendarItem.mys_date == nil ? NSOrderedAscending : NSOrderedDescending;
-            }
-
-            else {
+            // Sort within the day only. Day headers must never take part in the sort: the item
+            // comparator ignores the day for event-vs-reminder and undated items, which made a
+            // single flat sort non-transitive and could swap whole days.
+            [dayItems sortUsingComparator:^NSComparisonResult(CVCalendarItemCellModel *h1, CVCalendarItemCellModel *h2) {
+                if (h1.calendarItem.isEvent != h2.calendarItem.isEvent) {
+                    return h1.calendarItem.isEvent ? NSOrderedAscending : NSOrderedDescending;
+                }
+                if (h1.calendarItem.mys_date == nil && h2.calendarItem.mys_date == nil) {
+                    return [h1.calendarItem.mys_title localizedCaseInsensitiveCompare:h2.calendarItem.mys_title];
+                }
+                if (h1.calendarItem.mys_date == nil || h2.calendarItem.mys_date == nil) {
+                    return h2.calendarItem.mys_date == nil ? NSOrderedAscending : NSOrderedDescending;
+                }
                 return [h1.date compare:h2.date];
-            }
-        }];
+            }];
+
+            // create a cell for the title of the day, followed by its items
+            [tempArray addObject:day];
+            [tempArray addObjectsFromArray:dayItems];
+        }
         
         // update the table with our new event or cell
         [MTq main:^{
