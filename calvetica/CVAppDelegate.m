@@ -324,6 +324,11 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
     NSMutableArray *notifDicts = [NSMutableArray array];
 
+    // The same event often reaches EventKit more than once (one copy per account
+    // or invitee calendar, hidden ones included), and synced events can carry
+    // several identical alarms. Each copy would otherwise become its own banner.
+    NSMutableSet<NSString *> *seenNotifs = [NSMutableSet set];
+
     for (EKEvent *event in monthEvents) {
 
 		// if the application becomes active, just forget setting alarms until the next time it goes inactive
@@ -343,8 +348,13 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
             // add 10 seconds offset like before
             NSDate *adjustedFireDate = [fireDate mt_dateByAddingYears:0 months:0 weeks:0 days:0 hours:0 minutes:0 seconds:10];
 
+            NSString *body = [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:fireDate]];
+            NSString *dedupeKey = [NSString stringWithFormat:@"%.0f|%@", [adjustedFireDate timeIntervalSince1970], body];
+            if ([seenNotifs containsObject:dedupeKey]) continue;
+            [seenNotifs addObject:dedupeKey];
+
             UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-            content.body = [NSString stringWithFormat:@"%@\n%@", [event mys_title], [event.startingDate stringWithWeekdayMonthDayYearHourMinuteAlarmNotif:fireDate]];
+            content.body = body;
             content.categoryIdentifier = @"SNOOZE_CATEGORY";
 
             if (soundToPlay) {
